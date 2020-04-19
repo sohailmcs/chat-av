@@ -8,13 +8,13 @@ router.get("public/video", (req, res, next) => {
 });
 
 //sign  in / register page
-router.get("public/signin", (req, res, next) => {
+router.get("/public/signin", (req, res, next) => {
   res.sendFile(path.join(__dirname, "../", "public", "signin.html"));
 });
 
 
 // login page
-router.get("/", (req, res, next) => {
+router.get("/public/index", (req, res, next) => {
   res.sendFile(path.join(__dirname, "../", "public", "index.html"));
 });
 
@@ -34,7 +34,7 @@ router.get("/public/doctors", (req, res, next) => {
 });
 
 //landing page
-router.get("/public/landing", (req, res, next) => {
+router.get("/", (req, res, next) => {
   res.sendFile(path.join(__dirname, "../", "public", "landing.html"));
 });
 
