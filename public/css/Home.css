@@ -1,4 +1,7 @@
 /***************** Header ******************/
+a:hover{
+    text-decoration:none;
+}
 #header {
     width: 100%;
     position: absolute;
