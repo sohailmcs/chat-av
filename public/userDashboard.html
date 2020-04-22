@@ -280,46 +280,41 @@
       </div>
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
-        <ul
-          class="navigation navigation-main"
-          id="main-menu-navigation"
-          data-menu="menu-navigation"
-          data-icon-style="lines"
-        >
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
           <li class="navigation-header"><span>ALL DOCTORS</span></li>
           <hr />
+          <a href="/public/userDashboard">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bxs-calendar-plus"></i><span> Patient Dashboard</span>
+            </button>
+         </a>
+         <hr />
+         <a href="/public/doctors">
+           <button class="sideButtons hvr-sweep-to-right">
+             <i class="bx bxs-first-aid"></i><span>All Doctors</span>
+           </button>
+         </a>
+         <hr />
+         <a href="/public/upcomingappointment">
+           <button class="sideButtons hvr-sweep-to-right">
+             <i class="bx bx-time"></i><span>Upcoming Appointment</span>
+           </button>
+         </a>
+         <hr>
+         <a href="#">
+          <button class="sideButtons hvr-sweep-to-right">
+            <i class="bx bxs-report"></i><span>My Medical History</span>
+          </button>
+        </a>
+         <hr>
           <a href="#">
             <button class="sideButtons hvr-sweep-to-right">
               <i class="bx bx-history"></i><span>Visit History</span>
             </button>
           </a>
           <hr />
-          <a href="#">
-            <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bxs-report"></i><span>My Medical History</span>
-            </button>
-          </a>
-          <hr />
-          <a href="/public/doctors">
-            <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bxs-first-aid"></i><span>All Doctors</span>
-            </button>
-          </a>
-          <hr />
-
-          <a href="/public/userDashboard">
-            <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bxs-calendar-plus"></i
-              ><span> Patient Dashboard</span>
-            </button>
-          </a>
-          <hr />
-          <a href="/public/upcomingappointment">
-            <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bx-time"></i><span>Upcoming Appointment</span>
-            </button>
-          </a>
-          <hr />
+         
+          
         </ul>
       </div>
     </div>
@@ -621,7 +616,7 @@
                           // url: "//demos.telerik.com/kendo-ui/service/meetings/update",
                           // dataType: "jsonp"
                       },
-                      
+
                       create: {
                           // url: "//demos.telerik.com/kendo-ui/service/meetings/create",
                           // dataType: "jsonp"

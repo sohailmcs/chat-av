@@ -130,6 +130,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   transition-property: color;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
+  color:#fff;
 }
 .hvr-shutter-in-horizontal:before {
   content: "";
@@ -139,7 +140,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   bottom: 0;
   left: 0;
   right: 0;
-  background: #e1e1e1;
+  background: #475f7b;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
   -webkit-transform-origin: 50%;
@@ -236,3 +237,31 @@ div {
   color:#000;
     font-size:13px;
 }
+
+.content-right{
+  background-color:#e0e0e0;
+  
+}
+.doctor-heading {
+  color:#5a8dee;
+  font-weight: bold;
+  text-align: center;
+}
+
+.media-body h5 {
+  color:#5a8dee;
+  font-weight: bold;
+}
+
+body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,.header-navbar.fixed-top ,
+.main-menu.menu-light .navigation,.main-menu
+{
+  background-color:#fff !important;
+}
+
+.media-list .media
+{
+  padding: 1.5rem 2rem .50rem;
+}
+
+
