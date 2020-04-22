@@ -7793,7 +7793,7 @@ button.bg-dark:hover {
 }
 .mr-auto,
 .mx-auto {
-  margin-right: auto !important;
+  margin-right: 50px;
 }
 .mb-auto,
 .my-auto {

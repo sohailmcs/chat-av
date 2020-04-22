@@ -7,7 +7,6 @@ var path = require("path");
 var easyrtc = require("easyrtc");
 process.title = "node-easyrtc";
 
-
 //Connecting html pages routes from router file
 const htmlFile = require("./Routes/routes");
 app.use(htmlFile);

@@ -1,187 +1,74 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
-  <!-- BEGIN: Head-->
-
+<html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=0"
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
     />
 
-    <title>Login Page</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/icofont.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
-
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
-
-    <link rel="stylesheet" type="text/css" href="/css/components.css" />
-
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
-    <!-- END CSS-->
+    <!-- Main  landing CSS File -->
+    <link href="/css/landingstyle.css" rel="stylesheet" />
   </head>
-  <!-- END: Head-->
 
-  <!-- BEGIN: Body-->
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+      <div class="container">
+        <div class="header-container d-flex align-items-center">
+          <div class="logo mr-auto">
+            <h1 class="text-light">
+              <a href="/"><span>Kindah</span></a>
+            </h1>
+            <!-- for logo -->
+            <!-- <a href="/"><img src="img src" alt="" class="img-fluid"></a>-->
+          </div>
 
-  <body
-    class="vertical-layout vertical-menu-modern 1-column navbar-sticky footer-static bg-full-screen-image blank-page blank-page"
-    data-open="click"
-    data-menu="vertical-menu-modern"
-    data-col="1-column"
-  >
-    <!-- BEGIN: Content-->
-    <div class="app-content content">
-      <div class="content-overlay"></div>
-      <div class="content-wrapper">
-        <div class="content-header row"></div>
-        <div class="content-body">
-          <!-- login page start -->
-          <section id="auth-login" class="row flexbox-container">
-            <div class="col-xl-8 col-11">
-              <div class="card bg-authentication mb-0">
-                <div class="row m-0">
-                  <!-- left section-login -->
-                  <div class="col-md-6 col-12 px-0">
-                    <div
-                      class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center"     >
-                      <div class="card-header pb-1">
-                        <div class="card-title">
-                          <h4 class="text-center mb-2">
-                            Welcome Back to Kindah
-                          </h4>
-                        </div>
-                      </div>
-                      <div class="card-content">
-                        <div class="card-body">
-                          <!-- NO NEED OF THESE BUTTON NOW -->
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li class="active"><a href="#header">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
 
-                          <!-- <div
-                            class="d-flex flex-md-row flex-column justify-content-around"
-                          >
-                            <a
-                              href="#"
-                              class="btn btn-social btn-google btn-block font-small-3 mr-md-1 mb-md-0 mb-1"
-                            >
-                              <i class="bx bxl-google font-medium-3"></i
-                              ><span class="pl-50 d-block text-center"
-                                >Google</span
-                              ></a
-                            >
-                            <a
-                              href="#"
-                              class="btn btn-social btn-block mt-0 btn-facebook font-small-3"
-                            >
-                              <i
-                                class="bx bxl-facebook-square font-medium-3"
-                              ></i>
-                              <span class="pl-50 d-block text-center"
-                                >Facebook</span
-                              ></a
-                            >
-                          </div> -->
-                          <!-- <div class="divider">
-                            <div class="divider-text text-uppercase text-muted">
-                              <small>or login with email</small>
-                            </div>
-                          </div> -->
-                          <form action="/public/userDashboard">
-                            <div class="form-group mb-50">
-                              <label
-                                class="text-bold-600"
-                                for="exampleInputEmail1"
-                                >Email Address</label
-                              >
-                              <input
-                                type="email"
-                                class="form-control"
-                                id="exampleInputEmail1"
-                                placeholder="Email Address"
-                              />
-                            </div>
-
-                            <div class="form-group">
-                              <label
-                                class="text-bold-600"
-                                for="exampleInputPassword1"
-                                >Password</label
-                              >
-                              <input
-                                type="password"
-                                class="form-control"
-                                id="exampleInputPassword1"
-                                placeholder="Password"
-                              />
-                            </div>
-                            <div
-                              class="form-group d-flex flex-md-row flex-column justify-content-between align-items-center"
-                            >
-                              <div class="text-left">
-                                <div class="checkbox checkbox-sm">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    id="exampleCheck1"
-                                  />
-                                  <label
-                                    class="checkboxsmall"
-                                    for="exampleCheck1"
-                                    ><small>Keep me logged in</small></label
-                                  >
-                                </div>
-                              </div>
-                              <div class="text-right">
-                                <a
-                                  href="/public/forgetPassword"
-                                  class="card-link"
-                                  ><small>Forgot Password?</small></a
-                                >
-                              </div>
-                            </div>
-                            <button
-                              type="submit"
-                              class="btn btn-primary glow w-100 position-relative"
-                            >
-                              Login
-                            </button>
-                          </form>
-                          <hr />
-                          <div class="text-center">
-                            <small class="mr-25">Don't have an account?</small
-                            ><a href="/signin.html"><small>Sign up</small></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- right section image -->
-                  <div
-                    class="col-md-6 d-md-block d-none text-center align-self-center p-3"
-                  >
-                    <div class="card-content">
-                      <img
-                        class="img-fluid"
-                        src="/assets/login.png"
-                        alt="branding logo"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <!-- login page ends -->
+              <li class="get-started" style="padding-left: 600px;">
+                <a href="/public/login">Login</a>
+              </li>
+              <li class="get-started"><a href="/public/signin">Register</a></li>
+            </ul>
+          </nav>
+          <!-- .nav-menu -->
         </div>
+        <!-- End Header Container -->
       </div>
-    </div>
-    <!-- END: Content-->
+    </header>
+    <!-- End Header -->
 
-   
+    <!-- content start-->
+    <section id="hero" class="d-flex align-items-center">
+      <div class="container text-center position-relative">
+        <h1>DOCTORS AWAIT !!</h1>
+        <h2>
+          Consult a reliable doctor over live video , 24/7 from anywhere in the
+          world securely and privately
+          <br />
 
-    <!-- END: Page JS-->
+          <a class="btn-get-started scrollto" href="/public/login">Login</a>
+
+          <a class="btn-get-started scrollto" href="/public/signin">Register</a>
+        </h2>
+      </div>
+    </section>
+    <!-- End content-->
+
+    <!-- Vendor JS Files -->
+    <script src="/js/jquery.min.js"></script>
+
+    <!--  Main JS landing page File -->
+    <script src="/js/mainlanding.js"></script>
   </body>
-  <!-- END: Body-->
 </html>

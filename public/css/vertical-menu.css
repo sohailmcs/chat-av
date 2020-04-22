@@ -15,15 +15,31 @@ body.vertical-layout.vertical-menu-modern .main-menu .navigation > li > a > i {
   float: left;
 }
 
-body.vertical-layout.vertical-menu-modern .main-menu .navigation > li > a > i:not(.menu-livicon) {
+body.vertical-layout.vertical-menu-modern
+  .main-menu
+  .navigation
+  > li
+  > a
+  > i:not(.menu-livicon) {
   font-size: 1.4rem;
 }
 
-body.vertical-layout.vertical-menu-modern .main-menu .navigation .menu-content > li > a {
-  transition: all .35s ease !important;
+body.vertical-layout.vertical-menu-modern
+  .main-menu
+  .navigation
+  .menu-content
+  > li
+  > a {
+  transition: all 0.35s ease !important;
 }
 
-body.vertical-layout.vertical-menu-modern .main-menu .navigation .menu-content > li > a > i {
+body.vertical-layout.vertical-menu-modern
+  .main-menu
+  .navigation
+  .menu-content
+  > li
+  > a
+  > i {
   margin-right: 1.25rem;
 }
 
@@ -36,16 +52,30 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu {
   width: 260px;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation > li > a > span.badge {
+body.vertical-layout.vertical-menu-modern.menu-expanded
+  .main-menu
+  .navigation
+  > li
+  > a
+  > span.badge {
   position: absolute;
   right: 7px;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation > li.open > a > span.badge {
+body.vertical-layout.vertical-menu-modern.menu-expanded
+  .main-menu
+  .navigation
+  > li.open
+  > a
+  > span.badge {
   right: 19px;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation li.has-sub > a:not(.mm-next):after {
+body.vertical-layout.vertical-menu-modern.menu-expanded
+  .main-menu
+  .navigation
+  li.has-sub
+  > a:not(.mm-next):after {
   content: "\ea4f";
   font-family: "boxicons";
   font-size: 1.2rem;
@@ -57,7 +87,11 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation l
   transition: -webkit-transform 0.4s ease-in-out;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation li.open > a:not(.mm-next):after {
+body.vertical-layout.vertical-menu-modern.menu-expanded
+  .main-menu
+  .navigation
+  li.open
+  > a:not(.mm-next):after {
   transform: rotate(180deg);
 }
 
@@ -70,60 +104,113 @@ body.vertical-layout.vertical-menu-modern.menu-collapsed .navbar.fixed-top {
 }
 
 body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu {
-  width: 78px;
+  width: 75px;
+  margin-left: 6px;
   transition: 300ms ease all;
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu .navbar-header .brand-text,
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu .modern-nav-toggle {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu
+  .navbar-header
+  .brand-text,
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu
+  .modern-nav-toggle {
   display: none;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation-header {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu:not(.expanded)
+  .navigation-header {
   margin: 0;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation li a {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu:not(.expanded)
+  .navigation
+  li
+  a {
   display: block;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation li a .menu-title, body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation li a .badge {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu:not(.expanded)
+  .navigation
+  li
+  a
+  .menu-title,
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu:not(.expanded)
+  .navigation
+  li
+  a
+  .badge {
   display: none;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation li:last-child {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu:not(.expanded)
+  .navigation
+  li:last-child {
   margin-bottom: 1.25rem !important;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation li.active a {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu:not(.expanded)
+  .navigation
+  li.active
+  a {
   background: rgba(90, 141, 238, 0.2);
   box-shadow: none;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation li.menu-collapsed-open {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu:not(.expanded)
+  .navigation
+  li.menu-collapsed-open {
   background: rgba(90, 141, 238, 0.2);
   border: none;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu .navigation {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu
+  .navigation {
   overflow: visible;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu .navigation > li.navigation-header span {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu
+  .navigation
+  > li.navigation-header
+  span {
   display: none;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu .navigation > li > a {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu
+  .navigation
+  > li
+  > a {
   text-overflow: inherit;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu .navigation > li > a > span.badge {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu
+  .navigation
+  > li
+  > a
+  > span.badge {
   float: none !important;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu .navigation > li > a i {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu
+  .navigation
+  > li
+  > a
+  i {
   margin-right: 2rem;
   float: left;
 }
@@ -133,20 +220,38 @@ body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu.expanded {
   box-shadow: 5px 0 25px 0 rgba(55, 70, 95, 0.3);
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu.expanded .navigation > li.navigation-header span {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu.expanded
+  .navigation
+  > li.navigation-header
+  span {
   display: block;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu.expanded .navigation > li > a i {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu.expanded
+  .navigation
+  > li
+  > a
+  i {
   margin-right: 1rem;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu.expanded .navigation > li > a > span.badge {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu.expanded
+  .navigation
+  > li
+  > a
+  > span.badge {
   position: absolute;
   right: 20px;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu.expanded .navigation li.has-sub > a:not(.mm-next):after {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu.expanded
+  .navigation
+  li.has-sub
+  > a:not(.mm-next):after {
   content: "\ea4f";
   font-family: "boxicons";
   font-size: 1.2rem;
@@ -158,19 +263,30 @@ body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu.expanded .na
   transition: -webkit-transform 0.4s ease-in-out;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu.expanded .navigation li.open > a:not(.mm-next):after {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu.expanded
+  .navigation
+  li.open
+  > a:not(.mm-next):after {
   transform: rotate(180deg);
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu.expanded .navbar-header .brand-text {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu.expanded
+  .navbar-header
+  .brand-text {
   display: inline;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu.expanded .modern-nav-toggle {
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .main-menu.expanded
+  .modern-nav-toggle {
   display: block;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-collapsed .navbar-static-top .navbar-wrapper,
+body.vertical-layout.vertical-menu-modern.menu-collapsed
+  .navbar-static-top
+  .navbar-wrapper,
 body.vertical-layout.vertical-menu-modern.menu-collapsed .app-content,
 body.vertical-layout.vertical-menu-modern.menu-collapsed .footer {
   margin-left: 78px;
@@ -178,7 +294,7 @@ body.vertical-layout.vertical-menu-modern.menu-collapsed .footer {
 
 @media (min-width: 992px) {
   body.vertical-layout.vertical-menu-modern .main-menu {
-    border-right: 1px solid #DFE3E7;
+    border-right: 1px solid #dfe3e7;
   }
   body.vertical-layout.vertical-menu-modern .main-menu.menu-dark {
     border-right: 1px solid #464d5c;
@@ -192,7 +308,11 @@ body.vertical-layout.vertical-menu-modern.menu-collapsed .footer {
   body.vertical-layout.vertical-menu-modern .main-menu {
     width: 0;
   }
-  body.vertical-layout.vertical-menu-modern .main-menu .navigation li.navigation-header span {
+  body.vertical-layout.vertical-menu-modern
+    .main-menu
+    .navigation
+    li.navigation-header
+    span {
     display: none;
   }
   body.vertical-layout.vertical-menu-modern .content,
@@ -235,35 +355,52 @@ body.vertical-layout.vertical-menu-modern.menu-collapsed .footer {
   padding: 0;
 }
 
-.vertical-overlay-menu .navbar[data-nav="brand-center"] .navbar-header .navbar-brand {
+.vertical-overlay-menu
+  .navbar[data-nav="brand-center"]
+  .navbar-header
+  .navbar-brand {
   display: flex;
   align-items: center;
   margin-right: 0;
 }
 
-.vertical-overlay-menu .navbar[data-nav="brand-center"] .navbar-header .navbar-brand .brand-logo {
+.vertical-overlay-menu
+  .navbar[data-nav="brand-center"]
+  .navbar-header
+  .navbar-brand
+  .brand-logo {
   height: 27px;
   width: 35px;
 }
 
-.vertical-overlay-menu .navbar[data-nav="brand-center"] .navbar-header .navbar-brand .brand-logo .logo {
+.vertical-overlay-menu
+  .navbar[data-nav="brand-center"]
+  .navbar-header
+  .navbar-brand
+  .brand-logo
+  .logo {
   height: 27px;
   display: flex;
   position: relative;
   left: 6px;
 }
 
-.vertical-overlay-menu .navbar[data-nav="brand-center"] .navbar-header .navbar-brand .brand-text {
-  color: #FFFFFF;
+.vertical-overlay-menu
+  .navbar[data-nav="brand-center"]
+  .navbar-header
+  .navbar-brand
+  .brand-text {
+  color: #ffffff;
   padding-left: 1rem;
   letter-spacing: 0.01rem;
   font-size: 1.57rem;
 }
 
-.vertical-overlay-menu .main-menu, .vertical-overlay-menu.menu-hide .main-menu {
+.vertical-overlay-menu .main-menu,
+.vertical-overlay-menu.menu-hide .main-menu {
   opacity: 0;
   transform: translate3d(0, 0, 0);
-  transition: width .25s,opacity .25s,transform .25s;
+  transition: width 0.25s, opacity 0.25s, transform 0.25s;
   width: 260px;
   left: -260px;
 }
@@ -280,7 +417,7 @@ body.vertical-layout.vertical-menu-modern.menu-collapsed .footer {
 }
 
 .vertical-overlay-menu .main-menu .navigation > li ul li > a {
-  transition: all .35s ease !important;
+  transition: all 0.35s ease !important;
 }
 
 .vertical-overlay-menu .main-menu .navigation > li ul li > a > i {
@@ -291,7 +428,11 @@ body.vertical-layout.vertical-menu-modern.menu-collapsed .footer {
   padding-left: 35px;
 }
 
-.vertical-overlay-menu .main-menu .navigation li.has-sub > a:not(.mm-next):after {
+.vertical-overlay-menu
+  .main-menu
+  .navigation
+  li.has-sub
+  > a:not(.mm-next):after {
   content: "\ea4f";
   font-family: "boxicons";
   font-size: 1.2rem;
@@ -310,7 +451,7 @@ body.vertical-layout.vertical-menu-modern.menu-collapsed .footer {
 .vertical-overlay-menu.menu-open .main-menu {
   opacity: 1;
   transform: translate3d(260px, 0, 0);
-  transition: width .25s,opacity .25s,transform .25s;
+  transition: width 0.25s, opacity 0.25s, transform 0.25s;
   top: 0;
 }
 

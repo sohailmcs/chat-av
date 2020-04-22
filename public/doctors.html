@@ -33,7 +33,7 @@
   <!-- BEGIN: Body-->
 
   <body
-    class="vertical-layout vertical-menu-modern 2-columns navbar-sticky footer-static"
+    class="vertical-layout vertical-menu-modern 2-columns navbar-sticky footer-static bg-full-screen-image"
     data-open="click"
     data-menu="vertical-menu-modern"
     data-col="2-columns"
@@ -163,7 +163,7 @@
                         <div class="media-left pr-0">
                           <div class="avatar mr-1 m-0">
                             <img
-                              src="/assets/images/doctorprofile.jpg"
+                              src="../../../app-assets/images/portrait/small/avatar-s-11.jpg"
                               alt="avatar"
                               height="39"
                               width="39"
@@ -218,12 +218,6 @@
                 <div class="dropdown-menu dropdown-menu-right pb-0">
                   <a class="dropdown-item" href="#"
                     ><i class="bx bx-user mr-50"></i> Edit Profile</a
-                  ><a class="dropdown-item" href="#"
-                    ><i class="bx bx-envelope mr-50"></i> My Inbox</a
-                  ><a class="dropdown-item" href="#"
-                    ><i class="bx bx-check-square mr-50"></i> Task</a
-                  ><a class="dropdown-item" href="#"
-                    ><i class="bx bx-message mr-50"></i> Chats</a
                   >
                   <div class="dropdown-divider mb-0"></div>
                   <a class="dropdown-item" href="/"
@@ -241,13 +235,13 @@
 
     <!-- BEGIN: Main Menu-->
     <div
-      class="main-menu menu-fixed menu-light menu-accordion menu-shadow"
+      class="main-menu menu-fixed menu-light menu-accordion menu-shadow card"
       data-scroll-to-active="true"
     >
       <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
           <li class="nav-item mr-auto">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="index.html">
               <h2 class="brand-text mb-0">KINDAH</h2>
             </a>
           </li>
@@ -264,36 +258,41 @@
       </div>
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
-        <ul
-          class="navigation navigation-main"
-          id="main-menu-navigation"
-          data-menu="menu-navigation"
-          data-icon-style="lines"
-        >
-          <li class="navigation-header"><span>DOCTORS</span></li>
-          <li class="nav-item">
-            <a href="#"
-              ><span class="menu-title" data-i18n="Email"
-                >My Visit History</span
-              ></a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="#"
-              ><span class="menu-title" data-i18n="Chat"
-                >My Medical History</span
-              ></a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="/public/userDashboard"
-              ><span class="menu-title" data-i18n="Todo"
-                >My Appointment</span
-              ></a
-            >
-          </li>
-          
-        </ul>
+          <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
+            <li class="navigation-header"><span>ALL DOCTORS</span></li>
+            <hr />
+            <a href="#">
+              <button class="sideButtons hvr-sweep-to-right">
+                <i class="bx bx-history"></i><span>Visit History</span>
+              </button>
+            </a>
+            <hr />
+            <a href="#">
+              <button class="sideButtons hvr-sweep-to-right">
+                <i class="bx bxs-report"></i><span>My Medical History</span>
+              </button>
+            </a>
+            <hr />
+            <a href="/public/doctors">
+              <button class="sideButtons hvr-sweep-to-right">
+                <i class="bx bxs-first-aid"></i><span>All Doctors</span>
+              </button>
+            </a>
+            <hr />
+            
+           <a href="/public/userDashboard">
+              <button class="sideButtons hvr-sweep-to-right">
+                <i class="bx bxs-calendar-plus"></i><span> Patient Dashboard</span>
+              </button>
+           </a>
+            <hr />
+            <a href="/public/upcomingappointment">
+              <button class="sideButtons hvr-sweep-to-right">
+                <i class="bx bx-time"></i><span>Upcoming Appointment</span>
+              </button>
+            </a>
+            <hr />
+          </ul>
       </div>
     </div>
     <!-- END: Main Menu-->
@@ -307,6 +306,7 @@
         <div class="content-body">
           <br />
           <br />
+          <br />
           <hr />
           <h2 style="text-align: center;">
             Choose a doctor for consultation
@@ -315,12 +315,11 @@
           <div class="email-user-list list-group">
             <ul class="users-list-wrapper media-list">
               <!-- first -->
-              <li class="media mail-read">
+              <li class="media mail-read card">
                 <div
                   style="display: flexbox; flex-direction: column; width: 100%;"
                 >
-                  <div class="row" style="margin: 0px;"
-                  >
+                  <div class="row">
                     <div
                       class="pr-50"
                       style="display: inline-block; align-self: stretch;"
@@ -352,12 +351,15 @@
                         ><b>online</b></span
                       >
                       <br />
-                      <p>
-                        Please fill out the forms correctly. Your records will be
-                        saved in database.
-                      </p>
-                    
-                         
+                      <br />
+                    </div>
+                  </div>
+
+                  <div>
+                    <p>
+                      Please fill out the forms correctly. Your records will be
+                      saved in database.
+                    </p>
                     <div class="row">
                       <div class="col-12">
                         <!-- VIEW DOCTOR PROFILE START -->
@@ -454,7 +456,6 @@
                             </div>
                           </div>
                         </div>
-                        <div class="mr-1 mb-1 d-inline-block">
                         <a href="/public/userDashboard">
                           <button
                             type="button"
@@ -464,7 +465,6 @@
                             <b>Request Appointment</b>
                           </button>
                         </a>
-                      </div>
 
                       <div class="modal-primary mr-1 mb-1 d-inline-block">
                         <!-- Button trigger for request a call modal -->
@@ -504,20 +504,18 @@
                       </div>
                       </div>
                     </div>
-                    </div>
                   </div>
-
-                  
                 </div>
               </li>
               <!-- first doctor end -->
+              <br/>
 
               <!-- second -->
-              <li class="media mail-read">
+              <li class="media mail-read card">
                 <div
                   style="display: flexbox; flex-direction: column; width: 100%;"
                 >
-                  <div class="row" style="margin: 0rem;">
+                  <div class="row">
                     <div
                       class="pr-50"
                       style="display: inline-block; align-self: stretch;"
@@ -545,131 +543,104 @@
                       <span style="margin-left: 1%; color: #39da8a;"
                         ><b>online</b></span
                       >
-                      <br />
-                      <p>
-                        Please fill out the forms correctly. Your records will be
-                        saved in database.
-                      </p>
+                      <div>
+                        <p>
+                          Please fill out the forms correctly. Your records will be
+                          saved in database.
+                        </p>
+                        <div class="row">
+                          <div class="col-12">
+                            <!-- VIEW DOCTOR PROFILE START -->
+                            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                              <!-- Button trigger for view doctor profile modal -->
+                              <button type="button" class="btn btn-outline-primary round mr-1 mb-1 btn-sm" data-toggle="modal"
+                                data-target="#doctor2">
+                                <i class="bx bxs-show"></i>
+                                <b>View Doctor Profile</b>
+                              </button>
                       
-                      <div class="row">
-                        <div class="col-12">
-                          <!-- VIEW DOCTOR PROFILE START -->
-                          <div class="modal-primary mr-1 mb-1 d-inline-block">
-                            <!-- Button trigger for view doctor profile modal -->
-                            <button
-                              type="button"
-                              class="btn btn-outline-primary round mr-1 mb-1 btn-sm"
-                              data-toggle="modal"
-                              data-target="#doctor2"
-                            >
-                              <i class="bx bxs-show"></i>
-                              <b>View Doctor Profile</b>
-                            </button>
-  
-                            <!--primary view doctor profile Modal -->
-                            <div
-                              class="modal fade text-left"
-                              id="doctor2"
-                              tabindex="-1"
-                              role="dialog"
-                              aria-labelledby="myModalLabel160"
-                              aria-hidden="true"
-                            >
-                              <div
-                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                role="document"
-                              >
-                                <div class="modal-content">
-                                  <div class="modal-header bg-primary">
-                                    <h5
-                                      class="modal-title white"
-                                      id="myModalLabel160"
-                                    >
-                                      DOCTOR PROFILE
-                                    </h5>
-                                    <button
-                                      type="button"
-                                      class="close"
-                                      data-dismiss="modal"
-                                      aria-label="Close"
-                                    >
-                                      <i class="bx bx-x"></i>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <ul style="list-style-type: disc;">
-                                      <h4>Dr abc</h4>
-                                      <li>specialization</li>
-                                      <li>experience</li>
-                                      <li>clinics</li>
-                                    </ul>
+                              <!--primary view doctor profile Modal -->
+                              <div class="modal fade text-left" id="doctor2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header bg-primary">
+                                      <h5 class="modal-title white" id="myModalLabel160">
+                                        DOCTOR PROFILE
+                                      </h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="bx bx-x"></i>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <ul style="list-style-type: disc;">
+                                        <h4>Dr abc</h4>
+                                        <li>specialization</li>
+                                        <li>experience</li>
+                                        <li>clinics</li>
+                                      </ul>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="mr-1 mb-1 d-inline-block">
                             <a href="/public/userDashboard">
-                              <button
-                                type="button"
-                                class="btn btn-outline-primary round mr-1 mb-1 btn-sm"
-                              >
+                              <button type="button" class="btn btn-outline-primary round mr-1 mb-1 btn-sm">
                                 <i class="bx bx-calendar"></i>
                                 <b>Request Appointment</b>
                               </button>
                             </a>
-                          </div>
-                          <div class="modal-primary mr-1 mb-1 d-inline-block">
-                            <!-- Button trigger for request a call modal -->
-                            <button type="button" class="btn btn-outline-primary round mr-1 mb-1 btn-sm" data-toggle="modal"
-                              data-target="#reqcall">
-                              <i class="bx bx-phone-call"></i>
-                              <b>Request A Call</b>
-                            </button>
-                          
-                            <!--primary request a call Modal -->
-                            <div class="modal fade text-left" id="reqcall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-                              aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header bg-primary">
-                                    <h5 class="modal-title white" id="myModalLabel160">
-                                      REQUEST A CALL
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <i class="bx bx-x"></i>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body" style="text-align: center;">
-                                    <h5><i>Your request has been sent to doctor please wait.</i></h5>
-                                    <br />
-                                    <br />
-                                    <div clas s="avatar mr-1 m-0">
-                                      <img src="/assets/requestcall.png" alt="avatar" height="100" width="100" ; />
-                          
+                            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                              <!-- Button trigger for request a call modal -->
+                              <button type="button" class="btn btn-outline-primary round mr-1 mb-1 btn-sm" data-toggle="modal"
+                                data-target="#reqcall">
+                                <i class="bx bx-phone-call"></i>
+                                <b>Request A Call</b>
+                              </button>
+                      
+                              <!--primary request a call Modal -->
+                              <div class="modal fade text-left" id="reqcall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header bg-primary">
+                                      <h5 class="modal-title white" id="myModalLabel160">
+                                        REQUEST A CALL
+                                      </h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="bx bx-x"></i>
+                                      </button>
                                     </div>
-                                    <br />
-                                    <br />
+                                    <div class="modal-body" style="text-align: center;">
+                                      <h5><i>Your request has been sent to doctor please wait.</i></h5>
+                                      <br />
+                                      <br />
+                                      <div class="avatar mr-1 m-0">
+                                        <img src="/assets/requestcall.png" alt="avatar" height="100" width="100" ; />
+                      
+                                      </div>
+                                      <br />
+                                      <br />
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
+                        </div>
                       </div>
-                    </div>
                     </div>
                   </div>
 
-                  
               </li>
               <!-- second end -->
-
-              <!-- second -->
-              <li class="media mail-read">
+<br/>
+              <!-- third -->
+              <li class="media mail-read card">
                 <div
                   style="display: flexbox; flex-direction: column; width: 100%;"
                 >
-                  <div class="row" style="margin: 0px;">
+                  <div class="row">
                     <div
                       class="pr-50"
                       style="display: inline-block; align-self: stretch;"
@@ -688,134 +659,132 @@
 
                     <div class="media-body" style="display: inline-block;">
                       <h5 style="padding-top: 1%;">
-                        Doctor name
+                        Doctor Name
                       </h5>
 
                       <span>specialization</span>
                       <br />
                       <span class="bullet bullet-danger bullet-sm"></span>
-                      <span style="margin-left: 1%; color:#ff5b5c;"
-                        ><b>online</b></span
+                      <span style="margin-left: 1%; color: #ff5b5c;"
+                        ><b>offline</b></span
                       >
                       <br />
-                      <p>
-                        Please fill out the forms correctly. Your records will be
-                        saved in database.
-                      </p>
-                      
-                      <div class="row" style="margin: 0px;">
-                        <div class="col-12">
-                          <!-- VIEW DOCTOR PROFILE START -->
-                          <div class="modal-primary mr-1 mb-1 d-inline-block">
-                            <!-- Button trigger for view doctor profile modal -->
-                            <button
-                              type="button"
-                              class="btn btn-outline-primary round mr-1 mb-1 btn-sm"
-                              data-toggle="modal"
-                              data-target="#doctor2"
-                            >
-                              <i class="bx bxs-show"></i>
-                              <b>View Doctor Profile</b>
-                            </button>
-  
-                            <!--primary view doctor profile Modal -->
-                            <div
-                              class="modal fade text-left"
-                              id="doctor2"
-                              tabindex="-1"
-                              role="dialog"
-                              aria-labelledby="myModalLabel160"
-                              aria-hidden="true"
-                            >
-                              <div
-                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                role="document"
-                              >
-                                <div class="modal-content">
-                                  <div class="modal-header bg-primary">
-                                    <h5
-                                      class="modal-title white"
-                                      id="myModalLabel160"
-                                    >
-                                      DOCTOR PROFILE
-                                    </h5>
-                                    <button
-                                      type="button"
-                                      class="close"
-                                      data-dismiss="modal"
-                                      aria-label="Close"
-                                    >
-                                      <i class="bx bx-x"></i>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <ul style="list-style-type: disc;">
-                                      <h4>Dr abc</h4>
-                                      <li>specialization</li>
-                                      <li>experience</li>
-                                      <li>clinics</li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="mr-1 mb-1 d-inline-block">
-                            <a href="/public/userDashboard">
-                              <button
-                                type="button"
-                                class="btn btn-outline-primary round mr-1 mb-1 btn-sm"
-                              >
-                                <i class="bx bx-calendar"></i>
-                                <b>Request Appointment</b>
-                              </button>
-                            </a>
-                          </div>
-                          <div class="modal-primary mr-1 mb-1 d-inline-block">
-                            <!-- Button trigger for request a call modal -->
-                            <button type="button" class="btn btn-outline-primary round mr-1 mb-1 btn-sm" data-toggle="modal"
-                              data-target="#reqcall">
-                              <i class="bx bx-phone-call"></i>
-                              <b>Request A Call</b>
-                            </button>
-                          
-                            <!--primary request a call Modal -->
-                            <div class="modal fade text-left" id="reqcall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-                              aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header bg-primary">
-                                    <h5 class="modal-title white" id="myModalLabel160">
-                                      REQUEST A CALL
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <i class="bx bx-x"></i>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body" style="text-align: center;">
-                                    <h5><i>Your request has been sent to doctor please wait.</i></h5>
-                                    <br />
-                                    <br />
-                                    <div class="avatar mr-1 m-0">
-                                      <img src="/assets/requestcall.png" alt="avatar" height="100" width="100" ; />
-                          
-                                    </div>
-                                    <br />
-                                    <br />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
+                      <br />
                     </div>
                   </div>
 
-                  
-              </li>
-              <!-- second end -->
+                  <div>
+                    <p>
+                      Please fill out the forms correctly. Your records will be
+                      saved in database.
+                    </p>
+                    <div class="row">
+                      <div class="col-12">
+                        <!-- VIEW DOCTOR PROFILE START -->
+                        <div class="modal-primary mr-1 mb-1 d-inline-block">
+                          <!-- Button trigger for primary themes modal -->
+                          <button
+                            type="button"
+                            class="btn btn-outline-primary round mr-1 mb-1 btn-sm"
+                            data-toggle="modal"
+                            data-target="#doctor3"
+                          >
+                            <i class="bx bxs-show"></i>
+                            <b>View Doctor Profile</b>
+                          </button>
 
+                          <!--primary theme Modal -->
+                          <div
+                            class="modal fade text-left"
+                            id="doctor3"
+                            tabindex="-1"
+                            role="dialog"
+                            aria-labelledby="myModalLabel160"
+                            aria-hidden="true"
+                          >
+                            <div
+                              class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                              role="document"
+                            >
+                              <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                  <h5
+                                    class="modal-title white"
+                                    id="myModalLabel160"
+                                  >
+                                    DOCTOR PROFILE
+                                  </h5>
+                                  <button
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                  >
+                                    <i class="bx bx-x"></i>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <ul style="list-style-type: disc;">
+                                    <h4>Dr abc</h4>
+                                    <li>specialization</li>
+                                    <li>experience</li>
+                                    <li>clinics</li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <a href="/public/userDashboard">
+                          <button
+                            type="button"
+                            class="btn btn-outline-primary round mr-1 mb-1 btn-sm"
+                          >
+                            <i class="bx bx-calendar"></i>
+                            <b>Request Appointment</b>
+                          </button>
+                        </a>
+                      <div class="modal-primary mr-1 mb-1 d-inline-block">
+                        <!-- Button trigger for request a call modal -->
+                        <button type="button" class="btn btn-outline-primary round mr-1 mb-1 btn-sm" data-toggle="modal"
+                          data-target="#reqcall">
+                          <i class="bx bx-phone-call"></i>
+                          <b>Request A Call</b>
+                        </button>
+                      
+                        <!--primary request a call Modal -->
+                        <div class="modal fade text-left" id="reqcall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+                          aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header bg-primary">
+                                <h5 class="modal-title white" id="myModalLabel160">
+                                  REQUEST A CALL
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <i class="bx bx-x"></i>
+                                </button>
+                              </div>
+                              <div class="modal-body" style="text-align: center;">
+                                <h5><i>Your request has been sent to doctor please wait.</i></h5>
+                                <br />
+                                <br />
+                                <div class="avatar mr-1 m-0">
+                                  <img src="/assets/requestcall.png" alt="avatar" height="100" width="100" ; />
+                      
+                                </div>
+                                <br />
+                                <br />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -836,11 +805,14 @@
     <script src="/js/app-menu.js"></script>
     <script src="/js/app.js"></script>
 
-    
+    <script src="/components-modal.js"></script>
 
     <!-- //icons on buttons-->
 
-   
+    <script
+      src="https://kit.fontawesome.com/ad7c8dff9f.js"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- END: JS-->
   </body>
