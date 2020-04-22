@@ -264,7 +264,10 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,.header-navba
   padding: 1.5rem 2rem .50rem;
 }
 
-.media-list .media
-{
-  background-color: #fff;;
+.media-list .media {
+  background-image: url(../assets/img.png);
+  background-size: 238px 207px;
+  background-position: 690px 7px;
+  background-repeat: no-repeat;
+  background-color: #fff;
 }
