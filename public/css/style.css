@@ -271,14 +271,4 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,.header-navba
   background-repeat: no-repeat;
   background-color: #fff;
 }
-.k-i-arrow-w {
-  background-image: url(../assets/sprite.png);
-  background-color: transparent;
-  background-position: 0px -48px;
-}
 
-.k-i-arrow-e{
-  background-image: url(../assets/sprite.png);
-  background-color: transparent;
-  background-position: 0px -16px;
-}

@@ -607,30 +607,30 @@
               timezone: "Etc/UTC",
               dataSource: {
                   batch: true,
-                  transport: {
-                      read: {
-                          // url: "http//demos.telerik.com/kendo-ui/service/meetings",
-                          // dataType: "jsonp"
-                      },
-                      update: {
-                          // url: "//demos.telerik.com/kendo-ui/service/meetings/update",
-                          // dataType: "jsonp"
-                      },
+                  // transport: {
+                  //     read: {
+                  //         // url: "http//demos.telerik.com/kendo-ui/service/meetings",
+                  //         // dataType: "jsonp"
+                  //     },
+                  //     update: {
+                  //         // url: "//demos.telerik.com/kendo-ui/service/meetings/update",
+                  //         // dataType: "jsonp"
+                  //     },
 
-                      create: {
-                          // url: "//demos.telerik.com/kendo-ui/service/meetings/create",
-                          // dataType: "jsonp"
-                      },
-                      destroy: {
-                          // url: "//demos.telerik.com/kendo-ui/service/meetings/destroy",
-                          // dataType: "jsonp"
-                      },
-                      parameterMap: function(options, operation) {
-                          if (operation !== "read" && options.models) {
-                              return {models: kendo.stringify(options.models)};
-                          }
-                      }
-                  },
+                  //     create: {
+                  //         // url: "//demos.telerik.com/kendo-ui/service/meetings/create",
+                  //         // dataType: "jsonp"
+                  //     },
+                  //     destroy: {
+                  //         // url: "//demos.telerik.com/kendo-ui/service/meetings/destroy",
+                  //         // dataType: "jsonp"
+                  //     },
+                  //     parameterMap: function(options, operation) {
+                  //         if (operation !== "read" && options.models) {
+                  //             return {models: kendo.stringify(options.models)};
+                  //         }
+                  //     }
+                  // },
                   schema: {
                       model: {
                           id: "meetingID",
