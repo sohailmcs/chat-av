@@ -116,14 +116,17 @@
                                 <label
                                   class="text-bold-600"
                                   for="exampleInputEmail1"
-                                  >Contact Number</label
+                                  >Contact Number Wtih Country Code</label
                                 >
-                                <input
-                                  type="number"
-                                  class="form-control"
-                                  id="exampleInputEmail1"
-                                  placeholder="Contact Number"
-                                />
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                  <input disabled="disabled" type="number" class="form-control" id="exampleInputEmail1" placeholder="+971">
+                                </div>  
+                                
+                                <div class="col"> 
+                                  <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Contact Number">
+                                </div> 
+                              </div>
                               </div>
                             </div>
                             <button
