@@ -641,7 +641,7 @@
     /* sidebar hide on medium screen */
     transform: translateX(-110%);
     transition: transform 0.25s;
-    height: 100%;
+    height: auto;
     position: absolute;
     z-index: 8;
     left: -24px;
@@ -663,11 +663,11 @@
 
 @media screen and (min-width: 1440px) {
   .calendar-wrapper {
-    height: 100vh;
+    height: auto;
     overflow: unset;
     border-bottom: 1px solid #dfe3e7;
   }
   .calendar-wrapper .calendar-view .calendar-content {
-    height: 93%;
+    height: auto;
   }
 }
