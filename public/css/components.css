@@ -250,7 +250,7 @@ html body p {
 }
 
 html body.bg-full-screen-image {
-  background: url(../assets/auth-bg.jpg) no-repeat center center;
+  background-color:#3eb8d7;
   background-size: cover;
 }
 
@@ -486,7 +486,7 @@ body.footer-hidden footer {
 }
 
 .main-menu.menu-light .navigation .navigation-header {
-  color: #bac0c7;
+  color: #3eb8d7;
   margin: calc(2.2rem - 0.5rem) 0 0.5rem 1.8rem;
   padding: 0;
   letter-spacing: 1px;
@@ -496,6 +496,11 @@ body.footer-hidden footer {
   padding: 7px 0 0;
   margin: -7px 0 0;
 }
+.dropdown-menu i{
+  color:#3eb8d7;
+}
+
+
 
 .main-menu.menu-light
   .navigation
@@ -916,13 +921,16 @@ body.footer-hidden footer {
 }
 
 .main-menu .navbar-header .navbar-brand .brand-text {
-  color: #5a8dee;
+  color:#3eb8d7;
   padding-left: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.04rem;
   font-size: 1.5rem;
   float: left;
   animation: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
+}
+.dropdown-item {
+  color:#3eb8d7;
 }
 
 .main-menu .navbar-header .modern-nav-toggle {
@@ -1017,7 +1025,7 @@ body.footer-hidden footer {
 .dropdown-notification .dropdown-menu-header {
   border-top-left-radius: 0.267rem;
   border-top-right-radius: 0.267rem;
-  background: #5a8dee;
+  background: #3eb8d7;
 }
 
 .dropdown-notification .dropdown-menu-header .dropdown-header {

@@ -9,6 +9,31 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+.btn-primary {
+  background-color: #3eb8d7;
+}
+.text-center,a{
+  color:#3eb8d7;
+}
+
+.header-navbar .navbar-container {
+  background-color:#3eb8d7;
+}
+.header-navbar .navbar-container ul.nav li i.ficon
+{
+  color:#fff;
+}
+.header-navbar .navbar-container ul.nav li > a.nav-link
+{
+  color:#fff;
+}
+.text-muted {
+  color: #fff !important;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  color:#3eb8d7;
+}
 
 .sidebaricon {
   font-size: 1.2rem;
@@ -41,7 +66,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   bottom: 0;
   left: 0;
   right: 0;
-  background: #e1e1e1;
+  background:#3eb8d7;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
   -webkit-transform-origin: 50%;
@@ -132,26 +157,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   transition-duration: 0.3s;
   color:#fff;
 }
-.hvr-shutter-in-horizontal:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #475f7b;
-  -webkit-transform: scaleX(1);
-  transform: scaleX(1);
-  -webkit-transform-origin: 50%;
-  transform-origin: 50%;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
+
 .hvr-shutter-in-horizontal:hover,
 .hvr-shutter-in-horizontal:focus,
 .hvr-shutter-in-horizontal:active {
@@ -176,7 +182,7 @@ p {
   padding-bottom: 7%;
   padding-left: 0;
   padding-right: 0;
-  color: #8494a7;
+  color: #3eb8d7;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -210,6 +216,37 @@ p {
 div {
   text-align: left;
 }
+.selectedDt {
+text-align: center;
+font-size:100%;
+}
+.trSlot{
+  background-color:#3eb8d7;
+  border-bottom:2px solid #fff;
+}
+
+.trSlot td {
+  width:33.33%;
+  text-align: center;
+  padding:0;
+}
+  
+.trSlot td:last-child{
+  text-align: right;;
+}
+
+.tdSlot {
+  color:#fff;
+}
+.btn-primary_book {
+  margin-bottom: 0;
+  background-color: #208ca9 !important;
+  color:#fff;
+  border-radius: 0;
+}
+.btn-primary_book:hover{
+  color:#badde6;
+}
 
 .cmsmasters_quotes_slider.cmsmasters_quotes_slider_type_box
   .cmsmasters_quote_inner_top {
@@ -225,7 +262,7 @@ div {
   color:#fff;
   margin-bottom:2px;
   font-family: 'Open Sans', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
-  font-size: 18px;;
+  font-size: 16px;;
 }
 .cmsmasters_quote_content
 {
@@ -243,13 +280,13 @@ div {
   
 }
 .doctor-heading {
-  color:#5a8dee;
+  color:#3eb8d7;
   font-weight: bold;
   text-align: center;
 }
 
 .media-body h5 {
-  color:#5a8dee;
+  color:#3eb8d7;
   font-weight: bold;
 }
 
@@ -271,3 +308,201 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,.header-navba
   background-repeat: no-repeat;
   background-color: #fff;
 }
+
+#scheduler {
+  width: 100%;
+}
+
+.k-widget.k-calendar {
+  width: 100%;
+  height: 100%;
+}
+.k-widget.k-calendar .k-content tbody td {  
+  height: 54px;
+}
+.k-calendar .k-content, .k-calendar .k-content th{
+  text-align: center;
+}
+.k-state-selected {
+  background-color: #3eb8d7;
+}
+
+.k-calendar td.k-state-selected.k-state-hover
+{
+  background-color: #56c1dc;
+}
+
+
+.k-calendar .k-today {
+  -webkit-box-shadow: inset 0 0 0 1px#56c1dc;
+    box-shadow: inset 0 0 0 1px #56c1dc;    
+}
+
+.k-calendar .k-today .k-link {
+  color:#56c1dc;
+}
+.k-content tbody td:hover{
+  background-color:#56c1dc
+}
+
+.calendar-wrapper {
+  height: 100%;
+  overflow: hidden;
+}
+.calendar-wrapper .sidebar {
+  /* sidebar menu */
+  width: 250px;
+  height: 100%;
+  border-top-left-radius: 0.267rem;
+  border-bottom-left-radius: 0.267rem;
+  transition: all 0.3s ease;
+  float: left;
+  padding: 1.13rem 1.33rem 1.53rem;
+}
+
+.calendar-wrapper .calendar-view {
+  width: calc(100% - 280px);
+  background-color: #ffffff;
+  height: 100%;
+  float: right;
+  border-left: 1px solid #dfe3e7;
+  padding-right:2px;
+}
+
+@media (max-width: 575.98px) {
+  .calendar-wrapper .sidebar.show {
+    transform: translateX(11%) translateY(-1px);
+  }
+  .calendar-wrapper
+    .calendar-view
+    .calendar-content
+    .tui-full-calendar-floating-layer {
+    left: 0 !important;
+  }
+  .calendar-wrapper
+    .calendar-view
+    .calendar-content
+    .tui-full-calendar-popup-container {
+    max-width: 300px;
+    min-width: 0 !important;
+  }
+  .calendar-wrapper
+    .calendar-view
+    .calendar-content
+    .tui-full-calendar-popup-section-item.tui-full-calendar-section-location
+    input {
+    width: auto;
+  }
+  .calendar-wrapper
+    .calendar-view
+    .calendar-content
+    .tui-full-calendar-popup
+    .tui-full-calendar-popup-container
+    .tui-full-calendar-popup-section {
+    flex-wrap: wrap;
+  }
+  .calendar-wrapper
+    .calendar-view
+    .calendar-content
+    .tui-full-calendar-popup
+    .tui-full-calendar-popup-container
+    .tui-full-calendar-popup-section
+    .tui-full-calendar-popup-section-item {
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .calendar-wrapper .sidebar {
+    /* sidebar hide on medium screen */
+    transform: translateX(-110%);
+    transition: transform 0.25s;
+    height: auto;
+    position: absolute;
+    z-index: 8;
+    left: -24px;
+    width: auto;
+    background-color: #fafbfb;
+    border-right: 1px solid #dfe3e7;
+  }
+  .calendar-wrapper .sidebar.show {
+    transform: translateX(13%) translateY(-1px);
+  }
+  .calendar-wrapper .calendar-view {
+    width: 100%;
+    border-left: none;
+  }
+  .calendar-wrapper .calendar-view .calendar-action .sidebar-toggle-btn {
+    display: inline;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .calendar-wrapper {
+    height: auto;
+    overflow: unset;
+    border-bottom: 1px solid #dfe3e7;
+  }
+  .calendar-wrapper .calendar-view .calendar-content {
+    height: auto;
+  }
+}
+
+
+
+/************* doctor dashboard styling start ****************************/
+
+.tablehead {
+  background-color: #5a8dee;
+  padding: 0.39rem 2rem;
+}
+
+.tableheader {
+  font-size: 14px !important;
+  color: white !important;
+}
+
+.dashboard-headings {
+  color: #3eb8d7;
+  font-weight: bold !important;
+}
+
+td {
+  padding: 1rem !important;
+}
+
+/************* video call styling start ****************************/
+
+.videocol {
+  padding-right: 6px !important;
+  padding-left: 0px !important;
+}
+
+.leftcol {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.icons {
+  text-align: center;
+}
+
+.call-heading {
+  margin-left: 3%;
+}
+
+.icon-size {
+  font-size: 1.8rem;
+}
+
+.videoimagediv {
+  text-align: center;
+}
+
+.docvideo {
+  float: right;
+  height: 100px;
+
+  margin-top: -60px;
+}
+

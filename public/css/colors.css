@@ -1560,7 +1560,7 @@ input:focus ~ .bg-primary {
 /* Text color */
 /* ---------- */
 .primary {
-  color: #5A8DEE !important;
+  color: #3eb8d7 !important
 }
 
 /* text with light primary */
@@ -1716,9 +1716,9 @@ input:focus ~ .bg-primary {
 
 /* Outline buttons */
 .btn-outline-primary {
-  border: 1px solid #5A8DEE;
+  border: 1px solid #3eb8d7;
   background-color: transparent;
-  color: #5A8DEE !important;
+  color: #3eb8d7 !important;
 }
 
 .btn-outline-primary:hover, .btn-outline-primary.hover {

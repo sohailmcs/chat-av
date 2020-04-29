@@ -44,4 +44,14 @@ router.get("/public/index", (req, res, next) => {
   res.sendFile(path.join(__dirname, "../", "public", "index.html"));
 });
 
+//sign  in doctor dashboard
+router.get("/public/doctordashboard", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "../", "public", "doctordashboard.html"));
+});
+
+//sign  in video call dashboard
+router.get("/public/videocall", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "../", "public", "videocall.html"));
+});
+
 module.exports = router;
