@@ -467,8 +467,8 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,.header-navba
   font-weight: bold !important;
 }
 
-td {
-  padding: 1rem !important;
+.tblCallLogs td {
+  padding: 0.5rem 1rem !important;
 }
 
 /************* video call styling start ****************************/
