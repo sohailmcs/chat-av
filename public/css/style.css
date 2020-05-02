@@ -219,21 +219,28 @@ div {
 .selectedDt {
 text-align: center;
 font-size:100%;
+font-weight: bold;
+text-transform: uppercase;
+font-family: "Rubik", Helvetica, Arial, serif;
+font-size: 0.8rem;
+margin-bottom: 10px;
 }
+
 .trSlot{
   background-color:#3eb8d7;
   border-bottom:2px solid #fff;
 }
 
 .trSlot td {
-  width:33.33%;
-  text-align: center;
-  padding:0;
-}
   
-.trSlot td:last-child{
-  text-align: right;;
+  text-align: right;
+  padding:0;
+  
 }
+.media-list .media {
+  background-color: #fff;
+}
+
 
 .tdSlot {
   color:#fff;

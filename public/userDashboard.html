@@ -10,6 +10,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=0"
     />
 
+    
     <title>Dashboard</title>
 
     <link
@@ -433,33 +434,29 @@
             <div
               class="card-header d-flex justify-content-between align-items-center pb-1"
             >
-              <h5 class="card-title">AVAILABLE SLOTS</h5>
+              <h5 class="card-title">YOUR SCHEDULE APPOINTMENTS</h5>
             </div>
-            <div class="card-content">
-              <div></div>
-            </div>
+           
             <div class="table-responsive">
               <!-- table start -->
+              <div class="col-sm-12 selectedDt">
+                <script> 
+                  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                  document.write(new Date().toLocaleDateString("en-US", options)); </script>
+              </div> 
+              
+              
               <table
                 id="table-marketing-campaigns"
                 class="table table-borderless table-marketing-campaigns mb-0"
               >
-                <thead>
-                  <tr>
-                    <th class="selectedDt"  colspan="3">
-                      <script> 
-                      var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                      document.write(new Date().toLocaleDateString("en-US", options)); </script>
-                      </th>
-                    
-                    
-                  </tr>
-                </thead>
+                
                 <tbody>
                   <tr class="trSlot">
                     <td class="tdSlot"></td>
                     <td class="tdSlot">7:10am - 7:20am</td> <td>
-                      <button type="button" class="btn  btn-primary_book">Book</button>
+                      <button type="button" class="btn  btn-primary_book">Edit</button>
+                      <button type="button" class="btn  btn-primary_book">Cancel</button>
                     </td>
                    
                   </tr>
