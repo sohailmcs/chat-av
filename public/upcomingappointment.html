@@ -72,48 +72,7 @@
                   ></a>
                 </li>
               </ul>
-              <ul class="nav navbar-nav bookmark-icons">
-                <li class="nav-item d-none d-lg-block">
-                  <a
-                    class="nav-link"
-                    href="#"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Email"
-                    ><i class="ficon bx bx-envelope"></i
-                  ></a>
-                </li>
-                <li class="nav-item d-none d-lg-block">
-                  <a
-                    class="nav-link"
-                    href="#"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Chat"
-                    ><i class="ficon bx bx-chat"></i
-                  ></a>
-                </li>
-                <li class="nav-item d-none d-lg-block">
-                  <a
-                    class="nav-link"
-                    href="#"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Todo"
-                    ><i class="ficon bx bx-check-circle"></i
-                  ></a>
-                </li>
-                <li class="nav-item d-none d-lg-block">
-                  <a
-                    class="nav-link"
-                    href="#"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Calendar"
-                    ><i class="ficon bx bx-calendar-alt"></i
-                  ></a>
-                </li>
-              </ul>
+         
             </div>
             <ul class="nav navbar-nav float-right">
               <li class="dropdown dropdown-language nav-item">
@@ -273,7 +232,8 @@
 
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-          <li class="navigation-header"><span>ALL DOCTORS</span></li>
+          <!-- <li class="navigation-header"><span>ALL DOCTORS</span></li> -->
+          <br/>
           <hr />
           <a href="/public/userDashboard">
             <button class="sideButtons hvr-sweep-to-right">
@@ -289,11 +249,11 @@
          <hr />
          <a href="/public/upcomingappointment">
            <button class="sideButtons hvr-sweep-to-right">
-             <i class="bx bx-time"></i><span>Upcoming Appointment</span>
+             <i class="bx bx-time"></i><span>Schedule Appointment</span>
            </button>
          </a>
          <hr>
-         <a href="#">
+         <!-- <a href="#">
           <button class="sideButtons hvr-sweep-to-right">
             <i class="bx bxs-report"></i><span>My Medical History</span>
           </button>
@@ -304,7 +264,7 @@
               <i class="bx bx-history"></i><span>Visit History</span>
             </button>
           </a>
-          <hr />
+          <hr /> -->
          
          
         </ul>
@@ -372,15 +332,55 @@
                       </header>
                     </div>
                     
-                    <div class="cmsmasters_quote_content">
-                      <p>
-                        <b>Doctor :</b> Dr. Abdul Khan
-                        <br>
-                        <b>Date:</b> 01/01/2020
-                        <br>
+                    <div class="cmsmasters_quote_content" style="display:flex;">
+                    <div>
+                        <p>
+                          <b>Doctor :</b> Dr. Abdul Khan
+                          <br>
+                          <b>Date:</b> 01/01/2020
+                          <br>
+                        
+                          <b>Time:</b> 3:30 PM
+                          <br>
 
-                        <b>Time:</b> 3:30 PM
-                        <br>
+                    </div>
+                            <div  class="btnbook">
+                              <button type="button" class="btn btn-primary_book" data-toggle="modal" data-target="#primary">
+                                <i class="bx bx-check"></i>
+                                Book
+                              </button>
+                            
+                              <!--primary theme Modal -->
+                              <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header bg-primary">
+                                      <h5 class="modal-title white" id="myModalLabel160">
+                                        BOOKING CONFIRMATION
+                                      </h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="bx bx-x"></i>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <h5>Your Booking has been confirmed.</h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Close</span>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+
+
+                        
                       </p>
                     </div>
                   </article>
@@ -418,16 +418,51 @@
                       </header>
                     </div>
                     
-                    <div class="cmsmasters_quote_content">
-                      <p>
-                        <b>Doctor :</b> Dr. Majeed (FCPS)
-                        <br>
-                        <b>Date:</b> 04/20/2020
-                        <br>
+                    <div class="cmsmasters_quote_content" style="display: flex;">
+                    <div><p>
+                      <b>Doctor :</b> Dr. Majeed (FCPS)
+                      <br>
+                      <b>Date:</b> 04/20/2020
+                      <br>
+                    
+                      <b>Time:</b> 1:30 PM
+                      <br>
+                    </p></div>
 
-                        <b>Time:</b> 1:30 PM
-                        <br>
-                      </p>
+
+
+                            <div class="btnbook">
+                              <button type="button" class="btn btn-primary_book" data-toggle="modal" data-target="#primary">
+                              <i class="bx bx-check"></i>
+                                Book
+                              </button>
+                            
+                              <!--primary theme Modal -->
+                              <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header bg-primary">
+                                      <h5 class="modal-title white" id="myModalLabel160">
+                                        BOOKING CONFIRMATION
+                                      </h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="bx bx-x"></i>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <h5>Your Booking has been confirmed.</h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Close</span>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                     </div>
                   </article>
                   <!-- Finish Quote Slider Box Article -->
@@ -464,16 +499,54 @@
                       </header>
                     </div>
                     
-                    <div class="cmsmasters_quote_content">
-                      <p>
-                        <b>Doctor :</b> Dr. Ahmed
-                        <br>
-                        <b>Date:</b> 01/01/2020
-                        <br>
+                    <div class="cmsmasters_quote_content" style="display: flex;">
+                     <div>
+                        <p>
+                          <b>Doctor :</b> Dr. Ahmed
+                          <br>
+                          <b>Date:</b> 01/01/2020
+                          <br>
+                        
+                          <b>Time:</b> 3:30 PM
+                          <br>
+                        </p>
+                     </div>
 
-                        <b>Time:</b> 3:30 PM
-                        <br>
-                      </p>
+                    <div class="btnbook">
+                      <button type="button" class="btn btn-primary_book" data-toggle="modal" data-target="#primary">
+                  <i class="bx bx-check"></i>
+                        Book
+                      </button>
+                    
+                      <!--primary theme Modal -->
+                      <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                              <h5 class="modal-title white" id="myModalLabel160">
+                                BOOKING CONFIRMATION
+                              </h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="bx bx-x"></i>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <h5>Your Booking has been confirmed.</h5>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Close</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    
                     </div>
                   </article>
                   <!-- Finish Quote Slider Box Article -->

@@ -172,6 +172,7 @@ h6 {
   border-radius: 50px;
   margin: 0 15px;
   padding: 10px 25px;
+  float: right;
 }
 
 .nav-menu .get-started a:hover {
@@ -319,6 +320,15 @@ h6 {
   text-align: center;
 }
 
+@media (max-width: 990px) {
+  .right-nav {
+    text-align: center !important;
+  }
+}
+
+/* .mobile-nav .right-nav {
+  text-align: center;
+} */
 .mobile-nav .get-started a {
   background: #5a8dee;
   color: #fff;

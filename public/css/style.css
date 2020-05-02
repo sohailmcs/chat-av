@@ -12,27 +12,41 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .btn-primary {
   background-color: #3eb8d7;
 }
-.text-center,a{
-  color:#3eb8d7;
+
+.btn-primary:hover {
+  background-color: #3eb8d7 !important;
+}
+.text-center,
+a {
+  color: #3eb8d7;
 }
 
 .header-navbar .navbar-container {
-  background-color:#3eb8d7;
+  background-color: #3eb8d7;
 }
-.header-navbar .navbar-container ul.nav li i.ficon
-{
-  color:#fff;
+.header-navbar .navbar-container ul.nav li i.ficon {
+  color: #fff;
 }
-.header-navbar .navbar-container ul.nav li > a.nav-link
-{
-  color:#fff;
+.header-navbar .navbar-container ul.nav li > a.nav-link {
+  color: #fff;
 }
 .text-muted {
   color: #fff !important;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  color:#3eb8d7;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: #3eb8d7;
 }
 
 .sidebaricon {
@@ -66,7 +80,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   bottom: 0;
   left: 0;
   right: 0;
-  background:#3eb8d7;
+  background: #3eb8d7;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
   -webkit-transform-origin: 50%;
@@ -88,6 +102,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .hvr-shutter-in-horizontal:active:before {
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
+}
+
+.viewalldoc-icon {
+  font-size: larger;
 }
 
 /* left menu css */
@@ -155,7 +173,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   transition-property: color;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  color:#fff;
+  color: #fff;
 }
 
 .hvr-shutter-in-horizontal:hover,
@@ -217,42 +235,45 @@ div {
   text-align: left;
 }
 .selectedDt {
-text-align: center;
-font-size:100%;
-font-weight: bold;
-text-transform: uppercase;
-font-family: "Rubik", Helvetica, Arial, serif;
-font-size: 0.8rem;
-margin-bottom: 10px;
+  text-align: center;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Rubik", Helvetica, Arial, serif;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
 }
 
-.trSlot{
-  background-color:#3eb8d7;
-  border-bottom:2px solid #fff;
+.trSlot {
+  background-color: #3eb8d7;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
 }
 
-.trSlot td {
-  
-  text-align: right;
-  padding:0;
-  
+.trRow {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0%;
 }
+
+.schappointment-text {
+  padding-top: 10px;
+  color: #fff;
+  text-align: center;
+}
+
 .media-list .media {
-  background-color: #fff;
+  background-color: #fff !important;
 }
 
-
-.tdSlot {
-  color:#fff;
-}
 .btn-primary_book {
   margin-bottom: 0;
   background-color: #208ca9 !important;
-  color:#fff;
+  color: #fff;
   border-radius: 0;
 }
-.btn-primary_book:hover{
-  color:#badde6;
+.btn-primary_book:hover {
+  color: #badde6;
 }
 
 .cmsmasters_quotes_slider.cmsmasters_quotes_slider_type_box
@@ -266,46 +287,44 @@ margin-bottom: 10px;
 }
 
 .cmsmasters_quote_title {
-  color:#fff;
-  margin-bottom:2px;
-  font-family: 'Open Sans', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
-  font-size: 16px;;
+  color: #fff;
+  margin-bottom: 2px;
+  font-family: "Open Sans", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-size: 16px;
 }
-.cmsmasters_quote_content
-{
-  margin-top:8px;
-  font-family: 'Open Sans', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
-  font-size:14px;
+.cmsmasters_quote_content {
+  margin-top: 8px;
+  font-family: "Open Sans", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-size: 14px;
 }
 .cmsmasters_quote_subtitle {
-  color:#000;
-    font-size:13px;
+  color: #000;
+  font-size: 13px;
 }
 
-.content-right{
-  background-color:#e0e0e0;
-  
+.content-right {
+  background-color: #e0e0e0;
 }
 .doctor-heading {
-  color:#3eb8d7;
+  color: #3eb8d7;
   font-weight: bold;
   text-align: center;
 }
 
 .media-body h5 {
-  color:#3eb8d7;
+  color: #3eb8d7;
   font-weight: bold;
 }
 
-body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,.header-navbar.fixed-top ,
-.main-menu.menu-light .navigation,.main-menu
-{
-  background-color:#fff !important;
+body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
+.header-navbar.fixed-top,
+.main-menu.menu-light .navigation,
+.main-menu {
+  background-color: #fff !important;
 }
 
-.media-list .media
-{
-  padding: 1.5rem 2rem .50rem;
+.media-list .media {
+  padding: 1.5rem 2rem 0.5rem;
 }
 
 .media-body {
@@ -316,6 +335,12 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,.header-navba
   background-color: #fff;
 }
 
+@media (max-width: 990px) {
+  .media-body {
+    background-image: none !important;
+  }
+}
+
 #scheduler {
   width: 100%;
 }
@@ -324,32 +349,31 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,.header-navba
   width: 100%;
   height: 100%;
 }
-.k-widget.k-calendar .k-content tbody td {  
+.k-widget.k-calendar .k-content tbody td {
   height: 54px;
 }
-.k-calendar .k-content, .k-calendar .k-content th{
+.k-calendar .k-content,
+.k-calendar .k-content th {
   text-align: center;
 }
 .k-state-selected {
   background-color: #3eb8d7;
 }
 
-.k-calendar td.k-state-selected.k-state-hover
-{
+.k-calendar td.k-state-selected.k-state-hover {
   background-color: #56c1dc;
 }
 
-
 .k-calendar .k-today {
   -webkit-box-shadow: inset 0 0 0 1px#56c1dc;
-    box-shadow: inset 0 0 0 1px #56c1dc;    
+  box-shadow: inset 0 0 0 1px #56c1dc;
 }
 
 .k-calendar .k-today .k-link {
-  color:#56c1dc;
+  color: #56c1dc;
 }
-.k-content tbody td:hover{
-  background-color:#56c1dc
+.k-content tbody td:hover {
+  background-color: #56c1dc;
 }
 
 .calendar-wrapper {
@@ -373,7 +397,7 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,.header-navba
   height: 100%;
   float: right;
   border-left: 1px solid #dfe3e7;
-  padding-right:2px;
+  padding-right: 2px;
 }
 
 @media (max-width: 575.98px) {
@@ -455,8 +479,6 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,.header-navba
   }
 }
 
-
-
 /************* doctor dashboard styling start ****************************/
 
 .tablehead {
@@ -513,3 +535,40 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,.header-navba
   margin-top: -60px;
 }
 
+.btn-microphone {
+  background-color: #3eb8d7;
+}
+.icon-microphone {
+  color: #fff;
+}
+
+.btn-microphone:hover {
+  background-color: #fff !important;
+}
+
+.btn-microphone:hover .icon-microphone {
+  color: #3eb8d7 !important ;
+}
+
+.leftcardContainer {
+  width: 100%;
+  max-width: 100%;
+}
+@media (max-width: 992px) {
+  .leftcardContainer {
+    width: 100% !important;
+  }
+}
+
+/********** style used in userdashboard for align items at right ********/
+
+.item-at-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* book button in schedule appointment */
+.btnbook {
+  margin-left: auto;
+  margin-top: auto;
+}

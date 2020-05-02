@@ -211,36 +211,37 @@
           data-menu="menu-navigation"
           data-icon-style="lines"
         >
-          <li class="navigation-header"><span>ALL DOCTORS</span></li>
+          <!-- <li class="navigation-header"><span>ALL DOCTORS</span></li> -->
+          <br />
+          <br />
           <hr />
-          <a href="/public/userDashboard">
+          <a href="/public/doctordashboard">
             <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bxs-calendar-plus"></i
-              ><span> Patient Dashboard</span>
-            </button>
-          </a>
-          <hr />
-          <a href="/public/doctors">
-            <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bxs-first-aid"></i><span>All Doctors</span>
-            </button>
-          </a>
-          <hr />
-          <a href="/public/upcomingappointment">
-            <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bx-time"></i><span>Upcoming Appointment</span>
+              <i class="bx bxs-calendar-plus"></i><span> Doctor Dashboard</span>
             </button>
           </a>
           <hr />
           <a href="#">
             <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bxs-report"></i><span>My Medical History</span>
+              <i class="bx bxs-user-detail"></i><span>Call Queue</span>
             </button>
           </a>
           <hr />
           <a href="#">
             <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bx-history"></i><span>Visit History</span>
+              <i class="bx bx-time"></i><span>My Appointment</span>
+            </button>
+          </a>
+          <hr />
+          <a href="#">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bx-user-plus"></i><span>My Patients</span>
+            </button>
+          </a>
+          <hr />
+          <a href="#">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bx-phone-call"></i><span>Call Log</span>
             </button>
           </a>
           <hr />
@@ -272,11 +273,11 @@
               <div class="row leftcol">
                 <!-- Left Card Starts -->
 
-                <div class="col-lg-6 videocol">
-                  <div class="card" style="height: 500px;">
+                <div class="col-lg-6 videocol leftcardContainer">
+                  <div class="card" style="height: 570px;">
                     <div>
                       <br />
-                      <h5 class="call-heading">Call with doctor ABC</h5>
+                      <h5 class="call-heading">Call with Patient ABC</h5>
 
                       <br />
                       <img src="/assets/images/maledoc.png" class="docvideo" />
@@ -293,9 +294,11 @@
                     <div class="icons">
                       <button
                         type="button"
-                        class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 btn-lg"
+                        class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 btn-lg btn-microphone"
                       >
-                        <i class="bx bx-microphone icon-size"></i>
+                        <i
+                          class="bx bx-microphone icon-size icon-microphone"
+                        ></i>
                       </button>
 
                       <button
@@ -306,9 +309,26 @@
                       </button>
                       <button
                         type="button"
-                        class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 btn-lg"
+                        class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1 btn-lg"
                       >
                         <i class="bx bx-phone-call icon-size"></i>
+                      </button>
+                    </div>
+                    <br />
+                    <div class="icons">
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary round mr-1 mb-1 slide-right"
+                      >
+                        <i class="bx bx-show"></i>
+                        Show Prescription
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary round mr-1 mb-1 slide-left"
+                      >
+                        <i class="bx bx-hide"></i>
+                        Hide Prescription
                       </button>
                     </div>
                   </div>
@@ -316,7 +336,7 @@
                 <!--Left Card ends -->
 
                 <!-- Right Card Starts -->
-                <div class="col-lg-6 videocol">
+                <div class="col-lg-6 videocol rightcardContainer">
                   <!-- Nav Filled Starts -->
                   <section id="nav-filled">
                     <div class="row">
@@ -790,14 +810,14 @@
                 <!--Right Card ends -->
               </div>
 
-              <button
+              <!-- <button
                 type="button"
                 class="btn btn-light-danger mr-1 mb-1"
                 style="float: right;"
               >
                 <i class="bx bxs-conversation"></i>
                 <span class="ml-25">Chat with Us</span>
-              </button>
+              </button> -->
             </div>
           </section>
           <!-- Dashboard  end -->
@@ -819,6 +839,10 @@
 
     <script src="/js/form-select2.js"></script>
     <script src="/js/select2.full.min.js"></script>
+
+    <!-- for slide in video call page -->
+
+    <script src="/js/slidevideocall.js"></script>
     <!-- END: JS-->
   </body>
   <!-- END: Body-->

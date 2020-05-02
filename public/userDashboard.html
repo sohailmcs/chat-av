@@ -10,7 +10,6 @@
       content="width=device-width, initial-scale=1.0, user-scalable=0"
     />
 
-    
     <title>Dashboard</title>
 
     <link
@@ -20,13 +19,11 @@
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
-    <link href="/css/KendoUi/examples-offline.css" rel="stylesheet">
-    <link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet">    
-    <link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet">
-    <link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet">
-    
-   
-    
+    <link href="/css/KendoUi/examples-offline.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
+
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -38,7 +35,7 @@
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />   
+    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
@@ -50,7 +47,7 @@
   <!-- BEGIN: Body-->
 
   <body
-    class="vertical-layout vertical-menu-modern 2-columns navbar-sticky footer-static "
+    class="vertical-layout vertical-menu-modern 2-columns navbar-sticky footer-static"
     data-open="click"
     data-menu="vertical-menu-modern"
     data-col="2-columns"
@@ -72,48 +69,6 @@
                     class="nav-link nav-menu-main menu-toggle hidden-xs"
                     href="#"
                     ><i class="ficon bx bx-menu"></i
-                  ></a>
-                </li>
-              </ul>
-              <ul class="nav navbar-nav bookmark-icons">
-                <li class="nav-item d-none d-lg-block">
-                  <a
-                    class="nav-link"
-                    href="#"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Email"
-                    ><i class="ficon bx bx-envelope"></i
-                  ></a>
-                </li>
-                <li class="nav-item d-none d-lg-block">
-                  <a
-                    class="nav-link"
-                    href="#"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Chat"
-                    ><i class="ficon bx bx-chat"></i
-                  ></a>
-                </li>
-                <li class="nav-item d-none d-lg-block">
-                  <a
-                    class="nav-link"
-                    href="#"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Todo"
-                    ><i class="ficon bx bx-check-circle"></i
-                  ></a>
-                </li>
-                <li class="nav-item d-none d-lg-block">
-                  <a
-                    class="nav-link"
-                    href="#"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Calendar"
-                    ><i class="ficon bx bx-calendar-alt"></i
                   ></a>
                 </li>
               </ul>
@@ -275,41 +230,47 @@
       </div>
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
-        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-          <li class="navigation-header"><span>ALL DOCTORS</span></li>
+        <ul
+          class="navigation navigation-main"
+          id="main-menu-navigation"
+          data-menu="menu-navigation"
+          data-icon-style="lines"
+        >
+          <br />
+          <br />
+          <!-- <li class="navigation-header"><span>ALL DOCTORS</span></li> -->
           <hr />
           <a href="/public/userDashboard">
             <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bxs-calendar-plus"></i><span> Patient Dashboard</span>
+              <i class="bx bxs-calendar-plus"></i
+              ><span> Patient Dashboard</span>
             </button>
-         </a>
-         <hr />
-         <a href="/public/doctors">
-           <button class="sideButtons hvr-sweep-to-right">
-             <i class="bx bxs-first-aid"></i><span>All Doctors</span>
-           </button>
-         </a>
-         <hr />
-         <a href="/public/upcomingappointment">
-           <button class="sideButtons hvr-sweep-to-right">
-             <i class="bx bx-time"></i><span>Upcoming Appointment</span>
-           </button>
-         </a>
-         <hr>
-         <a href="#">
-          <button class="sideButtons hvr-sweep-to-right">
-            <i class="bx bxs-report"></i><span>My Medical History</span>
-          </button>
-        </a>
-         <hr>
+          </a>
+          <hr />
+          <a href="/public/doctors">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bxs-first-aid"></i><span>All Doctors</span>
+            </button>
+          </a>
+          <hr />
+          <a href="/public/upcomingappointment">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bx-time"></i><span>Schedule Appointment</span>
+            </button>
+          </a>
+          <hr />
+          <!-- <a href="#">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bxs-report"></i><span>My Medical History</span>
+            </button>
+          </a>
+          <hr />
           <a href="#">
             <button class="sideButtons hvr-sweep-to-right">
               <i class="bx bx-history"></i><span>Visit History</span>
             </button>
           </a>
-          <hr />
-         
-          
+          <hr /> -->
         </ul>
       </div>
     </div>
@@ -333,13 +294,18 @@
 
             <div style="margin-left: auto;">
               <a href="/public/doctors">
-                <button type="button" class="btn hvr-shutter-in-horizontal">
-                  view available doctors
+                <button
+                  type="button"
+                  class="btn hvr-shutter-in-horizontal"
+                  style="font-size: large;"
+                >
+                  <i class="bx bxs-user-plus viewalldoc-icon"></i>
+                  View Available Doctors
                 </button>
               </a>
             </div>
           </div>
-          <br>
+          <br />
           <!-- calendar Wrapper  -->
           <div class="calendar-wrapper position-relative">
             <!-- calendar app overlay -->
@@ -350,7 +316,6 @@
               class="sidebar card"
               style="background-color: white;"
             >
-              
               <div class="sidebar-new-schedule">
                 <ul
                   style="
@@ -370,7 +335,9 @@
                   </div>
                   <br />
                   <br />
-                  <h6><strong>User Name<i class="bx bxs-pencil"></i></strong> </h6>
+                  <h6>
+                    <strong>User Name<i class="bx bxs-pencil"></i></strong>
+                  </h6>
                   <hr />
                 </ul>
               </div>
@@ -378,55 +345,47 @@
               <div id="sidebar-calendars" class="sidebar-calendars">
                 <div>
                   <ul style="list-style: none; padding-left: 0rem;">
-                    <h6><strong><i>Basic Details</i></strong></h6>
-                    
+                    <h6>
+                      <strong><i>Basic Details</i></strong>
+                    </h6>
+
                     <li><i class="bx bxs-map sidebaricon"></i>California</li>
                     <li>
                       <i class="bx bx-phone-call sidebaricon"></i>(+56) 123
                       45342
                     </li>
                     <li>
-                      <i class="bx bxs-calendar sidebaricon"></i>Julu 10 , 1990
+                      <i class="bx bxs-calendar sidebaricon"></i>July 10 , 1990
                     </li>
                     <li>
                       <i class="bx bx-mail-send sidebaricon"></i
                       >Johnybravo@gmail.com
                     </li>
-                   
 
                     <hr />
 
-                    <h6><strong><i>Cell Phone</i></strong></h6>
-                    
+                    <h6>
+                      <strong><i>Cell Phone</i></strong>
+                    </h6>
+
                     <li>+(+56) 123 45342</li>
                   </ul>
                 </div>
                 <!-- update your profile -->
                 <hr />
-
-                <!-- <ul style="list-style: none; padding-left: 0rem;">
-                  <li class="active">
-                    <a href="#">
-                      <i class="bx bxs-pencil"></i>
-                      <i>Update Your Profile</i>
-                    </a>
-                  </li>
-                </ul> -->
               </div>
               <!-- / sidebar calendar labels -->
             </div>
             <!-- calendar sidebar end -->
             <!-- calendar view start  -->
             <div class="calendar-view card">
-              
               <div id="scheduler"></div>
             </div>
             <!-- calendar view end  -->
           </div>
         </div>
         <!-- CALENDER END -->
-        
-       
+
         <!-- MY APPOINTMENTS START -->
 
         <div class="col-12 dashboard-marketing-campaign card">
@@ -436,53 +395,74 @@
             >
               <h5 class="card-title">YOUR SCHEDULE APPOINTMENTS</h5>
             </div>
-           
-            <div class="table-responsive">
+
+            <div>
               <!-- table start -->
               <div class="col-sm-12 selectedDt">
-                <script> 
-                  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                  document.write(new Date().toLocaleDateString("en-US", options)); </script>
-              </div> 
-              
-              
-              <table
-                id="table-marketing-campaigns"
-                class="table table-borderless table-marketing-campaigns mb-0"
-              >
-                
-                <tbody>
-                  <tr class="trSlot">
-                    <td class="tdSlot"></td>
-                    <td class="tdSlot">7:10am - 7:20am</td> <td>
-                      <button type="button" class="btn  btn-primary_book">Edit</button>
-                      <button type="button" class="btn  btn-primary_book">Cancel</button>
-                    </td>
-                   
-                  </tr>
-                  <tr class="trSlot">
-                    <td class="tdSlot"></td>
-                    <td class="tdSlot">7:10am - 7:20am</td> <td>
-                      <button type="button" class="btn  btn-primary_book">Book</button>
-                    </td>
-                   
-                  </tr>
-                  <tr class="trSlot">
-                    <td class="tdSlot"></td>
-                    <td class="tdSlot">7:10am - 7:20am</td> <td>
-                      <button type="button" class="btn  btn-primary_book">Book</button>
-                    </td>
-                   
-                  </tr>
+                <script>
+                  var options = {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  };
+                  document.write(
+                    new Date().toLocaleDateString("en-US", options)
+                  );
+                </script>
+              </div>
 
-                  
+              <!-- first appointment start -->
 
-                  
+              <div class="row trSlot">
+                <div class="col-12 col-md-8">
+                  <h6 class="schappointment-text">
+                    Dr Ghada Ameen Throat Specialist 07:00 PM - 07:30 PM
+                  </h6>
+                </div>
+                <div class="col-8 col-md-4 trRow">
+                  <button type="button" class="btn btn-primary_book">
+                    <i class="bx bxs-pencil"></i>
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary_book"
+                    style="margin-left: 1%;"
+                  >
+                    <i class="bx bx-x"></i>
+                    Cancel
+                  </button>
+                </div>
+              </div>
+              <br />
 
-                 
-                </tbody>
-              </table>
-              <!-- table ends -->
+              <!-- first appointment end -->
+
+              <!-- second appointment start -->
+
+              <div class="row trSlot">
+                <div class="col-12 col-md-8">
+                  <h6 class="schappointment-text">
+                    Dr Ghada Ameen Throat Specialist 07:00 PM - 07:30 PM
+                  </h6>
+                </div>
+                <div class="col-8 col-md-4 trRow">
+                  <button type="button" class="btn btn-primary_book">
+                    <i class="bx bxs-pencil"></i>
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary_book"
+                    style="margin-left: 1%;"
+                  >
+                    <i class="bx bx-x"></i>
+                    Cancel
+                  </button>
+                </div>
+              </div>
+              <!-- second appointment end -->
             </div>
           </div>
         </div>
@@ -495,64 +475,62 @@
 
     <!-- BEGIN: JS-->
     <!-- BEGIN: Vendor JS-->
-     <script src="/js/vendors.min.js"></script>
-  
+    <script src="/js/vendors.min.js"></script>
+
     <!-- BEGIN Vendor JS-->
 
-       <script src="/js/vertical-menu-light.js"></script>
+    <script src="/js/vertical-menu-light.js"></script>
     <script src="/js/app-menu.js"></script>
     <script src="/js/app.js"></script>
 
     <!-- END: Theme JS-->
 
-    
-    <!-- //icons on buttons--> 
-    <script src="/js/KendoUi/jquery.min.js"></script>   
+    <!-- //icons on buttons-->
+    <script src="/js/KendoUi/jquery.min.js"></script>
     <script src="/js/KendoUi/kendo.all.min.js"></script>
 
-   
     <!-- END: Page JS-->
 
     <script>
-      $(document).ready(function() {
-          var today = new Date(),
-              events = [
-                 +new Date(today.getFullYear(), today.getMonth(), 8),
-                 +new Date(today.getFullYear(), today.getMonth(), 12),
-                 +new Date(today.getFullYear(), today.getMonth(), 24),
-                 +new Date(today.getFullYear(), today.getMonth() + 1, 6),
-                 +new Date(today.getFullYear(), today.getMonth() + 1, 7),
-                 +new Date(today.getFullYear(), today.getMonth() + 1, 25),
-                 +new Date(today.getFullYear(), today.getMonth() + 1, 27),
-                 +new Date(today.getFullYear(), today.getMonth() - 1, 3),
-                 +new Date(today.getFullYear(), today.getMonth() - 1, 5),
-                 +new Date(today.getFullYear(), today.getMonth() - 2, 22),
-                 +new Date(today.getFullYear(), today.getMonth() - 2, 27)
-              ];
-          
-          $("#scheduler").kendoCalendar({
-              value: today,
-              // dates: events,
-              // month: {
-              //     // template for dates in month view
-              //     content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +
-              //                 '<div class="' +
-              //                    '# if (data.value < 10) { #' +
-              //                        "exhibition" +
-              //                    '# } else if ( data.value < 20 ) { #' +
-              //                        "party" +
-              //                    '# } else { #' +
-              //                        "cocktail" +
-              //                    '# } #' +
-              //                 '">#= data.value #</div>' +
-              //              '# } else { #' +
-              //              '#= data.value #' +
-              //              '# } #'
-              // },
-              footer: false
-          });
+      $(document).ready(function () {
+        var today = new Date(),
+          events = [
+            +new Date(today.getFullYear(), today.getMonth(), 8),
+            +new Date(today.getFullYear(), today.getMonth(), 12),
+            +new Date(today.getFullYear(), today.getMonth(), 24),
+            +new Date(today.getFullYear(), today.getMonth() + 1, 6),
+            +new Date(today.getFullYear(), today.getMonth() + 1, 7),
+            +new Date(today.getFullYear(), today.getMonth() + 1, 25),
+            +new Date(today.getFullYear(), today.getMonth() + 1, 27),
+            +new Date(today.getFullYear(), today.getMonth() - 1, 3),
+            +new Date(today.getFullYear(), today.getMonth() - 1, 5),
+            +new Date(today.getFullYear(), today.getMonth() - 2, 22),
+            +new Date(today.getFullYear(), today.getMonth() - 2, 27),
+          ];
+
+        $("#scheduler").kendoCalendar({
+          value: today,
+          // dates: events,
+          // month: {
+          //     // template for dates in month view
+          //     content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +
+          //                 '<div class="' +
+          //                    '# if (data.value < 10) { #' +
+          //                        "exhibition" +
+          //                    '# } else if ( data.value < 20 ) { #' +
+          //                        "party" +
+          //                    '# } else { #' +
+          //                        "cocktail" +
+          //                    '# } #' +
+          //                 '">#= data.value #</div>' +
+          //              '# } else { #' +
+          //              '#= data.value #' +
+          //              '# } #'
+          // },
+          footer: false,
+        });
       });
-  </script>
+    </script>
 
     <!-- END: JS-->
   </body>

@@ -208,36 +208,37 @@
           data-menu="menu-navigation"
           data-icon-style="lines"
         >
-          <li class="navigation-header"><span>ALL DOCTORS</span></li>
+          <!-- <li class="navigation-header"><span>ALL DOCTORS</span></li> -->
+          <br />
+          <br />
           <hr />
-          <a href="/public/userDashboard">
+          <a href="/public/doctordashboard">
             <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bxs-calendar-plus"></i
-              ><span> Patient Dashboard</span>
-            </button>
-          </a>
-          <hr />
-          <a href="/public/doctors">
-            <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bxs-first-aid"></i><span>All Doctors</span>
-            </button>
-          </a>
-          <hr />
-          <a href="/public/upcomingappointment">
-            <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bx-time"></i><span>Upcoming Appointment</span>
+              <i class="bx bxs-calendar-plus"></i><span> Doctor Dashboard</span>
             </button>
           </a>
           <hr />
           <a href="#">
             <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bxs-report"></i><span>My Medical History</span>
+              <i class="bx bxs-user-detail"></i><span>Call Queue</span>
             </button>
           </a>
           <hr />
           <a href="#">
             <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bx-history"></i><span>Visit History</span>
+              <i class="bx bx-time"></i><span>My Appointment</span>
+            </button>
+          </a>
+          <hr />
+          <a href="#">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bx-user-plus"></i><span>My Patients</span>
+            </button>
+          </a>
+          <hr />
+          <a href="#">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bx-phone-call"></i><span>Call Log</span>
             </button>
           </a>
           <hr />
@@ -424,21 +425,11 @@
                             >
                               <i class="bx bx-phone-call"></i>
                             </button>
-                          </div>
-                          <h6 class="timeline-title">
-                            Patient XYZ
-                          </h6>
-                          <p class="timeline-text">Dec 20,2020 05:00PM</p>
-                        </li>
-                        <li
-                          class="timeline-items timeline-icon-primary active pb-0"
-                        >
-                          <div class="timeline-time">
                             <button
                               type="button"
-                              class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"
+                              class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1"
                             >
-                              <i class="bx bx-phone-call"></i>
+                              <i class="bx bx-x"></i>
                             </button>
                           </div>
                           <h6 class="timeline-title">
@@ -456,21 +447,11 @@
                             >
                               <i class="bx bx-phone-call"></i>
                             </button>
-                          </div>
-                          <h6 class="timeline-title">
-                            Patient XYZ
-                          </h6>
-                          <p class="timeline-text">Dec 20,2020 05:00PM</p>
-                        </li>
-                        <li
-                          class="timeline-items timeline-icon-primary active pb-0"
-                        >
-                          <div class="timeline-time">
                             <button
                               type="button"
-                              class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"
+                              class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1"
                             >
-                              <i class="bx bx-phone-call"></i>
+                              <i class="bx bx-x"></i>
                             </button>
                           </div>
                           <h6 class="timeline-title">
@@ -487,6 +468,56 @@
                               class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"
                             >
                               <i class="bx bx-phone-call"></i>
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1"
+                            >
+                              <i class="bx bx-x"></i>
+                            </button>
+                          </div>
+                          <h6 class="timeline-title">
+                            Patient XYZ
+                          </h6>
+                          <p class="timeline-text">Dec 20,2020 05:00PM</p>
+                        </li>
+                        <li
+                          class="timeline-items timeline-icon-primary active pb-0"
+                        >
+                          <div class="timeline-time">
+                            <button
+                              type="button"
+                              class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"
+                            >
+                              <i class="bx bx-phone-call"></i>
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1"
+                            >
+                              <i class="bx bx-x"></i>
+                            </button>
+                          </div>
+                          <h6 class="timeline-title">
+                            Patient XYZ
+                          </h6>
+                          <p class="timeline-text">Dec 20,2020 05:00PM</p>
+                        </li>
+                        <li
+                          class="timeline-items timeline-icon-primary active pb-0"
+                        >
+                          <div class="timeline-time">
+                            <button
+                              type="button"
+                              class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"
+                            >
+                              <i class="bx bx-phone-call"></i>
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1"
+                            >
+                              <i class="bx bx-x"></i>
                             </button>
                           </div>
                           <h6 class="timeline-title">
@@ -535,10 +566,7 @@
                             />
                           </div>
 
-                          <div
-                            
-                            style="display: inline-block;"
-                          >
+                          <div style="display: inline-block;">
                             <h6 style="padding-top: 2%;">
                               <b>Patient ABC</b>
                             </h6>
