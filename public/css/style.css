@@ -490,6 +490,7 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 .tableheader {
   font-size: 14px !important;
   color: white !important;
+  text-align: center;
 }
 
 .dashboard-headings {
@@ -499,7 +500,13 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 
 .tblCallLogs td {
   padding: 0.5rem 1rem !important;
+  text-align: center;
 }
+.tblCallLogs .bx {
+  font-size: 1.5rem;
+}
+
+
 
 /************* video call styling start ****************************/
 

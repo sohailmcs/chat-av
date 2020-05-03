@@ -240,7 +240,7 @@
               <i class="bx bxs-calendar-plus"></i><span> Patient Dashboard</span>
             </button>
          </a>
-         <hr />
+         
          <a href="/public/doctors">
            <button class="sideButtons hvr-sweep-to-right">
              <i class="bx bxs-first-aid"></i><span>All Doctors</span>
@@ -253,6 +253,12 @@
            </button>
          </a>
          <hr>
+         <a href="/public/userDashboard">
+          <button class="sideButtons hvr-sweep-to-right">
+            <i class="bx bxs-report"></i><span>My Booked Appointments</span>
+          </button>
+        </a>
+        <hr />
          <!-- <a href="#">
           <button class="sideButtons hvr-sweep-to-right">
             <i class="bx bxs-report"></i><span>My Medical History</span>
@@ -284,7 +290,7 @@
           <section>
             <div class="d-flex flex-row">
               <div>
-                <h3>SCHEDULE APPOINTMENTS</h3>
+                <h3>Dr. ABDULLAH SCHEDULE</h3>
               </div>
   
              
@@ -297,261 +303,103 @@
 
             </div>
             <br>
+             <!--primary theme Modal -->
+             <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+             aria-hidden="true">
+             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+               <div class="modal-content">
+                 <div class="modal-header bg-primary">
+                   <h5 class="modal-title white" id="myModalLabel160">
+                     APPOINTMENTS CONFIRMATION
+                   </h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <i class="bx bx-x"></i>
+                   </button>
+                 </div>
+                 <div class="modal-body">
+                   <h5>Your appointment has been confirmed.</h5>
+                 </div>
+                 <div class="modal-footer">
+                   <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                     <i class="bx bx-x d-block d-sm-none"></i>
+                     <span class="d-none d-sm-block">Close</span>
+                   </button>
+                 </div>
+               </div>
+             </div>
+           </div>
             <div class="row">
               <div class="col-sm-12"></div>
               
+            
               
-              <div class="col-xl-4 col-sm-6 col-12 card" style="margin: 10px;">
-                <div class="cmsmasters_quote">
-                  <!-- Start Quote Slider Box Article -->
-                  <article class="cmsmasters_quote_inner" id="cmsmasters_quote_5ea062d005b03">
-                    <style>
-                      #cmsmasters_quote_5ea062d005b03
-                        .cmsmasters_quote_inner_top {
-                        background-color: #3eb8d7;
-                        height: 66px;
-                      }
-
-                      #cmsmasters_quote_5ea062d005b03
-                        .cmsmasters_quote_content:before {
-                        color: #3eb8d7;
-                      }
-                    </style>
-                    <div class="cmsmasters_quote_inner_top" style="display: flex;">
-                      <figure class="cmsmasters_quote_image">
-                        <img width="65" height="65" src="https://medical-clinic.cmsmasters.net/wp-content/uploads/2015/11/3-2.jpg" class="attachment-cmsmasters-small-thumb size-cmsmasters-small-thumb" alt="">
-                      </figure>
-
-                      <header class="cmsmasters_quote_header" style="margin-left: 2%; margin-top: 3%;">
-                        <h4 class="cmsmasters_quote_title">Scheduled Appointment</h4>
-                        <div class="cmsmasters_quote_subtitle_wrap">
-                          <h6 class="cmsmasters_quote_subtitle">
-                            with Cardiologist
-                          </h6>
-                        </div>
-                      </header>
+              <div class="col-12 dashboard-marketing-campaign card">
+                <div class="card marketing-campaigns">
+                  <div
+                    class="card-header d-flex justify-content-between align-items-center pb-1"
+                  >
+                    <h5 class="card-title">AVAILABLE APPOINTMENTS</h5>
+                  </div>
+      
+                  <div>
+                    <!-- table start -->
+                    <div class="col-sm-12 selectedDt">
+                      <script>
+                        var options = {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        };
+                        document.write(
+                          new Date().toLocaleDateString("en-US", options)
+                        );
+                      </script>
                     </div>
-                    
-                    <div class="cmsmasters_quote_content" style="display:flex;">
-                    <div>
-                        <p>
-                          <b>Doctor :</b> Dr. Abdul Khan
-                          <br>
-                          <b>Date:</b> 01/01/2020
-                          <br>
-                        
-                          <b>Time:</b> 3:30 PM
-                          <br>
-
-                    </div>
-                            <div  class="btnbook">
-                              <button type="button" class="btn btn-primary_book" data-toggle="modal" data-target="#primary">
-                                <i class="bx bx-check"></i>
+      
+                    <!-- first appointment start -->
+      
+                    <div class="row trSlot">
+                      <div class="col-12 col-md-8">
+                        <h6 class="schappointment-text">
+                           07:00 PM - 07:30 PM
+                        </h6>
+                      </div>
+                      <div class="col-8 col-md-4 trRow">
+                       
+                        <button type="button" class="btn btn-primary_book" data-toggle="modal" data-target="#primary">
+                          <i class="bx bx-check"></i>
                                 Book
                               </button>
-                            
-                              <!--primary theme Modal -->
-                              <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header bg-primary">
-                                      <h5 class="modal-title white" id="myModalLabel160">
-                                        BOOKING CONFIRMATION
-                                      </h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <i class="bx bx-x"></i>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <h5>Your Appointment has been confirmed.</h5>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                                        <i class="bx bx-x d-block d-sm-none"></i>
-                                        <span class="d-none d-sm-block">Close</span>
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-
-
-
-                        
-                      </p>
-                    </div>
-                  </article>
-                  <!-- Finish Quote Slider Box Article -->
-                </div>
-              </div>
-              <div class="col-xl-4 col-sm-6 col-12 card" style="margin: 10px;">
-                <div class="cmsmasters_quote">
-                  <!-- Start Quote Slider Box Article -->
-                  <article class="cmsmasters_quote_inner" id="cmsmasters_quote_5ea062d005b03">
-                    <style>
-                      #cmsmasters_quote_5ea062d005b03
-                        .cmsmasters_quote_inner_top {
-                        background-color: #3eb8d7;
-                        height: 66px;
-                      }
-
-                      #cmsmasters_quote_5ea062d005b03
-                        .cmsmasters_quote_content:before {
-                        color: #3eb8d7;
-                      }
-                    </style>
-                    <div class="cmsmasters_quote_inner_top" style="display: flex;">
-                      <figure class="cmsmasters_quote_image">
-                        <img width="65" height="65" src="https://medical-clinic.cmsmasters.net/wp-content/uploads/2015/11/3-2.jpg" class="attachment-cmsmasters-small-thumb size-cmsmasters-small-thumb" alt="">
-                      </figure>
-
-                      <header class="cmsmasters_quote_header" style="margin-left: 2%; margin-top: 3%;">
-                        <h4 class="cmsmasters_quote_title">Scheduled Appointment</h4>
-                        <div class="cmsmasters_quote_subtitle_wrap">
-                          <h6 class="cmsmasters_quote_subtitle">
-                            with Throat Specialist
-                          </h6>
-                        </div>
-                      </header>
-                    </div>
-                    
-                    <div class="cmsmasters_quote_content" style="display: flex;">
-                    <div><p>
-                      <b>Doctor :</b> Dr. Majeed (FCPS)
-                      <br>
-                      <b>Date:</b> 04/20/2020
-                      <br>
-                    
-                      <b>Time:</b> 1:30 PM
-                      <br>
-                    </p></div>
-
-
-
-                            <div class="btnbook">
-                              <button type="button" class="btn btn-primary_book" data-toggle="modal" data-target="#primary">
-                              <i class="bx bx-check"></i>
-                                Book
-                              </button>
-                            
-                              <!--primary theme Modal -->
-                              <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header bg-primary">
-                                      <h5 class="modal-title white" id="myModalLabel160">
-                                        BOOKING CONFIRMATION
-                                      </h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <i class="bx bx-x"></i>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <h5>Your Booking has been confirmed.</h5>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                                        <i class="bx bx-x d-block d-sm-none"></i>
-                                        <span class="d-none d-sm-block">Close</span>
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                    </div>
-                  </article>
-                  <!-- Finish Quote Slider Box Article -->
-                </div>
-              </div>
-              <div class="col-xl-4 col-sm-6 col-12 card" style="margin: 10px;">
-                <div class="cmsmasters_quote">
-                  <!-- Start Quote Slider Box Article -->
-                  <article class="cmsmasters_quote_inner" id="cmsmasters_quote_5ea062d005b03">
-                    <style>
-                      #cmsmasters_quote_5ea062d005b03
-                        .cmsmasters_quote_inner_top {
-                        background-color: #3eb8d7;
-                        height: 66px;
-                      }
-
-                      #cmsmasters_quote_5ea062d005b03
-                        .cmsmasters_quote_content:before {
-                        color: #3eb8d7;
-                      }
-                    </style>
-                    <div class="cmsmasters_quote_inner_top" style="display: flex;">
-                      <figure class="cmsmasters_quote_image">
-                        <img width="65" height="65" src="https://medical-clinic.cmsmasters.net/wp-content/uploads/2015/11/3-2.jpg" class="attachment-cmsmasters-small-thumb size-cmsmasters-small-thumb" alt="">
-                      </figure>
-
-                      <header class="cmsmasters_quote_header" style="margin-left: 2%; margin-top: 3%;">
-                        <h4 class="cmsmasters_quote_title">Scheduled Appointment</h4>
-                        <div class="cmsmasters_quote_subtitle_wrap">
-                          <h6 class="cmsmasters_quote_subtitle">
-                            with Pediatrist
-                          </h6>
-                        </div>
-                      </header>
-                    </div>
-                    
-                    <div class="cmsmasters_quote_content" style="display: flex;">
-                     <div>
-                        <p>
-                          <b>Doctor :</b> Dr. Ahmed
-                          <br>
-                          <b>Date:</b> 01/01/2020
-                          <br>
-                        
-                          <b>Time:</b> 3:30 PM
-                          <br>
-                        </p>
-                     </div>
-
-                    <div class="btnbook">
-                      <button type="button" class="btn btn-primary_book" data-toggle="modal" data-target="#primary">
-                  <i class="bx bx-check"></i>
-                        Book
-                      </button>
-                    
-                      <!--primary theme Modal -->
-                      <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                              <h5 class="modal-title white" id="myModalLabel160">
-                                BOOKING CONFIRMATION
-                              </h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <i class="bx bx-x"></i>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <h5>Your Booking has been confirmed.</h5>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                                <i class="bx bx-x d-block d-sm-none"></i>
-                                <span class="d-none d-sm-block">Close</span>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
-
-
-                    
+                     
+      
+                    <!-- first appointment end -->
+      
+                    <!-- second appointment start -->
+      
+                    <div class="row trSlot">
+                      <div class="col-12 col-md-8">
+                        <h6 class="schappointment-text">
+                         07:00 PM - 07:30 PM
+                        </h6>
+                      </div>
+                      <div class="col-8 col-md-4 trRow">
+                        
+                        <button type="button" class="btn btn-primary_book" data-toggle="modal" data-target="#primary">
+                          <i class="bx bx-check"></i>
+                                Book
+                              </button>
+                      </div>
                     </div>
-                  </article>
-                  <!-- Finish Quote Slider Box Article -->
+                    <!-- second appointment end -->
+                  </div>
                 </div>
               </div>
+
+
+            
             </div>
             </div>
           </section>
