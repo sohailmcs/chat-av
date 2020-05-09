@@ -19,6 +19,7 @@
 
     <!-- BEGIN:  CSS-->
     <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+    <link href="/css/KendoUi/examples-offline.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
     <link rel="stylesheet" type="text/css" href="/css/colors.css" />
@@ -233,13 +234,13 @@
             </button>
           </a>
           <hr />
-          <a href="#">
+          <a href="/public/kindahPatients">
             <button class="sideButtons hvr-sweep-to-right">
               <i class="bx bx-user-plus"></i><span>My Patients</span>
             </button>
           </a>
           <hr />
-          <a href="#">
+          <a href="/public/callLog">
             <button class="sideButtons hvr-sweep-to-right">
               <i class="bx bx-phone-call"></i><span>Call Log</span>
             </button>
@@ -337,27 +338,26 @@
 
                 <!-- Right Card Starts -->
                 <div class="col-lg-6 videocol rightcardContainer">
-                  <!-- Nav Filled Starts -->
-                  <section id="nav-filled">
+                  <!-- Nav Justified Starts -->
+                  <section id="nav-justified">
                     <div class="row">
                       <div class="col-sm-12">
                         <div class="card">
                           <div class="card-content">
                             <div class="card-body">
-                              <!-- Nav tabs -->
                               <ul
-                                class="nav nav-tabs nav-fill"
-                                id="myTab"
+                                class="nav nav-tabs nav-justified"
+                                id="myTab2"
                                 role="tablist"
                               >
                                 <li class="nav-item">
                                   <a
                                     class="nav-link active"
-                                    id="home-tab-fill"
+                                    id="home-tab-justified"
                                     data-toggle="tab"
-                                    href="#home-fill"
+                                    href="#home-just"
                                     role="tab"
-                                    aria-controls="home-fill"
+                                    aria-controls="home-just"
                                     aria-selected="true"
                                   >
                                     Doctor's Note
@@ -366,12 +366,12 @@
                                 <li class="nav-item">
                                   <a
                                     class="nav-link"
-                                    id="profile-tab-fill"
+                                    id="profile-tab-justified"
                                     data-toggle="tab"
-                                    href="#profile-fill"
+                                    href="#profile-just"
                                     role="tab"
-                                    aria-controls="profile-fill"
-                                    aria-selected="false"
+                                    aria-controls="profile-just"
+                                    aria-selected="true"
                                   >
                                     Prescription
                                   </a>
@@ -379,25 +379,24 @@
                                 <li class="nav-item">
                                   <a
                                     class="nav-link"
-                                    id="messages-tab-fill"
+                                    id="messages-tab-justified"
                                     data-toggle="tab"
-                                    href="#messages-fill"
+                                    href="#messages-just"
                                     role="tab"
-                                    aria-controls="messages-fill"
+                                    aria-controls="messages-just"
                                     aria-selected="false"
                                   >
                                     Visit History
                                   </a>
                                 </li>
                               </ul>
-
                               <!-- Tab panes -->
                               <div class="tab-content pt-1">
                                 <div
                                   class="tab-pane active"
-                                  id="home-fill"
+                                  id="home-just"
                                   role="tabpanel"
-                                  aria-labelledby="home-tab-fill"
+                                  aria-labelledby="home-tab-justified"
                                 >
                                   <!-- text areas -->
                                   <section class="basic-textarea">
@@ -418,8 +417,6 @@
                                                   </fieldset>
                                                 </div>
                                               </div>
-                                            </div>
-                                            <div class="card-body">
                                               <div class="row">
                                                 <div class="col-12">
                                                   <fieldset class="form-group">
@@ -432,8 +429,6 @@
                                                   </fieldset>
                                                 </div>
                                               </div>
-                                            </div>
-                                            <div class="card-body">
                                               <div class="row">
                                                 <div class="col-12">
                                                   <fieldset class="form-group">
@@ -446,8 +441,6 @@
                                                   </fieldset>
                                                 </div>
                                               </div>
-                                            </div>
-                                            <div class="card-body">
                                               <div class="row">
                                                 <div class="col-12">
                                                   <fieldset class="form-group">
@@ -461,21 +454,30 @@
                                                 </div>
                                               </div>
                                             </div>
+
+                                            <div class="icons">
+                                              <button
+                                                type="button"
+                                                class="btn btn-outline-primary round mr-1 mb-1"
+                                              >
+                                                <i class="bx bxs-save"></i>
+                                                Save and Next
+                                              </button>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
                                   </section>
+                                  <!-- text area ends -->
                                 </div>
-                                <!--  Textarea  end -->
-
-                                <!-- Form of prescriptionn start -->
                                 <div
                                   class="tab-pane"
-                                  id="profile-fill"
+                                  id="profile-just"
                                   role="tabpanel"
-                                  aria-labelledby="profile-tab-fill"
+                                  aria-labelledby="profile-tab-justified"
                                 >
+                                  <!-- Form of Prescription start -->
                                   <section id="basic-vertical-layouts">
                                     <div class="row match-height">
                                       <div class="col-12">
@@ -485,13 +487,11 @@
                                               <form class="form form-vertical">
                                                 <div class="form-body">
                                                   <div class="row">
-                                                    
                                                     <div
                                                       style="
                                                         text-align: center;
                                                       "
                                                     >
-                                                      
                                                       <h6>
                                                         Patient Prescription
                                                       </h6>
@@ -584,21 +584,28 @@
                                                   </div>
                                                 </div>
                                               </form>
+                                              <div class="icons">
+                                                <button
+                                                  type="button"
+                                                  class="btn btn-outline-primary round mr-1 mb-1"
+                                                >
+                                                  <i class="bx bxs-save"></i>
+                                                  Save and Next
+                                                </button>
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
                                   </section>
+                                  <!-- form of Prescription ends -->
                                 </div>
-                                <!-- Form of prescriptionn ends-->
-
-                                <!-- visit history start -->
                                 <div
                                   class="tab-pane"
-                                  id="messages-fill"
+                                  id="messages-just"
                                   role="tabpanel"
-                                  aria-labelledby="messages-tab-fill"
+                                  aria-labelledby="messages-tab-justified"
                                 >
                                   <!--  rows start -->
                                   <div class="row" id="table-striped">
@@ -613,8 +620,9 @@
                                               <thead>
                                                 <tr>
                                                   <th>Date</th>
-                                                  <th>Doc Name</th>
+                                                  <th>DocName</th>
                                                   <th>Prescription</th>
+                                                  <th>View</th>
                                                 </tr>
                                               </thead>
                                               <tbody>
@@ -622,26 +630,474 @@
                                                   <td>Sep 20,2020</td>
                                                   <td>Doctor ABC</td>
                                                   <td>Medical</td>
+                                                  <td>
+                                                    <!-- modal on eye icon -->
+
+                                                    <div
+                                                      class="modal-primary mr-1 mb-1 d-inline-block"
+                                                    >
+                                                      <!-- Button trigger for primary themes modal -->
+<a href="#">
+                                                      <i
+                                                        class="bx bx-show dashboard-eyeicon"
+                                                        data-toggle="modal"
+                                                        data-target="#viewhistory"
+                                                        style="
+                                                          padding-top: 12px;
+                                                        "
+                                                      ></i>
+                                                    </a>
+                                                      <!--primary theme Modal -->
+                                                      <div
+                                                        class="modal fade text-left"
+                                                        id="viewhistory"
+                                                        tabindex="-1"
+                                                        role="dialog"
+                                                        aria-labelledby="myModalLabel160"
+                                                        aria-hidden="true"
+                                                      >
+                                                        <div
+                                                          class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                          role="document"
+                                                        >
+                                                          <div
+                                                            class="modal-content"
+                                                          >
+                                                            <div
+                                                              class="modal-header bg-primary"
+                                                            >
+                                                              <h5
+                                                                class="modal-title white"
+                                                                id="myModalLabel160"
+                                                              >
+                                                                PATIENT HISTORY
+                                                              </h5>
+                                                            </div>
+                                                            <div
+                                                              class="modal-body"
+                                                            >
+                                                              <div
+                                                                class="card-content side-bar"
+                                                              >
+                                                                <div
+                                                                  class="card-body"
+                                                                >
+                                                                  <br />
+                                                                  <div
+                                                                    class="row"
+                                                                  >
+                                                                    <div
+                                                                      class="form-group pic-name"
+                                                                    >
+                                                                      <div
+                                                                        class="d-flex align-items-center"
+                                                                      >
+                                                                        <div
+                                                                          class="avatar m-0 mr-1"
+                                                                        >
+                                                                          <img
+                                                                            src="/assets/images/doctorprofile.jpg"
+                                                                            height="60"
+                                                                            width="60"
+                                                                            alt="avtar img holder"
+                                                                          />
+                                                                        </div>
+                                                                        <div>
+                                                                          <h5>
+                                                                            Patient
+                                                                            ABC
+                                                                          </h5>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div>
+                                                                    <div
+                                                                      class="text-sidebar"
+                                                                    >
+                                                                      <p>
+                                                                        <b
+                                                                          >Age</b
+                                                                        >: ABC
+                                                                        years
+                                                                        old
+                                                                        <br />
+                                                                        <b
+                                                                          >Visit
+                                                                          Number</b
+                                                                        >:May 02
+                                                                        , 2020
+                                                                        <br />
+                                                                        <b
+                                                                          >Contact
+                                                                          Number</b
+                                                                        >:
+                                                                        12245476786
+                                                                        <br />
+                                                                        <br />
+                                                                      </p>
+                                                                    </div>
+                                                                    <br />
+                                                                    <div
+                                                                      class="row"
+                                                                    >
+                                                                      <div
+                                                                        class="col-lg-6"
+                                                                      >
+                                                                        <div>
+                                                                          <h5>
+                                                                            Allergies
+                                                                          </h5>
+                                                                        </div>
+                                                                        <ul>
+                                                                          <li>
+                                                                            Coffee
+                                                                          </li>
+                                                                          <li>
+                                                                            Tea
+                                                                          </li>
+                                                                          <li>
+                                                                            Milk
+                                                                          </li>
+                                                                        </ul>
+                                                                      </div>
+                                                                      <div
+                                                                        class="col-lg-6"
+                                                                      >
+                                                                        <div>
+                                                                          <h5>
+                                                                            Medications
+                                                                          </h5>
+                                                                        </div>
+                                                                        <ul>
+                                                                          <li>
+                                                                            Coffee
+                                                                          </li>
+                                                                          <li>
+                                                                            Tea
+                                                                          </li>
+                                                                          <li>
+                                                                            Milk
+                                                                          </li>
+                                                                        </ul>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div
+                                                                      class="row"
+                                                                    >
+                                                                      <div
+                                                                        class="col-lg-6"
+                                                                      >
+                                                                        <div>
+                                                                          <h5>
+                                                                            Diagnosis
+                                                                          </h5>
+                                                                        </div>
+                                                                        <ul>
+                                                                          <li>
+                                                                            Coffee
+                                                                          </li>
+                                                                          <li>
+                                                                            Tea
+                                                                          </li>
+                                                                          <li>
+                                                                            Milk
+                                                                          </li>
+                                                                        </ul>
+                                                                      </div>
+                                                                      <div
+                                                                        class="col-lg-6"
+                                                                      >
+                                                                        <div>
+                                                                          <h5>
+                                                                            Social
+                                                                            History
+                                                                          </h5>
+                                                                        </div>
+                                                                        <ul>
+                                                                          <li>
+                                                                            Coffee
+                                                                          </li>
+                                                                          <li>
+                                                                            Tea
+                                                                          </li>
+                                                                          <li>
+                                                                            Milk
+                                                                          </li>
+                                                                        </ul>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div
+                                                                      class="row"
+                                                                    >
+                                                                      <div
+                                                                        class="col-lg-6"
+                                                                      >
+                                                                        <div>
+                                                                          <h5>
+                                                                            Medications
+                                                                          </h5>
+                                                                        </div>
+                                                                        <ul>
+                                                                          <li>
+                                                                            Coffee
+                                                                          </li>
+                                                                          <li>
+                                                                            Tea
+                                                                          </li>
+                                                                          <li>
+                                                                            Milk
+                                                                          </li>
+                                                                        </ul>
+                                                                      </div>
+                                                                      <div
+                                                                        class="col-lg-6"
+                                                                      >
+                                                                        <div>
+                                                                          <h5>
+                                                                            Medical
+                                                                            History
+                                                                          </h5>
+                                                                        </div>
+                                                                        <ul>
+                                                                          <li>
+                                                                            Coffee
+                                                                          </li>
+                                                                          <li>
+                                                                            Tea
+                                                                          </li>
+                                                                          <li>
+                                                                            Milk
+                                                                          </li>
+                                                                        </ul>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            <div
+                                                              class="modal-footer"
+                                                            >
+                                                              <button
+                                                                type="button"
+                                                                class="btn btn-light-secondary"
+                                                                data-dismiss="modal"
+                                                              >
+                                                                <i
+                                                                  class="bx bx-x d-block d-sm-none"
+                                                                ></i>
+                                                                <span
+                                                                  class="d-none d-sm-block"
+                                                                  >Close</span
+                                                                >
+                                                              </button>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </td>
                                                 </tr>
                                                 <tr>
                                                   <td>Sep 20,2020</td>
                                                   <td>Doctor ABC</td>
                                                   <td>Medical</td>
+                                                  <td>
+                                                    <!-- modal on eye icon -->
+
+                                                    <div
+                                                      class="modal-primary mr-1 mb-1 d-inline-block"
+                                                    >
+                                                      <!-- Button trigger for primary themes modal -->
+                                                      <a href="#">
+                                                      <i
+                                                        class="bx bx-show dashboard-eyeicon"
+                                                        data-toggle="modal"
+                                                        data-target="#viewhistory"
+                                                        style="
+                                                          padding-top: 12px;
+                                                        "
+                                                      ></i>
+                                                    </a>
+                                                      
+                                                    </div>
+                                                  </td>
                                                 </tr>
                                                 <tr>
                                                   <td>Sep 20,2020</td>
                                                   <td>Doctor ABC</td>
                                                   <td>Medical</td>
+                                                  <td>
+                                                    <!-- modal on eye icon -->
+
+                                                    <div
+                                                      class="modal-primary mr-1 mb-1 d-inline-block"
+                                                    >
+                                                      <!-- Button trigger for primary themes modal -->
+                                              <a href="#">
+                                                      <i
+                                                        class="bx bx-show dashboard-eyeicon"
+                                                        data-toggle="modal"
+                                                        data-target="#viewhistory"
+                                                        style="
+                                                          padding-top: 12px;
+                                                        "
+                                                      ></i>
+                                                    </a>
+                                                      
+                                                      
+                                                    </div>
+                                                  </td>
                                                 </tr>
                                                 <tr>
                                                   <td>Sep 20,2020</td>
                                                   <td>Doctor ABC</td>
                                                   <td>Medical</td>
+                                                  <td>
+                                                    <!-- modal on eye icon -->
+
+                                                    <div
+                                                      class="modal-primary mr-1 mb-1 d-inline-block"
+                                                    >
+                                                      <!-- Button trigger for primary themes modal -->
+                                                      <a href="#">
+                                                      <i
+                                                        class="bx bx-show dashboard-eyeicon"
+                                                        data-toggle="modal"
+                                                        data-target="#viewhistory"
+                                                        style="
+                                                          padding-top: 12px;
+                                                        "
+                                                      ></i>
+                                                  </a>
+                                                      <!--primary theme Modal -->
+                                                      
+                                                    </div>
+                                                  </td>
                                                 </tr>
                                                 <tr>
                                                   <td>Sep 20,2020</td>
                                                   <td>Doctor ABC</td>
                                                   <td>Medical</td>
+                                                  <td>
+                                                    <!-- modal on eye icon -->
+
+                                                    <div
+                                                      class="modal-primary mr-1 mb-1 d-inline-block"
+                                                    >
+                                                      <!-- Button trigger for primary themes modal -->
+<a href="#">
+                                                      <i
+                                                        class="bx bx-show dashboard-eyeicon"
+                                                        data-toggle="modal"
+                                                        data-target="#viewhistory"
+                                                        style="
+                                                          padding-top: 12px;
+                                                        "
+                                                      ></i>
+                                                    </a>
+                                                                                                         </div>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Sep 20,2020</td>
+                                                  <td>Doctor ABC</td>
+                                                  <td>Medical</td>
+                                                  <td>
+                                                    <!-- modal on eye icon -->
+
+                                                    <div
+                                                      class="modal-primary mr-1 mb-1 d-inline-block"
+                                                    >
+                                                      <!-- Button trigger for primary themes modal -->
+<a href="#">
+                                                      <i
+                                                        class="bx bx-show dashboard-eyeicon"
+                                                        data-toggle="modal"
+                                                        data-target="#viewhistory"
+                                                        style="
+                                                          padding-top: 12px;
+                                                        "
+                                                      ></i>
+                                                    </a>
+                                                      
+                                                    </div>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Sep 20,2020</td>
+                                                  <td>Doctor ABC</td>
+                                                  <td>Medical</td>
+                                                  <td>
+                                                    <!-- modal on eye icon -->
+
+                                                    <div
+                                                      class="modal-primary mr-1 mb-1 d-inline-block"
+                                                    >
+                                                      <!-- Button trigger for primary themes modal -->
+<a href="">
+                                                      <i
+                                                        class="bx bx-show dashboard-eyeicon"
+                                                        data-toggle="modal"
+                                                        data-target="#viewhistory"
+                                                        style="
+                                                          padding-top: 12px;
+                                                        "
+                                                      ></i>
+                                                    </a>
+                                                                                                        </div>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Sep 20,2020</td>
+                                                  <td>Doctor ABC</td>
+                                                  <td>Medical</td>
+                                                  <td>
+                                                    <!-- modal on eye icon -->
+
+                                                    <div
+                                                      class="modal-primary mr-1 mb-1 d-inline-block"
+                                                    >
+                                                      <!-- Button trigger for primary themes modal -->
+ <a href="#">
+                                                      <i
+                                                        class="bx bx-show dashboard-eyeicon"
+                                                        data-toggle="modal"
+                                                        data-target="#viewhistory"
+                                                        style="
+                                                          padding-top: 12px;
+                                                        "
+                                                      ></i>
+                                                    </a>
+                                                     
+                                                    </div>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Sep 20,2020</td>
+                                                  <td>Doctor ABC</td>
+                                                  <td>Medical</td>
+                                                  <td>
+                                                    <!-- modal on eye icon -->
+
+                                                    <div
+                                                      class="modal-primary mr-1 mb-1 d-inline-block"
+                                                    >
+                                                      <!-- Button trigger for primary themes modal -->
+<a href="#">
+                                                      <i
+                                                        class="bx bx-show dashboard-eyeicon"
+                                                        data-toggle="modal"
+                                                        data-target="#viewhistory"
+                                                        style="
+                                                          padding-top: 12px;
+                                                        "
+                                                      ></i>
+                                                    </a>
+                                                      
+                                                    </div>
+                                                  </td>
                                                 </tr>
                                               </tbody>
                                             </table>
@@ -652,24 +1108,14 @@
                                   </div>
                                   <!--  rows end -->
                                 </div>
-
-                                <!-- visit history ends -->
                               </div>
-                            <div class="icons">
-                               <button type="button" class="btn btn-outline-primary round mr-1 mb-1 slide-right">
-                                <i class="bx bxs-save"></i>
-                                Save and Send
-                              </button>
-                            </div>
-                             
-                            </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </section>
-                  <!-- Nav Filled Ends -->
+                  <!-- Nav Justified Ends -->
                 </div>
                 <!--Right Card ends -->
               </div>
@@ -707,6 +1153,7 @@
     <!-- for slide in video call page -->
 
     <script src="/js/slidevideocall.js"></script>
+    <script src="/js/navs.js"></script>
     <!-- END: JS-->
   </body>
   <!-- END: Body-->

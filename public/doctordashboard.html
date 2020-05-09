@@ -19,6 +19,7 @@
 
     <!-- BEGIN:  CSS-->
     <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+    <link href="/css/KendoUi/examples-offline.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
     <link rel="stylesheet" type="text/css" href="/css/colors.css" />
@@ -26,6 +27,8 @@
     <link rel="stylesheet" type="text/css" href="/css/components.css" />
     <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+    <link rel="stylesheet" type="text/css" href="/css/app-kanban.css" />
     <!-- END: CSS-->
   </head>
   <!-- END: Head-->
@@ -230,13 +233,13 @@
             </button>
           </a>
           <hr />
-          <a href="#">
+          <a href="/public/kindahPatients">
             <button class="sideButtons hvr-sweep-to-right">
-              <i class="bx bx-user-plus"></i><span>My Patients</span>
+              <i class="bx bx-user-plus"></i><span>Kindah Patients</span>
             </button>
           </a>
           <hr />
-          <a href="#">
+          <a href="/public/callLog">
             <button class="sideButtons hvr-sweep-to-right">
               <i class="bx bx-phone-call"></i><span>Call Log</span>
             </button>
@@ -419,7 +422,10 @@
                           class="timeline-items timeline-icon-primary active pb-0"
                         >
                           <div class="timeline-time">
-                            <button type="button" class="btn btn-outline-primary round mr-1 mb-1">
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary round mr-1 mb-1"
+                            >
                               <i class="bx bx-purchase-tag"></i>
                               <b>Check in</b>
                             </button>
@@ -439,7 +445,10 @@
                           class="timeline-items timeline-icon-primary active pb-0"
                         >
                           <div class="timeline-time">
-                            <button type="button" class="btn btn-outline-primary round mr-1 mb-1">
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary round mr-1 mb-1"
+                            >
                               <i class="bx bx-purchase-tag"></i>
                               <b>Check in</b>
                             </button>
@@ -459,7 +468,10 @@
                           class="timeline-items timeline-icon-primary active pb-0"
                         >
                           <div class="timeline-time">
-                            <button type="button" class="btn btn-outline-primary round mr-1 mb-1">
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary round mr-1 mb-1"
+                            >
                               <i class="bx bx-purchase-tag"></i>
                               <b>Check in</b>
                             </button>
@@ -479,7 +491,10 @@
                           class="timeline-items timeline-icon-primary active pb-0"
                         >
                           <div class="timeline-time">
-                            <button type="button" class="btn btn-outline-primary round mr-1 mb-1">
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary round mr-1 mb-1"
+                            >
                               <i class="bx bx-purchase-tag"></i>
                               <b>Check in</b>
                             </button>
@@ -499,7 +514,10 @@
                           class="timeline-items timeline-icon-primary active pb-0"
                         >
                           <div class="timeline-time">
-                            <button type="button" class="btn btn-outline-primary round mr-1 mb-1">
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary round mr-1 mb-1"
+                            >
                               <i class="bx bx-purchase-tag"></i>
                               <b>Check in</b>
                             </button>
@@ -558,16 +576,21 @@
 
                           <div style="display: inline-block;">
                             <h6 style="padding-top: 2%;">
-                              <b>Patient ABC</b> &nbsp; (<span class="bullet bullet-success bullet-sm"></span>
-                              <span style="
+                              <b>Patient ABC</b> &nbsp; (<span
+                                class="bullet bullet-success bullet-sm"
+                              ></span>
+                              <span
+                                style="
                                   margin-left: 1%;
                                   color: #39da8a;
                                   font-weight: 300;
-                                "><b>online</b></span>)
+                                "
+                                ><b>online - Direct call</b></span
+                              >)
                             </h6>
-                            
+
                             <p><b>Contact :</b> 03456782145</p>
-                            <p><b>Added in queue on :</b> Dec 20,2020 05:00PM</p>
+                            <p><b>Patient waiting since :</b> 15 min 20 sec</p>
                           </div>
                         </div>
                       </div>
@@ -592,15 +615,82 @@
                             <b>Video</b>
                           </button>
                         </a>
-                        <a href="/public/videocall">
+
+                        <div class="modal-primary mr-1 mb-1 d-inline-block">
+                          <!-- Button for SMS Popup -->
                           <button
                             type="button"
-                            class="btn btn-outline-primary round mr-1 mb-1"
+                            class="btn btn-outline-primary round"
+                            data-toggle="modal"
+                            data-target="#primary"
                           >
                             <i class="bx bxs-chat"></i>
-                            <b>Chat</b>
+                            <b>SMS</b>
                           </button>
-                        </a>
+
+                          <!--SMS pop up -->
+                          <div
+                            class="modal fade text-left"
+                            id="primary"
+                            tabindex="-1"
+                            role="dialog"
+                            aria-labelledby="myModalLabel160"
+                            aria-hidden="true"
+                          >
+                            <div
+                              class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                              role="document"
+                            >
+                              <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                  <h5
+                                    class="modal-title white"
+                                    id="myModalLabel160"
+                                  >
+                                    SEND MESSAGE
+                                  </h5>
+                                </div>
+                                <div class="modal-body">
+                                  <h5>
+                                    Hello I am Doctor ABC . Your consultation
+                                    Session will be start in 15minutes. Please
+                                    stay Online. Thank you
+                                  </h5>
+
+                                  <br />
+                                  <form action="#">
+                                    <label>Enter Your Message Here </label>
+                                    <textarea
+                                      class="form-control"
+                                      id="basicTextarea"
+                                      rows="2"
+                                    ></textarea>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button
+                                    type="button"
+                                    class="btn btn-light-secondary"
+                                    data-dismiss="modal"
+                                  >
+                                    <span class="d-none d-sm-block"
+                                      >Close<i class="bx bx-x sms-popup"></i
+                                    ></span>
+                                  </button>
+                                  <button
+                                    type="button"
+                                    class="btn btn-primary ml-1"
+                                    data-dismiss="modal"
+                                  >
+                                    <span class="d-none d-sm-block"
+                                      >Send<i class="bx bx-send sms-popup"></i
+                                    ></span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -633,7 +723,7 @@
                           <th class="tableheader">DATE & TIME</th>
 
                           <th class="tableheader">DURATION</th>
-                          <th class="tableheader">HISTORY</th>
+                          <th class="tableheader">ACTIVITY</th>
                           <th class="tableheader">ACTIONS</th>
                         </tr>
                       </thead>
@@ -647,24 +737,196 @@
                           <td>20 min</td>
 
                           <td>
-                            <a href="#">  
-                              <i class="bx bx-show"></i>
+                            <a href="#" class="complete-btn">
+                              <button
+                                type="button"
+                                class="btn btn-outline-primary round mr-1 mb-1"
+                              >
+                                <i class="bx bx-check-double"></i>
+                                Complete
+                              </button>
                             </a>
                           </td>
                           <td>
-                            <a href="#">  
-                              <i class="bx bx-check-double"></i> 
+                            <!-- modal on eye icon -->
+
+                            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                              <!-- Button trigger for primary themes modal -->
+                            <a href="#">
+                              <i
+                                class="bx bx-show dashboard-eyeicon"
+                                data-toggle="modal"
+                                data-target="#viewhistory"
+                              ></i>
                             </a>
-                            <a href="/public/videocall">                         
-                            <i class="bx bx-microphone"></i> 
-                          </a>
-                       
-                        <a href="/public/videocall">                         
-                            <i class="bx bx-video"></i>                           
-                        </a>
+                              <!--primary theme Modal -->
+                              <div
+                                class="modal fade text-left"
+                                id="viewhistory"
+                                tabindex="-1"
+                                role="dialog"
+                                aria-labelledby="myModalLabel160"
+                                aria-hidden="true"
+                              >
+                                <div
+                                  class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                  role="document"
+                                >
+                                  <div class="modal-content">
+                                    <div class="modal-header bg-primary">
+                                      <h5
+                                        class="modal-title white"
+                                        id="myModalLabel160"
+                                      >
+                                        PATIENT HISTORY
+                                      </h5>
+                                    </div>
+                                    <div class="modal-body">
+                                     
+                <div class="card-content side-bar">
+                  <div class="card-body"
+                  >
+                    
+                    <br />
+                    <div class="row">
+                      <div class="form-group pic-name">
+                        <div class="d-flex align-items-center">
+                          <div class="avatar m-0 mr-1">
+                            <img
+                              src="/assets/images/doctorprofile.jpg"
+                              height="60"
+                              width="60"
+                              alt="avtar img holder"
+                            />
+                          </div>
+                          <div>
+                           <h5>Patient ABC</h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                    <div class="text-sidebar">
+                      <p>
+                        
+                        
+                        <b>Age</b>: ABC years old
+                        <br />
+                        <b>Visit Number</b>:May 02 , 2020
+                        <br />
+                        <b>Contact Number</b>: 12245476786
+                        <br />
+                        <br />
+                    
+                      </p>
+                    </div>
+                    <br />
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div>
+                            <h5>Allergies</h5>
+                          </div>
+                          <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                          </ul> 
+        
+                        </div>
+                        <div class="col-lg-6">
+                          <div>
+                            <h5>Medications</h5>
+                          </div>
+                          <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                          </ul> 
+        
+                        </div>
+        
+                      </div>    <div class="row">
+                        <div class="col-lg-6">
+                          <div>
+                            <h5>Diagnosis</h5>
+                          </div>
+                          <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                          </ul> 
+        
+                        </div>
+                        <div class="col-lg-6">
+                          <div>
+                            <h5>Social History</h5>
+                          </div>
+                          <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                          </ul> 
+        
+                        </div>
+        
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div>
+                            <h5>Medications</h5>
+                          </div>
+                          <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                          </ul> 
+        
+                        </div>
+                        <div class="col-lg-6">
+                          <div>
+                            <h5>Medical History</h5>
+                          </div>
+                          <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                          </ul> 
+        
+                        </div>
+        
+                      </div>
+        
+                    </div>
+                  </div>
+                </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button
+                                        type="button"
+                                        class="btn btn-light-secondary"
+                                        data-dismiss="modal"
+                                      >
+                                        <i
+                                          class="bx bx-x d-block d-sm-none"
+                                        ></i>
+                                        <span class="d-none d-sm-block"
+                                          >Close</span
+                                        >
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
 
+                            <!-- modal on eye icon -->
+                            <a href="/public/videocall">
+                              <i class="bx bx-microphone"></i>
+                            </a>
 
-
+                            <a href="/public/videocall">
+                              <i class="bx bx-video"></i>
+                            </a>
                           </td>
                         </tr>
 
@@ -677,24 +939,40 @@
                           <td>20 min</td>
 
                           <td>
-                            <a href="#">  
-                              <i class="bx bx-show"></i>
+                            <a href="#" class="complete-btn">
+                              <button
+                                type="button"
+                                class="btn btn-outline-primary round mr-1 mb-1"
+                              >
+                                <i class="bx bx-check-double"></i>
+                                Complete
+                              </button>
                             </a>
                           </td>
                           <td>
-                            <a href="#">  
-                              <i class="bx bx-check-double"></i> 
+                            <!-- modal on eye icon -->
+
+                            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                              <!-- Button trigger for primary themes modal -->
+                              <a href="#">
+                              <i
+                                class="bx bx-show dashboard-eyeicon"
+                                data-toggle="modal"
+                                data-target="#viewhistory"
+                              ></i>
+                          </a>  
+                              <!--primary theme Modal -->
+                              
+                            </div>
+
+                            <!-- modal on eye icon -->
+                            <a href="/public/videocall">
+                              <i class="bx bx-microphone"></i>
                             </a>
-                            <a href="/public/videocall">                         
-                            <i class="bx bx-microphone"></i> 
-                          </a>
-                       
-                        <a href="/public/videocall">                         
-                            <i class="bx bx-video"></i>                           
-                        </a>
 
-
-
+                            <a href="/public/videocall">
+                              <i class="bx bx-video"></i>
+                            </a>
                           </td>
                         </tr>
 
@@ -707,24 +985,39 @@
                           <td>20 min</td>
 
                           <td>
-                            <a href="#">  
-                              <i class="bx bx-show"></i>
+                            <a href="#" class="complete-btn">
+                              <button
+                                type="button"
+                                class="btn btn-outline-primary round mr-1 mb-1"
+                              >
+                                <i class="bx bx-check-double"></i>
+                                Complete
+                              </button>
                             </a>
                           </td>
                           <td>
-                            <a href="#">  
-                              <i class="bx bx-check-double"></i> 
+                            <!-- modal on eye icon -->
+
+                            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                              <!-- Button trigger for primary themes modal -->
+                                <a href="#">
+                              <i
+                                class="bx bx-show dashboard-eyeicon"
+                                data-toggle="modal"
+                                data-target="#viewhistory"
+                              ></i>
                             </a>
-                            <a href="/public/videocall">                         
-                            <i class="bx bx-microphone"></i> 
-                          </a>
-                       
-                        <a href="/public/videocall">                         
-                            <i class="bx bx-video"></i>                           
-                        </a>
+                             
+                            </div>
 
+                            <!-- modal on eye icon -->
+                            <a href="/public/videocall">
+                              <i class="bx bx-microphone"></i>
+                            </a>
 
-
+                            <a href="/public/videocall">
+                              <i class="bx bx-video"></i>
+                            </a>
                           </td>
                         </tr>
                       </tbody>
@@ -749,6 +1042,8 @@
     <script src="/js/vertical-menu-light.js"></script>
     <script src="/js/app-menu.js"></script>
     <script src="/js/app.js"></script>
+
+    <script src="/js/app-kanban.js"></script>
 
     <!-- END: JS-->
   </body>

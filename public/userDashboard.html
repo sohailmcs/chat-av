@@ -307,166 +307,103 @@
             </div>
           </div>
           <br />
-          <!-- calendar Wrapper  -->
-          <div class="calendar-wrapper position-relative">
-            <!-- calendar app overlay -->
-            <div class="app-content-overlay"></div>
-            <!-- calendar sidebar start -->
-            <div
-              id="sidebar"
-              class="sidebar card"
-              style="background-color: white;"
-            >
-              <div class="sidebar-new-schedule">
-                <ul
-                  style="
-                    list-style: none;
-                    padding-left: 0rem;
-                    text-align: center;
-                  "
-                >
-                  <div class="avatar mr-1 m-0">
-                    <img
-                      src="/assets/images/doctorprofile.jpg"
-                      alt="avatar"
-                      height="100"
-                      width="100"
-                      ;
-                    />
+
+          <div class="row">
+            <div class="col-lg-6">
+              <!-- calendar view start  -->
+              <div class="calendar-view card">
+                <div id="scheduler"></div>
+              </div>
+              <!-- calendar view end  -->
+            </div>
+            <div class="col-lg-6">
+              <!-- MY APPOINTMENTS START -->
+
+              <div class="col-12 dashboard-marketing-campaign card">
+                <div class="card marketing-campaigns">
+                  <div
+                    class="card-header d-flex justify-content-between align-items-center pb-1"
+                  >
+                    <h5 class="card-title">YOUR BOOKED APPOINTMENTS</h5>
                   </div>
-                  <br />
-                  <br />
-                  <h6>
-                    <strong>User Name<i class="bx bxs-pencil"></i></strong>
-                  </h6>
-                  <hr />
-                </ul>
-              </div>
-              <!-- sidebar labels -->
-              <div id="sidebar-calendars" class="sidebar-calendars">
-                <div>
-                  <ul style="list-style: none; padding-left: 0rem;">
-                    <h6>
-                      <strong><i>Basic Details</i></strong>
-                    </h6>
 
-                    <li><i class="bx bxs-map sidebaricon"></i>California</li>
-                    <li>
-                      <i class="bx bx-phone-call sidebaricon"></i>(+56) 123
-                      45342
-                    </li>
-                    <li>
-                      <i class="bx bxs-calendar sidebaricon"></i>July 10 , 1990
-                    </li>
-                    <li>
-                      <i class="bx bx-mail-send sidebaricon"></i
-                      >Johnybravo@gmail.com
-                    </li>
+                  <div>
+                    <!-- table start -->
+                    <div class="col-sm-12 selectedDt">
+                      <script>
+                        var options = {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        };
+                        document.write(
+                          new Date().toLocaleDateString("en-US", options)
+                        );
+                      </script>
+                    </div>
 
-                    <hr />
+                    <!-- first appointment start -->
 
-                    <h6>
-                      <strong><i>Cell Phone</i></strong>
-                    </h6>
+                    <div class="row trSlot">
+                      <div class="col-12 col-md-8">
+                        <h6 class="schappointment-text">
+                          Dr Ghada Ameen Throat Specialist 07:00 PM - 07:30 PM
+                        </h6>
+                      </div>
+                      <div class="col-8 col-md-4 trRow">
+                        <button type="button" class="btn btn-primary_book">
+                          <i class="bx bxs-pencil"></i>
+                          Edit
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-primary_book"
+                          style="margin-left: 1%;"
+                        >
+                          <i class="bx bx-x"></i>
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
 
-                    <li>+(+56) 123 45342</li>
-                  </ul>
+                    <!-- first appointment end -->
+
+                    <!-- second appointment start -->
+
+                    <div class="row trSlot">
+                      <div class="col-12 col-md-8">
+                        <h6 class="schappointment-text">
+                          Dr Ghada Ameen Throat Specialist 07:00 PM - 07:30 PM
+                        </h6>
+                      </div>
+                      <div class="col-8 col-md-4 trRow">
+                        <button type="button" class="btn btn-primary_book">
+                          <i class="bx bxs-pencil"></i>
+                          Edit
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-primary_book"
+                          style="margin-left: 1%;"
+                        >
+                          <i class="bx bx-x"></i>
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                    <!-- second appointment end -->
+                  </div>
                 </div>
-                <!-- update your profile -->
-                <hr />
               </div>
-              <!-- / sidebar calendar labels -->
+              <!-- MY APPOINTMENTS ENDS -->
             </div>
-            <!-- calendar sidebar end -->
-            <!-- calendar view start  -->
-            <div class="calendar-view card">
-              <div id="scheduler"></div>
-            </div>
-            <!-- calendar view end  -->
           </div>
+          <!-- calendar Wrapper  -->
         </div>
         <!-- CALENDER END -->
 
-        <!-- MY APPOINTMENTS START -->
-
-        <div class="col-12 dashboard-marketing-campaign card">
-          <div class="card marketing-campaigns">
-            <div
-              class="card-header d-flex justify-content-between align-items-center pb-1"
-            >
-              <h5 class="card-title">YOUR SCHEDULED APPOINTMENTS</h5>
-            </div>
-
-            <div>
-              <!-- table start -->
-              <div class="col-sm-12 selectedDt">
-                <script>
-                  var options = {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  };
-                  document.write(
-                    new Date().toLocaleDateString("en-US", options)
-                  );
-                </script>
-              </div>
-
-              <!-- first appointment start -->
-
-              <div class="row trSlot">
-                <div class="col-12 col-md-8">
-                  <h6 class="schappointment-text">
-                    Dr Ghada Ameen Throat Specialist 07:00 PM - 07:30 PM
-                  </h6>
-                </div>
-                <div class="col-8 col-md-4 trRow">
-                  <button type="button" class="btn btn-primary_book">
-                    <i class="bx bxs-pencil"></i>
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-primary_book"
-                    style="margin-left: 1%;"
-                  >
-                    <i class="bx bx-x"></i>
-                    Cancel
-                  </button>
-                </div>
-              </div>
-               
-
-              <!-- first appointment end -->
-
-              <!-- second appointment start -->
-
-              <div class="row trSlot">
-                <div class="col-12 col-md-8">
-                  <h6 class="schappointment-text">
-                    Dr Ghada Ameen Throat Specialist 07:00 PM - 07:30 PM
-                  </h6>
-                </div>
-                <div class="col-8 col-md-4 trRow">
-                  <button type="button" class="btn btn-primary_book">
-                    <i class="bx bxs-pencil"></i>
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-primary_book"
-                    style="margin-left: 1%;"
-                  >
-                    <i class="bx bx-x"></i>
-                    Cancel
-                  </button>
-                </div>
-              </div>
-              <!-- second appointment end -->
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
 

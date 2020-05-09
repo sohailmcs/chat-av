@@ -258,6 +258,10 @@ h6 {
   }
 }
 
+.mr-auto {
+  width: 20%;
+}
+
 /* Mobile Navigation */
 .mobile-nav-toggle {
   position: fixed;

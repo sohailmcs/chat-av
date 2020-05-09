@@ -54,4 +54,13 @@ router.get("/public/videocall", (req, res, next) => {
   res.sendFile(path.join(__dirname, "../", "public", "videocall.html"));
 });
 
+//sign  in kindah Patients dashboard
+router.get("/public/kindahPatients", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "../", "public", "kindahPatients.html"));
+});
+
+//sign  in video call log
+router.get("/public/callLog", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "../", "public", "callLog.html"));
+});
 module.exports = router;

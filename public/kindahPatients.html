@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+  <!-- BEGIN: Head-->
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0"
+    />
+
+    <title>Dashboard</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
+      rel="stylesheet"
+    />
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+    <link href="/css/KendoUi/examples-offline.css" rel="stylesheet" />
+
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+    <link rel="stylesheet" type="text/css" href="/css/colors.css" />
+    <link rel="stylesheet" type="text/css" href="/css/components.css" />
+
+    <!-- END: Theme CSS-->
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <!-- END: Custom CSS-->
+
+    <!-- Data table links -->
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css"
+    />
+
+    <style>
+      td.details-control {
+        background: url("/assets/add-icon.png") no-repeat center center;
+        background-size: 20px 20px;
+        cursor: pointer;
+      }
+
+      .thead-img {
+        background: url("/assets/add-icon.png") no-repeat center center;
+        background-size: 20px 20px;
+      }
+
+      tr.shown td.details-control {
+        background: url("/assets/close-icon.png") no-repeat center center;
+        background-size: 20px 20px;
+      }
+
+      .thhead {
+        background-color: #3eb8d7 !important;
+        color: #ffffff;
+        text-align: left;
+      }
+
+      .rows {
+        background-color: #ffffff;
+      }
+
+      .even td {
+        text-align: left;
+      }
+
+      .odd td {
+        text-align: left;
+      }
+    </style>
+  </head>
+  <!-- END: Head-->
+
+  <!-- BEGIN: Body-->
+
+  <body
+    class="vertical-layout vertical-menu-modern 2-columns navbar-sticky footer-static"
+    data-open="click"
+    data-menu="vertical-menu-modern"
+    data-col="2-columns"
+  >
+    <!-- BEGIN: Header-->
+    <div class="header-navbar-shadow"></div>
+    <nav
+      class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu fixed-top"
+    >
+      <div class="navbar-wrapper">
+        <div class="navbar-container content">
+          <div class="navbar-collapse" id="navbar-mobile">
+            <div
+              class="mr-auto float-left bookmark-wrapper d-flex align-items-center"
+            >
+              <ul class="nav navbar-nav">
+                <li class="nav-item mobile-menu d-xl-none mr-auto">
+                  <a
+                    class="nav-link nav-menu-main menu-toggle hidden-xs"
+                    href="#"
+                    ><i class="ficon bx bx-menu"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+            <ul class="nav navbar-nav float-right">
+              <li class="dropdown dropdown-language nav-item">
+                <a
+                  class="dropdown-toggle nav-link"
+                  id="dropdown-flag"
+                  href="#"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="flag-icon flag-icon-us"></i
+                  ><span class="selected-language">English</span></a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdown-flag">
+                  <a class="dropdown-item" href="#" data-language="en"
+                    ><i class="flag-icon flag-icon-us mr-50"></i> English</a
+                  ><a class="dropdown-item" href="#" data-language="fr"
+                    ><i class="flag-icon flag-icon-sa mr-50"></i> Arabic</a
+                  >
+                </div>
+              </li>
+
+              <!-- FULL SCREEN START -->
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link nav-link-expand"
+                  ><i class="ficon bx bx-fullscreen"></i
+                ></a>
+              </li>
+              <!-- FULL SCREEN END -->
+
+              <!-- NOTIFICATION  start -->
+              <li class="dropdown dropdown-notification nav-item">
+                <a
+                  class="nav-link nav-link-label"
+                  href="#"
+                  data-toggle="dropdown"
+                  ><i class="ficon bx bx-bell bx-tada bx-flip-horizontal"></i
+                  ><span class="badge badge-pill badge-danger badge-up"
+                    >5</span
+                  ></a
+                >
+                <ul
+                  class="dropdown-menu dropdown-menu-media dropdown-menu-right"
+                >
+                  <li class="dropdown-menu-header">
+                    <div
+                      class="dropdown-header px-1 py-75 d-flex justify-content-between"
+                    >
+                      <span class="notification-title">7 new Notification</span
+                      ><span class="text-bold-400 cursor-pointer"
+                        >Mark all as read</span
+                      >
+                    </div>
+                  </li>
+                  <li class="scrollable-container media-list">
+                    <a
+                      class="d-flex justify-content-between"
+                      href="javascript:void(0)"
+                    >
+                      <div class="media d-flex align-items-center">
+                        <div class="media-left pr-0">
+                          <div class="avatar mr-1 m-0">
+                            <img
+                              src="/assets/images/doctorprofile.jpg"
+                              alt="avatar"
+                              height="39"
+                              width="39"
+                            />
+                          </div>
+                        </div>
+                        <div class="media-body">
+                          <h6 class="media-heading">
+                            <span class="text-bold-500"
+                              >Congratulate Socrates Itumay</span
+                            >
+                            for work anniversaries
+                          </h6>
+                          <small class="notification-text"
+                            >Mar 15 12:32pm</small
+                          >
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="dropdown-menu-footer">
+                    <a
+                      class="dropdown-item p-50 text-primary justify-content-center"
+                      href="javascript:void(0)"
+                      >Read all notifications</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <!-- NOTIFICATION  start -->
+
+              <!-- CORNER PROFILE  START-->
+              <li class="dropdown dropdown-user nav-item">
+                <a
+                  class="dropdown-toggle nav-link dropdown-user-link"
+                  href="#"
+                  data-toggle="dropdown"
+                >
+                  <div class="user-nav d-sm-flex d-none">
+                    <span class="user-name">John Doe</span
+                    ><span class="user-status text-muted">Available</span>
+                  </div>
+                  <span
+                    ><img
+                      class="round"
+                      src="/assets/images/doctorprofile.jpg"
+                      alt="avatar"
+                      height="40"
+                      width="40"
+                  /></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right pb-0">
+                  <a class="dropdown-item" href="#"
+                    ><i class="bx bx-user mr-50"></i> Edit Profile</a
+                  >
+                  <div class="dropdown-divider mb-0"></div>
+                  <a class="dropdown-item" href="/public/login"
+                    ><i class="bx bx-power-off mr-50"></i> Logout</a
+                  >
+                </div>
+              </li>
+              <!-- CORNER PROFILE  END-->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- END: Header-->
+
+    <!-- BEGIN: Main Menu-->
+    <div
+      class="main-menu menu-fixed menu-light menu-accordion menu-shadow card"
+      data-scroll-to-active="true"
+    >
+      <div class="navbar-header">
+        <ul class="nav navbar-nav flex-row">
+          <li class="nav-item mr-auto">
+            <a class="navbar-brand" href="/">
+              <h2 class="brand-text mb-0">KINDAH CARE</h2>
+            </a>
+          </li>
+          <li class="nav-item nav-toggle">
+            <a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"
+              ><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i
+              ><i
+                class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary"
+                data-ticon="bx-disc"
+              ></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+      <div class="shadow-bottom"></div>
+      <div class="main-menu-content">
+        <ul
+          class="navigation navigation-main"
+          id="main-menu-navigation"
+          data-menu="menu-navigation"
+          data-icon-style="lines"
+        >
+          <!-- <li class="navigation-header"><span>ALL DOCTORS</span></li> -->
+          <br />
+          <br />
+          <hr />
+          <a href="/public/doctordashboard">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bxs-calendar-plus"></i><span> Doctor Dashboard</span>
+            </button>
+          </a>
+          <hr />
+          <a href="#">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bxs-user-detail"></i><span>Call Queue</span>
+            </button>
+          </a>
+          <hr />
+          <a href="#">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bx-time"></i><span>My Appointment</span>
+            </button>
+          </a>
+          <hr />
+          <a href="/public/kindahPatients">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bx-user-plus"></i><span>Kindah Patients</span>
+            </button>
+          </a>
+          <hr />
+          <a href="/public/callLog">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bx-phone-call"></i><span>Call Log</span>
+            </button>
+          </a>
+          <hr />
+        </ul>
+      </div>
+    </div>
+    <!-- END: Main Menu-->
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+      <div class="content-wrapper">
+        <div class="content-body">
+          <section
+            id="sideMenuId"
+            style="
+              margin-right: -60%;
+              overflow: auto;
+              display: none;
+              width: 60%;
+              margin-top: 10px;
+            "
+          >
+            <!-- User new mail right area -->
+            <div class="kanban-sidebar" style="overflow: auto;">
+              <div class="card shadow-none quill-wrapper">
+                <div
+                  class="card-header d-flex justify-content-between align-items-center border-bottom px-2 py-1 side-card-title"
+                >
+                  <h3 class="card-title side-card-title">
+                    <b>Patient History</b>
+                  </h3>
+                  <button
+                    type="button"
+                    class="close close-icon"
+                    onclick="viewHistory()"
+                  >
+                    <i class="bx bx-x"></i>
+                  </button>
+                </div>
+                <!-- form start -->
+
+                <div class="card-content side-bar">
+                  <div class="card-body">
+                    <br />
+                    <div class="row">
+                      <div class="form-group pic-name">
+                        <div class="d-flex align-items-center">
+                          <div class="avatar m-0 mr-1">
+                            <img
+                              src="/assets/images/doctorprofile.jpg"
+                              height="60"
+                              width="60"
+                              alt="avtar img holder"
+                            />
+                          </div>
+                          <div>
+                            <h5>Patient ABC</h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-sidebar">
+                      <div>
+                        <p>
+                          <b>Age</b>: ABC years old
+                          <br />
+                          <b>Visit Number</b>:May 02 , 2020
+                          <br />
+                          <b>Contact Number</b>: 12245476786
+                          <br />
+                          <br />
+                        </p>
+                      </div>
+                      <br />
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div>
+                            <h5>Allergies</h5>
+                          </div>
+                          <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                          </ul>
+                        </div>
+                        <div class="col-lg-6">
+                          <div>
+                            <h5>Medications</h5>
+                          </div>
+                          <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div>
+                            <h5>Diagnosis</h5>
+                          </div>
+                          <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                          </ul>
+                        </div>
+                        <div class="col-lg-6">
+                          <div>
+                            <h5>Social History</h5>
+                          </div>
+                          <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div>
+                            <h5>Medications</h5>
+                          </div>
+                          <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                          </ul>
+                        </div>
+                        <div class="col-lg-6">
+                          <div>
+                            <h5>Medical History</h5>
+                          </div>
+                          <ul>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-light-secondary"
+                        onclick="viewHistory()"
+                        style="float: right;"
+                      >
+                        <span class="d-none d-sm-block">Close</span>
+                      </button>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ User Chat profile right area -->
+          </section>
+
+          <br />
+          <section>
+            <div class="d-flex flex-row">
+              <div>
+                <h3><b>KINDAH PATIENTS</b></h3>
+              </div>
+            </div>
+          </section>
+
+          <table id="kindahdatatable" class="display" style="width: 100%;">
+            <thead>
+              <tr>
+                <th class="thhead thead-img"></th>
+                <th class="thhead">MRN</th>
+                <th class="thhead">Full Name</th>
+                <th class="thhead">DoB</th>
+                <th class="thhead">Gender</th>
+                <th class="thhead">Email</th>
+                <th class="thhead">Phone Number</th>
+                
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEGIN: Content JS-->
+
+    <!-- END: Content JS-->
+
+    <!-- BEGIN: JS-->
+
+    <script src="/js/vendors.min.js"></script>
+    <script src="/js/vertical-menu-light.js"></script>
+    <script src="/js/app-menu.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/slidevideocall.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"
+    ></script>
+
+    <!-- END: JS-->
+  </body>
+
+  <script>
+    /* Formatting function for row details - modify as you need */
+    function format(d) {
+      // `d` is the original data object for the row
+
+      return (
+        '<table style="width:100% ">' +
+        "<tr>" +
+        "<th class='thhead'>Visit Number</th>" +
+        "<th class='thhead'>Patient</th>" +
+        "<th class='thhead'>Doctor</th>" +
+        "<th class='thhead'>Phone</th>" +
+        "<th class='thhead'>Date</th>" +
+        "<th class='thhead'>Time</th>" +
+        "<th class='thhead'>Duration</th>" +
+        "<th class='thhead'>View </th>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>1</td>" +
+        "<td>John</td>" +
+        "<td>DotorABC</td>" +
+        "<td>23456788</td>" +
+        "<td>Sept 08,2010</td>" +
+        "<td>12:00</td>" +
+        "<td>20min</td>" +
+        "<td onclick='viewHistory()'><a href='#' onclick='viewHistory();'>" +
+                     " <i class='bx bxs-show call-log-eye-btn'></i></a> </td>" +
+        "</tr>" +
+        "<tr class='rows'>" +
+        "<td>2</td>" +
+        "<td>John</td>" +
+        "<td>DotorABC</td>" +
+        "<td>23456788</td>" +
+        "<td>Sept 08,2010</td>" +
+        "<td>12:00</td>" +
+        "<td>20min</td>" +
+        "<td onclick='viewHistory()'><a href='#' onclick='viewHistory();'>" +
+                     " <i class='bx bxs-show call-log-eye-btn'></i></a> </td>" +
+        "</tr>" +
+        "<tr class='rows'>" +
+        "<td>3</td>" +
+        "<td>John</td>" +
+        "<td>DotorABC</td>" +
+        "<td>23456788</td>" +
+        "<td>Sept 08,2010</td>" +
+        "<td>12:00</td>" +
+        "<td>20min</td>" +
+        "<td onclick='viewHistory()'><a href='#' onclick='viewHistory();'>" +
+                     " <i class='bx bxs-show call-log-eye-btn'></i></a> </td>" +
+        "</tr>" +
+        "</table>"
+      );
+    }
+
+    $(document).ready(function () {
+      var dataSet = [
+        {
+          id: "1",
+
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+         
+        },
+        {
+          id: "2",
+
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+         
+        },
+        {
+          id: "3",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+        {
+          id: "3",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+        {
+          id: "4",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+        {
+          id: "5",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+        {
+          id: "6",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+        {
+          id: "7",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+        {
+          id: "8",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+        {
+          id: "9",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+        {
+          id: "10",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+        {
+          id: "11",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+        {
+          id: "12",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+        {
+          id: "13",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+        {
+          id: "14",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+
+        {
+          id: "15",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+
+        {
+          id: "16",
+          MRN: "123",
+          firstnameandlast: "Patient ABC",
+          DOB: "Mar 13,2020",
+          gender: "male",
+          email: "abc@gmail.com",
+          mobno: "123456789"
+        },
+      ];
+
+      // var dataSet = [
+      // ["Tiger Nixon", "System Architect", "Edinburgh", "$320,800"],
+      // ["Tiger Nixon", "System Architect", "Edinburgh", "$320,800"],
+      // ];
+
+      var table = $("#kindahdatatable").DataTable({
+        data: dataSet,
+        scrollX: true,
+        columns: [
+          {
+            className: "details-control",
+            orderable: false,
+            data: null,
+            defaultContent: "",
+          },
+          { data: "MRN" },
+          { data: "firstnameandlast" },
+          { data: "DOB" },
+          { data: "gender" },
+          { data: "email" },
+          { data: "mobno" }
+         
+        ],
+        order: [[1, "asc"]],
+      });
+
+      // Add event listener for opening and closing details
+      $("#kindahdatatable tbody").on(
+        "click",
+        "td.details-control",
+
+        function () {
+          var tr = $(this).closest("tr");
+          var row = table.row(tr);
+
+          if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass("shown");
+          } else {
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass("shown");
+          }
+        }
+      );
+    });
+
+    // $(kindahdatatable_length).find(div).remove();
+    // $("div").remove(".dataTables_length");
+  </script>
+
+  <!-- END: Body-->
+</html>

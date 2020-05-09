@@ -42,12 +42,20 @@ $(document).ready(function () {
   });
 });
 
-// $(document).ready(function () {
-//   $(".media-body").click(function () {
-//     if ($(window).width() <= 992) {
-//       $(".media-body").css("display", "none");
-//     } else {
-//       $(".media-body").css("display", "");
-//     }
-//   });
-// });
+// Call log jQuery code
+
+function viewHistory() {
+  if (document.getElementById("sideMenuId").style.marginRight == "-60%") {
+    setTimeout(() => {
+      document.getElementById("sideMenuId").style.marginRight = "0%";
+    }, 100);
+    document.getElementById("sideMenuId").style.display = "unset";
+  } else {
+    setTimeout(() => {
+      document.getElementById("sideMenuId").style.display = "none";
+    }, 300);
+    document.getElementById("sideMenuId").style.marginRight = "-60%";
+  }
+}
+
+//call queue kindah patients js
