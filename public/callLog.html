@@ -20,7 +20,6 @@
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
     <link href="/css/KendoUi/examples-offline.css" rel="stylesheet" />
-   
 
     <!-- END: Vendor CSS-->
 
@@ -244,13 +243,13 @@
             </button>
           </a>
           <hr />
-          <a href="#">
+          <a href="/public/callQueue">
             <button class="sideButtons hvr-sweep-to-right">
               <i class="bx bxs-user-detail"></i><span>Call Queue</span>
             </button>
           </a>
           <hr />
-          <a href="#">
+          <a href="/public/doctorAppointments">
             <button class="sideButtons hvr-sweep-to-right">
               <i class="bx bx-time"></i><span>My Appointment</span>
             </button>
@@ -312,102 +311,80 @@
                 <!-- form start -->
 
                 <div class="card-content side-bar">
-                  <div class="card-body">
+                  <div class="card-body slide-card">
                     <br />
-                    <div class="row">
-                      <div class="form-group pic-name">
-                        <div class="d-flex align-items-center">
-                          <div class="avatar m-0 mr-1">
-                            <img
-                              src="/assets/images/doctorprofile.jpg"
-                              height="60"
-                              width="60"
-                              alt="avtar img holder"
-                            />
-                          </div>
-                          <div>
-                            <h5>Patient ABC</h5>
-                          </div>
+                    <div class="media">
+                      <a class="pr-1" href="#">
+                        <img
+                          src="/assets/images/doctorprofile.jpg"
+                          alt="image"
+                          style="
+                            height: 100px;
+                            width: 100px;
+                            border-radius: 50%;
+                            margin-left: 12px;
+                          "
+                        />
+                      </a>
+                      <div>
+                        <h5 class="media-heading">PATIENT ABC</h5>
+                        <div>
+                          <p>
+                            <b>Age</b>: ABC years old
+                            <br />
+                            <b>Visit Number</b>:May 02 , 2020
+                            <br />
+                            <b>Contact Number</b>: 12245476786
+                          </p>
                         </div>
                       </div>
                     </div>
                     <div class="text-sidebar">
-                      <div>
-                        <p>
-                          <b>Age</b>: ABC years old
-                          <br />
-                          <b>Visit Number</b>:May 02 , 2020
-                          <br />
-                          <b>Contact Number</b>: 12245476786
-                          <br />
-                          <br />
-                        </p>
-                      </div>
                       <br />
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <div>
-                            <h5>Allergies</h5>
-                          </div>
-                          <ul>
-                            <li>Coffee</li>
-                            <li>Tea</li>
-                            <li>Milk</li>
-                          </ul>
+                      <div>
+                        <br />
+                        <div>
+                          <h6>
+                            <b>Allergies</b>
+                          </h6>
+                          <p>
+                            Cookie candy dragée marzipan gingerbread pie
+                            pudding. Brownie fruitcake wafer bonbon gummi bears
+                            apple pie.
+                          </p>
                         </div>
-                        <div class="col-lg-6">
-                          <div>
-                            <h5>Medications</h5>
-                          </div>
-                          <ul>
-                            <li>Coffee</li>
-                            <li>Tea</li>
-                            <li>Milk</li>
-                          </ul>
+
+                        <div>
+                          <h6>
+                            <b>Diagnosis</b>
+                          </h6>
+                          <p>
+                            Cookie candy dragée marzipan gingerbread pie
+                            pudding. Brownie fruitcake wafer bonbon gummi bears
+                            apple pie.
+                          </p>
                         </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <div>
-                            <h5>Diagnosis</h5>
-                          </div>
-                          <ul>
-                            <li>Coffee</li>
-                            <li>Tea</li>
-                            <li>Milk</li>
-                          </ul>
+
+                        <div>
+                          <h6>
+                            <b>RX</b>
+                          </h6>
+                          <p>
+                            Cookie candy dragée marzipan gingerbread pie
+                            pudding. Brownie fruitcake wafer bonbon gummi bears
+                            apple pie.
+                          </p>
                         </div>
-                        <div class="col-lg-6">
-                          <div>
-                            <h5>Social History</h5>
-                          </div>
-                          <ul>
-                            <li>Coffee</li>
-                            <li>Tea</li>
-                            <li>Milk</li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <div>
-                            <h5>Medications</h5>
-                          </div>
-                          <ul>
-                            <li>Coffee</li>
-                            <li>Tea</li>
-                            <li>Milk</li>
-                          </ul>
-                        </div>
-                        <div class="col-lg-6">
-                          <div>
-                            <h5>Medical History</h5>
-                          </div>
-                          <ul>
-                            <li>Coffee</li>
-                            <li>Tea</li>
-                            <li>Milk</li>
-                          </ul>
+
+                        <div>
+                          <h6>
+                            <b>Prescription</b>
+                          </h6>
+                          <p>
+                            Cookie candy dragée marzipan gingerbread pie
+                            pudding. Brownie fruitcake wafer bonbon gummi bears
+                            apple pie.
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -428,7 +405,6 @@
                 </div>
               </div>
             </div>
-            <!--/ User Chat profile right area -->
           </section>
 
           <!-- end side bar -->
@@ -468,10 +444,7 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>
@@ -484,26 +457,7 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                    <i
-                      class="bx bxs-show call-log-eye-btn"
-
-                    ></i>
-                  </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>790</td>
-                  <td>Doctor ABC</td>
-                  <td>36873336995</td>
-                  <td>May 08,2020</td>
-                  <td>07:00 AM</td>
-                  <td>15min</td>
-                  <td>
-                    <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>
@@ -516,10 +470,7 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>
@@ -532,10 +483,7 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>
@@ -548,10 +496,7 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>
@@ -564,10 +509,7 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>
@@ -580,10 +522,7 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>
@@ -596,10 +535,7 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>
@@ -612,10 +548,7 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>
@@ -628,10 +561,7 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>
@@ -644,10 +574,20 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>790</td>
+                  <td>Doctor ABC</td>
+                  <td>36873336995</td>
+                  <td>May 08,2020</td>
+                  <td>07:00 AM</td>
+                  <td>15min</td>
+                  <td>
+                    <a href="#" onclick="viewHistory();">
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>
@@ -674,10 +614,7 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>
@@ -690,10 +627,7 @@
                   <td>15min</td>
                   <td>
                     <a href="#" onclick="viewHistory();">
-                      <i
-                        class="bx bxs-show call-log-eye-btn"
-                          
-                      ></i>
+                      <i class="bx bxs-show call-log-eye-btn"></i>
                     </a>
                   </td>
                 </tr>

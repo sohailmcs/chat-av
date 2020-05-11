@@ -63,4 +63,26 @@ router.get("/public/kindahPatients", (req, res, next) => {
 router.get("/public/callLog", (req, res, next) => {
   res.sendFile(path.join(__dirname, "../", "public", "callLog.html"));
 });
+
+//sign  in call queue
+router.get("/public/callQueue", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "../", "public", "callQueue.html"));
+});
+
+//sign  in call queue
+router.get("/public/callQueue", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "../", "public", "callQueue.html"));
+});
+
+//sign  in call queue
+router.get("/public/callQueue", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "../", "public", "callQueue.html"));
+});
+
+//sign  in doctorAppointments
+router.get("/public/doctorAppointments", (req, res, next) => {
+  res.sendFile(
+    path.join(__dirname, "../", "public", "doctorAppointments.html")
+  );
+});
 module.exports = router;
