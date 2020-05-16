@@ -237,19 +237,25 @@
               <i class="bx bxs-first-aid"></i><span>All Doctors</span>
             </button>
           </a> -->
-          <hr>
+          <!-- <hr />
           <a href="/public/upcomingappointment">
             <button class="sideButtons hvr-sweep-to-right">
               <i class="bx bx-time"></i><span>Schedule Appointment</span>
             </button>
-          </a>
+          </a> -->
           <hr />
           <a href="/public/userDashboard">
             <button class="sideButtons hvr-sweep-to-right">
               <i class="bx bxs-report"></i><span>My Booked Appointments</span>
             </button>
           </a>
-         
+          <hr />
+          <a href="/public/patientVideo">
+            <button class="sideButtons hvr-sweep-to-right">
+              <i class="bx bx-phone"></i><span>Patient Video Call</span>
+            </button>
+          </a>
+
           <!-- <hr />
           <a href="#">
             <button class="sideButtons hvr-sweep-to-right">
@@ -280,7 +286,7 @@
           <br />
           <hr />
           <h3 class="doctor-heading">
-           PATIENT DASHBOARD
+            PATIENT DASHBOARD
           </h3>
 
           <div class="email-user-list list-group">
@@ -291,19 +297,10 @@
                   style="display: flexbox; flex-direction: column; width: 100%;"
                 >
                   <div class="row">
-                    <div
-                      class="pr-50"
-                      style="display: inline-block; align-self: stretch;"
-                    >
+                    <div class="pr-50 doc-img">
                       <img
                         src="/assets/images/maledoc.png"
                         alt="avtar img holder"
-                        style="
-                          width: 100px;
-                          height: 100px;
-                          border-radius: 50%;
-                          vertical-align: unset;
-                        "
                       />
                     </div>
 
@@ -312,13 +309,8 @@
                         Dr. Ghada Ameen<br />
 
                         <span class="bullet bullet-success bullet-sm"></span>
-                        <span
-                          style="
-                            margin-left: 1%;
-                            color: #39da8a;
-                            font-weight: 300;
-                          "
-                          ><b>online</b></span
+                        <span style="color: #39da8a; font-weight: 300;"
+                          ><b>Available Today</b></span
                         >
                       </h5>
 
@@ -336,7 +328,9 @@
                         <div class="row">
                           <div class="col-12">
                             <!-- VIEW DOCTOR PROFILE START -->
-                            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                            <div
+                              class="modal-primary mr-1 mb-1 d-inline-block btn-patient-dashboard"
+                            >
                               <!-- Button trigger for primary themes modal -->
                               <button
                                 type="button"
@@ -363,22 +357,10 @@
                                 >
                                   <div class="modal-content">
                                     <div class="modal-header bg-primary">
-                                      <div
-                                        class="pr-50"
-                                        style="
-                                          display: inline-block;
-                                          align-self: stretch;
-                                        "
-                                      >
+                                      <div class="pr-50 doc-img">
                                         <img
                                           src="/assets/images/maledoc.png"
                                           alt="avtar img holder"
-                                          style="
-                                            width: 100px;
-                                            height: 100px;
-                                            border-radius: 50%;
-                                            vertical-align: unset;
-                                          "
                                         />
                                       </div>
                                       <h5
@@ -434,7 +416,10 @@
                               </div>
                             </div>
 
-                            <a href="/public/upcomingappointment">
+                            <a
+                              href="/public/upcomingappointment"
+                              class="btn-patient-dashboard"
+                            >
                               <button
                                 type="button"
                                 class="btn btn-outline-primary round mr-1 mb-1 btn-sm"
@@ -444,7 +429,9 @@
                               </button>
                             </a>
 
-                            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                            <div
+                              class="modal-primary mr-1 mb-1 d-inline-block btn-patient-dashboard"
+                            >
                               <!-- Button trigger for request a call modal -->
                               <button
                                 type="button"
@@ -453,7 +440,7 @@
                                 data-target="#reqcall"
                               >
                                 <i class="bx bx-phone-call"></i>
-                                <b>Request A Call</b>
+                                <b>Join the Sameday Waiting list</b>
                               </button>
 
                               <!--primary request a call Modal -->
@@ -528,34 +515,20 @@
                   style="display: flexbox; flex-direction: column; width: 100%;"
                 >
                   <div class="row">
-                    <div
-                      class="pr-50"
-                      style="display: inline-block; align-self: stretch;"
-                    >
+                    <div class="pr-50 doc-img">
                       <img
-                        src="/assets/images/doctorprofile.jpg"
+                        src="/assets/images/maledoc.png"
                         alt="avtar img holder"
-                        style="
-                          width: 100px;
-                          height: 100px;
-                          border-radius: 50%;
-                          vertical-align: unset;
-                        "
                       />
                     </div>
 
                     <div class="media-body" style="display: inline-block;">
                       <h5 style="padding-top: 1%;">
-                        Dr. Khurram Khan<br />
+                        Dr. Ghada Ameen<br />
 
                         <span class="bullet bullet-success bullet-sm"></span>
-                        <span
-                          style="
-                            margin-left: 1%;
-                            color: #39da8a;
-                            font-weight: 300;
-                          "
-                          ><b>online</b></span
+                        <span style="color: #39da8a; font-weight: 300;"
+                          ><b>Available Today</b></span
                         >
                       </h5>
 
@@ -573,7 +546,9 @@
                         <div class="row">
                           <div class="col-12">
                             <!-- VIEW DOCTOR PROFILE START -->
-                            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                            <div
+                              class="modal-primary mr-1 mb-1 d-inline-block btn-patient-dashboard"
+                            >
                               <!-- Button trigger for primary themes modal -->
                               <button
                                 type="button"
@@ -600,22 +575,10 @@
                                 >
                                   <div class="modal-content">
                                     <div class="modal-header bg-primary">
-                                      <div
-                                        class="pr-50"
-                                        style="
-                                          display: inline-block;
-                                          align-self: stretch;
-                                        "
-                                      >
+                                      <div class="pr-50 doc-img">
                                         <img
-                                          src="/assets/images/doctorprofile.jpg"
+                                          src="/assets/images/maledoc.png"
                                           alt="avtar img holder"
-                                          style="
-                                            width: 100px;
-                                            height: 100px;
-                                            border-radius: 50%;
-                                            vertical-align: unset;
-                                          "
                                         />
                                       </div>
                                       <h5
@@ -671,7 +634,10 @@
                               </div>
                             </div>
 
-                            <a href="/public/upcomingappointment">
+                            <a
+                              href="/public/upcomingappointment"
+                              class="btn-patient-dashboard"
+                            >
                               <button
                                 type="button"
                                 class="btn btn-outline-primary round mr-1 mb-1 btn-sm"
@@ -681,22 +647,24 @@
                               </button>
                             </a>
 
-                            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                            <div
+                              class="modal-primary mr-1 mb-1 d-inline-block btn-patient-dashboard"
+                            >
                               <!-- Button trigger for request a call modal -->
                               <button
                                 type="button"
                                 class="btn btn-outline-primary round mr-1 mb-1 btn-sm"
                                 data-toggle="modal"
-                                data-target="#reqcall"
+                                data-target="#waitinglist"
                               >
                                 <i class="bx bx-phone-call"></i>
-                                <b>Request A Call</b>
+                                <b>Join the Sameday Waiting list</b>
                               </button>
 
                               <!--primary request a call Modal -->
                               <div
                                 class="modal fade text-left"
-                                id="reqcall"
+                                id="waitinglist"
                                 tabindex="-1"
                                 role="dialog"
                                 aria-labelledby="myModalLabel160"
@@ -712,12 +680,12 @@
                                         class="modal-title white"
                                         id="myModalLabel160"
                                       >
-                                        REQUEST A CALL
+                                        REQUEST TO JOIN THE WAITING LIST
                                       </h5>
                                       <button
                                         type="button"
                                         class="close"
-                                        onclick="hideRequestCallModal()"
+                                        data-dismiss="modal"
                                         aria-label="Close"
                                       >
                                         <i class="bx bx-x"></i>
@@ -727,23 +695,25 @@
                                       class="modal-body"
                                       style="text-align: center;"
                                     >
+                                      <br />
+
                                       <h5>
                                         <i
-                                          >Your request has been sent to doctor
-                                          please wait.</i
+                                          >Your request can't be transfer to
+                                          doctor as the limit to attend per day
+                                          patients has been reached.</i
                                         >
                                       </h5>
-                                      <div style="text-align: center;">
-                                        <img
-                                          src="/assets/images/IncredibleEachBat-small.gif"
-                                          alt="Calling Gif"
-                                          style="
-                                            width: 40%;
-                                            height: 40%;
-                                            border-radius: 50%;
-                                          "
-                                        />
-                                      </div>
+                                      <br />
+
+                                      <h5>
+                                        <i
+                                          >Try to book Appointment tomorrow as
+                                          soon as possible</i
+                                        >
+                                      </h5>
+                                      <br />
+                                      <br />
                                     </div>
                                   </div>
                                 </div>
@@ -756,42 +726,28 @@
                   </div>
                 </div>
               </li>
-              <!-- second end -->
+              <!-- second doctor end -->
 
-              <!-- third -->
+              <!-- first -->
               <li class="media mail-read card">
                 <div
                   style="display: flexbox; flex-direction: column; width: 100%;"
                 >
                   <div class="row">
-                    <div
-                      class="pr-50"
-                      style="display: inline-block; align-self: stretch;"
-                    >
+                    <div class="pr-50 doc-img">
                       <img
-                        src="/assets/images/doctorprofile.jpg"
+                        src="/assets/images/maledoc.png"
                         alt="avtar img holder"
-                        style="
-                          width: 100px;
-                          height: 100px;
-                          border-radius: 50%;
-                          vertical-align: unset;
-                        "
                       />
                     </div>
 
                     <div class="media-body" style="display: inline-block;">
                       <h5 style="padding-top: 1%;">
-                        Dr. Wasay Ameen<br />
+                        Dr. Ghada Ameen<br />
 
                         <span class="bullet bullet-success bullet-sm"></span>
-                        <span
-                          style="
-                            margin-left: 1%;
-                            color: #39da8a;
-                            font-weight: 300;
-                          "
-                          ><b>online</b></span
+                        <span style="color: #39da8a; font-weight: 300;"
+                          ><b>Available Today</b></span
                         >
                       </h5>
 
@@ -809,7 +765,9 @@
                         <div class="row">
                           <div class="col-12">
                             <!-- VIEW DOCTOR PROFILE START -->
-                            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                            <div
+                              class="modal-primary mr-1 mb-1 d-inline-block btn-patient-dashboard"
+                            >
                               <!-- Button trigger for primary themes modal -->
                               <button
                                 type="button"
@@ -836,22 +794,10 @@
                                 >
                                   <div class="modal-content">
                                     <div class="modal-header bg-primary">
-                                      <div
-                                        class="pr-50"
-                                        style="
-                                          display: inline-block;
-                                          align-self: stretch;
-                                        "
-                                      >
+                                      <div class="pr-50 doc-img">
                                         <img
                                           src="/assets/images/maledoc.png"
                                           alt="avtar img holder"
-                                          style="
-                                            width: 100px;
-                                            height: 100px;
-                                            border-radius: 50%;
-                                            vertical-align: unset;
-                                          "
                                         />
                                       </div>
                                       <h5
@@ -907,7 +853,10 @@
                               </div>
                             </div>
 
-                            <a href="/public/upcomingappointment">
+                            <a
+                              href="/public/upcomingappointment"
+                              class="btn-patient-dashboard"
+                            >
                               <button
                                 type="button"
                                 class="btn btn-outline-primary round mr-1 mb-1 btn-sm"
@@ -917,22 +866,24 @@
                               </button>
                             </a>
 
-                            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                            <div
+                              class="modal-primary mr-1 mb-1 d-inline-block btn-patient-dashboard"
+                            >
                               <!-- Button trigger for request a call modal -->
                               <button
                                 type="button"
                                 class="btn btn-outline-primary round mr-1 mb-1 btn-sm"
                                 data-toggle="modal"
-                                data-target="#reqcall"
+                                data-target="#waitinglist"
                               >
                                 <i class="bx bx-phone-call"></i>
-                                <b>Request A Call</b>
+                                <b>Join the Sameday Waiting list</b>
                               </button>
 
                               <!--primary request a call Modal -->
                               <div
                                 class="modal fade text-left"
-                                id="reqcall"
+                                id="waitinglist"
                                 tabindex="-1"
                                 role="dialog"
                                 aria-labelledby="myModalLabel160"
@@ -948,12 +899,12 @@
                                         class="modal-title white"
                                         id="myModalLabel160"
                                       >
-                                        REQUEST A CALL
+                                        REQUEST TO JOIN THE WAITING LIST
                                       </h5>
                                       <button
                                         type="button"
                                         class="close"
-                                        onclick="hideRequestCallModal()"
+                                        data-dismiss="modal"
                                         aria-label="Close"
                                       >
                                         <i class="bx bx-x"></i>
@@ -963,23 +914,25 @@
                                       class="modal-body"
                                       style="text-align: center;"
                                     >
+                                      <br />
+
                                       <h5>
                                         <i
-                                          >Your request has been sent to doctor
-                                          please wait.</i
+                                          >Your request can't be transfer to
+                                          doctor as the limit to attend per day
+                                          patients has been reached.</i
                                         >
                                       </h5>
-                                      <div style="text-align: center;">
-                                        <img
-                                          src="/assets/images/IncredibleEachBat-small.gif"
-                                          alt="Calling Gif"
-                                          style="
-                                            width: 40%;
-                                            height: 40%;
-                                            border-radius: 50%;
-                                          "
-                                        />
-                                      </div>
+                                      <br />
+
+                                      <h5>
+                                        <i
+                                          >Try to book Appointment tomorrow as
+                                          soon as possible</i
+                                        >
+                                      </h5>
+                                      <br />
+                                      <br />
                                     </div>
                                   </div>
                                 </div>
@@ -992,6 +945,7 @@
                   </div>
                 </div>
               </li>
+              <!-- third doctor end -->
             </ul>
           </div>
         </div>
@@ -1045,89 +999,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div id="secondmodal">
-      <div
-        style="
-          display: none;
-          position: fixed;
-          z-index: 1095;
-          padding-top: 0px;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          overflow: auto;
-          background-color: rgb(0, 0, 0);
-          background-color: rgba(0, 0, 0, 0.4);
-        "
-        id="notificationmodal"
-      >
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            width: 100%;
-            height: 100%;
-          "
-        >
-          <div style="background-color: white; width: 50%; height: 48%;">
-            <h3
-              style="
-                background-color: #5a8dee;
-                text-align: center;
-
-                color: white;
-              "
-            >
-              <br />
-              APPOINTMENT BOOKED
-              <br />
-              <br />
-            </h3>
-            <div class="col-sm-6">
-            <h5 style="color: #5a8dee; text-align: center; display: flex;">
-              <i>
-                <b>
-                  Your Token number is 3.
-
-                  <br />
-                  <br />
-
-                  The doctor will Available for you after 45 minutes.
-                  <br />
-                  <br />
-                  as per our policy each patient is provided the 15 minutes of
-                  consultation.
-                </b>
-              </i>
-            </h5>
-            <div style="float: right; margin-right: 10px;">
-              <button
-                type="button"
-                class="btn btn-light-secondary"
-                onclick="hidesecondmodal()"
-              >
-                <i class="bx bx-x d-block d-sm-none"></i>
-                <span class="d-none d-sm-block">Close</span>
-              </button>
-            </div>
-          </div>
-            <button
-              style="padding: 20px;"
-              type="button"
-              class="close"
-              onclick="hidesecondmodal()"
-              aria-label="Close"
-            >
-              <i class="bx bx-x">Close</i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
     <!-- END: Content-->
 

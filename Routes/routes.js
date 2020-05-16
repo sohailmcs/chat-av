@@ -85,4 +85,15 @@ router.get("/public/doctorAppointments", (req, res, next) => {
     path.join(__dirname, "../", "public", "doctorAppointments.html")
   );
 });
+
+//sign  in edit profile
+router.get("/public/editProfile", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "../", "public", "editProfile.html"));
+});
+
+//sign  in patient video
+router.get("/public/patientVideo", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "../", "public", "patientVideo.html"));
+});
+
 module.exports = router;
