@@ -57,5 +57,3 @@ function viewHistory() {
     document.getElementById("sideMenuId").style.marginRight = "-60%";
   }
 }
-
-//call queue kindah patients js

@@ -7,14 +7,13 @@ var path = require("path");
 var easyrtc = require("easyrtc");
 process.title = "node-easyrtc";
 
-//Connecting html pages routes from router file
-const htmlFile = require("./Routes/routes");
-app.use(htmlFile);
-
-//linking css AND JS FILES
-app.use(express.static(path.join(__dirname, "public")));
+app.set("view engine", "ejs");
+app.set("views", "views");
 
 var webServer = http.createServer(app);
+
+const KindahRoutes = require("./Routes/routes.js");
+const AuthRoutes = require("./Routes/AuthRoutes.js");
 
 // Start Socket.io so it attaches itself to Express server
 var socketServer = socketIo.listen(webServer, { "log level": 1 });
@@ -95,6 +94,13 @@ var rtc = easyrtc.listen(app, socketServer, null, function (err, rtcRef) {
     );
   });
 });
+
+//linking css AND JS FILES
+app.use(express.static(path.join(__dirname, "public")));
+
+//routes
+app.use(KindahRoutes);
+app.use(AuthRoutes);
 
 //in case of page not existing put error 404
 app.use((req, res, next) => {

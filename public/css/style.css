@@ -49,6 +49,13 @@ h6,
   color: #3eb8d7;
 }
 
+.page-heading {
+  padding: 8px;
+}
+
+.page-heading-pat {
+  margin-left: 43px;
+}
 .sidebaricon {
   font-size: 1.2rem;
   margin-left: 2px;
@@ -606,11 +613,24 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   text-align: center;
 }
 
+.videoimage {
+  height: fit-content;
+  width: 70%;
+}
+
 .docvideo {
   float: right;
   height: 100px;
+  margin: 5px;
+}
+.pat-video-card {
+  display: flex;
+  justify-content: space-between;
+}
 
-  margin-top: -60px;
+.pat-call {
+  padding-top: 22px;
+  width: -webkit-fill-available;
 }
 
 .btn-microphone {
@@ -793,7 +813,11 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   background-color: #3eb8d7;
   padding: 8px;
   text-align: center;
+}
+
+.head-weekdays-bold {
   color: #ffffff;
+  margin-left: 5px;
 }
 
 .shift-col-top {
@@ -878,4 +902,68 @@ tr.shown td.details-control {
 
 .visit-history-table tr td {
   text-align: center;
+}
+
+.has-icon-left .form-control {
+  padding-right: 0.6rem !important;
+  padding-left: 2.2rem !important;
+}
+
+input.larger {
+  transform: scale(1.5);
+  margin-left: 7px;
+}
+
+.shift {
+  color: #ffffff;
+}
+
+/* on off switch */
+.onoffswitch {
+  position: relative;
+  width: 57px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  height: 21px;
+  padding: 0;
+  line-height: 21px;
+  border: 2px solid #e3e3e3;
+  border-radius: 21px;
+  background-color: #49e845;
+  transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+  content: "";
+  display: block;
+  width: 21px;
+  margin: 0px;
+  background: #ffffff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 34px;
+  border: 2px solid #e3e3e3;
+  border-radius: 21px;
+  transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+  background-color: #d91515;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label,
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+  border-color: #d91515;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+  right: 0px;
 }
