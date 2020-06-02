@@ -1,13 +1,14 @@
 $(document).ready(function () {
   $(".slide-left").click(function () {
     if ($(window).width() <= 992) {
-      $(".card-content").css("display", "none");
+      $(".doc-pres-card").css("display", "none");
       $(".rightcardContainer").css("display", "none");
       $(".leftcardContainer").removeClass("col-lg-6");
+
       $(".slide-left").prop("disabled", true);
       $(".slide-right").prop("disabled", false);
     } else {
-      $(".card-content").css("display", "none");
+      $(".doc-pres-card").css("display", "none");
       $(".rightcardContainer").css("display", "none");
       $(".leftcardContainer").css("width", "50%");
       $(".leftcardContainer").removeClass("col-lg-6");
@@ -19,7 +20,7 @@ $(document).ready(function () {
 
   $(".slide-right").click(function () {
     if ($(window).width() <= 992) {
-      $(".card-content").css("display", "block");
+      $(".doc-pres-card").css("display", "block");
       $(".rightcardContainer").css("display", "");
       $(".leftcardContainer").addClass("col-lg-6");
       $(".slide-right").prop("disabled", true);
@@ -31,7 +32,7 @@ $(document).ready(function () {
         "linear",
         function () {
           $(".leftcardContainer").addClass("col-lg-6");
-          $(".card-content").css("display", "block");
+          $(".doc-pres-card").css("display", "block");
           $(".rightcardContainer").css("display", "");
           $(".leftcardContainer").css("width", "100%");
           $(".slide-right").prop("disabled", true);

@@ -1,5 +1,5 @@
 exports.getHomePage = (req, res, next) => {
-  res.render("index.ejs", {
+  res.render("index", {
     pageTitle: "Kindah Home",
   });
 };

@@ -12,7 +12,7 @@ app.set("views", "views");
 
 var webServer = http.createServer(app);
 
-const KindahRoutes = require("./Routes/routes.js");
+const KindahRoutes = require("./Routes/routes");
 const AuthRoutes = require("./Routes/AuthRoutes.js");
 
 // Start Socket.io so it attaches itself to Express server

@@ -45,12 +45,25 @@
         </button>
       </a>
       <hr />
-      <a href="/patientVideo">
-        <button class="sideButtons hvr-sweep-to-right">
-          <i class="bx bx-phone"></i><span>Patient Video Call</span>
-        </button>
-      </a>
+      <br />
+      <button
+        type="button"
+        onclick="PatientCallFunction()"
+        class="btn btn-outline-primary round mr-1 mb-1"
+      >
+        <b>Patient Call</b>
+      </button>
       <hr />
     </ul>
   </div>
 </div>
+
+<script>
+  function PatientCallFunction() {
+    var myWindow = window.open(
+      "/PatientVideo",
+      "MsgWindow",
+      "width=1000,height=1000"
+    );
+  }
+</script>

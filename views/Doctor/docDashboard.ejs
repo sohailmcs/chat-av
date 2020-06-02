@@ -301,14 +301,15 @@
                                     </div>
                                     <div class="col-md-5 col-sm-12 text-md-right">
                                         <div class="row call-Queue-icons">
-                                            <a href="/docVideoCall">
-                                                <button type="button" class="btn btn-outline-primary round mr-1 mb-1">
+                                            <a >
+                                                <button type="button" onclick="myFunction()" class="btn btn-outline-primary round mr-1 mb-1">
                                                     <i class="bx bx-microphone"></i>
                                                     <b>Audio</b>
                                                 </button>
                                             </a>
-                                            <a href="/docVideoCall">
-                                                <button type="button" class="btn btn-outline-primary round mr-1 mb-1">
+
+                                            <a >
+                                                <button type="button" onclick="myFunction()" class="btn btn-outline-primary round mr-1 mb-1">
                                                     <i class="bx bx-video"></i>
                                                     <b>Video</b>
                                                 </button>
@@ -839,6 +840,13 @@
     <!-- END: Content-->
 
     <!-- BEGIN: JS-->
+
+    <script>
+        function myFunction() {
+            var myWindow = window.open("/docVideoCall", "MsgWindow", "width=1000,height=1000");
+
+        }
+    </script>
     <script src="/js/vendors.min.js"></script>
 
     <script src="/js/vertical-menu-light.js"></script>

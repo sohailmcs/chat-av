@@ -28,19 +28,16 @@
       data-menu="menu-navigation"
       data-icon-style="lines"
     >
-      <div style="text-align: center;">
-        <div class="onoffswitch">
-          <input
-            type="checkbox"
-            name="onoffswitch"
-            class="onoffswitch-checkbox"
-            id="myonoffswitch"
-            tabindex="0"
-            checked
-          />
-          <label class="onoffswitch-label" for="myonoffswitch"></label>
-        </div>
-      </div>
+      <br />
+
+      <li>
+        <label class="switch">
+          <input type="checkbox" onclick="OnlineOffline()" />
+          <span class="slider round">
+            <div id="myDIV" class="btn-text">Online</div>
+          </span>
+        </label>
+      </li>
       <hr />
       <a href="/docdashboard">
         <button class="sideButtons hvr-sweep-to-right">
@@ -76,13 +73,16 @@
   </div>
 </div>
 
-<!-- <script>
-  function myFunction() {
+<script>
+  function OnlineOffline() {
     var x = document.getElementById("myDIV");
-    if (x.innerHTML === "Offline") {
-      x.innerHTML = "Online";
-    } else {
+
+    if (x.innerHTML === "Online") {
       x.innerHTML = "Offline";
+      x.style.color = "rgb(228, 83, 83)";
+    } else {
+      x.innerHTML = "Online";
+      x.style.color = "#39da8a";
     }
   }
-</script> -->
+</script>
