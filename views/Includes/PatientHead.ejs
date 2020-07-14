@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+  <!-- BEGIN: Head-->
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
+      rel="stylesheet"
+    />
+    <script src="/js/jquery.min.js"></script>
+
+    <script src="/js/Services/mustache.js"></script>
+    <script src="/js/Services/mustache-wax.min.js"></script>
+    <script src="/js/Services/loadingoverlay.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <title><%= pageTitle %></title>
+    <!-- common CSS -->
+  </head>
+
+  <script type="text/javascript">
+    var uName = "";
+    var userID = "";
+    var soc = io();
+    var baseURL = "http://sohailmcs-001-site1.ftempurl.com/KindahService/";
+
+    function getcookie(cookiename) {
+      var cookiestring = document.cookie;
+      var cookiearray = cookiestring.split(";");
+      for (var i = 0; i < cookiearray.length; ++i) {
+        if (cookiearray[i].trim().match("^" + cookiename + "=")) {
+          return cookiearray[i].replace(`${cookiename}=`, "").trim();
+        }
+      }
+      return null;
+    }
+
+    function deleteAllCookies() {
+      var cookies = document.cookie.split(";");
+
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      }
+      window.location.href = "/login";
+    }
+
+    $(document).ready(function () {
+      //=========save id for video/Audio chat=============
+      $(".goog-te-menu-value").children().last().remove();
+
+      uName = "sohail rasheed"; // getcookie("kindahUserName"); // $(".user-name").text();
+      userID = 1; //getcookie("kindahUserId"); // $(".user-name").attr("userinfo");
+      soc.emit("add-user", { username: uName });
+    });
+
+    function PlayCallingSound(play) {
+      $(
+        ' <audio id="chatAudio" loop="loop"><source src="/js/Services/calling.ogg" type="audio/ogg"> <source src="/js/Services/calling.mp3" type="audio/mpeg"><source src="/js/Services/calling.wav" type="audio/wav"></audio>'
+      ).appendTo("body");
+
+      var audio = $("#chatAudio");
+      if (play == true) audio.get(0).play();
+      else $("#chatAudio").remove();
+    }
+
+    //===========open Audio/Video window=================
+    soc.on("CallRequest", function (data) {
+      $("#btnAccept").attr("doctorName", data.username);
+      $("#btnReject").attr("doctorName", data.username);
+      $("#incommingCall").modal("show");
+      PlayCallingSound(true);
+    });
+
+    //=======accept or reject the icomming call================
+    function AcceptOrRejectCall(btn, status) {
+      PlayCallingSound(false);
+      $("#incommingCall").modal("hide");
+
+      //=========accept the call======
+      var doctorName = $(btn).attr("doctorName");
+      if (status) {
+        var width = screen.width / 2 + 100;
+        var height = screen.height / 2 + 150;
+        var left = (screen.width - width) / 2;
+        var top = (screen.height - height) / 2;
+        var params = "width=" + width + ", height=" + height;
+        params += ", top=" + top + ", left=" + left;
+        params += ", directories=no";
+        params += ", location=no";
+        params += ", menubar=no";
+        params += ", resizable=no";
+        params += ", scrollbars=no";
+        params += ", status=no";
+        params += ", toolbar=no";
+
+        var myWindow = window.open(
+          "/docVideoCall?area=Patient" +
+            "&PatientName=" +
+            uName +
+            "&docName=" +
+            doctorName,
+          "MsgWindow",
+          params
+        );
+      } else {
+        //=========Reject the call======
+        soc.emit("RejectedAudioVideoCall", {
+          username: doctorName,
+          pName: uName,
+        });
+      }
+    }
+
+    soc.on("CallAccepted", function (data) {
+      if (data.AcceptCall) {
+        $("#spanTokenNo").text(data.TokenNo);
+        $("#notificationmodal").modal("show");
+      } else {
+        $("#dialogRejected").modal("show");
+      }
+    });
+    soc.on("UpdateDoctorOnlineStatus", function (data) {
+      updateDoctorOnlineStatus(data.uID, data.status);
+    });
+  </script>
+</html>

@@ -9,6 +9,131 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+#loadingParentNotes {
+  position: relative;
+}
+.doctorNotesLoading {
+  position: absolute;
+  left: 25%;
+  top: 0;
+  display: none;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+}
+
+#loadingParentPrescrip {
+  position: relative;
+}
+.PrescripeLoading {
+  position: absolute;
+  left: 15%;
+  top: 0;
+  display: none;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+}
+
+.patientCallingWindow {
+  margin: 0 aut0;
+}
+.self-video {
+  width: 100%;
+  height: 510.33px;
+}
+
+.main-video-div:hover .three-icons {
+  display: block;
+  z-index: 11000;
+}
+
+.three-icons {
+  display: none;
+  position: absolute;
+  bottom: 0;
+}
+
+.main-video-div {
+  width: 659.5555555555555px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 371px;
+  position: relative;
+  margin: 0 auto;
+  border: 2px solid #3eb8d7 !important;
+}
+
+.caller-video {
+  top: 0;
+  position: absolute;
+  right: 0%;
+  background-color: aquamarine;
+  width: 30%;
+}
+
+.call-btn {
+  color: #fff;
+}
+.call-btn-border-red {
+  border: 2px solid red;
+  background-color: #ee6363;
+  padding: 12px 15px !important;
+}
+.call-btn-border {
+  border: 2px solid #07bc4c;
+  background-color: #45dc7f;
+  padding: 12px 15px !important;
+}
+.icon-acceptreject {
+  top: 3px !important;
+}
+.accept-icon {
+  border: 2px solid #07bc4c !important;
+  background-color: #45dc7f !important;
+}
+.call-accept-border {
+  border: 2px solid #07bc4c;
+  color: #fff !important;
+}
+
+@media only screen and (min-device-width: 300px) and (max-device-width: 750px) {
+  .main-video-div {
+    height: 202px;
+    width: 85%;
+  }
+}
+
+@media only screen and (device-width: 1024px) {
+  .main-video-div {
+    width: 581.328px;
+  }
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+  padding: 6px 18px;
+}
+.ConflictedDtError {
+  font-size: 15px;
+  text-align: center;
+}
+
+.toast {
+  position: absolute;
+  top: 20%;
+  right: 30%;
+  z-index: 10000;
+  border: 2px solid #3eb8d7;
+}
+.error {
+  color: red;
+  font-size: 14px;
+  font-weight: normal;
+}
+
 .btn-primary {
   background-color: #3eb8d7;
 }
@@ -19,6 +144,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .text-center,
 a {
   color: #3eb8d7;
+  cursor: pointer;
 }
 
 .header-navbar .navbar-container {
@@ -252,6 +378,17 @@ div {
   font-family: "Rubik", Helvetica, Arial, serif;
   font-size: 0.8rem;
   margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.table-start {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-sch-btn {
+  margin-bottom: 5px;
+  margin-top: -5px;
 }
 
 .trSlot {
@@ -264,7 +401,30 @@ div {
   background-color: #3eb8d7;
   color: #ffffff;
   margin-top: 1px;
+  text-align: center;
 }
+.Customrow {
+  height: 430px;
+}
+.Slotarea {
+  overflow: auto;
+  height: 430px;
+}
+
+.slot-booked {
+  background-color: #4cd04c;
+  text-align: center;
+}
+.patient-slot-booked {
+  background-color: #71ca71;
+  text-align: center;
+}
+
+.slot-canceled {
+  background-color: #e26f6f;
+  text-align: center;
+}
+
 .bold-time {
   font-size: large;
   margin-left: 8px;
@@ -299,8 +459,10 @@ div {
 
 .schappointment-text {
   padding-top: 10px;
+  padding-bottom: 10px;
   color: #fff;
   text-align: center;
+  margin-bottom: 0px !important;
 }
 
 .media-list .media {
@@ -369,7 +531,7 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 }
 
 .media-body {
-  background-image: url(../assets/img.png);
+  /* background-image: url(../assets/img.png); */
   background-size: 200px 180px;
   background-position: right top;
   background-repeat: no-repeat;
@@ -599,6 +761,7 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 
 .icons {
   text-align: center;
+  cursor: pointer;
 }
 
 .call-heading {
@@ -611,6 +774,8 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 
 .videoimagediv {
   text-align: center;
+  width: 100%;
+  height: 400px;
 }
 
 .videoimage {
@@ -739,7 +904,7 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   color: #3eb8d7;
 }
 
-#sideMenuId {
+.sideMenuId {
   display: none;
   z-index: 999;
   position: absolute;
@@ -755,6 +920,7 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 
 .call-log-table-header {
   background-color: #3eb8d7;
+  text-align: center;
 }
 
 .call-log-table-head {
@@ -810,6 +976,13 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   padding-left: 0px !important;
   padding-right: 0px !important;
   width: 132px;
+}
+.sch-app-popup {
+  border: 1px solid #3eb8d7;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  width: 45%;
+  margin: 2%;
 }
 
 .timers {
@@ -932,9 +1105,7 @@ input.larger {
   display: inline-block;
   width: 56px;
   height: 26px;
-  /* width: 60px;
-  height: 34px; */
-  margin-left: 30px;
+  margin-left: 10px;
 }
 
 .switch input {
@@ -1032,3 +1203,89 @@ input:checked + .slider:before {
 /* .skiptranslate {
   display: none;
 } */
+
+.goog-te-menu-value span:last-of-type {
+  display: none;
+}
+
+.bs-example {
+  margin: 500px;
+  position: relative;
+}
+
+.picker--time {
+  min-width: 187px !important;
+  max-width: 240px !important;
+}
+
+/* image upload */
+article {
+  width: 80%;
+  margin: auto;
+  margin-top: 10px;
+}
+#result {
+  display: flex;
+}
+.thumbnail {
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+}
+
+.years {
+  width: 100%;
+  border: 1px solid #dfe3e7;
+  height: 38px;
+  border-radius: 5px;
+}
+
+.editprofile-icons {
+  margin: 2px 0;
+  color: #3eb8d7 !important;
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.icon-margin {
+  margin-right: 6px;
+}
+
+.no-color {
+  color: #727e8c !important;
+}
+
+.table-search {
+  margin-bottom: 1%;
+}
+
+.spnWaitingTime {
+  color: #ee5757;
+}
+
+.videocall-table {
+  text-align: left;
+}
+
+.pat-modal-head {
+  margin-inline-end: auto;
+  font-weight: bold !important;
+  font-size: 25px !important;
+  margin-top: -22px;
+}
+
+.history-popup {
+  margin-bottom: 0px !important;
+}
+
+.history-text {
+  margin-bottom: 10px !important;
+}
+
+.pat-dash-btns {
+  margin-bottom: 10px !important;
+}
+
+.card-padding {
+  padding: 1rem 2rem 0.5rem !important;
+}

@@ -23,7 +23,7 @@
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <!-- END: Custom CSS-->
 </head>
@@ -51,6 +51,27 @@
                 </div>
                 <!-- basic info -->
                 <section class="multiple-validation">
+                    <!-- clinic 'info' -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Profile Picture</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="row">
+                                   <div class="col-sm-6">
+                                        <input id="files" type="file" multiple />
+                                        <br/>
+                                        <output id="result"></output>
+                                        <br />
+                                        <br />
+                                        <button type="submit" id="submit-all" class="btn btn-primary btn-xs">Update the picture</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                  
                     <div class="row">
                         <div class="col-md-12">
                             <form class="form-horizontal" novalidate>
@@ -66,6 +87,14 @@
                                                         <div class="controls">
                                                             <input type="text" name="name" class="form-control"
                                                                 placeholder="UserName" required
+                                                                data-validation-required-message="This  field is required" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <div class="controls">
+                                                            <input type="text" name="name" class="form-control" placeholder="Password" required
                                                                 data-validation-required-message="This  field is required" />
                                                         </div>
                                                     </div>
@@ -176,17 +205,33 @@
                                                 </div>
 
                                                 <div class="col-sm-6">
-                                                    <div class="form-group"> <form id="my-awesome-dropzone" action="/upload" class="dropzone">
-                                                        <div class="dropzone-previews"></div>
-                                                        <div class="fallback">
-                                                            <!-- this is the fallback if JS isn't working -->
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    
-                                                    </form>
+                                                <input id="files" type="file" multiple />
+                                                <br/>
+                                                <output id="result" ></output>
                                                     <br />
-                                                    <button type="submit" id="submit-all" class="btn btn-primary btn-xs">Upload the file</button></div>
+                                                    <br />
+                                               <button type="submit" id="submit-all" class="btn btn-primary btn-xs">Upload the file</button></div>
                                            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                               
+                                <!-- clinic 'info' -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Digital Signature</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <input id="files" type="file" multiple />
+                                                    <br />
+                                                    <output id="result"></output>
+                                                    <br />
+                                                    <br />
+                                                    <button type="submit" id="submit-all" class="btn btn-primary btn-xs">Upload the Signature</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -557,27 +602,50 @@
 
     <!-- END: Content-->
     <script>
-        Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
+      window.onload = function () {
 
-                // The configuration we've talked about above
-                autoProcessQueue: false,
-                uploadMultiple: true,
-                parallelUploads: 25,
-                maxFiles: 25,
+            //Check File API support
+            if (window.File && window.FileList && window.FileReader) {
+                var filesInput = document.getElementById("files");
 
-                // The setting up of the dropzone
-                init: function () {
-                    var myDropzone = this;
+                filesInput.addEventListener("change", function (event) {
 
-                    // Here's the change from enyo's tutorial...
+                    var files = event.target.files; //FileList object
+                    var output = document.getElementById("result");
 
-                    $("#submit-all").click(function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        myDropzone.processQueue();
-                    });
-                }
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+
+                        //Only pics
+                        if (!file.type.match('image'))
+                            continue;
+
+                        var picReader = new FileReader();
+
+                        picReader.addEventListener("load", function (event) {
+
+                            var picFile = event.target;
+
+                            var div = document.createElement("div");
+
+                            div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                                "title='" + picFile.name + "'/>";
+
+                            output.insertBefore(div, null);
+
+                        });
+
+                        //Read the image
+                        picReader.readAsDataURL(file);
+                    }
+
+                });
             }
+            else {
+                console.log("Your browser does not support File API");
+            }
+        }
+    
     </script>
 
     <!-- BEGIN: JS-->

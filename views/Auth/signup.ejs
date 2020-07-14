@@ -53,6 +53,7 @@
                         <div class="card-title">
                           <h5 class="text-center mb-2">Sign Up</h5>
                         </div>
+                        <span class="error" style="display: none;"></span>
                       </div>
                       <div class="text-center">
                         <p>
@@ -64,23 +65,32 @@
                       </div>
                       <div class="card-content">
                         <div class="card-body">
-                          <form>
+                          <form id="frmSignUp">
+                            <input
+                              type="hidden"
+                              id="hdnUserType"
+                              value="patient"
+                            />
                             <div class="form-row">
                               <div class="form-group col-md-6 mb-50">
                                 <label for="inputfirstname4">first name</label>
                                 <input
+                                  required
+                                  name="firstName"
                                   type="text"
                                   class="form-control"
-                                  id="inputfirstname4"
+                                  id="txtFirstName"
                                   placeholder="First name"
                                 />
                               </div>
                               <div class="form-group col-md-6 mb-50">
                                 <label for="inputlastname4">last name</label>
                                 <input
+                                  required
+                                  name="lastName"
                                   type="text"
                                   class="form-control"
-                                  id="inputlastname4"
+                                  id="txtLastName"
                                   placeholder="Last name"
                                 />
                               </div>
@@ -93,10 +103,13 @@
                                 >Email address</label
                               >
                               <input
+                                required
+                                id="txtEmail"
+                                name="email"
                                 type="email"
                                 class="form-control"
                                 id="exampleInputEmail1"
-                                placeholder="Email address"
+                                placeholder="Enter Email Address or Phone Number"
                               />
                             </div>
 
@@ -107,6 +120,9 @@
                                 >Password</label
                               >
                               <input
+                                required
+                                name="Password"
+                                id="txtPassword"
                                 type="password"
                                 class="form-control"
                                 id="exampleInputPassword1"
@@ -122,19 +138,20 @@
                                 <div class="row">
                                   <div class="col-sm-3">
                                     <input
+                                      required
                                       disabled="disabled"
-                                      type="number"
                                       class="form-control"
-                                      id="exampleInputEmail1"
-                                      placeholder="+966"
+                                      value="+966"
                                     />
                                   </div>
 
                                   <div class="col">
                                     <input
+                                      required
+                                      name="contactNo"
                                       type="number"
                                       class="form-control"
-                                      id="exampleInputEmail1"
+                                      id="txtPhoneNo"
                                       placeholder="Contact Number"
                                     />
                                   </div>
@@ -142,10 +159,8 @@
                               </div>
                             </div>
                             <button
-                              type="button"
+                              type="submit"
                               class="btn btn-primary glow position-relative w-100"
-                              data-toggle="modal"
-                              data-target="#primary"
                             >
                               SIGN UP
                             </button>
@@ -166,7 +181,6 @@
           </section>
 
           <!-- password enter popup -->
-
           <div class="modal-primary mr-1 mb-1 d-inline-block">
             <!--primary theme Modal -->
             <div
@@ -188,7 +202,7 @@
                       style="color: #fff;"
                       id="myModalLabel160"
                     >
-                      ENTER CODE
+                      One Time Password
                     </h5>
                     <button
                       type="button"
@@ -202,8 +216,9 @@
                   <div class="modal-body">
                     <div class="text-center">
                       <p>
-                        Please enter the password that has been sent to your
-                        email address.
+                        Please enter the One Time password that has been sent to
+                        your email address and to your phone number<br />
+                        This OTP will expire in next 15 mins.
                       </p>
                     </div>
                     <br />
@@ -216,26 +231,12 @@
                     <br />
                   </div>
                   <div class="modal-footer">
-                    <!-- <a href="/login">
-                      <button type="button" class="btn btn-primary ml-1">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Submit</span>
-                      </button>
-                    </a> -->
-
                     <button
                       type="button"
                       class="btn btn-outline-success mr-1 mb-1"
-                      id="type-success"
+                      id="btnOTPVerify"
                     >
-                      Submit Success
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-outline-danger mr-1 mb-1"
-                      id="type-error"
-                    >
-                      Submit Error
+                      Verify
                     </button>
                   </div>
                 </div>
@@ -249,10 +250,17 @@
     </div>
     <!-- END: Content-->
 
+    <script src="/socket.io/socket.io.js"></script>
     <script src="js/vendors.min.js"></script>
     <script src="/js/sweetalert2.all.min.js"></script>
     <script src="/js/polyfill.min.js"></script>
     <script src="/js/sweet-alerts.js"></script>
+
+    <!-- calling services and do validation--->
+    <script src="/js/Services/jquery.validate.min.js"></script>
+
+    <script src="/js/Services/LoginSignUp.js"></script>
+    <script src="/js/Services/loadingoverlay.min.js"></script>
   </body>
   <!-- END: Body-->
 </html>

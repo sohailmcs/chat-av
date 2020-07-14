@@ -9,38 +9,100 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=0"
     />
-    <script
-      type="text/javascript"
-      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-    ></script>
 
     <link
       href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
       rel="stylesheet"
     />
+    <script src="/js/jquery.min.js"></script>
+
+    <script src="/js/Services/mustache.js"></script>
+    <script src="/js/Services/mustache-wax.min.js"></script>
+    <script src="/js/Services/loadingoverlay.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/js/easyrtc.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
-
     <title><%= pageTitle %></title>
-
     <!-- common CSS -->
   </head>
 
   <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement(
-        {
-          pageLanguage: "en",
-          includedLanguages: "en,ar",
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-          autoDisplay: false,
-        },
-        "google_translate_element"
-      );
+    // var uName = "";
+    //var userID = "";
+
+    var soc = io();
+    var baseURL = "http://sohailmcs-001-site1.ftempurl.com/KindahService/";
+    function getcookie(cookiename) {
+      var cookiestring = document.cookie;
+      var cookiearray = cookiestring.split(";");
+      for (var i = 0; i < cookiearray.length; ++i) {
+        if (cookiearray[i].trim().match("^" + cookiename + "=")) {
+          return cookiearray[i].replace(`${cookiename}=`, "").trim();
+        }
+      }
+      return null;
+    }
+
+    function deleteAllCookies() {
+      var cookies = document.cookie.split(";");
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      }
+      window.location.href = "/login";
     }
 
     $(document).ready(function () {
+      //=========save id for video/Audio chat=============
       $(".goog-te-menu-value").children().last().remove();
+      var urlParams = new URLSearchParams(window.location.search);
+      var area = "Doctor";
+      if (urlParams.has("area")) area = urlParams.get("area");
+
+      if (area == "Patient") var uName = "sohail rasheed";
+      //getcookie("kindahUserName");
+      else var uName = "Kamran Rasheed"; //getcookie("kindahUserName");
+      userID = 2; // getcookie("kindahUserId"); // $(".user-name").attr("userinfo");
+
+      soc.emit("add-user", { username: uName });
     });
+
+    soc.on("UpdateDoctorOnlineStatus", function (data) {
+      updateDoctorOnlineStatus(data.uID, data.status);
+    });
+    //=======get other's id and set audio/video call======
+    soc.on("callBackID", function (data) {
+      performCall(data.easyId);
+    });
+    soc.on("ClosePatientScreen", function (data) {
+      window.open("", "_self", "");
+      window.close();
+    });
+
+    //==============Reject confirmation of  audio/video call =======
+    soc.on("GetRejectedConfirmation", function (data) {
+      PlayCallingSound(false);
+      $("#spanRejectUserName").text(data.pName);
+      $("#modelReject").modal("show");
+      $(".three-icons").css("display", "none");
+      $("#divCallNow").css("display", "block");
+      disconnect();
+    });
+
+    //===========change onlin/offline status of doctor ======
+    function OnlineOffline() {
+      var x = document.getElementById("myDIV");
+      if (x.innerHTML === "Online") {
+        x.innerHTML = "Offline";
+        x.style.color = "rgb(228, 83, 83)";
+      } else {
+        x.innerHTML = "Online";
+        x.style.color = "#39da8a";
+      }
+      soc.emit("UpdateOnlineStatus", { uID: userID, status: x.innerHTML });
+    }
   </script>
 </html>

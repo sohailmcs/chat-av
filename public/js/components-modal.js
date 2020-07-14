@@ -43,11 +43,11 @@
 function hideRequestCallModal() {
   document.getElementById("reqcall").style.display = "none";
   $("#reqcall").modal("hide");
-  setTimeout(() => {
-    //document.getElementById("notificationmodal").style.display = "block";
-    $("#notificationmodal").modal("show");
-    
-  }, 3000);
+  // setTimeout(() => {
+  //   //document.getElementById("notificationmodal").style.display = "block";
+  //   $("#notificationmodal").modal("show");
+
+  // }, 3000);
 }
 
 function hideconfirmModel() {

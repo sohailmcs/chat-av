@@ -2,34 +2,96 @@ const express = require("express");
 const router = express.Router();
 
 const KindahController = require("../Controller/controllers.js");
+const isAuth = require("../middleware/is-Auth.js");
 
 //index page
 router.get("/", KindahController.getHomePage);
 
+//admin routes
+
+router.get("/KindahAdmin", KindahController.getkindahAdmin);
+
+router.get("/KindahCreateDoctor", KindahController.getkindahCreateDoctor);
+
+router.get("/KindahGetAllDoctors", KindahController.getkindahGetAllDoctors);
+
+router.get("/KindahDocEditProfile", KindahController.getDoctorEditProfile);
 // Patient Routes
-router.get("/patientDashboard", KindahController.getPatientDashboard);
 
-router.get("/patientAppointments", KindahController.getPatientAppointments);
+router.get(
+  "/patientAppointments",
+  isAuth.isAuthorization,
+  KindahController.getPatientAppointments
+);
 
-router.get("/patientVideo", KindahController.getPatientVideo);
+router.get(
+  "/patientDashboard",
+  isAuth.isAuthorization,
+  KindahController.getPatientDashboard
+);
 
-router.get("/patientReqAppointment", KindahController.getPatientReqAppointment);
+router.get(
+  "/patientVideo",
+  isAuth.isAuthorization,
+  KindahController.getPatientVideo
+);
+
+router.get(
+  "/patientReqAppointment/:DoctorId?/:DocName?/:date?/:appId?",
+  isAuth.isAuthorization,
+  KindahController.getPatientReqAppointment
+);
 
 //Doctor Routes
 
-router.get("/docCallLog", KindahController.getDoctorCallLog);
+router.get(
+  "/docCallLog",
+  isAuth.isAuthorization,
+  KindahController.getDoctorCallLog
+);
 
-router.get("/docCallQueue", KindahController.getDoctorCallQueue);
+router.get(
+  "/docCallQueue",
+  isAuth.isAuthorization,
+  KindahController.getDoctorCallQueue
+);
 
-router.get("/docDashboard", KindahController.getDoctorDashboard);
+router.get(
+  "/docDashboard",
+  isAuth.isAuthorization,
+  KindahController.getDoctorDashboard
+);
 
-router.get("/docAppointments", KindahController.getDoctorAppointments);
+router.get(
+  "/docAppointments",
+  isAuth.isAuthorization,
+  KindahController.getDoctorAppointments
+);
 
-router.get("/kindahPatients", KindahController.getKindahPatients);
+router.get(
+  "/kindahPatients",
+  isAuth.isAuthorization,
+  KindahController.getKindahPatients
+);
 
-router.get("/docVideoCall", KindahController.getDoctorVideoCall);
+//====test vidoe call page=======
+router.get(
+  "/videocall",
+  isAuth.isAuthorization,
+  KindahController.getDoctorvideocall
+);
 
-router.get("/docEditProfile", KindahController.getDoctorEditProfile);
+router.get(
+  "/docVideoCall/:queId?/:patientId?/:patientName?/:DocId?/:docName?/:userLoginId?",
+  isAuth.isAuthorization,
+  KindahController.getDoctorVideoCall
+);
+
+router.get(
+  "/docViewProfile",
+  isAuth.isAuthorization,
+  KindahController.getDoctorViewProfile
+);
 // video page
 // router.get("/public/video", (req, res, next) => {
 //   res.sendFile(path.join(__dirname, "../", "public", "video.html"));

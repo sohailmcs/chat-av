@@ -39,7 +39,152 @@
     <%- include('../Includes/docSideMenu.ejs') %>
 
     <!-- BEGIN: Content-->
+
+    
+<!--start of patient profile details------>
+    <div class="modal fade text-left" id="ModelDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+    aria-hidden="true">
+    <div  class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+      <div class="modal-header bg-primary">
+      <h5 class="modal-title white" id="myModalLabel160">
+      PATIENT
+      DETAILS
+      </h5>
+      </div>
+      <div class="modal-body">
+      <div class="card-content side-bar"id="bookDetails" >
+      
+      </div>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+      <i class="bx bx-x d-block d-sm-none"></i>
+      <span class="d-none d-sm-block">Close</span>
+      </button>
+      </div>
+      </div>
+      </div>
+    </div><!--end of patient prfile details-->
+
+ <script id="BookingDetail-Template" type="text/html">
+  <div class="card-body">
+    <div class="media">    
+      {{#PatientPhoto}}
+    <img src=" {{PatientPhoto}}" alt="image" style="
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-left: 12px;
+    " />
+    {{/PatientPhoto}}
+    {{^PatientPhoto}}
+    <img src="/assets/images/patient.png" alt="image" style="
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-left: 12px;
+    " />
+    {{/PatientPhoto}}
+
+    <div>
+    <h5 class="media-heading">
+    <br />
+    <b>{{FullName}}</b>
+    </h5>
+    <div>
+    <p>
+    <b>Contact Number</b>: {{PhoneNo}}
+    </p>
+    </div>
+    </div>
+    </div>
+    <div class="text-sidebar">
+    <br />
+    
+    <div>
+    
+    <b>email:</b> {{Email}}    
+    <br />    
+    <b>Gender:</b> {{Gender}}    
+    <br />   
+    </div>
+    </div>
+    </div>
+</script> 
+
+    <script id="slots-template" type="text/html"> 
+      {{#result}}  <!--  appointment start -->
+      <div class="col-sm-12 selectedDt">
+        <!-- using pipe to formate date -->
+                {{AppointmentDate | date}}   
+            <br>       
+        </div>
+        
+        {{#AppointmentsDetailsModel}}
+        {{#isBooked}}
+        <div class="row tr-slot slot-booked ">
+          <div class="col-12 col-md-6 ">
+              <h6 class="schappointment-text ">
+                {{AppointmentStartTime}}- {{AppointmentEndTime}} 
+              </h6>
+          </div>
+          <div class="col-10 col-md-6 tr-Row">
+          <button type="button" PatientId="{{PatientID}}" 
+          class="btn btn-primary_book btnViewDetail" 
+          style="margin-left: 1%;" 
+         ><i class="bx bx-show"></i>
+            View Details
+          </button>
+          <button
+          type="button" appDetailId = "{{AppointmentDetailID}}"
+          class="btnDelete btn btn-primary_book"
+          style="margin-left: 1%;"
+        >
+          <i class="bx bx-trash"></i>
+          Delete
+        </button>
+          </div>
+        </div>
+
+
+        {{/isBooked}}
+        {{^isBooked}}
+        <div class="row tr-slot">
+          <div class="col-12 col-md-6">
+            <h6 class="schappointment-text">
+              {{AppointmentStartTime}}- {{AppointmentEndTime}}  <span style="display:none"> {{isBooked}}</span>
+            </h6>
+          </div>
+          <div class="col-8 col-md-6 tr-Row">
+            <button
+            type="button" DoctorId="{{DoctorId}}"  PatientID = "{{PatientID}}"  appDetailId = "{{AppointmentDetailID}}"
+            class="btnDelete btn btn-primary_book"
+            style="margin-left: 1%;"
+          >
+            <i class="bx bx-trash"></i>
+            Delete
+          </button>
+          </div>
+        </div>  
+        {{/isBooked}}        
+         {{/AppointmentsDetailsModel}}
+            {{/result}}
+            {{^result}}
+            <div class="row tr-slot">
+              <div class="col-sm-12">
+                <h6 class="schappointment-text">
+                  No Scheduled Available
+                </h6>
+              </div>
+              
+            </div>
+            {{/result}}
+
+</script>
+
     <hr />
+    
     <div class="app-content content">
       <div class="content-overlay"></div>
       <div class="content-wrapper">
@@ -50,7 +195,7 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="Customrow row">
             <div class="col-lg-5">
               <!-- calendar view start  -->
               <div class="calendar-view card">
@@ -61,410 +206,23 @@
             <div class="col-lg-7">
               <!-- MY APPOINTMENTS START -->
 
-              <div
-                class="col-12 dashboard-marketing-campaign card right-card-calender"
-              >
+              <div class="col-12 dashboard-marketing-campaign card  Slotarea">
                 <div class="card marketing-campaigns">
                   <div
                     class="card-header d-flex justify-content-between align-items-center pb-1"
                   >
                     <h5 class="card-title">
                       <b>
-                        SCHEDULED APPOINTMENTS
+                        SCHEDULED APPOINTMENTS                        
                       </b>
                     </h5>
-                    <div style="margin-left: auto;">
-                      <!-- edit schedule popup start-->
-                      <div class="modal-primary mr-1 mb-1 d-inline-block">
-                        <!-- Button trigger for popup -->
-
-                        <div
-                          class="modal fade text-left"
-                          id="primary"
-                          tabindex="-1"
-                          role="dialog"
-                          aria-labelledby="myModalLabel160"
-                          aria-hidden="true"
-                        >
-                          <div
-                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                            role="document"
-                          >
-                            <div class="modal-content">
-                              <div class="modal-header bg-primary">
-                                <h5
-                                  class="modal-title white"
-                                  id="myModalLabel160"
-                                >
-                                  Edit Schedule
-                                </h5>
-                                <button
-                                  type="button"
-                                  class="close"
-                                  data-dismiss="modal"
-                                  aria-label="Close"
-                                >
-                                  <i class="bx bx-x"></i>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                <div class="sch-app-head">
-                                  <script>
-                                    var options = {
-                                      weekday: "long",
-                                      year: "numeric",
-                                      month: "long",
-                                      day: "numeric",
-                                    };
-                                    document.write(
-                                      new Date().toLocaleDateString("en-US", options)
-                                    );
-                                  </script>
-                                </div>
-
-                                <fieldset>
-                                  <label for="Slot-time"
-                                    >Slot Time (Minutes)</label
-                                  >
-                                  <select
-                                    name="Slot-time"
-                                    id="Slot-time"
-                                    class="form-control"
-                                  >
-                                    <option value="15 minutes"
-                                      >15 minutes</option
-                                    >
-                                    <option value="30 minutes"
-                                      >30 minutes</option
-                                    >
-                                    <option value="45 minutes"
-                                      >45 minutes</option
-                                    >
-                                    <option value="60 minutes"
-                                      >60 minutes</option
-                                    >
-                                  </select>
-                                </fieldset>
-                                <br />
-
-                                <br />
-                                <div class="edit-sch-popup">
-                                  <div class="head-weekdays">
-                                    <b class="shift">Sunday</b>
-                                  </div>
-                                  <br />
-                                  <div class="timers">
-                                    <fieldset
-                                      class="form-group position-relative has-icon-left"
-                                    >
-                                      <input
-                                        type="text"
-                                        class="form-control pickatime"
-                                        placeholder="Start"
-                                      />
-                                      <div class="form-control-position">
-                                        <i class="bx bx-history"></i>
-                                      </div>
-                                    </fieldset>
-
-                                    <fieldset
-                                      class="form-group position-relative has-icon-left"
-                                    >
-                                      <input
-                                        type="text"
-                                        class="form-control pickatime"
-                                        placeholder="End"
-                                      />
-                                      <div class="form-control-position">
-                                        <i class="bx bx-history"></i>
-                                      </div>
-                                    </fieldset>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="modal-footer">
-                                <button
-                                  type="button"
-                                  class="btn btn-light-secondary"
-                                  data-dismiss="modal"
-                                >
-                                  <i class="bx bx-x d-block d-sm-none"></i>
-                                  <span class="d-none d-sm-block">Close</span>
-                                </button>
-                                <button
-                                  type="button"
-                                  class="btn btn-primary ml-1"
-                                  data-dismiss="modal"
-                                >
-                                  <i class="bx bx-check d-block d-sm-none"></i>
-                                  <span class="d-none d-sm-block">Done</span>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- edit schedule pop up ends -->
-                    </div>
+                   
                   </div>
-
-                  <div>
-                    <!-- table start -->
-                    <div class="col-sm-12 selectedDt">
-                      <script>
-                        var options = {
-                          weekday: "long",
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        };
-                        document.write(
-                          new Date().toLocaleDateString("en-US", options)
-                        );
-                      </script>
-                    </div>
-
-                    <!--  appointment start -->
-
-                    <div class="row tr-slot">
-                      <div class="col-12 col-md-7">
-                        <h6 class="schappointment-text">
-                          07:00 PM - 07:30 PM
-                        </h6>
-                      </div>
-                      <div class="col-8 col-md-5 tr-Row">
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          data-toggle="modal"
-                          data-target="#primary"
-                        >
-                          <i class="bx bxs-pencil"></i>
-                          Edit
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          style="margin-left: 1%;"
-                        >
-                          <i class="bx bx-trash"></i>
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-
-                    <!--  appointment end -->
-
-                    <!--  appointment start -->
-
-                    <div class="row tr-slot">
-                      <div class="col-12 col-md-7">
-                        <h6 class="schappointment-text">
-                          07:00 PM - 07:30 PM
-                        </h6>
-                      </div>
-                      <div class="col-8 col-md-5 tr-Row">
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          data-toggle="modal"
-                          data-target="#primary"
-                        >
-                          <i class="bx bxs-pencil"></i>
-                          Edit
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          style="margin-left: 1%;"
-                        >
-                          <i class="bx bx-trash"></i>
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                    <!--  appointment end -->
-
-                    <!--  appointment start -->
-
-                    <div class="row tr-slot">
-                      <div class="col-12 col-md-7">
-                        <h6 class="schappointment-text">
-                          07:00 PM - 07:30 PM
-                        </h6>
-                      </div>
-                      <div class="col-8 col-md-5 tr-Row">
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          data-toggle="modal"
-                          data-target="#primary"
-                        >
-                          <i class="bx bxs-pencil"></i>
-                          Edit
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          style="margin-left: 1%;"
-                        >
-                          <i class="bx bx-trash"></i>
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                    <!--  appointment end -->
-
-                    <!--  appointment start -->
-
-                    <div class="row tr-slot">
-                      <div class="col-12 col-md-7">
-                        <h6 class="schappointment-text">
-                          07:00 PM - 07:30 PM
-                        </h6>
-                      </div>
-                      <div class="col-8 col-md-5 tr-Row">
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          data-toggle="modal"
-                          data-target="#primary"
-                        >
-                          <i class="bx bxs-pencil"></i>
-                          Edit
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          style="margin-left: 1%;"
-                        >
-                          <i class="bx bx-trash"></i>
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                    <!--  appointment end -->
-
-                    <!--  appointment start -->
-
-                    <div class="row tr-slot">
-                      <div class="col-12 col-md-7">
-                        <h6 class="schappointment-text">
-                          07:00 PM - 07:30 PM
-                        </h6>
-                      </div>
-                      <div class="col-8 col-md-5 tr-Row">
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          data-toggle="modal"
-                          data-target="#primary"
-                        >
-                          <i class="bx bxs-pencil"></i>
-                          Edit
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          style="margin-left: 1%;"
-                        >
-                          <i class="bx bx-trash"></i>
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                    <!--  appointment end -->
-
-                    <!--  appointment start -->
-
-                    <div class="row tr-slot">
-                      <div class="col-12 col-md-7">
-                        <h6 class="schappointment-text">
-                          07:00 PM - 07:30 PM
-                        </h6>
-                      </div>
-                      <div class="col-8 col-md-5 tr-Row">
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          data-toggle="modal"
-                          data-target="#primary"
-                        >
-                          <i class="bx bxs-pencil"></i>
-                          Edit
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          style="margin-left: 1%;"
-                        >
-                          <i class="bx bx-trash"></i>
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                    <!--  appointment end -->
-
-                    <!--  appointment start -->
-
-                    <div class="row tr-slot">
-                      <div class="col-12 col-md-7">
-                        <h6 class="schappointment-text">
-                          07:00 PM - 07:30 PM
-                        </h6>
-                      </div>
-                      <div class="col-8 col-md-5 tr-Row">
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          data-toggle="modal"
-                          data-target="#primary"
-                        >
-                          <i class="bx bxs-pencil"></i>
-                          Edit
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          style="margin-left: 1%;"
-                        >
-                          <i class="bx bx-trash"></i>
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                    <!--  appointment end -->
-
-                    <!--  appointment start -->
-
-                    <div class="row tr-slot">
-                      <div class="col-12 col-md-7">
-                        <h6 class="schappointment-text">
-                          07:00 PM - 07:30 PM
-                        </h6>
-                      </div>
-                      <div class="col-8 col-md-5 tr-Row">
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          data-toggle="modal"
-                          data-target="#primary"
-                        >
-                          <i class="bx bxs-pencil"></i>
-                          Edit
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary_book"
-                          style="margin-left: 1%;"
-                        >
-                          <i class="bx bx-trash"></i>
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                    <!--  appointment end -->
-                  </div>
+                  <!--start of slots=----->
+                  <div id="doctorSlots"  >
+                    
+                    <!--  appointment end -->                   
+                  </div><!--end of slots=----->
                 </div>
               </div>
               <!-- MY APPOINTMENTS ENDS -->
@@ -472,6 +230,7 @@
           </div>
           <!-- calendar Wrapper  -->
           <!-- row END -->
+          <br>
           <div class="d-flex flex-row">
             <div class="page-heading">
               <h3>CREATE SCHEDULE</h3>
@@ -482,7 +241,7 @@
             <div class="col-md-4">
               <label>From Date</label>
               <fieldset class="form-group position-relative has-icon-left">
-                <input
+                <input id="dtFrom"
                   type="text"
                   class="form-control pickadate-months-year"
                   placeholder="Select Date"
@@ -495,7 +254,7 @@
             <div class="col-md-4">
               <label>To Date</label>
               <fieldset class="form-group position-relative has-icon-left">
-                <input
+                <input id="toDT"
                   type="text"
                   class="form-control pickadate-months-year"
                   placeholder="Select Date"
@@ -509,16 +268,16 @@
               <fieldset>
                 <label for="Slot-time">Slot Time (Minutes)</label>
                 <select name="Slot-time" id="Slot-time" class="form-control">
-                  <option value="15 minutes">15 minutes</option>
-                  <option value="30 minutes">30 minutes</option>
-                  <option value="45 minutes">45 minutes</option>
-                  <option value="60 minutes">60 minutes</option>
+                  <option value="15">15 minutes</option>
+                  <option value="30">30 minutes</option>
+                  <option value="45">45 minutes</option>
+                  <option value="60">60 minutes</option>
                 </select>
               </fieldset>
             </div>
           </div>
           <br/>
-          <div class="row sch-row">
+          <div class="row sch-row" id="Shift1">
             <div class="col-xs-3 sch-app">
               <div class="head-weekdays">
                 <b class="shift">First Shift</b>
@@ -537,7 +296,7 @@
               <div class="head-weekdays">
                 <fieldset>
                   <div>
-                    <input type="checkbox" class="larger" name="checkBox2">
+                    <input type="checkbox" cls="Saturday" class="Saturday larger" name="checkBox2">
                     <b class="head-weekdays-bold">Saturday</b>
                 
                 </fieldset>
@@ -547,7 +306,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtStart form-control pickatime"
                     placeholder="Start"
                   />
                   <div class="form-control-position">
@@ -558,7 +317,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtEnd form-control pickatime"
                     placeholder="End"
                   />
                   <div class="form-control-position">
@@ -571,7 +330,7 @@
               <div class="head-weekdays">
                 <fieldset>
                   <div>
-                    <input type="checkbox" class="larger" name="checkBox2">
+                    <input type="checkbox" cls="Sunday" class="Sunday larger" name="checkBox2">
                     <b class="head-weekdays-bold">Sunday</b>
                 
                 </fieldset>
@@ -581,7 +340,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtStart form-control pickatime"
                     placeholder="Start"
                   />
                   <div class="form-control-position">
@@ -592,7 +351,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtEnd form-control pickatime"
                     placeholder="End"
                   />
                   <div class="form-control-position">
@@ -606,7 +365,7 @@
               <div class="head-weekdays">
                 <fieldset>
                   <div >
-                      <input type="checkbox" class="larger" name="checkBox2">
+                      <input type="checkbox" cls="Monday" class="Monday larger" name="checkBox2">
                     <b class="head-weekdays-bold">Monday</b>
                 </fieldset>
               </div>
@@ -615,7 +374,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtStart form-control pickatime"
                     placeholder="Start"
                   />
                   <div class="form-control-position">
@@ -626,7 +385,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtEnd form-control pickatime"
                     placeholder="End"
                   />
                   <div class="form-control-position">
@@ -640,7 +399,7 @@
               <div class="head-weekdays">
                 <fieldset>
                   <div>
-                    <input type="checkbox" class="larger" name="checkBox2">
+                    <input type="checkbox" cls="Tuesday" class="Tuesday larger" name="checkBox2">
                     <b class="head-weekdays-bold">Tuesday</b>
                 
                 
@@ -651,7 +410,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtStart form-control pickatime"
                     placeholder="Start"
                   />
                   <div class="form-control-position">
@@ -662,7 +421,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtEnd form-control pickatime"
                     placeholder="End"
                   />
                   <div class="form-control-position">
@@ -676,7 +435,7 @@
               <div class="head-weekdays">
                 <fieldset>
                   <div>
-                    <input type="checkbox" class="larger" name="checkBox2">
+                    <input type="checkbox" cls="Wednesday" class="Wednesday larger" name="checkBox2">
                     <b class="head-weekdays-bold">Wednesday</b>
                 
                 
@@ -687,7 +446,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtStart form-control pickatime"
                     placeholder="Start"
                   />
                   <div class="form-control-position">
@@ -698,7 +457,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtEnd form-control pickatime"
                     placeholder="End"
                   />
                   <div class="form-control-position">
@@ -712,7 +471,7 @@
               <div class="head-weekdays">
                 <fieldset>
                   <div>
-                    <input type="checkbox" class="larger" name="checkBox2">
+                    <input type="checkbox" cls="Thursday" class="Thursday larger" name="checkBox2">
                     <b class="head-weekdays-bold">Thursday</b>
                 
                 
@@ -723,7 +482,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtStart form-control pickatime"
                     placeholder="Start"
                   />
                   <div class="form-control-position">
@@ -734,7 +493,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtEnd form-control pickatime"
                     placeholder="End"
                   />
                   <div class="form-control-position">
@@ -748,7 +507,7 @@
               <div class="head-weekdays">
                 <fieldset>
                   <div>
-                    <input type="checkbox" class="larger" name="checkBox2">
+                    <input type="checkbox" cls="Friday" class="Friday larger" name="checkBox2">
                     <b class="head-weekdays-bold">Friday</b>
                 
                 
@@ -759,7 +518,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtStart form-control pickatime"
                     placeholder="Start"
                   />
                   <div class="form-control-position">
@@ -770,7 +529,7 @@
                 <fieldset class="form-group position-relative has-icon-left">
                   <input
                     type="text"
-                    class="form-control pickatime"
+                    class="txtEnd form-control pickatime"
                     placeholder="End"
                   />
                   <div class="form-control-position">
@@ -782,7 +541,7 @@
           </div>
           <br />
 
-            <div class="row sch-row">
+            <div class=" row sch-row" id="Shift2">
               <div class="col-xs-3 sch-app">
                 <div class="head-weekdays">
                   <b class="shift">Second Shift</b>
@@ -801,7 +560,7 @@
                 <div class="head-weekdays">
                   <fieldset>
                     <div>
-                      <input type="checkbox" class="larger" name="checkBox2">
+                      <input type="checkbox" cls="Saturday" class="Saturday larger" name="checkBox2">
                       <b class="head-weekdays-bold">Saturday</b>
             
                   </fieldset>
@@ -809,14 +568,22 @@
                 <br />
                 <div class="timers">
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="Start" />
+                    <input
+                      type="text"
+                      class="txtStart form-control pickatime"
+                      placeholder="Start"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
                   </fieldset>
-            
+  
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="End" />
+                    <input
+                      type="text"
+                      class="txtEnd form-control pickatime"
+                      placeholder="End"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
@@ -827,7 +594,7 @@
                 <div class="head-weekdays">
                   <fieldset>
                     <div>
-                      <input type="checkbox" class="larger" name="checkBox2">
+                      <input type="checkbox" cls="Sunday" class="Sunday larger" name="checkBox2">
                       <b class="head-weekdays-bold">Sunday</b>
             
                   </fieldset>
@@ -835,14 +602,22 @@
                 <br />
                 <div class="timers">
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="Start" />
+                    <input
+                      type="text"
+                      class="txtStart form-control pickatime"
+                      placeholder="Start"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
                   </fieldset>
-            
+  
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="End" />
+                    <input
+                      type="text"
+                      class="txtEnd form-control pickatime"
+                      placeholder="End"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
@@ -854,21 +629,29 @@
                 <div class="head-weekdays">
                   <fieldset>
                     <div>
-                      <input type="checkbox" class="larger" name="checkBox2">
+                      <input type="checkbox" cls="Monday" class="Monday larger" name="checkBox2">
                       <b class="head-weekdays-bold">Monday</b>
                   </fieldset>
                 </div>
                 <br />
                 <div class="timers">
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="Start" />
+                    <input
+                      type="text"
+                      class="txtStart form-control pickatime"
+                      placeholder="Start"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
                   </fieldset>
-            
+  
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="End" />
+                    <input
+                      type="text"
+                      class="txtEnd form-control pickatime"
+                      placeholder="End"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
@@ -880,7 +663,7 @@
                 <div class="head-weekdays">
                   <fieldset>
                     <div>
-                      <input type="checkbox" class="larger" name="checkBox2">
+                      <input type="checkbox" cls="Tuesday" class="Tuesday larger" name="checkBox2">
                       <b class="head-weekdays-bold">Tuesday</b>
             
             
@@ -889,14 +672,22 @@
                 <br />
                 <div class="timers">
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="Start" />
+                    <input
+                      type="text"
+                      class="txtStart form-control pickatime"
+                      placeholder="Start"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
                   </fieldset>
-            
+  
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="End" />
+                    <input
+                      type="text"
+                      class="txtEnd form-control pickatime"
+                      placeholder="End"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
@@ -908,7 +699,7 @@
                 <div class="head-weekdays">
                   <fieldset>
                     <div>
-                      <input type="checkbox" class="larger" name="checkBox2">
+                      <input type="checkbox" cls="Wednesday" class="Wednesday larger" name="checkBox2">
                       <b class="head-weekdays-bold">Wednesday</b>
             
             
@@ -917,14 +708,22 @@
                 <br />
                 <div class="timers">
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="Start" />
+                    <input
+                      type="text"
+                      class="txtStart form-control pickatime"
+                      placeholder="Start"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
                   </fieldset>
-            
+  
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="End" />
+                    <input
+                      type="text"
+                      class="txtEnd form-control pickatime"
+                      placeholder="End"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
@@ -936,7 +735,7 @@
                 <div class="head-weekdays">
                   <fieldset>
                     <div>
-                      <input type="checkbox" class="larger" name="checkBox2">
+                      <input type="checkbox" cls="Thursday" class="Thursday larger" name="checkBox2">
                       <b class="head-weekdays-bold">Thursday</b>
             
             
@@ -945,14 +744,22 @@
                 <br />
                 <div class="timers">
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="Start" />
+                    <input
+                      type="text"
+                      class="txtStart form-control pickatime"
+                      placeholder="Start"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
                   </fieldset>
-            
+  
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="End" />
+                    <input
+                      type="text"
+                      class="txtEnd form-control pickatime"
+                      placeholder="End"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
@@ -964,7 +771,7 @@
                 <div class="head-weekdays">
                   <fieldset>
                     <div>
-                      <input type="checkbox" class="larger" name="checkBox2">
+                      <input type="checkbox" cls="Friday" class="Friday larger" name="checkBox2">
                       <b class="head-weekdays-bold">Friday</b>
             
             
@@ -973,14 +780,22 @@
                 <br />
                 <div class="timers">
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="Start" />
+                    <input
+                      type="text"
+                      class="txtStart form-control pickatime"
+                      placeholder="Start"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
                   </fieldset>
-            
+  
                   <fieldset class="form-group position-relative has-icon-left">
-                    <input type="text" class="form-control pickatime" placeholder="End" />
+                    <input
+                      type="text"
+                      class="txtEnd form-control pickatime"
+                      placeholder="End"
+                    />
                     <div class="form-control-position">
                       <i class="bx bx-history"></i>
                     </div>
@@ -991,7 +806,7 @@
             <br />
 
             <div style="float: right;">
-            <button type="button" class="btn btn-outline-primary round mr-1 mb-1">
+            <button type="button" id="btnSave" class="btn btn-outline-primary round mr-1 mb-1">
               <i class="bx bxs-save"></i>
               Save Shifts
             </button>
@@ -1008,6 +823,9 @@
     <!-- BEGIN: JS-->
 
     <script src="/js/vendors.min.js"></script>
+    <script src="/js/sweetalert2.all.min.js"></script>
+    <script src="/js/polyfill.min.js"></script>
+    <script src="/js/sweet-alerts.js"></script>
 
     <script src="/js/vertical-menu-light.js"></script>
     <script src="/js/app-menu.js"></script>
@@ -1022,51 +840,14 @@
 
     <script src="/js/pick-a-datetime.js"></script>
 
-    <script src="/js/KendoUi/jquery.min.js"></script>
+    <!-- <script src="/js/KendoUi/jquery.min.js"></script> -->
     <script src="/js/KendoUi/kendo.all.min.js"></script>
+    <script src="/js/Services/docAppointmentServices.js"></script>
+    <script src="/js/Services/loadingoverlay.min.js"></script>
+
 
     <!-- END: Page JS-->
 
-    <script>
-      $(document).ready(function () {
-        var today = new Date(),
-          events = [
-            +new Date(today.getFullYear(), today.getMonth(), 8),
-            +new Date(today.getFullYear(), today.getMonth(), 12),
-            +new Date(today.getFullYear(), today.getMonth(), 24),
-            +new Date(today.getFullYear(), today.getMonth() + 1, 6),
-            +new Date(today.getFullYear(), today.getMonth() + 1, 7),
-            +new Date(today.getFullYear(), today.getMonth() + 1, 25),
-            +new Date(today.getFullYear(), today.getMonth() + 1, 27),
-            +new Date(today.getFullYear(), today.getMonth() - 1, 3),
-            +new Date(today.getFullYear(), today.getMonth() - 1, 5),
-            +new Date(today.getFullYear(), today.getMonth() - 2, 22),
-            +new Date(today.getFullYear(), today.getMonth() - 2, 27),
-          ];
-
-        $("#scheduler").kendoCalendar({
-          value: today,
-          // dates: events,
-          // month: {
-          //     // template for dates in month view
-          //     content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +
-          //                 '<div class="' +
-          //                    '# if (data.value < 10) { #' +
-          //                        "exhibition" +
-          //                    '# } else if ( data.value < 20 ) { #' +
-          //                        "party" +
-          //                    '# } else { #' +
-          //                        "cocktail" +
-          //                    '# } #' +
-          //                 '">#= data.value #</div>' +
-          //              '# } else { #' +
-          //              '#= data.value #' +
-          //              '# } #'
-          // },
-          footer: false,
-        });
-      });
-    </script>
-
+   
 <!-- closing tag of html and body -->
 <%- include('../Includes/End.ejs') %>

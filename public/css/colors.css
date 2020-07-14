@@ -3885,6 +3885,11 @@ input:focus ~ .bg-success {
   background-color: #39DA8A;
 }
 
+.bullet.bullet-offline {
+  background-color: #ee1516;
+}
+
+
 /* For Pagination */
 /* -------------- */
 .pagination-success .page-item.active .page-link, .pagination-success .page-item.active .page-link:hover {

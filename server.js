@@ -3,24 +3,131 @@ const app = express();
 var http = require("http");
 var socketIo = require("socket.io");
 var path = require("path");
+var session = require("express-session");
+var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
 
 var easyrtc = require("easyrtc");
 process.title = "node-easyrtc";
 
 app.set("view engine", "ejs");
 app.set("views", "views");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 var webServer = http.createServer(app);
+// Start Socket.io so it attaches itself to Express server
+
+var socketServer = socketIo.listen(webServer, { "log level": 1 });
 
 const KindahRoutes = require("./Routes/routes");
 const AuthRoutes = require("./Routes/AuthRoutes.js");
+const { JSONCookies } = require("cookie-parser");
+app.use(
+  session({ secret: "kindahcare", resave: false, saveUninitialized: false })
+);
 
-// Start Socket.io so it attaches itself to Express server
-var socketServer = socketIo.listen(webServer, { "log level": 1 });
+//=============start push notification using socket.io==================
+var clients = {};
+socketServer.sockets.on("connection", function (socket) {
+  //=================save all Login user Info to array=======
+  socket.on("add-user", function (data) {
+    clients[data.username] = {
+      socket: socket.id,
+    };
+  });
+
+  socket.on("SendCallRequestToPatient", function (data) {
+    if (clients[data.pName]) {
+      socketServer.sockets.connected[clients[data.pName].socket].emit(
+        "CallRequest",
+        data
+      );
+    } else {
+      console.log("User does not exist: " + data.pName);
+    }
+  });
+  socket.on("sendToCalBack", function (data) {
+    if (clients[data.username]) {
+      socketServer.sockets.connected[clients[data.username].socket].emit(
+        "callBackID",
+        data
+      );
+    } else {
+      console.log("User does not exist: " + data.pName);
+    }
+  });
+  socket.on("RejectedAudioVideoCall", function (data) {
+    if (clients[data.username]) {
+      console.log(
+        "this is docort Name " + JSON.stringify(clients[data.username])
+      );
+      socketServer.sockets.connected[clients[data.username].socket].emit(
+        "GetRejectedConfirmation",
+        data
+      );
+    } else {
+      console.log("User does not exist: " + data.pName);
+    }
+  });
+
+  //==========close patient calling screen on disconnect or end call============
+  socket.on("ClosePatientScreen", function (data) {
+    console.log(JSON.stringify(clients[data.username]));
+    if (clients[data.username]) {
+      socketServer.sockets.connected[clients[data.username].socket].emit(
+        "ClosePatientScreen",
+        data
+      );
+    } else {
+      console.log("User does not exist: " + data.pName);
+    }
+  });
+
+  // ===========sent Notification to doctor  from client=====
+  socket.on("NotifyDoctor", function (data) {
+    if (clients[data.username]) {
+      socketServer.sockets.connected[clients[data.username].socket].emit(
+        "SendNotificationToDoctor",
+        data
+      );
+    } else {
+      console.log("User does not exist: " + data.username);
+    }
+  });
+
+  //=========send accept or reject alert to patient by doctor========
+  socket.on("AcceptRejectCall", function (data) {
+    //====doctor send notification to client for accept/reject call to selected Client======
+    if (clients[data.username]) {
+      socketServer.sockets.connected[clients[data.username].socket].emit(
+        "CallAccepted",
+        data
+      );
+    } else {
+      console.log("User does not exist");
+    }
+  });
+  socket.on("UpdateOnlineStatus", function (data) {
+    if (data.uID != "") {
+      socket.broadcast.emit("UpdateDoctorOnlineStatus", data); // for all client except sender
+    }
+  });
+
+  //Removing the socket on disconnect
+  socket.on("disconnect", function () {
+    for (var name in clients) {
+      if (clients[name].socket === socket.id) {
+        delete clients[name];
+        break;
+      }
+    }
+  });
+});
 
 easyrtc.setOption("logLevel", "debug");
 
-// Overriding the default easyrtcAuth listener, only so we can directly access its callback
+//Overriding the default easyrtcAuth listener, only so we can directly access its callback
 easyrtc.events.on("easyrtcAuth", function (
   socket,
   easyrtcid,
@@ -44,7 +151,7 @@ easyrtc.events.on("easyrtcAuth", function (
       });
 
       console.log(
-        "[" + easyrtcid + "] Credential saved!",
+        "[" + socket + "] Credential saved!",
         connectionObj.getFieldValueSync("credential")
       );
 
@@ -97,7 +204,7 @@ var rtc = easyrtc.listen(app, socketServer, null, function (err, rtcRef) {
 
 //linking css AND JS FILES
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use(cookieParser());
 //routes
 app.use(KindahRoutes);
 app.use(AuthRoutes);
@@ -107,5 +214,5 @@ app.use((req, res, next) => {
   res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
 });
 
+//=============end push notification using socket.io=====================
 webServer.listen(process.env.PORT || 8080, () => console.log("Alll is ok"));
-//app.listen(process.env.PORT || 8080, () => console.log('Alll is ok'))

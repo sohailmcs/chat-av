@@ -51,6 +51,7 @@
                             Welcome Back to Kindah Care
                           </h5>
                         </div>
+                        <span class="error" style="display: none;"></span>
                       </div>
                       <div class="card-content">
                         <div class="card-body">
@@ -85,7 +86,8 @@
                               <small>or login with email</small>
                             </div>
                           </div> -->
-                          <form action="/patientDashboard">
+
+                          <form id="frmLogin">
                             <div class="form-group mb-50">
                               <label
                                 class="text-bold-600"
@@ -93,6 +95,9 @@
                                 >Email Address or Phone Number</label
                               >
                               <input
+                                required
+                                id="txtEmail"
+                                name="email"
                                 type="email"
                                 class="form-control"
                                 id="exampleInputEmail1"
@@ -107,6 +112,9 @@
                                 >Password</label
                               >
                               <input
+                                required
+                                name="Password"
+                                id="txtPassword"
                                 type="password"
                                 class="form-control"
                                 id="exampleInputPassword1"
@@ -164,8 +172,13 @@
     <!-- END: Content-->
 
     <!-- BEGIN: Vendor JS-->
-    <script src="/js/vendors.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/vendors.min.js"></script>
 
+    <!-- BEGIN: Services calling JS-->
+    <script src="/js/Services/jquery.validate.min.js"></script>
+    <script src="/js/Services/LoginSignUp.js"></script>
+    <script src="/js/Services/loadingoverlay.min.js"></script>
     <!-- END: Page JS-->
   </body>
   <!-- END: Body-->
