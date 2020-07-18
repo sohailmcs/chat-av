@@ -1,5 +1,7 @@
-var baseURL = "http://sohailmcs-001-site1.ftempurl.com/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
+
 var currentDt = new Date().toLocaleDateString("en-US");
+
 var userLoginId = $(".user-name").attr("UserInfo");
 var uName = $(".user-name").text();
 var socket = io();
@@ -171,7 +173,7 @@ function AcceptOrRejectCallSaveToQue(
       },
       type: "Put",
       datatype: "application/json",
-      contentType: "application/json; charset=utf-8",
+      contentType: "application/x-www-form-urlencoded",
       data: model,
       beforeSend: function () {
         $.LoadingOverlay("show");

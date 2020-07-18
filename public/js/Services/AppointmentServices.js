@@ -1,7 +1,17 @@
-var baseURL = "http://sohailmcs-001-site1.ftempurl.com/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
 var UserName = $(".user-name").text();
 var socket = io();
+var options = {
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+};
+var currentDt = new Date().toLocaleDateString("en-US", options);
+
 //====get doctorId from querystring=======
 var urlParams = new URLSearchParams(window.location.search);
 var doctorId = urlParams.get("DoctorId");
@@ -47,7 +57,7 @@ $(function () {
     if (appOldId > 0) {
       var patientId = useLoginId;
       //==========Update Appointment=======
-      UpdatePatientAppointment(appDetailID, appOldId, patientId)
+      UpdatePatientAppointment(appDetailID, appOldId, patientId, currentDt)
         .then((data) => {
           calendar.trigger("change");
           $("#primary").modal("show");
@@ -57,7 +67,7 @@ $(function () {
         });
     } else {
       //===========Book new Appointment=======
-      BookPatientAppointment(useLoginId, appDetailID)
+      BookPatientAppointment(useLoginId, appDetailID, currentDt)
         .then((data) => {
           calendar.trigger("change");
           $("#primary").modal("show");
@@ -125,7 +135,7 @@ function GetDoctorScheduled(DoctorId, date) {
 }
 
 //==Book patient Appointment
-function BookPatientAppointment(patientId, AppointmentDetailId) {
+function BookPatientAppointment(patientId, AppointmentDetailId, bookingDt) {
   return new Promise((resolve, reject) => {
     var url = baseURL + "Appointments/BookPatientAppointment";
 
@@ -136,6 +146,7 @@ function BookPatientAppointment(patientId, AppointmentDetailId) {
       doctorId: doctorId,
       doctorName: doctName,
       PatientName: UserName,
+      BookedDateTime: bookingDt,
       Status: "Booked",
       PageName: "PatientAppointmentBook",
       PageURL: window.location.href,
@@ -169,7 +180,7 @@ function BookPatientAppointment(patientId, AppointmentDetailId) {
 }
 
 //==Book patient Appointment
-function UpdatePatientAppointment(appId, OldAppId, patientId) {
+function UpdatePatientAppointment(appId, OldAppId, patientId, updateDt) {
   return new Promise((resolve, reject) => {
     var url =
       baseURL +
@@ -179,7 +190,9 @@ function UpdatePatientAppointment(appId, OldAppId, patientId) {
       OldAppId +
       "&patientId=" +
       patientId +
-      "&Status=Vacant";
+      "&Status=Vacant" +
+      "&BookedDateTime=" +
+      updateDt;
     ///==============start post request to book appointment
     $.ajax({
       url: url,

@@ -1,4 +1,4 @@
-var baseURL = "http://sohailmcs-001-site1.ftempurl.com/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
 var UserName = $(".user-name").text();
 
@@ -260,7 +260,7 @@ function createDoctorScheduled(AppointmentsList) {
     type: "POST",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
-    data: AppointmentsList,
+    data: JSON.stringify(AppointmentsList),
     beforeSend: function () {
       $.LoadingOverlay("show");
     },

@@ -1,4 +1,4 @@
-var baseURL = "http://sohailmcs-001-site1.ftempurl.com/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
 
 var urlParams = new URLSearchParams(window.location.search);
 var doctorId = 0;

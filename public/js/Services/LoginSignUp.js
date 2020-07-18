@@ -1,4 +1,4 @@
-var baseURL = "http://sohailmcs-001-site1.ftempurl.com/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
 
@@ -78,7 +78,7 @@ $(function () {
       type: "POST",
       datatype: "application/json",
       contentType: "application/json; charset=utf-8",
-      data: "",
+      data: userInfo,
       beforeSend: function () {
         //Show Loading if validate pass
         $.LoadingOverlay("show");

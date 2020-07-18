@@ -1,4 +1,4 @@
-var baseURL = "http://sohailmcs-001-site1.ftempurl.com/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
 var d = new Date();
 

@@ -1,7 +1,17 @@
-var baseURL = "http://sohailmcs-001-site1.ftempurl.com/KindahService/";
-
+var baseURL = "https://kindahclinic.com/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
+
 var socket = io();
+var options = {
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+};
+var currentDt = new Date().toLocaleDateString("en-US", options);
+
 //==login==========
 $(function () {
   GetDoctors(false);
@@ -9,7 +19,7 @@ $(function () {
   $(document).on("click", ".btnSencCallReq", function () {
     var doctorId = $(this).attr("docID");
     var fullName = $(this).attr("fullName");
-    SendCallRequestToDoctor(doctorId, fullName);
+    SendCallRequestToDoctor(doctorId, fullName, currentDt);
   });
 
   $(document).on("click", ".btndoctorProfile", function () {
@@ -20,7 +30,6 @@ $(function () {
 
 function GetDoctors(isSync) {
   var url = baseURL + "Doctor/GetDoctors";
-  alert(url);
 
   $.ajax({
     url: url,
@@ -50,8 +59,17 @@ function GetDoctors(isSync) {
     },
   });
 }
-function SendCallRequestToDoctor(doctorId, fullName) {
-  var url = baseURL + "PatientCallRequest/SendRequestCallToDoctor";
+
+function SendCallRequestToDoctor(doctorId, fullName, currentDt) {
+  var url =
+    baseURL +
+    "PatientCallRequest/SendRequestCallToDoctor?PatientID=" +
+    useLoginId +
+    "&DoctorID=" +
+    doctorId +
+    "&RequestStatus=Pending" +
+    "&date=" +
+    currentDt;
 
   //=======  set post model=========
   var model = {
@@ -65,10 +83,10 @@ function SendCallRequestToDoctor(doctorId, fullName) {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    type: "POST",
+    type: "GET",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
-    data: model,
+    data: "",
     beforeSend: function () {
       $.LoadingOverlay("show");
     },
@@ -141,7 +159,7 @@ function updateDoctorOnlineStatus(UserID, status) {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      type: "PUT",
+      type: "GET",
       datatype: "application/json",
       contentType: "application/json; charset=utf-8",
       data: "",

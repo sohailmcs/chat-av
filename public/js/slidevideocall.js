@@ -98,7 +98,7 @@ function viewDocProfile() {
 }
 
 // Call log jQuery code
-var baseURL = "http://localhost:1042/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
 function ViewPatientHistory(CallLogID) {
   var url = baseURL + `CallLogs/GetPatientHistory?callLogId=${CallLogID}`;
   $.ajax({
@@ -157,7 +157,7 @@ function ViewDoctorProfile(doctorID) {
     },
     complete: function (data) {
       // Hide Loading
-      // $.LoadingOverlay("hide");
+      $.LoadingOverlay("hide");
     },
   });
 }

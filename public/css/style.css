@@ -1022,7 +1022,12 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 /*************************** kindah patients design ************************** */
 
 .dataTables_filter label {
-  display: none;
+  display: block;
+}
+.dataTables_filter input {
+  height: 30px !important;
+  border-radius: 1.5rem !important;
+  border-color: 2px solid black !important;
 }
 
 td.details-control {
