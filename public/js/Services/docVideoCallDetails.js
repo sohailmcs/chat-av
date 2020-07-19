@@ -1,3 +1,5 @@
+const { json } = require("express");
+
 var baseURL = "https://kindahclinic.com/KindahService/";
 var urlParams = new URLSearchParams(window.location.search);
 var queId = urlParams.get("queId");
@@ -366,7 +368,7 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      console.log(data.insertedId);
+      console.log(JSON.stringify(data));
       $.LoadingOverlay("hide");
 
       // var queTemplate = $("#que-template").html();
