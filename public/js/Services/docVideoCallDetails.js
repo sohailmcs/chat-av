@@ -511,7 +511,7 @@ function updatePrescription(callLogId, age, patientId) {
 function UpdateCallLogEndtime(CallLogId, duration) {
   var url =
     baseURL +
-    "CallQue/UpdateCallLogEndtime?CallLogId=" +
+    "CallLogs/UpdateCallLogEndtime?CallLogId=" +
     CallLogId +
     "&Duration=" +
     duration;
@@ -521,7 +521,7 @@ function UpdateCallLogEndtime(CallLogId, duration) {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    type: "PUT",
+    type: "GET",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
     data: "",
