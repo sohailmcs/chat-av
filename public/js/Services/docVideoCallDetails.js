@@ -1,5 +1,3 @@
-const { json } = require("express");
-
 var baseURL = "https://kindahclinic.com/KindahService/";
 var urlParams = new URLSearchParams(window.location.search);
 var queId = urlParams.get("queId");
