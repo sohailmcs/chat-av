@@ -13,6 +13,7 @@ var haveSelfAudio = false;
 var timer;
 var onCallduration;
 var callPerformed = false;
+var insertedCallLogID;
 
 function refreshParent() {
   if (window.opener != null && !window.opener.closed && area == "Patient") {
@@ -201,7 +202,11 @@ easyrtc.setAcceptChecker(function (easyrtcid, callback) {
 
 function disconnect() {
   clearInterval(timer);
-  if (callPerformed) UpdateCallLogEndtime(cLogId, onCallduration);
+  var newCallLoginId;
+  if (cLogId == 0 && queId != 0) newCallLoginId = insertedCallLogID;
+  else newCallLoginId = cLogId;
+
+  if (callPerformed) UpdateCallLogEndtime(cLonewCallLoginIdgId, onCallduration);
   $(".three-icons").css("display", "none");
   $("#divCallNow").css("display", "block");
   easyrtc.disconnect();
@@ -366,7 +371,7 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      console.log(JSON.stringify(data));
+      insertedCallLogID = data;
       $.LoadingOverlay("hide");
 
       // var queTemplate = $("#que-template").html();
