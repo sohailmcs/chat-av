@@ -242,9 +242,9 @@ function loginFailure(errorCode, message) {
 
 // ========prescription modal pop up==========
 function ViewPrescription(CallLogId) {
-  var url2 = baseURL + `CallLogs/GetPatientHistory?callLogId=${CallLogId}`;
+  var url = baseURL + `CallLogs/GetPatientHistory?callLogId=${CallLogId}`;
   $.ajax({
-    url: url2,
+    url: url,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
