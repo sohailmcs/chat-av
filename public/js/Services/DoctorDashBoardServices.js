@@ -16,7 +16,7 @@ var userLoginId = $(".user-name").attr("UserInfo");
 var uName = $(".user-name").text();
 var socket = io();
 $(function () {
-  GetDoctorBookedScheduled(userLoginId, clientCurrentDt, false);
+  GetDoctorBookedScheduled(userLoginId, clientCurrentDt, true);
   GetAllQuedScheduled(userLoginId, clientCurrentDt);
   GetCallLog(userLoginId, clientCurrentDt);
 
@@ -54,8 +54,8 @@ $(function () {
       currentDt
     )
       .then((data) => {
-        GetAllQuedScheduled(docId, currentDt);
-        GetDoctorBookedScheduled(docId, currentDt);
+        GetAllQuedScheduled(docId, clientCurrentDt);
+        GetDoctorBookedScheduled(docId, clientCurrentDt);
         toast("Patient Has Been Added in Call Queue");
         socket.emit("AcceptRejectCall", {
           AcceptCall: true,
@@ -81,8 +81,8 @@ $(function () {
 
     AcceptOrRejectCallSaveToQue(callreqId, "Reject", docId, "Direct", patientId)
       .then((data) => {
-        GetAllQuedScheduled(docId, currentDt);
-        GetDoctorBookedScheduled(docId, currentDt);
+        GetAllQuedScheduled(docId, clientCurrentDt);
+        GetDoctorBookedScheduled(docId, clientCurrentDt, false);
         toast("Patient request has been cancelled");
 
         socket.emit("AcceptRejectCall", {
@@ -110,7 +110,7 @@ $(function () {
     )
       .then((data) => {
         GetAllQuedScheduled(docId, currentDt);
-        GetDoctorBookedScheduled(docId, currentDt);
+        GetDoctorBookedScheduled(docId, currentDt, false);
       })
       .catch((error) => {
         console.log(error);
@@ -583,7 +583,7 @@ window.onload = function () {
 
 //==========push notification from patient
 soc.on("SendNotificationToDoctor", function (data) {
-  GetDoctorBookedScheduled(data.docId, currentDt, false);
+  GetDoctorBookedScheduled(data.docId, clientCurrentDt, true);
   //======Play Notification sould for incomming CallRequest
   $(
     ' <audio id="chatAudio"><source src="/js/Services/notify.ogg" type="audio/ogg"> <source src="/js/Services/notify.mp3" type="audio/mpeg"><source src="/js/Services/notify.wav" type="audio/wav"></audio>'
