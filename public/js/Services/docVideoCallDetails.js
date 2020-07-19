@@ -185,7 +185,7 @@ easyrtc.setStreamAcceptor(function (easyrtcid, stream) {
   easyrtc.setVideoObjectSrc(video, stream);
   console.log("saw video from " + easyrtcid);
   timer = setInterval(countTimer, 1000);
-
+  PlayCallingSound(false);
   // setInterval(countTimer, 1000);
 });
 
