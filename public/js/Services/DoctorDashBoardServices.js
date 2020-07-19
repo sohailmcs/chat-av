@@ -12,7 +12,6 @@ var options = {
 };
 var currentDt = new Date().toLocaleDateString("en-US", options);
 
-
 var userLoginId = $(".user-name").attr("UserInfo");
 var uName = $(".user-name").text();
 var socket = io();
@@ -176,7 +175,7 @@ function AcceptOrRejectCallSaveToQue(
       doctorId: docId,
       requestType: reqType,
       patientId: patientId,
-      currDt = currentDt,
+      currDt: currentDt,
       pageName: window.location.pathname,
       pageUrl: window.location.href,
     };
