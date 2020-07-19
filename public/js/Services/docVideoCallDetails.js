@@ -366,6 +366,7 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
+      console.log(data.insertedId);
       $.LoadingOverlay("hide");
 
       // var queTemplate = $("#que-template").html();
