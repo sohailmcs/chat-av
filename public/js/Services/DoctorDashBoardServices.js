@@ -1,6 +1,8 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
 
 var currentDt = new Date().toLocaleDateString("en-US");
+// var d = new Date();
+// var currentDt = `${d.getDate()} ${d.getMonth() + 1} ${d.getFullYear()}`;
 
 var userLoginId = $(".user-name").attr("UserInfo");
 var uName = $(".user-name").text();
@@ -157,7 +159,7 @@ function AcceptOrRejectCallSaveToQue(
   return new Promise((resolve, reject) => {
     var url = baseURL + "PatientCallRequest/AcceptRejectPatientCallRequest";
     //======= set post model
-    var model = {
+    var callRequest = {
       callReQuestID: callreqId,
       status: status,
       doctorId: docId,
@@ -171,10 +173,10 @@ function AcceptOrRejectCallSaveToQue(
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      type: "Put",
+      type: "POST",
       datatype: "application/json",
-      contentType: "application/x-www-form-urlencoded",
-      data: model,
+      contentType: "application/json; charset=utf-8",
+      data: callRequest,
       beforeSend: function () {
         $.LoadingOverlay("show");
       },
