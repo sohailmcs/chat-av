@@ -56,7 +56,7 @@ $(function () {
 
   $(document).on("click", ".btnViewPres", function () {
     var CallLogId = $(this).attr("CallID");
-    if (cLogId != 0) {
+    if (cLogId != 0 && area != "Patient") {
       ViewPrescription(CallLogId);
     }
   });
