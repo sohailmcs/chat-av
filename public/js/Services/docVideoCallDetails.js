@@ -50,7 +50,7 @@ $(function () {
     $(".videocol").addClass("patientCallingWindow");
   }
   //==========ge doctor not==========
-  if (cLogId != 0) {
+  if (cLogId != 0 && area != "Patient") {
     GetDoctorNotes(cLogId);
   }
 
