@@ -1,16 +1,16 @@
 function isAuthorization(req, res, next) {
-  // if (!req.cookies.kindahUserName) {
-  //   return res.redirect("/login");
-  // }
+  if (!req.cookies.kindahUserName) {
+    return res.redirect("/login");
+  }
   next();
 }
 
 function isLoginExist(req, res, next) {
-  // if (req.cookies.kindahUserName) {
-  //   if (req.cookies.kindahUserType == "Patient")
-  //     return res.redirect("/patientDashboard");
-  //   else return res.redirect("/docDashboard");
-  // }
+  if (req.cookies.kindahUserName) {
+    if (req.cookies.kindahUserType == "Patient")
+      return res.redirect("/patientDashboard");
+    else return res.redirect("/docDashboard");
+  }
   next();
 }
 
