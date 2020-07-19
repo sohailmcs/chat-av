@@ -434,7 +434,7 @@ function updatePatientEMR(callLogId, status) {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    type: "PUT",
+    type: "POST",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
     data: model,

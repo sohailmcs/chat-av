@@ -275,9 +275,9 @@ function ViewPrescription(CallLogId) {
 
 //history pop up
 function ViewHistory(CallLogId) {
-  var url3 = baseURL + `CallLogs/GetPatientHistory?callLogId=${CallLogId}`;
+  var url = baseURL + `CallLogs/GetPatientHistory?callLogId=${CallLogId}`;
   $.ajax({
-    url: url3,
+    url: url,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
