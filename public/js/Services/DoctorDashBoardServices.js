@@ -1,6 +1,6 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
 
-//var currentDt = new Date().toLocaleDateString("en-US");
+var clientCurrentDt = new Date().toLocaleDateString("en-US");
 
 var options = {
   year: "numeric",
@@ -16,9 +16,9 @@ var userLoginId = $(".user-name").attr("UserInfo");
 var uName = $(".user-name").text();
 var socket = io();
 $(function () {
-  GetDoctorBookedScheduled(userLoginId, currentDt, false);
-  GetAllQuedScheduled(userLoginId, currentDt);
-  GetCallLog(userLoginId, currentDt);
+  GetDoctorBookedScheduled(userLoginId, clientCurrentDt, false);
+  GetAllQuedScheduled(userLoginId, clientCurrentDt);
+  GetCallLog(userLoginId, clientCurrentDt);
 
   //=================Update patient EMR ==============
   $(document).on("click", ".btnUpdatePrescription", function () {
