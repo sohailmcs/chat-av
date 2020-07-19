@@ -198,7 +198,6 @@ function AcceptOrRejectCallSaveToQue(
 function GetAllQuedScheduled(doctorId, date) {
   var url =
     baseURL + "CallQue/GetCallQue?doctorID=" + doctorId + "&date=" + date;
-
   $.ajax({
     url: url,
     headers: {
