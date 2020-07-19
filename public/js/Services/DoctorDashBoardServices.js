@@ -136,7 +136,7 @@ function GetDoctorBookedScheduled(DoctorId, date, isSync) {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-      if (isSync) $.LoadingOverlay("show");
+      if (!isSync) $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
