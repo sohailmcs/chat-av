@@ -1,8 +1,6 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
 
 var currentDt = new Date().toLocaleDateString("en-US");
-// var d = new Date();
-// var currentDt = `${d.getDate()} ${d.getMonth() + 1} ${d.getFullYear()}`;
 
 var userLoginId = $(".user-name").attr("UserInfo");
 var uName = $(".user-name").text();
