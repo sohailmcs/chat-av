@@ -540,4 +540,3 @@ function UpdateCallLogEndtime(CallLogId, duration) {
     },
   });
 }
-fsen;
