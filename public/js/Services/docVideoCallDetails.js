@@ -179,7 +179,6 @@ function performCall(otherEasyrtcid) {
   };
   easyrtc.call(otherEasyrtcid, successCB, failureCB, acceptedCB);
 }
-
 easyrtc.setStreamAcceptor(function (easyrtcid, stream) {
   PlayCallingSound(false);
   var video = document.getElementById("callerVideo");
