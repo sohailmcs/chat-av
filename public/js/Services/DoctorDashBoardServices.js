@@ -1,6 +1,17 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
 
-var currentDt = new Date().toLocaleDateString("en-US");
+//var currentDt = new Date().toLocaleDateString("en-US");
+
+var options = {
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+};
+var currentDt = new Date().toLocaleDateString("en-US", options);
+
 
 var userLoginId = $(".user-name").attr("UserInfo");
 var uName = $(".user-name").text();
@@ -40,7 +51,8 @@ $(function () {
       "Accepted",
       docId,
       "Direct",
-      patientId
+      patientId,
+      currentDt
     )
       .then((data) => {
         GetAllQuedScheduled(docId, currentDt);
@@ -152,7 +164,8 @@ function AcceptOrRejectCallSaveToQue(
   status,
   docId,
   reqType,
-  patientId
+  patientId,
+  currentDt
 ) {
   return new Promise((resolve, reject) => {
     var url = baseURL + "PatientCallRequest/AcceptRejectPatientCallRequest";
@@ -163,6 +176,7 @@ function AcceptOrRejectCallSaveToQue(
       doctorId: docId,
       requestType: reqType,
       patientId: patientId,
+      currDt = currentDt,
       pageName: window.location.pathname,
       pageUrl: window.location.href,
     };
