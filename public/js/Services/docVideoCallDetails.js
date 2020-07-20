@@ -107,12 +107,11 @@ $(function () {
   if (area == "Patient") {
     easyrtc.setUsername(PatientName);
     easyrtc.setVideoDims(1280, 720);
-    easyrtc.enableDebug(false);
+    easyrtc.enableDebug(true);
     easyrtc.initMediaSource(
       function () {
         // success callback
-        var selfVideo = document.getElementById("selfVideo");
-        easyrtc.setVideoObjectSrc(selfVideo, easyrtc.getLocalStream());
+
         easyrtc.connect("KindahCare", patientLoginSuccess, loginFailure);
         $(".three-icons").css({ display: "block", "z-index": "11000" });
       },
@@ -163,6 +162,7 @@ function enabldDisableCamera() {
 }
 
 function performCall(otherEasyrtcid) {
+  alert(otherEasyrtcid);
   callPerformed = true;
   PlayCallingSound(false);
   easyrtc.hangupAll();
@@ -184,6 +184,8 @@ function performCall(otherEasyrtcid) {
 }
 easyrtc.setStreamAcceptor(function (easyrtcid, stream) {
   PlayCallingSound(false);
+  var selfVideo = document.getElementById("selfVideo");
+  easyrtc.setVideoObjectSrc(selfVideo, easyrtc.getLocalStream());
   var video = document.getElementById("callerVideo");
   easyrtc.setVideoObjectSrc(video, stream);
   console.log("saw video from " + easyrtcid);
@@ -234,7 +236,8 @@ function PlayCallingSound(play) {
 
 function patientLoginSuccess(easyrtcid) {
   selfEasyrtcid = easyrtcid;
-  console.log("this is patient id on first login = " + easyrtcid);
+  alert(selfEasyrtcid);
+
   //=====send id to server to callback======
   soc.emit("sendToCalBack", {
     easyId: easyrtcid,
