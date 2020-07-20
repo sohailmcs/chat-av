@@ -17,120 +17,532 @@
 <link rel="stylesheet" type="text/css" href="/css/select2.min.css" />
 <!-- END: CSS-->
 
-<style>
-
-#demoContainer {
-    position:relative;
-}
-#container {
-    width:1330px;
-}
-.callButton {
-    float:left;
-}
-#connectControls {
-    float:left;
-}
-#otherClients {
-    height:50px;
-}
-#selfVideo {
-    volume: 0;
-    position:absolute;
-    left: 10px;
-    top:10px;
-    z-index: 2;
-    opacity: 0.8;
-    height:120px;
-    width:160px;
-}
-#callerVideoBox {
-    position:relative;
-    border: 1px solid gray;
-}
-#callerVideo {
-    height:720px;
-    width:1280px;
-}
-.closeButton {
-    position:absolute;
-    right:2px;
-    background-color: transparent;
-    background-image: url('../images/button_close.png');
-    border:none;
-    margin:0;
-    padding:0;
-    top:0;
-    width:56px;
-    height:56px;
-    z-index: 2;
-    opacity:0.4;
-}
-.closeButton:hover {
-    cursor: pointer;
-    opacity:1;
-}
-</style>
-
-
 </head>
-
+<!-- END: Head-->
 
 
 <!-- BEGIN: Content-->
 
-<div id="container">
-  <div id="main">
-    <h2>Vide Audio Chat</h2>
-    <div id="demoContainer">
-      <div id="connectControls">
-        <span><strong>Plesae enter your name:</strong></span>
-        <input required type="text" id="txtname" />
+<!-- TABLE VISIT HISTORY -->
+<script id="call-history-docVideo" type="text/html">
+      {{#result}}
+          <tr>
+               <td class="videocall-table">{{AddedDate}}</td>
+               <td class="videocall-table">{{DoctorName}}</td>
+               <td class="videocall-table">
+                   <div class="modal-primary mr-1 mb-1 d-inline-block">
+                   <a href="#">
+                   <i class="bx bx-show dashboard-eyeicon btnViewPres" CallID="{{CallLogID}}" style="padding-top: 12px; "></i>
+                   </a>
+                  </div>
+               </td>
+               <td class="videocall-table">
+                  <div class="modal-primary mr-1 mb-1 d-inline-block">
+                  <a href="#">
+                  <i class="bx bx-show dashboard-eyeicon btnviewhistory" CallID="{{CallLogID}}" style="padding-top: 12px; "></i>
+                  </a>
+                  </div>
+               </td>
+        </tr>
+     {{/result}}
+</script>
 
-        <button id="connectButton" onclick="connect()">Connect</button>
-        <button id="hangupButton" disabled="disabled" onclick="hangup()">
-          Hangup
-        </button>
-        <div id="iam">Not yet connected...</div>
-        <br />
-        <strong>Connected users:</strong>
-        <div id="otherClients"></div>
-      </div>
-      <div id="videos">
-        <div
-          style="position: relative; float: left;"
-          width="1282"
-          height="722"
-        >
-          <video
-            autoplay
-            playsinline="playsinline"
-            id="callerVideo"
-          ></video>
-          <video
-            autoplay
-            playsinline="playsinline"
-            class="easyrtcMirror"
-            id="selfVideo"
-            muted="true"
-            volume="0"
-          ></video>
+<!-- VIEW PRESCRIPTION POP UP TEMPLATE -->
+<script id="viewPres-template" type="text/html">
+
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-primary">
+                <h5 class="modal-title white" id="myModalLabel160">
+                  PATIENT
+                  PRESCRIPTION
+              </h5>
+              </div>
+              <div class="modal-body">
+                <div class="card-content side-bar">
+                  <div class="card-body">
+                    <div class="media">
+                       <div class="pr-50 doc-img">
+                        {{#ProfilePicture}}
+                         <img src="{{ProfilePicture}}" alt="avtar img holder">                      
+                        {{/ProfilePicture}}
+                        {{^ProfilePicture}}
+                         <img src="/assets/images/maledoc.png" alt="avtar img holder">                      
+                        {{/ProfilePicture}}                             
+                       </div>
+                      <div>
+                        <h5 class="media-heading">
+                          <br /> <b>{{PatientName}}</b>
+                        </h5>
+                        <div>
+                          <p> <b>Contact Number</b>: {{PatientPhone}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-sidebar">
+                      <br />
+                      <div>
+                        <b style="color: #3eb8d7">Call Duration:</b> {{OnCallDuration}}
+                        <br />  <br />
+                        <b style="color: #3eb8d7">Date:</b> {{DateAdded}}
+                        <br />  <br />
+                        <b style="color: #3eb8d7">Diagnosis:</b>  {{Diagnosis}}
+                        <br />  <br />
+                        <b style="color: #3eb8d7">Medication:</b> {{Medication}}
+                        <br />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Close</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+ </script>
+
+<script id="viewHistory-template" type="text/html">
+   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title white" id="myModalLabel160">
+            PATIENT HISTORY
+              </h5>
         </div>
-        <!-- each caller video needs to be in it's own div so it's close button can be positioned correctly -->
-        <div id="acceptCallBox">
-          <!-- Should be initially hidden using CSS -->
-          <div id="acceptCallLabel"></div>
-          <button id="callAcceptButton">Accept</button>
-          <button id="callRejectButton">Reject</button>
+        <div class="modal-body History-modal">
+          <div class="card-content side-bar">
+            <div class="card-body">
+            
+              <div class="media">
+                       <div class="pr-50 doc-img">
+                        {{#ProfilePicture}}
+                         <img src="{{ProfilePicture}}" alt="avtar img holder">                      
+                        {{/ProfilePicture}}
+                        {{^ProfilePicture}}
+                         <img src="/assets/images/maledoc.png" alt="avtar img holder">                      
+                        {{/ProfilePicture}}                             
+                       </div>
+                      <div>
+                        <h5 class="media-heading">
+                          <br /> <b>{{PatientName}}</b>
+                        </h5>
+                        <div>
+                          <p> <b>Contact Number</b>: {{PatientPhone}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h6 class="history-popup" > <b>History and Exams</b> </h6>
+                      <p class="history-text" > {{HistoryAndExam}} </p>
+                      </div>
+                      
+                      <div>
+                      <h6 class="history-popup"> <b>Allergies</b> </h6>
+                      <p class="history-text"> {{Allergies}} </p>
+                      </div>
+                      
+                      <div>
+                      <h6 class="history-popup"> <b>Diagnosis</b> </h6>
+                      <p class="history-text"> {{Diagnosis}} </p>
+                      </div>
+                      
+                      <div>
+                      <h6 class="history-popup"> <b>RX</b> </h6>
+                      <p class="history-text"> {{PatientRX}} </p>
+                      </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                  <i class="bx bx-x d-block d-sm-none"></i>
+                  <span class="d-none d-sm-block">Close</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!--hide-->
-    <br style="clear: both;" />
+ </script>
 
-    <!-- End Main Content -->
+ <div
+ class="modal fade text-left"
+ id="modelReject"
+ tabindex="-1"
+ role="dialog"
+ aria-labelledby="myModalLabel160"
+ aria-hidden="true"
+>
+ <div
+   class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+   role="document"
+ >
+   <div class="modal-content">     
+     <div
+       class="modal-body"
+       style="text-align: center;" >
+       <h5>
+         <i><span id="spanRejectUserName"></span>  reject your call. Please try again.</i>
+       </h5>
+       <div style="text-align: center;">
+         <img
+           src="/assets/images/patient.png"
+           alt="Calling Gif"
+           style="
+             width: 40%;
+             height: 40%;
+             border-radius: 50%;
+           "
+         />
+       </div>
+     </div><div class="modal-footer">
+    
+      <button type="button"  class="btn btn-primary ml-1"  data-dismiss="modal" >
+          <span class="d-none d-sm-block">Close<i class="bx bx-send sms-popup"></i></span>
+      </button>
   </div>
+
+   </div>
+ </div>
+</div> 
+<div>
+  <br />
+ 
+
+
+  <div class="content-wrapper">
+    <div class="content-header row"></div>
+    <div class="content-body">
+    <span UserInfo="<%= userId %>" class="user-name" style="visibility: hidden;"></span>
+    
+    <!-- <div>
+    <h2 style="font-weight: 500; text-align: center;">Patient Video Call</h2>
+    </div> -->
+    
+    <!--patient history popup Modal start -->
+    <div class="modal fade text-left" id="viewhistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+    aria-hidden="true">
+    
+    </div>
+    <!--patient history popup Modal End -->
+    
+    <!--view prescription theme Modal start -->
+    <div class="modal fade text-left" id="viewprescription" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel160" aria-hidden="true">
+    
+    </div>
+    <!--view prescription theme Modal end -->
+    
+    <!-- video call page Start -->
+    <section id="dashboard-analytics">
+    <div class="callvideo">
+    <div class="row leftcol" style="margin:0" >
+    
+    <!-- Left Card video call portion Starts -->
+    <div class="videocol leftcardContainer col-lg-7" style="width: 100%;">
+    <div class="card" style="height: 100%">
+    <div class="pat-video-card">
+    <div class="pat-call">
+    <h3 class="call-heading" id="call-heading">
+    </h3>
+    </div>
+    <!-- <div>
+    <img src="/assets/images/maledoc.png" class="docvideo" />
+    </div> -->
+    </div>
+    
+    
+    <div class="main-video-div">
+    
+    <div class=" three-icons" style="text-align: center;">
+    <button type="button" onclick="enabldDisableMic()"
+    class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 btn-microphone btn-three-icon">
+    <i class="bx bx-microphone icon-size icon-microphone"></i>
+    </button>
+    
+    <button type="button" onclick="enabldDisableCamera()"
+    class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 btn-three-icon">
+    <i class="bx bx-video icon-size"></i>
+    </button>
+
+    <button type="button" id="btnDisconnect" onclick="disconnect()"
+    class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1 btn-three-icon">
+    <i class="bx bx-phone-call icon-size"></i>
+    </button>
+    </div>
+    
+    <video class="easyrtcMirror self-video"  autoplay="autoplay" id="callerVideo" muted="true" volume="0">
+    </video>
+    
+    <video autoplay playsinline="playsinline"  class="caller-video" id="selfVideo"></video>
+    </div>
+    
+     <br />
+    <div class="icons" id="divCallNow">
+    <button type="button" id="btnCallNow"
+    class="btn btn-icon rounded-circle call-btn-border mr-1 mb-1 btn-lg btn-three-icon">
+    <i class="call-btn bx bx-phone-call call-show icon-size"></i>
+    </button>
+  </div>
+    
+    <div style="text-align: center;" id="timer">    
+    </div>    
+    <div class="icons">
+    <button type="button" class="btn btn-outline-primary round mr-1 mb-1 slide-right" disabled >
+    <i class="bx bx-show"></i>
+    Show Medical Record
+    </button>
+    <button type="button" class="btn btn-outline-primary round mr-1 mb-1 slide-left">
+    <i class="bx bx-hide"></i>
+    Hide Medical Record
+    </button>
+    </div>
+  
+    </div>
+    <!--Left Card video call portion ends -->
+    </div>
+    <!-- Right Card Starts -->
+    <div class="col-lg-5 videocol rightcardContainer">
+    <!-- Nav Justified Starts -->
+    <section id="nav-justified">
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="card">
+    <div class="doc-pres-card" style="display: block;">
+    <div class="card-body">
+    <ul class="nav nav-tabs nav-justified" id="myTab2" role="tablist">
+    <li class="nav-item">
+    <a class="nav-link active" id="home-tab-justified" data-toggle="tab" href="#home-just"
+    role="tab" aria-controls="home-just" aria-selected="true">
+    Doctor's Note
+    </a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" id="profile-tab-justified" data-toggle="tab" href="#profile-just"
+    role="tab" aria-controls="profile-just" aria-selected="true">
+    Prescription
+    </a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" id="messages-tab-justified" data-toggle="tab" href="#messages-just"
+    role="tab" aria-controls="messages-just" aria-selected="false">
+    Visit History
+    </a>
+    </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content pt-1">
+    
+    <!-- doctor note -->
+    <div class="tab-pane active" id="home-just" role="tabpanel"
+    aria-labelledby="home-tab-justified">
+    <!-- Doctors note text areas start-->
+    <section class="basic-textarea">
+    <div class="row">
+    <div class="col-12">
+    <div class="card">
+    <div class="card-content">
+    <div class="card-body">
+    <div id="loadingParentNotes"  class="icons">    
+      <div  class="doctorNotesLoading">  <img
+        src="/assets/images/BlueLoading.gif" alt="image" width="40" height="40"/>
+      </div>
+      
+    <button type="button"
+    class="btnSave btn btn-outline-primary round mr-1 mb-1">
+    <i class="bx bxs-save"></i>
+    Save
+    </button><br> 
+    <span class="msg"></span>
+    </div>
+    <div class="row">
+    <div class="col-12">
+    <fieldset class="form-group">
+    <p>HISTORY AND EXAMS</p>
+    <textarea class="form-control" id="txtExam" rows="3"></textarea>
+    </fieldset>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-12">
+    <fieldset class="form-group">
+    <p>ALLERGIES</p>
+    <textarea class="form-control" id="txtAllergies" rows="3"></textarea>
+    </fieldset>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-12">
+    <fieldset class="form-group">
+    <p>DIAGNOSIS</p>
+    <textarea class="form-control" id="txtDiagnosis" rows="3"></textarea>
+    </fieldset>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-12">
+    <fieldset class="form-group">
+    <p>RX</p>
+    <textarea class="form-control" id="txtRx" rows="3"></textarea>
+    </fieldset>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <!-- docotrs note text area ends -->
+    </div>
+    
+    <!-- prescription start -->
+    <div class="tab-pane" id="profile-just" role="tabpanel"
+    aria-labelledby="profile-tab-justified">
+    <!-- Form of Prescription start -->
+    <section id="basic-vertical-layouts">
+    <div class="row match-height">
+    <div class="col-12">
+    <div class="card">
+    <div class="card-content">
+    <div class="card-body">
+    <div id="loadingParentPrescrip" class="icons">
+      <div  class="PrescripeLoading">  <img
+        src="/assets/images/BlueLoading.gif" alt="image" width="40" height="40"/>
+      </div>
+
+    <button type="button"
+    class="btnSaveNSend btn btn-outline-primary round mr-1 mb-1">
+    <i class="bx bxs-save"></i>
+    Save and Send
+    </button><br>
+    <span class="msgPrescription"></span>
+    </div>
+    <br />
+    <form class="form form-vertical">
+    <div class="form-body">
+    <div class="row">
+    <div style="
+    text-align: center;
+    ">
+    
+    <br />
+    </div>
+    
+    <div class="col-12">
+    <div class="form-label-group">
+    <input  readonly  type="text" id="txtName" class="form-control"
+    placeholder="Patient Name" name="fname-floating" />
+    <label for="first-name-floating">
+    Name</label>
+    </div>
+    </div>
+    
+    <div class="col-md-6">
+    <div class="form-label-group">
+      <input type="text" id="patientAge" class="form-control"
+      placeholder="Age" name="fname-floating" />    
+    <label for="first-name-floating">Age</label>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form-label-group">
+    <fieldset class="form-group position-relative has-icon-left">
+    <input type="text" id="prescribeDT" class="form-control pickadate-months-year"
+    placeholder="Select Date" />
+    <div class="form-control-position">
+    <i class="bx bx-calendar"></i>
+    </div>
+    </fieldset>
+    <label for="first-name-floating">Date</label>
+    </div>
+    </div>
+    
+    <div class="col-12">
+    <div class="form-label-group">
+    <input type="text" id="txtPresDiagnosis" class="form-control"
+    placeholder="Diagnosis" name="fname-floating" />
+    <label for="first-name-floating">Diagnosis</label>
+    </div>
+    </div>
+    <div class="col-12">
+    <fieldset class="form-group">
+    <textarea class="form-control" id="txtMedication" rows="3"
+    placeholder="Medication"></textarea>
+    </fieldset>
+    </div>
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <!-- form of Prescription ends -->
+    </div>
+    
+    <!-- visit history start -->
+    <div class="tab-pane" id="messages-just" role="tabpanel"
+    aria-labelledby="messages-tab-justified">
+    <!-- visit history rows start -->
+    <div class="row" id="table-striped">
+    <div class="col-12">
+    <div class="card">
+    <div class="card-content">
+    <!-- table striped -->
+    <div class="table-responsive">
+    <table class="table table-striped mb-0">
+    <thead>
+    <tr>
+    <th>Date</th>
+    <th>DocName</th>
+    <th>Presc</th>
+    <th>View</th>
+    </tr>
+    </thead>
+    <tbody class="visit-history-table" id="callLogTable">
+    
+    
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- visit history rows end -->
+    
+    
+    
+    
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <!-- Nav Justified Ends -->
+    </div>
+    <!--Right Card ends -->
+    
+    
+    </div>
+    </section>
+    <!-- Dashboard end -->
+    
+    
+    
+    </div>
+    </div>
 </div>
+<!-- END: Content-->
 
 <!-- BEGIN: JS-->
 <script src="/js/jquery.min.js"></script>
