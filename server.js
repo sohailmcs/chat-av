@@ -49,6 +49,7 @@ socketServer.sockets.on("connection", function (socket) {
   });
   socket.on("sendToCalBack", function (data) {
     if (clients[data.username]) {
+      console.log("this is patient id on server " + JSON.stringify(data));
       socketServer.sockets.connected[clients[data.username].socket].emit(
         "callBackID",
         data

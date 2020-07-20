@@ -174,7 +174,9 @@ function performCall(otherEasyrtcid) {
       );
     }
   };
-  var successCB = function () {};
+  var successCB = function (id) {
+    console.log("this is patient call function success " + JSON.stringify(id));
+  };
   var failureCB = function () {
     // enable("otherClients");
   };
@@ -232,7 +234,7 @@ function PlayCallingSound(play) {
 
 function patientLoginSuccess(easyrtcid) {
   selfEasyrtcid = easyrtcid;
-
+  console.log("this is patient id on first login = " + easyrtcid);
   //=====send id to server to callback======
   soc.emit("sendToCalBack", {
     easyId: easyrtcid,
@@ -240,7 +242,9 @@ function patientLoginSuccess(easyrtcid) {
   });
 }
 
-function loginSuccess(easyrtcid) {}
+function loginSuccess(easyrtcid) {
+  console.log("this is doctor id on first login = " + easyrtcid);
+}
 function loginFailure(errorCode, message) {
   easyrtc.showError(errorCode, message);
 }
