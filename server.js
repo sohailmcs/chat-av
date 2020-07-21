@@ -174,7 +174,7 @@ easyrtc.on("getIceConfig", function (connectionObj, callback) {
   ];
 
   https.request(
-    "https://service.xirsys.com/ice",
+    "https://global.xirsys.net/_turn/KindahCare",
     {
       form: {
         ident: "sohailmcs",
