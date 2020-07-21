@@ -210,7 +210,7 @@ function disconnect() {
   if (cLogId == 0 && queId != 0) newCallLoginId = insertedCallLogID;
   else newCallLoginId = cLogId;
 
-  if (callPerformed) UpdateCallLogEndtime(cLonewCallLoginIdgId, onCallduration);
+  if (callPerformed) UpdateCallLogEndtime(newCallLoginId, onCallduration);
   $(".three-icons").css("display", "none");
   $("#divCallNow").css("display", "block");
   easyrtc.disconnect();
