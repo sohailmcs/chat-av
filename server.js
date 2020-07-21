@@ -174,50 +174,74 @@ httpreq.on("error", function (e) {
 httpreq.end();
 
 //=========configure ice servers installations==========
-// easyrtc.on("getIceConfig", function (connectionObj, callback) {
-//   // This object will take in an array of XirSys STUN and TURN servers
-//   var iceConfig = [
-//     {
-//       urls: ["stun:eu-turn7.xirsys.com"],
-//     },
-//     {
-//       username:
-//         "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
-//       credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
-//       urls: [
-//         "turn:eu-turn7.xirsys.com:80?transport=udp",
-//         "turn:eu-turn7.xirsys.com:3478?transport=udp",
-//         "turn:eu-turn7.xirsys.com:80?transport=tcp",
-//         "turn:eu-turn7.xirsys.com:3478?transport=tcp",
-//         "turns:eu-turn7.xirsys.com:443?transport=tcp",
-//         "turns:eu-turn7.xirsys.com:5349?transport=tcp",
-//       ],
-//     },
-//   ];
+easyrtc.on("getIceConfig", function (connectionObj, callback) {
+  // This object will take in an array of XirSys STUN and TURN servers
 
-//   http.request(
-//     "https://service.xirsys.com/ice",
-//     {
-//       form: {
-//         ident: "sohailmcs",
-//         secret: "e5ce3562-cb3d-11ea-aef6-0242ac150002",
-//         domain: "https://chat-av.herokuapp.com/",
-//         application: "default",
-//         room: "KindahCare",
-//         secure: 1,
-//       },
-//       json: true,
-//     },
-//     function (error, response, body) {
-//       if (!error && response.statusCode == 200) {
-//         // body.d.iceServers is where the array of ICE servers lives
-//         iceConfig = body.d.iceServers;
-//         console.log("this  is ice " + iceConfig);
-//         callback(null, iceConfig);
-//       }
-//     }
-//   );
-// });
+  var myIceServers = [
+    {
+      url: "stun:eu-turn7.xirsys.com",
+    },
+    {
+      url: "turn:eu-turn7.xirsys.com:80?transport=udp",
+      username:
+        "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
+      credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
+    },
+    {
+      url: "turn:eu-turn7.xirsys.com:3478?transport=udp",
+      username:
+        "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
+      credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
+    },
+    {
+      url: "turn:eu-turn7.xirsys.com:80?transport=tcp",
+      username:
+        "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
+      credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
+    },
+    {
+      url: "turn:eu-turn7.xirsys.com:3478?transport=tcp",
+      username:
+        "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
+      credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
+    },
+    {
+      url: "turns:eu-turn7.xirsys.com:443?transport=tcp",
+      username:
+        "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
+      credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
+    },
+    {
+      url: "turns:eu-turn7.xirsys.com:5349?transport=tcp",
+      username:
+        "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
+      credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
+    },
+  ];
+
+  http.request(
+    "https://service.xirsys.com/ice",
+    {
+      form: {
+        ident: "sohailmcs",
+        secret: "e5ce3562-cb3d-11ea-aef6-0242ac150002",
+        domain: "https://chat-av.herokuapp.com/",
+        application: "default",
+        room: "KindahCare",
+        secure: 1,
+      },
+      json: true,
+    },
+    function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // body.d.iceServers is where the array of ICE servers lives
+        iceConfig = body.d.iceServers;
+        console.log("this  is ice " + iceConfig);
+        callback(null, myIceServers);
+      }
+    }
+  );
+});
 
 easyrtc.setOption("logLevel", "debug");
 
