@@ -127,77 +127,82 @@ socketServer.sockets.on("connection", function (socket) {
   });
 });
 
-//=========configure ice servers installations==========
+var myIceServers = [
+  {
+    url: "stun:eu-turn7.xirsys.com",
+  },
+  {
+    url: "turn:eu-turn7.xirsys.com:80?transport=udp",
+    username:
+      "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
+    credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
+  },
+  {
+    url: "turn:eu-turn7.xirsys.com:3478?transport=udp",
+    username:
+      "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
+    credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
+  },
+  {
+    url: "turn:eu-turn7.xirsys.com:80?transport=tcp",
+    username:
+      "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
+    credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
+  },
+  {
+    url: "turn:eu-turn7.xirsys.com:3478?transport=tcp",
+    username:
+      "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
+    credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
+  },
+  {
+    url: "turns:eu-turn7.xirsys.com:443?transport=tcp",
+    username:
+      "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
+    credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
+  },
+  {
+    url: "turns:eu-turn7.xirsys.com:5349?transport=tcp",
+    username:
+      "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
+    credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
+  },
+];
+easyrtc.setOption("appIceServers", myIceServers);
+
 easyrtc.on("getIceConfig", function (connectionObj, callback) {
-  // This object will take in an array of XirSys STUN and TURN servers
-
-  var myIceServers = [
-    {
-      url: "stun:eu-turn7.xirsys.com",
-    },
-    {
-      url: "turn:eu-turn7.xirsys.com:80?transport=udp",
-      username:
-        "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
-      credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
-    },
-    {
-      url: "turn:eu-turn7.xirsys.com:3478?transport=udp",
-      username:
-        "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
-      credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
-    },
-    {
-      url: "turn:eu-turn7.xirsys.com:80?transport=tcp",
-      username:
-        "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
-      credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
-    },
-    {
-      url: "turn:eu-turn7.xirsys.com:3478?transport=tcp",
-      username:
-        "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
-      credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
-    },
-    {
-      url: "turns:eu-turn7.xirsys.com:443?transport=tcp",
-      username:
-        "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
-      credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
-    },
-    {
-      url: "turns:eu-turn7.xirsys.com:5349?transport=tcp",
-      username:
-        "EdRvDLpBORwwEjJ2fbvu-nXkE8CxanpiCA4c7aNwWRhwkEtIhdsLMkpCShEAzz0eAAAAAF8W0tZzb2hhaWxtY3M=",
-      credential: "2d847f6c-cb46-11ea-a731-0242ac140004",
-    },
-  ];
-
-  https.request(
-    "https://global.xirsys.net/_turn/KindahCare",
-    {
-      form: {
-        ident: "sohailmcs",
-        secret: "e5ce3562-cb3d-11ea-aef6-0242ac150002",
-        domain: "https://chat-av.herokuapp.com/",
-        application: "default",
-        room: "KindahCare",
-        secure: 1,
-      },
-      json: true,
-    },
-    function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        // body.d.iceServers is where the array of ICE servers lives
-        iceConfig = body.d.iceServers;
-        console.log("this  is ice " + iceConfig);
-        callback(null, myIceServers);
-      }
-    }
-  );
+  callback(null, myIceServers);
 });
 
-easyrtc.setOption("logLevel", "debug");
+//easyrtc.setOption("logLevel", "debug");
+
+//=========configure ice servers installations==========
+//easyrtc.on("getIceConfig", function (connectionObj, callback) {
+// This object will take in an array of XirSys STUN and TURN servers
+
+//   https.request(
+//     "https://global.xirsys.net/_turn/KindahCare",
+//     {
+//       form: {
+//         ident: "sohailmcs",
+//         secret: "e5ce3562-cb3d-11ea-aef6-0242ac150002",
+//         domain: "https://chat-av.herokuapp.com/",
+//         application: "default",
+//         room: "KindahCare",
+//         secure: 1,
+//       },
+//       json: true,
+//     },
+//     function (error, response, body) {
+//       if (!error && response.statusCode == 200) {
+//         // body.d.iceServers is where the array of ICE servers lives
+//         iceConfig = body.d.iceServers;
+//         console.log("this  is ice " + iceConfig);
+//         callback(null, myIceServers);
+//       }
+//     }
+//   );
+// });
 
 //Overriding the default easyrtcAuth listener, only so we can directly access its callback
 easyrtc.events.on("easyrtcAuth", function (
