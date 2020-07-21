@@ -178,7 +178,7 @@ easyrtc.on("getIceConfig", function (connectionObj, callback) {
       form: {
         ident: "sohailmcs",
         secret: "e5ce3562-cb3d-11ea-aef6-0242ac150002",
-        domain: "https://chat-av.herokuapp.com/",
+        domain: "http://chat-av.herokuapp.com/",
         application: "default",
         room: "KindahCare",
         secure: 1,
