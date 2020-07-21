@@ -6,6 +6,7 @@ var path = require("path");
 var session = require("express-session");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
+let https = require("https");
 
 var easyrtc = require("easyrtc");
 process.title = "node-easyrtc";
@@ -172,13 +173,13 @@ easyrtc.on("getIceConfig", function (connectionObj, callback) {
     },
   ];
 
-  http.request(
+  https.request(
     "https://service.xirsys.com/ice",
     {
       form: {
         ident: "sohailmcs",
         secret: "e5ce3562-cb3d-11ea-aef6-0242ac150002",
-        domain: "http://chat-av.herokuapp.com/",
+        domain: "https://chat-av.herokuapp.com/",
         application: "default",
         room: "KindahCare",
         secure: 1,
