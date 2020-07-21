@@ -246,7 +246,7 @@ function patientLoginSuccess(easyrtcid) {
 }
 
 function loginSuccess(easyrtcid) {
-  console.log("this is doctor id on first login = " + easyrtcid);
+  alert("this is doctor id" + easyrtcid);
 }
 function loginFailure(errorCode, message) {
   easyrtc.showError(errorCode, message);
