@@ -126,6 +126,7 @@ socketServer.sockets.on("connection", function (socket) {
   });
 });
 
+//=========configure ice server=====
 easyrtc.on("getIceConfig", function (connectionObj, callback) {
   // This object will take in an array of XirSys STUN and TURN servers
   var iceConfig = [
