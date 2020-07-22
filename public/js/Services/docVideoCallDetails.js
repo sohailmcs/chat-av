@@ -34,13 +34,6 @@ $(function () {
     updateDoctorNotes(cLogId, "");
   });
 
-  $(".videoFrame").on("load", function () {
-    // code will run after iframe has finished loading
-    var element = $(document).find("div.Embed-mask");
-    console.log(element);
-    //alert(ele);
-  });
-
   $(".btnSaveNSend").click(function () {
     updatePrescription(cLogId, $("#patientAge").val(), patientId);
   });
@@ -100,6 +93,14 @@ $(function () {
       height: "600",
       allow: "microphone; camera",
     }).appendTo(".main-video-div");
+
+    $("#myFrame").on("load", function () {
+      alert("asdfasd");
+      // code will run after iframe has finished loading
+      var element = $(document).find("div.Embed-mask");
+      console.log(element);
+      //alert(ele);
+    });
   }
   //============end of patient streaming======================
 }); //=====================end of $function==========================
@@ -134,7 +135,7 @@ function performCall() {
     scrolling: "no",
     width: "600",
     height: "600",
-    allallow: "microphone; camera",
+    allow: "microphone; camera",
   }).appendTo(".main-video-div");
 }
 
