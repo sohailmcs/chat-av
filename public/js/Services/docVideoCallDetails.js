@@ -35,16 +35,16 @@ $(window).bind("beforeunload", function () {
 $(function () {
   $(".btnSave").click(function () {
     updateDoctorNotes(cLogId, "");
+  });
 
-    let iframe = $("#videoFrame");
+  let iframe = $("#videoFrame");
 
-    //find button inside iframe
-    let button = iframe.contents().find("#start");
+  //find button inside iframe
+  let button = iframe.contents().find(".clickable");
 
-    //trigger button click
-    button.click(function () {
-      alert("adfadsfasdfasdfasdfasdfads");
-    });
+  //trigger button click
+  button.click(function () {
+    alert("adfadsfasdfasdfasdfasdfads");
   });
 
   $(".btnSaveNSend").click(function () {
