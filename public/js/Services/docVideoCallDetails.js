@@ -39,7 +39,7 @@ $(function () {
 
   $(".videoFrame").on("load", function () {
     // code will run after iframe has finished loading
-    var element = $(".message");
+    var element = $(".Embed-mask");
     console.log(element);
     //alert(ele);
   });
