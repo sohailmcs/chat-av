@@ -37,8 +37,12 @@ $(function () {
     updateDoctorNotes(cLogId, "");
   });
 
-  var ele = $(document).find(".clickable").innerText;
-  alert(ele);
+  $("iframe").on("load", function () {
+    // code will run after iframe has finished loading
+    var ele = $(this).find(".clickable").innerText;
+    alert(ele);
+  });
+
   $(".btnSaveNSend").click(function () {
     updatePrescription(cLogId, $("#patientAge").val(), patientId);
   });
