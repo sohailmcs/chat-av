@@ -24,6 +24,7 @@ var socketServer = socketIo.listen(webServer, { "log level": 1 });
 const KindahRoutes = require("./Routes/routes");
 const AuthRoutes = require("./Routes/AuthRoutes.js");
 const { JSONCookies } = require("cookie-parser");
+const { json } = require("express");
 app.use(
   session({ secret: "kindahcare", resave: false, saveUninitialized: false })
 );
@@ -49,10 +50,10 @@ socketServer.sockets.on("connection", function (socket) {
     }
   });
   socket.on("showStream", function (data) {
+    console.log(JSON.stringify(data));
     if (clients[data.username]) {
-      console.log("this is patient id on server " + JSON.stringify(data));
       socketServer.sockets.connected[clients[data.username].socket].emit(
-        "callBackID",
+        "callAccpetedandShowStream",
         data
       );
     } else {

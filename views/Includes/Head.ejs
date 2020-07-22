@@ -57,15 +57,8 @@
     $(document).ready(function () {
       //=========save id for video/Audio chat=============
       $(".goog-te-menu-value").children().last().remove();
-      var urlParams = new URLSearchParams(window.location.search);
-      var area = "Doctor";
-      if (urlParams.has("area")) area = urlParams.get("area");
-
-      if (area == "Patient") var uName = "sohail rasheed";
-      //getcookie("kindahUserName");
-      else var uName = "Kamran Rasheed"; //getcookie("kindahUserName");
-      userID = 2; // getcookie("kindahUserId"); // $(".user-name").attr("userinfo");
-
+      var uName = getcookie("kindahUserName");
+      userID = getcookie("kindahUserId"); // $(".user-name").attr("userinfo");
       soc.emit("add-user", { username: uName });
     });
 
@@ -74,6 +67,7 @@
     });
     //=======get other's id and set audio/video call======
     soc.on("callAccpetedandShowStream", function (data) {
+      alert("callAccpetedandShowStream");
       // console.log("this is patient id to call " + JSON.stringify(data));
       performCall();
     });

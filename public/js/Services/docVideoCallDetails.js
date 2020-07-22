@@ -90,6 +90,16 @@ $(function () {
   //============start of patient streaming======================
   if (area == "Patient") {
     $("#divCallNow").css("display", "none");
+    $("<iframe>", {
+      src:
+        "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
+      id: "myFrame",
+      frameborder: 0,
+      scrolling: "no",
+      width: "600",
+      height: "600",
+      allallow: "microphone; camera",
+    }).appendTo(".main-video-div");
   }
   //============end of patient streaming======================
 }); //=====================end of $function==========================
@@ -116,7 +126,6 @@ function performCall() {
   callPerformed = true;
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
-  alert("performed calls");
   $("<iframe>", {
     src:
       "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",

@@ -89,6 +89,11 @@
       //=========accept the call======
       var doctorName = $(btn).attr("doctorName");
       if (status) {
+        soc.emit("showStream", {
+          username: doctorName,
+          pName: uName,
+        });
+
         var width = screen.width / 2 + 100;
         var height = screen.height / 2 + 150;
         var left = (screen.width - width) / 2;
@@ -112,10 +117,6 @@
           "MsgWindow",
           params
         );
-        soc.emit("showStream", {
-          username: doctorName,
-          pName: uName,
-        });
       } else {
         //=========Reject the call======
         soc.emit("RejectedAudioVideoCall", {
