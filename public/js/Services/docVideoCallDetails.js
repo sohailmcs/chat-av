@@ -104,22 +104,22 @@ $(function () {
   //===========end functionality calling======================
 
   //============start of patient streaming======================
-  if (area == "Patient") {
-    easyrtc.setUsername(PatientName);
-    easyrtc.setVideoDims(1280, 720);
-    easyrtc.enableDebug(true);
-    easyrtc.initMediaSource(
-      function () {
-        // success callback
+  // if (area == "Patient") {
+  //   easyrtc.setUsername(PatientName);
+  //   easyrtc.setVideoDims(1280, 720);
+  //   easyrtc.enableDebug(true);
+  //   easyrtc.initMediaSource(
+  //     function () {
+  //       // success callback
 
-        easyrtc.connect("KindahCare", patientLoginSuccess, loginFailure);
-        $(".three-icons").css({ display: "block", "z-index": "11000" });
-      },
-      function (errorCode, errmesg) {
-        easyrtc.showError("MEDIA-ERROR", errmesg);
-      }
-    );
-  }
+  //       easyrtc.connect("KindahCare", patientLoginSuccess, loginFailure);
+  //       $(".three-icons").css({ display: "block", "z-index": "11000" });
+  //     },
+  //     function (errorCode, errmesg) {
+  //       easyrtc.showError("MEDIA-ERROR", errmesg);
+  //     }
+  //   );
+  // }
   //============end of patient streaming======================
 }); //=====================end of $function==========================
 
