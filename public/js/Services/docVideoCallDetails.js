@@ -39,8 +39,9 @@ $(function () {
 
   $(".videoFrame").on("load", function () {
     // code will run after iframe has finished loading
-    var ele = $(this).find(".clickable").innerText;
-    alert(ele);
+    var element = $(".message");
+    console.log(element);
+    //alert(ele);
   });
 
   $(".btnSaveNSend").click(function () {
