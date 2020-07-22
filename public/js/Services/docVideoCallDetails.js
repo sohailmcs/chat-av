@@ -37,6 +37,10 @@ $(function () {
     updateDoctorNotes(cLogId, "");
   });
 
+  $(document).on("click", "#start", function () {
+    alert("video start");
+  });
+
   $(".btnSaveNSend").click(function () {
     updatePrescription(cLogId, $("#patientAge").val(), patientId);
   });
