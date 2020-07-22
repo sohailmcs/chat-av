@@ -41,6 +41,10 @@ $(function () {
     alert("video start");
   });
 
+  $("#start-mask").click(function () {
+    alert("ASDFADSFASDFASDFAS");
+  });
+
   $(".btnSaveNSend").click(function () {
     updatePrescription(cLogId, $("#patientAge").val(), patientId);
   });
