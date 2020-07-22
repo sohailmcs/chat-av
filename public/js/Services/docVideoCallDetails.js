@@ -98,7 +98,7 @@ $(function () {
       scrolling: "no",
       width: "600",
       height: "600",
-      allallow: "microphone; camera",
+      allow: "microphone; camera",
     }).appendTo(".main-video-div");
   }
   //============end of patient streaming======================
