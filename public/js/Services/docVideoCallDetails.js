@@ -111,11 +111,13 @@ function performCall() {
     allow: "microphone; camera",
   }).appendTo(".main-video-div");
 
-  $("#myFrame").bind("load", function () {
-    console.log($(this).contents().find(".start").innerText);
-  });
+  // $("#myFrame").bind("load", function () {
+  //   console.log($(this).contents().find(".start").innerText);
+  // });
 
   $("#myFrame").load(function () {
+    console.log($("#myFrame").contents().find("#start-mask"));
+
     console.log($("#myFrame").contents().find("#start-mask").innerHTML);
   });
 }
