@@ -37,7 +37,7 @@ $(function () {
     updateDoctorNotes(cLogId, "");
   });
 
-  let iframe = $("#videoFrame");
+  let iframe = $("iframe");
 
   //find button inside iframe
   let button = iframe.contents().find(".clickable");
