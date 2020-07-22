@@ -95,42 +95,30 @@ $(function () {
     }).appendTo(".main-video-div");
   }
   //============end of patient streaming======================
-
-  function performCall() {
-    callPerformed = true;
-    PlayCallingSound(false);
-    timer = setInterval(countTimer, 1000);
-    $("<iframe>", {
-      src:
-        "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
-      id: "myFrame",
-      frameborder: 0,
-      scrolling: "no",
-      width: "600",
-      height: "600",
-      allow: "microphone; camera",
-    }).appendTo(".main-video-div");
-
-    $("#myFrame").bind("load", function () {
-      console.log($(this).contents().find(".start").innerText);
-    });
-
-    $("#myFrame").load(function () {
-      console.log($("#myFrame").contents().find("#start-mask").innerHTML);
-    });
-
-    // $("#myFrame").on("load", function () {
-    //   alert("asdfasd");
-    //   // code will run after iframe has finished loading
-    //   var iframe = document.getElementById("myFrame");
-    //   var elmnt = iframe.contentWindow.document.getElementsByID("H1")[0];
-
-    //   var element = $(document).find("div.Embed-mask");
-    //   console.log(element);
-    //   //alert(ele);
-    // });
-  }
 }); //=====================end of $function==========================
+function performCall() {
+  callPerformed = true;
+  PlayCallingSound(false);
+  timer = setInterval(countTimer, 1000);
+  $("<iframe>", {
+    src:
+      "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
+    id: "myFrame",
+    frameborder: 0,
+    scrolling: "no",
+    width: "600",
+    height: "600",
+    allow: "microphone; camera",
+  }).appendTo(".main-video-div");
+
+  $("#myFrame").bind("load", function () {
+    console.log($(this).contents().find(".start").innerText);
+  });
+
+  $("#myFrame").load(function () {
+    console.log($("#myFrame").contents().find("#start-mask").innerHTML);
+  });
+}
 
 //============calculate calling time==============
 //var timerVar = setInterval(countTimer, 1000);
