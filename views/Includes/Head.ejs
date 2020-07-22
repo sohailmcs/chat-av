@@ -73,7 +73,7 @@
       updateDoctorOnlineStatus(data.uID, data.status);
     });
     //=======get other's id and set audio/video call======
-    soc.on("callBackID", function (data) {
+    soc.on("callAccpetedandShowStream", function (data) {
       // console.log("this is patient id to call " + JSON.stringify(data));
       performCall();
     });

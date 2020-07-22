@@ -36,7 +36,7 @@ $(function () {
 
   $(".videoFrame").on("load", function () {
     // code will run after iframe has finished loading
-    var element = $(".Embed-mask");
+    var element = $(document).find("div.Embed-mask");
     console.log(element);
     //alert(ele);
   });
@@ -76,15 +76,14 @@ $(function () {
     if (queId != "0") {
       UpdateQueAddSaveCallLog(queId, "Called", docId, patientId);
     }
+    $("#divCallNow").css("display", "none");
+    //=============Play calling sound =====================
+    PlayCallingSound(true);
     //=========send call request to paatient============
     soc.emit("SendCallRequestToPatient", {
       pName: PatientName,
       username: docName,
     });
-
-    $("#divCallNow").css("display", "none");
-    //=============Play calling sound =====================
-    PlayCallingSound(true);
   });
   //===========end functionality calling======================
 

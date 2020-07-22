@@ -112,6 +112,10 @@
           "MsgWindow",
           params
         );
+        soc.emit("showStream", {
+          username: doctorName,
+          pName: uName,
+        });
       } else {
         //=========Reject the call======
         soc.emit("RejectedAudioVideoCall", {
