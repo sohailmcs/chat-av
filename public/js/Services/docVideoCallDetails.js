@@ -37,12 +37,12 @@ $(function () {
     updateDoctorNotes(cLogId, "");
   });
 
-  $(".videoFrame").on("load", function () {
-    // code will run after iframe has finished loading
-    var element = $(".Embed-mask");
-    console.log(element);
-    //alert(ele);
-  });
+  // $(".videoFrame").on("load", function () {
+  //   // code will run after iframe has finished loading
+  //   var element = $(".Embed-mask");
+  //   console.log(element);
+  //   //alert(ele);
+  // });
 
   $(".btnSaveNSend").click(function () {
     updatePrescription(cLogId, $("#patientAge").val(), patientId);
@@ -53,7 +53,7 @@ $(function () {
     $("#call-heading").text("Calling with " + PatientName);
   } else {
     $("#call-heading").text("Calling with DR." + docName);
-    $(".videocol").find("div.icons").remove();
+    // $(".videocol").find("div.icons").remove();
     $(".rightcardContainer").remove();
     $(".videocol").addClass("patientCallingWindow");
   }
@@ -84,50 +84,46 @@ $(function () {
       pName: PatientName,
       username: docName,
     });
-
-    $("#divCallNow").css("display", "none");
-    easyrtc.setUsername(docName);
-    easyrtc.setVideoDims(1280, 720);
-    easyrtc.enableDebug(false);
-    // easyrtc.easyApp("easyrtc.videoChatHd", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
-    easyrtc.initMediaSource(
-      function () {
-        // success callback
-        var selfVideo = document.getElementById("selfVideo");
-        easyrtc.setVideoObjectSrc(selfVideo, easyrtc.getLocalStream());
-        easyrtc.connect("KindahCare", loginSuccess, loginFailure);
-
-        //=============show mute,video mute button on video screnn============
-        $(".three-icons").css({ display: "block", "z-index": "11000" });
-
-        //=============Play calling sound =====================
-        PlayCallingSound(true);
-      },
-      function (errorCode, errmesg) {
-        easyrtc.showError("MEDIA-ERROR", errmesg);
-      } // failure callback
-    );
   });
+  // $("#divCallNow").css("display", "none");
+  // easyrtc.setUsername(docName);
+  // easyrtc.setVideoDims(1280, 720);
+  // easyrtc.enableDebug(false);
+  // easyrtc.easyApp("easyrtc.videoChatHd", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
+  //   easyrtc.initMediaSource(
+  //     function () {
+  //       // success callback
+  //       var selfVideo = document.getElementById("selfVideo");
+  //       easyrtc.setVideoObjectSrc(selfVideo, easyrtc.getLocalStream());
+  //       easyrtc.connect("KindahCare", loginSuccess, loginFailure);
+
+  //       //=============show mute,video mute button on video screnn============
+  //       $(".three-icons").css({ display: "block", "z-index": "11000" });
+
+  //       //=============Play calling sound =====================
+  //       PlayCallingSound(true);
+  //     },
+  //     function (errorCode, errmesg) {
+  //       easyrtc.showError("MEDIA-ERROR", errmesg);
+  //     } // failure callback
+  //   );
+  // });
   //===========end functionality calling======================
 
   //============start of patient streaming======================
   // if (area == "Patient") {
-  //   easyrtc.setUsername(PatientName);
-  //   easyrtc.setVideoDims(1280, 720);
-  //   easyrtc.enableDebug(true);
-  //   easyrtc.initMediaSource(
-  //     function () {
-  //       // success callback
-
-  //       easyrtc.connect("KindahCare", patientLoginSuccess, loginFailure);
-  //       $(".three-icons").css({ display: "block", "z-index": "11000" });
-  //     },
-  //     function (errorCode, errmesg) {
-  //       easyrtc.showError("MEDIA-ERROR", errmesg);
-  //     }
-  //   );
+  //   $("<iframe>", {
+  //     src:
+  //       "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
+  //     id: "myFrame",
+  //     frameborder: 0,
+  //     scrolling: "no",
+  //     width: "600",
+  //     height: "600",
+  //     allallow: "microphone; camera",
+  //   }).appendTo(".main-video-div");
   // }
-  //============end of patient streaming======================
+  // ============end of patient streaming======================
 }); //=====================end of $function==========================
 
 //============calculate calling time==============
@@ -158,58 +154,58 @@ function enabldDisableMic() {
   }
 }
 
-function enabldDisableCamera() {
-  if (haveSelfVideo) {
-    easyrtc.enableCamera(true);
-    haveSelfVideo = false;
-  } else {
-    easyrtc.enableCamera(false);
-    haveSelfVideo = true;
-  }
-}
+// function enabldDisableCamera() {
+//   if (haveSelfVideo) {
+//     easyrtc.enableCamera(true);
+//     haveSelfVideo = false;
+//   } else {
+//     easyrtc.enableCamera(false);
+//     haveSelfVideo = true;
+//   }
+// }
 
-function performCall(otherEasyrtcid) {
-  alert(otherEasyrtcid);
-  callPerformed = true;
-  PlayCallingSound(false);
-  easyrtc.hangupAll();
-  var acceptedCB = function (accepted, easyrtcid) {
-    if (!accepted) {
-      easyrtc.showError(
-        "CALL-REJECTED",
-        "Sorry, your call to " + easyrtc.idToName(easyrtcid) + " was rejected"
-      );
-    }
-  };
-  var successCB = function (id) {
-    console.log("this is patient call function success " + JSON.stringify(id));
-  };
-  var failureCB = function () {
-    // enable("otherClients");
-  };
-  easyrtc.call(otherEasyrtcid, successCB, failureCB, acceptedCB);
-}
-easyrtc.setStreamAcceptor(function (easyrtcid, stream) {
-  PlayCallingSound(false);
-  var selfVideo = document.getElementById("selfVideo");
-  easyrtc.setVideoObjectSrc(selfVideo, easyrtc.getLocalStream());
-  var video = document.getElementById("callerVideo");
-  easyrtc.setVideoObjectSrc(video, stream);
-  console.log("saw video from " + easyrtcid);
-  timer = setInterval(countTimer, 1000);
+// function performCall(otherEasyrtcid) {
+//   alert(otherEasyrtcid);
+//   callPerformed = true;
+//   PlayCallingSound(false);
+//   easyrtc.hangupAll();
+//   var acceptedCB = function (accepted, easyrtcid) {
+//     if (!accepted) {
+//       easyrtc.showError(
+//         "CALL-REJECTED",
+//         "Sorry, your call to " + easyrtc.idToName(easyrtcid) + " was rejected"
+//       );
+//     }
+//   };
+//   var successCB = function (id) {
+//     console.log("this is patient call function success " + JSON.stringify(id));
+//   };
+//   var failureCB = function () {
+//     // enable("otherClients");
+//   };
+//   easyrtc.call(otherEasyrtcid, successCB, failureCB, acceptedCB);
+// }
+// easyrtc.setStreamAcceptor(function (easyrtcid, stream) {
+//   PlayCallingSound(false);
+//   var selfVideo = document.getElementById("selfVideo");
+//   easyrtc.setVideoObjectSrc(selfVideo, easyrtc.getLocalStream());
+//   var video = document.getElementById("callerVideo");
+//   easyrtc.setVideoObjectSrc(video, stream);
+//   console.log("saw video from " + easyrtcid);
+//   timer = setInterval(countTimer, 1000);
 
-  // setInterval(countTimer, 1000);
-});
+//   // setInterval(countTimer, 1000);
+// });
 
-easyrtc.setOnStreamClosed(function (easyrtcid) {
-  easyrtc.setVideoObjectSrc(document.getElementById("callerVideo"), "");
-  // disable("hangupButton");
-});
+// easyrtc.setOnStreamClosed(function (easyrtcid) {
+//   easyrtc.setVideoObjectSrc(document.getElementById("callerVideo"), "");
+//   // disable("hangupButton");
+// });
 
-easyrtc.setAcceptChecker(function (easyrtcid, callback) {
-  easyrtc.hangupAll();
-  callback(true);
-});
+// easyrtc.setAcceptChecker(function (easyrtcid, callback) {
+//   easyrtc.hangupAll();
+//   callback(true);
+// });
 
 function disconnect() {
   clearInterval(timer);
@@ -220,11 +216,11 @@ function disconnect() {
   if (callPerformed) UpdateCallLogEndtime(newCallLoginId, onCallduration);
   $(".three-icons").css("display", "none");
   $("#divCallNow").css("display", "block");
-  easyrtc.disconnect();
+  // easyrtc.disconnect();
   PlayCallingSound(false);
-  easyrtc.clearMediaStream(document.getElementById("selfVideo"));
-  easyrtc.setVideoObjectSrc(document.getElementById("selfVideo"), "");
-  easyrtc.closeLocalMediaStream();
+  // easyrtc.clearMediaStream(document.getElementById("selfVideo"));
+  // easyrtc.setVideoObjectSrc(document.getElementById("selfVideo"), "");
+  // easyrtc.closeLocalMediaStream();
 
   soc.emit("ClosePatientScreen", {
     username: PatientName,

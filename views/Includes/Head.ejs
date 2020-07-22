@@ -74,8 +74,18 @@
     });
     //=======get other's id and set audio/video call======
     soc.on("callBackID", function (data) {
-      console.log("this is patient id to call " + JSON.stringify(data));
-      performCall(data.easyId);
+      // console.log("this is patient id to call " + JSON.stringify(data));
+      // performCall(data.easyId);
+      $("<iframe>", {
+        src:
+          "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
+        id: "myFrame",
+        frameborder: 0,
+        scrolling: "no",
+        width: "600",
+        height: "600",
+        allallow: "microphone; camera",
+      }).appendTo(".main-video-div");
     });
     soc.on("ClosePatientScreen", function (data) {
       window.open("", "_self", "");

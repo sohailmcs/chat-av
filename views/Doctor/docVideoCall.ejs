@@ -257,7 +257,11 @@
     
     <div class="main-video-div">
     
-    <div class=" three-icons" style="text-align: center;">
+ <iframe class="videoFrame"
+  src="https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT_ROOM&iframe=true" width=650 height=600
+    scrolling="no" allow="microphone; camera" ></iframe>
+
+    <!-- <div class=" three-icons" style="text-align: center;">
     <button type="button" onclick="enabldDisableMic()"
     class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 btn-microphone btn-three-icon">
     <i class="bx bx-microphone icon-size icon-microphone"></i>
@@ -272,21 +276,21 @@
     class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1 btn-three-icon">
     <i class="bx bx-phone-call icon-size"></i>
     </button>
-    </div>
-
+    </div> -->
     
-
-    <iframe class="videoFrame" src="https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT_ROOM&iframe=true" width=800 height=640 
-    scrolling="auto" allow="microphone; camera" ></iframe>
-  
+    <!-- <video class="easyrtcMirror self-video"  autoplay="autoplay" id="callerVideo" muted="true" volume="0">
+    </video>
+    
+    <video autoplay playsinline="playsinline"  class="caller-video" id="selfVideo"></video> -->
+    </div>
     
      <br />
-    <!-- <div class="icons" id="divCallNow">
+    <div class="icons" id="divCallNow">
     <button type="button" id="btnCallNow"
     class="btn btn-icon rounded-circle call-btn-border mr-1 mb-1 btn-lg btn-three-icon">
     <i class="call-btn bx bx-phone-call call-show icon-size"></i>
     </button>
-  </div> -->
+  </div>
     
     <div style="text-align: center;" id="timer">    
     </div>    
@@ -294,7 +298,7 @@
     <button type="button" class="btn btn-outline-primary round mr-1 mb-1 slide-right" disabled >
     <i class="bx bx-show"></i>
     Show Medical Record
-     </button>
+    </button>
     <button type="button" class="btn btn-outline-primary round mr-1 mb-1 slide-left">
     <i class="bx bx-hide"></i>
     Hide Medical Record
