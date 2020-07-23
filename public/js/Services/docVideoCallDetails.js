@@ -344,7 +344,7 @@ function GetDoctorNotes(callLogId) {
 }
 
 function updateDoctorNotes(callLogId, status) {
-  $("#doctorNotesLoading").show();
+  $(".doctorNotesLoading").show();
   $(".btnSave").prop("disabled", true);
   var url = baseURL + "CallLogs/UpdateCallLog";
   var model = {
@@ -377,7 +377,7 @@ function updateDoctorNotes(callLogId, status) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
-      $("#doctorNotesLoading").hide();
+      $(".doctorNotesLoading").hide();
       $(".btnSave").prop("disabled", false);
 
       $(".msg").delay(1000).fadeOut("slow");
@@ -386,7 +386,7 @@ function updateDoctorNotes(callLogId, status) {
 }
 
 function updatePrescription(callLogId, age, patientId) {
-  $("#PrescripeLoading").show();
+  $(".PrescripeLoading").show();
   $(".btnSaveNSend").prop("disabled", true);
   var url =
     baseURL +
@@ -423,7 +423,7 @@ function updatePrescription(callLogId, age, patientId) {
     },
     complete: function (data) {
       $(".btnSaveNSend").prop("disabled", false);
-      $("#PrescripeLoading").hide();
+      $(".PrescripeLoading").hide();
       $(".msgPrescription").delay(1000).fadeOut("slow");
     },
   });
