@@ -59,6 +59,7 @@ $(function () {
   //========get patient history===============
   if (area != "Patient") {
     PatientHistory(patientId);
+    $("#divCallNow").show();
     $("#call-heading")
       .text("Calling with " + PatientName)
       .css("width", "100%");
@@ -66,7 +67,6 @@ $(function () {
     $("#call-heading").text("Calling with DR." + docName);
     $(".videocol").find("div.icons").remove();
     $(".rightcardContainer").remove();
-    $("#divCallNow").show();
   }
   //==========ge doctor not==========
   if (cLogId != 0 && area != "Patient") {
