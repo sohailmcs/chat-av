@@ -24,7 +24,6 @@ window.onunload = refreshParent;
 $(window).bind("beforeunload", function () {
   //==========if user has on called then called disconnect=====
   if (callPerformed) disconnect();
-
   soc.emit("ClosePatientScreen", {
     username: PatientName,
   });
@@ -144,7 +143,6 @@ function disconnect() {
   if (callPerformed) UpdateCallLogEndtime(newCallLoginId, onCallduration);
   $(".three-icons").css("display", "none");
   $("#divCallNow").css("display", "block");
-  easyrtc.disconnect();
   PlayCallingSound(false);
 
   soc.emit("ClosePatientScreen", {
