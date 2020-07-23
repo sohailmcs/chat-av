@@ -117,12 +117,6 @@ function performCall() {
     height: "600",
     allow: "microphone; camera",
   }).appendTo(".main-video-div");
-
-  
-}
-
-
-
 }
 
 //============calculate calling time==============
