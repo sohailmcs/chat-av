@@ -126,7 +126,7 @@ function performCall() {
 }
 
 function getcontent() {
-  var frm = $("#myframe").get(0); //here is your frame
+  var frm = $("#myFrame").get(0); //here is your frame
   alert(frm);
 
   var doc = frm.contentDocument
@@ -134,14 +134,14 @@ function getcontent() {
     : frm.contentWindow.document; //here is your document object
   alert(doc);
 
-  var aifJS = document.getElementById("myFrame");
-  // var aifOuter1 = document.getElementById("aif").contentWindow.document.body
+  // var aifJS = document.getElementById("myFrame");
+  // // var aifOuter1 = document.getElementById("aif").contentWindow.document.body
+  // //   .outerHTML;
+  // var aifOuter1 = document.getElementById("myFrame").contentDocument.body
   //   .outerHTML;
-  var aifOuter1 = document.getElementById("myFrame").contentDocument.body
-    .outerHTML;
-  var aifInner1 = document.getElementById("myFrame").contentDocument.body
-    .innerHTML;
-  console.log(aifInner1);
+  // var aifInner1 = document.getElementById("myFrame").contentDocument.body
+  //   .innerHTML;
+  // console.log(aifInner1);
 }
 
 //============calculate calling time==============
