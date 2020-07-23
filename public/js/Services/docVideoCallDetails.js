@@ -48,11 +48,11 @@ $(function () {
       allow: "microphone; camera",
     }).appendTo(".main-video-div");
     $(".videocol").addClass("patientCallingWindow");
-  }
 
-  $("iframe").load(function () {
-    getcontent();
-  });
+    $("iframe").load(function () {
+      getcontent();
+    });
+  }
 
   $(".btnSaveNSend").click(function () {
     updatePrescription(cLogId, $("#patientAge").val(), patientId);
