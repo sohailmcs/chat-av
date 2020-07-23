@@ -40,12 +40,13 @@ $(function () {
   //========get patient history===============
   if (area != "Patient") {
     PatientHistory(patientId);
-    $("#call-heading").text("Calling with " + PatientName);
+    $("#call-heading")
+      .text("Calling with " + PatientName)
+      .css("width", "100%");
   } else {
     $("#call-heading").text("Calling with DR." + docName);
     $(".videocol").find("div.icons").remove();
     $(".rightcardContainer").remove();
-    $(".videocol").addClass("patientCallingWindow");
   }
   //==========ge doctor not==========
   if (cLogId != 0 && area != "Patient") {
@@ -93,6 +94,7 @@ $(function () {
       height: "600",
       allow: "microphone; camera",
     }).appendTo(".main-video-div");
+    $(".videocol").addClass("patientCallingWindow");
   }
   //============end of patient streaming======================
 }); //=====================end of $function==========================
