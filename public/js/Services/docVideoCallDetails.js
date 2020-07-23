@@ -103,7 +103,7 @@ function performCall() {
   $("<iframe>", {
     src:
       "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
-    id: "myFrame",
+    class: "myFrame",
     frameborder: 0,
     scrolling: "no",
     width: "600",
@@ -115,8 +115,8 @@ function performCall() {
   //   console.log($(this).contents().find(".start").innerText);
   // });
 
-  $("#myFrame").load(function () {
-    console.log($("#myFrame").contents().find("#start-mask"));
+  $(".myFrame").load(function () {
+    console.log("loaded");
 
     console.log($("#myFrame").contents().find("#start-mask").innerHTML);
   });
