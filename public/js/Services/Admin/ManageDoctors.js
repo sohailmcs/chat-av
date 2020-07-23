@@ -116,7 +116,6 @@ function CreateDoctor() {
     },
   });
 }
-
 function GetAllRegisterDoctor() {
   var url = baseURL + "Doctor/GetDoctors";
   ///==============start post request to add doctor
