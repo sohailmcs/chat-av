@@ -33,9 +33,6 @@ $(function () {
   $(".btnSave").click(function () {
     updateDoctorNotes(cLogId, "");
   });
-  // $("iframe").load(function () {
-  getcontent();
-  // });
 
   //============start of patient streaming======================
   if (area == "Patient") {
