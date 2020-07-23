@@ -33,9 +33,9 @@ $(function () {
   $(".btnSave").click(function () {
     updateDoctorNotes(cLogId, "");
   });
-  $("iframe").load(function () {
-    getcontent();
-  });
+  // $("iframe").load(function () {
+  getcontent();
+  // });
 
   //============start of patient streaming======================
   if (area == "Patient") {
@@ -126,6 +126,14 @@ function performCall() {
 }
 
 function getcontent() {
+  var frm = $("#myframe").get(0); //here is your frame
+  alert(frm);
+
+  var doc = frm.contentDocument
+    ? frm.contentDocument
+    : frm.contentWindow.document; //here is your document object
+  alert(doc);
+
   var aifJS = document.getElementById("myFrame");
   // var aifOuter1 = document.getElementById("aif").contentWindow.document.body
   //   .outerHTML;
