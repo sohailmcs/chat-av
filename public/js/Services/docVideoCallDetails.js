@@ -66,6 +66,7 @@ $(function () {
     $("#call-heading").text("Calling with DR." + docName);
     $(".videocol").find("div.icons").remove();
     $(".rightcardContainer").remove();
+    $("#divCallNow").show();
   }
   //==========ge doctor not==========
   if (cLogId != 0 && area != "Patient") {

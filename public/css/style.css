@@ -53,7 +53,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   position: absolute;
   bottom: 0;
 }
-call-heading {
+.call-heading {
   text-align: center;
 }
 
@@ -769,11 +769,6 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 .icons {
   text-align: center;
   cursor: pointer;
-}
-
-.call-heading {
-  margin-left: 3%;
-  width: 100%;
 }
 
 .icon-size {
