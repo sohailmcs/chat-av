@@ -13,7 +13,8 @@ var callPerformed = false;
 var insertedCallLogID;
 
 function refreshParent() {
-  if (window.opener != null && !window.opener.closed && area == "Patient") {
+  if (window.opener != null && !window.opener.closed) {
+    // && area == "Patient") {
     window.opener.location.reload();
   }
 }
