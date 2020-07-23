@@ -117,10 +117,6 @@ function performCall() {
     allow: "microphone; camera",
   }).appendTo(".main-video-div");
 
-  $("iframe").load(function () {
-    console.log("aaaaaaaaaaaaaaaaaaaaa");
-  });
-
   // $(".myFrame").load(function () {
   //   console.log("loaded");
 
