@@ -62,13 +62,13 @@
               <!-- VIEW DOCTOR PROFILE START -->
               <div class="modal-primary mr-1  d-inline-block btn-patient-dashboard">
                 <!-- Button trigger for primary themes modal -->
-                <button type="button" docID="{{DoctorId}}" class="btndoctorProfile btn btn-outline-primary round mr-1  btn-sm">
+                <button type="button" docID="{{DoctorId}}" class="pt-dash-button btndoctorProfile btn btn-outline-primary round mr-1  btn-sm">
                   <i class="bx bxs-show"></i>
                   <b>View Doctor Profile</b>
                 </button>
               </div>
               <a href="/patientReqAppointment?DoctorId={{DoctorId}}&DocName={{FullName}}"   class="btn-patient-dashboard">
-                <button type="button" class="btn btn-outline-primary round mr-1  btn-sm">
+                <button type="button" class=" pt-dash-buttonbtn btn-outline-primary round mr-1  btn-sm">
                   <i class="bx bx-calendar"></i>
                   <b>Request Appointment</b>
                 </button>
@@ -76,7 +76,8 @@
               {{#OnlineStatus}}
               <div class="mr-1  d-inline-block btn-patient-dashboard">                              
                 <!-- Button trigger for request a call modal -->                              
-                <button type="button" fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}" class="btnSencCallReq btn btn-outline-primary round mr-1  btn-sm">
+                <button type="button" fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}"
+                 class="pt-dash-button btnSencCallReq btn btn-outline-primary round mr-1  btn-sm">
                   <i class="bx bx-phone-call"></i>
                   <b>Join the Sameday Waiting list</b>
                 </button>                            
