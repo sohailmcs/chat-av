@@ -12,10 +12,6 @@ var onCallduration;
 var callPerformed = false;
 var insertedCallLogID;
 
-$(".iframe").load(function () {
-  $("iframe").contents().find(".clickable").css("border", "#000 1px solid");
-});
-
 function refreshParent() {
   if (window.opener != null && !window.opener.closed && area == "Patient") {
     window.opener.location.reload();
@@ -116,6 +112,10 @@ function performCall() {
     height: "600",
     allow: "microphone; camera",
   }).appendTo(".main-video-div");
+
+  $(".iframe").load(function () {
+    $("iframe").contents().find(".clickable").css("border", "#000 1px solid");
+  });
 
   // $(".myFrame").load(function () {
   //   console.log("loaded");
