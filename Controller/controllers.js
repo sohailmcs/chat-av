@@ -8,12 +8,12 @@ exports.getHomePage = (req, res, next) => {
 
 //admin Controllers
 exports.getkindahAdmin = (req, res, next) => {
-  var UserName = req.cookies.kindahUserName;
-  var userId = req.cookies.kindahUserId;
+  // var UserName = req.cookies.kindahUserName;
+  // var userId = req.cookies.kindahUserId;
   res.render("admin/KindahAdmin", {
     pageTitle: "Kindah Admin",
-    UserName: UserName,
-    userId: userId,
+    // UserName: UserName,
+    // userId: userId,
   });
 };
 
