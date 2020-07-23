@@ -37,6 +37,7 @@ $(function () {
   //============start of patient streaming======================
   if (area == "Patient") {
     $("#divCallNow").hide();
+    $(".rightcardContainer").remove();
     $("<iframe>", {
       src:
         "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
