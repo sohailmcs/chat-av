@@ -3,6 +3,8 @@ var height2 = 195.688;
 
 $(document).ready(function () {
   $(".slide-left").click(function () {
+    $(".slide-left").css("display", "none");
+    $(".slide-right").css("display", "unset");
     if ($(window).width() <= 992) {
       $(".doc-pres-card").css("display", "none");
       $(".rightcardContainer").css("display", "none");
@@ -26,6 +28,8 @@ $(document).ready(function () {
   });
 
   $(".slide-right").click(function () {
+    $(".slide-left").css("display", "unset");
+    $(".slide-right").css("display", "none");
     if ($(window).width() <= 992) {
       $(".doc-pres-card").css("display", "block");
       $(".rightcardContainer").css("display", "");
@@ -103,6 +107,9 @@ function ViewPatientHistory(CallLogID) {
   var url = baseURL + `CallLogs/GetPatientHistory?callLogId=${CallLogID}`;
   $.ajax({
     url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
     type: "GET",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
