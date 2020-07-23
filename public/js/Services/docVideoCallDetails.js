@@ -145,9 +145,6 @@ function disconnect() {
   $("#divCallNow").css("display", "block");
   easyrtc.disconnect();
   PlayCallingSound(false);
-  easyrtc.clearMediaStream(document.getElementById("selfVideo"));
-  easyrtc.setVideoObjectSrc(document.getElementById("selfVideo"), "");
-  easyrtc.closeLocalMediaStream();
 
   soc.emit("ClosePatientScreen", {
     username: PatientName,
