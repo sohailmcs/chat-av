@@ -34,6 +34,26 @@ $(function () {
     updateDoctorNotes(cLogId, "");
   });
 
+  //============start of patient streaming======================
+  if (area == "Patient") {
+    $("#divCallNow").hide();
+    $("<iframe>", {
+      src:
+        "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
+      id: "myFrame",
+      frameborder: 0,
+      scrolling: "no",
+      width: "600",
+      height: "600",
+      allow: "microphone; camera",
+    }).appendTo(".main-video-div");
+    $(".videocol").addClass("patientCallingWindow");
+  }
+
+  $("iframe").load(function () {
+    getcontent();
+  });
+
   $(".btnSaveNSend").click(function () {
     updatePrescription(cLogId, $("#patientAge").val(), patientId);
   });
@@ -81,21 +101,6 @@ $(function () {
   });
   //===========end functionality calling======================
 
-  //============start of patient streaming======================
-  if (area == "Patient") {
-    $("#divCallNow").hide();
-    $("<iframe>", {
-      src:
-        "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
-      id: "myFrame",
-      frameborder: 0,
-      scrolling: "no",
-      width: "600",
-      height: "600",
-      allow: "microphone; camera",
-    }).appendTo(".main-video-div");
-    $(".videocol").addClass("patientCallingWindow");
-  }
   //============end of patient streaming======================
 }); //=====================end of $function==========================
 function performCall() {
@@ -112,10 +117,6 @@ function performCall() {
     height: "600",
     allow: "microphone; camera",
   }).appendTo(".main-video-div");
-
-  $("iframe").load(function () {
-    getcontent();
-  });
 
   // $(".myFrame").load(function () {
   //   console.log("loaded");
