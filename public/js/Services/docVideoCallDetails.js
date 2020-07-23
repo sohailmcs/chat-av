@@ -105,7 +105,7 @@ function performCall() {
   $("<iframe>", {
     src:
       "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
-    class: "myFrame",
+    id: "myFrame",
     frameborder: 0,
     scrolling: "no",
     width: "600",
@@ -113,8 +113,8 @@ function performCall() {
     allow: "microphone; camera",
   }).appendTo(".main-video-div");
 
-  $(".iframe").load(function () {
-    $("iframe").contents().find(".clickable").css("border", "#000 1px solid");
+  $("iframe").load(function () {
+    getcontent();
   });
 
   // $(".myFrame").load(function () {
@@ -122,6 +122,17 @@ function performCall() {
 
   //   console.log($(".myFrame").contents().find("#start-mask").innerHTML);
   // });
+}
+
+function getcontent() {
+  var aifJS = document.getElementById("myFrame");
+  // var aifOuter1 = document.getElementById("aif").contentWindow.document.body
+  //   .outerHTML;
+  var aifOuter1 = document.getElementById("myFrame").contentDocument.body
+    .outerHTML;
+  var aifInner1 = document.getElementById("myFrame").contentDocument.body
+    .innerHTML;
+  console.log(aifInner1);
 }
 
 //============calculate calling time==============
