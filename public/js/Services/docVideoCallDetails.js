@@ -133,7 +133,7 @@ function getcontent() {
     ? frm.contentDocument
     : frm.contentWindow.document; //here is your document object
   alert(doc);
-  console.log(getElementById);
+  console.log(doc);
 
   // var aifJS = document.getElementById("myFrame");
   // // var aifOuter1 = document.getElementById("aif").contentWindow.document.body
