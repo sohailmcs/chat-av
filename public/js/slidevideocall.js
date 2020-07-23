@@ -115,7 +115,7 @@ function ViewPatientHistory(CallLogID) {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-      // $.LoadingOverlay("show");
+      $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
       var ViewHistoryTemplate = $("#viewPatHistory").html();
@@ -131,7 +131,7 @@ function ViewPatientHistory(CallLogID) {
     },
     complete: function (data) {
       // Hide Loading
-      // $.LoadingOverlay("hide");
+      $.LoadingOverlay("hide");
     },
   });
 }
