@@ -13,9 +13,7 @@ var callPerformed = false;
 var insertedCallLogID;
 
 $(".iframe").load(function () {
-  $("#trigger").click(function () {
-    $("iframe").contents().find(".clickable").css("border", "#000 1px solid");
-  });
+  $("iframe").contents().find(".clickable").css("border", "#000 1px solid");
 });
 
 function refreshParent() {
@@ -119,11 +117,9 @@ function performCall() {
     allow: "microphone; camera",
   }).appendTo(".main-video-div");
 
-  // $("#myFrame").bind("load", function () {
-  //   console.log($(this).contents().find(".start").innerText);
-  // });
-  var iframe = document.getElementById("myFrame");
-  var elmnt = iframe.contentWindow.document.getElementById("Embed-mask")[0];
+  $("iframe").load(function () {
+    console.log("aaaaaaaaaaaaaaaaaaaaa");
+  });
 
   // $(".myFrame").load(function () {
   //   console.log("loaded");
