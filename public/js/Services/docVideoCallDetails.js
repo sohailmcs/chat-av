@@ -41,17 +41,17 @@ $(function () {
   if (area == "Patient") {
     $("#divCallNow").hide();
     $(".rightcardContainer").remove();
-    // $("<iframe>", {
-    //   src:
-    //     "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
-    //   id: "myFrame",
-    //   frameborder: 0,
-    //   scrolling: "no",
-    //   width: "600",
-    //   height: "600",
-    //   allow: "microphone; camera",
-    // }).appendTo(".main-video-div");
-    // $(".videocol").addClass("patientCallingWindow");
+    $("<iframe>", {
+      src:
+        "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
+      id: "myFrame",
+      frameborder: 0,
+      scrolling: "no",
+      width: "600",
+      height: "600",
+      allow: "microphone; camera",
+    }).appendTo(".main-video-div");
+    $(".videocol").addClass("patientCallingWindow");
   }
 
   $(".btnSaveNSend").click(function () {
@@ -107,42 +107,22 @@ function performCall() {
   callPerformed = true;
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
-  // $("<iframe>", {
-  //   src:
-  //     "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
-  //   id: "myFrame",
-  //   frameborder: 0,
-  //   scrolling: "no",
-  //   width: "600",
-  //   height: "600",
-  //   allow: "microphone; camera",
-  // }).appendTo(".main-video-div");
+  $("<iframe>", {
+    src:
+      "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
+    id: "myFrame",
+    frameborder: 0,
+    scrolling: "no",
+    width: "600",
+    height: "600",
+    allow: "microphone; camera",
+  }).appendTo(".main-video-div");
 
-  // $(".myFrame").load(function () {
-  //   console.log("loaded");
-
-  //   console.log($(".myFrame").contents().find("#start-mask").innerHTML);
-  // });
+  
 }
 
-function getcontent() {
-  var frm = $("#myFrame").get(0); //here is your frame
-  alert(frm);
 
-  var doc = frm.contentDocument
-    ? frm.contentDocument
-    : frm.contentWindow.document; //here is your document object
-  alert(doc);
-  console.log(doc);
 
-  // var aifJS = document.getElementById("myFrame");
-  // // var aifOuter1 = document.getElementById("aif").contentWindow.document.body
-  // //   .outerHTML;
-  // var aifOuter1 = document.getElementById("myFrame").contentDocument.body
-  //   .outerHTML;
-  // var aifInner1 = document.getElementById("myFrame").contentDocument.body
-  //   .innerHTML;
-  // console.log(aifInner1);
 }
 
 //============calculate calling time==============
