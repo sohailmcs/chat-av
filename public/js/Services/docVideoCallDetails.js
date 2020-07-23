@@ -120,7 +120,7 @@ function performCall() {
   $(".myFrame").load(function () {
     console.log("loaded");
 
-    console.log($("#myFrame").contents().find("#start-mask").innerHTML);
+    console.log($(".myFrame").contents().find("#start-mask").innerHTML);
   });
 }
 
