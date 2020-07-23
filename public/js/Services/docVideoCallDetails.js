@@ -54,9 +54,6 @@ $(function () {
     $(".videocol").addClass("patientCallingWindow");
   }
 
-  $(".btnSaveNSend").click(function () {
-    updatePrescription(cLogId, $("#patientAge").val(), patientId);
-  });
   //========get patient history===============
   if (area != "Patient") {
     PatientHistory(patientId);
@@ -72,6 +69,10 @@ $(function () {
   if (cLogId != 0 && area != "Patient") {
     GetDoctorNotes(cLogId);
   }
+
+  $(".btnSaveNSend").click(function () {
+    updatePrescription(cLogId, $("#patientAge").val(), patientId);
+  });
 
   $(document).on("click", ".btnViewPres", function () {
     var CallLogId = $(this).attr("CallID");
