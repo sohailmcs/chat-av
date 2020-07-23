@@ -33,26 +33,25 @@ $(function () {
   $(".btnSave").click(function () {
     updateDoctorNotes(cLogId, "");
   });
+  $("iframe").load(function () {
+    getcontent();
+  });
 
   //============start of patient streaming======================
   if (area == "Patient") {
     $("#divCallNow").hide();
     $(".rightcardContainer").remove();
-    $("<iframe>", {
-      src:
-        "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
-      id: "myFrame",
-      frameborder: 0,
-      scrolling: "no",
-      width: "600",
-      height: "600",
-      allow: "microphone; camera",
-    }).appendTo(".main-video-div");
-    $(".videocol").addClass("patientCallingWindow");
-
-    $("iframe").load(function () {
-      getcontent();
-    });
+    // $("<iframe>", {
+    //   src:
+    //     "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
+    //   id: "myFrame",
+    //   frameborder: 0,
+    //   scrolling: "no",
+    //   width: "600",
+    //   height: "600",
+    //   allow: "microphone; camera",
+    // }).appendTo(".main-video-div");
+    // $(".videocol").addClass("patientCallingWindow");
   }
 
   $(".btnSaveNSend").click(function () {
@@ -108,16 +107,16 @@ function performCall() {
   callPerformed = true;
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
-  $("<iframe>", {
-    src:
-      "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
-    id: "myFrame",
-    frameborder: 0,
-    scrolling: "no",
-    width: "600",
-    height: "600",
-    allow: "microphone; camera",
-  }).appendTo(".main-video-div");
+  // $("<iframe>", {
+  //   src:
+  //     "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
+  //   id: "myFrame",
+  //   frameborder: 0,
+  //   scrolling: "no",
+  //   width: "600",
+  //   height: "600",
+  //   allow: "microphone; camera",
+  // }).appendTo(".main-video-div");
 
   // $(".myFrame").load(function () {
   //   console.log("loaded");
