@@ -225,8 +225,7 @@ function GenerateDoctorSlots() {
       ModifiedDate: "1",
       ModifiedBy: "1",
       isActive: true,
-
-      // AppointmentsDetails: AppointmentsDetails,
+      AppointmentsDetails: AppointmentsDetails,
     });
 
     var newDate = fromDt.setDate(fromDt.getDate() + 1);
@@ -280,7 +279,7 @@ function createDoctorScheduled(Appointments) {
         buttonsStyling: false,
         confirmButtonText: "Ok",
       }).then((result) => {
-        window.location.reload();
+        //window.location.reload();
       });
     },
     error: function (xhr, textStatus, err) {
