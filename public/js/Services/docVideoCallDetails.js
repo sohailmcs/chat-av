@@ -348,7 +348,7 @@ function GetDoctorNotes(callLogId) {
 }
 
 function getPatientInfo(PatientId) {
-  var url = baseURL + "CallLogs/GetPatientDetails?PatientId=" + PatientId;
+  var url = baseURL + "Patient/GetPatientDetails?PatientId=" + PatientId;
 
   $.ajax({
     url: url,
