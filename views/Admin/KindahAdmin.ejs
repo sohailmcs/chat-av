@@ -10,7 +10,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=0"
     />
 
-    <title><%= pageTitle %></title>
+    <title><%= PageTitle %></title>
 
     <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
@@ -48,13 +48,45 @@
                       <div class="card-header pb-1">
                         <div class="card-title">
                           <h5 class="text-center mb-2">
-                            Welcome to KindahCare - Admin Portal
+                            Welcome Back to Kindah Care
                           </h5>
                         </div>
                         <span class="error" style="display: none;"></span>
                       </div>
                       <div class="card-content">
                         <div class="card-body">
+                          <!-- NO NEED OF THESE BUTTON NOW -->
+
+                          <!-- <div
+                            class="d-flex flex-md-row flex-column justify-content-around"
+                          >
+                            <a
+                              href="#"
+                              class="btn btn-social btn-google btn-block font-small-3 mr-md-1 mb-md-0 mb-1"
+                            >
+                              <i class="bx bxl-google font-medium-3"></i
+                              ><span class="pl-50 d-block text-center"
+                                >Google</span
+                              ></a
+                            >
+                            <a
+                              href="#"
+                              class="btn btn-social btn-block mt-0 btn-facebook font-small-3"
+                            >
+                              <i
+                                class="bx bxl-facebook-square font-medium-3"
+                              ></i>
+                              <span class="pl-50 d-block text-center"
+                                >Facebook</span
+                              ></a
+                            >
+                          </div> -->
+                          <!-- <div class="divider">
+                            <div class="divider-text text-uppercase text-muted">
+                              <small>or login with email</small>
+                            </div>
+                          </div> -->
+
                           <form id="frmLogin" action="/KindahGetAllDoctors  ">
                             <div class="form-group mb-50">
                               <label
@@ -63,6 +95,7 @@
                                 >Email Address or Phone Number</label
                               >
                               <input
+                                required
                                 id="txtEmail"
                                 name="email"
                                 type="email"
@@ -79,6 +112,7 @@
                                 >Password</label
                               >
                               <input
+                                required
                                 name="Password"
                                 id="txtPassword"
                                 type="password"
@@ -118,6 +152,10 @@
                             </button>
                           </form>
                           <hr />
+                          <div class="text-center">
+                            <small class="mr-25">Don't have an account?</small
+                            ><a href="signup"><small>Sign up</small></a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -134,13 +172,13 @@
     <!-- END: Content-->
 
     <!-- BEGIN: Vendor JS-->
-    <!-- <script src="/socket.io/socket.io.js"></script>
-    <script src="js/vendors.min.js"></script> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/vendors.min.js"></script>
 
     <!-- BEGIN: Services calling JS-->
-    <!-- <script src="/js/Services/jquery.validate.min.js"></script>
+    <script src="/js/Services/jquery.validate.min.js"></script>
     <script src="/js/Services/LoginSignUp.js"></script>
-    <script src="/js/Services/loadingoverlay.min.js"></script> -->
+    <script src="/js/Services/loadingoverlay.min.js"></script>
     <!-- END: Page JS-->
   </body>
   <!-- END: Body-->
