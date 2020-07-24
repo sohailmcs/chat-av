@@ -119,7 +119,6 @@ function Validation() {
     return false;
   } else return true;
 }
-
 // ======calculate a appointment time of slot as per selected interval
 function getIntervals(startString, endString, intervalString) {
   var start = startString.split(":");
@@ -144,7 +143,6 @@ function getIntervals(startString, endString, intervalString) {
 
   return intervalsOfTime;
 }
-
 //===create scheduled for doctor-========
 function GenerateDoctorSlots() {
   var AppointmentsList = new Array();
@@ -184,7 +182,6 @@ function GenerateDoctorSlots() {
             AppointmentStatus: "Vacant",
             AppointmentStartTime: slots[0],
             AppointmentEndTime: slots[1],
-            Shifts: "1",
             AddedDate: new Date().toLocaleDateString("en-us"),
             AddedBy: useLoginId,
             isActive: true,
@@ -210,7 +207,6 @@ function GenerateDoctorSlots() {
             AppointmentStatus: "Vacant",
             AppointmentStartTime: slots[0],
             AppointmentEndTime: slots[1],
-            Shifts: "1",
             AddedDate: new Date().toLocaleDateString("en-us"),
             AddedBy: useLoginId,
             isActive: true,
@@ -220,12 +216,16 @@ function GenerateDoctorSlots() {
 
     //=============create list for appointments with sots====
     AppointmentsList.push({
-      DoctorId: useLoginId,
-      AddedDate: new Date().toLocaleDateString("en-us"),
-      AddedBy: useLoginId,
-      isActive: true,
+      DoctorId: parseInt(useLoginId),
       AppointmentDate: fromDt.toLocaleDateString("en-us"),
-      AppointmentsDetails: AppointmentsDetails,
+      Shifts: "1",
+      AddedBy: useLoginId,
+      AddedDate: new Date().toLocaleDateString("en-us"),
+      ModifiedDate: "",
+      ModifiedBy: "",
+      isActive: true,
+
+      // AppointmentsDetails: AppointmentsDetails,
     });
 
     var newDate = fromDt.setDate(fromDt.getDate() + 1);
@@ -260,7 +260,7 @@ function createDoctorScheduled(AppointmentsList) {
     type: "POST",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
-    data: JSON.stringify(AppointmentsList),
+    data: JSON.stringify({ AppointmentsList: AppointmentsList }),
     beforeSend: function () {
       $.LoadingOverlay("show");
     },
