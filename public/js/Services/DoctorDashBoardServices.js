@@ -117,8 +117,8 @@ $(function () {
       currentDt
     )
       .then((data) => {
-        GetAllQuedScheduled(docId, currentDt);
-        GetDoctorBookedScheduled(docId, currentDt, false);
+        GetAllQuedScheduled(docId, clientCurrentDt);
+        GetDoctorBookedScheduled(docId, clientCurrentDt, false);
       })
       .catch((error) => {
         console.log(error);
