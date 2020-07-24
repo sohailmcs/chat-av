@@ -221,8 +221,8 @@ function GenerateDoctorSlots() {
       Shifts: "1",
       AddedBy: useLoginId,
       AddedDate: new Date().toLocaleDateString("en-us"),
-      ModifiedDate: "",
-      ModifiedBy: "",
+      ModifiedDate: "1",
+      ModifiedBy: "1",
       isActive: true,
 
       // AppointmentsDetails: AppointmentsDetails,
@@ -250,7 +250,11 @@ function ConcatinateArray(jsonArray) {
   return conflictDt;
 }
 
-function createDoctorScheduled(AppointmentsList) {
+function createDoctorScheduled(appointmentsList) {
+  var Appointments = {
+    AppointmentsList: appointmentsList,
+  };
+
   var url = baseURL + "Appointments/CreateDoctorSchedule";
   $.ajax({
     headers: {
@@ -259,7 +263,7 @@ function createDoctorScheduled(AppointmentsList) {
     type: "POST",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
-    data: { AppointmentsList: AppointmentsList },
+    data: Appointments,
     beforeSend: function () {
       $.LoadingOverlay("show");
     },
