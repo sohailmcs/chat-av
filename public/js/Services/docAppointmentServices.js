@@ -215,10 +215,9 @@ function GenerateDoctorSlots() {
     } //end of shift2Day====
 
     //=============create list for appointments with sots====
-
     Appointments.push({
       DoctorId: parseInt(useLoginId),
-      AppointmentDate: "7/25/2020", // fromDt.toLocaleDateString("en-us"),
+      AppointmentDate: fromDt.toLocaleDateString("en-us"),
       Shifts: "1",
       AddedBy: useLoginId,
       AddedDate: new Date().toLocaleDateString("en-us"),
@@ -279,7 +278,7 @@ function createDoctorScheduled(Appointments) {
         buttonsStyling: false,
         confirmButtonText: "Ok",
       }).then((result) => {
-        //window.location.reload();
+        window.location.reload();
       });
     },
     error: function (xhr, textStatus, err) {
