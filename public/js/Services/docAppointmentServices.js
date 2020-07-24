@@ -217,14 +217,14 @@ function GenerateDoctorSlots() {
     //=============create list for appointments with sots====
 
     Appointments.push({
-      // DoctorId: parseInt(useLoginId),
+      DoctorId: parseInt(useLoginId),
       AppointmentDate: "7/25/2020", // fromDt.toLocaleDateString("en-us"),
-      // Shifts: "1",
-      // AddedBy: useLoginId,
-      // AddedDate: new Date().toLocaleDateString("en-us"),
-      // ModifiedDate: "1",
-      // ModifiedBy: "1",
-      // isActive: true,
+      Shifts: "1",
+      AddedBy: useLoginId,
+      AddedDate: new Date().toLocaleDateString("en-us"),
+      ModifiedDate: "1",
+      ModifiedBy: "1",
+      isActive: true,
 
       // AppointmentsDetails: AppointmentsDetails,
     });
