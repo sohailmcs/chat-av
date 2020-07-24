@@ -79,7 +79,14 @@ $(function () {
     var patientId = $(this).attr("PatientID");
     var PatientName = $(this).attr("PName");
 
-    AcceptOrRejectCallSaveToQue(callreqId, "Reject", docId, "Direct", patientId)
+    AcceptOrRejectCallSaveToQue(
+      callreqId,
+      "Reject",
+      docId,
+      "Direct",
+      patientId,
+      currentDt
+    )
       .then((data) => {
         GetAllQuedScheduled(docId, clientCurrentDt);
         GetDoctorBookedScheduled(docId, clientCurrentDt, false);
@@ -106,7 +113,8 @@ $(function () {
       "Accepted",
       docId,
       "Scheduled",
-      patientId
+      patientId,
+      currentDt
     )
       .then((data) => {
         GetAllQuedScheduled(docId, currentDt);
