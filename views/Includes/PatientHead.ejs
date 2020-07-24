@@ -58,8 +58,8 @@
       //=========save id for video/Audio chat=============
       $(".goog-te-menu-value").children().last().remove();
 
-      uName = "sohail rasheed"; // getcookie("kindahUserName"); // $(".user-name").text();
-      userID = 1; //getcookie("kindahUserId"); // $(".user-name").attr("userinfo");
+      uName = getcookie("kindahUserName"); // $(".user-name").text();
+      userID = getcookie("kindahUserId"); // $(".user-name").attr("userinfo");
       soc.emit("add-user", { username: uName });
     });
 
