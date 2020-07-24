@@ -71,6 +71,8 @@ $(function () {
   //==========ge doctor not==========
   if (cLogId != 0 && area != "Patient") {
     GetDoctorNotes(cLogId);
+  } else if (queId != 0 && area != "Patient") {
+    getPatientInfo(patientId);
   }
 
   $(document).on("click", ".btnViewPres", function () {
@@ -331,6 +333,40 @@ function GetDoctorNotes(callLogId) {
       $("#txtRx").val(data.PatientRX);
       $("#txtName").val(data.PatientName);
       $("#txtMedication").val(data.Medication);
+      $("#patientAge").val(data.Age);
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+
+function getPatientInfo(PatientId) {
+  var url = baseURL + "CallLogs/GetPatientDetails?PatientId=" + PatientId;
+
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+
+      //=========open dialog for update==========
+      $("#txtName").val(data.FullName);
       $("#patientAge").val(data.Age);
     },
     error: function (xhr, textStatus, err) {
