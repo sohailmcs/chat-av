@@ -145,7 +145,7 @@ function getIntervals(startString, endString, intervalString) {
 }
 //===create scheduled for doctor-========
 function GenerateDoctorSlots() {
-  var AppointmentsList = new Array();
+  var Appointments = new Array();
 
   // =======get date range=====
   var fromDt = new Date($("#dtFrom").val());
@@ -215,15 +215,15 @@ function GenerateDoctorSlots() {
     } //end of shift2Day====
 
     //=============create list for appointments with sots====
-    AppointmentsList.push({
-      DoctorId: parseInt(useLoginId),
-      AppointmentDate: fromDt.toLocaleDateString("en-us"),
-      Shifts: "1",
-      AddedBy: useLoginId,
-      AddedDate: new Date().toLocaleDateString("en-us"),
-      ModifiedDate: "1",
-      ModifiedBy: "1",
-      isActive: true,
+    Appointments.push({
+      // DoctorId: parseInt(useLoginId),
+      AppointmentDate: "7/25/2020", // fromDt.toLocaleDateString("en-us"),
+      // Shifts: "1",
+      // AddedBy: useLoginId,
+      // AddedDate: new Date().toLocaleDateString("en-us"),
+      // ModifiedDate: "1",
+      // ModifiedBy: "1",
+      // isActive: true,
 
       // AppointmentsDetails: AppointmentsDetails,
     });
@@ -231,7 +231,7 @@ function GenerateDoctorSlots() {
     var newDate = fromDt.setDate(fromDt.getDate() + 1);
     fromDt = new Date(newDate);
   } //===end of while loop
-  return AppointmentsList;
+  return Appointments;
 }
 
 function ConcatinateArray(jsonArray) {
@@ -250,7 +250,7 @@ function ConcatinateArray(jsonArray) {
   return conflictDt;
 }
 
-function createDoctorScheduled(AppointmentsList) {
+function createDoctorScheduled(Appointments) {
   var url = baseURL + "Appointments/CreateDoctorSchedule";
   $.ajax({
     url: url,
@@ -260,7 +260,7 @@ function createDoctorScheduled(AppointmentsList) {
     type: "POST",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
-    data: JSON.stringify({ AppointmentsList: AppointmentsList }),
+    data: JSON.stringify({ Appointments: Appointments }),
     beforeSend: function () {
       $.LoadingOverlay("show");
     },
