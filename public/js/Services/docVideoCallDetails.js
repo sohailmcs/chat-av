@@ -90,7 +90,6 @@ $(function () {
     if (queId != "0") {
       UpdateQueAddSaveCallLog(queId, "Called", docId, patientId);
     }
-    $("#divCallNow").css("display", "none");
     //=============Play calling sound =====================
     PlayCallingSound(true);
     //=========send call request to paatient============
