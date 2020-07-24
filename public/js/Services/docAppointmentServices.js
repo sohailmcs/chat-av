@@ -145,7 +145,7 @@ function getIntervals(startString, endString, intervalString) {
 }
 //===create scheduled for doctor-========
 function GenerateDoctorSlots() {
-  var Appointments = [];
+  var Appointments = new Array();
 
   // =======get date range=====
   var fromDt = new Date($("#dtFrom").val());
@@ -252,7 +252,8 @@ function ConcatinateArray(jsonArray) {
 }
 
 function createDoctorScheduled(Appointments) {
-  var jsonText = JSON.stringify({ Appointments: Appointments });
+  var Appointments = new Object();
+  Appointments.Appointments = Appointments;
 
   var url = baseURL + "Appointments/CreateDoctorSchedule";
   $.ajax({
@@ -263,7 +264,7 @@ function createDoctorScheduled(Appointments) {
     type: "POST",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
-    data: jsonText,
+    data: Appointments,
     beforeSend: function () {
       $.LoadingOverlay("show");
     },
