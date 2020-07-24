@@ -250,7 +250,7 @@ function ConcatinateArray(jsonArray) {
   return conflictDt;
 }
 
-function createDoctorScheduled(Appointments) {
+function createDoctorScheduled(AppointmentsList) {
   var url = baseURL + "Appointments/CreateDoctorSchedule";
   $.ajax({
     headers: {
@@ -259,7 +259,7 @@ function createDoctorScheduled(Appointments) {
     type: "POST",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
-    data: JSON.stringify({ AppointmentsList: Appointments }),
+    data: { AppointmentsList: AppointmentsList },
     beforeSend: function () {
       $.LoadingOverlay("show");
     },
