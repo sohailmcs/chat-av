@@ -10,7 +10,7 @@ exports.getHomePage = (req, res, next) => {
 exports.getkindahAdmin = (req, res, next) => {
   var UserName = req.cookies.kindahUserName;
   var userId = req.cookies.kindahUserId;
-  res.render("admin/KindahAdmin", {
+  res.render("admin/KindahAdmin.ejs", {
     pageTitle: "Kindah Admin",
     UserName: UserName,
     userId: userId,
@@ -20,7 +20,7 @@ exports.getkindahAdmin = (req, res, next) => {
 exports.getkindahCreateDoctor = (req, res, next) => {
   var UserName = req.cookies.kindahUserName;
   var userId = req.cookies.kindahUserId;
-  res.render("admin/KindahCreateDoctor", {
+  res.render("admin/KindahCreateDoctor.ejs", {
     pageTitle: "Kindah Create Doctor",
     UserName: UserName,
     userId: userId,
@@ -30,7 +30,7 @@ exports.getkindahCreateDoctor = (req, res, next) => {
 exports.getkindahGetAllDoctors = (req, res, next) => {
   var UserName = req.cookies.kindahUserName;
   var userId = req.cookies.kindahUserId;
-  res.render("admin/KindahGetAllDoctors", {
+  res.render("admin/KindahGetAllDoctors.ejs", {
     pageTitle: "Kindah All Doctors",
     UserName: UserName,
     userId: userId,
