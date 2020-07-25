@@ -28,10 +28,10 @@ exports.getkindahCreateDoctor = (req, res, next) => {
 exports.getkindahGetAllDoctors = (req, res, next) => {
   var UserName = req.cookies.kindahUserName;
   var userId = req.cookies.kindahUserId;
-  res.render("admin/KindahGetAllDoctors.ejs", {
+  res.render("Admin/KindahAdmin.ejs", {
     pageTitle: "Kindah All Doctors",
-    // UserName: UserName,
-    // userId: userId,
+    UserName: UserName,
+    userId: userId,
   });
 };
 
