@@ -93,6 +93,9 @@ function SendCallRequestToDoctor(doctorId, fullName, currentDt) {
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
       $("#reqcall").modal("show");
+      setTimeout(function () {
+        $("#reqcall").modal("hide");
+      }, 2000);
 
       //======== send notification to doctor for callRequest
       socket.emit("NotifyDoctor", {
