@@ -18,7 +18,7 @@ exports.getkindahAdmin = (req, res, next) => {
 exports.getkindahCreateDoctor = (req, res, next) => {
   var UserName = req.cookies.kindahUserName;
   var userId = req.cookies.kindahUserId;
-  res.render("admin/KindahCreateDoctor.ejs", {
+  res.render("Admin/KindahCreateDoctor.ejs", {
     pageTitle: "Kindah Create Doctor",
     UserName: UserName,
     userId: userId,
