@@ -131,13 +131,13 @@
         $("#notificationmodal").modal("show");
         //=========hide accept call popup model after 2 seconds============
         setTimeout(function () {
-          $("#notificationmodal").modal("show");
+          $("#notificationmodal").modal("hide");
         }, 2000);
       } else {
         $("#dialogRejected").modal("show");
         //=========hide reject call popup model after 2 seconds============
         setTimeout(function () {
-          $("#dialogRejected").modal("show");
+          $("#dialogRejected").modal("hide");
         }, 2000);
       }
     });
