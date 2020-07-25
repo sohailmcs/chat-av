@@ -95,7 +95,7 @@ function SendCallRequestToDoctor(doctorId, fullName, currentDt) {
       $("#reqcall").modal("show");
       setTimeout(function () {
         $("#reqcall").modal("hide");
-      }, 2000);
+      }, 3000);
 
       //======== send notification to doctor for callRequest
       socket.emit("NotifyDoctor", {
