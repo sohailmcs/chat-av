@@ -10,7 +10,7 @@ exports.getHomePage = (req, res, next) => {
 exports.getkindahAdmin = (req, res, next) => {
   var UserName = req.cookies.kindahUserName;
   var userId = req.cookies.kindahUserId;
-  res.render("admin/KindahAdmin.ejs", {
+  res.render("Admin/KindahAdmin.ejs", {
     pageTitle: "Kindah Admin",
     UserName: UserName,
     userId: userId,
