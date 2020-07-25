@@ -1,5 +1,4 @@
-var baseURL = "http://localhost:1042/KindahService/";
-//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
 

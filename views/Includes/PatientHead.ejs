@@ -129,8 +129,16 @@
       if (data.AcceptCall) {
         $("#spanTokenNo").text(data.TokenNo);
         $("#notificationmodal").modal("show");
+        //=========hide accept call popup model after 2 seconds============
+        setTimeout(function () {
+          $("#notificationmodal").modal("show");
+        }, 2000);
       } else {
         $("#dialogRejected").modal("show");
+        //=========hide reject call popup model after 2 seconds============
+        setTimeout(function () {
+          $("#dialogRejected").modal("show");
+        }, 2000);
       }
     });
     soc.on("UpdateDoctorOnlineStatus", function (data) {
