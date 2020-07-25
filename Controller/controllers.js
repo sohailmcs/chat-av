@@ -5,8 +5,7 @@ exports.getHomePage = (req, res, next) => {
     pageTitle: "Kindah Home",
   });
 };
-
-//admin Controllers
+//admin Controllers===============
 exports.getkindahAdmin = (req, res, next) => {
   var UserName = req.cookies.kindahUserName;
   var userId = req.cookies.kindahUserId;
