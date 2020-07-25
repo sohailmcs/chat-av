@@ -1,4 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
 
@@ -171,7 +172,20 @@ $(function () {
         $("#primary").modal("show");
       },
       error: function (xhr, textStatus, err) {
-        console.log(JSON.stringify(xhr));
+        if (xhr.status == "406" && xhr.statusText == "Not Acceptable") {
+          Swal.fire({
+            title: "Opps!",
+            text:
+              "Email" +
+              $("#txtEmail").val() +
+              " already exist. Please choose different email",
+            type: "error",
+            confirmButtonClass: "btn btn-primary",
+            buttonsStyling: false,
+            confirmButtonText: "<a style='color:#fff'>OK</a>",
+          });
+          return false;
+        }
       },
       complete: function (data) {
         // Hide Loading

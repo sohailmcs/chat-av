@@ -1,4 +1,6 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
+
+//var baseURL = "https://kindahclinic.com/KindahService/";
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
 
@@ -29,36 +31,29 @@ $(function () {
         $.LoadingOverlay("show");
       },
       success: function (data, textStatus, xhr) {
-        if (xhr.status == "404" && xhr.statusText == "Not Found") {
+        Swal.fire({
+          title: "Password sent...!",
+          text: "Password sent to your email and registerd phoneNumber",
+          type: "success",
+          confirmButtonClass: "btn btn-primary",
+          buttonsStyling: false,
+          confirmButtonText: "Ok",
+        });
+      },
+
+      error: function (xhr, textStatus, err) {
+        if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+          $(".error").show().text("Server not respose. Please agan later");
+        else if (xhr.status == "404" && xhr.statusText == "Not Found") {
           Swal.fire({
             type: "error",
             title: "Oops...",
             html:
-              "User doest not exist <br> <b>" +
+              "User doest not exist <br> <b >" +
               $("#txtEmailPhone").val() +
               "</b><br> ",
           });
-        } else {
-          Swal.fire({
-            title: "Password sent...!",
-            text: "Password sent to your email and registerd phoneNumber",
-            type: "success",
-            confirmButtonClass: "btn btn-primary",
-            buttonsStyling: false,
-            confirmButtonText: "Ok",
-          });
         }
-      },
-      error: function (xhr, textStatus, err) {
-        if (xhr.status == "401" && xhr.statusText == "Unauthorized")
-          $(".error").show().text("User already exist but unverified");
-        else if (xhr.status == "404" && xhr.statusText == "Not Found")
-          $(".error").show().text(xhr.statusText);
-        else if (xhr.status == "406" && xhr.statusText == "NotAcceptable")
-          $(".error").show().text("Invalid user type");
-        else if (xhr.status == "417")
-          $(".error").show().text("Wrong userName or Password");
-        else $(".error").show().text(xhr.statusText);
       },
       complete: function (data) {
         // Hide Loading
