@@ -30,8 +30,8 @@ exports.getkindahGetAllDoctors = (req, res, next) => {
   var userId = req.cookies.kindahUserId;
   res.render("admin/KindahGetAllDoctors.ejs", {
     pageTitle: "Kindah All Doctors",
-    UserName: UserName,
-    userId: userId,
+    // UserName: UserName,
+    // userId: userId,
   });
 };
 
