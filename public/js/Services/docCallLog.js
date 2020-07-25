@@ -6,7 +6,9 @@ $(function () {
 });
 
 function GetAllDoctorCallLog(userId) {
-  var url = baseURL + `CallLogs/GetDoctorRecentCallLog?doctorId=${userId}`;
+  var url =
+    baseURL +
+    `CallLogs/GetDoctorRecentCallLog?doctorId=${userId}&status=Completed`;
 
   $.ajax({
     url: url,
