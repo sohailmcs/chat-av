@@ -8,8 +8,7 @@ var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 let https = require("https");
 
-var easyrtc = require("easyrtc");
-process.title = "node-easyrtc";
+process.title = "KindahCare";
 
 app.set("view engine", "ejs");
 app.set("views", "views");

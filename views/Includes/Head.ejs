@@ -58,7 +58,7 @@
       //=========save id for video/Audio chat=============
       $(".goog-te-menu-value").children().last().remove();
       var uName = getcookie("kindahUserName");
-      userID = getcookie("kindahUserId"); // $(".user-name").attr("userinfo");
+      userID = getcookie("kindahUserId");
       soc.emit("add-user", { username: uName });
     });
 
