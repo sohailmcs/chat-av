@@ -18,7 +18,7 @@ var socket = io();
 $(function () {
   GetDoctorBookedScheduled(userLoginId, clientCurrentDt, true);
   GetAllQuedScheduled(userLoginId, clientCurrentDt);
-  GetCallLog(userLoginId, clientCurrentDt);
+  GetCallLog(userLoginId, currentDt);
 
   //=================Update patient EMR ==============
   $(document).on("click", ".btnUpdatePrescription", function () {
@@ -344,7 +344,7 @@ function GetCallLog(doctorId, date) {
     baseURL +
     "CallLogs/GetDoctorRecentCallLog?doctorID=" +
     doctorId +
-    "&status=Called" +
+    "&status=NUll" +
     "&date=" +
     date;
 
