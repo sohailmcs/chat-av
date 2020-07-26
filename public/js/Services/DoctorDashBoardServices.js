@@ -26,10 +26,16 @@ $(function () {
     getCallLogDetils(callLogId, false);
   });
 
+  $(document).on("click", ".btnpopupSmsReminder", function () {
+    $("#hdnPatientName").val($(this).attr("patientName"));
+    $("#hdnPhone").val($(this).attr("phoneNo"));
+    $("#primary").modal("show");
+  });
+
   //=================Update patient EMR ==============
   $(document).on("click", ".btnSendSMSReminder", function () {
-    var patientName = $(this).attr("patientName");
-    var phoneNo = $(this).attr("phoneNo");
+    var patientName = $("#hdnPatientName").val();
+    var phoneNo = $("#hdnPhone").val();
     SendSMStoPatient(phoneNo, uName, patientName);
   });
 

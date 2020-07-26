@@ -41,17 +41,19 @@
                 </h5>
             </div>
             <div class="modal-body">
-                <form action="#">
+               
+                    <input type="hidden" id="hdnPatientName" value="" >
+                    <input type="hidden" id="hdnPhone" value="" >
                     <label>Enter Your Message Here </label>
                     <textarea class="form-control" id="smsReminder" rows="4"
                         placeholder="Hello I am Doctor ABC . Your consultation Session will be start in 15minutes. Please stay Online. Thank you"></textarea>
-                </form>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
                     <span class="d-none d-sm-block">Close<i class="bx bx-x sms-popup"></i></span>
                 </button>
-                <button type="button" class="btn btn-primary ml-1" data-dismiss="modal">
+                <button type="button" class="btnSendSMSReminder btn btn-primary ml-1" data-dismiss="modal">
                     <span class="d-none d-sm-block">Send<i class="bx bx-send sms-popup"></i></span>
                 </button>
             </div>
@@ -370,8 +372,9 @@
 
                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                     <!-- Button for SMS Popup -->
-                    <button type="button" patientName="{{PatientName}}"  phoneNo="{{PatientPhone}}" 
-                    class="btnSendSMSReminder btn btn-outline-primary round"                      >
+                    <button type="button"patientName="{{PatientName}}"  phoneNo="{{PatientPhone}}
+                     class="btnpopupSmsReminder btn btn-outline-primary round"
+                        >
                         <i class="bx bxs-chat"></i>
                         <b>SMS</b>
                     </button>                    
