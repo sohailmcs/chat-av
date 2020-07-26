@@ -535,7 +535,10 @@ function SendSMStoPatient(mobileNo, doctorName, patientName) {
     "&doctorName=" +
     doctorName +
     "&patientName=" +
-    patientName;
+    patientName +
+    "&pageName=DoctorDashboard" +
+    "&pageUrl=" +
+    window.location.href;
   if ($("#smsReminder").val() != "")
     url = url + "&smsText=" + $("#smsReminder").val();
 
