@@ -344,7 +344,6 @@ function GetCallLog(doctorId, date) {
     baseURL +
     "CallLogs/GetDoctorRecentCallLog?doctorID=" +
     doctorId +
-    "&status=NUll" +
     "&date=" +
     date;
 
