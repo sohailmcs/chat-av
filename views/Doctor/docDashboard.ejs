@@ -43,7 +43,7 @@
             <div class="modal-body">
                 <form action="#">
                     <label>Enter Your Message Here </label>
-                    <textarea class="form-control" id="basicTextarea" rows="4"
+                    <textarea class="form-control" id="smsReminder" rows="4"
                         placeholder="Hello I am Doctor ABC . Your consultation Session will be start in 15minutes. Please stay Online. Thank you"></textarea>
                 </form>
             </div>
@@ -370,8 +370,8 @@
 
                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                     <!-- Button for SMS Popup -->
-                    <button type="button" class="btn btn-outline-primary round"
-                        data-toggle="modal" data-target="#primary">
+                    <button type="button" patientName="{{PatientName}}"  phoneNo="{{PatientPhone}}" 
+                    class="btnSendSMSReminder btn btn-outline-primary round"                      >
                         <i class="bx bxs-chat"></i>
                         <b>SMS</b>
                     </button>                    

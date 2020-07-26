@@ -26,6 +26,13 @@ $(function () {
     getCallLogDetils(callLogId, false);
   });
 
+  //=================Update patient EMR ==============
+  $(document).on("click", ".btnSendSMSReminder", function () {
+    var patientName = $(this).attr("patientName");
+    var phoneNo = $(this).attr("phoneNo");
+    SendSMStoPatient(phoneNo, uName, patientName);
+  });
+
   //=================Complete call log  ==============
   $(document).on("click", ".btn_complateCall", function () {
     var callLogId = $(this).attr("cLogId");
@@ -506,6 +513,55 @@ function ComplatecallLog(callLogId, status) {
         confirmButtonText: "Ok",
       }).then((result) => {
         window.location.reload();
+      });
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+
+function SendSMStoPatient(mobileNo, doctorName, patientName) {
+  var url =
+    baseURL +
+    "CallLogs/SendSMStoPatient?mobileNo=" +
+    mobileNo +
+    "&doctorName=" +
+    doctorName +
+    "&patientName=" +
+    patientName;
+  if ($("#smsReminder").val() != "")
+    url = url + "&smsText=" + $("#smsReminder").val();
+
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+      Swal.fire({
+        title: "Confirmation!",
+        text: "SMS sent to patient " + patientName,
+        type: "success",
+        confirmButtonClass: "btn btn-primary",
+        buttonsStyling: false,
+        confirmButtonText: "Ok",
+      }).then((result) => {
+        $("#primary").modal("hide");
       });
     },
     error: function (xhr, textStatus, err) {
