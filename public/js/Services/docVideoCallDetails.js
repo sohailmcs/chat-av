@@ -11,6 +11,14 @@ var timer;
 var onCallduration;
 var callPerformed = false;
 var insertedCallLogID;
+var options = {
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+};
 
 function refreshParent() {
   if (window.opener != null && !window.opener.closed) {
@@ -270,12 +278,15 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
     CallQueId +
     "&status=" +
     status;
+  var currentDt = new Date().toLocaleDateString("en-US", options);
+
   var model = {
     DoctorID: doctorID,
     PatientID: PatientId,
     CallQueID: CallQueId,
     AddedBy: doctorID,
     AddedDate: new Date().toLocaleDateString("en-us"),
+    CallLogStartDateTime: currentDt,
   };
   $.ajax({
     url: url,
@@ -467,7 +478,9 @@ function updatePrescription(callLogId, age, patientId) {
   });
 }
 
-function UpdateCallLogEndtime(CallLogId, duration, currentdt) {
+function UpdateCallLogEndtime(CallLogId, duration) {
+  var currentDt = new Date().toLocaleDateString("en-US", options);
+
   var url =
     baseURL +
     "CallLogs/UpdateCallLogEndtime?CallLogId=" +

@@ -57,7 +57,7 @@ $(function () {
     if (appOldId > 0) {
       var patientId = useLoginId;
       //==========Update Appointment=======
-      UpdatePatientAppointment(appDetailID, appOldId, patientId, currentDt)
+      UpdatePatientAppointment(appDetailID, appOldId, patientId)
         .then((data) => {
           calendar.trigger("change");
           $("#primary").modal("show");
@@ -67,7 +67,7 @@ $(function () {
         });
     } else {
       //===========Book new Appointment=======
-      BookPatientAppointment(useLoginId, appDetailID, currentDt)
+      BookPatientAppointment(useLoginId, appDetailID)
         .then((data) => {
           calendar.trigger("change");
           $("#primary").modal("show");
@@ -135,8 +135,10 @@ function GetDoctorScheduled(DoctorId, date) {
 }
 
 //==Book patient Appointment
-function BookPatientAppointment(patientId, AppointmentDetailId, bookingDt) {
+function BookPatientAppointment(patientId, AppointmentDetailId) {
   return new Promise((resolve, reject) => {
+    var currentDt = new Date().toLocaleDateString("en-US", options);
+
     var url = baseURL + "Appointments/BookPatientAppointment";
 
     //======= set post model
@@ -146,7 +148,7 @@ function BookPatientAppointment(patientId, AppointmentDetailId, bookingDt) {
       doctorId: doctorId,
       doctorName: doctName,
       PatientName: UserName,
-      BookedDateTime: bookingDt,
+      BookedDateTime: currentDt,
       Status: "Booked",
       PageName: "PatientAppointmentBook",
       PageURL: window.location.href,
@@ -180,8 +182,10 @@ function BookPatientAppointment(patientId, AppointmentDetailId, bookingDt) {
 }
 
 //==Book patient Appointment
-function UpdatePatientAppointment(appId, OldAppId, patientId, updateDt) {
+function UpdatePatientAppointment(appId, OldAppId, patientId) {
   return new Promise((resolve, reject) => {
+    var currentDt = new Date().toLocaleDateString("en-US", options);
+
     var url =
       baseURL +
       "Appointments/UpdatePatientAppointment?appId=" +
@@ -192,7 +196,7 @@ function UpdatePatientAppointment(appId, OldAppId, patientId, updateDt) {
       patientId +
       "&Status=Vacant" +
       "&BookedDateTime=" +
-      updateDt;
+      currentDt;
     ///==============start post request to book appointment
     $.ajax({
       url: url,

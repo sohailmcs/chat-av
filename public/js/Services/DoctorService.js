@@ -19,7 +19,7 @@ $(function () {
   $(document).on("click", ".btnSencCallReq", function () {
     var doctorId = $(this).attr("docID");
     var fullName = $(this).attr("fullName");
-    SendCallRequestToDoctor(doctorId, fullName, currentDt);
+    SendCallRequestToDoctor(doctorId, fullName);
   });
 
   $(document).on("click", ".btndoctorProfile", function () {
@@ -60,7 +60,8 @@ function GetDoctors(isSync) {
   });
 }
 
-function SendCallRequestToDoctor(doctorId, fullName, currentDt) {
+function SendCallRequestToDoctor(doctorId, fullName) {
+  var currentDt = new Date().toLocaleDateString("en-US", options);
   var url =
     baseURL +
     "PatientCallRequest/SendRequestCallToDoctor?PatientID=" +

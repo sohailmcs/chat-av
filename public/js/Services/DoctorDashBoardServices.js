@@ -8,8 +8,6 @@ var options = {
   minute: "2-digit",
   second: "2-digit",
 };
-var currentDt = new Date().toLocaleDateString("en-US", options);
-
 //=========short date===============
 var clientCurrentDt = new Date().toLocaleDateString("en-US");
 
@@ -64,8 +62,7 @@ $(function () {
       "Accepted",
       docId,
       "Direct",
-      patientId,
-      currentDt
+      patientId
     )
       .then((data) => {
         GetAllQuedScheduled(docId, clientCurrentDt);
@@ -93,14 +90,7 @@ $(function () {
     var patientId = $(this).attr("PatientID");
     var PatientName = $(this).attr("PName");
 
-    AcceptOrRejectCallSaveToQue(
-      callreqId,
-      "Reject",
-      docId,
-      "Direct",
-      patientId,
-      currentDt
-    )
+    AcceptOrRejectCallSaveToQue(callreqId, "Reject", docId, "Direct", patientId)
       .then((data) => {
         GetAllQuedScheduled(docId, clientCurrentDt);
         GetDoctorBookedScheduled(docId, clientCurrentDt, false);
@@ -127,8 +117,7 @@ $(function () {
       "Accepted",
       docId,
       "Scheduled",
-      patientId,
-      currentDt
+      patientId
     )
       .then((data) => {
         GetAllQuedScheduled(docId, clientCurrentDt);
@@ -185,10 +174,10 @@ function AcceptOrRejectCallSaveToQue(
   status,
   docId,
   reqType,
-  patientId,
-  currentDt
+  patientId
 ) {
   return new Promise((resolve, reject) => {
+    var currentDt = new Date().toLocaleDateString("en-US", options);
     var url = baseURL + "PatientCallRequest/AcceptRejectPatientCallRequest";
     //======= set post model======//
     var callRequest = {
@@ -330,7 +319,7 @@ function updateClock() {
     diff = diff - h * 60 * 60;
     var m = Math.floor(diff / 60);
     diff = diff - m * 60;
-    var s = diff - 3;
+    var s = diff;
 
     $(this).text(m + " min " + s + " sec");
   });
@@ -345,7 +334,7 @@ function GetCallLog(doctorId, date) {
     baseURL +
     "CallLogs/GetDoctorRecentCallLog?doctorID=" +
     doctorId +
-    "&status=null" +
+    "&status=OnGoing" +
     "&date=" +
     date;
   $.ajax({

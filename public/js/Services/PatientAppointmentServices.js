@@ -26,7 +26,7 @@ $(function () {
   $(".btnConfirm").click(function () {
     CancelAppointment(appointmentId, userLoginId, doctorId, PageName, PageUrl)
       .then((date) => {
-        GetPatientAppointment(userLoginId, currentDt);
+        GetPatientAppointment(userLoginId);
       })
       .catch((error) => {
         console.log(error);
@@ -35,13 +35,14 @@ $(function () {
 });
 
 //== get Patient appointments
-function GetPatientAppointment(patientId, currentDate) {
+function GetPatientAppointment(patientId) {
+  var currentDt = new Date().toLocaleDateString("en-US", options);
   var url =
     baseURL +
     "Appointments/GetPatientAppointment?patientId=" +
     patientId +
     "&clientCurrentdt=" +
-    currentDate;
+    currentDt;
   ///==============start post request to book appointment
   $.ajax({
     url: url,
