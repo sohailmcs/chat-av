@@ -467,13 +467,15 @@ function updatePrescription(callLogId, age, patientId) {
   });
 }
 
-function UpdateCallLogEndtime(CallLogId, duration) {
+function UpdateCallLogEndtime(CallLogId, duration, currentdt) {
   var url =
     baseURL +
     "CallLogs/UpdateCallLogEndtime?CallLogId=" +
     CallLogId +
     "&Duration=" +
-    duration;
+    duration +
+    "&CallLogEndDateTime=" +
+    currentDt;
 
   $.ajax({
     url: url,
