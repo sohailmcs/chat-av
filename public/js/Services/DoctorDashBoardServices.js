@@ -1,7 +1,5 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
 
-var clientCurrentDt = new Date().toLocaleDateString("en-US");
-
 var options = {
   year: "numeric",
   month: "numeric",
@@ -12,13 +10,16 @@ var options = {
 };
 var currentDt = new Date().toLocaleDateString("en-US", options);
 
+//=========short date===============
+var clientCurrentDt = new Date().toLocaleDateString("en-US");
+
 var userLoginId = $(".user-name").attr("UserInfo");
 var uName = $(".user-name").text();
 var socket = io();
 $(function () {
   GetDoctorBookedScheduled(userLoginId, clientCurrentDt, true);
   GetAllQuedScheduled(userLoginId, clientCurrentDt);
-  GetCallLog(userLoginId, currentDt);
+  GetCallLog(userLoginId, clientCurrentDt);
 
   //=================Update patient EMR ==============
   $(document).on("click", ".btnUpdatePrescription", function () {
@@ -323,19 +324,19 @@ function updateClock() {
     newStamp = newDate.getTime();
     var diff = Math.round((newStamp - startStamp) / 1000);
 
-    var d = Math.floor(
-      diff / (24 * 60 * 60)
-    ); /* though I hope she won't be working for consecutive days :) */
+    var d = Math.floor(diff / (24 * 60 * 60));
     diff = diff - d * 24 * 60 * 60;
     var h = Math.floor(diff / (60 * 60));
     diff = diff - h * 60 * 60;
     var m = Math.floor(diff / 60);
     diff = diff - m * 60;
-    var s = diff;
+    var s = diff - 3;
 
     $(this).text(m + " min " + s + " sec");
   });
 }
+
+//============check if there is any record in que then run clock================
 timer = setInterval(updateClock, 1000);
 ///====================== show timer for patient added in que======================
 
