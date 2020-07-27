@@ -345,9 +345,9 @@ function GetCallLog(doctorId, date) {
     baseURL +
     "CallLogs/GetDoctorRecentCallLog?doctorID=" +
     doctorId +
+    "&status=null" +
     "&date=" +
     date;
-
   $.ajax({
     url: url,
     headers: {
