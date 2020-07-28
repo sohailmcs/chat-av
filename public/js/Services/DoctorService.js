@@ -158,7 +158,8 @@ function updateDoctorOnlineStatus(UserID, status) {
       "User/UpdateUserOnlineStatus?userId=" +
       UserID +
       "&Onlinestatus=" +
-      useStatus;
+      useStatus +
+      "&userType=Doctor";
 
     $.ajax({
       url: url,

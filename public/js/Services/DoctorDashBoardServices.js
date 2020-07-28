@@ -15,10 +15,7 @@ var userLoginId = $(".user-name").attr("UserInfo");
 var uName = $(".user-name").text();
 var socket = io();
 $(function () {
-  GetDoctorBookedScheduled(userLoginId, clientCurrentDt, true);
-  GetAllQuedScheduled(userLoginId, clientCurrentDt);
-  GetCallLog(userLoginId, clientCurrentDt);
-
+  getDashBoardAllScheduled(false);
   //=================Update patient EMR ==============
   $(document).on("click", ".btnUpdatePrescription", function () {
     var callLogId = $(this).attr("callLogId");
@@ -126,6 +123,12 @@ $(function () {
   soc.emit("UpdateOnlineStatus", { uID: userLoginId, status: "Online" });
 }); //==end of jquery $function
 
+function getDashBoardAllScheduled(isSync) {
+  GetDoctorBookedScheduled(userLoginId, clientCurrentDt, isSync);
+  GetAllQuedScheduled(userLoginId, clientCurrentDt, isSync);
+  GetCallLog(userLoginId, clientCurrentDt, isSync);
+}
+
 function GetDoctorBookedScheduled(DoctorId, date, isSync) {
   var url =
     baseURL +
@@ -174,7 +177,8 @@ function updatePatientOnlineStatus(UserID, status) {
       "User/UpdateUserOnlineStatus?userId=" +
       UserID +
       "&Onlinestatus=" +
-      useStatus;
+      useStatus +
+      "&userType=Patient";
 
     $.ajax({
       url: url,
@@ -198,7 +202,7 @@ function updatePatientOnlineStatus(UserID, status) {
     });
   })
     .then((date) => {
-      GetDoctors(true);
+      getDashBoardAllScheduled(true);
     })
     .catch((error) => {
       console.log(error);
@@ -253,7 +257,7 @@ function AcceptOrRejectCallSaveToQue(
   });
 }
 
-function GetAllQuedScheduled(doctorId, date) {
+function GetAllQuedScheduled(doctorId, date, issync) {
   var url =
     baseURL + "CallQue/GetCallQue?doctorID=" + doctorId + "&date=" + date;
   $.ajax({
@@ -266,7 +270,7 @@ function GetAllQuedScheduled(doctorId, date) {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-      $.LoadingOverlay("show");
+      if (!issync) $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
@@ -365,7 +369,7 @@ function updateClock() {
 timer = setInterval(updateClock, 1000);
 ///====================== show timer for patient added in que======================
 
-function GetCallLog(doctorId, date) {
+function GetCallLog(doctorId, date, isSync) {
   var url =
     baseURL +
     "CallLogs/GetDoctorRecentCallLog?doctorID=" +
@@ -383,6 +387,7 @@ function GetCallLog(doctorId, date) {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
+      if (!isSync) $.LoadingOverlay("show");
       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
