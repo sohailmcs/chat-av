@@ -24,32 +24,27 @@ $(function () {
     var callLogId = $(this).attr("callLogId");
     getCallLogDetils(callLogId, false);
   });
-
   $(document).on("click", ".btnpopupSmsReminder", function () {
     $("#hdnPatientName").val($(this).attr("patientName"));
     $("#hdnPhone").val($(this).attr("phoneNo"));
     $("#primary").modal("show");
   });
-
   //=================Update patient EMR ==============
   $(document).on("click", ".btnSendSMSReminder", function () {
     var patientName = $("#hdnPatientName").val();
     var phoneNo = $("#hdnPhone").val();
     SendSMStoPatient(phoneNo, uName, patientName);
   });
-
   //=================Complete call log  ==============
   $(document).on("click", ".btn_complateCall", function () {
     var callLogId = $(this).attr("cLogId");
     ComplatecallLog(callLogId, "Completed");
   });
-
   //=================open dialog to update patient EMR ==============
   $(document).on("click", "#btnSaveUpdateEMR", function () {
     var callLogId = $("#hdncallLogId").val();
     updatePatientEMR(callLogId, "");
   });
-
   //===============Accept call ==============
   $(document).on("click", ".btnAcceptCall", function () {
     var callreqId = $(this).attr("callreqID");
@@ -127,6 +122,8 @@ $(function () {
         console.log(error);
       });
   });
+  //==============set user onlne status===================
+  soc.emit("UpdateOnlineStatus", { uID: userLoginId, status: "Online" });
 }); //==end of jquery $function
 
 function GetDoctorBookedScheduled(DoctorId, date, isSync) {
@@ -167,6 +164,45 @@ function GetDoctorBookedScheduled(DoctorId, date, isSync) {
       $.LoadingOverlay("hide");
     },
   });
+}
+
+function updatePatientOnlineStatus(UserID, status) {
+  return new Promise((resolve, reject) => {
+    var useStatus = status == "Online" ? true : false;
+    var url =
+      baseURL +
+      "User/UpdateUserOnlineStatus?userId=" +
+      UserID +
+      "&Onlinestatus=" +
+      useStatus;
+
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "GET",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {},
+      success: function (data, textStatus, xhr) {
+        resolve(data);
+      },
+      error: function (xhr, textStatus, err) {
+        reject(err);
+      },
+      complete: function (data) {
+        // Hide Loading
+      },
+    });
+  })
+    .then((date) => {
+      GetDoctors(true);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 function AcceptOrRejectCallSaveToQue(

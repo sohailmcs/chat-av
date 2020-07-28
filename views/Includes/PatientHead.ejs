@@ -59,7 +59,12 @@
 
       uName = getcookie("kindahUserName"); // $(".user-name").text();
       userID = getcookie("kindahUserId"); // $(".user-name").attr("userinfo");
-      soc.emit("add-user", { username: uName });
+      var userType = getcookie("kindahUserType");
+      soc.emit("add-user", {
+        username: uName,
+        userId: userID,
+        userType: userType,
+      });
     });
 
     function PlayCallingSound(play) {

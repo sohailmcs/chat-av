@@ -28,8 +28,8 @@
   </head>
 
   <script type="text/javascript">
-    // var uName = "";
-    //var userID = "";
+    var uName = "";
+    var userID = "";
 
     var soc = io();
     function getcookie(cookiename) {
@@ -43,7 +43,26 @@
       return null;
     }
 
+    $(document).ready(function () {
+      //=========save id for video/Audio chat=============
+      $(".goog-te-menu-value").children().last().remove();
+      uName = getcookie("kindahUserName");
+      userID = getcookie("kindahUserId");
+      var userType = getcookie("kindahUserType");
+
+      soc.emit("add-user", {
+        username: uName,
+        userId: userID,
+        userType: userType,
+      });
+    });
+
+    soc.on("UpdatePatientOnlineStatus", function (data) {
+      updatePatientOnlineStatus(data.uID, data.status);
+    });
+
     function deleteAllCookies() {
+      soc.emit("UpdateOnlineStatus", { uID: userID, status: "Offline" });
       var cookies = document.cookie.split(";");
       for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i];
@@ -54,17 +73,6 @@
       window.location.href = "/login";
     }
 
-    $(document).ready(function () {
-      //=========save id for video/Audio chat=============
-      $(".goog-te-menu-value").children().last().remove();
-      var uName = getcookie("kindahUserName");
-      userID = getcookie("kindahUserId");
-      soc.emit("add-user", { username: uName });
-    });
-
-    soc.on("UpdateDoctorOnlineStatus", function (data) {
-      updateDoctorOnlineStatus(data.uID, data.status);
-    });
     //=======get other's id and set audio/video call======
     soc.on("callAccpetedandShowStream", function (data) {
       // console.log("this is patient id to call " + JSON.stringify(data));

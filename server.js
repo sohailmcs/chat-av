@@ -36,6 +36,8 @@ socketServer.sockets.on("connection", function (socket) {
   socket.on("add-user", function (data) {
     clients[data.username] = {
       socket: socket.id,
+      userId: data.userId,
+      userType: data.userType,
     };
   });
 
@@ -73,7 +75,6 @@ socketServer.sockets.on("connection", function (socket) {
       console.log("User does not exist: " + data.pName);
     }
   });
-
   //==========close patient calling screen on disconnect or end call============
   socket.on("ClosePatientScreen", function (data) {
     console.log(JSON.stringify(clients[data.username]));
@@ -86,7 +87,6 @@ socketServer.sockets.on("connection", function (socket) {
       console.log("User does not exist: " + data.pName);
     }
   });
-
   // ===========sent Notification to doctor  from client=====
   socket.on("NotifyDoctor", function (data) {
     if (clients[data.username]) {
@@ -98,7 +98,6 @@ socketServer.sockets.on("connection", function (socket) {
       console.log("User does not exist: " + data.username);
     }
   });
-
   //=========send accept or reject alert to patient by doctor========
   socket.on("AcceptRejectCall", function (data) {
     //====doctor send notification to client for accept/reject call to selected Client======
@@ -117,10 +116,29 @@ socketServer.sockets.on("connection", function (socket) {
     }
   });
 
+  socket.on("UpdatePatientOnlineStatus", function (data) {
+    if (data.uID != "") {
+      socket.broadcast.emit("UpdatePatientOnlineStatus", data); // for all client except sender
+    }
+  });
+
   //Removing the socket on disconnect
   socket.on("disconnect", function () {
     for (var name in clients) {
       if (clients[name].socket === socket.id) {
+        if (clients[name].userType == "Doctor")
+          //============send information for doctor offline to all online patients
+          socket.broadcast.emit("UpdateDoctorOnlineStatus", {
+            uID: clients[name].userId,
+            status: "Offline",
+          });
+        else if (clients[name].userType == "Patient")
+          //============send information for doctor offline to all online patients
+          socket.broadcast.emit("UpdatePatientOnlineStatus", {
+            uID: clients[name].userId,
+            status: "Offline",
+          });
+
         delete clients[name];
         break;
       }

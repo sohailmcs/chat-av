@@ -16,7 +16,7 @@ var options = {
 var currentDt = new Date().toLocaleDateString("en-US", options);
 
 $(function () {
-  GetPatientAppointment(userLoginId, currentDt);
+  GetPatientAppointment(userLoginId);
   $(document).on("click", ".btnMain", function () {
     appointmentId = $(this).attr("appId");
     doctorId = $(this).attr("doctorId");
@@ -36,14 +36,8 @@ $(function () {
 
 //== get Patient appointments
 function GetPatientAppointment(patientId) {
-  var currentDt = new Date().toLocaleDateString("en-US", options);
   var url =
-    baseURL +
-    "Appointments/GetPatientAppointment?patientId=" +
-    patientId +
-    "&clientCurrentdt=" +
-    currentDt;
-  ///==============start post request to book appointment
+    baseURL + "Appointments/GetPatientAppointment?patientId=" + patientId; ///==============start post request to book appointment
   $.ajax({
     url: url,
     headers: {
@@ -108,7 +102,7 @@ function CancelAppointment(
       contentType: "application/json; charset=utf-8",
       data: "",
       beforeSend: function () {
-        $.LoadingOverlay("show");
+        // $.LoadingOverlay("show");
       },
       success: function (data, textStatus, xhr) {
         resolve(data);
@@ -118,7 +112,7 @@ function CancelAppointment(
       },
       complete: function (data) {
         // Hide Loading
-        $.LoadingOverlay("hide");
+        // $.LoadingOverlay("hide");
       },
     });
   }); //end of promises
