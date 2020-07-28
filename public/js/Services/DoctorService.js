@@ -19,8 +19,63 @@ $(function () {
   $(document).on("click", ".btnSencCallReq", function () {
     var doctorId = $(this).attr("docID");
     var fullName = $(this).attr("fullName");
-    SendCallRequestToDoctor(doctorId, fullName);
+
+    CheckIFcalledBefore(doctorId, useLoginId)
+      .then((data) => {
+        if (data > 0) {
+          Swal.fire({
+            type: "error",
+            title: "Oops...",
+            text: "Your's today call already pending",
+            confirmButtonClass: "btn btn-primary",
+            buttonsStyling: false,
+            confirmButtonText: "Ok",
+          });
+        } else SendCallRequestToDoctor(doctorId, fullName);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
+
+  function CheckIFcalledBefore(doctorId, patientId) {
+    return new Promise((resolve, reject) => {
+      var currentDt = new Date().toLocaleDateString("en-US");
+      var url =
+        baseURL +
+        "CallQue/CheckIfCallQuesExist?doctorID=" +
+        doctorId +
+        "&patiendId=" +
+        patientId +
+        "&date=" +
+        currentDt;
+
+      $.ajax({
+        url: url,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        type: "GET",
+        datatype: "application/json",
+        contentType: "application/json; charset=utf-8",
+        data: "",
+        beforeSend: function () {
+          $.LoadingOverlay("show");
+        },
+        success: function (data, textStatus, xhr) {
+          resolve(data);
+          $.LoadingOverlay("hide");
+        },
+        error: function (xhr, textStatus, err) {
+          reject(err);
+        },
+        complete: function (data) {
+          // Hide Loading
+          $.LoadingOverlay("hide");
+        },
+      });
+    });
+  }
 
   $(document).on("click", ".btndoctorProfile", function () {
     var doctorId = $(this).attr("docID");

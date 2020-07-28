@@ -1,6 +1,6 @@
 var height = 369.1845;
 var height2 = 195.688;
-
+$(".rightcardContainer").css("display", "none");
 $(document).ready(function () {
   $(".slide-left").click(function () {
     $(".slide-left").css("display", "none");

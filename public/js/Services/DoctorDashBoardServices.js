@@ -169,46 +169,6 @@ function GetDoctorBookedScheduled(DoctorId, date, isSync) {
   });
 }
 
-function updatePatientOnlineStatus(UserID, status) {
-  return new Promise((resolve, reject) => {
-    var useStatus = status == "Online" ? true : false;
-    var url =
-      baseURL +
-      "User/UpdateUserOnlineStatus?userId=" +
-      UserID +
-      "&Onlinestatus=" +
-      useStatus +
-      "&userType=Patient";
-
-    $.ajax({
-      url: url,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      type: "GET",
-      datatype: "application/json",
-      contentType: "application/json; charset=utf-8",
-      data: "",
-      beforeSend: function () {},
-      success: function (data, textStatus, xhr) {
-        resolve(data);
-      },
-      error: function (xhr, textStatus, err) {
-        reject(err);
-      },
-      complete: function (data) {
-        // Hide Loading
-      },
-    });
-  })
-    .then((date) => {
-      getDashBoardAllScheduled(true);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
 function AcceptOrRejectCallSaveToQue(
   callreqId,
   status,
@@ -273,8 +233,7 @@ function GetAllQuedScheduled(doctorId, date, issync) {
       if (!issync) $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      $.LoadingOverlay("hide");
-      console.log(JSON.stringify(data));
+      if (!issync) $.LoadingOverlay("hide");
 
       var queTemplate = $("#que-template").html();
       $("#QueTemplate").html(Mustache.to_html(queTemplate, data));
@@ -389,7 +348,6 @@ function GetCallLog(doctorId, date, isSync) {
     data: "",
     beforeSend: function () {
       if (!isSync) $.LoadingOverlay("show");
-      $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");

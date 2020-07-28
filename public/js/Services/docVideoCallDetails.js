@@ -7,6 +7,7 @@ var cLogId = urlParams.get("CallLogId");
 var patientId = urlParams.get("patientId");
 var PatientName = urlParams.get("patientName");
 var area = urlParams.get("area");
+
 var timer;
 var onCallduration;
 var callPerformed = false;
@@ -97,20 +98,35 @@ $(function () {
 
   //===========start functionality calling=================
   $("#btnCallNow").click(function () {
-    if (queId != "0") {
-      UpdateQueAddSaveCallLog(queId, "Called", docId, patientId);
-    }
-    //=============Play calling sound =====================
-    PlayCallingSound(true);
-    //=========send call request to paatient============
-    soc.emit("SendCallRequestToPatient", {
-      pName: PatientName,
-      username: docName,
-    });
+    checkOnlineStatusandCall(patientId, "Patient")
+      .then((data) => {
+        if (data) {
+          if (queId != "0") {
+            UpdateQueAddSaveCallLog(queId, "Called", docId, patientId);
+          }
+          //=============Play calling sound =====================
+          PlayCallingSound(true);
+          //=========send call request to paatient============
+          soc.emit("SendCallRequestToPatient", {
+            pName: PatientName,
+            username: docName,
+          });
+        } else {
+          Swal.fire({
+            type: "error",
+            title: "Oops...",
+            text: "Patient is not available ",
+            confirmButtonClass: "btn btn-primary",
+            buttonsStyling: false,
+            confirmButtonText: "Ok",
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
   //===========end functionality calling======================
-
-  //============end of patient streaming======================
 }); //=====================end of $function==========================
 function performCall() {
   callPerformed = true;
@@ -268,6 +284,41 @@ function PatientHistory(patientId) {
       // Hide Loading
       $.LoadingOverlay("hide");
     },
+  });
+}
+
+function checkOnlineStatusandCall(patientId, userType) {
+  return new Promise((resolve, reject) => {
+    var url =
+      baseURL +
+      "User/getUserInfo?patientId=" +
+      patientId +
+      "&userType=" +
+      userType;
+
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "GET",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {
+        $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+        resolve(data);
+      },
+      error: function (xhr, textStatus, err) {
+        reject(err);
+      },
+      complete: function (data) {
+        // Hide Loading
+        $.LoadingOverlay("hide");
+      },
+    });
   });
 }
 
