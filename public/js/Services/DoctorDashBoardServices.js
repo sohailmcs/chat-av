@@ -274,6 +274,7 @@ function GetAllQuedScheduled(doctorId, date, issync) {
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
+      console.log(JSON.stringify(data));
 
       var queTemplate = $("#que-template").html();
       $("#QueTemplate").html(Mustache.to_html(queTemplate, data));
