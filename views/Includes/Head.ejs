@@ -20,7 +20,6 @@
     <script src="/js/Services/mustache-wax.min.js"></script>
     <script src="/js/Services/loadingoverlay.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="/js/easyrtc.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <title><%= pageTitle %></title>
@@ -30,7 +29,8 @@
   <script type="text/javascript">
     var uName = "";
     var userID = "";
-    var soc = io();
+    var soc = io({ transports: ["websocket"], upgrade: false });
+    //var soc = io();
     var urlParams = new URLSearchParams(window.location.search);
 
     function getcookie(cookiename) {

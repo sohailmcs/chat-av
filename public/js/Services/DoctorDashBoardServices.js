@@ -1,5 +1,4 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
-
 var options = {
   year: "numeric",
   month: "numeric",
@@ -60,9 +59,11 @@ $(function () {
         GetAllQuedScheduled(docId, clientCurrentDt);
         GetDoctorBookedScheduled(docId, clientCurrentDt);
         toast("Patient Has Been Added in Call Queue");
+        console.log(JSON.stringify(data));
         socket.emit("AcceptRejectCall", {
           AcceptCall: true,
-          TokenNo: data,
+          TokenNo: data.patientTokenNo,
+          waitingTime: data.waitingTime,
           username: PatientName,
         });
       })

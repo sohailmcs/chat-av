@@ -38,45 +38,6 @@ $(function () {
       });
   });
 
-  function CheckIFcalledBefore(doctorId, patientId) {
-    return new Promise((resolve, reject) => {
-      var currentDt = new Date().toLocaleDateString("en-US");
-      var url =
-        baseURL +
-        "CallQue/CheckIfCallQuesExist?doctorID=" +
-        doctorId +
-        "&patiendId=" +
-        patientId +
-        "&date=" +
-        currentDt;
-
-      $.ajax({
-        url: url,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        type: "GET",
-        datatype: "application/json",
-        contentType: "application/json; charset=utf-8",
-        data: "",
-        beforeSend: function () {
-          $.LoadingOverlay("show");
-        },
-        success: function (data, textStatus, xhr) {
-          resolve(data);
-          $.LoadingOverlay("hide");
-        },
-        error: function (xhr, textStatus, err) {
-          reject(err);
-        },
-        complete: function (data) {
-          // Hide Loading
-          $.LoadingOverlay("hide");
-        },
-      });
-    });
-  }
-
   $(document).on("click", ".btndoctorProfile", function () {
     var doctorId = $(this).attr("docID");
     GetDoctorsProfile(doctorId);
@@ -84,6 +45,45 @@ $(function () {
 
   soc.emit("UpdatePatientOnlineStatus", { uID: useLoginId, status: "Online" });
 }); //==end of jquery $function
+
+function CheckIFcalledBefore(doctorId, patientId) {
+  return new Promise((resolve, reject) => {
+    var currentDt = new Date().toLocaleDateString("en-US");
+    var url =
+      baseURL +
+      "CallQue/CheckIfCallQuesExist?doctorID=" +
+      doctorId +
+      "&patiendId=" +
+      patientId +
+      "&date=" +
+      currentDt;
+
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "GET",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {
+        $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+        resolve(data);
+        $.LoadingOverlay("hide");
+      },
+      error: function (xhr, textStatus, err) {
+        reject(err);
+      },
+      complete: function (data) {
+        // Hide Loading
+        $.LoadingOverlay("hide");
+      },
+    });
+  });
+}
 
 function GetDoctors(isSync) {
   var url = baseURL + "Doctor/GetDoctors";

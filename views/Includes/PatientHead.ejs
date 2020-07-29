@@ -29,7 +29,8 @@
   <script type="text/javascript">
     var uName = "";
     var userID = "";
-    var soc = io();
+    var soc = io({ transports: ["websocket"], upgrade: false });
+    //var soc = io();
 
     function getcookie(cookiename) {
       var cookiestring = document.cookie;
@@ -129,10 +130,11 @@
         });
       }
     }
-
+    //=========show token no if direct call accepted================
     soc.on("CallAccepted", function (data) {
       if (data.AcceptCall) {
         $("#spanTokenNo").text(data.TokenNo);
+        $("#waitingTime").text(data.waitingTime);
         $("#notificationmodal").modal("show");
         //=========hide accept call popup model after 2 seconds============
       } else {
