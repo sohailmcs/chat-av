@@ -34,7 +34,7 @@ function format(d) {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-      $.LoadingOverlay("show");
+      // $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
       var callLogData = data.result;
@@ -63,7 +63,7 @@ function format(d) {
           "<tr><td align='center' colspan='7'><span class='spanNoRecord'>No callLog found</td></tr>"
         );
       }
-      $.LoadingOverlay("hide");
+      // $.LoadingOverlay("hide");
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -72,7 +72,7 @@ function format(d) {
     },
     complete: function (data) {
       // Hide Loading
-      $.LoadingOverlay("hide");
+      // $.LoadingOverlay("hide");
     },
   });
   return callLogtable;
@@ -149,5 +149,6 @@ function Filldatatable(data) {
       row.child(format(row.data())).show();
       tr.addClass("shown");
     }
+    $.LoadingOverlay("hide");
   });
 }
