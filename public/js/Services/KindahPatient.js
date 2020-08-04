@@ -29,7 +29,7 @@ function format(d) {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     // async: false,
-    processData: false,
+
     type: "GET",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
