@@ -1,7 +1,7 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
 //var baseURL = "http://localhost:1042/KindahService/";
 
-$(function () {
+$(function (e) {
   GetAllPatient();
 }); //===========end of $function=====================
 
@@ -28,13 +28,14 @@ function format(d) {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    async: false,
+    // async: false,
+    processData: false,
     type: "GET",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-      // $.LoadingOverlay("show");
+      $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
       var callLogData = data.result;
@@ -72,7 +73,7 @@ function format(d) {
     },
     complete: function (data) {
       // Hide Loading
-      // $.LoadingOverlay("hide");
+      $.LoadingOverlay("hide");
     },
   });
   return callLogtable;
@@ -135,8 +136,8 @@ function Filldatatable(data) {
     },
   });
 
-  $("#kindahdatatable tbody").on("click", "td.details-control", function () {
-    $.LoadingOverlay("show");
+  $("#kindahdatatable tbody").on("click", "td.details-control", function (e) {
+    e.preventDefault();
     var tr = $(this).closest("tr");
     var row = table.row(tr);
 
@@ -149,6 +150,5 @@ function Filldatatable(data) {
       row.child(format(row.data())).show();
       tr.addClass("shown");
     }
-    $.LoadingOverlay("hide");
   });
 }
