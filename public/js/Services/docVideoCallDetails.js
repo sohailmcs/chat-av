@@ -1,4 +1,6 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
+//var baseURL = "http://localhost:1042/KindahService/";
+
 var urlParams = new URLSearchParams(window.location.search);
 var queId = urlParams.get("queId");
 var docId = urlParams.get("DocId");
@@ -63,7 +65,12 @@ $(function () {
   }
 
   $(".btnSaveNSend").click(function () {
-    updatePrescription(cLogId, $("#patientAge").val(), patientId);
+    updatePrescription(
+      cLogId,
+      $("#patientAge").val(),
+      $("#txtName").val(),
+      patientId
+    );
   });
   //========get patient history===============
   if (area != "Patient") {
@@ -485,7 +492,7 @@ function updateDoctorNotes(callLogId, status) {
   });
 }
 
-function updatePrescription(callLogId, age, patientId) {
+function updatePrescription(callLogId, age, name, patientId) {
   $(".PrescripeLoading").show();
   $(".btnSaveNSend").prop("disabled", true);
   var url =
@@ -499,6 +506,8 @@ function updatePrescription(callLogId, age, patientId) {
     Medication: $("#txtMedication").val(),
     Diagnosis: $("#txtPresDiagnosis").val(),
     prescribeDt: $("#prescribeDT").val(),
+    PatientName: name,
+    DoctorName: docName,
   };
 
   $.ajax({
