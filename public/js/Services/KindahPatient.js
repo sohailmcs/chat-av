@@ -28,6 +28,7 @@ function format(d) {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
+    async: false,
     type: "GET",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
