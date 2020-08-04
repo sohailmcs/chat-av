@@ -136,6 +136,7 @@ function Filldatatable(data) {
   });
 
   $("#kindahdatatable tbody").on("click", "td.details-control", function () {
+    $.LoadingOverlay("show");
     var tr = $(this).closest("tr");
     var row = table.row(tr);
 
