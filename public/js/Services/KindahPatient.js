@@ -25,9 +25,9 @@ function format(d) {
   ///==============start post request to add doctor============
   $.ajax({
     url: url,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
+    // headers: {
+    //   "Content-Type": "application/x-www-form-urlencoded",
+    // },
     type: "GET",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
