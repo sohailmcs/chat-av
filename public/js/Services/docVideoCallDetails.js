@@ -77,19 +77,6 @@ $(function () {
     $("#call-heading")
       .text("Calling with " + PatientName)
       .css("width", "100%");
-    // Subscribe to a newly created stream
-    session.on("streamCreated", function (event) {
-      session.subscribe(
-        event.stream,
-        "subscriber",
-        {
-          insertMode: "append",
-          width: "100%",
-          height: "100%",
-        },
-        handleError
-      );
-    });
   } else {
     $("#call-heading").text("Calling with DR." + docName);
     $(".videocol").find("div.icons").remove();
@@ -125,6 +112,7 @@ $(function () {
           //=============Play calling sound =====================
           PlayCallingSound(true);
           //=========send call request to paatient============
+          initializeSession();
           soc.emit("SendCallRequestToPatient", {
             pName: PatientName,
             username: docName,
@@ -193,7 +181,19 @@ function performCall() {
   //   allow: "microphone; camera",
   // }).appendTo(".main-video-div");
 
-  initializeSession();
+  // Subscribe to a newly created stream
+  session.on("streamCreated", function (event) {
+    session.subscribe(
+      event.stream,
+      "subscriber",
+      {
+        insertMode: "append",
+        width: "100%",
+        height: "100%",
+      },
+      handleError
+    );
+  });
 }
 
 //============calculate calling time==============
