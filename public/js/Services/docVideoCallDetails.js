@@ -112,11 +112,11 @@ $(function () {
           //=============Play calling sound =====================
           PlayCallingSound(true);
           //=========send call request to paatient============
-          initializeSession();
           soc.emit("SendCallRequestToPatient", {
             pName: PatientName,
             username: docName,
           });
+          initializeSession();
         } else {
           Swal.fire({
             type: "error",
@@ -182,18 +182,19 @@ function performCall() {
   // }).appendTo(".main-video-div");
 
   // Subscribe to a newly created stream
-  session.on("streamCreated", function (event) {
-    session.subscribe(
-      event.stream,
-      "subscriber",
-      {
-        insertMode: "append",
-        width: "100%",
-        height: "100%",
-      },
-      handleError
-    );
-  });
+  initializeSession();
+  // session.on("streamCreated", function (event) {
+  //   session.subscribe(
+  //     event.stream,
+  //     "subscriber",
+  //     {
+  //       insertMode: "append",
+  //       width: "100%",
+  //       height: "100%",
+  //     },
+  //     handleError
+  //   );
+  // });
 }
 
 //============calculate calling time==============
