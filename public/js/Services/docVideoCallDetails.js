@@ -17,6 +17,8 @@ var sessionId =
 var token =
   "T1==cGFydG5lcl9pZD00NjUyNTc4MiZzaWc9N2M0YzFiYmRjNzU3YmU5N2NiZjIxNmZjYWNiMGE0NTlmYTg2YTI2YzpzZXNzaW9uX2lkPTFfTVg0ME5qVXlOVGM0TW41LU1UVTVOamc0TXpjNU56RXlPSDR3VFV0Q1pUbFBlRk16ZG5SS1ZsQlpRMjlWV21abllVSi1VSDQmY3JlYXRlX3RpbWU9MTU5Njg4Mzg1OCZub25jZT0wLjkxNzAyOTIwOTg4OTM1NzEmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU5Njg4NzQ1NyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
 
+var session;
+
 var timer;
 var onCallduration;
 var callPerformed = false;
@@ -75,6 +77,19 @@ $(function () {
     $("#call-heading")
       .text("Calling with " + PatientName)
       .css("width", "100%");
+    // Subscribe to a newly created stream
+    session.on("streamCreated", function (event) {
+      session.subscribe(
+        event.stream,
+        "subscriber",
+        {
+          insertMode: "append",
+          width: "100%",
+          height: "100%",
+        },
+        handleError
+      );
+    });
   } else {
     $("#call-heading").text("Calling with DR." + docName);
     $(".videocol").find("div.icons").remove();
@@ -139,21 +154,7 @@ function handleError(error) {
 }
 
 function initializeSession() {
-  var session = OT.initSession(apiKey, sessionId);
-
-  // Subscribe to a newly created stream
-  session.on("streamCreated", function (event) {
-    session.subscribe(
-      event.stream,
-      "subscriber",
-      {
-        insertMode: "append",
-        width: "100%",
-        height: "100%",
-      },
-      handleError
-    );
-  });
+  session = OT.initSession(apiKey, sessionId);
 
   // Create a publisher
   var publisher = OT.initPublisher(
