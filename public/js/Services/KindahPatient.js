@@ -64,6 +64,7 @@ function format(d) {
           "<tr><td align='center' colspan='7'><span class='spanNoRecord'>No callLog found</td></tr>"
         );
       }
+      return false;
       // $.LoadingOverlay("hide");
     },
     error: function (xhr, textStatus, err) {

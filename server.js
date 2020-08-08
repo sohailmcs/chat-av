@@ -21,6 +21,8 @@ var webServer = http.createServer(app);
 
 var socketServer = socketIo.listen(webServer, { "log level": 1 });
 
+// socketServer.set("transports", ["websocket"]);
+
 const KindahRoutes = require("./Routes/routes");
 const AuthRoutes = require("./Routes/AuthRoutes.js");
 const { JSONCookies } = require("cookie-parser");
@@ -48,7 +50,9 @@ socketServer.sockets.on("connection", function (socket) {
         data
       );
     } else {
-      console.log("User does not exist: " + data.pName);
+      console.log(
+        "User does not exist on SendCallRequestToPatient: " + data.pName
+      );
     }
   });
   socket.on("showStream", function (data) {
@@ -59,7 +63,7 @@ socketServer.sockets.on("connection", function (socket) {
         data
       );
     } else {
-      console.log("User does not exist: " + data.pName);
+      console.log("User does not exist for stream: " + data.pName);
     }
   });
   socket.on("RejectedAudioVideoCall", function (data) {
@@ -72,7 +76,9 @@ socketServer.sockets.on("connection", function (socket) {
         data
       );
     } else {
-      console.log("User does not exist: " + data.pName);
+      console.log(
+        "User does not exist  on RejectAudioVideoCall: " + data.pName
+      );
     }
   });
   //==========close patient calling screen on disconnect or end call============
@@ -84,7 +90,7 @@ socketServer.sockets.on("connection", function (socket) {
         data.pName
       );
     } else {
-      console.log("User does not exist: " + data.pName);
+      console.log("User does not exist on ClosePatientScreen: " + data.pName);
     }
   });
   // ===========sent Notification to doctor  from client=====
@@ -95,7 +101,7 @@ socketServer.sockets.on("connection", function (socket) {
         data
       );
     } else {
-      console.log("User does not exist: " + data.username);
+      console.log("User does not exist NotfiDoctor: " + data.username);
     }
   });
   //=========send accept or reject alert to patient by doctor========
@@ -107,7 +113,7 @@ socketServer.sockets.on("connection", function (socket) {
         data
       );
     } else {
-      console.log("User does not exist");
+      console.log("User does not exist AcceptRejectCall");
     }
   });
   socket.on("UpdateOnlineStatus", function (data) {
@@ -133,7 +139,7 @@ socketServer.sockets.on("connection", function (socket) {
             status: "Offline",
           });
         else if (clients[name].userType == "Patient")
-          //============send information for doctor offline to all online patients
+          //============send information for Patient offline to all online patients
           socket.broadcast.emit("UpdatePatientOnlineStatus", {
             uID: clients[name].userId,
             status: "Offline",
