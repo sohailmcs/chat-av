@@ -57,17 +57,6 @@ $(function () {
     $("#divCallNow").hide();
     $(".rightcardContainer").remove();
     $(".leftcardContainer").removeClass("col-lg-7");
-
-    $("<iframe>", {
-      src:
-        "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
-      id: "myFrame",
-      frameborder: 0,
-      scrolling: "no",
-      width: "600",
-      height: "600",
-      allow: "microphone; camera",
-    }).appendTo(".main-video-div");
     $(".videocol").addClass("patientCallingWindow");
   }
 

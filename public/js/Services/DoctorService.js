@@ -206,6 +206,7 @@ function GetDoctorsProfile(doctorId) {
 }
 
 function updateDoctorOnlineStatus(UserID, status) {
+  alert("asdfasdfasd");
   return new Promise((resolve, reject) => {
     var useStatus = status == "Online" ? true : false;
     var url =
