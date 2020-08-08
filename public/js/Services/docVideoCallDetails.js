@@ -142,7 +142,21 @@ function handleError(error) {
 }
 
 function initializeSession() {
-  session = OT.initSession(apiKey, sessionId);
+  var session = OT.initSession(apiKey, sessionId);
+
+  // Subscribe to a newly created stream
+  session.on("streamCreated", function (event) {
+    session.subscribe(
+      event.stream,
+      "subscriber",
+      {
+        insertMode: "append",
+        width: "100%",
+        height: "100%",
+      },
+      handleError
+    );
+  });
 
   // Create a publisher
   var publisher = OT.initPublisher(
@@ -157,7 +171,7 @@ function initializeSession() {
 
   // Connect to the session
   session.connect(token, function (error) {
-    // If the connection is successful, publish to the session
+    // If the connection is successful, initialize a publisher and publish to the session
     if (error) {
       handleError(error);
     } else {
@@ -165,7 +179,6 @@ function initializeSession() {
     }
   });
 }
-
 function performCall() {
   callPerformed = true;
   PlayCallingSound(false);
