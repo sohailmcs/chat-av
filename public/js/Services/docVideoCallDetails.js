@@ -11,12 +11,11 @@ var PatientName = urlParams.get("patientName");
 var area = urlParams.get("area");
 
 //=============open talk api========================
-var apiKey = "46525782";
-var sessionId =
-  "1_MX40NjUyNTc4Mn5-MTU5Njg4Mzc5NzEyOH4wTUtCZTlPeFMzdnRKVlBZQ29VWmZnYUJ-UH4YOUR_SESSION_ID";
-var token =
-  "T1==cGFydG5lcl9pZD00NjUyNTc4MiZzaWc9N2M0YzFiYmRjNzU3YmU5N2NiZjIxNmZjYWNiMGE0NTlmYTg2YTI2YzpzZXNzaW9uX2lkPTFfTVg0ME5qVXlOVGM0TW41LU1UVTVOamc0TXpjNU56RXlPSDR3VFV0Q1pUbFBlRk16ZG5SS1ZsQlpRMjlWV21abllVSi1VSDQmY3JlYXRlX3RpbWU9MTU5Njg4Mzg1OCZub25jZT0wLjkxNzAyOTIwOTg4OTM1NzEmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU5Njg4NzQ1NyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
-
+var API_KEY = "46878304";
+var SESSION_ID =
+  "2_MX40Njg3ODMwNH5-MTU5Njk3Mjc4MzkxNn5icWFDZXA2cW1teDhLKzY1RzNLUkpPTzR-fg";
+var TOKEN =
+  "T1==cGFydG5lcl9pZD00Njg3ODMwNCZzaWc9YmU3Mzg3ZTAwN2M4ZDJlZTBkOGE4MDAxNmIwN2Q2ZGY0Y2RkMWY3ZTpzZXNzaW9uX2lkPTJfTVg0ME5qZzNPRE13Tkg1LU1UVTVOamszTWpjNE16a3hObjVpY1dGRFpYQTJjVzF0ZURoTEt6WTFSek5MVWtwUFR6Ui1mZyZjcmVhdGVfdGltZT0xNTk2OTcyODEyJm5vbmNlPTAuNzI0ODc3NTcyODk1NzU4NCZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTk3MDU5MjEzJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9";
 var session;
 
 var timer;
@@ -145,69 +144,48 @@ function initializeSession() {
   var session = OT.initSession(apiKey, sessionId);
 
   // Subscribe to a newly created stream
-  session.on("streamCreated", function (event) {
+  session.on("streamCreated", function streamCreated(event) {
+    var subscriberOptions = {
+      insertMode: "append",
+      width: "100%",
+      height: "100%",
+    };
     session.subscribe(
       event.stream,
       "subscriber",
-      {
-        insertMode: "append",
-        width: "100%",
-        height: "100%",
-      },
+      subscriberOptions,
       handleError
     );
   });
 
-  // Create a publisher
-  var publisher = OT.initPublisher(
-    "publisher",
-    {
-      insertMode: "append",
-      width: "100%",
-      height: "100%",
-    },
-    handleError
-  );
+  session.on("sessionDisconnected", function sessionDisconnected(event) {
+    console.log("You were disconnected from the session.", event.reason);
+  });
+
+  // initialize the publisher
+  var publisherOptions = {
+    insertMode: "append",
+    width: "100%",
+    height: "100%",
+  };
+  var publisher = OT.initPublisher("publisher", publisherOptions, handleError);
 
   // Connect to the session
-  session.connect(token, function (error) {
-    // If the connection is successful, initialize a publisher and publish to the session
+  session.connect(token, function callback(error) {
     if (error) {
       handleError(error);
     } else {
+      // If the connection is successful, publish the publisher to the session
       session.publish(publisher, handleError);
     }
   });
 }
+
 function performCall() {
   callPerformed = true;
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
-  // $("<iframe>", {
-  //   src:
-  //     "https://tokbox.com/embed/embed/ot-embed.js?embedId=665f6ca0-7039-4a63-bca6-2bafd7656a3c&room=DEFAULT&iframe=true",
-  //   id: "myFrame",
-  //   frameborder: 0,
-  //   scrolling: "no",
-  //   width: "600",
-  //   height: "600",
-  //   allow: "microphone; camera",
-  // }).appendTo(".main-video-div");
-
-  // Subscribe to a newly created stream
   initializeSession();
-  // session.on("streamCreated", function (event) {
-  //   session.subscribe(
-  //     event.stream,
-  //     "subscriber",
-  //     {
-  //       insertMode: "append",
-  //       width: "100%",
-  //       height: "100%",
-  //     },
-  //     handleError
-  //   );
-  // });
 }
 
 //============calculate calling time==============
