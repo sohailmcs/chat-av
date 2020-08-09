@@ -185,7 +185,7 @@ function performCall() {
   callPerformed = true;
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
-  initializeSession();
+  // initializeSession();
 }
 
 //============calculate calling time==============
