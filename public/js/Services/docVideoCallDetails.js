@@ -59,6 +59,7 @@ $(function () {
     $(".rightcardContainer").remove();
     $(".leftcardContainer").removeClass("col-lg-7");
     $(".videocol").addClass("patientCallingWindow");
+    initializeSession();
   }
 
   $(".btnSaveNSend").click(function () {
@@ -115,7 +116,6 @@ $(function () {
             pName: PatientName,
             username: docName,
           });
-          initializeSession();
         } else {
           Swal.fire({
             type: "error",
@@ -130,6 +130,7 @@ $(function () {
       .catch((error) => {
         console.log(error);
       });
+    initializeSession();
   });
   //===========end functionality calling======================
 }); //=====================end of $function==========================
