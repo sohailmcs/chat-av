@@ -29,8 +29,8 @@
   <script type="text/javascript">
     var uName = "";
     var userID = "";
-    //var soc = io({ transports: ["websocket"], upgrade: false });
-    var soc = io("https://chat-av.herokuapp.com/");
+    var soc = io({ transports: ["websocket"], upgrade: false });
+    // var soc = io("https://chat-av.herokuapp.com");
 
     function getcookie(cookiename) {
       var cookiestring = document.cookie;
