@@ -141,7 +141,7 @@ function handleError(error) {
 }
 
 function initializeSession() {
-  var session = OT.initSession(apiKey, sessionId);
+  var session = OT.initSession(API_KEY, SESSION_ID);
 
   // Subscribe to a newly created stream
   session.on("streamCreated", function streamCreated(event) {
@@ -171,7 +171,7 @@ function initializeSession() {
   var publisher = OT.initPublisher("publisher", publisherOptions, handleError);
 
   // Connect to the session
-  session.connect(token, function callback(error) {
+  session.connect(TOKEN, function callback(error) {
     if (error) {
       handleError(error);
     } else {
