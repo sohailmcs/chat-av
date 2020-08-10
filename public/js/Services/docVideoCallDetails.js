@@ -10,14 +10,6 @@ var patientId = urlParams.get("patientId");
 var PatientName = urlParams.get("patientName");
 var area = urlParams.get("area");
 
-//=============open talk api========================
-var API_KEY = "46878304";
-var SESSION_ID =
-  "2_MX40Njg3ODMwNH5-MTU5Njk3Mjc4MzkxNn5icWFDZXA2cW1teDhLKzY1RzNLUkpPTzR-fg";
-var TOKEN =
-  "T1==cGFydG5lcl9pZD00Njg3ODMwNCZzaWc9YmU3Mzg3ZTAwN2M4ZDJlZTBkOGE4MDAxNmIwN2Q2ZGY0Y2RkMWY3ZTpzZXNzaW9uX2lkPTJfTVg0ME5qZzNPRE13Tkg1LU1UVTVOamszTWpjNE16a3hObjVpY1dGRFpYQTJjVzF0ZURoTEt6WTFSek5MVWtwUFR6Ui1mZyZjcmVhdGVfdGltZT0xNTk2OTcyODEyJm5vbmNlPTAuNzI0ODc3NTcyODk1NzU4NCZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTk3MDU5MjEzJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9";
-var session;
-
 var timer;
 var onCallduration;
 var callPerformed = false;
@@ -59,7 +51,6 @@ $(function () {
     $(".rightcardContainer").remove();
     $(".leftcardContainer").removeClass("col-lg-7");
     $(".videocol").addClass("patientCallingWindow");
-    initializeSession();
   }
 
   $(".btnSaveNSend").click(function () {
@@ -130,8 +121,8 @@ $(function () {
       .catch((error) => {
         console.log(error);
       });
-    initializeSession();
   });
+  initializeSession();
   //===========end functionality calling======================
 }); //=====================end of $function==========================
 
@@ -142,7 +133,7 @@ function handleError(error) {
 }
 
 function initializeSession() {
-  var session = OT.initSession(API_KEY, SESSION_ID);
+  var session = OT.initSession(apiKey, sessionId);
 
   // Subscribe to a newly created stream
   session.on("streamCreated", function streamCreated(event) {
@@ -172,7 +163,7 @@ function initializeSession() {
   var publisher = OT.initPublisher("publisher", publisherOptions, handleError);
 
   // Connect to the session
-  session.connect(TOKEN, function callback(error) {
+  session.connect(token, function callback(error) {
     if (error) {
       handleError(error);
     } else {
@@ -186,7 +177,7 @@ function performCall() {
   callPerformed = true;
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
-  // initializeSession();
+  initializeSession();
 }
 
 //============calculate calling time==============

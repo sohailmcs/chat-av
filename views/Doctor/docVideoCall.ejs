@@ -12,35 +12,16 @@
 
 <link rel="stylesheet" type="text/css" href="/css/pickadate.css" />
 <link rel="stylesheet" type="text/css" href="/css/daterangepicker.css" />
-
-<script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
-
-
 <!-- forms -->
 <link rel="stylesheet" type="text/css" href="/css/select2.min.css" />
 <!-- END: CSS-->
+<script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+<script>
+  var apiKey = "<%= apiKey %>";
+   var sessionId = "<%= sessionId %>";
+   var token = "<%= token %>"; 
+</script>
 
-<style type='text/css'>
-#subscriber {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-}
-
-#publisher {
-    position: absolute;
-    width: 360px;
-    height: 240px;
-    bottom: 10px;
-    left: 10px;
-    z-index: 100;
-    border: 3px solid white;
-    border-radius: 3px;
-}
-</style>
 
 
 </head>
@@ -276,12 +257,27 @@
     <!-- <div>
     <img src="/assets/images/maledoc.png" class="docvideo" />
     </div> -->
-    </div>
-    
+    </div>    
     
     <div class="main-video-div">
-      <div id="subscriber"></div>
-        <div id="publisher"></div>  
+      <div class=" three-icons" style="text-align: center;">
+        <button type="button" onclick="enabldDisableMic()"
+        class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 btn-microphone btn-three-icon">
+        <i class="bx bx-microphone icon-size icon-microphone"></i>
+        </button>
+        
+        <button type="button" onclick="enabldDisableCamera()"
+        class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 btn-three-icon">
+        <i class="bx bx-video icon-size"></i>
+        </button>
+    
+        <button type="button" id="btnDisconnect" onclick="disconnect()"
+        class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1 btn-three-icon">
+        <i class="bx bx-phone-call icon-size"></i>
+        </button>
+        </div>
+      <div id="publisher"  class="caller-video"></div>
+      <div id="subscribers" class="self-video"></div>
      </div>
     
      <br />
@@ -550,12 +546,14 @@
 <!-- END: Content-->
 
 <!-- BEGIN: JS-->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/vendors.min.js"></script>
+<!-- <script src="/js/jquery.min.js"></script> -->
 
+<!-- <script src="/js/vendors.min.js"></script>
+<script src="/js/app.js"></script> -->
 <script src="/js/vertical-menu-light.js"></script>
+
 <script src="/js/app-menu.js"></script>
-<script src="/js/app.js"></script>
+
 
 <script src="/js/sweetalert2.all.min.js"></script>
 <script src="/js/polyfill.min.js"></script>
@@ -575,9 +573,9 @@
 <script src="/js/slidevideocall.js"></script>
 <script src="/js/navs.js"></script>
 
-
-<script src="/js/Services/docVideoCallDetails.js"></script>
 <script src="/js/Services/loadingoverlay.min.js"></script>
+<script src="/js/Services/docVideoCallDetails.js"></script>
+
 
 
 

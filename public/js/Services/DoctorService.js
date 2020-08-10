@@ -1,7 +1,6 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
 
-var socket = io();
 var options = {
   year: "numeric",
   month: "numeric",
@@ -156,7 +155,7 @@ function SendCallRequestToDoctor(doctorId, fullName) {
       }, 3000);
 
       //======== send notification to doctor for callRequest
-      socket.emit("NotifyDoctor", {
+      soc.emit("NotifyDoctor", {
         username: fullName, // get doctorUsername from session
         docId: doctorId,
       });

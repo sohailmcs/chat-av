@@ -21,7 +21,7 @@ var webServer = http.createServer(app);
 
 var socketServer = socketIo.listen(webServer, { "log level": 1 });
 
-// socketServer.set("transports", ["websocket"]);
+//socketServer.set("transports", ["websocket"]);
 
 const KindahRoutes = require("./Routes/routes");
 const AuthRoutes = require("./Routes/AuthRoutes.js");

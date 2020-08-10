@@ -1,4 +1,35 @@
+var OpenTok = require("opentok");
 const request = require("request");
+
+//var OpenTok = require("opentok");
+require("dotenv").config();
+//=====================get apikey from environment variable=======
+var apiKey = process.env.API_KEY;
+var apiSecret = process.env.API_SECRET;
+
+var opentok = new OpenTok(apiKey, apiSecret);
+var sessionId;
+var gentoken;
+
+opentok.createSession({ mediaMode: "routed" }, function (err, session) {
+  if (err) {
+    console.log(err);
+    res.status(500).send({ error: "createSession error:" + err });
+    return;
+  }
+
+  // generate token
+  token = opentok.generateToken(session.sessionId);
+  sessionId = session.sessionId;
+  gentoken = token;
+
+  // res.setHeader("Content-Type", "application/json");
+  // res.send({
+  //   apiKey: apiKey,
+  //   sessionId: session.sessionId,
+  //   token: token,
+  // });
+});
 
 exports.getHomePage = (req, res, next) => {
   res.render("index", {
@@ -166,9 +197,13 @@ exports.getDoctorvideocall = (req, res, next) => {
 exports.getDoctorVideoCall = (req, res, next) => {
   var UserName = req.cookies.kindahUserName;
   var userId = req.cookies.kindahUserId;
+
   res.render("Doctor/docVideoCall.ejs", {
-    pageTitle: "Doctor Video  ",
+    pageTitle: "Doctor Video",
     UserName: UserName,
     userId: userId,
+    apiKey: apiKey,
+    sessionId: sessionId,
+    token: gentoken,
   });
 };

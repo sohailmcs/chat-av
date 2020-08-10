@@ -14,7 +14,7 @@ var clientCurrentDt = new Date().toLocaleDateString("en-US");
 
 var userLoginId = $(".user-name").attr("UserInfo");
 var uName = $(".user-name").text();
-var socket = io();
+//var socket = io();
 $(function () {
   getDashBoardAllScheduled(false);
   //=================Update patient EMR ==============
@@ -61,7 +61,7 @@ $(function () {
         GetAllQuedScheduled(docId, clientCurrentDt);
         GetDoctorBookedScheduled(docId, clientCurrentDt);
         toast("Patient Has Been Added in Call Queue");
-        socket.emit("AcceptRejectCall", {
+        soc.emit("AcceptRejectCall", {
           AcceptCall: true,
           TokenNo: data.patientTokenNo,
           waitingTime: data.waitingTime,
@@ -90,7 +90,7 @@ $(function () {
         GetDoctorBookedScheduled(docId, clientCurrentDt, false);
         toast("Patient request has been cancelled");
 
-        socket.emit("AcceptRejectCall", {
+        soc.emit("AcceptRejectCall", {
           AcceptCall: false,
           TokenNo: "",
           username: PatientName,
