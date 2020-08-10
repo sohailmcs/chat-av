@@ -175,6 +175,7 @@ function performCall() {
   callPerformed = true;
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
+  $("#divCallNow").hide();
 }
 
 //============calculate calling time==============
@@ -205,7 +206,7 @@ function disconnect() {
   $(".three-icons").css("display", "none");
   $("#divCallNow").css("display", "block");
   PlayCallingSound(false);
-
+  $("#divCallNow").show();
   soc.emit("ClosePatientScreen", {
     username: PatientName,
   });
