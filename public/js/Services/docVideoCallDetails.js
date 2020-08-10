@@ -121,8 +121,9 @@ $(function () {
       .catch((error) => {
         console.log(error);
       });
+    initializeSession();
   });
-  initializeSession();
+
   //===========end functionality calling======================
 }); //=====================end of $function==========================
 
