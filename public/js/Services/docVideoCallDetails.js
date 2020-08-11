@@ -152,7 +152,7 @@ function initializeSession() {
       insertMode: "append",
       width: "100%",
       height: "100%",
-      buttonDisplayMode: "on",
+      style: { buttonDisplayMode: "Off" },
     };
     session.subscribe(
       event.stream,
@@ -167,7 +167,7 @@ function initializeSession() {
     insertMode: "append",
     width: "100%",
     height: "100%",
-    buttonDisplayMode: "on",
+    style: { buttonDisplayMode: "Off" },
   };
   publisher = OT.initPublisher("publisher", publisherOptions, handleError);
 
