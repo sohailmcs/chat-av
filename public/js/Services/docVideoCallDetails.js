@@ -166,6 +166,7 @@ function initializeSession() {
     insertMode: "append",
     width: "100%",
     height: "100%",
+    style: { buttonDisplayMode: "on" },
   };
   publisher = OT.initPublisher("publisher", publisherOptions, handleError);
 
