@@ -174,7 +174,7 @@ function initializeSession() {
 
 function enabldDisableCamera() {
   var publisher = OT.initPublisher("publisher");
-  publisher.publishVideo(fale);
+  publisher.publishVideo(false);
   session.connect(token, function callback(error) {
     if (error) {
       handleError(error);
