@@ -146,21 +146,80 @@ function handleError(error) {
 function initializeSession() {
   session = OT.initSession(apiKey, sessionId);
 
-  // Subscribe to a newly created stream
-  session.on("streamCreated", function streamCreated(event) {
-    var subscriberOptions = {
-      insertMode: "append",
-      width: "100%",
-      height: "100%",
-      style: { buttonDisplayMode: "off" },
-    };
-    session.subscribe(
-      event.stream,
-      "subscribers",
-      subscriberOptions,
-      handleError
-    );
+  session.on({
+    sessionReconnecting: function (event) {
+      $("#log")
+        .css("display", "block")
+        .text("Disconnected. Attempting to reconnect...");
+    },
+    sessionReconnected: function (event) {
+      $("#log").css("display", "block").text("Reconnected to the session.");
+    },
+    sessionDisconnected: function (event) {
+      document.getElementById("log").innerText =
+        "Disconnected from the session.";
+    },
+    streamCreated: function (event) {
+      var subscriberOptions = {
+        insertMode: "append",
+        width: "100%",
+        height: "100%",
+        style: { buttonDisplayMode: "off" },
+      };
+      session.subscribe(
+        event.stream,
+        "subscribers",
+        subscriberOptions,
+        handleError
+      );
+      var subscriberDisconnectedNotification = document.createElement("div");
+      subscriberDisconnectedNotification.className =
+        "subscriberDisconnectedNotification";
+      subscriberDisconnectedNotification.innerText =
+        "Stream has been disconnected unexpectedly. Attempting to automatically reconnect...";
+      subscriber.element.appendChild(subscriberDisconnectedNotification);
+
+      subscriber.on({
+        disconnected: function (event) {
+          subscriberDisconnectedNotification.style.visibility = "visible";
+        },
+        connected: function (event) {
+          subscriberDisconnectedNotification.style.visibility = "hidden";
+        },
+      });
+    },
+    // signal: function (event) {
+    //   if (event.from == session.connection) {
+    //     var fromStr = "from you";
+    //   } else {
+    //     fromStr = "from another client";
+    //   }
+    //   var timeStamp = new Date().toLocaleString();
+    //   timeStamp = timeStamp.substring(timeStamp.indexOf(",") + 2);
+    //   document.getElementById("signals").innerHTML =
+    //     timeStamp +
+    //     " - Signal received " +
+    //     fromStr +
+    //     ".<br>" +
+    //     document.getElementById("signals").innerHTML;
+    // },
   });
+
+  // Subscribe to a newly created stream
+  // session.on("streamCreated", function streamCreated(event) {
+  //   var subscriberOptions = {
+  //     insertMode: "append",
+  //     width: "100%",
+  //     height: "100%",
+  //     style: { buttonDisplayMode: "off" },
+  //   };
+  //   session.subscribe(
+  //     event.stream,
+  //     "subscribers",
+  //     subscriberOptions,
+  //     handleError
+  //   );
+  // });
 
   // initialize the publisher
   var publisherOptions = {
@@ -240,6 +299,7 @@ function countTimer() {
 //============calculate calling time==============
 
 function disconnect() {
+  Session.disconnect();
   clearInterval(timer);
   var newCallLoginId;
   if (cLogId == 0 && queId != 0) newCallLoginId = insertedCallLogID;
