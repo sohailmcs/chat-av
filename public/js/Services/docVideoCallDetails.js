@@ -203,7 +203,7 @@ function enabldDisableMic() {
   } else {
     publisher.publishAudio(false);
     isAudioEnable = true;
-    $("#btnMic i ").addClass("bxs-microphone-off").removeClass("bx-microphone");
+    $("#btnMic i ").addClass("bxs-microphone-off").removeClass("bx-microphone"); //replace icon
   }
 }
 
