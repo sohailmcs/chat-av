@@ -128,6 +128,7 @@ $(function () {
   //===========end functionality calling======================
 }); //=====================end of $function==========================
 
+//======================= start managing Audio/Video communication=======================
 function handleError(error) {
   if (error) {
     alert(error.message);
@@ -170,6 +171,14 @@ function initializeSession() {
     }
   });
 }
+
+function enabldDisableCamera() {
+  alert("asdfasd");
+  var publisher = OT.initPublisher("publisher");
+  publisher.publishVideo(fale);
+}
+
+//======================= end managing Audio/Video communication=======================
 
 function performCall() {
   callPerformed = true;
