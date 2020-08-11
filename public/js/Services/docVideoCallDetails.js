@@ -146,7 +146,7 @@ function initializeSession() {
     };
     session.subscribe(
       event.stream,
-      "subscriber",
+      "subscribers",
       subscriberOptions,
       handleError
     );
