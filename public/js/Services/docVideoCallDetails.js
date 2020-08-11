@@ -204,6 +204,7 @@ function enabldDisableCamera() {
     // });
   } else {
     session.unpublish(publisher);
+    isShowVideo = true;
   }
 
   // var publisher = session.publish(targetElement)
