@@ -174,7 +174,11 @@ function initializeSession() {
       handleError(error);
     } else {
       // If the connection is successful, publish the publisher to the session
-      session.publish(publisher, handleError);
+      session
+        .publish(publisher, handleError)
+        .on("streamDestroyed", function (event) {
+          event.preventDefault();
+        });
     }
   });
 }
@@ -182,7 +186,10 @@ function initializeSession() {
 function enabldDisableCamera() {
   if (isShowVideo) {
     isShowVideo = false;
-    session.publish(publisher);
+    session.publish(publisher).on("streamDestroyed", function (event) {
+      event.preventDefault();
+      console.log("Publisher stopped streaming.");
+    });
     // session.connect(token, function (error) {
     //   if (error) {
     //     console.log(error.message);
@@ -198,9 +205,7 @@ function enabldDisableCamera() {
     //   }
     // });
   } else {
-    session.unpublish(publisher).on("streamDestroyed", function (e) {
-      e.preventDefault();
-    });
+    session.unpublish(publisher);
   }
 
   // var publisher = session.publish(targetElement)
