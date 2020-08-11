@@ -173,9 +173,16 @@ function initializeSession() {
 }
 
 function enabldDisableCamera() {
-  pubOptions = { videoSource: null, style: { buttonDisplayModeo: "off" } };
   var publisher = OT.initPublisher("publisher", pubOptions);
   publisher.publishVideo(false);
+  session.connect(token, function callback(error) {
+    if (error) {
+      handleError(error);
+    } else {
+      // If the connection is successful, publish the publisher to the session
+      session.publish(publisher, handleError);
+    }
+  });
 }
 
 //======================= end managing Audio/Video communication=======================
