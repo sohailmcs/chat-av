@@ -156,8 +156,8 @@ function initializeSession() {
   // initialize the publisher
   var publisherOptions = {
     insertMode: "append",
-    width: "100%",
-    height: "100%",
+    width: "30%",
+    height: "40%",
   };
   var publisher = OT.initPublisher("publisher", publisherOptions, handleError);
 
@@ -173,7 +173,6 @@ function initializeSession() {
 }
 
 function enabldDisableCamera() {
-  alert("asdfasd");
   var publisher = OT.initPublisher("publisher");
   publisher.publishVideo(fale);
 }
