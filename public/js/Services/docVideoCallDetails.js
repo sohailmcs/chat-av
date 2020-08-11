@@ -9,7 +9,7 @@ var cLogId = urlParams.get("CallLogId");
 var patientId = urlParams.get("patientId");
 var PatientName = urlParams.get("patientName");
 var area = urlParams.get("area");
-var isShowVideo = true;
+var isShowVideo = false;
 
 var timer;
 var onCallduration;
@@ -178,20 +178,9 @@ function initializeSession() {
 }
 
 function enabldDisableCamera() {
-  var session = OT.initSession(apiKey, sessionId);
-  pubOptions = { videoSource: null, style: { buttonDisplayModeo: "off" } };
-  var publisher = OT.initPublisher("publisher", pubOptions);
   if (isShowVideo) {
     isShowVideo = false;
-
     publisher.publishVideo(true);
-    session.connect(token, function callback(error) {
-      if (error) {
-        handleError(error);
-      } else {
-        session.publish(publisher, handleError);
-      }
-    });
   } else {
     publisher.publishVideo(false);
     isShowVideo = true;
