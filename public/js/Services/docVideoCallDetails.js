@@ -70,10 +70,14 @@ $(function () {
       .text("Calling with " + PatientName)
       .css("width", "100%");
   } else {
+    initializeSession();
     $("#call-heading").text("Calling with DR." + docName);
     $(".videocol").find("div.icons").remove();
     $(".rightcardContainer").remove();
-    initializeSession();
+
+    $("#divCallNow").hide();
+    $(".leftcardContainer").removeClass("col-lg-7");
+    $(".videocol").addClass("patientCallingWindow");
   }
   //==========ge doctor not==========
   if (cLogId != 0 && area != "Patient") {
@@ -200,6 +204,7 @@ function performCall() {
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
   $("#divCallNow").hide();
+  $("three-icons").show();
 }
 
 //============calculate calling time==============
@@ -227,10 +232,9 @@ function disconnect() {
   else newCallLoginId = cLogId;
 
   if (callPerformed) UpdateCallLogEndtime(newCallLoginId, onCallduration);
-  $(".three-icons").css("display", "none");
+  $(".three-icons").css("display", "block");
   $("#divCallNow").css("display", "block");
   PlayCallingSound(false);
-  $("#divCallNow").show();
   soc.emit("ClosePatientScreen", {
     username: PatientName,
   });
