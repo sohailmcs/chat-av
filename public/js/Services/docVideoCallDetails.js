@@ -187,10 +187,7 @@ function enabldDisableCamera() {
   alert(isShowVideo);
   if (isShowVideo) {
     isShowVideo = false;
-    session.publish(publisher).on("streamDestroyed", function (event) {
-      event.preventDefault();
-      console.log("Publisher stopped.");
-    });
+    session.publish(publisher);
     // session.connect(token, function (error) {
     //   if (error) {
     //     console.log(error.message);
