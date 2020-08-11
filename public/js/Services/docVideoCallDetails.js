@@ -198,10 +198,10 @@ function enabldDisableCamera() {
 
 function enabldDisableMic() {
   if (isAudioEnable) {
-    publisher.PublishAudio(true);
+    publisher.publishAudio(true);
     isAudioEnable = false;
   } else {
-    publisher.PublishAudio(false);
+    publisher.publishAudio(false);
     isAudioEnable = true;
   }
 }
