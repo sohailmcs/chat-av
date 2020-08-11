@@ -178,6 +178,7 @@ function initializeSession() {
 }
 
 function enabldDisableCamera() {
+  var publisher = OT.initPublisher("publisher");
   if (isShowVideo) {
     isShowVideo = false;
     publisher.publishVideo(true);
