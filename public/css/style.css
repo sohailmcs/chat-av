@@ -9,6 +9,18 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+#log {
+  color: #727e8c;
+  display: none;
+  font-weight: bold;
+  text-align: center;
+  width: 50%;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  color: #fff;
+}
+
 #loadingParentNotes {
   position: relative;
 }
@@ -834,13 +846,6 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 .leftcardContainer {
   width: 100%;
   max-width: 100%;
-}
-
-@media screen and (max-width: 650px) {
-  #publisher {
-    width: 89px;
-    height: 50px;
-  }
 }
 
 @media (max-width: 992px) {

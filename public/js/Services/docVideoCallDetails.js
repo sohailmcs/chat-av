@@ -151,7 +151,6 @@ function initializeSession() {
       $("#log")
         .css("display", "block")
         .text("Disconnected. Attempting to reconnect...");
-      $("#log").delay(2500).fadeOut("slow");
     },
     sessionReconnected: function (event) {
       $("#log").css("display", "block").text("Connected.");
