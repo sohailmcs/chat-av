@@ -141,8 +141,8 @@ function initializeSession() {
   session.on("streamCreated", function streamCreated(event) {
     var subscriberOptions = {
       insertMode: "append",
-      // width: "100%",
-      // height: "100%",
+      width: "100%",
+      height: "100%",
     };
     session.subscribe(
       event.stream,
