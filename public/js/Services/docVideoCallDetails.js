@@ -182,9 +182,23 @@ function initializeSession() {
 function enabldDisableCamera() {
   if (isShowVideo) {
     isShowVideo = false;
-    session.publish(publisher);
+    session.connect(token, function (error) {
+      if (error) {
+        console.log(error.message);
+      } else {
+        var publisherOptions = {
+          width: 400,
+          height: 300,
+          name: "Bob's stream",
+        };
+        // This assumes that there is a DOM element with the ID 'publisher':
+        publisher = OT.initPublisher("publisher", publisherOptions);
+        session.publish(publisher);
+      }
+    });
   } else {
     session.unpublish(publisher);
+    preventDefault();
     isShowVideo = true;
   }
 }
