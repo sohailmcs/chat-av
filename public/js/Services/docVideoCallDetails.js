@@ -190,16 +190,16 @@ function enabldDisableCamera() {
     publisher.publishVideo(true);
     isShowVideo = false;
     $("#btncam i").addClass("bx-video").removeClass("bxs-video-off"); //replace icon
-    publisher.setStyle(
-      "backgroundImageURI",
-      "https://tokbox.com/img/styleguide/tb-colors-cream.png"
-    );
+    publisher.setStyle("backgroundImageURI", "");
   } else {
     session.unpublish(publisher);
     publisher.publishVideo(false);
     isShowVideo = true;
     $("#btncam i").addClass("bxs-video-off").removeClass("bx-video"); //replace icon
-    publisher.setStyle("backgroundImageURI", "");
+    publisher.setStyle(
+      "backgroundImageURI",
+      "https://tokbox.com/img/styleguide/tb-colors-cream.png"
+    );
   }
 }
 function enabldDisableMic() {
