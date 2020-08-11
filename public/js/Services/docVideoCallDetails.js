@@ -10,6 +10,8 @@ var patientId = urlParams.get("patientId");
 var PatientName = urlParams.get("patientName");
 var area = urlParams.get("area");
 var isShowVideo = false;
+var session;
+var publisher;
 
 var timer;
 var onCallduration;
@@ -141,7 +143,7 @@ function handleError(error) {
 }
 
 function initializeSession() {
-  var session = OT.initSession(apiKey, sessionId);
+  session = OT.initSession(apiKey, sessionId);
 
   // Subscribe to a newly created stream
   session.on("streamCreated", function streamCreated(event) {
@@ -164,7 +166,7 @@ function initializeSession() {
     width: "100%",
     height: "100%",
   };
-  var publisher = OT.initPublisher("publisher", publisherOptions, handleError);
+  publisher = OT.initPublisher("publisher", publisherOptions, handleError);
 
   // Connect to the session
   session.connect(token, function callback(error) {
@@ -178,14 +180,17 @@ function initializeSession() {
 }
 
 function enabldDisableCamera() {
-  var publisher = OT.initPublisher("publisher");
-  if (isShowVideo) {
-    isShowVideo = false;
-    publisher.publishVideo(true);
-  } else {
-    publisher.publishVideo(false);
-    isShowVideo = true;
-  }
+  // var publisher = OT.initPublisher("publisher");
+  // if (isShowVideo) {
+  //   isShowVideo = false;
+  //   publisher.publishVideo(true);
+  // } else {
+  //   publisher.publishVideo(false);
+  //   publisher.subscribeToVideo(false);
+  //   isShowVideo = true;
+  // }
+
+  session.unpublish(publisher);
 }
 
 //======================= end managing Audio/Video communication=======================
