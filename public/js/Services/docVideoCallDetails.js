@@ -198,7 +198,6 @@ function enabldDisableCamera() {
     });
   } else {
     session.unpublish(publisher);
-    preventDefault();
     isShowVideo = true;
   }
 }
