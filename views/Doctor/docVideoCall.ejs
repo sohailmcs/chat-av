@@ -19,9 +19,31 @@
 <script>
   var apiKey = "<%= apiKey %>";
    var sessionId = "<%= sessionId %>";
-   var token = "<%= token %>"; 
+   var token = "<%= token %>";
+  
 </script>
 
+<style type='text/css'>
+#subscribers {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+#publisher {
+    position: absolute;
+    width: 360px;
+    height: 240px;
+    bottom: 10px;
+    left: 10px;
+    z-index: 100;
+    border: 3px solid white;
+    border-radius: 3px;
+}
+</style>
 
 
 </head>
@@ -276,8 +298,8 @@
         <i class="bx bx-phone-call icon-size"></i>
         </button>
         </div>
-      <div id="publisher"  class="caller-video"></div>
-      <div id="subscribers" class="self-video"></div>
+      <div id="publisher"></div>
+      <div id="subscribers" ></div>
      </div>
     
      <br />
