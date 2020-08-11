@@ -10,7 +10,7 @@ var patientId = urlParams.get("patientId");
 var PatientName = urlParams.get("patientName");
 var area = urlParams.get("area");
 var isShowVideo = false;
-var isAudioEnable = true;
+var isAudioEnable = false;
 var session;
 var publisher;
 
@@ -186,9 +186,9 @@ function initializeSession() {
 
 function enabldDisableCamera() {
   if (isShowVideo) {
-    isShowVideo = false;
     session.publish(publisher);
     publisher.publishVideo(true);
+    isShowVideo = false;
   } else {
     session.unpublish(publisher);
     publisher.publishVideo(false);
@@ -198,10 +198,10 @@ function enabldDisableCamera() {
 
 function enabldDisableMic() {
   if (isAudioEnable) {
-    publisher.PublishAudio = true;
+    publisher.PublishAudio(true);
     isAudioEnable = false;
   } else {
-    publisher.PublishAudio = false;
+    publisher.PublishAudio(false);
     isAudioEnable = true;
   }
 }
