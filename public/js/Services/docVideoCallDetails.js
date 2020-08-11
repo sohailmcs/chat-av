@@ -189,21 +189,28 @@ function enabldDisableCamera() {
     session.publish(publisher);
     publisher.publishVideo(true);
     isShowVideo = false;
+    $("#btncam i").addClass("bx-video").removeClass("bxs-video-off"); //replace icon
+    publisher.setStyle(
+      "backgroundImageURI",
+      "https://tokbox.com/img/styleguide/tb-colors-cream.png"
+    );
   } else {
     session.unpublish(publisher);
     publisher.publishVideo(false);
     isShowVideo = true;
+    $("#btncam i").addClass("bxs-video-off").removeClass("bx-video"); //replace icon
+    publisher.setStyle("backgroundImageURI", "");
   }
 }
-
 function enabldDisableMic() {
   if (isAudioEnable) {
     publisher.publishAudio(true);
     isAudioEnable = false;
+    $("#btnMic i").addClass("bx-microphone").removeClass("bxs-microphone-off"); //replace icon
   } else {
     publisher.publishAudio(false);
     isAudioEnable = true;
-    $("#btnMic i ").addClass("bxs-microphone-off").removeClass("bx-microphone"); //replace icon
+    $("#btnMic i").addClass("bxs-microphone-off").removeClass("bx-microphone"); //replace icon
   }
 }
 
