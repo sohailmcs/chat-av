@@ -188,32 +188,12 @@ function enabldDisableCamera() {
   if (isShowVideo) {
     isShowVideo = false;
     session.publish(publisher);
-    publisher.publishAudio(true);
-    // session.connect(token, function (error) {
-    //   if (error) {
-    //     console.log(error.message);
-    //   } else {
-    //     var publisherOptions = {
-    //       width: 400,
-    //       height: 300,
-    //       name: "Bob's stream",
-    //     };
-    //     // This assumes that there is a DOM element with the ID 'publisher':
-    //     publisher = OT.initPublisher("publisher", publisherOptions);
-    //     session.publish(publisher);
-    //   }
-    // });
+    publisher.publishVideo(true);
   } else {
     session.unpublish(publisher);
-    publisher.publishAudio(false);
+    publisher.publishVideo(false);
     isShowVideo = true;
   }
-
-  // var publisher = session.publish(targetElement)
-  // .on("streamDestroyed", function(event) {
-  //   event.preventDefault();
-  //   console.log("Publisher stopped streaming.");
-  // );
 }
 
 //======================= end managing Audio/Video communication=======================
