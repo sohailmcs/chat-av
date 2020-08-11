@@ -184,11 +184,12 @@ function initializeSession() {
 }
 
 function enabldDisableCamera() {
+  alert(isShowVideo);
   if (isShowVideo) {
     isShowVideo = false;
     session.publish(publisher).on("streamDestroyed", function (event) {
       event.preventDefault();
-      console.log("Publisher stopped streaming.");
+      console.log("Publisher stopped.");
     });
     // session.connect(token, function (error) {
     //   if (error) {
