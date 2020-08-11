@@ -178,11 +178,12 @@ function initializeSession() {
 }
 
 function enabldDisableCamera() {
+  var session = OT.initSession(apiKey, sessionId);
+  pubOptions = { videoSource: null, style: { buttonDisplayModeo: "off" } };
+  var publisher = OT.initPublisher("publisher", pubOptions);
   if (isShowVideo) {
     isShowVideo = false;
-    var session = OT.initSession(apiKey, sessionId);
-    pubOptions = { videoSource: null, style: { buttonDisplayModeo: "off" } };
-    var publisher = OT.initPublisher("publisher", pubOptions);
+
     publisher.publishVideo(true);
     session.connect(token, function callback(error) {
       if (error) {
