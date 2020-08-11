@@ -108,6 +108,7 @@ $(function () {
           }
           //=============Play calling sound =====================
           PlayCallingSound(true);
+          initializeSession();
           //=========send call request to paatient============
           soc.emit("SendCallRequestToPatient", {
             pName: PatientName,
@@ -127,7 +128,6 @@ $(function () {
       .catch((error) => {
         console.log(error);
       });
-    initializeSession();
   });
 
   //===========end functionality calling======================
