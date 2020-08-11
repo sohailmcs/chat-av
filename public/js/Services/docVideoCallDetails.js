@@ -151,12 +151,15 @@ function initializeSession() {
       $("#log")
         .css("display", "block")
         .text("Disconnected. Attempting to reconnect...");
+      $("#log").delay(2500).fadeOut("slow");
     },
     sessionReconnected: function (event) {
       $("#log").css("display", "block").text("Connected.");
+      $("#log").delay(2500).fadeOut("slow");
     },
     sessionDisconnected: function (event) {
       $("#log").css("display", "block").text("Disconnected");
+      $("#log").delay(2500).fadeOut("slow");
     },
     streamCreated: function (event) {
       var subscriberOptions = {
@@ -203,7 +206,6 @@ function initializeSession() {
     //     document.getElementById("signals").innerHTML;
     // },
   });
-  if ($("#log").is(":visible")) $("#log").delay(2500).fadeOut("slow");
 
   // initialize the publisher
   var publisherOptions = {
