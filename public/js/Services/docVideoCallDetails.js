@@ -47,12 +47,12 @@ $(function () {
   });
 
   //============start of patient streaming======================
-  if (area == "Patient") {
-    $("#divCallNow").hide();
-    $(".rightcardContainer").remove();
-    $(".leftcardContainer").removeClass("col-lg-7");
-    $(".videocol").addClass("patientCallingWindow");
-  }
+  // if (area == "Patient") {
+  //   $("#divCallNow").hide();
+  //   $(".rightcardContainer").remove();
+  //   $(".leftcardContainer").removeClass("col-lg-7");
+  //   $(".videocol").addClass("patientCallingWindow");
+  // }
 
   $(".btnSaveNSend").click(function () {
     updatePrescription(
@@ -204,7 +204,7 @@ function performCall() {
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
   $("#divCallNow").hide();
-  $("three-icons").show();
+  $(".three-icons").show();
 }
 
 //============calculate calling time==============
@@ -232,7 +232,7 @@ function disconnect() {
   else newCallLoginId = cLogId;
 
   if (callPerformed) UpdateCallLogEndtime(newCallLoginId, onCallduration);
-  $(".three-icons").css("display", "block");
+  $(".three-icons").css("display", "none");
   $("#divCallNow").css("display", "block");
   PlayCallingSound(false);
   soc.emit("ClosePatientScreen", {
