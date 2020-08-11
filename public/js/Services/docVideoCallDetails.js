@@ -152,6 +152,7 @@ function initializeSession() {
       insertMode: "append",
       width: "100%",
       height: "100%",
+      buttonDisplayMode: "on",
     };
     session.subscribe(
       event.stream,
@@ -166,7 +167,7 @@ function initializeSession() {
     insertMode: "append",
     width: "100%",
     height: "100%",
-    style: { buttonDisplayMode: "on" },
+    buttonDisplayMode: "on",
   };
   publisher = OT.initPublisher("publisher", publisherOptions, handleError);
 
@@ -191,16 +192,11 @@ function enabldDisableCamera() {
     publisher.publishVideo(true);
     isShowVideo = false;
     $("#btncam i").addClass("bx-video").removeClass("bxs-video-off"); //replace icon
-    publisher.setStyle("backgroundImageURI", "");
   } else {
     session.unpublish(publisher);
     publisher.publishVideo(false);
     isShowVideo = true;
     $("#btncam i").addClass("bxs-video-off").removeClass("bx-video"); //replace icon
-    publisher.setStyle(
-      "backgroundImageURI",
-      "https://tokbox.com/img/styleguide/tb-colors-cream.png"
-    );
   }
 }
 function enabldDisableMic() {
