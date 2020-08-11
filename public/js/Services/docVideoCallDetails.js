@@ -175,6 +175,14 @@ function initializeSession() {
 function enabldDisableCamera() {
   var publisher = OT.initPublisher("publisher");
   publisher.publishVideo(fale);
+  session.connect(token, function callback(error) {
+    if (error) {
+      handleError(error);
+    } else {
+      // If the connection is successful, publish the publisher to the session
+      session.publish(publisher, handleError);
+    }
+  });
 }
 
 //======================= end managing Audio/Video communication=======================
