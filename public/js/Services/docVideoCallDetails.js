@@ -188,6 +188,7 @@ function enabldDisableCamera() {
   if (isShowVideo) {
     isShowVideo = false;
     session.publish(publisher);
+    publisher.publishAudio(true);
     // session.connect(token, function (error) {
     //   if (error) {
     //     console.log(error.message);
@@ -204,6 +205,7 @@ function enabldDisableCamera() {
     // });
   } else {
     session.unpublish(publisher);
+    publisher.publishAudio(false);
     isShowVideo = true;
   }
 
@@ -212,8 +214,6 @@ function enabldDisableCamera() {
   //   event.preventDefault();
   //   console.log("Publisher stopped streaming.");
   // );
-
-  isShowVideo = true;
 }
 
 //======================= end managing Audio/Video communication=======================
