@@ -182,24 +182,34 @@ function initializeSession() {
 function enabldDisableCamera() {
   if (isShowVideo) {
     isShowVideo = false;
-    session.connect(token, function (error) {
-      if (error) {
-        console.log(error.message);
-      } else {
-        var publisherOptions = {
-          width: 400,
-          height: 300,
-          name: "Bob's stream",
-        };
-        // This assumes that there is a DOM element with the ID 'publisher':
-        publisher = OT.initPublisher("publisher", publisherOptions);
-        session.publish(publisher);
-      }
-    });
+    session.publish(publisher);
+    // session.connect(token, function (error) {
+    //   if (error) {
+    //     console.log(error.message);
+    //   } else {
+    //     var publisherOptions = {
+    //       width: 400,
+    //       height: 300,
+    //       name: "Bob's stream",
+    //     };
+    //     // This assumes that there is a DOM element with the ID 'publisher':
+    //     publisher = OT.initPublisher("publisher", publisherOptions);
+    //     session.publish(publisher);
+    //   }
+    // });
   } else {
-    session.unpublish(publisher);
-    isShowVideo = true;
+    session.unpublish(publisher).on("streamDestroyed", function (e) {
+      e.preventDefault();
+    });
   }
+
+  // var publisher = session.publish(targetElement)
+  // .on("streamDestroyed", function(event) {
+  //   event.preventDefault();
+  //   console.log("Publisher stopped streaming.");
+  // );
+
+  isShowVideo = true;
 }
 
 //======================= end managing Audio/Video communication=======================
