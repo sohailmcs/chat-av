@@ -835,6 +835,14 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   width: 100%;
   max-width: 100%;
 }
+
+@media screen and (max-width: 650px) {
+  #publisher {
+    width: 89px;
+    height: 50px;
+  }
+}
+
 @media (max-width: 992px) {
   .leftcardContainer {
     width: 100% !important;
