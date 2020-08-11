@@ -180,17 +180,13 @@ function initializeSession() {
 }
 
 function enabldDisableCamera() {
-  // var publisher = OT.initPublisher("publisher");
-  // if (isShowVideo) {
-  //   isShowVideo = false;
-  //   publisher.publishVideo(true);
-  // } else {
-  //   publisher.publishVideo(false);
-  //   publisher.subscribeToVideo(false);
-  //   isShowVideo = true;
-  // }
-
-  session.unpublish(publisher);
+  if (isShowVideo) {
+    isShowVideo = false;
+    session.publish(publisher);
+  } else {
+    session.unpublish(publisher);
+    isShowVideo = true;
+  }
 }
 
 //======================= end managing Audio/Video communication=======================
