@@ -169,10 +169,7 @@ function initializeSession() {
         $("#log").delay(3000).fadeOut("slow");
       }
     },
-    connectionDestroyed: function connectionDestroyedHandler(event) {
-      $("#log").css("display", "block").text("Doctor Disconnected");
-      $("#log").delay(3000).fadeOut("slow");
-    },
+
     streamCreated: function (event) {
       var subscriberOptions = {
         insertMode: "append",
@@ -301,7 +298,13 @@ function countTimer() {
 //============calculate calling time==============
 
 function disconnect() {
+  //session.disconnect();
+  session.off();
   session.disconnect();
+  session.unpublish(publisher, handleError);
+  publisher.destroy();
+  session.unsubscribe(subscriber);
+
   clearInterval(timer);
   var newCallLoginId;
   if (cLogId == 0 && queId != 0) newCallLoginId = insertedCallLogID;
