@@ -184,6 +184,7 @@ function initializeSession() {
         subscriberOptions,
         handleError
       );
+
       // var subscriberDisconnectedNotification = document.createElement("div");
       // subscriberDisconnectedNotification.className =
       //   "subscriberDisconnectedNotification";
