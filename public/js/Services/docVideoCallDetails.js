@@ -13,6 +13,7 @@ var isShowVideo = false;
 var isAudioEnable = false;
 var session;
 var publisher;
+var subscriber;
 
 var timer;
 var onCallduration;
@@ -177,7 +178,7 @@ function initializeSession() {
         height: "100%",
         style: { buttonDisplayMode: "off" },
       };
-      var subscriber = session.subscribe(
+      subscriber = session.subscribe(
         event.stream,
         "subscribers",
         subscriberOptions,
