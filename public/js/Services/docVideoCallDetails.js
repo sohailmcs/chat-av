@@ -705,7 +705,7 @@ function UpdateCallLogEndtime(CallLogId, duration) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
-      // Hide Loading
+      $.LoadingOverlay("hide");
     },
   });
 }
