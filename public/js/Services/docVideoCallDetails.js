@@ -154,11 +154,11 @@ function initializeSession() {
     },
     sessionReconnected: function (event) {
       $("#log").css("display", "block").text("Connected.");
-      $("#log").delay(2500).fadeOut("slow");
+      $("#log").delay(3000).fadeOut("slow");
     },
     sessionDisconnected: function (event) {
       $("#log").css("display", "block").text("Disconnected");
-      $("#log").delay(2500).fadeOut("slow");
+      $("#log").delay(3000).fadeOut("slow");
     },
     streamCreated: function (event) {
       var subscriberOptions = {
@@ -183,6 +183,10 @@ function initializeSession() {
       subscriber.on({
         disconnected: function (event) {
           subscriberDisconnectedNotification.style.visibility = "visible";
+          $(".subscriberDisconnectedNotification").css({
+            "z-index": "9999",
+            "font-color": "#fff",
+          });
         },
         connected: function (event) {
           subscriberDisconnectedNotification.style.visibility = "hidden";
