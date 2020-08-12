@@ -182,25 +182,25 @@ function initializeSession() {
         subscriberOptions,
         handleError
       );
-      var subscriberDisconnectedNotification = document.createElement("div");
-      subscriberDisconnectedNotification.className =
-        "subscriberDisconnectedNotification";
-      subscriberDisconnectedNotification.innerText =
-        "Disconnected unexpectedly. Attempting to automatically reconnect...";
-      subscriber.element.appendChild(subscriberDisconnectedNotification);
+      // var subscriberDisconnectedNotification = document.createElement("div");
+      // subscriberDisconnectedNotification.className =
+      //   "subscriberDisconnectedNotification";
+      // subscriberDisconnectedNotification.innerText =
+      //   "Disconnected unexpectedly. Attempting to automatically reconnect...";
+      // subscriber.element.appendChild(subscriberDisconnectedNotification);
 
-      subscriber.on({
-        disconnected: function (event) {
-          subscriberDisconnectedNotification.style.visibility = "visible";
-          $(".subscriberDisconnectedNotification").css({
-            "z-index": "9999",
-            "font-color": "#fff",
-          });
-        },
-        connected: function (event) {
-          subscriberDisconnectedNotification.style.visibility = "hidden";
-        },
-      });
+      // subscriber.on({
+      //   disconnected: function (event) {
+      //     subscriberDisconnectedNotification.style.visibility = "visible";
+      //     $(".subscriberDisconnectedNotification").css({
+      //       "z-index": "9999",
+      //       "font-color": "#fff",
+      //     });
+      //   },
+      //   connected: function (event) {
+      //     subscriberDisconnectedNotification.style.visibility = "hidden";
+      //  },
+      // });
     },
     // signal: function (event) {
     //   if (event.from == session.connection) {
