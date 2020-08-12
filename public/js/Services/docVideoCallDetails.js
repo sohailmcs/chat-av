@@ -157,7 +157,7 @@ function initializeSession() {
       $("#log").delay(3000).fadeOut("slow");
     },
     sessionDisconnected: function (event) {
-      if (event.reason === "networkDisconnected") {
+      if (event.reason == "networkDisconnected") {
         $("#log")
           .css("display", "block")
           .text(
@@ -168,6 +168,10 @@ function initializeSession() {
         $("#log").css("display", "block").text("Disconnected");
         $("#log").delay(3000).fadeOut("slow");
       }
+    },
+    connectionDestroyed: function connectionDestroyedHandler(event) {
+      $("#log").css("display", "block").text("Doctor Disconnected");
+      $("#log").delay(3000).fadeOut("slow");
     },
     streamCreated: function (event) {
       var subscriberOptions = {
