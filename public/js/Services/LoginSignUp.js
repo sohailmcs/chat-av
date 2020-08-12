@@ -3,12 +3,11 @@ var baseURL = "https://kindahclinic.com/KindahService/";
 
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
-
 function setCookie(cname, cvalue, exdays) {
   var expires = "";
   if (exdays) {
     var date = new Date();
-    date.setTime(date.getTime() + exdays * 24 * 60 * 60 * 1000);
+    date.setTime(date.getTime() + exdays * 60 * 60 * 1000);
     expires = "; expires=" + date.toUTCString();
   }
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
