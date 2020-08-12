@@ -139,7 +139,7 @@ $(function () {
 //======================= start managing Audio/Video communication=======================
 function handleError(error) {
   if (error) {
-    alert(error.message);
+    console.log(error.message);
   }
 }
 
@@ -297,7 +297,7 @@ function countTimer() {
 //============calculate calling time==============
 
 function disconnect() {
-  Session.disconnect();
+  session.disconnect();
   clearInterval(timer);
   var newCallLoginId;
   if (cLogId == 0 && queId != 0) newCallLoginId = insertedCallLogID;
