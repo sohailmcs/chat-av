@@ -176,7 +176,7 @@ function initializeSession() {
         height: "100%",
         style: { buttonDisplayMode: "off" },
       };
-      session.subscribe(
+      var subscriber = session.subscribe(
         event.stream,
         "subscribers",
         subscriberOptions,
