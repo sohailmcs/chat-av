@@ -157,8 +157,17 @@ function initializeSession() {
       $("#log").delay(3000).fadeOut("slow");
     },
     sessionDisconnected: function (event) {
-      $("#log").css("display", "block").text("Disconnected");
-      $("#log").delay(3000).fadeOut("slow");
+      if (event.reason === "networkDisconnected") {
+        $("#log")
+          .css("display", "block")
+          .text(
+            "No internet connection.Please check and try connecting again."
+          );
+        $("#log").delay(3000).fadeOut("slow");
+      } else {
+        $("#log").css("display", "block").text("Disconnected");
+        $("#log").delay(3000).fadeOut("slow");
+      }
     },
     streamCreated: function (event) {
       var subscriberOptions = {
