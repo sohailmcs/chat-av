@@ -41,12 +41,12 @@
           {{FullName | Upper}}<br>
           {{#OnlineStatus}}
           <span class="bullet bullet-success bullet-sm"></span>          
-          <span style="color: #39da8a; font-weight: 300;"><b>Online</b></span>
+          <span class="lblStatus" style="color: #39da8a; font-weight: 300;"><b>Online</b></span>
           {{/OnlineStatus}}
 
           {{^OnlineStatus}}
           <span class="bullet bullet-offline bullet-sm"></span>          
-          <span style="color: #ee1516; font-weight: 300;"><b>Offline</b></span>
+          <span class="lblStatus" style="color: #ee1516; font-weight: 300;"><b>Offline</b></span>
           {{/OnlineStatus}}
 
         </h5>
@@ -85,11 +85,12 @@
               {{/OnlineStatus}}
               {{^OnlineStatus}}
               <div class="mr-1  d-inline-block btn-patient-dashboard">                              
-                <!-- Button trigger for request a call modal -->                              
-                <button type="button" disabled="disabled"  class="pt-dash-button btn btn-outline-primary round mr-1  btn-sm">
-                  <i class="bx bx-phone-call"></i>
-                  <b>Join the Sameday Waiting list</b>
-                </button>                            
+                <!-- Button trigger for request a call modal --> 
+                <button type="button" disabled="disabled" fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}"
+                class="pt-dash-button btnSencCallReq btn btn-outline-primary round mr-1  btn-sm">
+                 <i class="bx bx-phone-call"></i>
+                 <b>Join the Sameday Waiting list</b>
+               </button>
               </div>
               {{/OnlineStatus}}
 

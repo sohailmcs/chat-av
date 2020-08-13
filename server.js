@@ -132,18 +132,19 @@ socketServer.sockets.on("connection", function (socket) {
   socket.on("disconnect", function () {
     for (var name in clients) {
       if (clients[name].socket === socket.id) {
-        if (clients[name].userType == "Doctor")
-          //============send information for doctor offline to all online patients
-          socket.broadcast.emit("UpdateDoctorOnlineStatus", {
-            uID: clients[name].userId,
-            status: "Offline",
-          });
-        else if (clients[name].userType == "Patient")
-          //============send information for Patient offline to all online patients
-          socket.broadcast.emit("UpdatePatientOnlineStatus", {
-            uID: clients[name].userId,
-            status: "Offline",
-          });
+        // if (clients[name].userType == "Doctor")
+        //   //============send information for doctor offline to all online patients
+        //   socket.broadcast.emit("UpdateDoctorOnlineStatus", {
+        //     uID: clients[name].userId,
+        //     status: "Offline",
+        //     uName : clients[data.username]
+        //   });
+        // else if (clients[name].userType == "Patient")
+        //   //============send information for Patient offline to all online patients
+        //   socket.broadcast.emit("UpdatePatientOnlineStatus", {
+        //     uID: clients[name].userId,
+        //     status: "Offline",
+        //   });
 
         delete clients[name];
         break;

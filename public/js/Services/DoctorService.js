@@ -13,7 +13,13 @@ var currentDt = new Date().toLocaleDateString("en-US", options);
 
 //==login==========
 $(function () {
-  GetDoctors(false);
+  GetDoctors(false)
+    .then((data) => {
+      SetDoctorsList(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
   $(document).on("click", ".btnSencCallReq", function () {
     var doctorId = $(this).attr("docID");
@@ -84,35 +90,44 @@ function CheckIFcalledBefore(doctorId, patientId) {
   });
 }
 
+function SetDoctorsList(data) {
+  var Usertemplate = $("#user-template").html();
+  $("#doctorList").html(Mustache.to_html(Usertemplate, data));
+}
 function GetDoctors(isSync) {
-  var url = baseURL + "Doctor/GetDoctors";
+  return new Promise((resolve, reject) => {
+    var url = baseURL + "Doctor/GetDoctors";
 
-  $.ajax({
-    url: url,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    type: "GET",
-    datatype: "application/json",
-    contentType: "application/json; charset=utf-8",
-    data: "",
-    beforeSend: function () {
-      if (!isSync) $.LoadingOverlay("show");
-    },
-    success: function (data, textStatus, xhr) {
-      $.LoadingOverlay("hide");
-      var Usertemplate = $("#user-template").html();
-      $("#doctorList").html(Mustache.to_html(Usertemplate, data));
-    },
-    error: function (xhr, textStatus, err) {
-      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
-        console.log(xhr.statusText);
-      else console.log(xhr.statusText);
-    },
-    complete: function (data) {
-      // Hide Loading
-      $.LoadingOverlay("hide");
-    },
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "GET",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+
+      beforeSend: function () {
+        if (!isSync) $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+        $.LoadingOverlay("hide");
+        resolve(data);
+        // var Usertemplate = $("#user-template").html();
+        // $("#doctorList").html(Mustache.to_html(Usertemplate, data));
+      },
+      error: function (xhr, textStatus, err) {
+        reject(err);
+        // if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        //   console.log(xhr.statusText);
+        // else console.log(xhr.statusText);
+      },
+      complete: function (data) {
+        // Hide Loading
+        $.LoadingOverlay("hide");
+      },
+    });
   });
 }
 

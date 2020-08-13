@@ -122,7 +122,7 @@ $(function () {
       });
   });
   //==============set user onlne status===================
-  soc.emit("UpdateOnlineStatus", { uID: userLoginId, status: "Online" });
+  //soc.emit("UpdateOnlineStatus", { uID: userLoginId, status: "Online" });
 }); //==end of jquery $function
 
 function getDashBoardAllScheduled(isSync) {
