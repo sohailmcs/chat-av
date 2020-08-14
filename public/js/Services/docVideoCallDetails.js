@@ -536,7 +536,7 @@ function GetDoctorNotes(callLogId) {
       $("#txtDiagnosis").val(data.Diagnosis);
       $("#txtRx").val(data.PatientRX);
       $("#txtName").val(data.PatientName);
-      $("#txtMedication").val(data.Medication);
+      $("#txtMedication").data("kendoEditor").value(d.Medication);
       $("#patientAge").val(data.Age);
     },
     error: function (xhr, textStatus, err) {

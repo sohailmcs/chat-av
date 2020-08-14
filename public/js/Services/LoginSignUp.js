@@ -128,7 +128,10 @@ $(function () {
       FullName: $("#txtFirstName").val() + " " + $("#txtLastName").val(),
       Email: $("#txtEmail").val(),
       Password: $("#txtPassword").val(),
-      PhoneNo: $("input:disabled").val() + "" + $("#txtPhoneNo").val(),
+      PhoneNo:
+        $("input:disabled").val() +
+        "" +
+        $("#txtPhoneNo").val().replace(/^0+/, ""), //======remove leadng zero from phone number
       UserType: hdnUserType == "patient" ? "Patient" : $("#dboUserType").val(),
       pageName: "Signup",
       pageUrl: window.location.href,
