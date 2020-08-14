@@ -323,7 +323,7 @@ function updateClock() {
     diff = diff - m * 60;
     var s = diff;
 
-    $(this).text(h + "hours" + m + " min " + s + " sec");
+    $(this).text(h + " hours " + m + " min " + s + " sec");
   });
 }
 
