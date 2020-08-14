@@ -50,13 +50,12 @@ $(function () {
     updateDoctorNotes(cLogId, "");
   });
 
-  //============start of patient streaming======================
-  // if (area == "Patient") {
-  //   $("#divCallNow").hide();
-  //   $(".rightcardContainer").remove();
-  //   $(".leftcardContainer").removeClass("col-lg-7");
-  //   $(".videocol").addClass("patientCallingWindow");
-  // }
+  $("#txtMedication").kendoEditor({
+    resizable: {
+      content: false,
+      toolbar: true,
+    },
+  });
 
   $(".btnSaveNSend").click(function () {
     updatePrescription(
@@ -639,7 +638,7 @@ function updatePrescription(callLogId, age, name, patientId) {
     patientId;
   var model = {
     CallLogID: callLogId,
-    Medication: $("#txtMedication").val(),
+    Medication: $("#txtMedication").data("kendoEditor").value(),
     Diagnosis: $("#txtPresDiagnosis").val(),
     prescribeDt: $("#prescribeDT").val(),
     PatientName: name,
