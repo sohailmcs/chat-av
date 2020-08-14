@@ -6,15 +6,11 @@ const isAuth = require("../middleware/is-Auth.js");
 
 //index page
 router.get("/", KindahController.getHomePage);
-
 //admin routes
 
 router.get("/KindahAdmin", KindahController.getkindahAdmin);
-
 router.get("/KindahCreateDoctor", KindahController.getkindahCreateDoctor);
-
 router.get("/KindahGetAllDoctors", KindahController.getkindahGetAllDoctors);
-
 router.get("/KindahDocEditProfile", KindahController.getDoctorEditProfile);
 // Patient Routes
 
