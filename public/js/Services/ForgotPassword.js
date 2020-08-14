@@ -1,5 +1,5 @@
-// var baseURL = "https://kindahclinic.com/KindahService/";
-var baseURL = "http://localhost:1042/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
+//var baseURL = "http://localhost:1042/KindahService/";
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
 
@@ -11,13 +11,13 @@ $(function () {
     var url =
       baseURL +
       "User/ForGotPassword?criteria=" +
-      $("#txtEmailPhone").val() +
+      encodeURIComponent($("#txtEmailPhone").val()) +
       "&pageName=forgotPassword" +
       "&pageUrl=" +
       window.location.href;
-
+    var endcodeUri = encodeURI(url);
     $.ajax({
-      url: url,
+      url: endcodeUri,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
