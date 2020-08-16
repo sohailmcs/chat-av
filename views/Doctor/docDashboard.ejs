@@ -332,7 +332,7 @@
                  {{/PatientPhoto}}
                </div>
 
-                    <div style="display: inline-block;">
+                    <div class="divqueue" style="display: inline-block;">
                         <h6 style="padding-top: 2%;">
                             <b>{{PatientName | Upper}}</b> &nbsp;(<span style="
                             
@@ -342,11 +342,11 @@
                                 class="bullet bullet-success bullet-sm"></span> online -->
                                 {{#OnlineStatus}}
                                 <span class="bullet bullet-success bullet-sm"></span>          
-                                <span style="color: #39da8a; font-weight: 300;"><b>Online</b></span>
+                                <span class="lblStatus" style="color: #39da8a; font-weight: 300;"><b>Online</b></span>
                                 {{/OnlineStatus}}
                                 {{^OnlineStatus}}
                                 <span class="bullet bullet-offline bullet-sm"></span>          
-                                <span style="color: #ee1516; font-weight: 300;"><b>Offline</b></span>
+                                <span class="lblStatus" style="color: #ee1516; font-weight: 300;"><b>Offline</b></span>
                                 {{/OnlineStatus}}                            
                             </b>                            
                             </span>)
@@ -369,7 +369,7 @@
             <div class="row call-Queue-icons">
                 {{#OnlineStatus}}
                 <a >
-                    <button type="button" patientName="{{PatientName}}" 
+                    <button  type="button" patientName="{{PatientName}}" 
                      CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}" 
                      onclick="OpenCommunicationWindow(this)" 
                      class="btn btn-outline-primary round mr-1 mb-1">

@@ -56,7 +56,6 @@ socketServer.sockets.on("connection", function (socket) {
     }
   });
   socket.on("showStream", function (data) {
-    console.log(JSON.stringify(data));
     if (clients[data.username]) {
       socketServer.sockets.connected[clients[data.username].socket].emit(
         "callAccpetedandShowStream",
@@ -68,9 +67,6 @@ socketServer.sockets.on("connection", function (socket) {
   });
   socket.on("RejectedAudioVideoCall", function (data) {
     if (clients[data.username]) {
-      console.log(
-        "this is docort Name " + JSON.stringify(clients[data.username])
-      );
       socketServer.sockets.connected[clients[data.username].socket].emit(
         "GetRejectedConfirmation",
         data
@@ -132,20 +128,20 @@ socketServer.sockets.on("connection", function (socket) {
   socket.on("disconnect", function () {
     for (var name in clients) {
       if (clients[name].socket === socket.id) {
-        // if (clients[name].userType == "Doctor")
-        //   //============send information for doctor offline to all online patients
-        //   socket.broadcast.emit("UpdateDoctorOnlineStatus", {
-        //     uID: clients[name].userId,
-        //     status: "Offline",
-        //     uName : clients[data.username]
-        //   });
-        // else if (clients[name].userType == "Patient")
-        //   //============send information for Patient offline to all online patients
-        //   socket.broadcast.emit("UpdatePatientOnlineStatus", {
-        //     uID: clients[name].userId,
-        //     status: "Offline",
-        //   });
-
+        if (clients[name].userType == "Doctor") {
+          //============send information for doctor offline to all online patients
+          socket.broadcast.emit("UpdateDoctorOnlineStatus", {
+            uID: clients[name].userId,
+            status: "Offline",
+            uName: name,
+          });
+        } else if (clients[name].userType == "Patient")
+          //============send information for Patient offline to all online patients
+          socket.broadcast.emit("UpdatePatientOnlineStatus", {
+            uID: clients[name].userId,
+            status: "Offline",
+            uName: name,
+          });
         delete clients[name];
         break;
       }

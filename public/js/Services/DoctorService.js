@@ -48,8 +48,6 @@ $(function () {
     var doctorId = $(this).attr("docID");
     GetDoctorsProfile(doctorId);
   });
-
-  soc.emit("UpdatePatientOnlineStatus", { uID: useLoginId, status: "Online" });
 }); //==end of jquery $function
 
 function CheckIFcalledBefore(doctorId, patientId) {

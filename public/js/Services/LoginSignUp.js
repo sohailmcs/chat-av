@@ -1,7 +1,7 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
 
 //var baseURL = "http://localhost:1042/KindahService/";
-
+var soc = io({ transports: ["websocket"], upgrade: false });
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
 function setCookie(cname, cvalue, exdays) {
@@ -92,9 +92,11 @@ $(function () {
         setCookie("kindahUserType", data.UserType, 1);
         setCookie("kindahUserId", data.UserId, 1);
         setCookie("kindahUserName", data.FullName, 1);
-        if (data.UserType == "Patient")
+        if (data.UserType == "Patient") {
           window.location.href = "/patientDashboard";
-        else window.location.href = "/docDashboard";
+        } else {
+          window.location.href = "/docDashboard";
+        }
       },
       error: function (xhr, textStatus, err) {
         if (xhr.status == "401" && xhr.statusText == "Unauthorized")

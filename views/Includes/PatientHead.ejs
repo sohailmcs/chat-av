@@ -32,6 +32,21 @@
     var soc = io({ transports: ["websocket"], upgrade: false });
     // var soc = io("https://chat-av.herokuapp.com");
 
+    $(document).ready(function () {
+      //=========save id for video/Audio chat=============
+      $(".goog-te-menu-value").children().last().remove();
+
+      uName = getcookie("kindahUserName"); // $(".user-name").text();
+      userID = getcookie("kindahUserId"); // $(".user-name").attr("userinfo");
+      var userType = getcookie("kindahUserType");
+      changePatientOlineStaus(userID, "Online", uName);
+      soc.emit("add-user", {
+        username: uName,
+        userId: userID,
+        userType: userType,
+      });
+    }); //=================end of document.ready function=======
+
     function getcookie(cookiename) {
       var cookiestring = document.cookie;
       var cookiearray = cookiestring.split(";");
@@ -44,8 +59,8 @@
     }
 
     function deleteAllCookies() {
+      changePatientOlineStaus(userID, "Offline", uName);
       var cookies = document.cookie.split(";");
-
       for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i];
         var eqPos = cookie.indexOf("=");
@@ -54,19 +69,59 @@
       }
       window.location.href = "/login";
     }
-    $(document).ready(function () {
-      //=========save id for video/Audio chat=============
-      $(".goog-te-menu-value").children().last().remove();
+    function changePatientOlineStaus(userId, status, uName) {
+      //=============update status in database=============
+      UpdateUserOnlineStatus(userId, status, uName, "Patient");
+      //==============update status for other's user================
+    }
 
-      uName = getcookie("kindahUserName"); // $(".user-name").text();
-      userID = getcookie("kindahUserId"); // $(".user-name").attr("userinfo");
-      var userType = getcookie("kindahUserType");
-      soc.emit("add-user", {
-        username: uName,
-        userId: userID,
-        userType: userType,
-      });
-    });
+    function UpdateUserOnlineStatus(UserID, status, userName, userType) {
+      return new Promise((resolve, reject) => {
+        //==============update status for other's user================
+        soc.emit("UpdatePatientOnlineStatus", {
+          uID: UserID,
+          status: status,
+          uName: userName,
+        });
+
+        var useStatus = status == "Online" ? true : false;
+        var url =
+          baseURL +
+          "User/UpdateUserOnlineStatus?userId=" +
+          UserID +
+          "&Onlinestatus=" +
+          useStatus +
+          "&userType=" +
+          userType;
+
+        $.ajax({
+          url: url,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          type: "GET",
+          datatype: "application/json",
+          contentType: "application/json; charset=utf-8",
+          data: "",
+          beforeSend: function () {},
+          success: function (data, textStatus, xhr) {
+            resolve(data);
+          },
+          error: function (xhr, textStatus, err) {
+            reject(err);
+          },
+          complete: function (data) {
+            // Hide Loading
+          },
+        });
+      })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
 
     function PlayCallingSound(play) {
       $(
@@ -150,7 +205,7 @@
         heading
           .find(".lblStatus")
           .text(data.status)
-          .css({ color: "#39da8a", "font-weight": "300" });
+          .css({ color: "#39da8a", "font-weight": "400" });
         heading
           .find(".bullet-sm")
           .removeClass("bullet-offline")
@@ -160,7 +215,7 @@
         heading
           .find(".lblStatus")
           .text(data.status)
-          .css({ color: "#ee1516", "font-weight": "300" });
+          .css({ color: "#ee1516", "font-weight": "400" });
         heading
           .find(".bullet-sm")
           .removeClass("bullet-success")
