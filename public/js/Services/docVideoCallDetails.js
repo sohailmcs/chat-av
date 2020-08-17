@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 
 var urlParams = new URLSearchParams(window.location.search);
 var queId = urlParams.get("queId");
@@ -529,15 +529,16 @@ function GetDoctorNotes(callLogId) {
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
-
-      //=========open dialog for update==========
-      $("#txtExam").val(data.HistoryAndExam);
-      $("#txtAllergies").val(data.Allergies);
-      $("#txtDiagnosis").val(data.Diagnosis);
-      $("#txtRx").val(data.PatientRX);
-      $("#txtName").val(data.PatientName);
-      $("#txtMedication").data("kendoEditor").value(d.Medication);
-      $("#patientAge").val(data.Age);
+      if (data != null) {
+        //=========open dialog for update==========
+        $("#txtExam").val(data.HistoryAndExam);
+        $("#txtAllergies").val(data.Allergies);
+        $("#txtDiagnosis").val(data.Diagnosis);
+        $("#txtRx").val(data.PatientRX);
+        $("#txtName").val(data.PatientName);
+        $("#txtMedication").data("kendoEditor").value(data.Medication);
+        $("#patientAge").val(data.Age);
+      }
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -596,6 +597,9 @@ function updateDoctorNotes(callLogId, status) {
     Diagnosis: $("#txtDiagnosis").val(),
     PatientRX: $("#txtRx").val(),
     callStatus: status,
+    CallQueID: queId,
+    DoctorID: docId,
+    PatientID: patientId,
   };
 
   $.ajax({
@@ -643,6 +647,10 @@ function updatePrescription(callLogId, age, name, patientId) {
     prescribeDt: $("#prescribeDT").val(),
     PatientName: name,
     DoctorName: docName,
+    CallQueID: queId,
+    DoctorID: docId,
+    PatientID: patientId,
+    Age: $("#patientAge").val(),
   };
 
   $.ajax({
