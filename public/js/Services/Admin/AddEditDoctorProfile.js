@@ -6,6 +6,11 @@ var doctorId = urlParams.get("id");
 if (urlParams.has("id")) doctorId = urlParams.get("id");
 
 $(function () {
+  $("#txtPwd").focusout(function () {
+    var txt = $(this).val();
+    $("#hdnpwd").val(txt);
+  });
+
   $("#txtbioGraphy").kendoEditor({
     resizable: {
       content: false,
@@ -36,7 +41,7 @@ function SetDoctorProfile(d) {
   $("#result").html(div);
 
   $("#txtUname").val(d.Email);
-  $("#hdnpassword").val(d.password);
+  $("#hdnpwd").val(d.password);
   $("#txtFname").val(d.FirstName);
   $("#txtLname").val(d.LastName);
   $("#txtbioGraphy").data("kendoEditor").value(d.Biography);
@@ -154,6 +159,8 @@ function AddEditDoctorProfile(doctorId) {
   modelDetails.DoctorId = doctorId;
   modelDetails.FirstName = $("#txtFname").val();
   modelDetails.LastName = $("#txtLname").val();
+  modelDetails.password = $("#hdnpwd").val();
+
   modelDetails.FullName = $("#txtFname").val() + " " + $("#txtLname").val();
   modelDetails.Specialization = jQuery("#txtspe option:selected").text();
   modelDetails.Services = $("#txtServices").val();
