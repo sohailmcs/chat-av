@@ -771,6 +771,10 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   -webkit-box-shadow: inset 0 0 6px rgba(34, 8, 107, 0.37);
 }
 
+#table-Marketing .card-header {
+  padding: 1rem 1.7rem !important;
+}
+
 .tblCallLogs td {
   padding: 0rem 0rem !important;
   text-align: center;
