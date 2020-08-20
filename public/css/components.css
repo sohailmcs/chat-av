@@ -3730,13 +3730,11 @@ body.navbar-static .navbar-container .search-input.open {
 .widget-timeline {
   padding-left: 10px;
 }
-
 .widget-timeline li {
-  padding: 1rem 0;
+  padding: 0.6rem 0;
   list-style: none;
   position: relative;
 }
-
 .widget-timeline li.timeline-items:before {
   position: absolute;
   content: "";
