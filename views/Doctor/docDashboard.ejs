@@ -10,8 +10,8 @@
 <link rel="stylesheet" type="text/css" href="/css/components.css" />
 <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
-<link rel="stylesheet" type="text/css" href="/css/ns-default.css" />
-<link rel="stylesheet" type="text/css" href="/css/ns-style-growl.css" />
+<!-- <link rel="stylesheet" type="text/css" href="/css/ns-default.css" />
+<link rel="stylesheet" type="text/css" href="/css/ns-style-growl.css" /> -->
 <script src="/js/modernizr.custom.js"></script>
 
 
@@ -36,9 +36,12 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title white" id="myModalLabel160">
-                    SEND MESSAGE
+                <h5 class="modal-title black" id="myModalLabel160">
+                    Send Message
                 </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
             </div>
             <div class="modal-body">
                
@@ -50,11 +53,11 @@
                 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                    <span class="d-none d-sm-block">Close<i class="bx bx-x sms-popup"></i></span>
-                </button>
+               
                 <button type="button" class="btnSendSMSReminder btn btn-primary ml-1" data-dismiss="modal">
-                    <span class="d-none d-sm-block">Send<i class="bx bx-send sms-popup"></i></span>
+                    <span class="d-none d-sm-block"><i class='bx bx-send bx-rotate-295 sms-popup' ></i>
+                       &nbsp; SEND
+                    </span>
                 </button>
             </div>
         </div>
@@ -217,37 +220,42 @@
 <script id="Scheduled-template" type="text/html">
         {{#PatientScheduleded}}
         <li class="timeline-items timeline-icon-primary active pb-0">
-            <div class="timeline-time">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h6 class="patientName">
+                            <strong>  {{patientName}} </strong>
+                          </h6>
+                          <P class="timeline-title-Gender">
+                            <span class="spnGender"><strong>Gender:</strong> </span>  {{Gender}}
+                          </p>           
+                      </div>
+                      <div class="col-sm-5">
+                        <h4 class="timeline-text">
+                         <strong>Contact: </strong>{{patientPhone | phone}}
+                        </h4>
+                          <P class="timeline-text">
+                          <strong>Time: {{AppointmentStartTime}}-{{AppointmentEndTime}}</strong>
+                          </p>           
+                     </div>
+             <div class="col-sm-3">  
                 <button   type="button"
-                 docID="{{DoctorID}}" PName="{{patientName}}" patientId="{{PatientID}}" scheId = "{{scheduledID}}"
-                    class="btn btn-outline-primary round mr-1 mb- btnAcceptSch">
-                    <i class="bx bx-purchase-tag"></i>
-                    <b>Check in</b>
-                </button>
-            </div>
-           <div>
-                <h6 class="timeline-title">
-              <strong>  {{patientName | Upper}}</strong>
-            </h6>
-            <p class="timeline-text">
-                {{patientPhone}}
-                <br />
-            </p>
-            <P class="timeline-text">
-                {{Gender}}
-            </p>
-        <p class="timeline-text">
-                {{BookedDateTime | date}}&nbsp;<strong>{{AppointmentStartTime}}-{{AppointmentEndTime}}</strong>
-            </p>
-        </div>
+                docID="{{DoctorID}}" PName="{{patientName}}" patientId="{{PatientID}}" scheId = "{{scheduledID}}"
+                   class="btn btn-outline-primary  btncheckIn_sch mb- btnAcceptSch">
+                   <i class="bx bx-purchase-tag"></i>
+                   <b>Check in</b>
+               </button>
+                     </div>                      
+                </div><!--end of row-->
+            </div><!--end of col-lg-12-->           
         </li>
        {{/PatientScheduleded}}
 
        {{^PatientScheduleded.0}}
         <li class="timeline-items timeline-icon-primary active pb-0">
-            <h6 class="timeline-title">
+            <h3 class="timeline-title">
                 No schedule available
-            </h6>
+            </h3>
         </li>
        {{/PatientScheduleded.0}}
     </script>
@@ -256,43 +264,48 @@
 <!--start of request call Templates-->
 <script id="req-template" type="text/html">
         {{#RequestedCall}}
-        <li class="timeline-items timeline-icon-primary active pb-0">
-            <div class="timeline-time">
-                <button type="button" type="button" docID="{{DoctorID}}" 
-                patientId="{{PatientID}}" PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}"
-                    class="btn btn-outline-primary round mr-1 mb-1 btnAcceptCall ">
-                    <i class="bx bx-purchase-tag"></i>
-                    <b>Check in</b>
-                </button>
-                <button  type="button" docID="{{DoctorID}}"  PName="{{patientName}}"
-                patientId="{{PatientID}}" callreqID="{{CallrequestID}}"
-                  class="btn btn-icon rounded-circle btn-outline-danger mr-1 mb-1 btnRejectCall">
-                    <i class="bx bx-x"></i>
-                </button>
-            </div>
-          <div>
-                <h6 class="timeline-title">
-              <strong>  {{patientName | Upper}} </strong>
-            </h6>
-            <p class="timeline-title">
-                {{patientPhone}}
-            </p>
-            <P class="timeline-title">
-                {{Gender}}
-            </p>
-            <p class="timeline-text">
-                {{CallRequestDateTime | date}}
-            </p>
-        </div>
-        </li>
-      
+        <li class="timeline-items timeline-icon-primary active pb-0">           
+         <div class="col-lg-12">
+            <div class="row">
+            <div class="col-sm-4">
+                <h6 class="patientName">
+                    <strong>  {{patientName}} </strong>
+                  </h6>
+                  <P class="timeline-title-Gender">
+                    <span class="spnGender"><strong>Gender:</strong> </span>  {{Gender}}
+                  </p>           
+              </div>
+           <div class="col-sm-4">
+            <h4 class="timeline-text">
+             <strong>Contact: </strong>{{patientPhone | phone}}
+            </h4>
+              <P class="timeline-text">
+              <strong>Time:</strong> {{CallRequestDateTime | time}}
+              </p>           
+         </div>
+         <div class="col-sm-4">
+             <button type="button" type="button" docID="{{DoctorID}}" 
+                    patientId="{{PatientID}}" PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}"
+                class="btn btn-outline-primary btncheckIn  mb-1 btnAcceptCall ">
+                <i class="bx bx-purchase-tag"></i>
+                <b>Check in</b>
+            </button>
+        <button  type="button" docID="{{DoctorID}}"  PName="{{patientName}}"
+            patientId="{{PatientID}}" callreqID="{{CallrequestID}}"
+            class="btn btn-icon btn-outline-danger mb-1 btnRejectCall">
+            <i class="bx bx-x"></i>
+        </button>  
+         </div>
+        </div><!--end of row-->
+    </div><!--end of col-lg-12-->
+        </li>      
        {{/RequestedCall}}
 
        {{^RequestedCall.0}}
        <li class="timeline-items timeline-icon-primary active pb-0">
-            <h6 class="timeline-title">
+            <h3 class="timeline-title">
                 No schedule available
-            </h6>
+            </h3>
         </li>
        {{/RequestedCall.0}}
 
@@ -303,18 +316,17 @@
     {{#result}}
      <!-- Patient one  -->
      <div class="row" style="margin: 1%;">
-        <div class="col-md-7 col-sm-12">
+        <div class="col-sm-4">
             <div class="d-inline-block">
-                <div class="pr-50" style="display: inline-block; align-self: stretch;">
+                <div class="pr-50 pImage " style="float:left;display: inline-block; align-self: stretch;">
                     {{#PatientPhoto}}
                     <img
                     src="{{PatientPhoto}}"
                     alt="image"
                     style="
                     width: 80px;
-                    height: 80px;
-                    border-radius: 50%;
-                    vertical-align: unset;
+                    height: 80px;                    
+                    float:left;
                   "
                   />
                  {{/PatientPhoto}}
@@ -324,55 +336,49 @@
                  alt="image"
                  style="
                  width: 80px;
-                 height: 80px;
-                 border-radius: 50%;
-                 vertical-align: unset;
-               "
+                 height: 80px;                 
+                 float:left;"
                />
                  {{/PatientPhoto}}
-               </div>
-
-                    <div class="divqueue" style="display: inline-block;">
-                        <h6 style="padding-top: 2%;">
-                            <b>{{PatientName | Upper}}</b> &nbsp;(<span style="
-                            
-                            color: #39da8a;
-                            font-weight: 300;"><b>{{RequestType}} -
-                              <!-- <span
-                                class="bullet bullet-success bullet-sm"></span> online -->
+                         <span class="onlinStatus"><b>                             
                                 {{#OnlineStatus}}
-                                <span class="bullet bullet-success bullet-sm"></span>          
-                                <span class="lblStatus" style="color: #39da8a; font-weight: 300;"><b>Online</b></span>
+                                <span class="bullet bullet-success bullet-sm"></span> 
                                 {{/OnlineStatus}}
                                 {{^OnlineStatus}}
-                                <span class="bullet bullet-offline bullet-sm"></span>          
-                                <span class="lblStatus" style="color: #ee1516; font-weight: 300;"><b>Offline</b></span>
+                                <span class="bullet bullet-offline bullet-sm"></span>
                                 {{/OnlineStatus}}                            
                             </b>                            
-                            </span>)
-                        </h6>
+                            </span>
+                 </div>
 
-                        <p><b>Contact :</b> {{PatientPhone}}</p>
-                        <p><b>Added on :</b> {{{CallQueDateTime}}}</p> 
-                        <p><b>Patient waiting since :</b> 
-                        <input type= "hidden" class="hdnCallQueDate" value="{{{CallQueDateTime}}}" >
-                        <span class="spnWaitingTime">
-                           {{{CallQueDateTime}}}    
-                        </span>
-                              </p>
+                    <div class="divqueue" style="display: inline-block;">
+                        <h6 class='patientName' style="padding-top: 2%;">
+                            <strong>{{PatientName}}</strong> 
+                        </h6>
+                        <p class="callType">{{RequestType}}</p>
                         
                     </div>
                 </div>
             </div>
         
-        <div class="col-md-5 col-sm-12 text-md-right">
+            <div class="col-sm-4 call-Queue-icons">
+                <p><strong>Contact Number :</strong> {{PatientPhone}}</p>                        
+                <p><strong>Patient waiting since :</strong> 
+                <input type= "hidden" class="hdnCallQueDate" value="{{{CallQueDateTime}}}" >
+                <span class="spnWaitingTime" >
+                   {{{CallQueDateTime}}}    
+                </span>
+                      </p>
+            </div>
+            
+        <div class="col-sm-4 text-md-right">
             <div class="row call-Queue-icons">
                 {{#OnlineStatus}}
                 <a >
                     <button  type="button" patientName="{{PatientName}}" 
                      CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}" 
                      onclick="OpenCommunicationWindow(this)" 
-                     class="btn btn-outline-primary round mr-1 mb-1">
+                     class="btn btn-audio-video mb-1">
                         <i class="bx bx-microphone"></i>
                         <b>Audio</b>
                     </button>
@@ -381,7 +387,7 @@
                     <button type="button"  patientName="{{PatientName}}" 
                     CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}" 
                      onclick="OpenCommunicationWindow(this)" 
-                     class="btn btn-outline-primary round mr-1 mb-1">
+                     class="btn btn-audio-video mb-1">
                         <i class="bx bx-video"></i>
                         <b>Video</b>
                     </button>
@@ -390,14 +396,14 @@
                 {{^OnlineStatus}}
                 <a >
                     <button type="button" disabled
-                     class="btn btn-outline-primary round mr-1 mb-1">
+                     class="btn btn-audio-video mb-1">
                         <i class="bx bx-microphone"></i>
                         <b>Audio</b>
                     </button>
                 </a>
                 <a>
                     <button type="button" disabled
-                     class="btn btn-outline-primary round mr-1 mb-1">
+                     class="btn btn-audio-video mr-1 mb-1">
                         <i class="bx bx-video"></i>
                         <b>Video</b>
                     </button>
@@ -409,9 +415,9 @@
                 <div class="modal-primary mr-1 mb-1 d-inline-block">
                     <!-- Button for SMS Popup -->
                     <button type="button"patientName="{{PatientName}}"  phoneNo="{{PatientPhone}}"
-                     class="btnpopupSmsReminder btn btn-outline-primary round"
+                     class="btnpopupSmsReminder btn btn-audio-video"
                         >
-                        <i class="bx bxs-chat"></i>
+                        <i class="bx bx-chat"></i>
                         <b>SMS</b>
                     </button>                    
                 </div>
@@ -420,7 +426,7 @@
     </div>
 </div>
     <!-- patient one ends -->
-    <hr />
+  
   
    {{/result}}
 
@@ -443,10 +449,11 @@
         </td>
         <td>{{OnCallDuration}}</td>
 
-        <td>            
+        <td> 
+            <br>           
                 <button type="button" cLogId="{{CallLogID }}"
-                    class="btn_complateCall btn btn-outline-primary round mr-1 mb-1 btn-sm">
-                    Complete
+                    class="btn_complateCall btn btn-outline-primary  mr-1 mb-1 btn-sm">
+                    COMPLETE
                 </button>            
         </td>
         <td>
@@ -499,7 +506,10 @@ No Call Log Available
         <div class="content-body">
             <div class="d-flex flex-row">
                 <div class="page-heading">
-                    <h3>DOCTOR DASHBOARD</h3>
+                    <h3>
+                        <i class='bx bxs-calendar-plus'></i>                      
+                        <span>
+                        Doctor Dashboard</span></h3>
                 </div>
             </div>
 
@@ -510,11 +520,11 @@ No Call Log Available
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-12">
-                                <div class="card widget-todo" style="height: 450px; overflow: auto;">
+                                <div class="widget-todo" style="height: 450px; overflow: auto;">
                                     <div
-                                        class="card-header border-bottom d-flex justify-content-between align-items-center flex-wrap dashboard-heading-1">
+                                        class="card-header dashboard-heading-1">
                                         <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
-                                            SCHEDULED APPOINTMENTS
+                                            Scheduled Appointments
                                         </h6>
                                     </div>
                                     <div class="card-content">
@@ -531,14 +541,13 @@ No Call Log Available
 
                     <!-- Direct Calls Card Starts -->
                     <div class="col-sm-6">
-                        <div class="card" style="height: 450px; overflow: auto;">
+                        <div class="widget-todo" style="height: 450px; overflow: auto;">
                             <div class="card-header dashboard-heading-1">
-                                <h6 class="card-title dashboard-headings">
-                                    DIRECT CALLS
-
-                                </h6>
+                                <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                     Direct Calls
+                                     </h6>
                             </div>
-                            <hr />
+                            
                             <div class="card-content">
                                 <div class="card-body">
                                     <ul class="widget-timeline" style="list-style: none;" id="reqTemplate">
@@ -552,18 +561,17 @@ No Call Log Available
                 </div>
             </section>
             <!-- Dashboard  end -->
-
+<br>
             <!-- Call Queue Start -->
             <section id="table-Marketing">
                 <div class="card" style="height: 350px; overflow: auto;">
-                    <div class="card-header call-queue-head">
-                        <h6 class="card-title dashboard-headings">CALL QUEUE</h6>
-                        <div class="heading-elements"></div>
+                    <div class="card-header ">
+                        <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                            Call Queue
+                             </h6>
                     </div>
-                    <hr />
                     <div class="card-content">
                         <div class="card-body pb-0" id="QueTemplate">
-
 
                         </div>
                     </div>
@@ -578,23 +586,22 @@ No Call Log Available
                     <div class="card">
                         <div class="card-header call-log-header">
                             <h6 class="card-title dashboard-headings">
-                                RECENT CALL LOGS
+                                Recent Call Logs
                             </h6>
                         </div>
-                        <hr />
+                        
                         <div class="card-content">
                             <!-- table hover -->
                             <div class="table-responsive">
                                 <table class="table table-hover mb-0 tblCallLogs">
                                     <thead class="tablehead">
                                         <tr>
-                                            <th class="tableheader">CONSULTATION</th>
-                                            <th class="tableheader">PHONE</th>
-                                            <th class="tableheader">DATE & TIME</th>
-
-                                            <th class="tableheader">DURATION</th>
-                                            <th class="tableheader">ACTIVITY</th>
-                                            <th class="tableheader">ACTIONS</th>
+                                            <th class="tableheader">Consultation</th>
+                                            <th class="tableheader">Phone</th>
+                                            <th class="tableheader">Date & Time</th>
+                                            <th class="tableheader">Duration</th>
+                                            <th class="tableheader">Activity</th>
+                                            <th class="tableheader">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tblCallLogs">

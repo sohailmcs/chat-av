@@ -323,7 +323,7 @@ function updateClock() {
     diff = diff - m * 60;
     var s = diff;
 
-    $(this).text(h + " hours " + m + " min " + s + " sec");
+    $(this).text(m + " min " + s + " sec");
   });
 }
 
@@ -619,6 +619,17 @@ Mustache.Formatters = {
   },
   Upper: function (str) {
     return str.toUpperCase();
+  },
+  time: function (str) {
+    var options = {
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(str).toLocaleTimeString("en-GB", options);
+  },
+  phone: function (str) {
+    var res = str.substring(4, str.length);
+    return res;
   },
 };
 

@@ -45,7 +45,7 @@ html {
 
 html body {
   height: 100%;
-  background-color: #f2f4f4;
+  background-color: #f5f9ff;
   direction: ltr;
 }
 
@@ -55,7 +55,7 @@ html body .content {
   transition: 300ms ease all;
   backface-visibility: hidden;
   min-height: calc(100% - 3.5rem);
-  margin-left: 260px;
+  margin-left: 240px;
 }
 
 html body .content.app-content {
@@ -225,8 +225,7 @@ html
 }
 
 html body.navbar-sticky .app-content .content-wrapper {
-  padding: 1rem 1rem 0;
-  margin-top: 3rem;
+  padding: 3rem 1.7rem 0;
 }
 
 html body.navbar-static .navbar-container,
@@ -250,7 +249,7 @@ html body p {
 }
 
 html body.bg-full-screen-image {
-  background-color:#3eb8d7;
+  background-color: #3eb8d7;
   background-size: cover;
 }
 
@@ -496,11 +495,9 @@ body.footer-hidden footer {
   padding: 7px 0 0;
   margin: -7px 0 0;
 }
-.dropdown-menu i{
-  color:#3eb8d7;
+.dropdown-menu i {
+  color: #3eb8d7;
 }
-
-
 
 .main-menu.menu-light
   .navigation
@@ -921,7 +918,7 @@ body.footer-hidden footer {
 }
 
 .main-menu .navbar-header .navbar-brand .brand-text {
-  color:#3eb8d7;
+  color: #3eb8d7;
   padding-left: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.04rem;
@@ -930,7 +927,7 @@ body.footer-hidden footer {
   animation: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1 fadein;
 }
 .dropdown-item {
-  color:#3eb8d7;
+  color: #3eb8d7;
 }
 
 .main-menu .navbar-header .modern-nav-toggle {
@@ -958,6 +955,15 @@ body.footer-hidden footer {
   font-family: "Rubik", Helvetica, Arial, serif;
   overflow-y: hidden;
   padding-bottom: 20px;
+}
+.navigation a {
+  margin: 0;
+  display: block;
+  border-bottom: 2px solid #eff5ff;
+}
+
+.main-menu a.firstChild {
+  border-top: 2px solid #eff5ff;
 }
 
 .navigation .navigation-header {
@@ -1740,8 +1746,8 @@ body.fixed-footer .main-menu.menu-fixed {
 }
 
 .bullet.bullet-sm {
-  width: 10px;
-  height: 10px;
+  width: 17px;
+  height: 17px;
 }
 
 .bullet.bullet-lg {
@@ -3721,6 +3727,10 @@ body.navbar-static .navbar-container .search-input.open {
 
 /* Timeline */
 /* ---------------- */
+.widget-timeline {
+  padding-left: 10px;
+}
+
 .widget-timeline li {
   padding: 1.1rem 0;
   list-style: none;
@@ -3730,7 +3740,7 @@ body.navbar-static .navbar-container .search-input.open {
 .widget-timeline li.timeline-items:before {
   position: absolute;
   content: "";
-  left: -37px;
+  left: -6px;
   top: 17px;
   border: 3px solid #ffffff;
   box-shadow: 1px 2px 6px 0 rgba(25, 42, 70, 0.3);
@@ -3766,12 +3776,75 @@ body.navbar-static .navbar-container .search-input.open {
   font-size: 0.9rem;
 }
 
-.widget-timeline li .timeline-title {
-  margin-bottom: 0.25rem;
+h6.patientName {
+  font-size: 16px;
+  margin-bottom: 0.35rem;
+  color: #076dfa;
+  line-height: 12px;
+}
+.pImage {
+  position: relative;
+}
+.onlinStatus {
+  position: absolute;
+  right: 5px;
+  bottom: 0px;
+  color: #4dd0bb;
+  font-weight: 300;
+}
+.widget-timeline li h4 {
+  margin-bottom: 2px !important;
+  font-size: 12px;
+  color: #647796;
+}
+.widget-timeline li h3 {
+  font-size: 14px;
+  margin: 0 0 0 15px;
+  color: #076dfa;
+}
+
+.timeline-title-Gender {
+  color: #4dd0bb;
+  font-size: 14px;
+}
+#table-Marketing .card,
+#table-hover-row .card {
+  box-shadow: none !important;
+}
+#table-hover-row .card {
+  background: none !important;
+}
+#table-hover-row .card-content {
+  border: 1px solid #ddeaff !important;
+}
+
+.callType {
+  color: #4dd0bb;
+  font-size: 16px;
+}
+.timeline-text {
+  font-size: 13px;
+  color: #647796;
+}
+.spnGender {
+  color: #647796;
+  font-weight: 500;
 }
 
 .widget-timeline li .timeline-text {
   margin-bottom: 0.5rem;
+}
+
+.btncheckIn {
+  padding: 4px;
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.btncheckIn_sch {
+  padding: 4px 4px;
+  font-size: 12px;
+  margin-right: 5px;
 }
 
 /* Breakpoints Css */
