@@ -309,7 +309,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: #2098d1;
+  background: #f4f9ff;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transform-origin: 0 50%;
@@ -324,7 +324,7 @@ body {
 .hvr-sweep-to-right:hover,
 .hvr-sweep-to-right:focus,
 .hvr-sweep-to-right:active {
-  color: white !important;
+  color: #0367ff !important;
 }
 .hvr-sweep-to-right:hover:before,
 .hvr-sweep-to-right:focus:before,
@@ -373,7 +373,7 @@ p {
   background-color: transparent;
   width: 100%;
   border: none;
-  padding: 5% 0;
+  padding: 6% 0;
   color: #647796;
   display: flex;
   flex-direction: row;
@@ -754,6 +754,21 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 .widget-todo {
   background: #fff;
   margin-top: 15px;
+}
+
+.widget-todo::-webkit-scrollbar {
+  width: 6px;
+  color: #0367ff;
+}
+
+.widget-todo::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 3px rgba(95, 110, 10, 0.3);
+  border-radius: 5px;
+}
+
+.widget-todo::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgba(34, 8, 107, 0.37);
 }
 
 .tblCallLogs td {
