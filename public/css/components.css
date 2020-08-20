@@ -3779,6 +3779,7 @@ h6.patientName {
   margin-bottom: 0.35rem;
   color: #076dfa;
   line-height: 12px;
+  font-weight: 500;
 }
 .pImage {
   position: relative;
