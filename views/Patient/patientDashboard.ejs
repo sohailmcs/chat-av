@@ -40,12 +40,12 @@
   <!-- picture start -->
 
   <!-- description start -->
-      <div class="col-sm-5" style="display: inline-block;">
+      <div class="col-sm-7" style="display: inline-block;">
         <h5 class="docName" >
          Dr. {{FullName}}
           {{#OnlineStatus}} 
           <!-- <span class="bullet bullet-success bullet-sm"></span>           -->
-          <span class="txtDocOnlineStatus">&nbsp;(Available Today)</span>
+          <span class="docStatus txtDocOnlineStatus">&nbsp;(Available Today)</span>
           {{/OnlineStatus}}
 
           {{^OnlineStatus}}
@@ -65,9 +65,9 @@
    <!-- description start -->
 
     <!-- buttons start -->
-          <div class="col-sm-5" >            
+          <div class="col-sm-3" >            
               <!-- VIEW DOCTOR PROFILE START -->             
-              <div style="text-align:right"  class="call-Queue-icons">
+              <div style="text-align:left"  class="call-Queue-icons">
                 <a href="/patientReqAppointment?DoctorId={{DoctorId}}&DocName={{FullName}}"  >
                 <button type="button" class="btn btn-outline-primary  mr-1  btn-sm" style="width:205.953px">
                   <i class="bx bx-calendar"></i>

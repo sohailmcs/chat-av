@@ -308,12 +308,29 @@ page-heading h3 i {
 .txtDocOnlineStatus {
   color: #4dd0bb;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 13px;
 }
+h3.timeline-title {
+  font-size: 14px;
+  margin: 0 0 0 15px;
+  color: #076dfa;
+}
+
+.btncheckIn_sch i {
+  font-size: 0.9rem !important;
+}
+
+.k-calendar .k-content .k-link,
+.k-nav-today {
+  font-weight: normal;
+  text-align: center !important;
+  font-size: 14px;
+}
+
 .txtDocOffLinneStatus {
   color: #c5cfdd;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .sidebaricon {
@@ -466,7 +483,7 @@ p {
   background-color: transparent;
   width: 100%;
   border: none;
-  padding: 6% 0;
+  padding: 8% 0;
   color: #647796;
   display: flex;
   flex-direction: row;
@@ -1307,8 +1324,8 @@ tr.shown td.details-control {
   padding-top: 1%;
   font-weight: bold;
   margin: 8px 0;
+  font-size: 16px;
 }
-
 #spanTokenNo {
   background-color: #0367ff;
   color: #fff;

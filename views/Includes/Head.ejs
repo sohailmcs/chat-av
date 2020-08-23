@@ -65,27 +65,24 @@
     });
 
     function updatePatientOnlineStatus(UserID, status, uName) {
-      var heading = $('.divqueue h6:contains("' + uName.toUpperCase() + '")');
+      var heading = $('.divqueue h6:contains("' + uName + '")');
+
       if (status == "Online") {
         heading
-          .find(".lblStatus")
-          .text(status)
-          .css({ color: "#39da8a", "font-weight": "400" });
-        heading
+          .parent()
+          .parent()
           .find(".bullet-sm")
           .removeClass("bullet-offline")
           .addClass("bullet-success");
-        heading.parents(".row").find(".mb-1").prop("disabled", false);
+        heading.closest(".row").find(".btncomm").prop("disabled", false);
       } else {
         heading
-          .find(".lblStatus")
-          .text(status)
-          .css({ color: "#ee1516", "font-weight": "400" });
-        heading
+          .parent()
+          .parent()
           .find(".bullet-sm")
           .removeClass("bullet-success")
           .addClass("bullet-offline");
-        heading.parents(".row").find(".mb-1").prop("disabled", true);
+        heading.closest(".row").find(".btncomm").prop("disabled", true);
       }
     }
 

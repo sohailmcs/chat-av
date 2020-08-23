@@ -55,7 +55,7 @@
             <div class="modal-footer">
                
                 <button type="button" class="btnSendSMSReminder btn btn-primary ml-1" data-dismiss="modal">
-                    <span class="d-none d-sm-block"><i class='bx bx-send bx-rotate-295 sms-popup' ></i>
+                    <span class="d-sm-block"><i class='bx bx-send bx-rotate-295 sms-popup' ></i>
                        &nbsp; SEND
                     </span>
                 </button>
@@ -304,7 +304,7 @@
        {{^RequestedCall.0}}
        <li class="timeline-items timeline-icon-primary active pb-0">
             <h3 class="timeline-title">
-                No schedule available
+                No direct call available
             </h3>
         </li>
        {{/RequestedCall.0}}
@@ -377,7 +377,7 @@
                     <button  type="button" patientName="{{PatientName}}" 
                      CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}" 
                      onclick="OpenCommunicationWindow(this)" 
-                     class="btn btn-audio-video mb-1">
+                     class="btncomm btn btn-audio-video mb-1">
                         <i class="bx bx-microphone"></i>
                         <b>Audio</b>
                     </button>
@@ -386,27 +386,29 @@
                     <button type="button"  patientName="{{PatientName}}" 
                     CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}" 
                      onclick="OpenCommunicationWindow(this)" 
-                     class="btn btn-audio-video mb-1">
+                     class="btncomm btn btn-audio-video mb-1">
                         <i class="bx bx-video"></i>
                         <b>Video</b>
                     </button>
                 </a>        
                 {{/OnlineStatus}}
                 {{^OnlineStatus}}
-                <a >
-                    <button type="button" disabled
-                     class="btn btn-audio-video mb-1">
-                        <i class="bx bx-microphone"></i>
-                        <b>Audio</b>
-                    </button>
-                </a>
-                <a>
-                    <button type="button" disabled
-                     class="btn btn-audio-video mr-1 mb-1">
-                        <i class="bx bx-video"></i>
-                        <b>Video</b>
-                    </button>
-                </a>    
+                <button  type="button" patientName="{{PatientName}}"  disabled
+                CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}" 
+                onclick="OpenCommunicationWindow(this)" 
+                class="btncomm btn btn-audio-video mb-1">
+                   <i class="bx bx-microphone"></i>
+                   <b>Audio</b>
+               </button>
+           </a>
+           <a>
+               <button type="button"  patientName="{{PatientName}}" disabled
+               CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}" 
+                onclick="OpenCommunicationWindow(this)" 
+                class="btncomm btn btn-audio-video mb-1">
+                   <i class="bx bx-video"></i>
+                   <b>Video</b>
+               </button>
                 {{/OnlineStatus}}
 
 
@@ -489,10 +491,10 @@
 
 <tr>
 <td colspan="6">
-    <h6 class="timeline-title">
+    <h3 class="timeline-title">
         <br>
         No Call Log Available
-        </h6>
+        </h3>
 </td>
 
 </tr>

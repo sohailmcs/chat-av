@@ -198,29 +198,27 @@
       }
     });
     soc.on("UpdateDoctorOnlineStatus", function (data) {
-      var heading = $('h5:contains("' + data.uName.toUpperCase() + '")');
+      var heading = $('h5.docName:contains("' + data.uName + '")');
 
       //=========change
       if (data.status == "Online") {
         heading
-          .find(".lblStatus")
-          .text(data.status)
-          .css({ color: "#39da8a", "font-weight": "400" });
-        heading
-          .find(".bullet-sm")
-          .removeClass("bullet-offline")
-          .addClass("bullet-success");
-        heading.parent().find(".btnSencCallReq").prop("disabled", false);
+          .parent()
+          .find(".docStatus")
+          .text("(Available Today)")
+          .removeClass("txtDocOffLinneStatus")
+          .addClass("txtDocOnlineStatus");
+
+        heading.closest(".row").find(".btnSencCallReq").prop("disabled", false);
       } else {
         heading
-          .find(".lblStatus")
-          .text(data.status)
-          .css({ color: "#ee1516", "font-weight": "400" });
-        heading
-          .find(".bullet-sm")
-          .removeClass("bullet-success")
-          .addClass("bullet-offline");
-        heading.parent().find(".btnSencCallReq").prop("disabled", true);
+          .parent()
+          .find(".docStatus")
+          .text("(Not Available Today)")
+          .removeClass("txtDocOnlineStatus")
+          .addClass("txtDocOffLinneStatus");
+
+        heading.closest(".row").find(".btnSencCallReq").prop("disabled", true);
       }
     });
   </script>
