@@ -169,6 +169,7 @@ table.dataTable thead td {
   background-color: #076dfa;
   text-decoration: none;
   padding: 5px 12px;
+  font-size: 13px;
 }
 .loginLogo {
   margin: 30px 0;
