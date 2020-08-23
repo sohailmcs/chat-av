@@ -162,23 +162,92 @@ table.dataTable thead td {
 }
 
 .btn-primary {
-  background-color: #3eb8d7;
+  background-color: #076dfa;
+  text-decoration: none;
+  padding: 5px 12px;
 }
-
+.loginLogo {
+  margin: 30px 0;
+}
+h1.txtwelcome {
+  color: #102348;
+  font-weight: 600;
+  margin-top: 60px;
+  font-size: 32px;
+}
+.form-control:disabled {
+  background: #fff !important;
+}
 .btn-primary:hover {
   background-color: #3eb8d7 !important;
 }
 .text-center,
 a {
-  color: #3eb8d7;
+  color: #076dfa;
   cursor: pointer;
+  text-align: left !important;
+  font-weight: 500;
+  font-size: 17px;
+  text-decoration: underline;
+}
+.loginArea {
+  background: url("/assets/loginBg.png") left top no-repeat;
+}
+.crtAccount .card {
+  box-shadow: none !important;
 }
 
+.loginArea .card {
+  box-shadow: none !important;
+  background: none !important;
+}
+
+.bg-authentication .card-header {
+  padding: 1.4rem 1.7rem 0 0.9rem !important;
+}
+.txtlogin {
+  font-size: 13px;
+  color: #647796;
+  margin-bottom: 25px;
+  display: block;
+}
+.LoginHeading {
+  font-size: 30px;
+  font-weight: 500px;
+  color: #102348;
+}
+.loginArea input[type="text"],
+.loginArea input[type="Email"],
+.loginArea input[type="password"] {
+  border: 2px solid #d9e9ff;
+  font-size: 13px;
+  padding: 18px 10px;
+}
+
+.text-bold-600 {
+  font-size: 14px;
+  font-weight: normal !important;
+  text-transform: none;
+}
+
+.square {
+  width: 35px;
+  padding: 0;
+  background-color: #f2f7ff;
+  border-radius: 4px;
+  display: inline-block;
+  text-align: center;
+  color: #000;
+  font-weight: bold;
+}
 .header-navbar .navbar-container ul.nav li i.ficon {
   color: #647796;
 }
 .header-navbar .navbar-container ul.nav li > a.nav-link {
   color: #647796;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: normal;
 }
 .text-muted {
   color: #647796;
@@ -207,11 +276,11 @@ h6,
   font-size: 24px;
   font-weight: 500;
 }
-.page-heading h3 i {
+page-heading h3 i {
   font-size: 30px;
-  color: #076dfa;
+  color: #fff;
+  padding: 3px;
 }
-
 .page-heading-pat {
   margin-left: 43px;
 }
@@ -221,6 +290,25 @@ h6,
   box-shadow: 0px 4px 150px rgba(72, 142, 255, 0.1);
   border-radius: 5px;
   padding: 15px 0;
+}
+
+#doctorList li {
+  background: #ffffff;
+  box-shadow: 0px 4px 150px rgba(72, 142, 255, 0.1);
+  border-radius: 5px;
+  padding: 15px 0;
+  list-style: none;
+  margin: 15px 0;
+}
+.txtDocOnlineStatus {
+  color: #4dd0bb;
+  font-weight: bold;
+  font-size: 15px;
+}
+.txtDocOffLinneStatus {
+  color: #c5cfdd;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 .sidebaricon {
@@ -383,7 +471,35 @@ p {
   justify-content: center;
 }
 .sideButtons span {
-  margin-left: 8%;
+  margin-left: 4%;
+}
+
+#doctorList {
+  padding-left: 0;
+}
+.appointmentRow {
+  background: #ffffff;
+  box-shadow: 0px 4px 150px rgba(72, 142, 255, 0.1);
+  border-radius: 5px;
+  padding: 8px 0;
+  margin: 15px 0;
+}
+.appointmentRow .col-sm-2 {
+  max-width: 12% !important;
+}
+.modal-header h4 {
+  margin: 0 auto;
+  color: #00193a;
+  font-weight: 500;
+}
+
+.iconapp {
+  font-size: 22px;
+  background-color: #076dfa;
+  border-radius: 5px;
+  color: #fff;
+  margin-right: 10px;
+  padding: 4px;
 }
 
 .sideButtons i {
@@ -436,8 +552,8 @@ div {
   margin-top: 1px;
 }
 .tr-slot {
-  background-color: #3eb8d7;
-  color: #ffffff;
+  background-color: #deebff;
+  color: #fff;
   margin-top: 1px;
   text-align: center;
 }
@@ -495,16 +611,9 @@ div {
   margin-top: 7px;
 }
 
-.schappointment-text {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  color: #fff;
-  text-align: center;
-  margin-bottom: 0px !important;
-}
-
 .media-list .media {
   background-color: #fff !important;
+  margin: 15px 0;
 }
 
 .btn-primary_book {
@@ -598,11 +707,12 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   text-align: center;
 }
 .k-state-selected {
-  background-color: #3eb8d7;
+  background-color: #0367ff;
 }
 
 .k-calendar td.k-state-selected.k-state-hover {
-  background-color: #56c1dc;
+  background-color: #0367ff;
+  color: #fff;
 }
 
 .k-calendar .k-today {
@@ -615,6 +725,15 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 }
 .k-content tbody td:hover {
   background-color: #56c1dc;
+}
+.k-nav-prev,
+.k-nav-next {
+  top: 20% !important;
+}
+.k-state-hover:hover,
+.k-state-disabled:hover {
+  background-color: #0367ff !important;
+  color: #fff !important;
 }
 
 .calendar-wrapper {
@@ -761,14 +880,29 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   color: #0367ff;
 }
 
+.widget-todo::-moz-scrollbar {
+  width: 6px;
+  color: #0367ff;
+}
+
 .widget-todo::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 3px rgba(95, 110, 10, 0.3);
+  border-radius: 5px;
+}
+
+.widget-todo::-moz-scrollbar-track {
+  -moz-box-shadow: inset 0 0 3px rgba(95, 110, 10, 0.3);
   border-radius: 5px;
 }
 
 .widget-todo::-webkit-scrollbar-thumb {
   border-radius: 5px;
   -webkit-box-shadow: inset 0 0 6px rgba(34, 8, 107, 0.37);
+}
+
+.widget-todo::-moz-scrollbar-thumb {
+  border-radius: 5px;
+  -moz-box-shadow: inset 0 0 6px rgba(34, 8, 107, 0.37);
 }
 
 #table-Marketing .card-header {
@@ -1157,14 +1291,40 @@ tr.shown td.details-control {
   display: inline-block;
   align-self: stretch;
 }
-
 .doc-img img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 5%;
   vertical-align: unset;
 }
+.docName {
+  color: #076dfa;
+  padding-top: 1%;
+  font-weight: bold;
+  margin: 8px 0;
+}
 
+#spanTokenNo {
+  background-color: #0367ff;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 20px;
+  display: inline-block;
+  margin: 0px 0 4px 5px;
+  padding: 7px 12px;
+}
+
+.txtspecialization {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.date-time-text {
+  font-family: "IBM Plex Sans", Helvetica, Arial, serif;
+  font-weight: 5000;
+  color: #647796;
+  font-size: 1rem !important;
+}
 .History-modal {
   padding: 0.3rem 2.3rem !important;
 }
@@ -1329,12 +1489,23 @@ article {
 }
 
 .editprofile-icons {
-  margin: 2px 0;
-  color: #3eb8d7 !important;
+  margin: 15px 0;
+  color: #647796 !important;
   font-weight: 800;
-  font-size: 13px;
-  text-transform: uppercase;
+  font-size: 15px;
+  display: block;
 }
+.profileArea {
+  border: 1px solid #f3f8ff;
+}
+
+.txtnormal {
+  margin: 15px 0;
+  color: #647796 !important;
+  font-size: 16px;
+  display: block;
+}
+
 .icon-margin {
   margin-right: 6px;
 }
@@ -1372,4 +1543,92 @@ article {
 
 .card-padding {
   padding: 1rem 2rem 0.5rem !important;
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+/* new css */
+
+.schappointment-text {
+  color: #647796;
+  margin-bottom: 0px !important;
+  margin-left: 5%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+  font-weight: 500;
+}
+.noDataAvailable {
+  color: #647796;
+  margin-bottom: 0px !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
+#btnBookAppointment:hover {
+  color: #fff;
+}
+
+.dashboard-marketing-campaign .card {
+  box-shadow: none !important;
+}
+
+.sch-rows {
+  background-color: #e8f1ff;
+  height: 55px;
+  border-radius: 5px;
+  margin: 12px 0;
+}
+
+.selectedDt {
+  text-align: left;
+  font-size: 100%;
+  font-weight: bold;
+  font-family: "Rubik", Helvetica, Arial, serif;
+  font-size: 0.8rem;
+  margin: 5px 0 5px 12px;
+}
+.marketing-campaigns .card-title {
+  color: #076dfa;
+}
+
+.k-header {
+  background-color: #deebff !important;
+  padding: 5px 0 !important;
+}
+
+.bg-color {
+  background-color: #deebff !important;
+}
+.k-widget {
+  border: none !important;
+}
+.k-calendar th {
+  background-color: #fff !important;
+  border-bottom-style: none !important;
+}
+
+.k-widget.k-calendar .k-content tbody td {
+  height: 35px !important;
+}
+
+.otp-form {
+  max-width: 65%;
+  margin: 2px auto 0;
+}
+
+.otpass {
+  margin: 0 5px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 50px;
+  border: solid 1px #fff;
+  box-shadow: 0 0 5px #ccc inset;
+  outline: none;
+  width: 20%;
+  transition: all 0.2s ease-in-out;
+  border-radius: 3px;
+  background-color: #f2f7ff;
 }

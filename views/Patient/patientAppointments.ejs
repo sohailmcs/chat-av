@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
 <link rel="stylesheet" type="text/css" href="/css/colors.css" />
 <link rel="stylesheet" type="text/css" href="/css/components.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
 
 <!-- END: Theme CSS-->
 
@@ -33,94 +34,88 @@
 <!-- complete side menu of Patient -->
 <%- include('../Includes/patientSideMenu.ejs') %>
 <script id="appointment-template" type="text/html">
+      <div class="container">
+     
 
   {{#result}}
   {{#isBooked}}
-  <div class="row trSlot patient-slot-booked">
-    <div class="col-sm">
-      <div class="media">
+     <div class="row appointmentRow" >
+
+      <div class="pr-50 doc-img col-sm-2">
         {{#doctorPhoto}}
-        <img
-        src="{{doctorPhoto}}"
-        alt="image"
-        style="height: 60px; width: 60px; border-radius: 50%;"
-      />
-     {{/doctorPhoto}}
-     {{^doctorPhoto}}
-     <img
-     src="/assets/images/maledoc.png"
-     alt="image"
-     style="height: 60px; width: 60px; border-radius: 50%;"
-   />
-     {{/doctorPhoto}} 
-        <div>
-          <h5 class="media-heading">
-            <b>{{DoctorName}}</b>
+        <img src=" {{doctorPhoto}}" alt="avtar img holder">      
+       {{/doctorPhoto}}
+       {{^doctorPhoto}}
+       <img src="/assets/images/maledoc.png" alt="avtar img holder">  
+       {{/doctorPhoto}} 
+  
+      </div>
+    <div class="col-sm-4" style="margin: 12% 0% 2% 5%;">
+      <div class="media">
+        <div >
+          <h5 class="docName">
+           Dr.{{DoctorName}}
           </h5>
-          <b>Specialization</b>: {{DoctorSpecialization}}
+          <span class="txtspecialization"><b>Specialization</b>: {{DoctorSpecialization}}</span>
         </div>
       </div>
     </div>
-    <div class="col-sm mid-col">
-      <i class="bx bx-time"
-        ><b class="bold-time">{{AppointmentDate}}</b
-        ><b class="bold-time">{{AppointmentStartTime}} - {{AppointmentEndTime}} </b></i>
+    <div class="col-sm-4" style="vertical-align: middle; margin: auto;">
+      <i class="bx bx-time"><span class="date-time-text">{{AppointmentDate | Shortdate}}</span>
+        <span class="date-time-text">{{AppointmentStartTime}} - {{AppointmentEndTime}} </span></i>
     </div>
-    <div class="col-sm trRow">           
-       <button type="button" class="btnMain btn btn-primary_book" 
+    <div class="col-sm-4">           
+       <button   type="button" class="btn btn-outline-primary " 
        appId="{{AppointmentDetailID}}" doctorId= "{{DoctorId}}"  patientid ="{{PatientID}}"
-      data-toggle="modal" data-target="#primary" style="margin-left: 1%;">
-        <i class="bx bx-check"></i>
-        Cancel
+      data-toggle="modal" data-target="#primary" style="float: right; margin-left: 1%; font-weight:600">
+        <i class="bx bx-x"></i>
+        CANCEL
       </button>
     </div>
   </div> 
   {{/isBooked}}
 
   {{^isBooked}}
-  <div class="row trSlot">
-    <div class="col-sm">
-      <div class="media">
-        {{#doctorPhoto}}
-        <img
-        src="{{doctorPhoto}}"
-        alt="image"
-        style="height: 60px; width: 60px; border-radius: 50%;"
-      />
+  <div class="row appointmentRow">
+    <div class="pr-50 doc-img col-sm-2">
+      {{#doctorPhoto}}
+      <img src=" {{doctorPhoto}}" alt="avtar img holder">      
      {{/doctorPhoto}}
      {{^doctorPhoto}}
-     <img
-     src="/assets/images/maledoc.png"
-     alt="image"
-     style="height: 60px; width: 60px; border-radius: 50%;"
-   />
+     <img src="/assets/images/maledoc.png" alt="avtar img holder">  
      {{/doctorPhoto}} 
+
+    </div>
+    <div class="col-sm-3" >
+      <div class="media" style="margin: 12% 0% 2% 5%;">       
         <div>
-          <h5 class="media-heading">
-            <b>{{DoctorName}}</b>
+          <h5 class="docName">
+           Dr. {{DoctorName}}
           </h5>
-          <b>Specialization</b>: {{DoctorSpecialization}}
+          <span class="txtspecialization"><b>Specialization</b>: {{DoctorSpecialization}}</span>
         </div>
       </div>
     </div>
-    <div class="col-sm mid-col">
-      <i class="bx bx-time"
-        ><b class="bold-time">{{AppointmentDate}}</b
-        ><b class="bold-time">{{AppointmentStartTime}} - {{AppointmentEndTime}} </b></i>
+    <div class="col-sm-3" style="vertical-align: middle; margin: auto;text-align: center;">
+      <i class="bx bx-time">
+        <span class="date-time-text">{{AppointmentStartTime}} - {{AppointmentEndTime}} </span>
+        <span class="date-time-text">{{AppointmentDate | Shortdate}}</span>
+      </i>
     </div>
-    <div class="col-sm trRow">     
+    <div class="col-sm-4" style="vertical-align: middle; margin: auto;">     
+       <button type="button" class="btn btn-outline-primary "
+      appId="{{AppointmentDetailID}}" doctorId= "{{DoctorId}}"  patientid ="{{PatientID}}"
+      data-toggle="modal" data-target="#primary" style="margin-left: 3%; float: right;font-weight:600;">
+        <i class="bx bx-check"></i>
+        CANCEL
+      </button>
       <a href="/patientReqAppointment?DoctorId={{DoctorId}}&DocName={{DoctorName}}&date={{AppointmentDate}}&appId={{AppointmentDetailID}}">
-        <button type="button" class="btn btn-primary_book">
-          <i class="bx bxs-pencil"></i>
-          Edit
+        <button type="button" class="btn btn-outline-primary " style=" float: right;font-weight:600">
+          <i class="bx bx-edit"></i>
+          EDIT
         </button>
       </a>
-       <button type="button" class="btnMain btn btn-primary_book" 
-      appId="{{AppointmentDetailID}}" doctorId= "{{DoctorId}}"  patientid ="{{PatientID}}"
-      data-toggle="modal" data-target="#primary" style="margin-left: 1%;">
-        <i class="bx bx-check"></i>
-        Cancel
-      </button>
+
     </div>
   </div> 
   {{/isBooked}}
@@ -128,7 +123,7 @@
   {{/result}}
 
   {{^result.0}}
-  <div class="row trSlot">
+  <div class="row ">
     <div class="col-sm"></div>   
       <div class="col-sm mid-col-empty">       
           <i class="bx bx-time"><b class="bold-time">
@@ -144,27 +139,22 @@
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <h5 class="modal-title white" id="myModalLabel160">
-          APPOINTMENTS CANCELATION
-        </h5>
+      <div class="modal-header bg-primary ">
+        <h4 id="myModalLabel160">
+          Appointment Cancellataions
+        </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <i class="bx bx-x"></i>
-        </button>
+          <span aria-hidden="true">&times;</span>
+        </button>       
       </div>
       <div class="modal-body">
-        <h5>Are You Sure You Want to Cancel This Appointment</h5>
+        <h5 class="txtnormal">Are You Sure You Want to Cancel This Appointment</h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btnConfirm btn btn-light-secondary">
           <i class="bx bx-x d-block d-sm-none"></i>
           <span class="d-none d-sm-block">Confirm</span>
-        </button>
-        <button type="button" data-dismiss="modal" class="btn btn-light-secondary">
-          <i class="bx bx-x d-block d-sm-none"></i>
-          <span class="d-none d-sm-block">Close</span>
-        </button>
-
+        </button>       
       </div>
     </div>
   </div>
@@ -178,15 +168,15 @@
   <div class="content-wrapper">
     <div class="content-header row"></div>
     <div class="content-body">
-      <div class="d-flex flex-row">
-        <div>
-          <h3>MY BOOKED APPOINTMENTS</h3>
-        </div>
 
-        <div style="margin-left: auto;">
+      <div class="d-flex flex-row">
+        <div class="page-heading">
+          <h3><i class='iconapp bx bx-time-five'></i><span>Booked Appointments</span></h3>
+        </div>
+        <div style="margin-left: auto;margin-top:25px;">
           <a href="/patientDashboard
               ">
-            <button type="button" class="btn hvr-shutter-in-horizontal" style="font-size: large;">
+            <button type="button" class="btn hvr-shutter-in-horizontal" style="font-size: large; border-radius: 5px;">
               <i class="bx bxs-user-plus viewalldoc-icon"></i>
               View Available Doctors
             </button>

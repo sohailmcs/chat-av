@@ -121,7 +121,12 @@ function GetDoctorScheduled(DoctorId, date) {
       $.LoadingOverlay("hide");
       var slotTemplate = $("#slots-template").html();
       $("#AvailableSlot").html(Mustache.to_html(slotTemplate, data));
-      $(".page-heading").html("<h3>" + doctName + "</h3>");
+
+      $(".page-heading").html(
+        "<h3><i class='iconapp bx bx-time-five'></i><span>" +
+          doctName +
+          "</span></h3>"
+      );
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")

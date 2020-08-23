@@ -1,34 +1,35 @@
 <%- include('../Includes/PatientHead.ejs') %>
 
-    <!-- BEGIN:  CSS-->
-    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
-    <link rel="stylesheet" type="text/css" href="/css/colors.css" />
+<!-- BEGIN:  CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+<link rel="stylesheet" type="text/css" href="/css/colors.css" />
 
-    <link rel="stylesheet" type="text/css" href="/css/components.css" />
-    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
-    <!-- END: CSS-->
-  </head>
-  <!-- END: Head-->
+<link rel="stylesheet" type="text/css" href="/css/components.css" />
+<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<!-- END: CSS-->
+</head>
+<!-- END: Head-->
 
-  <!-- body tag and blue nav bar  -->
-  <%- include('../Includes/patientNav.ejs') %>
-  
-  <!-- complete side menu of doctor -->
-  <%- include('../Includes/patientSideMenu.ejs') %>
-    <!-- BEGIN: Content-->
-   
-  </script>
+<!-- body tag and blue nav bar  -->
+<%- include('../Includes/patientNav.ejs') %>
+
+<!-- complete side menu of doctor -->
+<%- include('../Includes/patientSideMenu.ejs') %>
+<!-- BEGIN: Content-->
+
+</script>
 
 <!--start of doctor Details template--->
-<script id="user-template" type="text/html"> 
+<script id="user-template" type="text/html">
   {{#result}}
- <li class="media card-padding mail-read card">
-  <div style="display: flexbox; flex-direction: column; width: 100%;">
-    <div class="row">
-      <div class="pr-50 doc-img">
+ <li class=" card-padding mail-read ">
+
+  <div class="row" style="width:100%">
+  <!-- picture start -->
+      <div class="pr-50 doc-img col-sm-2">
         {{#ProfilePicture}}
            <img src="{{ProfilePicture}}" alt="avtar img holder">                      
         {{/ProfilePicture}}
@@ -36,197 +37,213 @@
            <img src="/assets/images/maledoc.png" alt="avtar img holder">                      
         {{/ProfilePicture}}                             
       </div>
-      <div class="media-body" style="display: inline-block;">
-        <h5 style="padding-top: 1%;">
-          {{FullName | Upper}}<br>
-          {{#OnlineStatus}}
-          <span class="bullet bullet-success bullet-sm"></span>          
-          <span class="lblStatus" style="color: #39da8a; font-weight: 300;"><b>Online</b></span>
+  <!-- picture start -->
+
+  <!-- description start -->
+      <div class="col-sm-5" style="display: inline-block;">
+        <h5 class="docName" >
+         Dr. {{FullName}}
+          {{#OnlineStatus}} 
+          <!-- <span class="bullet bullet-success bullet-sm"></span>           -->
+          <span class="txtDocOnlineStatus">&nbsp;(Available Today)</span>
           {{/OnlineStatus}}
 
           {{^OnlineStatus}}
-          <span class="bullet bullet-offline bullet-sm"></span>          
-          <span class="lblStatus" style="color: #ee1516; font-weight: 300;"><b>Offline</b></span>
+          <!-- <span class="bullet bullet-offline bullet-sm"></span>           -->
+          <span class="txtDocOffLinneStatus">&nbsp;(Not Available Today)</span>
           {{/OnlineStatus}}
-
         </h5>
-        <span><b> SPECIALIZATION</b> :  {{Specialization}}</span>
-        <br>
-        <span>{{{Biography}}}</span>                      
-        <br>
-        <div>
-         
-          <br>
-          <div class="row pat-dash-btns">
-            <div class="col-12">
-              <!-- VIEW DOCTOR PROFILE START -->
-              <div class="modal-primary mr-1  d-inline-block btn-patient-dashboard">
-                <!-- Button trigger for primary themes modal -->
-                <button type="button" docID="{{DoctorId}}" class="pt-dash-button btndoctorProfile btn btn-outline-primary round mr-1  btn-sm">
+        <span class="txtspecialization"><b> Specialization</b> :  {{Specialization}}</span>
+        
+         <div class="modal-primary mr-1   ">                
+                <button type="button" docID="{{DoctorId}}" class="pt-dash-button btndoctorProfile btn btn-outline-primary   btn-sm">
                   <i class="bx bxs-show"></i>
                   <b>View Doctor Profile</b>
                 </button>
-              </div>
-              <a href="/patientReqAppointment?DoctorId={{DoctorId}}&DocName={{FullName}}"   class="pt-dash-button btn-patient-dashboard">
-                <button type="button" class="btn btn-outline-primary round mr-1  btn-sm">
+         </div>         
+      </div>
+   <!-- description start -->
+
+    <!-- buttons start -->
+          <div class="col-sm-5" >            
+              <!-- VIEW DOCTOR PROFILE START -->             
+              <div style="text-align:right"  class="call-Queue-icons">
+                <a href="/patientReqAppointment?DoctorId={{DoctorId}}&DocName={{FullName}}"  >
+                <button type="button" class="btn btn-outline-primary  mr-1  btn-sm" style="width:205.953px">
                   <i class="bx bx-calendar"></i>
-                  <b>Request Appointment</b>
+                  <b>Request an Appointment</b>
                 </button>
               </a>
+
+               <br>
+
               {{#OnlineStatus}}
-              <div class="mr-1  d-inline-block btn-patient-dashboard">                              
+              <a >                              
                 <!-- Button trigger for request a call modal -->                              
                 <button type="button" fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}"
-                 class="pt-dash-button btnSencCallReq btn btn-outline-primary round mr-1  btn-sm">
+                 class=" btnSencCallReq btn btn-outline-primary  mr-1  btn-sm" 
+                 style="width:205.953px; margin-top: 3%;">
                   <i class="bx bx-phone-call"></i>
-                  <b>Join the Sameday Waiting list</b>
+                  <b>Join Sameday Waiting list</b>
                 </button>                            
-              </div>
+              </a>
               {{/OnlineStatus}}
               {{^OnlineStatus}}
-              <div class="mr-1  d-inline-block btn-patient-dashboard">                              
-                <!-- Button trigger for request a call modal --> 
-                <button type="button" disabled="disabled" fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}"
-                class="pt-dash-button btnSencCallReq btn btn-outline-primary round mr-1  btn-sm">
-                 <i class="bx bx-phone-call"></i>
-                 <b>Join the Sameday Waiting list</b>
-               </button>
-              </div>
+              <a >                              
+                <!-- Button trigger for request a call modal -->                              
+                <button type="button" disabled="disabled"  class=" btn btn-outline-primary mr-1  btn-sm" 
+                style="width:205.953px; margin-top: 3%;">
+                  <i class="bx bx-phone-call"></i>
+                  <b>Join Sameday Waiting list</b>
+                </button>                            
+              </a>
               {{/OnlineStatus}}
-
+              </div>
             </div>
+        
+    <!-- buttons start -->
+
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </li>
   {{/result}}
 </script>
 
 <!--end of doctor Details templates---->
-  <!--start of profile Template-->
-<script id="docProfile-template" type="text/html"> 
+<!--start of profile Template-->
+<script id="docProfile-template" type="text/html">
       <div
       class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
       role="document"
     >
       <div class="modal-content">
-        <div class="modal-header bg-primary">
-          <div class="pr-50 doc-img">
-            {{#ProfilePicture}}
-               <img src="{{ProfilePicture}}" alt="avtar img holder">                      
-            {{/ProfilePicture}}
-            {{^ProfilePicture}}
-               <img src="/assets/images/maledoc.png" alt="avtar img holder">                      
-            {{/ProfilePicture}}                             
-          </div>
-         
-          <h5 
-            class=" pat-modal-head modal-title white"
-            id="myModalLabel160"
-          >
-            {{FullName}}
-          </h5>
+        <div class="modal-header bg-primary " style="text-align:center">
+          <h4>Doctor Profile</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>         
          
         </div>
         <div class="modal-body">
-          <ul style="padding-left:0;font-size:13px;">
-            <span class="editprofile-icons"><i class="bx bx-male icon-margin"></i>Gender</span>:
-             {{Gender}}
-             <br/>
-              <span class="editprofile-icons"><i class="bx bxs-folder-plus icon-margin"></i>Designation</span>:
-            {{#DoctorExperianceModel}}
-            <span>{{Designation}} at {{HospitalName}}  </span>
-            {{/DoctorExperianceModel}}
-            <br/>
-            <span class="editprofile-icons"><i class="bx bxs-file-plus icon-margin"></i>Degree</span>:
-            {{#DoctorEducationsModel}}
-            <span>Get {{Degree}} In {{YearsOfCompletion}} </span>
-            {{/DoctorEducationsModel}}
-            <br/>
-                 
-            <span class="editprofile-icons"><i class="bx bx-buildings icon-margin"></i>Clinic & experience</span>:
-            {{#DoctorExperianceModel}}
-            {{HospitalName}}
 
-            <span>  {{From | date}} to {{To | date}} </span>
-            {{/DoctorExperianceModel}}
+          <div class="media">
+        {{#doctorPhoto}}
+        <img
+        src="{{ProfilePicture}}"
+        alt="image"
+       style="height: 100px; width: 100px; border-radius: 5px;" />
+       {{/doctorPhoto}}
+       {{^doctorPhoto}}
+       <img
+        src="/assets/images/maledoc.png"
+        alt="image"
+        style="height: 100px; width: 100px; border-radius: 5px; margin:0 10px;" />
+       {{/doctorPhoto}} 
+        <div>
+          <br/>
+          <h5 class="docName">
+             {{FullName}}
+          </h5>
+            
+          <b>Specialization</b>: {{DoctorSpecialization}}
+        </div>
+        </div>
+
+          <ul style="padding-left:0;font-size:13px;">
+            <br/>
+            <br/>
+
+            <div class="container profileArea">
+            <div class="row" style="background-color:#F3F8FF;">
+               <br/>
+               <div class="col-sm-5">              
+               <span class="editprofile-icons">Designation :</span>
+               </div>
+               <div class="col-sm-5 txtnormal">              
+              {{Gender}}
+               </div>
+            </div>
+            
+             
+            <div class="row">
+               <br/>
+               <div class="col-sm-5">             
+               <span class="editprofile-icons">Experience : </span>
+               </div>
+               <div class="col-sm-5 txtnormal">             
+                {{#DoctorExperianceModel}} {{HospitalName}}
+               <span>  {{From}} to {{To}} </span>
+               {{/DoctorExperianceModel}}
+               <br/>
+               </div>
+             </div>
+
+           
+             <div class="row" style="background-color:#F3F8FF;">
+                <br/>
+                <div class="col-sm-5 ">               
+                <span class="editprofile-icons">Proficiency :</span>
+                </div>
+                <div class="col-sm-7 txtnormal">
+                {{#DoctorEducationsModel}}
+               <span>Get {{Degree}} In {{YearsOfCompletion}} </span>
+               {{/DoctorEducationsModel}}
+               
+               </div>
+             </div>
+     
+           <div class="row">             
+              <div class="col-sm-5">             
+              <span class="editprofile-icons">Career :</span>
+             
+              </div>
+              <div class="col-sm-7 txtnormal">             
+                {{#DoctorExperianceModel}}
+                <span>{{Designation}} at {{HospitalName}}  </span>
+                {{/DoctorExperianceModel}}
+                </div>
+
+             </div>
+            </div>
            
           </ul>
         </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-light-secondary"
-            data-dismiss="modal"
-          >
-            <i
-              class="bx bx-x d-block d-sm-none"
-            ></i>
-            <span class="d-none d-sm-block"
-              >Close</span
-            >
-          </button>
-        </div>
+       
       </div>
     </div>   
-  </script><!--end of profile Template-->
-  
-  <!--start of doctor profile model-->
-<div  class="modal fade text-left"
-  id="primary"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModalLabel160"
-  aria-hidden="true"
->
+  </script>
+<!--end of profile Template-->
 
-</div><!--end of doctor profile model-->
+<!--start of doctor profile model-->
+<div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+  aria-hidden="true">
+
+</div>
+<!--end of doctor profile model-->
 
 <!--start of call accepted model-->
-<div
-  class="modal fade text-left"
-  id="notificationmodal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModalLabel160"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-    role="document"
-  >
+<div class="modal fade text-left" id="notificationmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <h5 class="modal-title white">
-          CALLED RECEIVED
-        </h5>
-        <button
-          type="button"
-          class="close"
-          onclick="hideconfirmModel()"
-          aria-label="Close"
-        >
-          <i class="bx bx-x"></i>
-        </button>
+      <div class="modal-header bg-primary " style="text-align:center">
+        <h4>Call Received</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>                
       </div>
+      <br />
       <div class="modal-body" style="text-align: center;">
-        <h5 style="color: #5a8dee; text-align: center; display: flex;">
-          <i>
-            <b>
-              Your Token number is <span id="spanTokenNo"></span>
-              <br />
-              <br />
-              The doctor will be call you after <span id="waitingTime"></span> minutes.
-              <br />
-              <br />
-              as per our policy each patient is provided the 15 minutes of
-              consultation.
-            </b>
-          </i>
-        </h5>
+        <div style="text-align: center;">
+          <img src="/assets/Frame 10 (1).png" alt="Calling " />
+        </div>
+        <br />
+        <p><strong>
+          Your Token number is <span id="spanTokenNo"></span>
+          <br />
+          The doctor will be call you after 45 minutes. As per our policy each patient is provided the 15
+          minutes of consultation.</strong>
 
+        </p>
         <br />
       </div>
     </div>
@@ -234,44 +251,29 @@
 </div>
 <!--end of call accepted model-->
 <!--start of reject call-->
-<div
-  class="modal fade text-left"
-  id="dialogRejected"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModalLabel160"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-    role="document"
-  >
+<div class="modal fade text-left" id="dialogRejected" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <h5 class="modal-title white" id="myModalLabel160">
-          REQUEST TO JOIN THE WAITING LIST
-        </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <i class="bx bx-x"></i>
-        </button>
+
+      <div class="modal-header bg-primary " style="text-align:center">
+        <h4>Call rejected</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>         
+       
       </div>
       <div class="modal-body" style="text-align: center;">
         <br />
 
-        <h5>
-          <i
-            >Your call has been rejected by doctor because of some reason.
+        <h5 class="txtnormal">
+          <i>Your call has been rejected by doctor because of some reason.
             Please try again latter
           </i>
         </h5>
         <br />
 
-        <h5>
+        <h5 class="txtnormal">
           <i>or you can try to book Appointment with doctor</i>
         </h5>
         <br />
@@ -281,168 +283,121 @@
   </div>
 </div>
 <!--end of reject call -->
-
+    
 <!--start of request call Model-->
- <div
- class="modal fade text-left"
- id="reqcall"
- tabindex="-1"
- role="dialog"
- aria-labelledby="myModalLabel160"
- aria-hidden="true"
->
- <div
-   class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-   role="document"
- >
-   <div class="modal-content">
-     <div class="modal-header bg-primary">
-       <h5
-         class="modal-title white"
-         id="myModalLabel160"
-       >
-         REQUEST A CALL
-       </h5>
-       <button
-         type="button"
-         class="close"
-         onclick="hideRequestCallModal()"
-         aria-label="Close"
-       >
-         <i class="bx bx-x"></i>
-       </button>
-     </div>
-     <div
-       class="modal-body"
-       style="text-align: center;"
-     >
-       <h5>
-         <i
-           >Your request has been sent to doctor
-           please wait.</i
-         >
-       </h5>
-
-       <div style="text-align: center;">
-         <img
-           src="/assets/images/IncredibleEachBat-small.gif"
-           alt="Calling Gif"
-           style="
-             width: 40%;
-             height: 40%;
-             border-radius: 50%;
-           "
-         />
-       </div>
-     </div>
-   </div>
- </div>
-</div> 
+<div class="modal fade text-left" id="reqcall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary ">
+        <h4 id="myModalLabel160">
+          Request a Call
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>       
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <div style="text-align: center; margin:12px 0; ">
+          <img src="/assets/Frame 10.png" alt="Calling " />
+        </div>
+        <br>
+        <p  class="txtnormal"><strong>Your request has been sent to doctor. <br>
+          Please wait.</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
 <!--end of request call Model-->
 
 <!--=========inncomming call from doctor=======-->
-<div
- class="modal fade text-left"
- id="incommingCall"
- tabindex="-1"
- role="dialog"
- aria-labelledby="myModalLabel160"
- aria-hidden="true"
->
- <div
-   class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-   role="document"
- >
-   <div class="modal-content">
-     <div class="modal-header bg-primary">
-       <h5
-         class="modal-title white"
-         id="myModalLabel160"
-       >
-         DR. Kamran Rasheed
-       </h5>
-        </div>
-     <div
-       class="modal-body"
-       style="text-align: center;"
-     >
-       <h5>
-         <i
-           >inncomming Calls</i
-         >
-       </h5>
+<div class="modal fade text-left" id="incommingCall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title white" id="myModalLabel160">
+          DR. Kamran Rasheed
+        </h5>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <h5>
+          <i>inncomming Calls</i>
+        </h5>
 
-       <div style="text-align: center;">
-         <img
-           src="/assets/images/maledoc.png"
-           alt="Calling Gif"
-           style="
+        <div style="text-align: center;">
+          <img src="/assets/images/maledoc.png" alt="Calling Gif" style="
              width: 40%;
              height: 40%;
              border-radius: 50%;
-           "
-         />
-       </div>
-     </div><div class="modal-footer" style="text-align: center;text-align: center;
+           " />
+        </div>
+      </div>
+      <div class="modal-footer" style="text-align: center;text-align: center;
      display: flex;
      flex-direction: row;
      justify-content: center;">
 
-      <button type="button"   id="btnAccept" onclick='AcceptOrRejectCall(this, true)'
-      class="btn btn-icon  rounded-circle call-btn-border mr-1 mb-1 btn-lg">
-      <i class="call-btn bx bx-phone-call  icon-size" style=" top: 3px !important;"></i>
-      </button>
-      <!-- <button type="button" id="btnAccept" oncick='AcceptOrRejectCall(this, true)' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 call-accept-border">
+        <button type="button" id="btnAccept" onclick='AcceptOrRejectCall(this, true)'
+          class="btn btn-icon  rounded-circle call-btn-border mr-1 mb-1 btn-lg">
+          <i class="call-btn bx bx-phone-call  icon-size" style=" top: 3px !important;"></i>
+        </button>
+        <!-- <button type="button" id="btnAccept" oncick='AcceptOrRejectCall(this, true)' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 call-accept-border">
         <i class=" bx bx-phone-call accept-icon  icon-size icon-acceptreject"></i>
       </button> -->
-      <button type="button" id="btnReject" onclick='AcceptOrRejectCall(this, false)' 
-      class="btn btn-icon rounded-circle call-btn-border-red mr-1 mb-1 btn-lg" >
-        <i class=" call-btn bx bx-phone-call  icon-size  " style=" top: 3px !important;"></i>
-      </button>
-  </div>
+        <button type="button" id="btnReject" onclick='AcceptOrRejectCall(this, false)'
+          class="btn btn-icon rounded-circle call-btn-border-red mr-1 mb-1 btn-lg">
+          <i class=" call-btn bx bx-phone-call  icon-size  " style=" top: 3px !important;"></i>
+        </button>
+      </div>
 
-   </div>
- </div>
-</div> 
+    </div>
+  </div>
+</div>
 <!--=========inncomming call from doctor=======-->
-    <div class="app-content content">
-      <div class="content-overlay"></div>
-      <div class="content-wrapper">
-        <div class="content-header row"></div>
-        <div class="content-body">
-          <br/>
-          <div class="d-flex flex-row">
-            <div class="page-heading-pat">
-              <h3>PATIENT DASHBOARD</h3>
-            </div>
-          </div>
-        
-          <div class="email-user-list list-group">
-            <ul class="users-list-wrapper media-list" id="doctorList">              
-             
-            </ul>
-          </div>
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row"></div>
+    <div class="content-body">
+      <br />     
+      <div class="d-flex flex-row">
+        <div class="page-heading">
+          <h3><i class='iconapp bx bxs-data'></i><span>Choose a Provider</span></h3>
         </div>
       </div>
-    </div>    
+      <div class="email-user-list list-group">
+        <ul class="users-list-wrapper media-list" id="doctorList">
 
-    <!-- END: Content-->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- END: Content-->
+<!-- END: Content-->
 
-    <!-- BEGIN: JS-->
-    <script src="js/vendors.min.js"></script>
-    <script src="/js/sweetalert2.all.min.js"></script>
-    <script src="/js/polyfill.min.js"></script>
-    <script src="/js/sweet-alerts.js"></script>
-    <script src="/js/components-modal.js"></script>
-    <!-- BEGIN: Services calling JS-->       
-    <script src="/js/Services/DoctorService.js"></script>
-    <script src="/js/Services/loadingoverlay.min.js"></script>
+<!-- END: Content-->
 
+<!-- BEGIN: JS-->
+<script src="js/vendors.min.js"></script>
+<script src="/js/sweetalert2.all.min.js"></script>
+<script src="/js/polyfill.min.js"></script>
+<script src="/js/sweet-alerts.js"></script>
+<script src="/js/components-modal.js"></script>
 
 
-    <!-- END: JS-->
-  </body>
-  <!-- END: Body-->
+<script src="/js/app-menu.js"></script>
+<script src="/js/app.js"></script>
+<!-- <script src="/js/app-kanban.js"></script> -->
+<!-- BEGIN: Services calling JS-->
+<script src="/js/Services/DoctorService.js"></script>
+<script src="/js/Services/loadingoverlay.min.js"></script>
+
+
+
+<!-- END: JS-->
+</body>
+<!-- END: Body-->
+
 </html>

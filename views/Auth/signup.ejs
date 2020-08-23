@@ -41,28 +41,59 @@
         <div class="content-body">
           <!-- register section starts -->
           <section class="row flexbox-container">
-            <div class="col-sm-4 col-10">
+            <div class="col-xl-8 col-11">
               <div class="card bg-authentication mb-0">
                 <div class="row m-0">
+                  <!-- left section-login -->
+                  <div class="crtAccount col-md-5" style="padding-left: 40px;">
+                    <div class="card-header loginLogo">
+                      <a href="/"><img src="/assets/logo.png" /></a>
+                    </div>
+                    <div class="card-content">
+                      <div class="card-body">
+                        <br />
+                        <br />
+                        <h1 class="txtwelcome">Welcome</h1>
+                        <span class="txtlogin"
+                          >Sign up to consult with your doctor.</span
+                        >
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+
+                        <div>
+                          <small class="mr-25" style="font-size: 15px;"
+                            >Already have an account?</small
+                          ><a href="login"><small>Sign in</small></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <!-- register section left -->
-                  <div class="col-md-12 col-12 px-0">
+                  <div class="loginArea col-md-7 col-12 px-0">
                     <div
                       class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center"
+                      style="
+                        padding-left: 60px !important;
+                        padding-right: 60px !important;
+                      "
                     >
                       <div class="card-header pb-1">
                         <div class="card-title">
-                          <h5 class="text-center mb-2">Sign Up</h5>
+                          <h5 class="LoginHeading">
+                            Register
+                          </h5>
+                          <span class="txtlogin"
+                            >Please enter your details to sign up and consult
+                            with doctor now</span
+                          >
                         </div>
                         <span class="error" style="display: none;"></span>
                       </div>
-                      <div class="text-center">
-                        <p>
-                          <small>
-                            Please enter your details to sign up and Consult a
-                            doctor now</small
-                          >
-                        </p>
-                      </div>
+
                       <div class="card-content">
                         <div class="card-body">
                           <form id="frmSignUp">
@@ -73,7 +104,11 @@
                             />
                             <div class="form-row">
                               <div class="form-group col-md-6 mb-50">
-                                <label for="inputfirstname4">first name</label>
+                                <label
+                                  class="text-bold-600"
+                                  for="inputfirstname4"
+                                  >Rirst name</label
+                                >
                                 <input
                                   required
                                   name="firstName"
@@ -84,7 +119,11 @@
                                 />
                               </div>
                               <div class="form-group col-md-6 mb-50">
-                                <label for="inputlastname4">last name</label>
+                                <label
+                                  class="text-bold-600"
+                                  for="inputlastname4"
+                                  >Last name</label
+                                >
                                 <input
                                   required
                                   name="lastName"
@@ -109,7 +148,7 @@
                                 type="email"
                                 class="form-control"
                                 id="exampleInputEmail1"
-                                placeholder="Enter Email Address or Phone Number"
+                                placeholder="Enter"
                               />
                             </div>
 
@@ -133,7 +172,7 @@
                                 <label
                                   class="text-bold-600"
                                   for="exampleInputEmail1"
-                                  >Contact Number Wtih Country Code</label
+                                  >Phone no</label
                                 >
                                 <div class="row">
                                   <div class="col-sm-3">
@@ -165,11 +204,6 @@
                               SIGN UP
                             </button>
                           </form>
-                          <hr />
-                          <div class="text-center">
-                            <small class="mr-25">Already have an account?</small
-                            ><a href="/login"><small>Sign in</small> </a>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -196,44 +230,55 @@
                 role="document"
               >
                 <div class="modal-content">
-                  <div class="modal-header bg-primary">
-                    <h5
-                      class="modal-title white"
-                      style="color: #fff;"
-                      id="myModalLabel160"
-                    >
-                      One Time Password
+                  <br />
+                  <br />
+                  <br />
+                  <div class="card-title" style="text-align: center;">
+                    <h5 class="LoginHeading" style="font-size: 20px;">
+                      <strong>OTP Verification</strong>
                     </h5>
-                    <button
-                      type="button"
-                      class="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
+                    <span class="txtlogin"
+                      >Enter the OTP that sent to your mobile</span
                     >
-                      <i class="bx bx-x"></i>
-                    </button>
                   </div>
-                  <div class="modal-body">
-                    <div class="text-center">
-                      <p>
-                        Please enter the One Time password that has been sent to
-                        your email address and to your phone number<br />
-                        This OTP will expire in next 15 mins.
-                      </p>
-                    </div>
-                    <br />
+                  <div class="modal-body" style="text-align: center;">
                     <input
+                      maxlength="1"
                       type="number"
-                      id="squareText"
+                      id="squareText1"
                       class="form-control square"
-                      placeholder="Enter Code"
+                    />
+                    <input
+                      maxlength="1"
+                      type="number"
+                      id="squareText2"
+                      class="form-control square"
+                    />
+                    <input
+                      maxlength="1"
+                      type="number"
+                      id="squareText3"
+                      class="form-control square"
+                    />
+                    <input
+                      maxlength="1"
+                      type="number"
+                      id="squareText4"
+                      class="form-control square"
                     />
                     <br />
-                  </div>
-                  <div class="modal-footer">
+                    <br />
+                    <span class="txtnormal">Don’t receive the OTP yet?</span>
+                    <a style="text-decoration: none;" href="login"
+                      ><small>Resend OTP?</small></a
+                    >
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                     <button
                       type="button"
-                      class="btn btn-outline-success mr-1 mb-1"
+                      class="btn btn-primary mr-1 mb-1"
                       id="btnOTPVerify"
                     >
                       Verify

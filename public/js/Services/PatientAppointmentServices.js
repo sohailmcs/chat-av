@@ -129,4 +129,12 @@ Mustache.Formatters = {
     };
     return new Date(str).toLocaleDateString("en-US", options);
   },
+  Shortdate: function (str) {
+    var options = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+    return new Date(str).toLocaleDateString("en-US", options);
+  },
 };

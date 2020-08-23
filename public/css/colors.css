@@ -2197,13 +2197,12 @@ input:focus ~ .bg-primary {
 .divqueue {
   margin-top: 25px;
 }
-
 .btn-audio-video {
   border: 1px solid #0367ff;
   background-color: transparent;
   color: #0367ff !important;
-  font-weight: 300;
-  padding: 4px 15px;
+  font-weight: 400;
+  padding: 4px 12px;
   margin-right: 12px;
   text-transform: uppercase;
 }

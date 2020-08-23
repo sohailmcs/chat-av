@@ -58,8 +58,15 @@ function validtion() {
     },
   });
 }
+function moveToNext() {
+  $(".square").keyup(function (e) {
+    if ($(this).val().length == $(this).attr("maxlength"))
+      $(this).next(':input[type="number"]').focus();
+  });
+}
 //==login==========
 $(function () {
+  moveToNext();
   $("#frmLogin").submit(function (e) {
     e.preventDefault();
 

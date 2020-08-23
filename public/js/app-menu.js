@@ -969,7 +969,7 @@
         if ($body.data("menu") == "vertical-menu-modern") {
           $(".main-menu, .navbar-header").addClass("expanded");
           $(".sideButtons").removeClass("sideButtonCollapse");
-          $(".sideButtons").children("i").css("margin-left", "9%");
+          $(".sideButtons").children("i").css("margin-left", "5%");
           $(".sideButtons").children("span").css("display", "");
           if ($body.hasClass("menu-collapsed")) {
             if ($(".main-menu li.open").length === 0) {

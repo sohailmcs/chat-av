@@ -1,6 +1,6 @@
 <div
-  class="main-menu menu-fixed menu-light menu-accordion menu-shadow card"
-  data-scroll-to-active="true"
+  class="main-menu menu-fixed expanded"
+  style="touch-action: none; user-select: none;"
 >
   <div class="navbar-header">
     <ul class="nav navbar-nav flex-row">
@@ -28,20 +28,16 @@
       data-menu="menu-navigation"
       data-icon-style="lines"
     >
-      <br />
-      <hr />
-      <a href="/patientDashboard">
+      <a class="firstChild" href="/patientDashboard">
         <button class="sideButtons hvr-sweep-to-right">
           <i class="bx bxs-calendar-plus"></i><span>Patient Dashboard</span>
         </button>
       </a>
-      <hr />
       <a href="/patientAppointments">
         <button class="sideButtons hvr-sweep-to-right">
           <i class="bx bxs-report"></i><span>My Booked Appointments</span>
         </button>
       </a>
-      <hr />
     </ul>
   </div>
 </div>
