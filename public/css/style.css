@@ -186,8 +186,7 @@ h1.txtwelcome {
 .btn-primary:hover {
   background-color: #3eb8d7 !important;
 }
-.text-center,
-a {
+.text-center {
   color: #076dfa;
   cursor: pointer;
   text-align: left !important;
@@ -330,7 +329,7 @@ h3.timeline-title {
 .txtDocOffLinneStatus {
   color: #c5cfdd;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 1px;
 }
 
 .sidebaricon {

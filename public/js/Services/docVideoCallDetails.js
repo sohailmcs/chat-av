@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 
 var urlParams = new URLSearchParams(window.location.search);
 var queId = urlParams.get("queId");
@@ -58,8 +58,9 @@ $(function () {
   });
 
   $(".btnSaveNSend").click(function () {
+    var newCallLogID = cLogId == 0 ? insertedCallLogID : cLogId;
     updatePrescription(
-      cLogId,
+      newCallLogID,
       $("#patientAge").val(),
       $("#txtName").val(),
       patientId
