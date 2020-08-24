@@ -252,6 +252,10 @@ html body.bg-full-screen-image {
   background-color: #e3eeff;
   background-size: cover;
 }
+#auth-login .card,
+.flexbox-container .card {
+  box-shadow: none !important;
+}
 
 html body.blank-page .content {
   margin-left: 0;
