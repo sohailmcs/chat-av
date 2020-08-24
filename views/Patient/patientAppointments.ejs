@@ -50,7 +50,7 @@
        {{/doctorPhoto}} 
   
       </div>
-    <div class="col-sm-4" style="margin: 12% 0% 2% 5%;">
+    <div class="col-sm-3" style="margin: 3% 0% 2% 2%;">
       <div class="media">
         <div >
           <h5 class="docName">
@@ -60,11 +60,11 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4" style="vertical-align: middle; margin: auto;">
+    <div class="col-sm-3" style="vertical-align: middle; margin: auto;">
       <i class="bx bx-time"><span class="date-time-text">{{AppointmentDate | Shortdate}}</span>
         <span class="date-time-text">{{AppointmentStartTime}} - {{AppointmentEndTime}} </span></i>
     </div>
-    <div class="col-sm-4">           
+    <div class="col-sm-3" style="vertical-align: middle; margin: auto;">           
        <button   type="button" class="btn btn-outline-primary " 
        appId="{{AppointmentDetailID}}" doctorId= "{{DoctorId}}"  patientid ="{{PatientID}}"
       data-toggle="modal" data-target="#primary" style="float: right; margin-left: 1%; font-weight:600">
