@@ -305,7 +305,7 @@ function disconnect() {
   session.disconnect();
   session.unpublish(publisher, handleError);
   publisher.destroy();
-  session.unsubscribe(subscriber);
+  //session.unsubscribe(subscriber);
 
   clearInterval(timer);
   var newCallLoginId;
