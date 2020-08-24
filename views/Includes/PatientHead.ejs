@@ -26,6 +26,79 @@
     <!-- common CSS -->
   </head>
 
+  <!--=========inncomming call from doctor=======-->
+  <div
+    class="modal fade text-left"
+    id="incommingCall"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel160"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+      role="document"
+    >
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title white" id="myModalLabel160">
+            DR. Kamran Rasheed
+          </h5>
+        </div>
+        <div class="modal-body" style="text-align: center;">
+          <h5>
+            <i>inncomming Calls</i>
+          </h5>
+
+          <div style="text-align: center;">
+            <img
+              src="/assets/images/maledoc.png"
+              alt="Calling Gif"
+              style="width: 40%; height: 40%; border-radius: 50%;"
+            />
+          </div>
+        </div>
+        <div
+          class="modal-footer"
+          style="
+            text-align: center;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+          "
+        >
+          <button
+            type="button"
+            id="btnAccept"
+            onclick="AcceptOrRejectCall(this, true)"
+            class="btn btn-icon rounded-circle call-btn-border mr-1 mb-1 btn-lg"
+          >
+            <i
+              class="call-btn bx bx-phone-call icon-size"
+              style="top: 3px !important;"
+            ></i>
+          </button>
+          <!-- <button type="button" id="btnAccept" oncick='AcceptOrRejectCall(this, true)' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 call-accept-border">
+        <i class=" bx bx-phone-call accept-icon  icon-size icon-acceptreject"></i>
+      </button> -->
+          <button
+            type="button"
+            id="btnReject"
+            onclick="AcceptOrRejectCall(this, false)"
+            class="btn btn-icon rounded-circle call-btn-border-red mr-1 mb-1 btn-lg"
+          >
+            <i
+              class="call-btn bx bx-phone-call icon-size"
+              style="top: 3px !important;"
+            ></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--=========inncomming call from doctor=======-->
+
   <script type="text/javascript">
     var uName = "";
     var userID = "";
