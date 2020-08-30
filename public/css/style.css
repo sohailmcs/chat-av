@@ -12,6 +12,9 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .navbar-brand {
   text-decoration: none;
 }
+.card {
+  box-shadow: none !important;
+}
 
 #log {
   color: #727e8c;
@@ -68,7 +71,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .three-icons {
   display: none;
   position: absolute;
-  bottom: 0;
+  bottom: 55px;
 }
 .call-heading {
   text-align: center;
@@ -79,24 +82,52 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 }
 
 .main-video-div {
-  width: 600.555556px;
+  /* width: 600.555556px; */
+  width: 580.555556px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 371px;
+  /* height: 371px; */
+  height: 545px;
   position: relative;
-  margin: 0 auto;
+  margin: 0;
   border: 2px solid #3eb8d7 !important;
 }
 
-.caller-video {
-  top: 0;
+#timer {
   position: absolute;
-  right: 0%;
-  background-color: aquamarine;
-  width: 30%;
-  height: 40%;
+  text-align: center;
+  left: 30px;
+  top: 30px;
+  /* border: 1px solid; */
+  color: #525a65;
+  font-size: 13px;
+  font-weight: 500;
+}
+.icons {
+  bottom: 5px;
+  position: absolute;
+  left: 32%;
+  z-index: 9999;
+}
+.slide-right,
+.slide-right i,
+.slide-left,
+.slide-left i {
+  font-size: 12px !important;
+}
+#divCallNow {
+  bottom: 12%;
+  left: 45%;
+}
+#callImg {
+  position: absolute;
+  top: 0;
+  margin: 0 auto;
+  width: 70%;
+  height: 70%;
+  z-index: 999;
 }
 
 .call-btn {
@@ -108,9 +139,8 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   padding: 12px 15px !important;
 }
 .call-btn-border {
-  border: 2px solid #07bc4c;
-  background-color: #45dc7f;
-  padding: 12px 15px !important;
+  background-color: #00c853;
+  padding: 9px 10px 4px !important;
 }
 .icon-acceptreject {
   top: 3px !important;
@@ -123,11 +153,34 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   border: 2px solid #07bc4c;
   color: #fff !important;
 }
+.nav.nav-tabs .nav-item {
+  border-bottom: none !important;
+}
+
+.nav-tabs .nav-item {
+  margin-right: 0 !important;
+  border-radius: 0;
+  border-bottom: 0 !important;
+}
+.nav-tabs .nav-link {
+  color: #647796;
+  background-color: #f2f3f4;
+  margin: 0;
+  border-radius: 0 !important;
+  font-size: 15px;
+  padding: 10px 0;
+  font-weight: 600;
+  box-shadow: none !important;
+}
+.textbox {
+  border: 2px solid #d9e9ff;
+}
 
 @media only screen and (min-device-width: 300px) and (max-device-width: 750px) {
   .main-video-div {
-    height: 202px;
-    width: 85%;
+    height: 265px;
+    width: 100%;
+    margin: 0 auto;
   }
 }
 
@@ -139,7 +192,12 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 
 table.dataTable thead th,
 table.dataTable thead td {
-  padding: 6px 18px;
+  padding: 0px 18px;
+}
+table.dataTable thead th,
+table.dataTable thead td {
+  padding: 0px 18px !important;
+  border-bottom: none !important;
 }
 .ConflictedDtError {
   font-size: 15px;
@@ -276,15 +334,19 @@ h6,
   padding: 25px 0 0px 0;
 }
 .page-heading h3 {
-  color: #00193a;
-  font-size: 24px;
+  color: #102348;
+  font-size: 25px;
   font-weight: 500;
 }
-page-heading h3 i {
+.page-heading h3 i {
   font-size: 30px;
-  color: #fff;
+  color: #076dfa;
   padding: 3px;
 }
+.page-heading h3 i.iconapp {
+  color: #fff;
+}
+
 .page-heading-pat {
   margin-left: 43px;
 }
@@ -314,7 +376,11 @@ h3.timeline-title {
   margin: 0 0 0 15px;
   color: #076dfa;
 }
-
+h6.timeline-title {
+  font-size: 14px;
+  padding: 12px 10px 4px;
+  font-weight: bold;
+}
 .btncheckIn_sch i {
   font-size: 0.9rem !important;
 }
@@ -434,6 +500,8 @@ body {
 .hvr-sweep-to-right:focus,
 .hvr-sweep-to-right:active {
   color: #0367ff !important;
+  border-right: 5px solid #0367ff;
+  border-radius: 20px 0px 0px 20px;
 }
 .hvr-sweep-to-right:hover:before,
 .hvr-sweep-to-right:focus:before,
@@ -575,8 +643,10 @@ div {
 .tr-slot {
   background-color: #deebff;
   color: #fff;
-  margin-top: 1px;
+  margin: 10px 2px;
   text-align: center;
+  padding: 10px 11px;
+  border-radius: 5px;
 }
 .Customrow {
   height: 430px;
@@ -587,7 +657,7 @@ div {
 }
 
 .slot-booked {
-  background-color: #4cd04c;
+  background-color: #b7d5ff;
   text-align: center;
 }
 .patient-slot-booked {
@@ -785,6 +855,9 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   .calendar-wrapper .sidebar.show {
     transform: translateX(11%) translateY(-1px);
   }
+  .sch-app {
+    width: 50% !important;
+  }
   .calendar-wrapper
     .calendar-view
     .calendar-content
@@ -862,9 +935,12 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 
 /************* doctor dashboard styling start ****************************/
 
-.tablehead {
-  background-color: #deebff;
+.tablehead,
+.chilHeader {
+  background-color: #deebff !important;
   padding: 0.39rem 2rem;
+  text-transform: none !important;
+  text-align: center;
 }
 
 .tableheader {
@@ -882,6 +958,17 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 #tblCallLogs tr:nth-child(2n) {
   background: transparent;
 }
+
+#kindahdatatable tbody tr:nth-child(2n + 1) {
+  background: #fff;
+}
+#kindahdatatable tbody tr:nth-child(2n) {
+  background: transparent;
+}
+.sorting_1 {
+  background: none !important;
+}
+
 .bx-rotate-295 {
   transform: rotate(295deg);
 }
@@ -959,10 +1046,9 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   padding: 1.5%;
 }
 
-.card {
-  margin-bottom: 1rem !important;
+#windowComm .modal-body {
+  padding: 0 !important;
 }
-
 .prescription-card {
   color: #3eb8d7;
 }
@@ -982,15 +1068,6 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 .table-striped th {
   font-size: 0.8rem;
   padding: 0.39rem 1.5rem;
-}
-.videocol {
-  padding-right: 6px !important;
-  padding-left: 0px !important;
-}
-
-.leftcol {
-  padding-left: 28px;
-  padding-right: 17px;
 }
 
 .icons {
@@ -1037,7 +1114,7 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 }
 
 .btn-microphone {
-  background-color: #3eb8d7;
+  background-color: #525a65;
 }
 .icon-microphone {
   color: #fff;
@@ -1050,10 +1127,18 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 .btn-microphone:hover .icon-microphone {
   color: #3eb8d7 !important ;
 }
+.rightcardContainer {
+  box-shadow: 0px 4px 150px rgba(72, 142, 255, 0.1);
+  background-color: #fff;
+}
 
 .leftcardContainer {
   width: 100%;
   max-width: 100%;
+  background-color: #fff;
+}
+.leftcardContainer > .card {
+  margin-bottom: 0;
 }
 
 @media (max-width: 992px) {
@@ -1108,7 +1193,8 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   margin-top: auto;
 }
 
-.call-log-table td {
+.call-log-table td,
+#kindahdatatable td {
   padding: 1rem 2rem !important;
 }
 
@@ -1143,21 +1229,26 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   height: 100%;
   transition: margin-right 0.5s;
 }
+.call-log-table {
+  border: 1px solid #e3efff;
+}
 
 .call-log-eye-btn {
-  color: #3eb8d7;
+  color: #647796;
   font-size: 1.7rem !important;
 }
 
 .call-log-table-header {
-  background-color: #3eb8d7;
+  background-color: #deebff !important;
   text-align: center;
 }
 
 .call-log-table-head {
-  height: 40px;
-  color: #ffffff !important;
+  border-bottom: none !important;
+  height: 60px;
+  color: #525a65 !important;
   font-size: 1rem !important;
+  font-weight: 500;
 }
 
 .call-log-table td {
@@ -1174,7 +1265,7 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   margin: auto;
   border-left: 7px solid #051431 !important;
   border-right: 7px solid #091f4a !important;
-  border-bottom: 8px solid #081e48 !important;
+  border-bottom: none;
   bottom: 0;
   left: 0;
   right: 0;
@@ -1203,7 +1294,6 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   text-align: center;
 }
 .sch-app {
-  border: 1px solid lightgrey;
   padding-left: 0px !important;
   padding-right: 0px !important;
   width: 132px;
@@ -1222,13 +1312,13 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 }
 
 .head-weekdays {
-  background-color: #3eb8d7;
-  padding: 8px;
+  background-color: #deebff;
+  padding: 15px 8px;
   text-align: center;
+  color: #647796;
 }
 
 .head-weekdays-bold {
-  color: #ffffff;
   margin-left: 5px;
 }
 
@@ -1239,11 +1329,13 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 
 .shift-col-bottom {
   text-align: center;
-  padding: 10px 5px 10px 5px;
+  padding: 25px 5px 10px 5px;
 }
 
 .sch-row {
   margin-left: 0px !important;
+  margin-right: 0px !important;
+  background: #fff;
 }
 
 .edit-sch-popup {
@@ -1258,8 +1350,10 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
   font-size: 14px;
   width: 273px !important;
   height: 36px !important;
-  border-radius: 1.5rem !important;
-  border-color: 2px solid #3eb8d7 !important;
+  background: #ffffff;
+  border: 2px solid #d9e9ff;
+  box-sizing: border-box;
+  border-radius: 5px;
   outline: none !important;
   padding: 10px;
 }
@@ -1288,6 +1382,66 @@ tr.shown td.details-control {
   background-color: #3eb8d7 !important;
   color: #ffffff;
   text-align: left;
+}
+@media (min-width: 576px) {
+  #windowComm .modal-dialog {
+    max-width: 582px;
+  }
+}
+
+#windowComm .modal-content,
+#windowComm .bg-primary {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+#windowComm .modal-header {
+  display: block;
+  padding: 5px 0;
+  border: none;
+}
+#windowComm .modal-header .close {
+  background: none !important;
+  color: #ffffff !important;
+  height: 2.8rem;
+  width: 2.4rem;
+  font-size: 45px;
+}
+
+.basic-textarea .card-body {
+  padding: 0.5rem 1rem 0 !important;
+}
+#nav-justified .card {
+  margin-bottom: 0 !important;
+}
+
+#subscribers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: #eaeaea;
+}
+#publisher {
+  position: absolute;
+  width: 26%;
+  height: 26%;
+  top: 30px;
+  right: 30px;
+  z-index: 100;
+  border-radius: 3px;
+}
+.doc-pres-card .card-body {
+  padding: 1rem 0 0 !important;
+}
+
+@media screen and (max-width: 650px) {
+  #publisher {
+    width: 30%;
+    height: 40%;
+  }
 }
 
 .rows {
@@ -1360,12 +1514,14 @@ tr.shown td.details-control {
 }
 
 input.larger {
-  transform: scale(1.5);
+  transform: scale(1.1);
   margin-left: 7px;
+  background: #deebff;
 }
 
 .shift {
-  color: #ffffff;
+  color: #647796;
+  font-weight: bolder;
 }
 
 /* on off switch */
@@ -1573,11 +1729,12 @@ article {
 .schappointment-text {
   color: #647796;
   margin-bottom: 0px !important;
-  margin-left: 5%;
+  margin-left: 2%;
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: left;
   font-weight: 500;
+  font-size: 17px;
 }
 .noDataAvailable {
   color: #647796;
@@ -1611,8 +1768,12 @@ article {
   font-size: 0.8rem;
   margin: 5px 0 5px 12px;
 }
-.marketing-campaigns .card-title {
+.marketing-campaigns .card-title,
+.page-heading .card-title {
   color: #076dfa;
+}
+label {
+  text-transform: none;
 }
 
 .k-header {

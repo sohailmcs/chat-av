@@ -20,8 +20,8 @@
     <script src="/js/Services/mustache-wax.min.js"></script>
     <script src="/js/Services/loadingoverlay.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
     <title><%= pageTitle %></title>
     <!-- common CSS -->
   </head>
@@ -41,20 +41,26 @@
     >
       <div class="modal-content">
         <div class="modal-header bg-primary">
-          <h5 class="modal-title white" id="myModalLabel160">
-            DR. Kamran Rasheed
-          </h5>
+          <h5 class="modal-title black" id="inncommingCallHead"></h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="modal-body" style="text-align: center;">
+        <div class="modal-body" style="text-align: center">
           <h5>
             <i>inncomming Calls</i>
           </h5>
 
-          <div style="text-align: center;">
+          <div style="text-align: center">
             <img
               src="/assets/images/maledoc.png"
               alt="Calling Gif"
-              style="width: 40%; height: 40%; border-radius: 50%;"
+              style="width: 40%; height: 40%; border-radius: 50%"
             />
           </div>
         </div>
@@ -76,7 +82,7 @@
           >
             <i
               class="call-btn bx bx-phone-call icon-size"
-              style="top: 3px !important;"
+              style="top: 3px !important"
             ></i>
           </button>
           <!-- <button type="button" id="btnAccept" oncick='AcceptOrRejectCall(this, true)' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 call-accept-border">
@@ -90,7 +96,7 @@
           >
             <i
               class="call-btn bx bx-phone-call icon-size"
-              style="top: 3px !important;"
+              style="top: 3px !important"
             ></i>
           </button>
         </div>
@@ -100,8 +106,13 @@
   <!--=========inncomming call from doctor=======-->
 
   <script type="text/javascript">
+    var apiKey = "<%= apiKey %>";
+    var sessionId = "<%= sessionId %>";
+    var token = "<%= token %>";
+
     var uName = "";
     var userID = "";
+    var mArea = "Patient";
     var soc = io({ transports: ["websocket"], upgrade: false });
     // var soc = io("https://chat-av.herokuapp.com");
 
@@ -210,6 +221,7 @@
     soc.on("CallRequest", function (data) {
       $("#btnAccept").attr("doctorName", data.username);
       $("#btnReject").attr("doctorName", data.username);
+      $("#inncommingCallHead").text("Dr." + data.username);
       $("#incommingCall").modal("show");
       PlayCallingSound(true);
     });
@@ -226,30 +238,8 @@
           username: doctorName,
           pName: uName,
         });
-
-        var width = screen.width / 2 + 100;
-        var height = screen.height / 2 + 150;
-        var left = (screen.width - width) / 2;
-        var top = (screen.height - height) / 2;
-        var params = "width=" + width + ", height=" + height;
-        params += ", top=" + top + ", left=" + left;
-        params += ", directories=no";
-        params += ", location=no";
-        params += ", menubar=no";
-        params += ", resizable=no";
-        params += ", scrollbars=no";
-        params += ", status=no";
-        params += ", toolbar=no";
-
-        var myWindow = window.open(
-          "/docVideoCall?area=Patient" +
-            "&PatientName=" +
-            uName +
-            "&docName=" +
-            doctorName,
-          "MsgWindow",
-          params
-        );
+        $("#windowComm").modal("show");
+        initializeSession(apiKey, sessionId, token);
       } else {
         //=========Reject the call======
         soc.emit("RejectedAudioVideoCall", {
@@ -295,4 +285,5 @@
       }
     });
   </script>
+  <%- include('../Doctor/test.ejs') %>
 </html>

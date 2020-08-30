@@ -44,7 +44,8 @@
                 <td>{{OnCallDuration}}</td>
                 <td>
                   <a href="#"   callLogId="{{CallLogID}}" class="btnViewHistory" >
-                    <i class="bx bxs-show call-log-eye-btn"></i>
+                    <i class='bx bx-show call-log-eye-btn'></i>
+                    
                   </a>
                 </td>
               </tr>
@@ -57,81 +58,111 @@
               {{/result.0}} 
   </script>
 
-<script id="viewPatHistory" type="text/html">
-     <div class="kanban-sidebar" style="overflow: auto;">
-          <div class="card shadow-none quill-wrapper">
-            <div
-              class="card-header d-flex justify-content-between align-items-center border-bottom px-2 py-1 side-card-title">
-              <h3 class="card-title side-card-title">
-                <b>Patient History</b>
-              </h3>
-              <button type="button" class="close close-icon" onclick="viewHistory()">
-                <i class="bx bx-x"></i>
-              </button>
-            </div>
-            <!-- form start -->
 
-            <div class="card-content side-bar">
-              <div class="card-body slide-card">
-                <br />
-                <div class="media">
-                  <a class="pr-1" href="#">
-                    <img src="/assets/images/patient.png" alt="image" style="
-                            height: 100px;
-                            width: 100px;
-                            border-radius: 50%;
-                            margin-left: 12px;
-                          " class="viewHistoryProfile" /> </a>
-                  <div>
-                    <br />
-                    <h5 class="media-heading" >{{PatientName}}</h5>
-                    <div>
-                      <p>
-                        <b>Contact Number</b>: <span >{{PatientPhone}}</span>
-                        <br />
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="text-sidebar">
-                  
-                  <div>
-                    <br />
-                    <div>
-                      <h6 class="history-popup" > <b>History and Exams</b> </h6>
-                      <p class="history-text" > {{HistoryAndExam}} </p>
-                      </div>
-                      
-                      <div>
-                      <h6 class="history-popup"> <b>Allergies</b> </h6>
-                      <p class="history-text"> {{Allergies}} </p>
-                      </div>
-                      
-                      <div>
-                      <h6 class="history-popup"> <b>Diagnosis</b> </h6>
-                      <p class="history-text"> {{Diagnosis}} </p>
-                      </div>
-                      
-                      <div>
-                      <h6 class="history-popup"> <b>RX</b> </h6>
-                      <p class="history-text"> {{PatientRX}} </p>
-                      </div>
-                  </div>
-                </div>
-                <div>
-                  <button type="button" class="btn btn-light-secondary" onclick="viewHistory()" style="float: right;">
-                    <span class="d-none d-sm-block">Close</span>
-                  </button>
-                </div>
-                <br />
-                <br />
-                <br />
-              </div>
-            </div>
-          </div>
+  <script id="viewPatHistory" type="text/html">
+    <div
+    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+    role="document"
+  >
+    <div class="modal-content">
+      <div class="modal-header bg-primary " style="text-align:center">
+        <h4>Patient History</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>         
+       
+      </div>
+      <div class="modal-body">
+     <div class="row">
+          <div class="col-lg-2">
+            {{#PatientPhoto}}
+            <img
+            src="{{PatientPhoto}}"
+            alt="image"
+            style="
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;" />
+           {{/PatientPhoto}}
+           {{^PatientPhoto}}
+           <img src="/assets/images/patient.png" alt="image" style="
+           height: 100px;
+           width: 100px;
+           border-radius: 50%;" /> 
+           {{/PatientPhoto}}          
         </div>
+      <div class="col-lg-4">
+        <br/>
+        <h5 class="docName">
+          {{PatientName}}
+        </h5>          
+        <b>Age</b>: {{Age}} years old
+      </div>
+      <div  style="margin-top:10  px" class="col-lg-5">
+        <br/>        
+        <b> Visit Date : </b> {{CallLogStartDateTime | Shortdate}} <br>                  
+        <b>Contact Number </b>: {{PatientPhone}}
+      </div>
 
+    </div>
+        <ul style="padding-left:0;font-size:13px;">
+          <br/>
+          <div class="container profileArea">
+          <div class="row" style="background-color:#F3F8FF;">
+             <br/>
+             <div class="col-sm-5">              
+             <span class="editprofile-icons">History and Exams :</span>
+             </div>
+             <div class="col-sm-5 txtnormal">              
+              {{HistoryAndExam}}
+             </div>
+          </div>
+          
+           
+          <div class="row">
+             <br/>
+             <div class="col-sm-5">             
+             <span class="editprofile-icons">Allergies : </span>
+             </div>
+             <div class="col-sm-5 txtnormal">             
+              {{Allergies}}
+             <br/>
+             </div>
+           </div>
+
+         
+           <div class="row" style="background-color:#F3F8FF;">
+              <br/>
+              <div class="col-sm-5 ">               
+              <span class="editprofile-icons">Diagnosis :</span>
+              </div>
+              <div class="col-sm-7 txtnormal">
+                {{Diagnosis}}             
+             </div>
+           </div>
+   
+         <div class="row">             
+            <div class="col-sm-5">             
+            <span class="editprofile-icons">RX :</span>
+           
+            </div>
+            <div class="col-sm-7 txtnormal">             
+              {{PatientRX}}
+              </div>
+
+           </div>
+          </div>
+         
+        </ul>
+      </div>
+     
+    </div>
+  </div>   
 </script>
+
+
+
+
 <!-- BEGIN: Content-->
 
 <div class="app-content content">
@@ -142,24 +173,18 @@
 
       <!-- start side bar -->
 
-      <section id="slidePatientHistory" class="sideMenuId" style="
-         margin-right: -50%;
-         overflow: auto;
-         display: none;
-         width: 50%;
-         margin-top: 10px; ">
-
-
-      </section>
-      <!-- end side bar -->
+      <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+      aria-hidden="true">
+    
+    </div>
 
       <br />
       <div class="d-flex flex-row">
         <div class="page-heading">
-          <h3>CALL LOGS</h3>
-        </div>
+          <h3><i class='bx bx-layer'></i><span>Call Logs</span></h3>
       </div>
-
+      </div>
+<br>
       <!-- Start  table -->
 
       <div class="table-responsive">
@@ -172,8 +197,8 @@
           </fieldset>
         </div>
         <br />
-        <table class="table call-log-table">
-          <thead>
+        <table id="tblCallLogs" class="table call-log-table">
+          <thead class="tablehead">
             <tr class="call-log-table-header">
               <th class="call-log-table-head">MRN</th>
               <th class="call-log-table-head">Patient Name</th>

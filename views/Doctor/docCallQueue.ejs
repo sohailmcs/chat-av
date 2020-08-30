@@ -41,20 +41,18 @@
           <br />
           <div class="d-flex flex-row">
             <div class="page-heading">
-              <h3>CALL QUEUE</h3>
-            </div>
+              <h3><i class='iconapp bx bx-time-five'></i><span>Call Queue</span></h3>
           </div>
-
+          </div>
+<br>
           <!-- Call Queue Start -->
           <section id="table-Marketing">
             <div class="card">
               <div class="card-content">
-                <div class="card-body pb-0">
+                <div class="pb-0">
                   <!-- patient start -->
                   
                       <div id="callQueueId">
-                       
-
                         
                 </div>
               </div>
@@ -66,87 +64,122 @@
           <!-- Call Queue Template -->
           <script id="callQueue-template" type="text/html">
        
-              {{#result}}
-     <!-- Patient one  -->
-     <div class="row" style="margin: 1%;">
-        <div class="col-md-7 col-sm-12">
-            <div class="d-inline-block">
-                <div class="row">
-                    <div class="pr-50" style="display: inline-block; align-self: stretch;">
-                        <!-- <img src="/assets/images/doctorprofile.jpg" alt="avtar img holder"
-                            style="
-                        width: 80px;
-                        height: 80px;
-                        border-radius: 50%;
-                        vertical-align: unset;" /> -->
-                         <div class="pr-50 doc-img">
-                        {{#PatientModel.PatientPhoto}}
-                        <img src="{{PatientModel.PatientPhoto}}" alt="avtar img holder">                      
+
+            {{#result}}
+            <!-- Patient one  -->
+            <div class="row" style="margin: 2% 0 2% 1%;">
+               <div class="col-sm-3">
+                   <div class="d-inline-block">
+                       <div class="pr-50 pImage " style="float:left;display: inline-block; align-self: stretch;">
+                           {{#PatientModel.PatientPhoto}}
+                           <img   src="{{PatientPhoto}}"  alt="image" style="   width: 80px;
+                           height: 80px;                    
+                           float:left;
+                         "
+                         />
                         {{/PatientModel.PatientPhoto}}
                         {{^PatientModel.PatientPhoto}}
-                        <img src="/assets/images/patient.png" alt="avtar img holder">                      
-                        {{/PatientModel.PatientPhoto}}                             
-                        </div>
-                    </div>
-
-                    <div style="display: inline-block;">
-                        <h6 style="padding-top: 2%;">
-                            <b>{{PatientName}}</b> &nbsp; (
-                            <span style="
-      margin-left: 1%;
-      color: #39da8a;
-      font-weight: 300;
-    "><b>{{RequestType}} </b></span>)
-                        </h6>
-
-                        <p><b>Contact :</b> {{PatientPhone}}</p>
-                        <p><b>Patient waiting since:</b> 
-                          <input type= "hidden" class="hdnCallQueDate" value="{{{CallQueDateTime}}}" >
-                          <span class="spnWaitingTime">
-                            {{{CallQueDateTime}}}    
-                         </span>
-                        </p>                       
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-5 col-sm-12 text-md-right">
-            <div class="row call-Queue-icons">
-                <a >
-                    <button type="button" onclick="myFunction()" class="btn btn-outline-primary round mr-1 mb-1">
-                        <i class="bx bx-microphone"></i>
-                        <b>Audio</b>
-                    </button>
-                </a>
-
-                <a >
-                    <button type="button" onclick="myFunction()" class="btn btn-outline-primary round mr-1 mb-1">
-                        <i class="bx bx-video"></i>
-                        <b>Video</b>
-                    </button>
-                </a>
-
-                <div class="modal-primary mr-1 mb-1 d-inline-block">
-                    <!-- Button for SMS Popup -->
-                    <button type="button" class="btn btn-outline-primary round"
-                        data-toggle="modal" data-target="#primary">
-                        <i class="bx bxs-chat"></i>
-                        <b>SMS</b>
-                    </button>                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- patient one ends -->
-    <hr />
-  
-   {{/result}}
-
-   {{^result.0}}   
-        <h6 class="timeline-title">
-            No Call Queue Available
-        </h6>   
-   {{/result.0}}               
+                        <img  src="/assets/images/maledoc.png"  alt="image" style="
+                        width: 80px;
+                        height: 80px;                 
+                        float:left;"
+                      />
+                        {{/PatientModel.PatientPhoto}}
+                                <span class="onlinStatus"><b>                             
+                                       {{#OnlineStatus}}
+                                       <span class="bullet bullet-success bullet-sm"></span> 
+                                       {{/OnlineStatus}}
+                                       {{^OnlineStatus}}
+                                       <span class="bullet bullet-offline bullet-sm"></span>
+                                       {{/OnlineStatus}}                            
+                                   </b>                            
+                                   </span>                 </div>
+       
+                           <div class="divqueue" style="display: inline-block;">
+                               <h6 class='patientName' style="padding-top: 2%;">
+                                   {{PatientName}}
+                               </h6>
+                               <p class="callType">{{RequestType}}</p>
+                               
+                           </div>
+                       </div>
+                   </div>
+               
+                   <div class="col-sm-5 call-Queue-icons">
+                       <p><strong>Contact Number :</strong> {{PatientPhone}}</p>                        
+                       <p><strong>Patient waiting since :</strong> 
+                       <input type= "hidden" class="hdnCallQueDate" value="{{{CallQueDateTime}}}" >
+                       <span class="spnWaitingTime" >
+                          {{{CallQueDateTime}}}    
+                       </span>
+                             </p>
+                   </div>
+                   
+               <div class="col-sm-4 text-md-right">
+                   <div class="call-Queue-icons">
+                       {{#OnlineStatus}}
+                       <a >
+                           <button  type="button" patientName="{{PatientName}}" 
+                            CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}" 
+                            onclick="OpenCommunicationWindow(this)" 
+                            class="btncomm btn btn-audio-video mb-1">
+                               <i class="bx bx-microphone"></i>
+                               <b>Audio</b>
+                           </button>
+                       </a>
+                       <a>
+                           <button type="button"  patientName="{{PatientName}}" 
+                           CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}" 
+                            onclick="OpenCommunicationWindow(this)" 
+                            class="btncomm btn btn-audio-video mb-1">
+                               <i class="bx bx-video"></i>
+                               <b>Video</b>
+                           </button>
+                       </a>        
+                       {{/OnlineStatus}}
+                       {{^OnlineStatus}}
+                       <button  type="button" patientName="{{PatientName}}"  disabled
+                       CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}" 
+                       onclick="OpenCommunicationWindow(this)" 
+                       class="btncomm btn btn-audio-video mb-1">
+                          <i class="bx bx-microphone"></i>
+                          <b>Audio</b>
+                      </button>
+                  </a>
+                  <a>
+                      <button type="button"  patientName="{{PatientName}}" disabled
+                      CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}" 
+                       onclick="OpenCommunicationWindow(this)" 
+                       class="btncomm btn btn-audio-video mb-1">
+                          <i class="bx bx-video"></i>
+                          <b>Video</b>
+                      </button>
+                       {{/OnlineStatus}}
+       
+       
+       
+                       <a>
+                           <!-- Button for SMS Popup -->
+                           <button type="button"patientName="{{PatientName}}"  phoneNo="{{PatientPhone}}"
+                            class="btnpopupSmsReminder btn btn-audio-video mb-1"
+                               >
+                               <i class="bx bx-chat"></i>
+                               <b>SMS</b>
+                           </button>                    
+                       </a>
+                   </div>
+               </div>
+           </div>
+       </div>
+           <!-- patient one ends --> 
+         
+          {{/result}}
+       
+          {{^result.0}}   
+               <h6 class="timeline-title">
+                   No Call Que Available
+               </h6>   
+          {{/result.0}}
          
          </script>
 

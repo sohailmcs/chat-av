@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 var options = {
   year: "numeric",
   month: "numeric",
@@ -14,6 +14,7 @@ var clientCurrentDt = new Date().toLocaleDateString("en-US");
 var userLoginId = $(".user-name").attr("UserInfo");
 var uName = $(".user-name").text();
 //var socket = io();
+
 $(function () {
   getDashBoardAllScheduled(false);
   //=================Update patient EMR ==============
@@ -573,35 +574,6 @@ function SendSMStoPatient(mobileNo, doctorName, patientName) {
       $.LoadingOverlay("hide");
     },
   });
-}
-
-function OpenCommunicationWindow(btn) {
-  var CallQueId = $(btn).attr("CallQueId");
-  var PatientID = $(btn).attr("PatientID");
-  var callLogId = $(btn).attr("cLogId");
-  var pname = $(btn).attr("patientName");
-
-  params = "width=" + screen.width;
-  params += ", height=" + screen.height;
-  params += ", top=0, left=0";
-  params += ", fullscreen=yes";
-  var myWindow = window.open(
-    "/docVideoCall?queId=" +
-      CallQueId +
-      "&patientId=" +
-      PatientID +
-      "&patientName=" +
-      pname +
-      "&DocId=" +
-      userLoginId +
-      "&docName=" +
-      uName +
-      "&CallLogId=" +
-      callLogId +
-      "&comm=1",
-    "CommunicationWindow",
-    params
-  );
 }
 
 Mustache.Formatters = {

@@ -4404,6 +4404,9 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 /* ------------- */
 .picker__input.form-control {
   background-color: #ffffff;
+  border: 1px solid #d9e9ff;
+  box-sizing: border-box;
+  border-radius: 4px;
 }
 
 .picker {

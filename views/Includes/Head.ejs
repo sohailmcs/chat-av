@@ -14,20 +14,41 @@
       href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
       rel="stylesheet"
     />
-    <script src="/js/jquery.min.js"></script>
 
+    <script src="/js/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/js/Services/mustache.js"></script>
     <script src="/js/Services/mustache-wax.min.js"></script>
     <script src="/js/Services/loadingoverlay.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+
+    <!-- <script src="/js/vendors.min.js"></script>
+    <script src="/js/app.js"></script> -->
     <title><%= pageTitle %></title>
     <!-- common CSS -->
+    <script>
+      var apiKey = "<%= apiKey %>";
+      var sessionId = "<%= sessionId %>";
+      var token = "<%= token %>";
+    </script>
+
+    <style type="text/css"></style>
   </head>
 
   <script type="text/javascript">
     var uName = "";
     var userID = "";
+
+    var mCallQueId;
+    var mPatientID;
+    var mCallLogId;
+    var mPname;
+    var mDocName;
+    var mDocId;
+    var mArea;
+
     var soc = io({ transports: ["websocket"], upgrade: false });
     // var baseURL = "http://localhost:1042/KindahService/";
     var baseURL = "https://kindahclinic.com/KindahService/";
@@ -58,6 +79,20 @@
 
       changeDoctorOlineStaus(userID, "Online", uName);
     }); //============end of document.ready========
+
+    function OpenCommunicationWindow(btn) {
+      mCallQueId = $(btn).attr("CallQueId");
+      mPatientID = $(btn).attr("PatientID");
+      mCallLogId = $(btn).attr("cLogId");
+      mPname = $(btn).attr("patientName");
+      mDocName = uName;
+      mDocId = userLoginId;
+      mArea = "Doctor";
+      $("#windowComm").modal("show");
+      PatientHistory(mPatientID);
+      GetDoctorNotes(mCallLogId);
+      getPatientInfo(mPatientID);
+    }
 
     soc.on("UpdatePatientOnlineStatus", function (data) {
       if (!urlParams.has("comm"))
@@ -184,4 +219,6 @@
       changeDoctorOlineStaus(userID, x.innerHTML, uName);
     }
   </script>
+
+  <%- include('../Doctor/test.ejs') %>
 </html>

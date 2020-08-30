@@ -84,6 +84,9 @@ exports.getPatientDashboard = (req, res, next) => {
     pageTitle: "Patient Dashboard",
     UserName: UserName,
     userId: userId,
+    apiKey: apiKey,
+    sessionId: sessionId,
+    token: gentoken,
   });
 };
 
@@ -162,14 +165,13 @@ exports.getDoctorAppointments = (req, res, next) => {
 exports.getDoctorDashboard = (req, res, next) => {
   var UserName = req.cookies.kindahUserName;
   var userId = req.cookies.kindahUserId;
-  // res.set(
-  //   "Cache-Control",
-  //   "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
-  // );
   res.render("Doctor/docDashboard.ejs", {
     pageTitle: "Doctor Dashboard ",
     UserName: UserName,
     userId: userId,
+    apiKey: apiKey,
+    sessionId: sessionId,
+    token: gentoken,
   });
 };
 

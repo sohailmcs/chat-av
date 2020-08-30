@@ -47,72 +47,25 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header bg-primary">
-        <h5 class="modal-title white" id="myModalLabel160">
-          PATIENT
-          DETAILS
+        <h5 class="modal-title black" id="myModalLabel160">
+           Patient Details
         </h5>
-      </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+    </div>
       <div class="modal-body">
         <div class="card-content side-bar" id="bookDetails">
 
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-          <i class="bx bx-x d-block d-sm-none"></i>
-          <span class="d-none d-sm-block">Close</span>
-        </button>
-      </div>
+      
     </div>
   </div>
 </div>
 <!--end of patient prfile details-->
 
-<script id="BookingDetail-Template" type="text/html">
-  <div class="card-body">
-    <div class="media">    
-      {{#PatientPhoto}}
-    <img src=" {{PatientPhoto}}" alt="image" style="
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    margin-left: 12px;
-    " />
-    {{/PatientPhoto}}
-    {{^PatientPhoto}}
-    <img src="/assets/images/patient.png" alt="image" style="
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    margin-left: 12px;
-    " />
-    {{/PatientPhoto}}
 
-    <div>
-    <h5 class="media-heading">
-    <br />
-    <b>{{FullName}}</b>
-    </h5>
-    <div>
-    <p>
-    <b>Contact Number</b>: {{PhoneNo}}
-    </p>
-    </div>
-    </div>
-    </div>
-    <div class="text-sidebar">
-    <br />
-    
-    <div>
-    
-    <b>email:</b> {{Email}}    
-    <br />    
-    <b>Gender:</b> {{Gender}}    
-    <br />   
-    </div>
-    </div>
-    </div>
-</script>
 
 <script id="slots-template" type="text/html">
       {{#result}}  <!--  appointment start -->
@@ -127,23 +80,24 @@
         <div class="row tr-slot slot-booked ">
           <div class="col-12 col-md-6 ">
               <h6 class="schappointment-text ">
+                <i class="bx bx-time"></i>
                 {{AppointmentStartTime}}- {{AppointmentEndTime}} 
               </h6>
           </div>
           <div class="col-10 col-md-6 tr-Row">
           <button type="button" PatientId="{{PatientID}}" 
-          class="btn btn-primary_book btnViewDetail" 
+          class="btn btn-outline-primary mr-1 btnViewDetail" 
           style="margin-left: 1%;" 
          ><i class="bx bx-show"></i>
-            View Details
+            VIEW
           </button>
           <button
           type="button" DoctorId="{{DoctorId}}"  PatientID = "{{PatientID}}"  appDetailId = "{{AppointmentDetailID}}"
-          class="btnDelete btn btn-primary_book"
+          class="btnDelete btn btn-primary mr-1"
           style="margin-left: 1%;"
         >
           <i class="bx bx-trash"></i>
-          Delete
+          DELETE
         </button>
           </div>
         </div>
@@ -154,17 +108,17 @@
         <div class="row tr-slot">
           <div class="col-12 col-md-6">
             <h6 class="schappointment-text">
-              {{AppointmentStartTime}}- {{AppointmentEndTime}}  <span style="display:none"> {{isBooked}}</span>
+              <i class="bx bx-time"></i>  {{AppointmentStartTime}}- {{AppointmentEndTime}}  <span style="display:none"> {{isBooked}}</span>
             </h6>
           </div>
           <div class="col-8 col-md-6 tr-Row">
             <button
             type="button" DoctorId="{{DoctorId}}"  PatientID = "0"  appDetailId = "{{AppointmentDetailID}}"
-            class="btnDelete btn btn-primary_book"
+            class="btnDelete btn btn-outline-primary mr-1"
             style="margin-left: 1%;"
           >
             <i class="bx bx-trash"></i>
-            Delete
+            DELETE
           </button>
           </div>
         </div>  
@@ -192,11 +146,14 @@
     <div class="content-body">
       <div class="d-flex flex-row">
         <div class="page-heading">
-          <h3>MY APPOINTMENTS</h3>
-        </div>
+          <h3>
+              <i class='bx bxs-calendar-plus'></i>                      
+              <span>
+                My Booked Appointments</span></h3>
+      </div>
       </div>
 
-      <div class="Customrow row">
+      <div class="row">
         <div class="col-lg-5">
           <!-- calendar view start  -->
           <div class="calendar-view card">
@@ -212,7 +169,7 @@
               <div class="card-header d-flex justify-content-between align-items-center pb-1">
                 <h5 class="card-title">
                   <b>
-                    SCHEDULED APPOINTMENTS
+                    Scheduled Appointments
                   </b>
                 </h5>
 
@@ -233,12 +190,12 @@
       <br>
       <div class="d-flex flex-row">
         <div class="page-heading">
-          <h3>CREATE SCHEDULE</h3>
+          <h3 class="card-title">Create A Schedule</h3>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label>From Date</label>
           <fieldset class="form-group position-relative has-icon-left">
             <input id="dtFrom" type="text" class="form-control pickadate-months-year" placeholder="Select Date" />
@@ -247,7 +204,7 @@
             </div>
           </fieldset>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label>To Date</label>
           <fieldset class="form-group position-relative has-icon-left">
             <input id="toDT" type="text" class="form-control pickadate-months-year" placeholder="Select Date" />
@@ -256,7 +213,7 @@
             </div>
           </fieldset>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <fieldset>
             <label for="Slot-time">Slot Time (Minutes)</label>
             <select name="Slot-time" id="Slot-time" class="form-control">
@@ -267,6 +224,17 @@
             </select>
           </fieldset>
         </div>
+        <div class="col-md-3">
+          <div style="float: right; margin-top:8%">
+            <button type="button" id="btnSave" class="btn btn-outline-primary mr-1 mb-1">
+              <i class='bx bx-edit'></i>
+              Apply
+            </button>
+          </div>
+    
+        </div>
+
+
       </div>
       <br />
       <div class="row sch-row" id="Shift1">
@@ -278,7 +246,7 @@
           <p class="shift-col-top">
             Start Time
           </p>
-          <hr />
+          
 
           <p class="shift-col-bottom">
             End Time
@@ -486,7 +454,7 @@
           <p class="shift-col-top">
             Start Time
           </p>
-          <hr />
+          
 
           <p class="shift-col-bottom">
             End Time
@@ -685,13 +653,7 @@
       </div>
       <br />
 
-      <div style="float: right;">
-        <button type="button" id="btnSave" class="btn btn-outline-primary round mr-1 mb-1">
-          <i class="bx bxs-save"></i>
-          Save Shifts
-        </button>
-      </div>
-
+    
     </div>
   </div>
 </div>

@@ -457,6 +457,9 @@ select.select-light-white
 /* ---------- */
 .black {
   color: #000000 !important;
+  color: #000000 !important;
+  font-weight: bolder !important;
+  font-size: 1.5rem !important;
 }
 
 /* text with light black */
@@ -2185,6 +2188,27 @@ input:focus ~ .bg-primary {
 .btn-light-primary:active,
 .btn-light-primary.active {
   background-color: #437dec !important;
+  color: #fff !important;
+}
+#btncam,
+#btnMic {
+  background-color: #525a65;
+  padding: 1rem 1rem;
+  font-size: 2.5rem;
+  border: none;
+  margin-right: 3px !important;
+}
+#btncam i,
+#btnMic i {
+  font: size 2.5rem !important;
+  top: 0 !important;
+  color: #fff !important;
+}
+
+#btnDisconnect {
+  background-color: #f44337;
+  border: none;
+  padding: 0.9rem 1rem;
   color: #fff !important;
 }
 /* Outline buttons */

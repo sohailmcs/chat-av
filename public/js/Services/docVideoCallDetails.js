@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 
 var urlParams = new URLSearchParams(window.location.search);
 var queId = urlParams.get("queId");
@@ -50,12 +50,12 @@ $(function () {
     updateDoctorNotes(cLogId, "");
   });
 
-  $("#txtMedication").kendoEditor({
-    resizable: {
-      content: false,
-      toolbar: true,
-    },
-  });
+  // $("#txtMedication").kendoEditor({
+  //   resizable: {
+  //     content: false,
+  //     toolbar: true,
+  //   },
+  // });
 
   $(".btnSaveNSend").click(function () {
     var newCallLogID = cLogId == 0 ? insertedCallLogID : cLogId;
@@ -67,15 +67,13 @@ $(function () {
     );
   });
   //========get patient history===============
-  if (area != "Patient") {
-    PatientHistory(patientId);
+  if (mArea != "Patient") {
+    //PatientHistory(patientId);
     $("#divCallNow").show();
-    $("#call-heading")
-      .text("Calling with " + PatientName)
-      .css("width", "100%");
+    $("#callImg").css("display", "block");
   } else {
-    initializeSession();
-    $("#call-heading").text("Calling with DR." + docName);
+    $("#callImg").css("display", "none");
+    $(".three-icons").css("display", "block");
     $(".videocol").find("div.icons").remove();
     $(".rightcardContainer").remove();
 
@@ -84,11 +82,11 @@ $(function () {
     $(".videocol").addClass("patientCallingWindow");
   }
   //==========ge doctor not==========
-  if (cLogId != 0 && area != "Patient") {
-    GetDoctorNotes(cLogId);
-  } else if (queId != 0 && area != "Patient") {
-    getPatientInfo(patientId);
-  }
+  // if (cLogId != 0 && area != "Patient") {
+  //   GetDoctorNotes(cLogId);
+  // } else if (queId != 0 && area != "Patient") {
+  //   getPatientInfo(patientId);
+  // }
 
   $(document).on("click", ".btnViewPres", function () {
     var CallLogId = $(this).attr("CallID");
@@ -104,20 +102,22 @@ $(function () {
 
   //===========start functionality calling=================
   $("#btnCallNow").click(function () {
-    checkOnlineStatusandCall(patientId, "Patient")
+    checkOnlineStatusandCall(mPatientID, "Patient")
       .then((data) => {
         if (data) {
           if (queId != "0") {
-            UpdateQueAddSaveCallLog(queId, "Called", docId, patientId);
+            // UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
           }
           //=============Play calling sound =====================
+          $("#callImg").css("display", "none");
           PlayCallingSound(true);
-          initializeSession();
           //=========send call request to paatient============
+
           soc.emit("SendCallRequestToPatient", {
-            pName: PatientName,
-            username: docName,
+            pName: mPname,
+            username: mDocName,
           });
+          initializeSession(apiKey, sessionId, token);
         } else {
           Swal.fire({
             type: "error",
@@ -144,8 +144,8 @@ function handleError(error) {
   }
 }
 
-function initializeSession() {
-  session = OT.initSession(apiKey, sessionId);
+function initializeSession(key, sessId, tokenId) {
+  session = OT.initSession(key, sessId, tokenId);
 
   session.on({
     sessionReconnecting: function (event) {
@@ -232,7 +232,7 @@ function initializeSession() {
   publisher = OT.initPublisher("publisher", publisherOptions, handleError);
 
   // Connect to the session
-  session.connect(token, function callback(error) {
+  session.connect(tokenId, function callback(error) {
     if (error) {
       handleError(error);
     } else {
@@ -275,6 +275,7 @@ function enabldDisableMic() {
 
 function performCall() {
   callPerformed = true;
+
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
   $("#divCallNow").hide();
@@ -313,8 +314,9 @@ function disconnect() {
   else newCallLoginId = cLogId;
 
   if (callPerformed) UpdateCallLogEndtime(newCallLoginId, onCallduration);
-  $(".three-icons").css("display", "none");
+  $(".three-icons, #timer").css("display", "none");
   $("#divCallNow").css("display", "block");
+  $("#callImg").css("display", "block");
   PlayCallingSound(false);
   soc.emit("ClosePatientScreen", {
     username: PatientName,
@@ -472,16 +474,19 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
     CallQueId +
     "&status=" +
     status;
+
   var currentDt = new Date().toLocaleDateString("en-US", options);
 
   var model = {
-    DoctorID: doctorID,
-    PatientID: PatientId,
-    CallQueID: CallQueId,
-    AddedBy: doctorID,
+    DoctorID: mDocId,
+    PatientID: mPatientID,
+    CallQueID: mCallQueId,
+    AddedBy: mDocId,
     AddedDate: new Date().toLocaleDateString("en-us"),
     CallLogStartDateTime: currentDt,
   };
+
+  console.log(model);
   $.ajax({
     url: url,
     headers: {
@@ -537,7 +542,8 @@ function GetDoctorNotes(callLogId) {
         $("#txtDiagnosis").val(data.Diagnosis);
         $("#txtRx").val(data.PatientRX);
         $("#txtName").val(data.PatientName);
-        $("#txtMedication").data("kendoEditor").value(data.Medication);
+        $("#txtMedication").val(data.Medication);
+        //  $("#txtMedication").data("kendoEditor").value(data.Medication);
         $("#patientAge").val(data.Age);
       }
     },
@@ -643,7 +649,7 @@ function updatePrescription(callLogId, age, name, patientId) {
     patientId;
   var model = {
     CallLogID: callLogId,
-    Medication: $("#txtMedication").data("kendoEditor").value(),
+    Medication: $("#txtMedication").val(),
     Diagnosis: $("#txtPresDiagnosis").val(),
     prescribeDt: $("#prescribeDT").val(),
     PatientName: name,

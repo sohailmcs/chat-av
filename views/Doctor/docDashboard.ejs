@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
 <link rel="stylesheet" type="text/css" href="/css/colors.css" />
 
+
 <link rel="stylesheet" type="text/css" href="/css/components.css" />
 <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
@@ -68,8 +69,8 @@
 <!--start of EMR detail-->
 <div class="modal fade text-left" id="viewhistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
     aria-hidden="true">
-
 </div>
+
 
 <!--end of EMR detail-->
 <script id="viewHistory-template" type="text/html">
@@ -377,7 +378,7 @@
                     <button  type="button" patientName="{{PatientName}}" 
                      CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}" 
                      onclick="OpenCommunicationWindow(this)" 
-                     class="btncomm btn btn-audio-video mb-1">
+                     class="btn btn-audio-video mb-1">
                         <i class="bx bx-microphone"></i>
                         <b>Audio</b>
                     </button>
@@ -386,7 +387,7 @@
                     <button type="button"  patientName="{{PatientName}}" 
                     CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}" 
                      onclick="OpenCommunicationWindow(this)" 
-                     class="btncomm btn btn-audio-video mb-1">
+                     class="btn btn-audio-video mb-1">
                         <i class="bx bx-video"></i>
                         <b>Video</b>
                     </button>
@@ -396,7 +397,7 @@
                 <button  type="button" patientName="{{PatientName}}"  disabled
                 CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}" 
                 onclick="OpenCommunicationWindow(this)" 
-                class="btncomm btn btn-audio-video mb-1">
+                class="btn btn-audio-video mb-1">
                    <i class="bx bx-microphone"></i>
                    <b>Audio</b>
                </button>
@@ -405,7 +406,7 @@
                <button type="button"  patientName="{{PatientName}}" disabled
                CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}" 
                 onclick="OpenCommunicationWindow(this)" 
-                class="btncomm btn btn-audio-video mb-1">
+                class="btn btn-audio-video mb-1">
                    <i class="bx bx-video"></i>
                    <b>Video</b>
                </button>
@@ -463,12 +464,12 @@
             <i class="bx bx-microphone"></i>
             </a>
             
-            <a href="#" patientName="{{PatientName}}" PatientID="{{PatientID}}"  cLogId="{{CallLogID }}" CallQueId="0" 
-             onclick="OpenCommunicationWindow(this)" data-toggle="tooltip" data-placement="bottom" title="Video Call">
+            
+            <a patientName="{{PatientName}}"  PatientID="{{PatientID}}"  cLogId="{{CallLogID }}" CallQueId="0" 
+            onclick="OpenCommunicationWindow(this)" data-toggle="tooltip" data-placement="bottom" title="Video Call">
             <i class="bx bx-video"></i>
             </a>
             
-           
             
             <a href="#" class="btnViewHistory" cLogId="{{CallLogID }}"  data-toggle="tooltip" data-placement="bottom" title="View History" >
             <i class="bx bx-show "></i>
@@ -627,9 +628,9 @@
 <!-- END: Content-->
 
 <!-- BEGIN: JS-->
-
-
-<script src="/js/vendors.min.js"></script>
+<!--     -->
+  
+<!-- <script src="/js/vendors.min.js"></script> -->
 <script src="/js/sweetalert2.all.min.js"></script>
 <script src="/js/polyfill.min.js"></script>
 <script src="/js/sweet-alerts.js"></script>
@@ -637,8 +638,8 @@
 
 <script src="/js/vertical-menu-light.js"></script>
 <script src="/js/app-menu.js"></script>
-<script src="/js/app.js"></script>
-<script src="/js/app-kanban.js"></script>
+<!-- <script src="/js/app.js"></script> -->
+
 <!-- END: JS-->
 <script src="/js/classie.js"></script>
 <script src="/js/notificationFx.js"></script>

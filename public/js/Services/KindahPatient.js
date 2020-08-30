@@ -10,15 +10,17 @@ function format(d) {
 
   var callLogtable = $("<table/>").css("width", "100%");
   callLogtable.append(
-    "<tr>" +
-      "<th class='thhead'>Visit No</th>" +
-      "<th class='thhead'>Doctor</th>" +
-      "<th class='thhead'>Phone</th>" +
-      "<th class='thhead'>CallLogStartTime</th>" +
-      "<th class='thhead'>CallLogEndTime</th>" +
-      "<th class='thhead'>Duration</th>" +
-      "<th class='thhead'>View </th>" +
-      "</tr>"
+    "<thead class='tablehead'>" +
+      "<tr class='chilHeader' >" +
+      "<th class='call-log-table-head'>Visit No</th>" +
+      "<th class='call-log-table-head'>Doctor</th>" +
+      "<th class='call-log-table-head'>Phone</th>" +
+      "<th class='call-log-table-head'>CallLogStartTime</th>" +
+      "<th class='call-log-table-head'>CallLogEndTime</th>" +
+      "<th class='call-log-table-head'>Duration</th>" +
+      "<th class='call-log-table-head'>View </th>" +
+      "</tr>" +
+      "</thead>"
   );
   var url =
     baseURL + "Patient/GetCompleteCallLogsByPatient?patientId=" + d.PatientId;

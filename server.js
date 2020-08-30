@@ -79,7 +79,6 @@ socketServer.sockets.on("connection", function (socket) {
   });
   //==========close patient calling screen on disconnect or end call============
   socket.on("ClosePatientScreen", function (data) {
-    console.log(JSON.stringify(clients[data.username]));
     if (clients[data.username]) {
       socketServer.sockets.connected[clients[data.username].socket].emit(
         "ClosePatientScreen",
