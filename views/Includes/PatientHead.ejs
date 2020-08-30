@@ -226,6 +226,11 @@
       PlayCallingSound(true);
     });
 
+    soc.on("ClosePatientScreen", function (data) {
+      $("#windowComm").modal("show");
+      disconnect();
+    });
+
     //=======accept or reject the icomming call================
     function AcceptOrRejectCall(btn, status) {
       PlayCallingSound(false);
@@ -240,7 +245,10 @@
         });
 
         initializeSession(apiKey, sessionId, token);
-        $("#windowComm").modal("show");
+        $("#windowComm").modal({
+          backdrop: "static",
+          keyboard: false,
+        });
       } else {
         //=========Reject the call======
         soc.emit("RejectedAudioVideoCall", {

@@ -46,6 +46,10 @@ $(window).bind("beforeunload", function () {
 });
 
 $(function () {
+  $(".close").click(function () {
+    disconnect();
+  });
+
   $(".btnSave").click(function () {
     updateDoctorNotes(cLogId, "");
   });
@@ -81,12 +85,6 @@ $(function () {
     $(".leftcardContainer").removeClass("col-lg-7");
     $(".videocol").addClass("patientCallingWindow");
   }
-  //==========ge doctor not==========
-  // if (cLogId != 0 && area != "Patient") {
-  //   GetDoctorNotes(cLogId);
-  // } else if (queId != 0 && area != "Patient") {
-  //   getPatientInfo(patientId);
-  // }
 
   $(document).on("click", ".btnViewPres", function () {
     var CallLogId = $(this).attr("CallID");
@@ -309,11 +307,7 @@ function disconnect() {
   //session.unsubscribe(subscriber);
 
   clearInterval(timer);
-  var newCallLoginId;
-  if (cLogId == 0 && mCallQueId != 0) newCallLoginId = insertedCallLogID;
-  else newCallLoginId = cLogId;
-
-  if (callPerformed) UpdateCallLogEndtime(newCallLoginId, onCallduration);
+  if (callPerformed) UpdateCallLogEndtime(mCallLogId, onCallduration);
   $(".three-icons, #timer").css("display", "none");
   $("#divCallNow").css("display", "block");
   $("#callImg").css("display", "block");

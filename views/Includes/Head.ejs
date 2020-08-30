@@ -190,10 +190,6 @@
     soc.on("callAccpetedandShowStream", function (data) {
       performCall();
     });
-    soc.on("ClosePatientScreen", function (data) {
-      window.open("", "_self", "");
-      window.close();
-    });
 
     //==============Reject confirmation of  audio/video call =======
     soc.on("GetRejectedConfirmation", function (data) {
