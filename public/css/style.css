@@ -182,8 +182,34 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
     width: 100%;
     margin: 0 auto;
   }
-}
 
+  #btncam,
+  #btnMic {
+    background-color: #525a65 !important;
+    padding: 0.8rem 0.8rem 0.6rem;
+    font-size: 0.8rem;
+    border: none;
+    margin-right: 3px !important;
+  }
+  #btncam .icon-size,
+  #btnMic .icon-size {
+    font-size: 1.4rem;
+  }
+
+  #btnDisconnect {
+    padding: 0.7rem 0.8rem 0.5rem;
+  }
+  .icons {
+    left: 23%;
+  }
+  #callImg {
+    width: 50%;
+    height: 55%;
+  }
+  #divCallNow {
+    bottom: 18%;
+  }
+}
 @media only screen and (device-width: 1024px) {
   .main-video-div {
     width: 581.328px;
@@ -1434,7 +1460,7 @@ tr.shown td.details-control {
   border-radius: 3px;
 }
 .doc-pres-card .card-body {
-  padding: 1rem 0 0 !important;
+  padding: 1rem 0 !important;
 }
 
 @media screen and (max-width: 650px) {
