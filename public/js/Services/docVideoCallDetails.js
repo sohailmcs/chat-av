@@ -105,7 +105,7 @@ $(function () {
     checkOnlineStatusandCall(mPatientID, "Patient")
       .then((data) => {
         if (data) {
-          if (queId != "0") {
+          if (mCallQueId != "0") {
             // UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
           }
           //=============Play calling sound =====================
@@ -310,7 +310,7 @@ function disconnect() {
 
   clearInterval(timer);
   var newCallLoginId;
-  if (cLogId == 0 && queId != 0) newCallLoginId = insertedCallLogID;
+  if (cLogId == 0 && mCallQueId != 0) newCallLoginId = insertedCallLogID;
   else newCallLoginId = cLogId;
 
   if (callPerformed) UpdateCallLogEndtime(newCallLoginId, onCallduration);
@@ -604,7 +604,7 @@ function updateDoctorNotes(callLogId, status) {
     Diagnosis: $("#txtDiagnosis").val(),
     PatientRX: $("#txtRx").val(),
     callStatus: status,
-    CallQueID: queId,
+    CallQueID: mCallQueId,
     DoctorID: docId,
     PatientID: patientId,
   };
@@ -654,7 +654,7 @@ function updatePrescription(callLogId, age, name, patientId) {
     prescribeDt: $("#prescribeDT").val(),
     PatientName: name,
     DoctorName: docName,
-    CallQueID: queId,
+    CallQueID: mCallQueId,
     DoctorID: docId,
     PatientID: patientId,
     Age: $("#patientAge").val(),
