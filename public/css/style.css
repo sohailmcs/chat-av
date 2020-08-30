@@ -1135,7 +1135,7 @@ button:focus {
   height: 35px;
   bottom: 1px;
   left: 1px;
-  position: fixed;
+  /* position: fixed; */
   right: 1px;
   z-index: 9999;
 }
