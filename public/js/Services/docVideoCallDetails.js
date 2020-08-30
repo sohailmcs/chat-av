@@ -50,6 +50,28 @@ $(function () {
     if (callPerformed) disconnect();
   });
 
+  $(".modalMinimize").click(function () {
+    $modalCon = $(this).closest(".modal").attr("id");
+
+    $apnData = $(this).closest(".modal");
+
+    $modal = "#" + $modalCon;
+
+    $(".modal-backdrop").addClass("display-none");
+
+    $($modal).toggleClass("min");
+
+    if ($($modal).hasClass("min")) {
+      $(".minmaxCon").append($apnData);
+
+      $(this).find("i").toggleClass("fa-minus").toggleClass("fa-clone");
+    } else {
+      $(".page-heading").append($apnData);
+
+      $(this).find("i").toggleClass("fa-clone").toggleClass("fa-minus");
+    }
+  });
+
   $(".btnSave").click(function () {
     updateDoctorNotes(cLogId, "");
   });

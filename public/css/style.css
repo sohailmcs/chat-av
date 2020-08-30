@@ -1522,7 +1522,7 @@ tr.shown td.details-control {
   border-radius: 3px;
 }
 .doc-pres-card .card-body {
-  padding: 1rem 0 !important;
+  padding: 1rem 0 0 !important;
 }
 
 @media screen and (max-width: 650px) {
