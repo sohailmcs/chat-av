@@ -66,7 +66,7 @@ $(function () {
 
       $(this).find("i").toggleClass("fa-minus").toggleClass("fa-clone");
     } else {
-      $(".page-heading").append($apnData);
+      $(".vertical-layout").append($apnData);
 
       $(this).find("i").toggleClass("fa-clone").toggleClass("fa-minus");
     }
