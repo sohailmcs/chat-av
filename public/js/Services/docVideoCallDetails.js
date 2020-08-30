@@ -46,8 +46,8 @@ $(window).bind("beforeunload", function () {
 });
 
 $(function () {
-  $(".close").click(function () {
-    disconnect();
+  $(".btnDisconnect").click(function () {
+    if (callPerformed) disconnect();
   });
 
   $(".btnSave").click(function () {
