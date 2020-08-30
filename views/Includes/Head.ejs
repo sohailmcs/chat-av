@@ -66,6 +66,9 @@
     }
 
     $(document).ready(function () {
+      var $content, $modal, $apnData, $modalCon;
+      $content = $(".min");
+
       //=========save id for video/Audio chat=============
       $(".goog-te-menu-value").children().last().remove();
       uName = getcookie("kindahUserName");
@@ -80,6 +83,28 @@
       changeDoctorOlineStaus(userID, "Online", uName);
     }); //============end of document.ready========
 
+    $(".modalMinimize").on("click", function () {
+      $modalCon = $(this).closest(".modal").attr("id");
+
+      $apnData = $(this).closest(".modal");
+
+      $modal = "#" + $modalCon;
+
+      $(".modal-backdrop").addClass("display-none");
+
+      $($modal).toggleClass("min");
+
+      if ($($modal).hasClass("min")) {
+        $(".minmaxCon").append($apnData);
+
+        $(this).find("i").toggleClass("fa-minus").toggleClass("fa-clone");
+      } else {
+        $(".page-heading").append($apnData);
+
+        $(this).find("i").toggleClass("fa-clone").toggleClass("fa-minus");
+      }
+    });
+
     function OpenCommunicationWindow(btn) {
       mCallQueId = $(btn).attr("CallQueId");
       mPatientID = $(btn).attr("PatientID");
@@ -88,7 +113,10 @@
       mDocName = uName;
       mDocId = userLoginId;
       mArea = "Doctor";
-      $("#windowComm").modal("show");
+      $("#windowComm").modal({
+        backdrop: "static",
+        keyboard: false,
+      });
       PatientHistory(mPatientID);
       GetDoctorNotes(mCallLogId);
       getPatientInfo(mPatientID);
@@ -217,4 +245,5 @@
   </script>
 
   <%- include('../Doctor/test.ejs') %>
+  <div class="minmaxCon"></div>
 </html>
