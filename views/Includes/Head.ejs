@@ -91,6 +91,7 @@
       mDocName = uName;
       mDocId = userLoginId;
       mArea = "Doctor";
+
       $("#windowComm").modal({
         backdrop: "static",
         keyboard: false,
@@ -99,7 +100,7 @@
       GetDoctorNotes(mCallLogId);
       getPatientInfo(mPatientID);
     }
-
+    $("body").removeClass("modal-open");
     soc.on("UpdatePatientOnlineStatus", function (data) {
       if (!urlParams.has("comm"))
         updatePatientOnlineStatus(data.uID, data.status, data.uName);
@@ -223,4 +224,5 @@
   </script>
 
   <%- include('../Doctor/test.ejs') %>
+  <div class="minmaxCon"></div>
 </html>

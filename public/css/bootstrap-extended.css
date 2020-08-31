@@ -2918,7 +2918,7 @@ _:-ms-lang(x),
 /*---------------*/
 .modal-open {
   /* body overflow hidden when modal open */
-  overflow: hidden !important;
+  overflow: unset !important;
 }
 
 .modal .modal-content {

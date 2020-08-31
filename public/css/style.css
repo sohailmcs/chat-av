@@ -112,10 +112,13 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   z-index: 9999;
 }
 .slide-right,
-.slide-right i,
-.slide-left,
-.slide-left i {
+.slide-left {
   font-size: 12px !important;
+}
+
+.slide-right i,
+.slide-left i {
+  font-size: 14px;
 }
 #divCallNow {
   bottom: 12%;
@@ -1021,22 +1024,26 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 
 .widget-todo::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 3px rgba(95, 110, 10, 0.3);
+  box-shadow: inset 0 0 3px rgba(95, 110, 10, 0.3);
   border-radius: 5px;
 }
 
 .widget-todo::-moz-scrollbar-track {
   -moz-box-shadow: inset 0 0 3px rgba(95, 110, 10, 0.3);
+  box-shadow: inset 0 0 3px rgba(95, 110, 10, 0.3);
   border-radius: 5px;
 }
 
 .widget-todo::-webkit-scrollbar-thumb {
   border-radius: 5px;
   -webkit-box-shadow: inset 0 0 6px rgba(34, 8, 107, 0.37);
+  box-shadow: inset 0 0 6px rgba(34, 8, 107, 0.37);
 }
 
 .widget-todo::-moz-scrollbar-thumb {
   border-radius: 5px;
   -moz-box-shadow: inset 0 0 6px rgba(34, 8, 107, 0.37);
+  box-shadow: inset 0 0 6px rgba(34, 8, 107, 0.37);
 }
 
 #table-Marketing .card-header {
@@ -1135,9 +1142,12 @@ button:focus {
   height: 35px;
   bottom: 1px;
   left: 1px;
-  /* position: fixed; */
+  position: fixed;
   right: 1px;
   z-index: 9999;
+}
+.bg-primaryMin {
+  background-color: #deebff !important;
 }
 
 /* ---------------------sart of miminze communication popup ------------ */
@@ -1473,7 +1483,7 @@ tr.shown td.details-control {
 }
 @media (min-width: 576px) {
   #windowComm .modal-dialog {
-    max-width: 582px;
+    max-width: 608px;
   }
 }
 
@@ -1485,7 +1495,7 @@ tr.shown td.details-control {
 
 #windowComm .modal-header {
   display: block;
-  padding: 5px 0;
+  padding: 0 !important;
   border: none;
 }
 #windowComm .modal-header .close {

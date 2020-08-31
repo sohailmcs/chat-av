@@ -41,7 +41,7 @@ $(window).bind("beforeunload", function () {
   //==========if user has on called then called disconnect=====
   if (callPerformed) disconnect();
   soc.emit("ClosePatientScreen", {
-    username: PatientName,
+    username: mPname,
   });
 });
 
@@ -61,17 +61,25 @@ $(function () {
 
     $($modal).toggleClass("min");
 
+    $("body").removeClass("modal-open");
     if ($($modal).hasClass("min")) {
       $(".minmaxCon").append($apnData);
+      $(this).find("i").toggleClass("bx-minus").toggleClass("bx-outline");
+      $("#windowComm .modal-header")
+        .removeClass("bg-primary")
+        .addClass("bg-primaryMin");
 
-      $(this).find("i").toggleClass("fa-minus").toggleClass("fa-clone");
+      $("#windowComm .bg-primary").css("border", "1px solid rgb(151 148 148)");
     } else {
-      $(".vertical-layout").append($apnData);
-
-      $(this).find("i").toggleClass("fa-clone").toggleClass("fa-minus");
+      $(".minmaxCon").append($apnData);
+      $(this).find("i").toggleClass("bx-outline").toggleClass("bx-minus");
+      $("#windowComm .bg-primary").css("border", "none");
+      $("#windowComm .modal-header")
+        .removeClass("bg-primaryMin")
+        .addClass("bg-primary");
+      $(".modal-backdrop").removeClass("display-none");
     }
   });
-
   $(".btnSave").click(function () {
     updateDoctorNotes(cLogId, "");
   });
@@ -137,6 +145,7 @@ $(function () {
             pName: mPname,
             username: mDocName,
           });
+
           initializeSession(apiKey, sessionId, token);
         } else {
           Swal.fire({
@@ -335,7 +344,7 @@ function disconnect() {
   $("#callImg").css("display", "block");
   PlayCallingSound(false);
   soc.emit("ClosePatientScreen", {
-    username: PatientName,
+    username: mPname,
   });
 }
 
