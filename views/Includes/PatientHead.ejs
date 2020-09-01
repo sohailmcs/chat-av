@@ -36,69 +36,56 @@
     aria-hidden="true"
   >
     <div
-      class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+      class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable"
       role="document"
     >
       <div class="modal-content">
-        <div class="modal-header bg-primary">
-          <h5 class="modal-title black" id="inncommingCallHead"></h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
         <div class="modal-body" style="text-align: center">
-          <h5>
-            <i>inncomming Calls</i>
-          </h5>
-
+          <h5 class="txtcommingCall">Incoming Call</h5>
           <div style="text-align: center">
             <img
               src="/assets/images/maledoc.png"
               alt="Calling Gif"
-              style="width: 40%; height: 40%; border-radius: 50%"
+              style="
+                margin-top: 10px;
+                width: 40%;
+                height: 40%;
+                border-radius: 50%;
+
+                filter: drop-shadow(0px 10px 50px rgba(0, 43, 101, 0.1));
+                border-radius: 100px;
+              "
             />
+            <br />
+            <br />
+            <span id="inncommingCallHead"></span>
+            <br />
+            <h5 class="txtcommingCall">Cardiologist</h5>
           </div>
         </div>
-        <div
-          class="modal-footer"
-          style="
-            text-align: center;
-            text-align: center;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-          "
-        >
-          <button
-            type="button"
-            id="btnAccept"
-            onclick="AcceptOrRejectCall(this, true)"
-            class="btn btn-icon rounded-circle call-btn-border mr-1 mb-1 btn-lg"
-          >
-            <i
-              class="call-btn bx bx-phone-call icon-size"
-              style="top: 3px !important"
-            ></i>
-          </button>
-          <!-- <button type="button" id="btnAccept" oncick='AcceptOrRejectCall(this, true)' class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 call-accept-border">
-        <i class=" bx bx-phone-call accept-icon  icon-size icon-acceptreject"></i>
-      </button> -->
-          <button
-            type="button"
-            id="btnReject"
-            onclick="AcceptOrRejectCall(this, false)"
-            class="btn btn-icon rounded-circle call-btn-border-red mr-1 mb-1 btn-lg"
-          >
-            <i
-              class="call-btn bx bx-phone-call icon-size"
-              style="top: 3px !important"
-            ></i>
-          </button>
+        <div class="row">
+          <div class="col-sm-12" style="text-align: center">
+            <button
+              type="button"
+              id="btnAccept"
+              onclick="AcceptOrRejectCall(this, true)"
+              class="btn btn-icon rounded-circle call-btn-border mr-1 mb-1 btn-lg"
+            >
+              <i class="call-btn bx bxs-phone icon-size"></i>
+            </button>
+
+            <button
+              type="button"
+              id="btnReject"
+              onclick="AcceptOrRejectCall(this, false)"
+              class="btn btn-icon rounded-circle call-btn-border-red mr-1 mb-1 btn-lg"
+            >
+              <i
+                class="call-btn bx bxs-phone bx-rotate-90 icon-size"
+                style="top: 3px !important"
+              ></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -119,7 +106,6 @@
     $(document).ready(function () {
       //=========save id for video/Audio chat=============
       $(".goog-te-menu-value").children().last().remove();
-
       uName = getcookie("kindahUserName"); // $(".user-name").text();
       userID = getcookie("kindahUserId"); // $(".user-name").attr("userinfo");
       var userType = getcookie("kindahUserType");
@@ -227,7 +213,8 @@
     });
 
     soc.on("ClosePatientScreen", function (data) {
-      $("#windowComm").modal("show");
+      $("#windowComm #callImg").remove();
+      $("#windowComm").modal("hide");
       disconnect();
     });
 
@@ -245,10 +232,12 @@
         });
 
         initializeSession(apiKey, sessionId, token);
+        $("#windowComm #callImg").remove();
         $("#windowComm").modal({
           backdrop: "static",
           keyboard: false,
         });
+        $(".three-icons").css("display", "block");
       } else {
         //=========Reject the call======
         soc.emit("RejectedAudioVideoCall", {

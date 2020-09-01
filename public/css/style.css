@@ -116,6 +116,15 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   font-size: 12px !important;
 }
 
+.txtcommingCall {
+  color: #647796;
+  margin: 20px 0;
+}
+#inncommingCallHead {
+  color: #0367ff;
+  font-weight: bold;
+  font-size: 16px;
+}
 .slide-right i,
 .slide-left i {
   font-size: 14px;
@@ -139,7 +148,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .call-btn-border-red {
   border: 2px solid red;
   background-color: #ee6363;
-  padding: 12px 15px !important;
+  padding: 5px 8px !important;
 }
 .call-btn-border {
   background-color: #00c853;
@@ -189,18 +198,18 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   #btncam,
   #btnMic {
     background-color: #525a65 !important;
-    padding: 0.8rem 0.8rem 0.6rem;
+    padding: 0.6rem 0.7rem 0.3rem;
     font-size: 0.8rem;
     border: none;
     margin-right: 3px !important;
   }
   #btncam .icon-size,
   #btnMic .icon-size {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 
   #btnDisconnect {
-    padding: 0.7rem 0.8rem 0.5rem;
+    padding: 0.4rem 0.5rem 0.3rem;
   }
   .icons {
     left: 23%;
@@ -1537,8 +1546,8 @@ tr.shown td.details-control {
 
 @media screen and (max-width: 650px) {
   #publisher {
-    width: 30%;
-    height: 40%;
+    width: 25%;
+    height: 35%;
   }
 }
 

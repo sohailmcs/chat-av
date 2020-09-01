@@ -2208,7 +2208,7 @@ input:focus ~ .bg-primary {
 #btnDisconnect {
   background-color: #f44337;
   border: none;
-  padding: 0.9rem 1rem;
+  padding: 0.8rem 0.8rem 0.7rem;
   color: #fff !important;
 }
 /* Outline buttons */

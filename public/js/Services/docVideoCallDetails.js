@@ -41,7 +41,7 @@ $(window).bind("beforeunload", function () {
   //==========if user has on called then called disconnect=====
   if (callPerformed) disconnect();
   soc.emit("ClosePatientScreen", {
-    username: mPname,
+    pName: mPname,
   });
 });
 
@@ -343,8 +343,9 @@ function disconnect() {
   $("#divCallNow").css("display", "block");
   $("#callImg").css("display", "block");
   PlayCallingSound(false);
+
   soc.emit("ClosePatientScreen", {
-    username: mPname,
+    pName: mPname,
   });
 }
 
