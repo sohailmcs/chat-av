@@ -11,10 +11,12 @@
 <link rel="stylesheet" type="text/css" href="/css/components.css" />
 <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
-<!-- <link rel="stylesheet" type="text/css" href="/css/ns-default.css" />
-<link rel="stylesheet" type="text/css" href="/css/ns-style-growl.css" /> -->
 <script src="/js/modernizr.custom.js"></script>
 
+<link href="/css/KendoUi/examples-offline.css" rel="stylesheet" />
+<link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
+<link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
+<link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
 
 
 <!-- END: CSS-->
@@ -317,7 +319,7 @@
     {{#result}}
      <!-- Patient one  -->
      <div class="row" style="margin: 1%;">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <div class="d-inline-block">
                 <div class="pr-50 pImage " style="float:left;display: inline-block; align-self: stretch;">
                     {{#PatientPhoto}}
@@ -361,7 +363,7 @@
                 </div>
             </div>
         
-            <div class="col-sm-5 call-Queue-icons">
+            <div class="col-sm-4 call-Queue-icons">
                 <p><strong>Contact Number :</strong> {{PatientPhone}}</p>                        
                 <p><strong>Patient waiting since :</strong> 
                 <input type= "hidden" class="hdnCallQueDate" value="{{{CallQueDateTime}}}" >
@@ -632,7 +634,7 @@
 
 <!-- BEGIN: JS-->
 <!--     -->
-  
+<script src="/js/KendoUi/kendo.all.min.js"></script>
 <script src="/js/vendors.js"></script>
 <script src="/js/sweetalert2.all.min.js"></script>
 <script src="/js/polyfill.min.js"></script>

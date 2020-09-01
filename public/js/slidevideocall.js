@@ -20,7 +20,7 @@ $(document).ready(function () {
       $(".self-video").css("height", height);
       $(".leftcardContainer").removeClass("col-lg-7");
       $("#windowComm .modal-dialog").animate(
-        { "max-width": "582px" },
+        { "max-width": "605px" },
         400,
         "linear"
       );

@@ -81,9 +81,12 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   margin-top: 3px;
 }
 
+.call-Queue-icons p {
+  font-size: 13px;
+}
 .main-video-div {
   /* width: 600.555556px; */
-  width: 580.555556px;
+  width: 605.555556px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,7 +95,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   height: 545px;
   position: relative;
   margin: 0;
-  border: 2px solid #3eb8d7 !important;
+  /* border: 2px solid #3eb8d7 !important; */
 }
 
 #timer {
@@ -186,6 +189,13 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 }
 .textbox {
   border: 2px solid #d9e9ff;
+}
+table.k-editor {
+  height: 200px !important;
+}
+
+.k-editor .k-content {
+  height: 80% !important;
 }
 
 @media only screen and (min-device-width: 300px) and (max-device-width: 750px) {
@@ -1513,6 +1523,7 @@ tr.shown td.details-control {
   height: 2.8rem;
   width: 2.4rem;
   font-size: 45px;
+  line-height: 10px;
 }
 
 .basic-textarea .card-body {

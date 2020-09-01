@@ -97,6 +97,9 @@ exports.getPatientAppointments = (req, res, next) => {
     pageTitle: "Patient Appointments ",
     UserName: UserName,
     userId: userId,
+    apiKey: apiKey,
+    sessionId: sessionId,
+    token: gentoken,
   });
 };
 
@@ -117,6 +120,9 @@ exports.getPatientReqAppointment = (req, res, next) => {
     pageTitle: "Patient Req Appointment ",
     UserName: UserName,
     userId: userId,
+    apiKey: apiKey,
+    sessionId: sessionId,
+    token: gentoken,
   });
 };
 
@@ -139,6 +145,9 @@ exports.getDoctorCallLog = (req, res, next) => {
     pageTitle: "Doctor Call Log ",
     UserName: UserName,
     userId: userId,
+    apiKey: apiKey,
+    sessionId: sessionId,
+    token: gentoken,
   });
 };
 
@@ -149,6 +158,9 @@ exports.getDoctorCallQueue = (req, res, next) => {
     pageTitle: "Doctor Call Queue ",
     UserName: UserName,
     userId: userId,
+    apiKey: apiKey,
+    sessionId: sessionId,
+    token: gentoken,
   });
 };
 
@@ -159,6 +171,9 @@ exports.getDoctorAppointments = (req, res, next) => {
     pageTitle: "Doctor Appointments ",
     UserName: UserName,
     userId: userId,
+    apiKey: apiKey,
+    sessionId: sessionId,
+    token: gentoken,
   });
 };
 
@@ -182,6 +197,9 @@ exports.getKindahPatients = (req, res, next) => {
     pageTitle: "Kindah Patients ",
     UserName: UserName,
     userId: userId,
+    apiKey: apiKey,
+    sessionId: sessionId,
+    token: gentoken,
   });
 };
 

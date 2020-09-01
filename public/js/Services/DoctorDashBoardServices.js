@@ -1,5 +1,5 @@
-//var baseURL = "https://kindahclinic.com/KindahService/";
-var baseURL = "http://localhost:1042/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
+//var baseURL = "http://localhost:1042/KindahService/";
 var options = {
   year: "numeric",
   month: "numeric",
@@ -274,16 +274,15 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    type: "GET",
+    type: "POST",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
     data: model,
     beforeSend: function () {
-      $.LoadingOverlay("show");
+      // $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      $.LoadingOverlay("hide");
-
+      // $.LoadingOverlay("hide");
       // var queTemplate = $("#que-template").html();
       // $("#QueTemplate").html(Mustache.to_html(queTemplate, data));
     },
@@ -294,7 +293,7 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
     },
     complete: function (data) {
       // Hide Loading
-      $.LoadingOverlay("hide");
+      // $.LoadingOverlay("hide");
     },
   });
 }

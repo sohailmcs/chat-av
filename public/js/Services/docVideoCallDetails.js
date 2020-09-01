@@ -1,14 +1,6 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
 //var baseURL = "http://localhost:1042/KindahService/";
 
-// var urlParams = new URLSearchParams(window.location.search);
-// var queId = urlParams.get("queId");
-// var docId = urlParams.get("DocId");
-// var docName = urlParams.get("docName");
-// var cLogId = urlParams.get("CallLogId");
-// var patientId = urlParams.get("patientId");
-// var PatientName = urlParams.get("patientName");
-// var area = urlParams.get("area");
 var isShowVideo = false;
 var isAudioEnable = false;
 var session;
@@ -81,23 +73,22 @@ $(function () {
     }
   });
   $(".btnSave").click(function () {
-    updateDoctorNotes(cLogId, "");
+    updateDoctorNotes(mCallLogId, "");
   });
 
-  // $("#txtMedication").kendoEditor({
-  //   resizable: {
-  //     content: false,
-  //     toolbar: true,
-  //   },
-  // });
+  $("#txtMedication").kendoEditor({
+    resizable: {
+      content: false,
+      toolbar: true,
+    },
+  });
 
   $(".btnSaveNSend").click(function () {
-    var newCallLogID = cLogId == 0 ? insertedCallLogID : cLogId;
     updatePrescription(
-      newCallLogID,
+      mCallLogId,
       $("#patientAge").val(),
       $("#txtName").val(),
-      patientId
+      mPatientID
     );
   });
   //========get patient history===============
@@ -118,9 +109,7 @@ $(function () {
 
   $(document).on("click", ".btnViewPres", function () {
     var CallLogId = $(this).attr("CallID");
-    if (cLogId != 0 && area != "Patient") {
-      ViewPrescription(CallLogId);
-    }
+    ViewPrescription(CallLogId);
   });
 
   $(document).on("click", ".btnviewhistory", function () {
@@ -133,9 +122,6 @@ $(function () {
     checkOnlineStatusandCall(mPatientID, "Patient")
       .then((data) => {
         if (data) {
-          if (mCallQueId != "0") {
-            // UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
-          }
           //=============Play calling sound =====================
           $("#callImg").css("display", "none");
           PlayCallingSound(true);
@@ -304,6 +290,10 @@ function enabldDisableMic() {
 
 function performCall() {
   callPerformed = true;
+
+  if (mCallQueId != "0") {
+    UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
+  }
 
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
@@ -493,56 +483,6 @@ function checkOnlineStatusandCall(patientId, userType) {
   });
 }
 
-function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
-  var url =
-    baseURL +
-    "CallQue/UpdateCallQueStatus?CallQueId=" +
-    CallQueId +
-    "&status=" +
-    status;
-
-  var currentDt = new Date().toLocaleDateString("en-US", options);
-
-  var model = {
-    DoctorID: mDocId,
-    PatientID: mPatientID,
-    CallQueID: mCallQueId,
-    AddedBy: mDocId,
-    AddedDate: new Date().toLocaleDateString("en-us"),
-    CallLogStartDateTime: currentDt,
-  };
-
-  console.log(model);
-  $.ajax({
-    url: url,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    type: "POST",
-    datatype: "application/json",
-    contentType: "application/json; charset=utf-8",
-    data: model,
-    beforeSend: function () {
-      $.LoadingOverlay("show");
-    },
-    success: function (data, textStatus, xhr) {
-      insertedCallLogID = data;
-      $.LoadingOverlay("hide");
-
-      // var queTemplate = $("#que-template").html();
-      // $("#QueTemplate").html(Mustache.to_html(queTemplate, data));
-    },
-    error: function (xhr, textStatus, err) {
-      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
-        console.log(xhr.statusText);
-      else console.log(xhr.statusText);
-    },
-    complete: function (data) {
-      // Hide Loading
-      $.LoadingOverlay("hide");
-    },
-  });
-}
 
 function GetDoctorNotes(callLogId) {
   var url = baseURL + "CallLogs/GetPatientHistory?callLogId=" + callLogId;
@@ -568,8 +508,8 @@ function GetDoctorNotes(callLogId) {
         $("#txtDiagnosis").val(data.Diagnosis);
         $("#txtRx").val(data.PatientRX);
         $("#txtName").val(data.PatientName);
-        $("#txtMedication").val(data.Medication);
-        //  $("#txtMedication").data("kendoEditor").value(data.Medication);
+        // $("#txtMedication").val(data.Medication);
+        $("#txtMedication").data("kendoEditor").value(data.Medication);
         $("#patientAge").val(data.Age);
       }
     },
@@ -631,8 +571,8 @@ function updateDoctorNotes(callLogId, status) {
     PatientRX: $("#txtRx").val(),
     callStatus: status,
     CallQueID: mCallQueId,
-    DoctorID: docId,
-    PatientID: patientId,
+    DoctorID: mDocId,
+    PatientID: mPatientID,
   };
 
   $.ajax({
@@ -675,13 +615,13 @@ function updatePrescription(callLogId, age, name, patientId) {
     patientId;
   var model = {
     CallLogID: callLogId,
-    Medication: $("#txtMedication").val(),
+    Medication: $("#txtMedication").data("kendoEditor").value(), //$("#txtMedication").val(),
     Diagnosis: $("#txtPresDiagnosis").val(),
     prescribeDt: $("#prescribeDT").val(),
     PatientName: name,
-    DoctorName: docName,
+    DoctorName: mDocName,
     CallQueID: mCallQueId,
-    DoctorID: docId,
+    DoctorID: mDocId,
     PatientID: patientId,
     Age: $("#patientAge").val(),
   };
