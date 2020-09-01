@@ -45,7 +45,7 @@
               <div class="card bg-authentication mb-0">
                 <div class="row m-0">
                   <!-- left section-login -->
-                  <div class="crtAccount col-md-5" style="padding-left: 40px;">
+                  <div class="crtAccount col-md-5" style="padding-left: 40px">
                     <div class="card-header loginLogo">
                       <a href="/"><img src="/assets/logo.jpg" /></a>
                     </div>
@@ -64,7 +64,7 @@
                         <br />
 
                         <div>
-                          <small class="mr-25" style="font-size: 15px;"
+                          <small class="mr-25" style="font-size: 15px"
                             >Already have an account?</small
                           ><a href="login"><small>Sign in</small></a>
                         </div>
@@ -83,15 +83,13 @@
                     >
                       <div class="card-header pb-1">
                         <div class="card-title">
-                          <h5 class="LoginHeading">
-                            Register
-                          </h5>
+                          <h5 class="LoginHeading">Register</h5>
                           <span class="txtlogin"
                             >Please enter your details to sign up and consult
                             with doctor now</span
                           >
                         </div>
-                        <span class="error" style="display: none;"></span>
+                        <span class="error" style="display: none"></span>
                       </div>
 
                       <div class="card-content">
@@ -102,12 +100,27 @@
                               id="hdnUserType"
                               value="patient"
                             />
+
+                            <div class="form-group mb-50">
+                              <div class="controls">
+                                <select
+                                  name="gender"
+                                  id="dbogender"
+                                  required="required"
+                                  class="form-control"
+                                >
+                                  <option value="">Select Gender</option>
+                                  <option value="F">Male</option>
+                                  <option value="M">female</option>
+                                </select>
+                              </div>
+                            </div>
                             <div class="form-row">
                               <div class="form-group col-md-6 mb-50">
                                 <label
                                   class="text-bold-600"
                                   for="inputfirstname4"
-                                  >Rirst name</label
+                                  >First name</label
                                 >
                                 <input
                                   required
@@ -233,15 +246,15 @@
                   <br />
                   <br />
                   <br />
-                  <div class="card-title" style="text-align: center;">
-                    <h5 class="LoginHeading" style="font-size: 20px;">
+                  <div class="card-title" style="text-align: center">
+                    <h5 class="LoginHeading" style="font-size: 20px">
                       <strong>OTP Verification</strong>
                     </h5>
                     <span class="txtlogin"
                       >Enter the OTP that sent to your mobile</span
                     >
                   </div>
-                  <div class="modal-body" style="text-align: center;">
+                  <div class="modal-body" style="text-align: center">
                     <input
                       maxlength="1"
                       type="number"
@@ -269,7 +282,7 @@
                     <br />
                     <br />
                     <span class="txtnormal">Don’t receive the OTP yet?</span>
-                    <a style="text-decoration: none;" href="login"
+                    <a style="text-decoration: none" href="login"
                       ><small>Resend OTP?</small></a
                     >
                     <br />

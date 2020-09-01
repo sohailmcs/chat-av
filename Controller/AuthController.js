@@ -15,3 +15,8 @@ exports.getForgetPassword = (req, res, next) => {
     PageTitle: "Forget Password",
   });
 };
+exports.getResetPassword = (req, res, next) => {
+  res.render("Auth/resetPassword", {
+    PageTitle: "Reset Password",
+  });
+};

@@ -81,6 +81,9 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   margin-top: 3px;
 }
 
+#prescription textarea {
+  margin-bottom: 10px;
+}
 .call-Queue-icons p {
   font-size: 13px;
 }

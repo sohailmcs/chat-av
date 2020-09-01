@@ -32,7 +32,7 @@
 <%- include('../Includes/docSideMenu.ejs') %>
 
 <!-- BEGIN: Content-->
-
+<input type="hidden" id="insertedID" value="">
 <!--SMS pop up -->
 <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
     aria-hidden="true">
@@ -78,11 +78,16 @@
 <script id="viewHistory-template" type="text/html">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
-    <div class="modal-header bg-primary">
-    <h5 class="modal-title white" id="myModalLabel160">
-    PATIENT HISTORY
-    </h5>
-    </div>
+
+        <div class="modal-header bg-primary">
+            <h5 class="modal-title black" id="myModalLabel160">
+               Patient History
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+  
     <div class="modal-body History-modal">
     <div class="card-content side-bar">
     <div class="card-body">
@@ -153,9 +158,12 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h5 class="modal-title white" id="myModalLabel160">
-                        PATIENT HISTORY
+                    <h5 class="modal-title black" id="myModalLabel160">
+                       Patient History
                     </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                 </div>
                 <div class="modal-body">
                     <div class="card-content side-bar">
@@ -178,25 +186,20 @@
                             </div>
                             <br />
                             <input type="hidden" id="hdncallLogId" value="">
-                            <label class="prescription-card">History
-                                and Exams</label>
-                            <textarea class="form-control" id="txtExam" rows="3"
+                           
+                            <textarea  class="form-control" id="txtExam" rows="3"
                                 placeholder="Write History and Exams"></textarea>
 
-                            <label class="prescription-card">Allergies
-                            </label>
+                           
                             <textarea class="form-control" id="txtAllergies" rows="3"
                                 placeholder="Write about Allergies"></textarea>
 
-                            <label class="prescription-card">Diagnosis
-                            </label>
+                            
                             <textarea class="form-control" id="txtDiagnosis" rows="3"
                                 placeholder="Write Diagnosis"></textarea>
-                            <label class="prescription-card">RX
-                            </label>
+                          
                             <textarea class="form-control" id="txtRx" rows="3" placeholder="Write RX "></textarea>
-                            <label class="prescription-card">Medication
-                            </label>
+                          
                             <textarea class="form-control" id="txtmedication" rows="3"
                                 placeholder="Write Medication for Patient"></textarea>
 
@@ -221,98 +224,157 @@
 <!-- start end on prescription  -->
 <!-- Scheduled Tempates-->
 <script id="Scheduled-template" type="text/html">
-        {{#PatientScheduleded}}
-        <li class="timeline-items timeline-icon-primary active pb-0">
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h6 class="patientName">
-                            {{patientName}}
-                          </h6>
-                          <P class="timeline-title-Gender">
-                            <span class="spnGender"><strong>Gender:</strong> </span>  {{Gender}}
-                          </p>           
-                      </div>
-                      <div class="col-sm-5">
-                        <h4 class="timeline-text">
-                         <strong>Contact: </strong>{{patientPhone | phone}}
-                        </h4>
-                          <P class="timeline-text">
-                          <strong>Time: {{AppointmentStartTime}}-{{AppointmentEndTime}}</strong>
-                          </p>           
-                     </div>
-             <div class="col-sm-3">  
-                <button   type="button"
-                docID="{{DoctorID}}" PName="{{patientName}}" patientId="{{PatientID}}" scheId = "{{scheduledID}}"
-                   class="btn btn-outline-primary  btncheckIn_sch mb-1 btnAcceptSch">
-                   <i class="bx bx-purchase-tag"></i>
-                   <b>Check in</b>
-               </button>
-                     </div>                      
-                </div><!--end of row-->
-            </div><!--end of col-lg-12-->           
-        </li>
-       {{/PatientScheduleded}}
-
-       {{^PatientScheduleded.0}}
-        <li class="timeline-items timeline-icon-primary active pb-0">
-            <h3 class="timeline-title">
-                No schedule available
-            </h3>
-        </li>
-       {{/PatientScheduleded.0}}
+    {{#PatientScheduleded}}
+    <li class="timeline-items1 timeline-icon-primary active pb-0">
+    <div class="col-lg-12">
+    <div class="row">
+    <div class="col-sm-4">
+    
+    
+    <div class="pr-50 pImage " style="float:left;display: inline-block; align-self: stretch;">
+    {{#PatientPhoto}}
+    <img src="{{PatientPhoto}}" alt="image" style="width: 25px;height: 25px; float:left;"/>
+    {{/PatientPhoto}}
+    {{^PatientPhoto}}
+    <img src="/assets/images/maledoc.png" alt="image" style="width: 25px;height: 25px; float:left;"/>
+    {{/PatientPhoto}}
+    <span class="onlinStatus status_{{PatientID}}" style="margin-right: 30px; !important" ><b>
+    {{#OnlineStatus}}
+    <span class="bullet bullet-success bullet-sm" ></span>
+    {{/OnlineStatus}}
+    {{^OnlineStatus}}
+    <span class="bullet bullet-offline bullet-sm"></span>
+    {{/OnlineStatus}}
+    </b>
+    </span>
+    </div>
+    
+    
+    <div class="sh_divqueue" style="display: inline-block;">
+    <h6 class='patientName' style="padding-top: 2%;">
+    {{patientName}}
+    </h6>
+    </div>
+    
+    
+    <P class="timeline-title-Gender">
+    <span class="spnGender"><strong>Gender:</strong> </span> {{Gender}}
+    </p>
+    </div>
+    <div class="col-sm-5">
+    <h4 class="timeline-text">
+    <strong>Contact: </strong>{{patientPhone | phone}}
+    </h4>
+    <P class="timeline-text">
+    <strong>Time: {{AppointmentStartTime}}-{{AppointmentEndTime}}</strong>
+    </p>
+    </div>
+    <div class="col-sm-3">
+    <button type="button" docID="{{DoctorID}}" PName="{{patientName}}"
+     patientId="{{PatientID}}" scheId = "{{scheduledID}}"
+      class="btn btn-outline-primary btncheckIn_sch mb-1 btnAcceptSch checkin_{{PatientID}}">
+    <i class="bx bx-purchase-tag"></i>
+    <b>Check in</b>
+    </button>
+    </div>
+    </div><!--end of row-->
+    </div><!--end of col-lg-12-->
+    </li>
+    {{/PatientScheduleded}}
+    
+    {{^PatientScheduleded.0}}
+    <li class="timeline-items1 timeline-icon-primary active pb-0">
+    <h3 class="timeline-title">
+    No schedule available
+    </h3>
+    </li>
+    {{/PatientScheduleded.0}}
     </script>
 <!--end of Scheduled Template-->
 
 <!--start of request call Templates-->
 <script id="req-template" type="text/html">
-        {{#RequestedCall}}
-        <li class="timeline-items timeline-icon-primary active pb-0">           
-         <div class="col-lg-12">
-            <div class="row">
-            <div class="col-sm-4">
-                <h6 class="patientName">
-                     {{patientName}} 
-                  </h6>
-                  <P class="timeline-title-Gender">
-                    <span class="spnGender"><strong>Gender:</strong> </span>  {{Gender}}
-                  </p>           
-              </div>
-           <div class="col-sm-4">
-            <h4 class="timeline-text">
-             <strong>Contact: </strong>{{patientPhone | phone}}
-            </h4>
-              <P class="timeline-text">
-              <strong>Time:</strong> {{CallRequestDateTime | time}}
-              </p>           
-         </div>
-         <div class="col-sm-4">
-             <button type="button" type="button" docID="{{DoctorID}}" 
-                    patientId="{{PatientID}}" PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}"
-                class="btn btn-outline-primary btncheckIn  mb-1 btnAcceptCall ">
-                <i class="bx bx-purchase-tag"></i>
-                <b>Check in</b>
-            </button>
-        <button  type="button" docID="{{DoctorID}}"  PName="{{patientName}}"
-            patientId="{{PatientID}}" callreqID="{{CallrequestID}}"
-            class="btn btn-icon btn-outline-danger mb-1 btnRejectCall">
-            <i class="bx bx-x"></i>
-        </button>  
-         </div>
-        </div><!--end of row-->
+    {{#RequestedCall}}
+    <li class="timeline-items1 timeline-icon-primary active pb-0">
+    
+    <div class="col-lg-12">
+    
+    <div class="row">
+    <div class="col-sm-4">
+    
+    
+    <div>
+    <div class="pr-50 pImage " style="float:left;display: inline-block; align-self: stretch;">
+    {{#PatientPhoto}}
+    <img src="{{PatientPhoto}}" alt="image" style="width: 25px;height: 25px; float:left;"/>
+    {{/PatientPhoto}}
+    {{^PatientPhoto}}
+    <img src="/assets/images/maledoc.png" alt="image" style="width: 25px;height: 25px; float:left;"/>
+    {{/PatientPhoto}}
+    <span class="onlinStatus status_{{PatientID}}" style="margin-right: 30px; !important" ><b>
+    {{#OnlineStatus}}
+    <span class="bullet bullet-success bullet-sm" ></span>
+    {{/OnlineStatus}}
+    {{^OnlineStatus}}
+    <span class="bullet bullet-offline bullet-sm"></span>
+    {{/OnlineStatus}}
+    </b>
+    </span> </div>
+    
+    
+    </div>
+    
+    <!-- <h6 class="patientName">
+    {{patientName}}
+    </h6> -->
+    
+    
+    <div class="req_divqueue" style="display: inline-block;">
+    <h6 class='patientName'>
+    {{patientName}}
+    </h6>
+    </div>
+    
+    
+    <P class="timeline-title-Gender">
+    <span class="spnGender"><strong>Gender:</strong> </span> {{Gender}}
+    </p>
+    </div>
+    <div class="col-sm-4">
+    <h4 class="timeline-text">
+    <strong>Contact: </strong>{{patientPhone | phone}}
+    </h4>
+    <P class="timeline-text">
+    <strong>Time:</strong> {{CallRequestDateTime | time}}
+    </p>
+    </div>
+    <div class="col-sm-4">
+    <button type="button" type="button" docID="{{DoctorID}}"
+    patientId="{{PatientID}}" PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}"
+    class="btn btn-outline-primary btncheckIn mb-1 btnAcceptCall checkin_{{PatientID}}">
+    <i class="bx bx-purchase-tag"></i>
+    <b>Check in</b>
+    </button>
+    <button type="button" docID="{{DoctorID}}" PName="{{patientName}}"
+    patientId="{{PatientID}}" callreqID="{{CallrequestID}}"
+    class="btn btn-icon btn-outline-danger mb-1 btnRejectCall">
+    <i class="bx bx-x"></i>
+    </button>
+    </div>
+    </div><!--end of row-->
     </div><!--end of col-lg-12-->
-        </li>      
-       {{/RequestedCall}}
-
-       {{^RequestedCall.0}}
-       <li class="timeline-items timeline-icon-primary active pb-0">
-            <h3 class="timeline-title">
-                No direct call available
-            </h3>
-        </li>
-       {{/RequestedCall.0}}
-
-    </script>
+    </li>
+    {{/RequestedCall}}
+    
+    {{^RequestedCall.0}}
+    <li class="timeline-items1 timeline-icon-primary active pb-0">
+    <h3 class="timeline-title">
+    No schedule available
+    </h3>
+    </li>
+    {{/RequestedCall.0}}
+    
+    </script>       
 <!--end of request call Template-->
 <!--start of que Templates-->
 <script id="que-template" type="text/html">
@@ -343,7 +405,7 @@
                  float:left;"
                />
                  {{/PatientPhoto}}
-                         <span class="onlinStatus"><b>                             
+                         <span class="onlinStatus status_{{PatientID}}"><b>                             
                                 {{#OnlineStatus}}
                                 <span class="bullet bullet-success bullet-sm"></span> 
                                 {{/OnlineStatus}}
@@ -380,7 +442,7 @@
                     <button  type="button" patientName="{{PatientName}}" 
                      CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}" 
                      onclick="OpenCommunicationWindow(this)" 
-                     class="btn btn-audio-video mb-1">
+                     class="btn btn-audio-video mb-1 audio_{{PatientID}}">
                         <i class="bx bx-microphone"></i>
                         <b>Audio</b>
                     </button>
@@ -389,7 +451,7 @@
                     <button type="button"  patientName="{{PatientName}}" 
                     CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}" 
                      onclick="OpenCommunicationWindow(this)" 
-                     class="btn btn-audio-video mb-1">
+                     class="btn btn-audio-video mb-1 video_{{PatientID}}">
                         <i class="bx bx-video"></i>
                         <b>Video</b>
                     </button>
@@ -399,7 +461,7 @@
                 <button  type="button" patientName="{{PatientName}}"  disabled
                 CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}" 
                 onclick="OpenCommunicationWindow(this)" 
-                class="btn btn-audio-video mb-1">
+                class="btn btn-audio-video mb-1 audio_{{PatientID}}">
                    <i class="bx bx-microphone"></i>
                    <b>Audio</b>
                </button>
@@ -408,7 +470,7 @@
                <button type="button"  patientName="{{PatientName}}" disabled
                CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}" 
                 onclick="OpenCommunicationWindow(this)" 
-                class="btn btn-audio-video mb-1">
+                class="btn btn-audio-video mb-1 video_{{PatientID}}">
                    <i class="bx bx-video"></i>
                    <b>Video</b>
                </button>

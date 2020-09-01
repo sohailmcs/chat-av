@@ -186,4 +186,80 @@ $(function () {
       },
     });
   }); //====end of one time password verification=======
+
+  // reset password
+  $("#frmresetpwd").submit(function (e) {
+    e.preventDefault();
+
+    var password = $("#txtNewPassword").val();
+    var confirmPassword = $("#txtConfirmNewPassword").val();
+    if (password != confirmPassword) {
+      Swal.fire({
+        type: "error",
+        title: "Oops...",
+        html:
+          "Passwords do not match. <br> <b >" +
+          $("#txtOldPassword").val() +
+          "=" +
+          $("#txtNewPassword").val() +
+          "</b><br> ",
+      });
+      return false;
+    }
+
+    var url = baseURL + "User/ResetPassword";
+    var ResetPassword = {
+      OldPassword: $("#txtOldPassword").val(),
+      NewPassword: $("#txtNewPassword").val(),
+    };
+
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "POST",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: ResetPassword,
+      beforeSend: function () {
+        //Show Loading if validate pass
+        $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+        Swal.fire({
+          title: "Password change...!",
+          text: "Password has been successfully change",
+          type: "success",
+          confirmButtonClass: "btn btn-primary",
+          buttonsStyling: false,
+          confirmButtonText: "Ok",
+        });
+        $("#txtOldPassword").val("");
+        $("#txtNewPassword").val("");
+        $("#txtConfirmNewPassword").val("");
+      },
+
+      error: function (xhr, textStatus, err) {
+        if (xhr.status == "500" && xhr.statusText == "InternalServerError") {
+          $(".error").show().text("Server not respose. Please agan later");
+        } else if (xhr.status == "404" && xhr.statusText == "Not Found") {
+          Swal.fire({
+            type: "error",
+            title: "Oops...",
+            html:
+              "old password does not exist in our system <br> <b >" +
+              $("#txtOldPassword").val() +
+              "</b><br> ",
+          });
+        }
+      },
+      complete: function (data) {
+        // Hide Loading
+        $.LoadingOverlay("hide");
+        if (data.statusText == "error")
+          $(".error").show().text("No response from server");
+      },
+    });
+  }); //==end of reset submit
 }); //==end of jquery $function

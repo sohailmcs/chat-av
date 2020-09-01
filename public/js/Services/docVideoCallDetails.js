@@ -320,7 +320,6 @@ function countTimer() {
 //============calculate calling time==============
 
 function disconnect() {
-  //session.disconnect();
   session.off();
   session.disconnect();
   session.unpublish(publisher, handleError);
@@ -328,7 +327,8 @@ function disconnect() {
   //session.unsubscribe(subscriber);
 
   clearInterval(timer);
-  if (callPerformed) UpdateCallLogEndtime(mCallLogId, onCallduration);
+  if (callPerformed)
+    UpdateCallLogEndtime($("#insertedID").val(), onCallduration);
   $(".three-icons, #timer").css("display", "none");
   $("#divCallNow").css("display", "block");
   $("#callImg").css("display", "block");
@@ -482,7 +482,6 @@ function checkOnlineStatusandCall(patientId, userType) {
     });
   });
 }
-
 
 function GetDoctorNotes(callLogId) {
   var url = baseURL + "CallLogs/GetPatientHistory?callLogId=" + callLogId;
@@ -656,7 +655,8 @@ function updatePrescription(callLogId, age, name, patientId) {
 
 function UpdateCallLogEndtime(CallLogId, duration) {
   var currentDt = new Date().toLocaleDateString("en-US", options);
-
+  alert(CallLogId);
+  alert(duration);
   var url =
     baseURL +
     "CallLogs/UpdateCallLogEndtime?CallLogId=" +

@@ -105,27 +105,24 @@
     });
 
     function updatePatientOnlineStatus(UserID, status, uName) {
-      var heading = $('.divqueue h6:contains("' + uName + '")');
-
       if (status == "Online") {
-        heading
-          .parent()
-          .parent()
+        $(".status_" + UserID + "")
           .find(".bullet-sm")
           .removeClass("bullet-offline")
           .addClass("bullet-success");
-        heading.closest(".row").find(".btncomm").prop("disabled", false);
+        $(".checkin_" + UserID + "").prop("disabled", false);
+        $(".audio_" + UserID + "").prop("disabled", false);
+        $(".video_" + UserID + "").prop("disabled", false);
       } else {
-        heading
-          .parent()
-          .parent()
+        $(".status_" + UserID + "")
           .find(".bullet-sm")
           .removeClass("bullet-success")
           .addClass("bullet-offline");
-        heading.closest(".row").find(".btncomm").prop("disabled", true);
+        $(".audio_" + UserID + "").prop("disabled", true);
+        $(".video_" + UserID + "").prop("disabled", true);
+        $(".checkin_" + UserID + "").prop("disabled", true);
       }
     }
-
     function deleteAllCookies() {
       //=============update status in database=============
       changeDoctorOlineStaus(userID, "Offline", uName);
@@ -203,7 +200,7 @@
 
       Swal.fire({
         title: "Opps!",
-        text: data.pName + "reject your call. Please try again.",
+        text: data.pName + " reject your call. Please try again.",
         type: "error",
         confirmButtonClass: "btn btn-primary",
         buttonsStyling: false,

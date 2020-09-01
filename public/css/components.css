@@ -971,6 +971,10 @@ body.footer-hidden footer {
   font-size: 14px;
   text-decoration: none;
 }
+.navigation a:hover {
+  border: none !important;
+}
+
 .main-menu a.firstChild {
   border-top: 2px solid #eff5ff;
 }
@@ -3784,7 +3788,7 @@ body.navbar-static .navbar-container .search-input.open {
 }
 
 h6.patientName {
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 0.35rem;
   color: #076dfa;
   line-height: 12px;
@@ -3813,7 +3817,7 @@ h6.patientName {
 
 .timeline-title-Gender {
   color: #4dd0bb;
-  font-size: 14px;
+  font-size: 13px;
 }
 #table-Marketing .card,
 #table-hover-row .card {

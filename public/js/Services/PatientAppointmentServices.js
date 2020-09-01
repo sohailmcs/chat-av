@@ -1,4 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 var userLoginId = $(".user-name").attr("UserInfo");
 var appointmentId = 0;
 var doctorId = 0;

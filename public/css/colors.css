@@ -26,6 +26,15 @@
 /* ----------------------- */
 /* Text color */
 /* ---------- */
+.lblStatusOnline {
+  color: #39da8a;
+  font-weight: 300;
+}
+.lblStatusOffline {
+  color: #ee1516;
+  font-weight: 300;
+}
+
 .white {
   color: #ffffff !important;
 }

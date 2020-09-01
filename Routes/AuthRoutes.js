@@ -8,5 +8,6 @@ router.get("/signup", AuthController.getSignup);
 router.get("/login", isAuth.isLoginExist, AuthController.getLogin);
 
 router.get("/forgetPassword", AuthController.getForgetPassword);
+router.get("/resetPassword", AuthController.getResetPassword);
 
 module.exports = router;

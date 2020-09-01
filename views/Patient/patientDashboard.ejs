@@ -41,7 +41,7 @@
 
   <!-- description start -->
       <div class="col-sm-7" style="display: inline-block;">
-        <h5 class="docName" >
+       <h5 class="docName status_{{DoctorId}}">
          Dr. {{FullName}}
           {{#OnlineStatus}} 
           <!-- <span class="bullet bullet-success bullet-sm"></span>           -->
@@ -81,7 +81,7 @@
               <a >                              
                 <!-- Button trigger for request a call modal -->                              
                 <button type="button" fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}"
-                 class=" btnSencCallReq btn btn-outline-primary  mr-1  btn-sm" 
+                 class=" btnSencCallReq drcall_{{DoctorId}} btn btn-outline-primary  mr-1  btn-sm" 
                  style="width:205.953px; margin-top: 3%;">
                   <i class="bx bx-phone-call"></i>
                   <b>Join Sameday Waiting list</b>
@@ -90,8 +90,9 @@
               {{/OnlineStatus}}
               {{^OnlineStatus}}
               <a >                              
-                <!-- Button trigger for request a call modal -->                              
-                <button type="button" disabled="disabled"  class=" btn btn-outline-primary mr-1  btn-sm" 
+                <!-- Button trigger for request a call modal -->  
+                <button type="button" disabled="disabled" fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}" 
+                 class="btnSencCallReq drcall_{{DoctorId}} btn btn-outline-primary mr-1  btn-sm" 
                 style="width:205.953px; margin-top: 3%;">
                   <i class="bx bx-phone-call"></i>
                   <b>Join Sameday Waiting list</b>

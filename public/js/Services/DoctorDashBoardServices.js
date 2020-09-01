@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 var options = {
   year: "numeric",
   month: "numeric",
@@ -283,8 +283,8 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
     },
     success: function (data, textStatus, xhr) {
       // $.LoadingOverlay("hide");
-      // var queTemplate = $("#que-template").html();
-      // $("#QueTemplate").html(Mustache.to_html(queTemplate, data));
+
+      $("#insertedID").val(data);
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -388,6 +388,7 @@ function getCallLogDetils(callLogId, details) {
 
       if (details) {
         //========show only details========
+        console.log(JSON.stringify(data));
         var ViewHistoryTemplate = $("#viewHistory-template").html();
         $("#viewhistory").html(Mustache.to_html(ViewHistoryTemplate, data));
         $("#viewhistory").modal("show");
