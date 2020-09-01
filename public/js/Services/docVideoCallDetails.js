@@ -655,8 +655,7 @@ function updatePrescription(callLogId, age, name, patientId) {
 
 function UpdateCallLogEndtime(CallLogId, duration) {
   var currentDt = new Date().toLocaleDateString("en-US", options);
-  alert(CallLogId);
-  alert(duration);
+
   var url =
     baseURL +
     "CallLogs/UpdateCallLogEndtime?CallLogId=" +
