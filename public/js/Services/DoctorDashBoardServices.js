@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 var options = {
   year: "numeric",
   month: "numeric",
@@ -16,6 +16,13 @@ var uName = $(".user-name").text();
 //var socket = io();
 
 $(function () {
+  $("#txtMedication").kendoEditor({
+    resizable: {
+      content: false,
+      toolbar: true,
+    },
+  });
+
   getDashBoardAllScheduled(false);
   //=================Update patient EMR ==============
   $(document).on("click", ".btnUpdatePrescription", function () {

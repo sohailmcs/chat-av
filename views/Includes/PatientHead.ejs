@@ -208,6 +208,7 @@
       $("#btnAccept").attr("doctorName", data.username);
       $("#btnReject").attr("doctorName", data.username);
       $("#inncommingCallHead").text("Dr." + data.username);
+      $("#notificationmodal").modal("hide");
       $("#incommingCall").modal("show");
       PlayCallingSound(true);
     });
@@ -324,4 +325,5 @@
     });
   </script>
   <%- include('../Doctor/AudiovideoPopup.ejs') %>
+  <div class="minmaxCon"></div>
 </html>

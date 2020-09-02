@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 
 var isShowVideo = false;
 var isAudioEnable = false;
@@ -38,33 +38,29 @@ $(window).bind("beforeunload", function () {
 });
 
 $(function () {
+  var $content, $modal, $apnData, $modalCon;
+  $content = $(".min");
+
   $(".btnDisconnect").click(function () {
     if (callPerformed) disconnect();
   });
 
   $(".modalMinimize").click(function () {
-    $modalCon = $(this).closest(".modal").attr("id");
-
-    $apnData = $(this).closest(".modal");
-
-    $modal = "#" + $modalCon;
-
-    $(".modal-backdrop").addClass("display-none");
-
-    $($modal).toggleClass("min");
-
     $("body").removeClass("modal-open");
+    $modalCon = $(this).closest(".mymodal").attr("id");
+    $apnData = $(this).closest(".mymodal");
+    $modal = "#" + $modalCon;
+    $(".modal-backdrop").addClass("display-none");
+    $($modal).toggleClass("min");
     if ($($modal).hasClass("min")) {
       $(".minmaxCon").append($apnData);
-      $(this).find("i").toggleClass("bx-minus").toggleClass("bx-outline");
-      $("#windowComm .modal-header")
-        .removeClass("bg-primary")
-        .addClass("bg-primaryMin");
-
+      $(this).find("i").toggleClass("bx-minus").toggleClass("bx-minus");
+      $("#windowComm .modal-header").removeClass("bg-primary");
+      //   .addClass("bg-primaryMin");
       $("#windowComm .bg-primary").css("border", "1px solid rgb(151 148 148)");
     } else {
-      $(".minmaxCon").append($apnData);
-      $(this).find("i").toggleClass("bx-outline").toggleClass("bx-minus");
+      $("body").append($apnData);
+      $(this).find("i").toggleClass("bx-minus").toggleClass("bx-minus");
       $("#windowComm .bg-primary").css("border", "none");
       $("#windowComm .modal-header")
         .removeClass("bg-primaryMin")
@@ -72,15 +68,14 @@ $(function () {
       $(".modal-backdrop").removeClass("display-none");
     }
   });
+
+  $("button[data-dismiss='modal']").click(function () {
+    $(this).closest(".mymodal").removeClass("min");
+
+    // $(".container").removeClass($apnData);
+  });
   $(".btnSave").click(function () {
     updateDoctorNotes(mCallLogId, "");
-  });
-
-  $("#txtMedication").kendoEditor({
-    resizable: {
-      content: false,
-      toolbar: true,
-    },
   });
 
   $(".btnSaveNSend").click(function () {
@@ -131,8 +126,9 @@ $(function () {
             pName: mPname,
             username: mDocName,
           });
-
           initializeSession(apiKey, sessionId, token);
+          $("#divCallNow").hide();
+          $(".three-icons").show();
         } else {
           Swal.fire({
             type: "error",
@@ -294,7 +290,7 @@ function performCall() {
   if (mCallQueId != "0") {
     UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
   }
-
+  getDashBoardAllScheduled(true);
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
   $("#divCallNow").hide();

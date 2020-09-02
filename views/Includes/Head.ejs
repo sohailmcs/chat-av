@@ -16,6 +16,7 @@
     />
 
     <script src="/js/jquery.min.js"></script>
+    <script src="/js/KendoUi/kendo.all.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/js/Services/mustache.js"></script>
     <script src="/js/Services/mustache-wax.min.js"></script>
@@ -64,9 +65,6 @@
     }
 
     $(document).ready(function () {
-      var $content, $modal, $apnData, $modalCon;
-      $content = $(".min");
-
       //=========save id for video/Audio chat=============
       $(".goog-te-menu-value").children().last().remove();
       uName = getcookie("kindahUserName");

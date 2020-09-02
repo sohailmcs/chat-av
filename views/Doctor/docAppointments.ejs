@@ -64,7 +64,54 @@
   </div>
 </div>
 <!--end of patient prfile details-->
+<script id="BookingDetail-Template" type="text/html">
+  <div class="card-body">
+    <div class="media">    
+      {{#PatientPhoto}}
+    <img src=" {{PatientPhoto}}" alt="image" style="
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-left: 12px;
+    " />
+    {{/PatientPhoto}}
+    {{^PatientPhoto}}
+    <img src="/assets/images/patient.png" alt="image" style="
+    height: 150px;
+    width: 150px;    
+    margin:0 15px;
+    " />
+    {{/PatientPhoto}}
 
+    <div>
+    <h5 class="media-heading">
+    <br />
+    <b>{{FullName}}</b>
+    </h5>
+    <div>
+      <p>
+      <b>Gender</b>: {{Gender}}
+      </p>
+      </div>
+      <div>
+        <p>
+        <b>Email</b>: {{Email}}
+        </p>
+        </div>  
+    <div>
+    <p>
+    <b>Phone</b>: {{PhoneNo}}
+    </p>
+    </div>
+      
+    </div>
+    </div>
+        
+   
+    </div>
+    </div>
+    </div>
+</script>
 
 
 <script id="slots-template" type="text/html">
