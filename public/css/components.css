@@ -971,7 +971,7 @@ body.footer-hidden footer {
   font-size: 14px;
   text-decoration: none;
 }
-.navigation a:hover {
+.navigation a:hover button i,.navigation a:hover button span {
   border: none !important;
 }
 
