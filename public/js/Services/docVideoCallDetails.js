@@ -32,9 +32,9 @@ window.onunload = refreshParent;
 $(window).bind("beforeunload", function () {
   //==========if user has on called then called disconnect=====
   if (callPerformed) disconnect();
-  soc.emit("ClosePatientScreen", {
-    pName: mPname,
-  });
+  // soc.emit("ClosePatientScreen", {
+  //   pName: mPname,
+  // });
 });
 
 $(function () {
