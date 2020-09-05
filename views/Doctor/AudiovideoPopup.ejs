@@ -3,15 +3,225 @@
 <link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
 <link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
 
-<!-- 
-<div
-  class="modal fade text-left"
-  id="windowComm"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModalLabel160"
-  aria-hidden="true"
-> -->
+
+ <!-- VIEW History  POP UP TEMPLATE -->
+
+ <script  id="viewHistory-template" type="text/html">
+  <div
+  class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+  role="document"
+>
+  <div class="modal-content">
+    <div class="modal-header bg-primary " style="text-align:center">
+      <h4>Patient History</h4>
+      <button type="button" class="close"   aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>         
+     
+    </div>
+    <div class="modal-body">
+   <div class="row">
+        <div class="col-lg-3">
+          {{#PatientPhoto}}
+          <img
+          src="{{PatientPhoto}}"
+          alt="image"
+          style="
+          height: 100px;
+          width: 100px;
+          border-radius: 50%;" />
+         {{/PatientPhoto}}
+         {{^PatientPhoto}}
+         <img src="/assets/images/patient.png" alt="image" style="
+         height: 100px;
+         width: 100px;
+         border-radius: 50%;" /> 
+         {{/PatientPhoto}}          
+      </div>
+    <div class="col-lg-4">
+      <br/>
+      <h5 class="docName">
+        {{PatientName}}
+      </h5>          
+      <b>Age</b>: {{Age}} years old
+    </div>
+    <div  style="margin-top:10px" class="col-lg-5">
+      <br/>        
+      <b> Visit Date : </b> {{CallLogStartDateTime | Shortdate}} <br>                  
+      <b>Phone </b>: {{PatientPhone}}
+    </div>
+
+  </div>
+      <ul style="padding-left:0;font-size:13px;">
+        <br/>
+        <div class="container profileArea">
+        <div class="row" style="background-color:#F3F8FF;">
+           <br/>
+           <div class="col-sm-5">              
+           <span class="editprofile-icons">History and Exams :</span>
+           </div>
+           <div class="col-sm-7 txtnormal">              
+            {{HistoryAndExam}}
+           </div>
+        </div>
+        
+         
+        <div class="row">
+           <br/>
+           <div class="col-sm-5">             
+           <span class="editprofile-icons">Allergies : </span>
+           </div>
+           <div class="col-sm-7 txtnormal">             
+            {{Allergies}}
+           <br/>
+           </div>
+         </div>
+
+       
+         <div class="row" style="background-color:#F3F8FF;">
+            <br/>
+            <div class="col-sm-5 ">               
+            <span class="editprofile-icons">Diagnosis :</span>
+            </div>
+            <div class="col-sm-7 txtnormal">
+              {{Diagnosis}}             
+           </div>
+         </div>
+ 
+       <div class="row">             
+          <div class="col-sm-5">             
+          <span class="editprofile-icons">RX :</span>
+         
+          </div>
+          <div class="col-sm-7 txtnormal">             
+            {{PatientRX}}
+            </div>
+
+         </div>
+        </div>
+       
+      </ul>
+    </div>
+   
+  </div>
+</div>   
+</script>
+
+ 
+
+<!-- VIEW PRESCRIPTION POP UP TEMPLATE -->
+<script id="viewPres-template" type="text/html">
+  <div
+    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+    role="document"
+  >
+    <div class="modal-content">
+      <div class="modal-header bg-primary " style="text-align:center;">
+        <h4>Patient Prescription</h4>
+        <button type="button" class="close btnCloseprescription"  aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>                
+      </div>
+      <div class="modal-body">
+        <div class="card-content side-bar">
+          <div class="card-body">
+            <div class="media">
+              <div class="pr-50 doc-img">
+                {{#ProfilePicture}}
+                <img src="{{ProfilePicture}}" alt="avtar img holder" />
+                {{/ProfilePicture}} {{^ProfilePicture}}
+                <img
+                  src="/assets/images/maledoc.png"
+                  alt="avtar img holder"
+                />
+                {{/ProfilePicture}}
+              </div>
+              <div>
+                <h5 class="media-heading">
+                  <br />
+                  <b>{{PatientName}}</b>
+                </h5>
+                <div>
+                  <p><b>Contact Number</b>: {{PatientPhone}}</p>
+                </div>
+              </div>
+            </div>
+
+            <ul style="padding-left:0;font-size:13px;">
+              <br/>
+              <div class="container profileArea">
+              <div class="row" style="background-color:#F3F8FF;">
+                 <br/>
+                 <div class="col-sm-5">              
+                 <span class="editprofile-icons">Call Duration :</span>
+                 </div>
+                 <div class="col-sm-7 txtnormal">              
+                  {{OnCallDuration}}
+                 </div>
+              </div>
+              
+               
+              <div class="row">
+                 <br/>
+                 <div class="col-sm-5">             
+                 <span class="editprofile-icons">Date : </span>
+                 </div>
+                 <div class="col-sm-7 txtnormal">             
+                  {{DateAdded}}
+                 <br/>
+                 </div>
+               </div>
+      
+             
+               <div class="row" style="background-color:#F3F8FF;">
+                  <br/>
+                  <div class="col-sm-5 ">               
+                  <span class="editprofile-icons">Diagnosis :</span>
+                  </div>
+                  <div class="col-sm-7 txtnormal">
+                    {{Diagnosis}}             
+                 </div>
+               </div>
+       
+             <div class="row">             
+                <div class="col-sm-5">             
+                <span class="editprofile-icons">Medications :</span>
+               
+                </div>
+                <div class="col-sm-7 txtnormal">             
+                  {{Medication}}
+                  </div>
+      
+               </div>
+              </div>
+             
+            </ul>
+
+
+            <!-- <div class="text-sidebar">
+              <br />
+              <div>
+                <b style="color: #3eb8d7">Call Duration:</b>
+                {{OnCallDuration}} <br />
+                <br />
+                <b style="color: #3eb8d7">Date:</b> {{DateAdded}} <br />
+                <br />
+                <b style="color: #3eb8d7">Diagnosis:</b> {{Diagnosis}}
+                <br />
+                <br />
+                <b style="color: #3eb8d7">Medication:</b> {{Medication}}
+                <br />
+              </div>
+            </div> -->
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+</script>
+
+
 
 <div class="modal  fade mymodal" id="windowComm" role="dialog">
   <div  
@@ -22,7 +232,7 @@
       <div class="modal-header bg-primary">       
         <button
           type="button"
-          class="close btnDisconnect"
+          class="close"
           data-dismiss="modal"
           aria-label="Close"
         >
@@ -62,145 +272,7 @@
           {{/result}}
         </script>
 
-        <!-- VIEW PRESCRIPTION POP UP TEMPLATE -->
-        <script id="viewPres-template" type="text/html">
-          <div
-            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-            role="document"
-          >
-            <div class="modal-content">
-              <div class="modal-header bg-primary">
-                <h5 class="modal-title white" id="myModalLabel160">
-                  PATIENT PRESCRIPTION
-                </h5>
-              </div>
-              <div class="modal-body">
-                <div class="card-content side-bar">
-                  <div class="card-body">
-                    <div class="media">
-                      <div class="pr-50 doc-img">
-                        {{#ProfilePicture}}
-                        <img src="{{ProfilePicture}}" alt="avtar img holder" />
-                        {{/ProfilePicture}} {{^ProfilePicture}}
-                        <img
-                          src="/assets/images/maledoc.png"
-                          alt="avtar img holder"
-                        />
-                        {{/ProfilePicture}}
-                      </div>
-                      <div>
-                        <h5 class="media-heading">
-                          <br />
-                          <b>{{PatientName}}</b>
-                        </h5>
-                        <div>
-                          <p><b>Contact Number</b>: {{PatientPhone}}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="text-sidebar">
-                      <br />
-                      <div>
-                        <b style="color: #3eb8d7">Call Duration:</b>
-                        {{OnCallDuration}} <br />
-                        <br />
-                        <b style="color: #3eb8d7">Date:</b> {{DateAdded}} <br />
-                        <br />
-                        <b style="color: #3eb8d7">Diagnosis:</b> {{Diagnosis}}
-                        <br />
-                        <br />
-                        <b style="color: #3eb8d7">Medication:</b> {{Medication}}
-                        <br />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-light-secondary"
-                    data-dismiss="modal"
-                  >
-                    <i class="bx bx-x d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Close</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </script>
-        <!-- VIEW History  POP UP TEMPLATE -->
-        <script id="viewHistory-template" type="text/html">
-          <div
-            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-            role="document"
-          >
-            <div class="modal-content">
-              <div class="modal-header bg-primary">
-                <h5 class="modal-title white" id="myModalLabel160">
-                  PATIENT HISTORY
-                </h5>
-              </div>
-              <div class="modal-body History-modal">
-                <div class="card-content side-bar">
-                  <div class="card-body">
-                    <div class="media">
-                      <div class="pr-50 doc-img">
-                        {{#ProfilePicture}}
-                        <img src="{{ProfilePicture}}" alt="avtar img holder" />
-                        {{/ProfilePicture}} {{^ProfilePicture}}
-                        <img
-                          src="/assets/images/maledoc.png"
-                          alt="avtar img holder"
-                        />
-                        {{/ProfilePicture}}
-                      </div>
-                      <div>
-                        <h5 class="media-heading">
-                          <br />
-                          <b>{{PatientName}}</b>
-                        </h5>
-                        <div>
-                          <p><b>Contact Number</b>: {{PatientPhone}}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <h6 class="history-popup"><b>History and Exams</b></h6>
-                      <p class="history-text">{{HistoryAndExam}}</p>
-                    </div>
-
-                    <div>
-                      <h6 class="history-popup"><b>Allergies</b></h6>
-                      <p class="history-text">{{Allergies}}</p>
-                    </div>
-
-                    <div>
-                      <h6 class="history-popup"><b>Diagnosis</b></h6>
-                      <p class="history-text">{{Diagnosis}}</p>
-                    </div>
-
-                    <div>
-                      <h6 class="history-popup"><b>RX</b></h6>
-                      <p class="history-text">{{PatientRX}}</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-light-secondary"
-                        data-dismiss="modal"
-                      >
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Close</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </script>
-
+        
        
        <div>
                 
@@ -211,7 +283,7 @@
            
               
            <!--patient history popup Modal start -->
-           <div class="modal fade text-left" id="viewhistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+           <div class=" modal fade text-left" id="viewhistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
            aria-hidden="true">
            
            </div>

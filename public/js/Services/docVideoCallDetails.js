@@ -38,6 +38,17 @@ $(window).bind("beforeunload", function () {
 });
 
 $(function () {
+  $(document).on("click", "button.close", function (event) {
+    event.preventDefault();
+    var $this = $(event.currentTarget);
+    var modalId = $this.closest("div.modal").attr("id");
+
+    if (modalId == "windowComm") {
+      disconnect();
+    }
+    $("#" + modalId + "").modal("hide");
+  });
+
   var $content, $modal, $apnData, $modalCon;
   $content = $(".min");
 
@@ -289,7 +300,7 @@ function performCall() {
 
   if (mCallQueId != "0") {
     UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
-  }
+  } else UpdateCallLogEndtime($("#insertedID").val(), onCallduration);
   getDashBoardAllScheduled(true);
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
@@ -581,9 +592,15 @@ function updateDoctorNotes(callLogId, status) {
     data: model,
     beforeSend: function () {},
     success: function (data, textStatus, xhr) {
-      $(".msg")
-        .text("Doctor note addedd successfully")
-        .css({ color: "green", "font-weight": "bold" });
+      Swal.fire({
+        title: "Confirmation!",
+        text: "Doctor note addedd successfully",
+        timer: 3000,
+        type: "success",
+        confirmButtonClass: "btn btn-primary",
+        buttonsStyling: false,
+        confirmButtonText: "Ok",
+      });
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -593,8 +610,6 @@ function updateDoctorNotes(callLogId, status) {
     complete: function (data) {
       $(".doctorNotesLoading").hide();
       $(".btnSave").prop("disabled", false);
-
-      $(".msg").delay(1000).fadeOut("slow");
     },
   });
 }
@@ -632,9 +647,15 @@ function updatePrescription(callLogId, age, name, patientId) {
     data: model,
     beforeSend: function () {},
     success: function (data, textStatus, xhr) {
-      $(".msgPrescription")
-        .text("Prescription addedd successfully")
-        .css({ color: "green", "font-weight": "bold" });
+      Swal.fire({
+        title: "Confirmation!",
+        text: "Prescription send  successfully",
+        timer: 3000,
+        type: "success",
+        confirmButtonClass: "btn btn-primary",
+        buttonsStyling: false,
+        confirmButtonText: "Ok",
+      });
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")

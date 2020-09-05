@@ -194,11 +194,15 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   border: 2px solid #d9e9ff;
 }
 table.k-editor {
-  height: 200px !important;
+  height: 180px !important;
 }
 
 .k-editor .k-content {
-  height: 80% !important;
+  height: 73% !important;
+}
+
+.k-editor .k-editable-area {
+  height: 55% !important;
 }
 
 @media only screen and (min-device-width: 300px) and (max-device-width: 750px) {
@@ -1104,6 +1108,7 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 #windowComm .modal-body {
   padding: 0 !important;
 }
+
 .prescription-card {
   color: #3eb8d7;
 }
@@ -1516,10 +1521,44 @@ tr.shown td.details-control {
   box-shadow: none !important;
 }
 
+#viewhistory .modal-content {
+  background-color: #fff !important;
+  box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.13) !important;
+}
+#viewhistory .modal-body,
+#viewprescription .modal-body {
+  padding: 1.3rem 2.3rem !important;
+}
+#viewprescription .modal-content {
+  background-color: #fff !important;
+  box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.13) !important;
+}
+#viewhistory .modal-header .close,
+#viewprescription .modal-header .close {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 2.4rem !important;
+  width: 2.4rem !important;
+  background-color: #f2f4f4 !important;
+  border-radius: 50% !important;
+}
+#viewhistory .modal-header h4,
+#viewprescription .modal-header h4 {
+  margin: 0 auto !important;
+}
+
 #windowComm .modal-header {
   display: block;
   padding: 0 !important;
   border: none;
+}
+#viewprescription .modal-header,
+#viewhistory .modal-header {
+  padding: 10px !important;
+  background-color: #deebff !important;
+  text-align: center;
+  align-items: center;
+  display: flex;
 }
 #windowComm .modal-header .close {
   background: none !important;

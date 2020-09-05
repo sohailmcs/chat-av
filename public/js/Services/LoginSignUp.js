@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 var soc = io({ transports: ["websocket"], upgrade: false });
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
@@ -259,13 +259,19 @@ $(function () {
 
   function OTPVerify() {
     //debugger;
-    //var url = hdnUserType == "patient" ? baseURL + "Patient/AddPatient" : baseURL + "Doctor/AddDoctor";
+    var concatOTP =
+      $("#squareText1").val() +
+      "" +
+      $("#squareText2").val() +
+      "" +
+      $("#squareText3").val() +
+      "" +
+      $("#squareText4").val();
     var ddluserType = hdnUserType;
     if (hdnUserType.toLowerCase() != "patient") {
       ddluserType = $("#dboUserType").val();
     } else {
-      debugger;
-      var OTPCode = $("#squareText").val();
+      var OTPCode = concatOTP.trim();
       modelDetails.OTPKey = OTPCode;
       modelDetails.Age = "30";
     }
