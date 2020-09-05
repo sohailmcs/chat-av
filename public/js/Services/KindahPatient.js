@@ -44,7 +44,7 @@ function format(d) {
       if (callLogData.length > 0) {
         $.each(callLogData, function (ind, val) {
           callLogtable.append(
-            "<tr><td>" +
+            "<tr><td class='callLogId'>" +
               val.CallLogID +
               "</td><td>" +
               val.DoctorName +
@@ -57,7 +57,9 @@ function format(d) {
               val.CallLogEndDateTime +
               "</td><td>" +
               val.OnCallDuration +
-              "</td><td><a href='#' onclick='viewHistory();'>" +
+              "</td><td><a href='#' onclick='ViewPatientHistory(" +
+              val.CallLogID +
+              " );'>" +
               "<i class='bx bxs-show call-log-eye-btn'></i></a> </td></tr>"
           );
         });
@@ -153,5 +155,53 @@ function Filldatatable(data) {
       row.child(format(row.data())).show();
       tr.addClass("shown");
     }
+  });
+}
+
+function viewHistory() {
+  if (
+    document.getElementsByClassName("sideMenuId")[0].style.marginRight == "-60%"
+  ) {
+    setTimeout(() => {
+      document.getElementsByClassName("sideMenuId")[0].style.marginRight = "0%";
+    }, 100);
+    document.getElementsByClassName("sideMenuId")[0].style.display = "unset";
+  } else {
+    setTimeout(() => {
+      document.getElementsByClassName("sideMenuId")[0].style.display = "none";
+    }, 300);
+    document.getElementsByClassName("sideMenuId")[0].style.marginRight = "-50%";
+  }
+}
+
+function ViewPatientHistory(CallLogID) {
+  var url = baseURL + `CallLogs/GetPatientHistory?callLogId=${CallLogID}`;
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      var ViewHistoryTemplate = $("#viewPatHistory").html();
+      $(".sideMenuId").html(Mustache.to_html(ViewHistoryTemplate, data));
+
+      viewHistory();
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
   });
 }

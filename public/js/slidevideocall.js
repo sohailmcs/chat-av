@@ -80,22 +80,6 @@ $(document).ready(function () {
   });
 }); //===end of document.ready function====
 
-function viewHistory() {
-  if (
-    document.getElementsByClassName("sideMenuId")[0].style.marginRight == "-50%"
-  ) {
-    setTimeout(() => {
-      document.getElementsByClassName("sideMenuId")[0].style.marginRight = "0%";
-    }, 100);
-    document.getElementsByClassName("sideMenuId")[0].style.display = "unset";
-  } else {
-    setTimeout(() => {
-      document.getElementsByClassName("sideMenuId")[0].style.display = "none";
-    }, 300);
-    document.getElementsByClassName("sideMenuId")[0].style.marginRight = "-50%";
-  }
-}
-
 function viewDocProfile() {
   if (
     document.getElementsByClassName("sideMenuId")[0].style.marginRight == "-60%"
