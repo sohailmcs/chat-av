@@ -68,7 +68,7 @@ socketServer.sockets.on("connection", function (socket) {
       );
     } else {
       console.log(
-        "User does not exist on SendCallRequestToPatient: " + data.pName
+        "User does not exist in  SendCallRequestToPatient: " + data.pName
       );
     }
   });
