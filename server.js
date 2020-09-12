@@ -39,7 +39,7 @@ global.appRoot_bin = path.resolve(__dirname);
 global.appRoot_config = pjson.environment; //"local"; //(appRoot+'/config/local/config.js');
 //const KindahRoutes = require("./Routes/routes");
 //const KindahRoutes = require("./routes/Index");
-const KindahRoutes = require(appRoot + "/routes/index");
+const KindahRoutes = require(appRoot + "/Routes/Index.js");
 
 //const AuthRoutes = require("./Routes/AuthRoutes.js");
 const { JSONCookies } = require("cookie-parser");
