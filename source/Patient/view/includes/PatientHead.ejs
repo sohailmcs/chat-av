@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+  <!-- BEGIN: Head-->
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
+      rel="stylesheet"
+    />
+    <script src="/js/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/services/mustache.js"></script>
+    <script src="/services/mustache-wax.min.js"></script>
+    <script src="/services/loadingoverlay.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+    <title><%= pageTitle %></title>
+    <!-- common CSS -->
+  </head>
+
+  <!--=========inncomming call from doctor=======-->
+  <div
+    class="modal fade text-left"
+    id="incommingCall"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel160"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable"
+      role="document"
+    >
+      <div class="modal-content">
+        <div class="modal-body" style="text-align: center">
+          <h5 class="txtcommingCall">Incoming Call</h5>
+          <div style="text-align: center">
+            <img
+              class="imgDocCalling"
+              src="/assets/images/maledoc.png"
+              alt="Calling Gif"
+            />
+            <br />
+            <br />
+            <span id="inncommingCallHead"></span>
+            <br />
+            <h5 class="txtcommingCall">Cardiologist</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12" style="text-align: center">
+            <button
+              type="button"
+              id="btnAccept"
+              onclick="AcceptOrRejectCall(this, true)"
+              class="btn btn-icon rounded-circle call-btn-border mr-0 mb-1 btn-lg"
+            >
+              <i class="call-btn bx bxs-phone icon-size"></i>
+            </button>
+
+            <button
+              type="button"
+              id="btnAccept"
+              onclick="AcceptOrRejectCall(this, true)"
+              class="btn btn-icon rounded-circle btn-videoCalling mr-0 mb-1 btn-lg"
+            >
+              <i class="call-btn bx bx-video icon-size"></i>
+            </button>
+            <button
+              type="button"
+              id="btnReject"
+              onclick="AcceptOrRejectCall(this, false)"
+              class="btn btn-icon rounded-circle call-btn-border-red mr-0 mb-1 btn-lg"
+            >
+              <i
+                class="call-btn bx bxs-phone bx-rotate-90 icon-size"
+                style="top: 3px !important"
+              ></i>
+            </button>
+            <br />
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--=========inncomming call from doctor=======-->
+  <script type="text/javascript">
+    var apiKey = "<%= apiKey %>";
+    var sessionId = "<%= sessionId %>";
+    var token = "<%= token %>";
+    var uName = "";
+    var userID = "";
+    var mArea = "Patient";
+    var soc = io({ transports: ["websocket"], upgrade: false });
+    // var soc = io("https://chat-av.herokuapp.com");
+    $(document).ready(function () {
+      //=========save id for video/Audio chat=============
+      $(".goog-te-menu-value").children().last().remove();
+      uName = $(".user-name").text();
+      userID = $(".user-name").attr("userinfo");
+      var userType = "Patient";
+      changePatientOlineStaus(userID, "Online", uName);
+      soc.emit("add-user", {
+        username: uName,
+        userId: userID,
+        userType: userType,
+      });
+    }); //=================end of document.ready function=======
+    function getcookie(cookiename) {
+      var cookiestring = document.cookie;
+      var cookiearray = cookiestring.split(";");
+      for (var i = 0; i < cookiearray.length; ++i) {
+        if (cookiearray[i].trim().match("^" + cookiename + "=")) {
+          return cookiearray[i].replace(`${cookiename}=`, "").trim();
+        }
+      }
+      return null;
+    }
+    function deleteAllCookies() {
+      changePatientOlineStaus(userID, "Offline", uName);
+      var cookies = document.cookie.split(";");
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      }
+      window.location.href = "/login";
+    }
+    function changePatientOlineStaus(userId, status, uName) {
+      //=============update status in database=============
+      UpdateUserOnlineStatus(userId, status, uName, "Patient");
+      //==============update status for other's user================
+    }
+    function UpdateUserOnlineStatus(UserID, status, userName, userType) {
+      return new Promise((resolve, reject) => {
+        //==============update status for other's user================
+        soc.emit("UpdatePatientOnlineStatus", {
+          uID: UserID,
+          status: status,
+          uName: userName,
+        });
+        var useStatus = status == "Online" ? true : false;
+        var url =
+          baseURL +
+          "User/UpdateUserOnlineStatus?userId=" +
+          UserID +
+          "&Onlinestatus=" +
+          useStatus +
+          "&userType=" +
+          userType;
+        $.ajax({
+          url: url,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          type: "GET",
+          datatype: "application/json",
+          contentType: "application/json; charset=utf-8",
+          data: "",
+          beforeSend: function () {},
+          success: function (data, textStatus, xhr) {
+            resolve(data);
+          },
+          error: function (xhr, textStatus, err) {
+            reject(err);
+          },
+          complete: function (data) {
+            // Hide Loading
+          },
+        });
+      })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+    function PlayCallingSound(play) {
+      $(
+        ' <audio id="chatAudio" loop="loop"><source src="/js/Services/calling.ogg" type="audio/ogg"> <source src="/js/Services/calling.mp3" type="audio/mpeg"><source src="/js/Services/calling.wav" type="audio/wav"></audio>'
+      ).appendTo("body");
+      var audio = $("#chatAudio");
+      if (play == true) audio.get(0).play();
+      else $("#chatAudio").remove();
+    }
+    //===========open Audio/Video window=================
+    soc.on("CallRequest", function (data) {
+      $("#btnAccept").attr("doctorName", data.username);
+      $("#btnReject").attr("doctorName", data.username);
+      $("#inncommingCallHead").text("Dr." + data.username);
+      $("#notificationmodal").modal("hide");
+      $("#incommingCall").modal("show");
+      PlayCallingSound(true);
+    });
+    soc.on("ClosePatientScreen", function (data) {
+      $("#windowComm #callImg").remove();
+      $("#windowComm").modal("hide");
+      disconnect();
+    });
+    soc.on("DoctorPatientScreenClosed", function (data) {
+      //alert('doctor close its screen 8 ' +data.area + " On Req "+ data.onReq);
+      if (data.area == "Patient" && data.onReq == false) {
+        Swal.fire({
+          title: "Sorry!",
+          text: data.pName + " is offline or disconnect the call",
+          type: "error",
+          confirmButtonClass: "btn btn-primary",
+          buttonsStyling: false,
+          confirmButtonText: "<a style='color:#fff'>OK</a>",
+        }).then(function () {
+          $("#windowComm #callImg").remove();
+          $("#windowComm").modal("hide");
+          disconnect();
+        });
+      } else if (data.area == null && data.onReq == false) {
+        Swal.fire({
+          title: "Sorry!",
+          text: data.username + " is offline or disconnect the call",
+          type: "error",
+          confirmButtonClass: "btn btn-primary",
+          buttonsStyling: false,
+          confirmButtonText: "<a style='color:#fff'>OK</a>",
+        }).then(function () {
+          $("#windowComm #callImg").remove();
+          $("#windowComm").modal("hide");
+          disconnect();
+        });
+      } else {
+        $("#windowComm #callImg").remove();
+        $("#windowComm").modal("hide");
+        disconnect();
+      }
+    });
+    //=======accept or reject the icomming call================
+    function AcceptOrRejectCall(btn, status) {
+      PlayCallingSound(false);
+      $("#incommingCall").modal("hide");
+      //=========accept the call======
+      var doctorName = $(btn).attr("doctorName");
+      if (status) {
+        soc.emit("showStream", {
+          username: doctorName,
+          pName: uName,
+        });
+        initializeSession(apiKey, sessionId, token);
+        $("#windowComm #callImg").remove();
+        $("#windowComm").modal({
+          backdrop: "static",
+          keyboard: false,
+        });
+        $(".three-icons").css("display", "block");
+      } else {
+        //=========Reject the call======
+        soc.emit("RejectedAudioVideoCall", {
+          username: doctorName,
+          pName: uName,
+        });
+      }
+    }
+    //=========show token no if direct call accepted================
+    soc.on("CallAccepted", function (data) {
+      if (data.AcceptCall) {
+        $("#spanTokenNo").text(data.TokenNo);
+        $("#waitingTime").text(data.waitingTime);
+        $("#notificationmodal").modal("show");
+        //=========hide accept call popup model after 2 seconds============
+      } else {
+        $("#dialogRejected").modal("show");
+        //=========hide reject call popup model after 2 seconds============
+      }
+    });
+    soc.on("UpdateDoctorOnlineStatus", function (data) {
+      if (data.status == "Online") {
+        $(".status_" + data.uID + "")
+          .find("span")
+          .removeClass("txtDocOffLinneStatus")
+          .addClass("txtDocOnlineStatus")
+          .text("(Available Today)");
+        $(".drcall_" + data.uID + "").prop("disabled", false);
+      } else {
+        $(".status_" + data.uID + "")
+          .find("span")
+          .removeClass("txtDocOnlineStatus")
+          .addClass("txtDocOffLinneStatus")
+          .text("(Not Available Today)");
+        $(".drcall_" + data.uID + "").prop("disabled", true);
+      }
+    });
+  </script>
+
+  <%- include('../../../Default/view/includes/AudiovideoPopup.ejs') %>
+  <div class="minmaxCon"></div>
+</html>

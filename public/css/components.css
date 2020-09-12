@@ -109,7 +109,7 @@ html body .content.app-content .content-area-wrapper .content-wrapper {
 
 html body .content .content-wrapper {
   padding: calc(2.2rem - 0.4rem) 2.2rem 0;
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 html body .content .content-wrapper .content-header-title {
@@ -225,7 +225,7 @@ html
 }
 
 html body.navbar-sticky .app-content .content-wrapper {
-  padding: 0rem 1.7rem 0;
+  padding: 0rem 2.5rem 0;
 }
 
 html body.navbar-static .navbar-container,
@@ -946,6 +946,10 @@ body.footer-hidden footer {
 .main-menu .main-menu-content {
   height: calc(100% - 6rem) !important;
   position: relative;
+  background-image: url("/assets/bgSideMenu.jpg");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
 }
 
 .main-menu ul {
@@ -971,7 +975,8 @@ body.footer-hidden footer {
   font-size: 14px;
   text-decoration: none;
 }
-.navigation a:hover button i,.navigation a:hover button span {
+.navigation a:hover button i,
+.navigation a:hover button span {
   border: none !important;
 }
 

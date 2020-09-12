@@ -1,0 +1,243 @@
+<%- include('../../Default/view/includes/Head.ejs') %>
+
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+
+
+<!-- END: Vendor CSS-->
+
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+<link rel="stylesheet" type="text/css" href="/css/colors.css" />
+<link rel="stylesheet" type="text/css" href="/css/components.css" />
+
+<!-- END: Theme CSS-->
+
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+<!-- END: Page CSS-->
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<!-- END: Custom CSS-->
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<!-- body tag and blue nav bar  -->
+<%- include('includes/docNav.ejs') %>
+
+<!-- complete side menu of Patient -->
+<%- include('includes/docSideMenu.ejs') %>
+
+<!-- BEGIN: Content-->
+
+<script id="callLog-template" type="text/html">
+            {{#result}}
+            <tr >
+                <td>{{PatientID}}</td>
+                <td>{{PatientName}}</td>
+                <td>{{PatientPhone}}</td>
+                <td>{{CallLogAddDateTime}}</td>
+                <td>{{OnCallDuration}}</td>
+                <td>
+                  <a href="#"   callLogId="{{CallLogID}}" class="btnViewHistory" >
+                    <i class='bx bx-show call-log-eye-btn'></i>
+                    
+                  </a>
+                </td>
+              </tr>
+              {{/result}}
+      
+              {{^result.0}}   
+                  <h6 class="timeline-title">
+                      No CallLog Available
+                  </h6>   
+              {{/result.0}} 
+  </script>
+
+
+  <script id="viewPatHistory" type="text/html">
+    <div
+    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+    role="document"
+  >
+    <div class="modal-content">
+      <div class="modal-header bg-primary " style="text-align:center">
+        <h4>Patient History</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>         
+       
+      </div>
+      <div class="modal-body">
+     <div class="row">
+          <div class="col-lg-3">
+            {{#PatientPhoto}}
+            <img
+            src="{{PatientPhoto}}"
+            alt="image"
+            style="
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;" />
+           {{/PatientPhoto}}
+           {{^PatientPhoto}}
+           <img src="/assets/images/patient.png" alt="image" style="
+           height: 100px;
+           width: 100px;
+           border-radius: 50%;" /> 
+           {{/PatientPhoto}}          
+        </div>
+      <div class="col-lg-4">
+        <br/>
+        <h5 class="docName">
+          {{PatientName}}
+        </h5>          
+        <b>Age</b> {{Age}} years old
+      </div>
+      <div  style="margin-top:10px" class="col-lg-5">
+        <br/>        
+        <b> Visit Date : </b> {{CallLogStartDateTime | Shortdate}} <br>                  
+        <b>Phone </b> {{PatientPhone}}
+      </div>
+
+    </div>
+        <ul style="padding-left:0;font-size:13px;">
+          <br/>
+          <div class="container profileArea">
+          <div class="row" style="background-color:#F3F8FF;">
+             <br/>
+             <div class="col-sm-5">              
+             <span class="editprofile-icons">History and Exams </span>
+             </div>
+             <div class="col-sm-7 txtnormal">              
+              {{HistoryAndExam}}
+             </div>
+          </div>
+          
+           
+          <div class="row">
+             <br/>
+             <div class="col-sm-5">             
+             <span class="editprofile-icons">Allergies  </span>
+             </div>
+             <div class="col-sm-7 txtnormal">             
+              {{Allergies}}
+             <br/>
+             </div>
+           </div>
+
+         
+           <div class="row" style="background-color:#F3F8FF;">
+              <br/>
+              <div class="col-sm-5 ">               
+              <span class="editprofile-icons">Diagnosis </span>
+              </div>
+              <div class="col-sm-7 txtnormal">
+                {{Diagnosis}}             
+             </div>
+           </div>
+   
+         <div class="row">             
+            <div class="col-sm-5">             
+            <span class="editprofile-icons">RX </span>
+           
+            </div>
+            <div class="col-sm-7 txtnormal">             
+              {{PatientRX}}
+              </div>
+
+           </div>
+          </div>
+         
+        </ul>
+      </div>
+     
+    </div>
+  </div>   
+</script>
+
+
+
+
+<!-- BEGIN: Content-->
+
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row"></div>
+    <div class="content-body">
+
+      <!-- start side bar -->
+
+      <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+      aria-hidden="true">
+    
+    </div>
+
+      <br />
+      <div class="d-flex flex-row">
+        <div class="page-heading">
+          <h3><i class='bx bx-layer'></i><span>Call Logs</span></h3>
+      </div>
+      </div>
+<br>
+      <!-- Start  table -->
+
+      <div class="table-responsive">
+        <div class="col-md-4" style="padding-left: 0px !important;">
+          <fieldset class="form-group position-relative has-icon-left mx-75 mb-0">
+            <input type="text" class="form-control round" id="chat-search" placeholder="Search by Name" />
+            <div class="form-control-position">
+              <i class="bx bx-search-alt text-dark"></i>
+            </div>
+          </fieldset>
+        </div>
+        <br />
+        <table id="tblCallLogs" class="table call-log-table">
+          <thead class="tablehead">
+            <tr class="call-log-table-header">
+              <th class="call-log-table-head">MRN</th>
+              <th class="call-log-table-head">Patient Name</th>
+              <th class="call-log-table-head">Phone</th>
+              <th class="call-log-table-head">Date</th>
+              <th class="call-log-table-head">Duration</th>
+              <th class="call-log-table-head">View History</th>
+            </tr>
+          </thead>
+          <tbody id="callLogId">
+
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+      <!-- End  table -->
+    </div>
+  </div>
+</div>
+<!-- END: Content-->
+
+<!-- END: Content-->
+
+<!-- BEGIN: Vendor JS-->
+<script src="/js/vendors.js"></script>
+
+<script src="/js/vertical-menu-light.js"></script>
+<script src="/js/app-menu.js"></script>
+<script src="/js/app.js"></script>
+
+<script src="/js/slidevideocall.js"></script>
+<script src="/services/docCallLog.js"></script>
+<script src="/services/loadingoverlay.min.js"></script>
+
+<!-- END: Theme JS-->
+
+<!-- END: JS-->
+
+<%- include('../../Default/view/includes/End.ejs') %>

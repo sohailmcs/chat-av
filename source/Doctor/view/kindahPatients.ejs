@@ -1,0 +1,218 @@
+<%- include('../../Default/view/includes/Head.ejs') %>
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+   
+
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+    <link rel="stylesheet" type="text/css" href="/css/colors.css" />
+    <link rel="stylesheet" type="text/css" href="/css/components.css" />
+
+    <!-- END: Theme CSS-->
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <!-- END: Custom CSS-->
+
+    <!-- Data table links -->
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css"
+    />
+  </head>
+  <!-- END: Head-->
+
+  <!-- BEGIN: Body-->
+
+  <!-- body tag and blue nav bar  -->
+  <%- include('includes/docNav.ejs') %>
+
+    <!-- complete side menu of doctor -->
+    <%- include('includes/docSideMenu.ejs') %>
+
+    <script id="viewPatHistory" type="text/html">
+      <div
+      class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+      role="document"
+    >
+      <div class="modal-content">
+        <div class="modal-header bg-primary " style="text-align:center">
+          <h4>Patient History</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>         
+         
+        </div>
+        <div class="modal-body">
+       <div class="row">
+            <div class="col-lg-3">
+              {{#PatientPhoto}}
+              <img
+              src="{{PatientPhoto}}"
+              alt="image"
+              style="
+              height: 100px;
+              width: 100px;
+              border-radius: 50%;" />
+             {{/PatientPhoto}}
+             {{^PatientPhoto}}
+             <img src="/assets/images/patient.png" alt="image" style="
+             height: 100px;
+             width: 100px;
+             border-radius: 50%;" /> 
+             {{/PatientPhoto}}          
+          </div>
+        <div class="col-lg-4">
+          <br/>
+          <h5 class="docName">
+            {{PatientName}}
+          </h5>          
+          <b>Age</b>: {{Age}} years old
+        </div>
+        <div  style="margin-top:10px" class="col-lg-5">
+          <br/>        
+          <b> Visit Date : </b> {{CallLogStartDateTime | Shortdate}} <br>                  
+          <b>Phone </b>: {{PatientPhone}}
+        </div>
+  
+      </div>
+          <ul style="padding-left:0;font-size:13px;">
+            <br/>
+            <div class="container profileArea">
+            <div class="row" style="background-color:#F3F8FF;">
+               <br/>
+               <div class="col-sm-5">              
+               <span class="editprofile-icons">History and Exams :</span>
+               </div>
+               <div class="col-sm-7 txtnormal">              
+                {{HistoryAndExam}}
+               </div>
+            </div>
+            
+             
+            <div class="row">
+               <br/>
+               <div class="col-sm-5">             
+               <span class="editprofile-icons">Allergies : </span>
+               </div>
+               <div class="col-sm-7 txtnormal">             
+                {{Allergies}}
+               <br/>
+               </div>
+             </div>
+  
+           
+             <div class="row" style="background-color:#F3F8FF;">
+                <br/>
+                <div class="col-sm-5 ">               
+                <span class="editprofile-icons">Diagnosis :</span>
+                </div>
+                <div class="col-sm-7 txtnormal">
+                  {{Diagnosis}}             
+               </div>
+             </div>
+     
+           <div class="row">             
+              <div class="col-sm-5">             
+              <span class="editprofile-icons">RX :</span>
+             
+              </div>
+              <div class="col-sm-7 txtnormal">             
+                {{PatientRX}}
+                </div>
+  
+             </div>
+            </div>
+           
+          </ul>
+        </div>
+       
+      </div>
+    </div>   
+  </script>
+
+  <div class="modal fade text-left" id="popupHistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+  aria-hidden="true">
+
+</div>
+
+
+
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+      <div class="content-wrapper">
+        <div class="content-body">
+          <section
+          class="sideMenuId"
+            style="
+              margin-right: -60%;
+              overflow: auto;
+              display: none;
+              width: 60%;
+              margin-top: 30px;
+            "
+          >
+           
+          </section>
+
+          <br />
+          <div class="d-flex flex-row">
+            <div class="page-heading">
+              <h3><i class='bx bx-layer'></i><span>Kindah Patients</span></h3>
+          </div>
+          </div>
+
+        
+          <table id="kindahdatatable" class="display" style="width: 100%;">
+            <thead class="tablehead">
+              <tr>
+                <th class="thead-img"></th>
+                <th class="call-log-table-head">MRN</th>
+                <th class="call-log-table-head">Full Name</th>
+                <th class="call-log-table-head">Age</th>
+                <th class="call-log-table-head">Gender</th>
+                <th class="call-log-table-head">Email</th>
+                <th class="call-log-table-head" >Phone Number</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEGIN: Content JS-->
+
+    <!-- END: Content JS-->
+
+    <!-- BEGIN: JS-->
+
+    <script src="/js/vendors.js"></script>
+    <script src="/js/vertical-menu-light.js"></script>
+    <script src="/js/app-menu.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/slidevideocall.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"
+    ></script>   
+    <script src="/services/loadingoverlay.min.js"></script>
+    <script src="/services/KindahPatient.js"></script>
+    <!-- END: JS-->
+  </body>
+
+
+  <%- include('../../Default/view/includes/End.ejs') %>

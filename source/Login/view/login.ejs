@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+  <!-- BEGIN: Head-->
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0"
+    />
+
+    <title><%= PageTitle %></title>
+
+    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+    <link rel="stylesheet" type="text/css" href="/css/components.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- END CSS-->
+  </head>
+  <!-- END: Head-->
+
+  <!-- BEGIN: Body-->
+
+  <body
+    class="vertical-layout vertical-menu-modern 1-column navbar-sticky footer-static bg-full-screen-image blank-page blank-page"
+    data-open="click"
+    data-menu="vertical-menu-modern"
+    data-col="1-column"
+  >
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+      <div class="content-overlay"></div>
+      <div class="content-wrapper">
+        <div class="content-header row"></div>
+        <div class="content-body">
+          <!-- login page start -->
+          <section id="auth-login" class="row flexbox-container">
+            <div class="col-xl-8 col-11">
+              <div class="card bg-authentication mb-0">
+                <div class="row m-0">
+                  <!-- left section-login -->
+                  <div class="crtAccount col-md-5" style="padding-left: 40px">
+                    <div class="card-header loginLogo">
+                      <a href="/"><img src="/assets/logo.jpg" /></a>
+                    </div>
+                    <div class="card-content">
+                      <div class="card-body">
+                        <h1 class="txtwelcome">Welcome back!</h1>
+                        <span class="txtlogin"
+                          >Sign in to check out what you’ve missed since you
+                          were last here.</span
+                        >
+                        <br />
+                        <br />
+                        <div>
+                          <small class="mr-25" style="font-size: 15px"
+                            >New User?</small
+                          ><a href="signup"><small>Create an account</small></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- right section image -->
+                  <div class="loginArea col-md-7 col-12 px-0">
+                    <div
+                      class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center"
+                      style="
+                        padding-left: 60px !important;
+                        padding-right: 60px !important;
+                      "
+                    >
+                      <div class="card-header">
+                        <div class="card-title">
+                          <h5 class="LoginHeading">Sign in</h5>
+                          <span class="txtlogin"
+                            >Please enter your details to sign in and consult
+                            with doctor now.</span
+                          >
+                        </div>
+                        <span class="error" style="display: none"></span>
+                      </div>
+                      <div class="card-content">
+                        <div class="card-body">
+                          <form action="login" method="POST" id="frmLogin">
+                            <div class="form-group mb-50">
+                              <label
+                                class="text-bold-600"
+                                for="exampleInputEmail1"
+                                >Email or Phone</label
+                              >
+                              <input
+                                required
+                                id="txtEmail"
+                                name="email"
+                                type="email"
+                                class="form-control"
+                                id="exampleInputEmail"
+                                placeholder=" Email or Phone"
+                              />
+                            </div>
+
+                            <div class="form-group">
+                              <label
+                                class="text-bold-600"
+                                for="exampleInputPassword1"
+                                >Password</label
+                              >
+                              <input
+                                required
+                                name="Password"
+                                id="txtPassword"
+                                type="password"
+                                class="form-control"
+                                id="exampleInputPassword1"
+                                placeholder="Password"
+                              />
+                            </div>
+                            <div
+                              class="form-group d-flex flex-md-row flex-column justify-content-between"
+                            >
+                              <div
+                                style="padding: 0"
+                                class="col-md-9 text-left mb-50"
+                              >
+                                <div class="checkbox checkbox-sm">
+                                  <input
+                                    type="checkbox"
+                                    class="form-check-input"
+                                    id="exampleCheck1"
+                                  />
+                                  <label
+                                    class="checkboxsmall"
+                                    for="exampleCheck1"
+                                    ><small>Keep me logged in</small></label
+                                  >
+                                </div>
+                              </div>
+                              <div style="padding: 0" class="col-sm-4">
+                                <button
+                                  type="submit"
+                                  class="btn btn-primary glow position-relative"
+                                >
+                                  SIGN IN
+                                </button>
+                              </div>
+                            </div>
+                            <div
+                              class="form-group d-flex flex-md-row flex-column justify-content-between"
+                            >
+                              <div style="padding: 0" class="col-md-9 mb-50">
+                                <a href="/forgetPassword" class="card-link"
+                                  ><small>Forgot Password?</small></a
+                                >
+                              </div>
+                              <div style="padding: 0" class="col-sm-4">
+                                <a href="/resetPassword" class="card-link"
+                                  ><small>Reset Password</small></a
+                                >
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- login page ends -->
+        </div>
+      </div>
+    </div>
+    <!-- END: Content-->
+
+    <!-- BEGIN: Vendor JS-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/vendors.min.js"></script>
+
+    <!-- BEGIN: Services calling JS-->
+    <script src="/services/jquery.validate.min.js"></script>
+    <!-- <script src="/services/LoginSignUp.js"></script> -->
+    <script src="/services/loadingoverlay.min.js"></script>
+    <!-- END: Page JS-->
+  </body>
+  <!-- END: Body-->
+</html>

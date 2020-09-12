@@ -4,6 +4,7 @@ var useLoginId = $(".user-name").attr("UserInfo");
 var UserName = $(".user-name").text();
 
 $(function () {
+  alert("adfadfa");
   var currentDt = kendo.toString(new Date(), "d");
   GetDoctorAllSlots(useLoginId, currentDt);
 
@@ -46,14 +47,9 @@ $(function () {
     var PageName = window.location.pathname;
     var PageUrl = window.location.href;
     var calendar = $("#scheduler").data("kendoCalendar");
-
-    CancelAppointment(appointmentId, PatientID, DoctorId, PageName, PageUrl)
-      .then((date) => {
-        calendar.trigger("change");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    alert("adfadfa");
+    //=======show confrimation popup when try to delete appointments======
+    $("#popupConfirm").modal("show");
   });
 
   $(document).on("click", ".btnViewDetail", function () {

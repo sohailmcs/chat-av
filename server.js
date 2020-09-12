@@ -16,15 +16,32 @@ app.set("views", "views");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(
+  session({
+    secret: "ssshhhhh",
+    // create new redis store.
+    //store: new redisStore({ host: 'localhost', port: 1338, client: client,ttl : 260}),
+    saveUninitialized: false,
+    resave: false,
+  })
+);
+
 var webServer = http.createServer(app);
 // Start Socket.io so it attaches itself to Express server
 
 var socketServer = socketIo.listen(webServer, { "log level": 1 });
-
 //socketServer.set("transports", ["websocket"]);
 
-const KindahRoutes = require("./Routes/routes");
-const AuthRoutes = require("./Routes/AuthRoutes.js");
+var pjson = require("./package.json");
+
+global.appRoot = path.resolve(__dirname);
+global.appRoot_bin = path.resolve(__dirname);
+global.appRoot_config = pjson.environment; //"local"; //(appRoot+'/config/local/config.js');
+//const KindahRoutes = require("./Routes/routes");
+//const KindahRoutes = require("./routes/Index");
+const KindahRoutes = require(appRoot + "/routes/index");
+
+//const AuthRoutes = require("./Routes/AuthRoutes.js");
 const { JSONCookies } = require("cookie-parser");
 const { json } = require("express");
 app.use(
@@ -56,6 +73,7 @@ socketServer.sockets.on("connection", function (socket) {
     }
   });
   socket.on("showStream", function (data) {
+    console.log(JSON.stringify(data));
     if (clients[data.username]) {
       socketServer.sockets.connected[clients[data.username].socket].emit(
         "callAccpetedandShowStream",
@@ -67,6 +85,9 @@ socketServer.sockets.on("connection", function (socket) {
   });
   socket.on("RejectedAudioVideoCall", function (data) {
     if (clients[data.username]) {
+      console.log(
+        "this is docort Name " + JSON.stringify(clients[data.username])
+      );
       socketServer.sockets.connected[clients[data.username].socket].emit(
         "GetRejectedConfirmation",
         data
@@ -141,6 +162,7 @@ socketServer.sockets.on("connection", function (socket) {
             status: "Offline",
             uName: name,
           });
+
         delete clients[name];
         break;
       }
@@ -150,15 +172,28 @@ socketServer.sockets.on("connection", function (socket) {
 
 //linking css AND JS FILES
 app.use(express.static(path.join(__dirname, "public")));
+//app.use(express.static(path.join(__dirname, "services")));
+app.use("/services", express.static(__dirname + "/services"));
 app.use(cookieParser());
 //routes
 app.use(KindahRoutes);
-app.use(AuthRoutes);
+//app.use(AuthRoutes);
 
 //in case of page not existing put error 404
 app.use((req, res, next) => {
   res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
+  next();
 });
 
+// app.use(function (req, res, next) {
+//   //Enabling CORS
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, contentType,Content-Type, Accept, Authorization, api-token, x-channel");
+//   next();
+// });
+
 //=============end push notification using socket.io=====================
-webServer.listen(process.env.PORT || 8080, () => console.log("Alll is ok"));
+webServer.listen(process.env.PORT || 8080, () =>
+  console.log("Kindah Project Running on http://localhst:1338")
+);

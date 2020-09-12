@@ -1,0 +1,592 @@
+<link href="/css/KendoUi/examples-offline.css" rel="stylesheet" />
+<link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
+<link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
+<link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
+
+
+ <!-- VIEW History  POP UP TEMPLATE -->
+
+ <script  id="viewHistory-template" type="text/html">
+  <div
+  class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+  role="document"
+>
+  <div class="modal-content">
+    <div class="modal-header bg-primary " style="text-align:center">
+      <h4>Patient History</h4>
+      <button type="button" class="close"   aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>         
+     
+    </div>
+    <div class="modal-body">
+   <div class="row">
+        <div class="col-lg-3">
+          {{#PatientPhoto}}
+          <img
+          src="{{PatientPhoto}}"
+          alt="image"
+          style="
+          height: 100px;
+          width: 100px;
+          border-radius: 50%;" />
+         {{/PatientPhoto}}
+         {{^PatientPhoto}}
+         <img src="/assets/images/patient.png" alt="image" style="
+         height: 100px;
+         width: 100px;
+         border-radius: 50%;" /> 
+         {{/PatientPhoto}}          
+      </div>
+    <div class="col-lg-4">
+      <br/>
+      <h5 class="docName">
+        {{PatientName}}
+      </h5>          
+      <b>Age</b>: {{Age}} years old
+    </div>
+    <div  style="margin-top:10px" class="col-lg-5">
+      <br/>        
+      <b> Visit Date : </b> {{CallLogStartDateTime | Shortdate}} <br>                  
+      <b>Phone </b>: {{PatientPhone}}
+    </div>
+
+  </div>
+      <ul style="padding-left:0;font-size:13px;">
+        <br/>
+        <div class="container profileArea">
+        <div class="row" style="background-color:#F3F8FF;">
+           <br/>
+           <div class="col-sm-5">              
+           <span class="editprofile-icons">History and Exams :</span>
+           </div>
+           <div class="col-sm-7 txtnormal">              
+            {{HistoryAndExam}}
+           </div>
+        </div>
+        
+         
+        <div class="row">
+           <br/>
+           <div class="col-sm-5">             
+           <span class="editprofile-icons">Allergies : </span>
+           </div>
+           <div class="col-sm-7 txtnormal">             
+            {{Allergies}}
+           <br/>
+           </div>
+         </div>
+
+       
+         <div class="row" style="background-color:#F3F8FF;">
+            <br/>
+            <div class="col-sm-5 ">               
+            <span class="editprofile-icons">Diagnosis :</span>
+            </div>
+            <div class="col-sm-7 txtnormal">
+              {{Diagnosis}}             
+           </div>
+         </div>
+ 
+       <div class="row">             
+          <div class="col-sm-5">             
+          <span class="editprofile-icons">RX :</span>
+         
+          </div>
+          <div class="col-sm-7 txtnormal">             
+            {{PatientRX}}
+            </div>
+
+         </div>
+        </div>
+       
+      </ul>
+    </div>
+   
+  </div>
+</div>   
+</script>
+
+ 
+
+<!-- VIEW PRESCRIPTION POP UP TEMPLATE -->
+<script id="viewPres-template" type="text/html">
+  <div
+  class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+  role="document"
+>
+  <div class="modal-content">
+    <div class="modal-header bg-primary " style="text-align:center">
+      <h4>Patient Prescription</h4>
+      <button type="button" class="close"   aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>         
+     
+    </div>
+    <div class="modal-body">
+   <div class="row">
+        <div class="col-lg-3">
+          {{#ProfilePicture}}
+          <img
+          src="{{ProfilePicture}}"
+          alt="image"
+          style="
+          height: 100px;
+          width: 100px;
+          border-radius: 50%;" />
+         {{/ProfilePicture}}
+         {{^ProfilePicture}}
+         <img src="/assets/images/patient.png" alt="image" style="
+         height: 100px;
+         width: 100px;
+         border-radius: 50%;" /> 
+         {{/ProfilePicture}}          
+      </div>
+    <div class="col-lg-4">
+      <br/>
+      <h5 class="docName">
+        {{PatientName}}
+      </h5>          
+      <b>Age</b>: {{Age}} years old
+    </div>
+    <div  style="margin-top:10px" class="col-lg-5">
+      <br/>        
+      <b> Date : </b> {{CallLogStartDateTime | Shortdate}} <br>                  
+      <b>Phone </b>: {{PatientPhone}}
+    </div>  
+
+  </div>
+      <ul style="padding-left:0;font-size:13px;">
+        <br/>
+        <div class="container profileArea">
+             
+         <div class="row" style="background-color:#F3F8FF;">
+            <br/>
+            <div class="col-sm-5 ">               
+            <span class="editprofile-icons">Diagnosis</span>
+            </div>
+            <div class="col-sm-7 txtnormal">
+              {{Diagnosis}}             
+           </div>
+         </div>
+ 
+       <div class="row">             
+          <div class="col-sm-5">             
+          <span class="editprofile-icons">Medication</span>
+         
+          </div>
+          <div class="col-sm-7 txtnormal">             
+            {{Medication}}
+            </div>
+
+         </div>
+        </div>
+       
+      </ul>
+    </div>
+   
+  </div>
+</div>   
+  
+  </div>
+</script>
+
+
+
+<div class="modal  fade mymodal" id="windowComm" role="dialog">
+  <div  
+    class="modal-dialog modal-dialog-centered "
+    
+  >
+    <div class="modal-content">
+      <div class="modal-header bg-primary">       
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <button class="modalMinimize"> <i class='bx bx-minus'></i> </button>
+      </div>
+      <div class="modal-body">
+        <script id="call-history-docVideo" type="text/html">
+          {{#result}}
+          <tr>
+            <td class="videocall-table">{{AddedDate}}</td>
+            <td class="videocall-table">{{DoctorName}}</td>
+            <td class="videocall-table">
+              <div class="modal-primary mr-1 mb-1 d-inline-block">
+                <a href="#">
+                  <i
+                    class="bx bx-show dashboard-eyeicon btnViewPres"
+                    CallID="{{CallLogId}}"
+                    style="padding-top: 12px; "
+                  ></i>
+                </a>
+              </div>
+            </td>
+            <td class="videocall-table">
+              <div class="modal-primary mr-1 mb-1 d-inline-block">
+                <a href="#">
+                  <i
+                    class="bx bx-show dashboard-eyeicon btnviewhistory"
+                    CallID="{{CallLogId}}"
+                    style="padding-top: 12px; "
+                  ></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          {{/result}}
+        </script>
+
+        
+       
+       <div>
+                
+         <div class="content-wrapper">
+           <div class="content-header row"></div>
+           <div class="content-body">
+           <span UserInfo="<%= userId %>" class="user-name" style="visibility: hidden;"></span>
+           
+              
+           <!--patient history popup Modal start -->
+           <div class=" modal fade text-left" id="viewhistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+           aria-hidden="true">
+           
+           </div>
+           <!--patient history popup Modal End -->
+           
+           <!--view prescription theme Modal start -->
+           <div class="modal fade text-left" id="viewprescription" tabindex="-1" role="dialog"
+           aria-labelledby="myModalLabel160" aria-hidden="true">
+           
+           </div>
+           <!--view prescription theme Modal end -->
+           
+           <!-- video call page Start -->
+           <section id="dashboard-analytics">
+           <div class="callvideo">
+           <div class="row leftcol" style="margin:0" >
+           
+           <!-- Left Card video call portion Starts -->
+           <div class="videocol leftcardContainer" style="width: 90%; padding-left:0">
+           <div class="card">
+             <div class="main-video-div">
+             <span id="log"></span>
+             <div id="timer">    
+             </div>   
+       <div id="callImg" style="display:none">
+         <img
+         src="/assets/imgCall.png"
+         alt="image"
+         style="
+         width: 100%;
+         height: 100%;"
+         />
+       </div>
+             
+       
+       
+           <div class="icons" id="divCallNow" style="display: none;" >
+             <button type="button" id="btnCallNow"
+             class="btn btn-icon rounded-circle call-btn-border mr-1 mb-1 btn-lg btn-three-icon">
+             <i class='call-btn bx bx-phone bx-rotate-90 call-show icon-size' ></i>
+             </button>
+           </div>
+       
+       
+           <div class="icons">
+             <button type="button" class="btn btn-outline-primary  mr-1 mb-1 slide-right" 
+              >
+             <i class="bx bx-show"></i>
+             SHOW MEDICAL RECORD
+             </button>
+             <button type="button" class="btn btn-outline-primary  mr-1 mb-1 slide-left" style="display:none">
+             <i class="bx bx-hide"></i>
+             HIDE MEDICAL RECORD
+             </button>
+             </div>
+       
+            
+       
+             <div class="three-icons" style="text-align: center; display: none;">
+       
+               <button type="button" id="btncam" onclick="enabldDisableCamera()"
+               class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 btn-three-icon">
+               <i class="bx bx-video icon-size"></i>
+               </button>
+               <button type="button" id="btnMic"  onclick="enabldDisableMic()"
+               class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 btn-three-icon">
+               <i class="bx bx-microphone icon-size icon-microphone"></i>    </button>        
+           
+               <button type="button" id="btnDisconnect" onclick="disconnect()"
+               class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1 btn-three-icon">
+               <i class="bx bx-phone-call icon-size"></i>
+               </button>
+               </div>
+             <div id="publisher"></div>
+             <div id="subscribers" ></div>
+            </div>
+           </div>
+           <!--Left Card video call portion ends -->
+           </div>
+           <!-- Right Card Starts -->
+           <div class="col-lg-5 videocol rightcardContainer">
+           <!-- Nav Justified Starts -->
+           <section id="nav-justified">
+           <div class="row">
+           <div class="col-sm-12">
+           <div class="card">
+           <div class="doc-pres-card" style="display: block;">
+           <div class="card-body">
+           <ul class="nav nav-tabs nav-justified" id="myTab2" role="tablist">
+           <li class="nav-item">
+           <a class="nav-link active" id="home-tab-justified" data-toggle="tab" href="#home-just"
+           role="tab" aria-controls="home-just" aria-selected="true">
+            Note
+           </a>
+           </li>
+           <li class="nav-item">
+           <a class="nav-link" id="profile-tab-justified" data-toggle="tab" href="#profile-just"
+           role="tab" aria-controls="profile-just" aria-selected="true">
+           Prescription
+           </a>
+           </li>
+           <li class="nav-item">
+           <a class="nav-link" id="messages-tab-justified" data-toggle="tab" href="#messages-just"
+           role="tab" aria-controls="messages-just" aria-selected="false">
+           Visit History
+           </a>
+           </li>
+           </ul>
+           <!-- Tab panes -->
+           <div class="tab-content pt-1">    
+           <!-- doctor note -->
+           <div class="tab-pane active" id="home-just" role="tabpanel"
+           aria-labelledby="home-tab-justified">
+           <!-- Doctors note text areas start-->
+           <section class="basic-textarea">
+           <div class="row">
+           <div class="col-12">
+           <div class="card">
+           <div class="card-content">
+           <div class="card-body">
+           
+           <div class="row">
+           <div class="col-12">
+           <fieldset class="form-group">
+           <p> History & exams</p>
+           <textarea class="textbox form-control" id="txtExam" rows="2"></textarea>
+           </fieldset>
+           </div>
+           </div>
+           <div class="row">
+           <div class="col-12">
+           <fieldset class="form-group">
+           <p> Allergies</p>
+           <textarea class="textbox form-control" id="txtAllergies" rows="2"></textarea>
+           </fieldset>
+           </div>
+           </div>
+           <div class="row">
+           <div class="col-12">
+           <fieldset class="form-group">
+           <p>Diagnosis</p>
+           <textarea class="textbox form-control" id="txtDiagnosis" rows="2"></textarea>
+           </fieldset>
+           </div>
+           </div>
+           <div class="row">
+           <div class="col-12">
+           <fieldset class="form-group">
+           <p>RX</p>
+           <textarea class="textbox form-control" id="txtRx" rows="2"></textarea>
+           </fieldset>
+           </div>
+           </div>
+           <div class="row">
+             <div class="col-6">
+               <button type="button"
+           class="btnSave btn btn-primary  mr-1 mb-1">   
+           Save
+           </button>
+             </div>
+             <div class="col-sm-6">
+                <div id="loadingParentNotes"  class="icons">    
+                    <div  class="doctorNotesLoading">  <img
+                      src="/assets/images/BlueLoading.gif" alt="image" width="40" height="40"/>
+                    </div>
+                    
+                  
+                  <span class="msg"></span>
+                  </div>
+             </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </section>
+           <!-- docotrs note text area ends -->
+           </div>    
+           <!-- prescription start -->
+           <div class="tab-pane" id="profile-just" role="tabpanel"
+           aria-labelledby="profile-tab-justified">
+           <!-- Form of Prescription start -->
+           <section id="basic-vertical-layouts">
+           <div class="row match-height">
+           <div class="col-12">
+           <div class="card">
+           <div class="card-content">
+           <div class="card-body">         
+           
+           <form class="form form-vertical">
+           <div class="form-body">
+           <div class="row">
+           <div style="
+           text-align: center;
+           ">
+           
+           </div>
+           
+           <div class="col-12">
+             <fieldset class="form-group">
+               <p>Patient Name</p>
+               <input  readonly  type="text" id="txtName" class="textbox form-control"
+               placeholder="Patient Name" name="fname-floating" />
+               </fieldset>
+           </div>
+           
+           <div class="col-md-6">
+           <div class="form-label-group">
+             <p>Age</p>
+             <input type="text" id="patientAge" class="textbox form-control"
+             placeholder="Age" name="fname-floating" />    
+          
+           </div>
+           </div>
+           <div class="col-md-6">
+           <div class="form-label-group">
+             <p>Date</p>
+           <fieldset class="form-group position-relative has-icon-left">     
+           <input type="text" id=" prescribeDT" class="textbox form-control pickadate-months-year"
+           placeholder="Select Date" />
+           <div class="form-control-position">
+           <i class="bx bx-calendar"></i>
+           </div>
+           </fieldset>
+           <label for="first-name-floating">Date</label>
+           </div>
+           </div>
+           
+           <div class="col-12">
+           <div class="form-label-group">
+             <p>Diagnosis</p>
+           <input type="text" id="txtPresDiagnosis" class="textbox form-control"
+           placeholder="Diagnosis" />
+          
+           </div>
+           </div>
+           <div class="col-12">
+           <fieldset class="form-group">
+             <p>Medication</p>
+           <textarea class="textbox form-control" id="txtMedication" rows="3"
+           placeholder="Medication"></textarea>
+           </fieldset>
+           </div>
+           <div class="col-md-6">
+            <button type="button" class="btnSaveNSend btn btn-primary  mr-1 mb-1">           
+             Save and Send
+             </button>
+           </div>
+
+           <div class="col-md-6">
+            <div id="loadingParentPrescrip" >
+              <div  class="PrescripeLoading">  <img
+              src="/assets/images/BlueLoading.gif" alt="image" width="40" height="40"/>
+              </div>
+               <span class="msgPrescription"></span>
+        </div>
+          </div>
+            
+           </div>
+           </div>
+           </form>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </section>
+           <!-- form of Prescription ends -->
+           </div>    
+           <!-- visit history start -->
+           <div class="tab-pane" id="messages-just" role="tabpanel"
+           aria-labelledby="messages-tab-justified">
+           <!-- visit history rows start -->
+           <div class="row" id="table-striped">
+           <div class="col-12">
+           <div class="card">
+           <div class="card-content">
+           <!-- table striped -->
+           <div class="table-responsive">
+           <table class="table table-striped mb-0">
+           <thead>
+           <tr>
+           <th>Date</th>
+           <th>DocName</th>
+           <th>Presc</th>
+           <th>View</th>
+           </tr>
+           </thead>
+           <tbody class="visit-history-table" id="callLogTable">
+           
+           
+           </tbody>
+           </table>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           <!-- visit history rows end -->
+           
+           
+           
+           
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </section>
+           <!-- Nav Justified Ends -->
+           </div>
+           <!--Right Card ends -->
+           
+           
+           </div>
+           </section>
+           <!-- Dashboard end -->
+           
+           
+           
+           </div>
+           </div>
+       </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/slidevideocall.js"></script>
+<script src="/services/loadingoverlay.min.js"></script>
+<script src="/services/docVideoCallDetails.js"></script>
