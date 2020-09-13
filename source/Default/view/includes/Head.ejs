@@ -9,11 +9,11 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=0"
     />
-
+    <!-- 
     <link
       href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
       rel="stylesheet"
-    />
+    /> -->
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/KendoUi/kendo.all.min.js"></script>
@@ -39,14 +39,6 @@
   <script type="text/javascript">
     var uName = "";
     var userID = "";
-
-    var mCallQueId;
-    var mPatientID;
-    var mCallLogId;
-    var mPname;
-    var mDocName;
-    var mDocId;
-    var mArea;
 
     var soc = io({ transports: ["websocket"], upgrade: false });
     // var baseURL = "http://localhost:1042/KindahService/";
@@ -80,10 +72,10 @@
     }); //============end of document.ready========
 
     function OpenCommunicationWindow(btn) {
-      mCallQueId = $(btn).attr("CallQueId");
-      mPatientID = $(btn).attr("PatientID");
-      mCallLogId = $(btn).attr("cLogId");
-      mPname = $(btn).attr("patientName");
+      mCallQueId = $(btn).attr("callqueid");
+      mPatientID = $(btn).attr("patientid");
+      mCallLogId = $(btn).attr("clogid");
+      mPname = $(btn).attr("patientname");
       mDocName = uName;
       mDocId = userLoginId;
       mArea = "Doctor";

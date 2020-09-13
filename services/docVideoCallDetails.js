@@ -3,9 +3,17 @@ var baseURL = "https://kindahclinic.com/KindahService/";
 
 var isShowVideo = false;
 var isAudioEnable = false;
-var session;
+var AudioVideosession;
 var publisher;
 var subscriber;
+
+var mCallQueId;
+var mPatientID;
+var mCallLogId;
+var mPname;
+var mDocName;
+var mDocId;
+var mArea;
 
 var timer;
 var onCallduration;
@@ -137,6 +145,7 @@ $(function () {
             pName: mPname,
             username: mDocName,
           });
+
           initializeSession(apiKey, sessionId, token);
           $("#divCallNow").hide();
           $(".three-icons").show();
@@ -167,9 +176,9 @@ function handleError(error) {
 }
 
 function initializeSession(key, sessId, tokenId) {
-  session = OT.initSession(key, sessId, tokenId);
+  AudioVideosession = OT.initSession(key, sessId, tokenId);
 
-  session.on({
+  AudioVideosession.on({
     sessionReconnecting: function (event) {
       $("#log")
         .css("display", "block")
@@ -254,28 +263,28 @@ function initializeSession(key, sessId, tokenId) {
   publisher = OT.initPublisher("publisher", publisherOptions, handleError);
 
   // Connect to the session
-  session.connect(tokenId, function callback(error) {
+  AudioVideosession.connect(tokenId, function callback(error) {
     if (error) {
       handleError(error);
     } else {
       // If the connection is successful, publish the publisher to the session
-      session
-        .publish(publisher, handleError)
-        .on("streamDestroyed", function (event) {
+      AudioVideosession.publish(publisher, handleError).on(
+        "streamDestroyed",
+        function (event) {
           event.preventDefault();
-        });
+        }
+      );
     }
   });
 }
-
 function enabldDisableCamera() {
   if (isShowVideo) {
-    session.publish(publisher);
+    AudioVideosession.publish(publisher);
     publisher.publishVideo(true);
     isShowVideo = false;
     $("#btncam i").addClass("bx-video").removeClass("bxs-video-off"); //replace icon
   } else {
-    session.unpublish(publisher);
+    AudioVideosession.unpublish(publisher);
     publisher.publishVideo(false);
     isShowVideo = true;
     $("#btncam i").addClass("bxs-video-off").removeClass("bx-video"); //replace icon
@@ -298,7 +307,7 @@ function enabldDisableMic() {
 function performCall() {
   callPerformed = true;
 
-  if (mCallQueId != "0") {
+  if (mCallQueId != "0" && $("#insertedID").val() == "0") {
     UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
   }
 
@@ -327,26 +336,26 @@ function countTimer() {
 //============calculate calling time==============
 
 function disconnect() {
-  session.off();
-  session.disconnect();
-  session.unpublish(publisher, handleError);
-  publisher.destroy();
-  //session.unsubscribe(subscriber);
   var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
 
   clearInterval(timer);
   if (callPerformed) {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
+    AudioVideosession.off();
+    AudioVideosession.disconnect();
+    AudioVideosession.unpublish(publisher, handleError);
+    publisher.destroy();
+    //session.unsubscribe(subscriber);
+
+    $(".three-icons, #timer").css("display", "none");
+    $("#divCallNow").css("display", "block");
+    $("#callImg").css("display", "block");
+    PlayCallingSound(false);
+
+    soc.emit("ClosePatientScreen", {
+      pName: mPname,
+    });
   }
-
-  $(".three-icons, #timer").css("display", "none");
-  $("#divCallNow").css("display", "block");
-  $("#callImg").css("display", "block");
-  PlayCallingSound(false);
-
-  soc.emit("ClosePatientScreen", {
-    pName: mPname,
-  });
 }
 
 function PlayCallingSound(play) {
