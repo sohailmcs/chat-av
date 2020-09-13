@@ -1,5 +1,5 @@
-//ar baseURL = "https://kindahclinic.com/KindahService/";
-var baseURL = "http://localhost:1042/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
+//var baseURL = "http://localhost:1042/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
 
 var options = {
