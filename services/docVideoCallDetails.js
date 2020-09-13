@@ -28,22 +28,22 @@ var options = {
   second: "2-digit",
 };
 
-function refreshParent() {
-  if (window.opener != null && !window.opener.closed) {
-    // && area == "Patient") {
-    window.opener.location.reload();
-  }
-}
-//call the refresh page on closing the window
-window.onunload = refreshParent;
+// function refreshParent() {
+//   if (window.opener != null && !window.opener.closed) {
+//     // && area == "Patient") {
+//     window.opener.location.reload();
+//   }
+// }
+// //call the refresh page on closing the window
+// window.onunload = refreshParent;
 
-$(window).bind("beforeunload", function () {
-  //==========if user has on called then called disconnect=====
-  if (callPerformed) disconnect();
-  // soc.emit("ClosePatientScreen", {
-  //   pName: mPname,
-  // });
-});
+// $(window).bind("beforeunload", function () {
+//   //==========if user has on called then called disconnect=====
+//   if (callPerformed) disconnect();
+//   // soc.emit("ClosePatientScreen", {
+//   //   pName: mPname,
+//   // });
+// });
 
 $(function () {
   $(document).on("click", "button.close", function (event) {
@@ -176,6 +176,9 @@ function handleError(error) {
 }
 
 function initializeSession(key, sessId, tokenId) {
+  console.log(key);
+  console.log(sessId);
+  console.log(tokenId);
   AudioVideosession = OT.initSession(key, sessId, tokenId);
 
   AudioVideosession.on({
@@ -209,7 +212,7 @@ function initializeSession(key, sessId, tokenId) {
         height: "100%",
         style: { buttonDisplayMode: "off" },
       };
-      subscriber = session.subscribe(
+      subscriber = AudioVideosession.subscribe(
         event.stream,
         "subscribers",
         subscriberOptions,
@@ -337,7 +340,7 @@ function countTimer() {
 
 function disconnect() {
   var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
-
+  alert("asdfasda");
   clearInterval(timer);
   if (callPerformed) {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
