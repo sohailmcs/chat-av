@@ -35,7 +35,7 @@ router.get(
   DoctorController.getDoctorVideoCallQueue.bind(DoctorController)
 );
 router.get(
-  "/profile",
+  "/profile/:id?",
   DoctorController.getDoctorViewProfile.bind(DoctorController)
 );
 

@@ -303,6 +303,13 @@ table.dataTable thead td {
 .loginLogo {
   margin: 30px 0;
 }
+.txtBasicInfo {
+  color: #102348;
+}
+
+h5.media-heading {
+  color: #076dfa;
+}
 h1.txtwelcome {
   color: #102348;
   font-weight: 600;
@@ -398,7 +405,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  color: #3eb8d7;
+  color: #525a65;
 }
 .modal-content {
   border-radius: 10px !important;
