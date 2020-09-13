@@ -340,7 +340,6 @@ function countTimer() {
 
 function disconnect() {
   var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
-  alert("asdfasda");
   clearInterval(timer);
   if (callPerformed) {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
@@ -367,7 +366,7 @@ function PlayCallingSound(play) {
   ).appendTo("body");
 
   var audio = $("#chatAudio");
-  if (play == true) audio.get(0).play();
+  if (play) audio.get(0).play();
   else $("#chatAudio").remove();
 }
 
