@@ -75,81 +75,6 @@
 </div>
 
 
-<!--end of EMR detail-->
-<script id="viewHistory-template" type="text/html">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-
-        <div class="modal-header bg-primary">
-            <h5 class="modal-title black" id="myModalLabel160">
-               Patient History
-            </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-        </div>
-
-    <div class="modal-body History-modal">
-    <div class="card-content side-bar">
-    <div class="card-body">
-
-    <div class="media">
-    <div class="pr-50 doc-img">
-    {{#ProfilePicture}}
-    <img src="{{ProfilePicture}}" alt="avtar img holder">
-    {{/ProfilePicture}}
-    {{^ProfilePicture}}
-    <img src="/assets/images/patient.png" alt="avtar img holder">
-    {{/ProfilePicture}}
-    </div>
-    <div>
-    <h5 class="media-heading">
-    <br /> <b>{{PatientName}}</b>
-    </h5>
-    <div>
-    <p> <b>Contact Number</b>: {{PatientPhone}}</p>
-    </div>
-    </div>
-    </div>
-    <div >
-    <br />
-
-        <h6 class="history-popup" >  <b>History and Exams</b> </h6>
-        <p class="history-text" >   {{HistoryAndExam}}       </p>
-      </div>
-
-      <div>
-        <h6 class="history-popup">  <b>Allergies</b> </h6>
-        <p class="history-text">   {{Allergies}}   </p>
-      </div>
-
-      <div>
-        <h6 class="history-popup">   <b>Diagnosis</b> </h6>
-        <p class="history-text">   {{Diagnosis}}    </p>
-      </div>
-
-      <div>
-        <h6 class="history-popup">  <b>RX</b>    </h6>
-        <p class="history-text">  {{PatientRX}}  </p>
-      </div>
-      <div>
-        <h6 class="history-popup">  <b>Medication</b>    </h6>
-        <p class="history-text">  {{Medication}}  </p>
-      </div>
-
-
-    <div class="modal-footer">
-    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-    <i class="bx bx-x d-block d-sm-none"></i>
-    <span class="d-none d-sm-block">Close</span>
-    </button>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </script>
 <!-- start modal on prescription  -->
 <div class="modal-primary mr-1 mb-1 d-inline-block">
     <!-- Button trigger for primary themes modal -->
@@ -188,18 +113,19 @@
                             <br />
                             <input type="hidden" id="hdncallLogId" value="">
 
-                            <textarea  class="form-control" id="txtExam" rows="3"
+                            <textarea  class="form-control" id="txtExamEdit" rows="3"
                                 placeholder="Write History and Exams"></textarea>
 
 
-                            <textarea class="form-control" id="txtAllergies" rows="3"
+                            <textarea class="form-control" id="txtAllergiesEdit" rows="3"
                                 placeholder="Write about Allergies"></textarea>
 
 
-                            <textarea class="form-control" id="txtDiagnosis" rows="3"
+                            <textarea class="form-control" id="txtDiagnosisEdit" rows="3"
                                 placeholder="Write Diagnosis"></textarea>
 
-                            <textarea class="form-control" id="txtRx" rows="3" placeholder="Write RX "></textarea>
+                            <textarea class="form-control" id="txtRxEdit" 
+                            rows="3" placeholder="Write RX "></textarea>
 
 
                         </div>

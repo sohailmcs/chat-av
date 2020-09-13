@@ -1,13 +1,6 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
-var options = {
-  year: "numeric",
-  month: "numeric",
-  day: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-};
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
+
 //=========short date===============
 var clientCurrentDt = new Date().toLocaleDateString("en-US");
 
@@ -273,6 +266,7 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
     PatientID: PatientId,
     CallQueID: CallQueId,
     AddedBy: doctorID,
+    CallLogStartDateTime: new Date().toLocaleDateString("en-US", options),
     AddedDate: new Date().toLocaleDateString("en-us"),
   };
   $.ajax({
@@ -298,8 +292,7 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
-      // Hide Loading
-      // $.LoadingOverlay("hide");
+      getDashBoardAllScheduled(true);
     },
   });
 }
@@ -357,10 +350,8 @@ function GetCallLog(doctorId, date, isSync) {
       if (!isSync) $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      $.LoadingOverlay("hide");
-
-      var queTemplate = $("#callLog-template").html();
-      $("#tblCallLogs").html(Mustache.to_html(queTemplate, data));
+      var callLogTemplate = $("#callLog-template").html();
+      $("#tblCallLogs").html(Mustache.to_html(callLogTemplate, data));
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -394,7 +385,7 @@ function getCallLogDetils(callLogId, details) {
 
       if (details) {
         //========show only details========
-        console.log(JSON.stringify(data));
+
         var ViewHistoryTemplate = $("#viewHistory-template").html();
         $("#popupHistory").html(Mustache.to_html(ViewHistoryTemplate, data));
         $("#popupHistory").modal("show");
@@ -410,15 +401,15 @@ function getCallLogDetils(callLogId, details) {
         $("#patientName").text(data.PatientName);
         $("#details").html(
           "<p><b>Visit Date :</b>" +
-            data.CallLogStartDateTime +
+            data.AddedDate +
             "<br><b>Contact Number :</b>" +
             data.PatientPhone +
             "</P>"
         );
-        $("#txtExam").val(data.HistoryAndExam);
-        $("#txtAllergies").val(data.Allergies);
-        $("#txtDiagnosis").val(data.Diagnosis);
-        $("#txtRx").val(data.PatientRX);
+        $("#txtExamEdit").val(data.HistoryAndExam);
+        $("#txtAllergiesEdit").val(data.Allergies);
+        $("#txtDiagnosisEdit").val(data.Diagnosis);
+        $("#txtRxEdit").val(data.PatientRX);
 
         $("#prescription").modal("show");
       }
@@ -440,10 +431,10 @@ function updatePatientEMR(callLogId, status) {
 
   var model = {
     CallLogID: callLogId,
-    HistoryAndExam: $("#txtExam").val(),
-    Allergies: $("#txtAllergies").val(),
-    Diagnosis: $("#txtDiagnosis").val(),
-    PatientRX: $("#txtRx").val(),
+    HistoryAndExam: $("#txtExamEdit").val(),
+    Allergies: $("#txtAllergiesEdit").val(),
+    Diagnosis: $("#txtDiagnosisEdit").val(),
+    PatientRX: $("#txtRxEdit").val(),
     callStatus: status,
   };
 

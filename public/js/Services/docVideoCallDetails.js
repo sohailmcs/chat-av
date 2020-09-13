@@ -10,7 +10,6 @@ var subscriber;
 var timer;
 var onCallduration;
 var callPerformed = false;
-var insertedCallLogID;
 var options = {
   year: "numeric",
   month: "numeric",

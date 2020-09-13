@@ -10,7 +10,7 @@ var subscriber;
 var timer;
 var onCallduration;
 var callPerformed = false;
-var insertedCallLogID;
+
 var options = {
   year: "numeric",
   month: "numeric",
@@ -300,8 +300,8 @@ function performCall() {
 
   if (mCallQueId != "0") {
     UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
-  } else UpdateCallLogEndtime($("#insertedID").val(), onCallduration);
-  getDashBoardAllScheduled(true);
+  }
+
   PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
   $("#divCallNow").hide();
@@ -332,10 +332,13 @@ function disconnect() {
   session.unpublish(publisher, handleError);
   publisher.destroy();
   //session.unsubscribe(subscriber);
+  var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
 
   clearInterval(timer);
-  if (callPerformed)
-    UpdateCallLogEndtime($("#insertedID").val(), onCallduration);
+  if (callPerformed) {
+    UpdateCallLogEndtime(newCalllogId, onCallduration);
+  }
+
   $(".three-icons, #timer").css("display", "none");
   $("#divCallNow").css("display", "block");
   $("#callImg").css("display", "block");
@@ -702,6 +705,7 @@ function UpdateCallLogEndtime(CallLogId, duration) {
     },
     complete: function (data) {
       $.LoadingOverlay("hide");
+      getDashBoardAllScheduled(true);
     },
   });
 }

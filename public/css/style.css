@@ -410,6 +410,10 @@ h6,
 .modal-content {
   border-radius: 10px !important;
 }
+div#viewhistory,
+div#viewprescription {
+  z-index: 11000;
+}
 
 .page-heading {
   padding: 50px 0 15px;
