@@ -6,6 +6,7 @@ var isAudioEnable = false;
 var AudioVideosession;
 var publisher;
 var subscriber;
+var allsubscribers;
 
 var mCallQueId;
 var mPatientID;
@@ -274,10 +275,10 @@ function initializeSession(key, sessId, tokenId) {
       AudioVideosession.publish(publisher, handleError).on(
         "streamDestroyed",
         function (event) {
-          var subscribers = AudioVideosession.getSubscribersForStream(
+          event.preventDefault();
+          allsubscribers = AudioVideosession.getSubscribersForStream(
             event.stream
           );
-          event.preventDefault();
         }
       );
     }
@@ -352,7 +353,7 @@ function disconnect() {
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
     //AudioVideosession.unsubscribe(subscriber);
-    AudioVideosession.unsubscribe(subscribers);
+    AudioVideosession.unsubscribe(allsubscribers);
     $("#subscribers").html("");
 
     $(".three-icons, #timer").css("display", "none");
