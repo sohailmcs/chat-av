@@ -204,12 +204,6 @@ function initializeSession(key, sessId, tokenId) {
         $("#log").delay(3000).fadeOut("slow");
       }
     },
-    connectionDestroyed: function (event) {
-      $("#log")
-        .css("display", "block")
-        .text("Patient discinnected.Please try connecting again.");
-      $("#log").delay(3000).fadeOut("slow");
-    },
 
     streamCreated: function (event) {
       var subscriberOptions = {
@@ -280,7 +274,7 @@ function initializeSession(key, sessId, tokenId) {
       AudioVideosession.publish(publisher, handleError).on(
         "streamDestroyed",
         function (event) {
-          //  event.preventDefault();
+          event.preventDefault();
         }
       );
     }
@@ -350,10 +344,10 @@ function disconnect() {
   if (callPerformed) {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
     AudioVideosession.disconnect();
-    AudioVideosession.off();
-    AudioVideosession.unpublish(publisher, handleError);
-    publisher.destroy();
-    AudioVideosession.unsubscribe(subscriber);
+    // AudioVideosession.off();
+    // AudioVideosession.unpublish(publisher, handleError);
+    // publisher.destroy();
+    // AudioVideosession.unsubscribe(subscriber);
 
     $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
