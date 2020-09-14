@@ -274,7 +274,9 @@ function initializeSession(key, sessId, tokenId) {
       AudioVideosession.publish(publisher, handleError).on(
         "streamDestroyed",
         function (event) {
-          var subscribers = session.getSubscribersForStream(event.stream);
+          var subscribers = AudioVideosession.getSubscribersForStream(
+            event.stream
+          );
           event.preventDefault();
         }
       );
