@@ -274,6 +274,7 @@ function initializeSession(key, sessId, tokenId) {
       AudioVideosession.publish(publisher, handleError).on(
         "streamDestroyed",
         function (event) {
+          var subscribers = session.getSubscribersForStream(event.stream);
           event.preventDefault();
         }
       );
@@ -345,11 +346,12 @@ function disconnect() {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
 
     // AudioVideosession.off();
+    AudioVideosession.disconnect();
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
-    AudioVideosession.unsubscribe(subscriber);
-    subscriber.destroy();
-    AudioVideosession.disconnect();
+    //AudioVideosession.unsubscribe(subscriber);
+    AudioVideosession.unsubscribe(subscribers);
+    $("#subscribers").html("");
 
     $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
