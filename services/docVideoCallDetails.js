@@ -144,6 +144,9 @@ $(function () {
           soc.emit("SendCallRequestToPatient", {
             pName: mPname,
             username: mDocName,
+            apiKey: apiKey,
+            sessionId: sessionId,
+            token: token,
           });
 
           initializeSession(apiKey, sessionId, token);
@@ -176,9 +179,6 @@ function handleError(error) {
 }
 
 function initializeSession(key, sessId, tokenId) {
-  console.log(key);
-  console.log(sessId);
-  console.log(tokenId);
   AudioVideosession = OT.initSession(key, sessId, tokenId);
 
   AudioVideosession.on({

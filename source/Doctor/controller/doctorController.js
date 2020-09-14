@@ -18,13 +18,13 @@ var opentok = new OpenTok(apiKey, apiSecret);
 var sessionId;
 var gentoken;
 
-opentok.createSession({ mediaMode: "routed" }, function (err, session) {
+opentok.createSession({ mediaMode: "relayed" }, function (err, session) {
   if (err) {
     console.log(err);
     res.status(500).send({ error: "createSession error:" + err });
     return;
   }
-
+  console.log("doctor=" + session.sessionId);
   // generate token
   token = opentok.generateToken(session.sessionId);
   sessionId = session.sessionId;

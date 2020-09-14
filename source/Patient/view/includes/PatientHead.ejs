@@ -26,9 +26,9 @@
     <!-- common CSS -->
 
     <script type="text/javascript">
-      var apiKey = "<%= apiKey %>";
-      var sessionId = "<%= sessionId %>";
-      var token = "<%= token %>";
+      var apiKey;
+      var sessionId;
+      var token;
       var uName = "";
       var userID = "";
       var mArea = "Patient";
@@ -129,6 +129,9 @@
       }
       //===========open Audio/Video window=================
       soc.on("CallRequest", function (data) {
+        apiKey = data.apiKey;
+        sessionId = data.sessionId;
+        token = data.token;
         $("#btnAccept").attr("doctorName", data.username);
         $("#btnReject").attr("doctorName", data.username);
         $("#inncommingCallHead").text("Dr." + data.username);
