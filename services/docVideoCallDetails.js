@@ -343,11 +343,13 @@ function disconnect() {
   clearInterval(timer);
   if (callPerformed) {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
-    AudioVideosession.disconnect();
+
     // AudioVideosession.off();
     AudioVideosession.unpublish(publisher, handleError);
-    // publisher.destroy();
-    // AudioVideosession.unsubscribe(subscriber);
+    publisher.destroy();
+    AudioVideosession.unsubscribe(subscriber);
+    subscriber.destroy();
+    AudioVideosession.disconnect();
 
     $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
