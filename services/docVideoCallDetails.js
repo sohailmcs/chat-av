@@ -193,7 +193,6 @@ function initializeSession(key, sessId, tokenId) {
       $("#log").delay(3000).fadeOut("slow");
     },
     sessionDisconnected: function (event) {
-      AudioVideosession.disconnect();
       if (event.reason == "networkDisconnected") {
         $("#log")
           .css("display", "block")
@@ -277,6 +276,7 @@ function initializeSession(key, sessId, tokenId) {
         "streamDestroyed",
         function (event) {
           //event.preventDefault();
+          AudioVideosession.unpublish(publisher);
         }
       );
     }
@@ -346,8 +346,8 @@ function disconnect() {
   if (callPerformed) {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
 
-    // AudioVideosession.off();
-    // AudioVideosession.disconnect();
+    AudioVideosession.off();
+    AudioVideosession.disconnect();
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
     AudioVideosession.unsubscribe(subscriber);
