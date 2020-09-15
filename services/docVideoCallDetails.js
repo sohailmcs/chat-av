@@ -213,7 +213,7 @@ function initializeSession(key, sessId, tokenId) {
         style: { buttonDisplayMode: "off" },
       };
 
-      if (!subscriber) {
+      if (subscriber) {
         subscriber = AudioVideosession.subscribe(
           event.stream,
           "subscribers",
@@ -318,8 +318,7 @@ function disconnect() {
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
 
-    AudioVideosession.unsubscribe(allsubscribers);
-    $("#subscribers").html("");
+    AudioVideosession.unsubscribe(subscriber);
 
     $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
