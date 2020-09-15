@@ -1,11 +1,12 @@
-//var baseURL = "https://kindahclinic.com/KindahService/";
-var baseURL = "http://localhost:1042/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
+//var baseURL = "http://localhost:1042/KindahService/";
 
 var isShowVideo = false;
 var isAudioEnable = false;
 var AudioVideosession;
 var publisher;
-var subscriber = {};
+var subscriber;
+var allsubscribers;
 
 var mCallQueId;
 var mPatientID;
@@ -177,12 +178,6 @@ function handleError(error) {
     console.log(error.message);
   }
 }
-function removeStream(stream) {
-  //var subscriberDiv = document.getElementById(stream.streamId); //
-  //subscriberDiv.parentNode.removeChild(subscriberDiv)
-  AudioVideosession.unsubscribe(stream);
-  subscriber[stream.streamId] = null;
-}
 
 function initializeSession(key, sessId, tokenId) {
   AudioVideosession = OT.initSession(key, sessId, tokenId);
@@ -209,52 +204,67 @@ function initializeSession(key, sessId, tokenId) {
         $("#log").css("display", "block").text("Disconnected");
         $("#log").delay(3000).fadeOut("slow");
       }
-
-      AudioVideosession.disconnect();
-      AudioVideosession.unpublish(publisher);
-      publisher.destroy();
-
-      AudioVideosession.unsubscribe(subscriber);
-
-      event.preventDefault();
-      if (event.stream) {
-        for (var i = 0; i < event.stream.length; i++) {
-          AudioVideosession = null;
-          removeStream(event.stream[i]);
-        }
-      }
     },
 
     streamCreated: function (event) {
-      PlayCallingSound(false);
-      if (
-        event.stream.connection.connectionId ==
-        AudioVideosession.connection.connectionId
-      ) {
-        return;
-      }
-
       var subscriberOptions = {
         insertMode: "append",
         width: "100%",
         height: "100%",
         style: { buttonDisplayMode: "off" },
       };
-
-      var subscriberDiv = document.createElement("div"); // Create a div for the subscriber to replace
-      subscriberDiv.setAttribute("id", event.stream.streamId); // Give the replacement div the id of the stream as its id.
-      document.getElementById("subscribers").appendChild(subscriberDiv);
-
-      subscriber[event.stream.streamId] = AudioVideosession.subscribe(
+      subscriber = AudioVideosession.subscribe(
         event.stream,
-        subscriberDiv.id,
+        "subscribers",
         subscriberOptions,
         handleError
       );
+
+      // var subscriberDisconnectedNotification = document.createElement("div");
+      // subscriberDisconnectedNotification.className =
+      //   "subscriberDisconnectedNotification";
+      // subscriberDisconnectedNotification.innerText =
+      //   "Disconnected unexpectedly. Attempting to automatically reconnect...";
+      // subscriber.element.appendChild(subscriberDisconnectedNotification);
+
+      // subscriber.on({
+      //   disconnected: function (event) {
+      //     subscriberDisconnectedNotification.style.visibility = "visible";
+      //     $(".subscriberDisconnectedNotification").css({
+      //       "z-index": "9999",
+      //       "font-color": "#fff",
+      //     });
+      //   },
+      //   connected: function (event) {
+      //     subscriberDisconnectedNotification.style.visibility = "hidden";
+      //  },
+      // });
     },
+    // signal: function (event) {
+    //   if (event.from == session.connection) {
+    //     var fromStr = "from you";
+    //   } else {
+    //     fromStr = "from another client";
+    //   }
+    //   var timeStamp = new Date().toLocaleString();
+    //   timeStamp = timeStamp.substring(timeStamp.indexOf(",") + 2);
+    //   document.getElementById("signals").innerHTML =
+    //     timeStamp +
+    //     " - Signal received " +
+    //     fromStr +
+    //     ".<br>" +
+    //     document.getElementById("signals").innerHTML;
+    // },
   });
 
   // initialize the publisher
+  var publisherOptions = {
+    insertMode: "append",
+    width: "100%",
+    height: "100%",
+    style: { buttonDisplayMode: "off" },
+  };
+  publisher = OT.initPublisher("publisher", publisherOptions, handleError);
 
   // Connect to the session
   AudioVideosession.connect(tokenId, function callback(error) {
@@ -262,55 +272,12 @@ function initializeSession(key, sessId, tokenId) {
       handleError(error);
     } else {
       // If the connection is successful, publish the publisher to the session
-      if (!publisher) {
-        var publisherOptions = {
-          insertMode: "append",
-          width: "100%",
-          height: "100%",
-          style: { buttonDisplayMode: "off" },
-        };
-        var parentDiv = document.getElementById("publisher");
-        var publisherDiv = document.createElement("div"); // Create a div for the publisher to replace
-        publisherDiv.setAttribute("id", "opentok_publisher");
-        parentDiv.appendChild(publisherDiv);
-
-        publisher = OT.initPublisher(
-          publisherDiv.id,
-          publisherOptions,
-          handleError
-        );
-
-        AudioVideosession.publish(publisher, handleError).on(
-          "streamDestroyed",
-          function (event) {
-            for (var i = 0; i < event.stream.length; i++) {
-              console.log(event.stream[i]);
-              if (
-                event.stream[i].connection.connectionId ==
-                AudioVideosession.connection.connectionId
-              ) {
-                // Our publisher just stopped streaming
-                event.preventDefault(); // Don't remove the Publisher from the DOM.
-              }
-            }
-          }
-        );
-      } else {
-        AudioVideosession.publish(publisher, handleError).on(
-          "streamDestroyed",
-          function (event) {
-            for (var i = 0; i < event.stream.length; i++) {
-              if (
-                event.stream[i].connection.connectionId ==
-                AudioVideosession.connection.connectionId
-              ) {
-                // Our publisher just stopped streaming
-                event.preventDefault(); // Don't remove the Publisher from the DOM.
-              }
-            }
-          }
-        );
-      }
+      AudioVideosession.publish(publisher, handleError).on(
+        "streamDestroyed",
+        function (event) {
+          event.preventDefault();
+        }
+      );
     }
   });
 }
@@ -348,6 +315,7 @@ function performCall() {
     UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
   }
 
+  PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
   $("#divCallNow").hide();
   $(".three-icons").show();
@@ -378,6 +346,11 @@ function disconnect() {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
 
     // AudioVideosession.off();
+    AudioVideosession.disconnect();
+    AudioVideosession.unpublish(publisher, handleError);
+    publisher.destroy();
+    //AudioVideosession.unsubscribe(subscriber);
+    AudioVideosession.unsubscribe(allsubscribers);
 
     $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
@@ -450,7 +423,7 @@ function ViewHistory(CallLogId) {
     },
     success: function (data, textStatus, xhr) {
       console.log("success ");
-
+      console.log(data);
       var ViewHistoryTemplate = $("#viewHistory-template").html();
       $("#viewhistory").html(Mustache.to_html(ViewHistoryTemplate, data));
       $("#viewhistory").modal("show");
