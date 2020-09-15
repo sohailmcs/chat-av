@@ -212,12 +212,15 @@ function initializeSession(key, sessId, tokenId) {
         height: "100%",
         style: { buttonDisplayMode: "off" },
       };
-      subscriber = AudioVideosession.subscribe(
-        event.stream,
-        "subscribers",
-        subscriberOptions,
-        handleError
-      );
+
+      if (subscriber) {
+        subscriber = AudioVideosession.subscribe(
+          event.stream,
+          "subscribers",
+          subscriberOptions,
+          handleError
+        );
+      }
     },
   });
 
@@ -228,12 +231,8 @@ function initializeSession(key, sessId, tokenId) {
     height: "100%",
     style: { buttonDisplayMode: "off" },
   };
-  var parentDiv = document.getElementById("audio_video");
-  var publisherDiv = document.createElement("div"); // Create a div for the publisher to replace
-  publisherDiv.setAttribute("id", "publisher");
-  parentDiv.appendChild(publisherDiv);
 
-  publisher = OT.initPublisher(publisherDiv.id, publisherOptions, handleError);
+  publisher = OT.initPublisher("publisher", publisherOptions, handleError);
 
   // Connect to the session
   AudioVideosession.connect(tokenId, function callback(error) {
