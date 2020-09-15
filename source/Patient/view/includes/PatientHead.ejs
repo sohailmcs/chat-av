@@ -140,11 +140,12 @@
         PlayCallingSound(true);
       });
       soc.on("ClosePatientScreen", function (data) {
-        $("#windowComm #callImg").remove();
-        $("#windowComm").modal("hide");
         AudioVideosession.unpublish(publisher, handleError);
         publisher.destroy();
         AudioVideosession.unsubscribe(subscriber);
+        $("#windowComm #callImg").remove();
+        $("#windowComm").modal("hide");
+
         // disconnect();
       });
       soc.on("DoctorPatientScreenClosed", function (data) {
