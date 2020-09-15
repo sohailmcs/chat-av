@@ -210,6 +210,12 @@ function initializeSession(key, sessId, tokenId) {
         $("#log").delay(3000).fadeOut("slow");
       }
 
+      AudioVideosession.disconnect();
+      AudioVideosession.unpublish(publisher);
+      publisher.destroy();
+
+      AudioVideosession.unsubscribe(subscriber);
+
       event.preventDefault();
       if (event.stream) {
         for (var i = 0; i < event.stream.length; i++) {
@@ -256,41 +262,55 @@ function initializeSession(key, sessId, tokenId) {
       handleError(error);
     } else {
       // If the connection is successful, publish the publisher to the session
+      if (!publisher) {
+        var publisherOptions = {
+          insertMode: "append",
+          width: "100%",
+          height: "100%",
+          style: { buttonDisplayMode: "off" },
+        };
+        var parentDiv = document.getElementById("publisher");
+        var publisherDiv = document.createElement("div"); // Create a div for the publisher to replace
+        publisherDiv.setAttribute("id", "opentok_publisher");
+        parentDiv.appendChild(publisherDiv);
 
-      var publisherOptions = {
-        insertMode: "append",
-        width: "100%",
-        height: "100%",
-        style: { buttonDisplayMode: "off" },
-      };
-      var parentDiv = document.getElementById("publisher");
-      var publisherDiv = document.createElement("div"); // Create a div for the publisher to replace
-      publisherDiv.setAttribute("id", "opentok_publisher");
-      parentDiv.appendChild(publisherDiv);
+        publisher = OT.initPublisher(
+          publisherDiv.id,
+          publisherOptions,
+          handleError
+        );
 
-      publisher = OT.initPublisher(
-        publisherDiv.id,
-        publisherOptions,
-        handleError
-      );
-
-      AudioVideosession.publish(publisher, handleError).on(
-        "streamDestroyed",
-        function (event) {
-          event.preventDefault();
-
-          for (var i = 0; i < event.stream.length; i++) {
-            console.log(event.stream[i]);
-            if (
-              event.stream[i].connection.connectionId ==
-              AudioVideosession.connection.connectionId
-            ) {
-              // Our publisher just stopped streaming
-              event.preventDefault(); // Don't remove the Publisher from the DOM.
+        AudioVideosession.publish(publisher, handleError).on(
+          "streamDestroyed",
+          function (event) {
+            for (var i = 0; i < event.stream.length; i++) {
+              console.log(event.stream[i]);
+              if (
+                event.stream[i].connection.connectionId ==
+                AudioVideosession.connection.connectionId
+              ) {
+                // Our publisher just stopped streaming
+                event.preventDefault(); // Don't remove the Publisher from the DOM.
+              }
             }
           }
-        }
-      );
+        );
+      } else {
+        AudioVideosession.publish(publisher, handleError).on(
+          "streamDestroyed",
+          function (event) {
+            for (var i = 0; i < event.stream.length; i++) {
+              if (
+                event.stream[i].connection.connectionId ==
+                AudioVideosession.connection.connectionId
+              ) {
+                // Our publisher just stopped streaming
+                event.preventDefault(); // Don't remove the Publisher from the DOM.
+              }
+            }
+          }
+        );
+      }
     }
   });
 }
@@ -358,11 +378,6 @@ function disconnect() {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
 
     // AudioVideosession.off();
-    AudioVideosession.disconnect();
-    // AudioVideosession.unpublish(publisher, handleError);
-    // publisher.destroy();
-
-    // AudioVideosession.unsubscribe(subscriber);
 
     $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
