@@ -348,8 +348,8 @@ function disconnect() {
     publisher.destroy();
     AudioVideosession.unpublish(publisher, handleError);
     AudioVideosession.unsubscribe(subscriber);
-    AudioVideosession.forceDisconnect();
-    // AudioVideosession.disconnect();
+    //AudioVideosession.forceDisconnect();
+    AudioVideosession.disconnect();
 
     $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
