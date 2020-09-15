@@ -1,11 +1,11 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 
 var isShowVideo = false;
 var isAudioEnable = false;
 var AudioVideosession;
 var publisher;
-var subscriber;
+var subscriber = {};
 
 var mCallQueId;
 var mPatientID;
@@ -203,9 +203,20 @@ function initializeSession(key, sessId, tokenId) {
         $("#log").css("display", "block").text("Disconnected");
         $("#log").delay(3000).fadeOut("slow");
       }
+
+      AudioVideosession = null;
+      session.unsubscribe(event.stream);
+      subscriber[event.stream.streamId] = null;
     },
 
     streamCreated: function (event) {
+      if (
+        stream.connection.connectionId ==
+        AudioVideosession.connection.connectionId
+      ) {
+        return;
+      }
+
       var subscriberOptions = {
         insertMode: "append",
         width: "100%",
@@ -213,14 +224,16 @@ function initializeSession(key, sessId, tokenId) {
         style: { buttonDisplayMode: "off" },
       };
 
-      if (subscriber) {
-        subscriber = AudioVideosession.subscribe(
-          event.stream,
-          "subscribers",
-          subscriberOptions,
-          handleError
-        );
-      }
+      var subscriberDiv = document.createElement("div"); // Create a div for the subscriber to replace
+      subscriberDiv.setAttribute("id", stream.streamId); // Give the replacement div the id of the stream as its id.
+      document.getElementById("subscribers").appendChild(subscriberDiv);
+
+      subscriber[event.stream.streamId] = AudioVideosession.subscribe(
+        event.stream,
+        "subscribers",
+        subscriberOptions,
+        handleError
+      );
     },
   });
 
@@ -231,8 +244,12 @@ function initializeSession(key, sessId, tokenId) {
     height: "100%",
     style: { buttonDisplayMode: "off" },
   };
+  var parentDiv = document.getElementById("publisher");
+  var publisherDiv = document.createElement("div"); // Create a div for the publisher to replace
+  publisherDiv.setAttribute("id", "opentok_publisher");
+  parentDiv.appendChild(publisherDiv);
 
-  publisher = OT.initPublisher("publisher", publisherOptions, handleError);
+  publisher = OT.initPublisher(publisherDiv.id, publisherOptions, handleError);
 
   // Connect to the session
   AudioVideosession.connect(tokenId, function callback(error) {
