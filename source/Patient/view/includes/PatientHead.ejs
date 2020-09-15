@@ -142,7 +142,10 @@
       soc.on("ClosePatientScreen", function (data) {
         $("#windowComm #callImg").remove();
         $("#windowComm").modal("hide");
-        disconnect();
+        AudioVideosession.unpublish(publisher, handleError);
+        publisher.destroy();
+        AudioVideosession.unsubscribe(subscriber);
+        // disconnect();
       });
       soc.on("DoctorPatientScreenClosed", function (data) {
         //alert('doctor close its screen 8 ' +data.area + " On Req "+ data.onReq);

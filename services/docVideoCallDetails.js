@@ -346,11 +346,11 @@ function disconnect() {
   if (callPerformed) {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
 
-    // AudioVideosession.off();
+    AudioVideosession.off();
 
-    // AudioVideosession.unpublish(publisher, handleError);
-    // publisher.destroy();
-    // AudioVideosession.unsubscribe(subscriber);
+    AudioVideosession.unpublish(publisher, handleError);
+    publisher.destroy();
+    AudioVideosession.unsubscribe(subscriber);
 
     $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
