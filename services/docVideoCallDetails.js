@@ -213,7 +213,7 @@ function initializeSession(key, sessId, tokenId) {
         style: { buttonDisplayMode: "off" },
       };
 
-      if (subscriber) {
+      if (!subscriber) {
         subscriber = AudioVideosession.subscribe(
           event.stream,
           "subscribers",
