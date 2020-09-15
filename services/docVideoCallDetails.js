@@ -206,7 +206,7 @@ function initializeSession(key, sessId, tokenId) {
 
       AudioVideosession = null;
       session.unsubscribe(event.stream);
-      subscriber[event.stream.streamId] = null;
+      AudioVideosession[event.stream.streamId] = null;
     },
 
     streamCreated: function (event) {
@@ -408,7 +408,7 @@ function ViewHistory(CallLogId) {
     },
     success: function (data, textStatus, xhr) {
       console.log("success ");
-      console.log(data);
+
       var ViewHistoryTemplate = $("#viewHistory-template").html();
       $("#viewhistory").html(Mustache.to_html(ViewHistoryTemplate, data));
       $("#viewhistory").modal("show");
