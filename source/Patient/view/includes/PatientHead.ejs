@@ -140,6 +140,8 @@
         PlayCallingSound(true);
       });
       soc.on("ClosePatientScreen", function (data) {
+        AudioVideosession.off();
+        AudioVideosession.disconnect();
         AudioVideosession.unpublish(publisher, handleError);
         publisher.destroy();
         AudioVideosession.unsubscribe(subscriber);

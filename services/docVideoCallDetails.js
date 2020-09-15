@@ -344,8 +344,8 @@ function disconnect() {
   if (callPerformed) {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
 
-    // AudioVideosession.off();
-    // AudioVideosession.disconnect();
+    AudioVideosession.off();
+    AudioVideosession.disconnect();
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
     AudioVideosession.unsubscribe(subscriber);
