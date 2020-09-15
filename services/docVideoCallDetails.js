@@ -208,6 +208,7 @@ function initializeSession(key, sessId, tokenId) {
     },
 
     streamCreated: function (event) {
+      PlayCallingSound(false);
       var subscriberOptions = {
         insertMode: "append",
         width: "100%",
@@ -315,8 +316,6 @@ function performCall() {
   if (mCallQueId != "0" && $("#insertedID").val() == "0") {
     UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
   }
-
-  PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
   $("#divCallNow").hide();
   $(".three-icons").show();
