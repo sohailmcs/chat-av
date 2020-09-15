@@ -281,7 +281,7 @@ function initializeSession(key, sessId, tokenId) {
       AudioVideosession.publish(publisher, handleError).on(
         "streamDestroyed",
         function (event) {
-          event.preventDefault();
+          //event.preventDefault();
         }
       );
     }
