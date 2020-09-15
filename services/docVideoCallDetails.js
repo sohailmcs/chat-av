@@ -211,10 +211,10 @@ function initializeSession(key, sessId, tokenId) {
       }
 
       event.preventDefault();
-      if (event.streams) {
-        for (var i = 0; i < event.streams.length; i++) {
+      if (event.stream) {
+        for (var i = 0; i < event.stream.length; i++) {
           AudioVideosession = null;
-          removeStream(event.streams[i]);
+          removeStream(event.stream[i]);
         }
       }
     },
@@ -249,18 +249,6 @@ function initializeSession(key, sessId, tokenId) {
   });
 
   // initialize the publisher
-  var publisherOptions = {
-    insertMode: "append",
-    width: "100%",
-    height: "100%",
-    style: { buttonDisplayMode: "off" },
-  };
-  var parentDiv = document.getElementById("publisher");
-  var publisherDiv = document.createElement("div"); // Create a div for the publisher to replace
-  publisherDiv.setAttribute("id", "opentok_publisher");
-  parentDiv.appendChild(publisherDiv);
-
-  publisher = OT.initPublisher(publisherDiv.id, publisherOptions, handleError);
 
   // Connect to the session
   AudioVideosession.connect(tokenId, function callback(error) {
@@ -268,15 +256,33 @@ function initializeSession(key, sessId, tokenId) {
       handleError(error);
     } else {
       // If the connection is successful, publish the publisher to the session
+
+      var publisherOptions = {
+        insertMode: "append",
+        width: "100%",
+        height: "100%",
+        style: { buttonDisplayMode: "off" },
+      };
+      var parentDiv = document.getElementById("publisher");
+      var publisherDiv = document.createElement("div"); // Create a div for the publisher to replace
+      publisherDiv.setAttribute("id", "opentok_publisher");
+      parentDiv.appendChild(publisherDiv);
+
+      publisher = OT.initPublisher(
+        publisherDiv.id,
+        publisherOptions,
+        handleError
+      );
+
       AudioVideosession.publish(publisher, handleError).on(
         "streamDestroyed",
         function (event) {
           event.preventDefault();
 
-          for (var i = 0; i < event.streams.length; i++) {
-            console.log(event.streams[i]);
+          for (var i = 0; i < event.stream.length; i++) {
+            console.log(event.stream[i]);
             if (
-              event.streams[i].connection.connectionId ==
+              event.stream[i].connection.connectionId ==
               AudioVideosession.connection.connectionId
             ) {
               // Our publisher just stopped streaming
