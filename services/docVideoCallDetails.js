@@ -345,11 +345,11 @@ function disconnect() {
   if (callPerformed) {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
 
-    AudioVideosession.disconnect();
-    AudioVideosession.forceDisconnect();
     publisher.destroy();
     AudioVideosession.unpublish(publisher, handleError);
     AudioVideosession.unsubscribe(subscriber);
+    AudioVideosession.disconnect();
+    AudioVideosession.forceDisconnect();
 
     $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
