@@ -177,6 +177,12 @@ function handleError(error) {
     console.log(error.message);
   }
 }
+function removeStream(stream) {
+  //var subscriberDiv = document.getElementById(stream.streamId); //
+  //subscriberDiv.parentNode.removeChild(subscriberDiv)
+  AudioVideosession.unsubscribe(stream);
+  subscriber[stream.streamId] = null;
+}
 
 function initializeSession(key, sessId, tokenId) {
   AudioVideosession = OT.initSession(key, sessId, tokenId);
@@ -204,9 +210,13 @@ function initializeSession(key, sessId, tokenId) {
         $("#log").delay(3000).fadeOut("slow");
       }
 
-      AudioVideosession = null;
-      session.unsubscribe(event.stream);
-      AudioVideosession[event.stream.streamId] = null;
+      event.preventDefault();
+      if (event.streams) {
+        for (var i = 0; i < event.streams.length; i++) {
+          AudioVideosession = null;
+          removeStream(event.streams[i]);
+        }
+      }
     },
 
     streamCreated: function (event) {
@@ -262,6 +272,17 @@ function initializeSession(key, sessId, tokenId) {
         "streamDestroyed",
         function (event) {
           event.preventDefault();
+
+          for (var i = 0; i < event.streams.length; i++) {
+            console.log(event.streams[i]);
+            if (
+              event.streams[i].connection.connectionId ==
+              AudioVideosession.connection.connectionId
+            ) {
+              // Our publisher just stopped streaming
+              event.preventDefault(); // Don't remove the Publisher from the DOM.
+            }
+          }
         }
       );
     }
