@@ -211,7 +211,7 @@ function initializeSession(key, sessId, tokenId) {
 
     streamCreated: function (event) {
       if (
-        stream.connection.connectionId ==
+        event.stream.connection.connectionId ==
         AudioVideosession.connection.connectionId
       ) {
         return;
