@@ -230,7 +230,7 @@ function initializeSession(key, sessId, tokenId) {
 
       subscriber[event.stream.streamId] = AudioVideosession.subscribe(
         event.stream,
-        "subscribers",
+        subscriberDiv.id,
         subscriberOptions,
         handleError
       );
