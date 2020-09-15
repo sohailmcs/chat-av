@@ -204,13 +204,6 @@ function initializeSession(key, sessId, tokenId) {
         $("#log").css("display", "block").text("Disconnected");
         $("#log").delay(3000).fadeOut("slow");
       }
-
-      AudioVideosession.unpublish(publisher, handleError);
-      AudioVideosession.unsubscribe(subscriber);
-      publisher.destroy();
-      AudioVideosession.disconnect();
-      AudioVideosession.forceDisconnect();
-      AudioVideosession = null;
     },
 
     streamCreated: function (event) {
@@ -352,7 +345,12 @@ function disconnect() {
   if (callPerformed) {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
 
-    // AudioVideosession.off();
+    publisher.destroy();
+    AudioVideosession.unpublish(publisher, handleError);
+    AudioVideosession.unsubscribe(subscriber);
+
+    AudioVideosession.disconnect();
+    AudioVideosession.forceDisconnect();
 
     $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
