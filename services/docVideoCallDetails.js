@@ -6,7 +6,6 @@ var isAudioEnable = false;
 var AudioVideosession;
 var publisher;
 var subscriber;
-var allsubscribers;
 
 var mCallQueId;
 var mPatientID;
@@ -219,42 +218,7 @@ function initializeSession(key, sessId, tokenId) {
         subscriberOptions,
         handleError
       );
-
-      // var subscriberDisconnectedNotification = document.createElement("div");
-      // subscriberDisconnectedNotification.className =
-      //   "subscriberDisconnectedNotification";
-      // subscriberDisconnectedNotification.innerText =
-      //   "Disconnected unexpectedly. Attempting to automatically reconnect...";
-      // subscriber.element.appendChild(subscriberDisconnectedNotification);
-
-      // subscriber.on({
-      //   disconnected: function (event) {
-      //     subscriberDisconnectedNotification.style.visibility = "visible";
-      //     $(".subscriberDisconnectedNotification").css({
-      //       "z-index": "9999",
-      //       "font-color": "#fff",
-      //     });
-      //   },
-      //   connected: function (event) {
-      //     subscriberDisconnectedNotification.style.visibility = "hidden";
-      //  },
-      // });
     },
-    // signal: function (event) {
-    //   if (event.from == session.connection) {
-    //     var fromStr = "from you";
-    //   } else {
-    //     fromStr = "from another client";
-    //   }
-    //   var timeStamp = new Date().toLocaleString();
-    //   timeStamp = timeStamp.substring(timeStamp.indexOf(",") + 2);
-    //   document.getElementById("signals").innerHTML =
-    //     timeStamp +
-    //     " - Signal received " +
-    //     fromStr +
-    //     ".<br>" +
-    //     document.getElementById("signals").innerHTML;
-    // },
   });
 
   // initialize the publisher
@@ -264,7 +228,12 @@ function initializeSession(key, sessId, tokenId) {
     height: "100%",
     style: { buttonDisplayMode: "off" },
   };
-  publisher = OT.initPublisher("publisher", publisherOptions, handleError);
+  var parentDiv = document.getElementById("audio_video");
+  var publisherDiv = document.createElement("div"); // Create a div for the publisher to replace
+  publisherDiv.setAttribute("id", "publisher");
+  parentDiv.appendChild(publisherDiv);
+
+  publisher = OT.initPublisher(publisherDiv.id, publisherOptions, handleError);
 
   // Connect to the session
   AudioVideosession.connect(tokenId, function callback(error) {
@@ -276,9 +245,6 @@ function initializeSession(key, sessId, tokenId) {
         "streamDestroyed",
         function (event) {
           event.preventDefault();
-          allsubscribers = AudioVideosession.getSubscribersForStream(
-            event.stream
-          );
         }
       );
     }
@@ -352,7 +318,7 @@ function disconnect() {
     AudioVideosession.disconnect();
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
-    //AudioVideosession.unsubscribe(subscriber);
+
     AudioVideosession.unsubscribe(allsubscribers);
     $("#subscribers").html("");
 
