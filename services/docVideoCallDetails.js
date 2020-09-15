@@ -210,6 +210,7 @@ function initializeSession(key, sessId, tokenId) {
     },
 
     streamCreated: function (event) {
+      PlayCallingSound(false);
       if (
         event.stream.connection.connectionId ==
         AudioVideosession.connection.connectionId
@@ -225,7 +226,7 @@ function initializeSession(key, sessId, tokenId) {
       };
 
       var subscriberDiv = document.createElement("div"); // Create a div for the subscriber to replace
-      subscriberDiv.setAttribute("id", stream.streamId); // Give the replacement div the id of the stream as its id.
+      subscriberDiv.setAttribute("id", event.stream.streamId); // Give the replacement div the id of the stream as its id.
       document.getElementById("subscribers").appendChild(subscriberDiv);
 
       subscriber[event.stream.streamId] = AudioVideosession.subscribe(
@@ -300,7 +301,6 @@ function performCall() {
     UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
   }
 
-  PlayCallingSound(false);
   timer = setInterval(countTimer, 1000);
   $("#divCallNow").hide();
   $(".three-icons").show();
