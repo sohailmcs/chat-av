@@ -353,10 +353,10 @@ function disconnect() {
 
     // AudioVideosession.off();
     AudioVideosession.disconnect();
-    AudioVideosession.unpublish(publisher, handleError);
-    publisher.destroy();
+    // AudioVideosession.unpublish(publisher, handleError);
+    // publisher.destroy();
 
-    AudioVideosession.unsubscribe(subscriber);
+    // AudioVideosession.unsubscribe(subscriber);
 
     $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
