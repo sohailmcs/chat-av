@@ -193,6 +193,7 @@ function initializeSession(key, sessId, tokenId) {
       $("#log").delay(3000).fadeOut("slow");
     },
     sessionDisconnected: function (event) {
+      AudioVideosession.disconnect();
       if (event.reason == "networkDisconnected") {
         $("#log")
           .css("display", "block")
@@ -345,11 +346,11 @@ function disconnect() {
   if (callPerformed) {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
 
-    publisher.destroy();
+    // AudioVideosession.off();
+    // AudioVideosession.disconnect();
     AudioVideosession.unpublish(publisher, handleError);
+    publisher.destroy();
     AudioVideosession.unsubscribe(subscriber);
-    //AudioVideosession.forceDisconnect();
-    AudioVideosession.disconnect();
 
     $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
