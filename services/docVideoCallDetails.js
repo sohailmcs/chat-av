@@ -209,6 +209,7 @@ function initializeSession(key, sessId, tokenId) {
       AudioVideosession.unsubscribe(subscriber);
       publisher.destroy();
       AudioVideosession.disconnect();
+      AudioVideosession.forceDisconnect();
       AudioVideosession = null;
     },
 
