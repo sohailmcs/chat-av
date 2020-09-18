@@ -2225,6 +2225,7 @@ input:focus ~ .bg-primary {
   border: 1px solid #0367ff;
   background-color: transparent;
   color: #0367ff !important;
+  font-size: 0.9rem;
 }
 .divqueue {
   margin-top: 25px;
@@ -8452,7 +8453,18 @@ input:focus ~ .bg-danger {
 /* Badges */
 /* ------ */
 .badge.badge-danger {
-  background-color: #ff5b5c;
+  background: #4dd0bb;
+  border: 1px solid #ffffff;
+}
+
+.header-navbar .navbar-container ul.nav li .badge.badge-up {
+  top: 6px !important;
+  right: 9px !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+.header-navbar .navbar-container ul.nav li .badge {
+  padding: 2px 3px !important;
 }
 
 .badge.badge-light-danger {

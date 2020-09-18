@@ -81,9 +81,13 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   margin-top: 3px;
 }
 
-#prescription textarea {
-  margin-bottom: 10px;
+#popupPrescriptionEdit textarea {
+  margin-bottom: 5px;
+  border: 2px solid #d9e9ff;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
+
 .call-Queue-icons p {
   font-size: 13px;
 }
@@ -347,14 +351,22 @@ h1.txtwelcome {
 }
 .txtlogin {
   font-size: 13px;
-  color: #647796;
+  color: #525a65;
   margin-bottom: 25px;
   display: block;
 }
 .LoginHeading {
-  font-size: 30px;
-  font-weight: 500px;
-  color: #102348;
+  font-size: 24px;
+  font-weight: 600px;
+  color: #00193a;
+}
+
+#txtEmailPhone {
+  background: #ffffff;
+  border: 2px solid #d9e9ff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 24px 5px;
 }
 .loginArea input[type="text"],
 .loginArea input[type="Email"],
@@ -491,7 +503,7 @@ h6.timeline-title {
 }
 
 body {
-  height: 95% !important;
+  height: 100% !important;
 }
 /* Shutter In Horizontal */
 .hvr-shutter-in-horizontal {
@@ -1130,7 +1142,7 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu,
 }
 
 .dashboard-heading-1 {
-  padding: 4% 0 0 4%;
+  padding: 4% 0 0 3%;
 }
 
 .call-queue-head {
@@ -1496,13 +1508,15 @@ button:focus {
 
 .head-weekdays {
   background-color: #deebff;
-  padding: 15px 8px;
+  padding: 15px 3px;
   text-align: center;
   color: #647796;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .head-weekdays-bold {
-  margin-left: 5px;
+  margin-left: 2px;
 }
 
 .shift-col-top {
@@ -1741,12 +1755,13 @@ tr.shown td.details-control {
   border-radius: 5%;
   vertical-align: unset;
 }
+
 .docName {
   color: #076dfa;
   padding-top: 1%;
   font-weight: bold;
   margin: 8px 0;
-  font-size: 16px;
+  font-size: 18px;
 }
 #spanTokenNo {
   background-color: #0367ff;
@@ -1959,7 +1974,7 @@ article {
   text-align: center;
   width: 65%;
   margin: 0 auto;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .icon-margin {
@@ -2050,6 +2065,7 @@ article {
 .marketing-campaigns .card-title,
 .page-heading .card-title {
   color: #076dfa;
+  font-size: 20px;
 }
 label {
   text-transform: none;

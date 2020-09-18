@@ -30,6 +30,97 @@
     data-menu="vertical-menu-modern"
     data-col="1-column"
   >
+    <!--primary theme Modal -->
+    <div
+      class="modal fade text-left"
+      id="primary"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel160"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+        role="document"
+      >
+    
+      <span aria-hidden="true">&times;</span>
+    </button>
+        <div class="modal-content">
+        
+          <div class="modal-body">
+
+            
+             
+                <div class="card-header">
+                  <div class="card-title" style="text-align: center;">
+                    <h5 class="LoginHeading">
+                      Forgot Password?
+                    </h5>
+                    <span class="txtlogin"
+                      >Enter the email or phone number you used when you
+                      joined and we will send you temporary password</span
+                    >
+                  </div>
+                </div>
+               
+                <div class="card-content">
+                  <div class="card-body">
+                    <form id="frmforgotpwd" class="mb-2">
+                      <div class="form-group mb-2">
+                        <label
+                          class="text-bold-600"
+                          for="exampleInputEmailPhone1"
+                          >Email or Phone</label
+                        >
+                        <input
+                          required
+                          type="text"
+                          class="form-control"
+                          id="txtEmailPhone"
+                          placeholder="Email or Phone"
+                        />
+                      </div>
+                      <div style="text-align: center;">
+                        <button style="padding:10px 30px"
+                          type="submit"
+                          class="btn btn-primary glow position-relative"
+                        >
+                          SEND</button
+                        ><br />
+                        <br />
+
+                        <span>Don’t receive yet?</span>
+                        <br />
+                        <br />
+
+                        <div
+                        class="form-group d-flex justify-content-between align-items-center mb-2"
+                      >
+                        <div class="text-left">
+                          <div class="ml-2 ml-md-2 mr-1">
+                            <a href="/login"><small<strong>Sign in</strong></small></a>
+                          </div>
+                        </div>
+                        <div class="mr-3">
+                          <a href="/public/login"><small<strong>Resend?</strong></small></a>
+                        </div>
+                      </div>
+
+
+                        
+                      </div>
+                    </form>
+                  </div>
+                </div>
+             
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- BEGIN: Content-->
     <div class="app-content content">
       <div class="content-overlay"></div>
@@ -58,7 +149,11 @@
                         <div>
                           <small class="mr-25" style="font-size: 15px"
                             >New User?</small
-                          ><a href="signup"><small>Create an account</small></a>
+                          ><a style="font-size: 1.2rem" href="signup"
+                            ><small>
+                              <strong><u>Create an account</u></strong></small
+                            ></a
+                          >
                         </div>
                       </div>
                     </div>
@@ -151,9 +246,11 @@
                               class="form-group d-flex flex-md-row flex-column justify-content-between"
                             >
                               <div style="padding: 0" class="col-md-9 mb-50">
-                                <a href="/forgetPassword" class="card-link"
-                                  ><small>Forgot Password?</small></a
-                                >
+
+
+                                <a href="#" data-toggle="modal" class="card-link"
+                                   data-target="#primary"> <small>Forgot Password?</small></a>
+
                               </div>
                               <div style="padding: 0" class="col-sm-4">
                                 <a href="/resetPassword" class="card-link"
@@ -179,12 +276,13 @@
     <!-- BEGIN: Vendor JS-->
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/vendors.min.js"></script>
+    <script src="/js/sweetalert2.all.min.js"></script>
 
+    <script src="/js/sweet-alerts.js"></script>
     <!-- BEGIN: Services calling JS-->
     <script src="/services/jquery.validate.min.js"></script>
     <!-- <script src="/services/LoginSignUp.js"></script> -->
     <script src="/services/loadingoverlay.min.js"></script>
-    <!-- END: Page JS-->
-  </body>
+    <script src="/js/Services/ForgotPassword.js"></script>
   <!-- END: Body-->
 </html>

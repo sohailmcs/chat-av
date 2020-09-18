@@ -220,10 +220,6 @@ h6 {
   border: 1px solid #fff;
 }
 
-.nav-menu .get-started a:hover {
-  background: #50d5b8;
-  color: #fff;
-}
 .nav-menu .lnkLogin a:hover {
   background: #076dfa;
   color: #fff;
@@ -545,7 +541,7 @@ h6 {
 
 .btnstartNow:hover {
   text-decoration: none;
-  background: #4fd4b9;
+
   color: #fff;
 }
 

@@ -30,8 +30,8 @@ $(function () {
       .then((data) => {
         if (data > 0) {
           Swal.fire({
-            type: "error",
-            title: "Oops...",
+            type: "info",
+            title: "SORRY!",
             text: "Your's today call already pending",
             confirmButtonClass: "btn btn-primary",
             buttonsStyling: false,

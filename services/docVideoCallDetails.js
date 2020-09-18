@@ -29,23 +29,6 @@ var options = {
   second: "2-digit",
 };
 
-// function refreshParent() {
-//   if (window.opener != null && !window.opener.closed) {
-//     // && area == "Patient") {
-//     window.opener.location.reload();
-//   }
-// }
-// //call the refresh page on closing the window
-// window.onunload = refreshParent;
-
-// $(window).bind("beforeunload", function () {
-//   //==========if user has on called then called disconnect=====
-//   if (callPerformed) disconnect();
-//   // soc.emit("ClosePatientScreen", {
-//   //   pName: mPname,
-//   // });
-// });
-
 $(function () {
   $(document).on("click", "button.close", function (event) {
     event.preventDefault();
@@ -62,10 +45,10 @@ $(function () {
   $content = $(".min");
 
   $(".btnDisconnect").click(function () {
-    if (callPerformed) disconnect();
+    disconnect();
   });
 
-  $(".modalMinimize").click(function () {
+  $(".modalMinimize").on("click", function () {
     $("body").removeClass("modal-open");
     $modalCon = $(this).closest(".mymodal").attr("id");
     $apnData = $(this).closest(".mymodal");
@@ -89,16 +72,16 @@ $(function () {
     }
   });
 
-  $("button[data-dismiss='modal']").click(function () {
+  $("button[data-dismiss='modal']").on("click", function () {
     $(this).closest(".mymodal").removeClass("min");
 
     // $(".container").removeClass($apnData);
   });
-  $(".btnSave").click(function () {
+  $(".btnSave").on("click", function () {
     updateDoctorNotes(mCallLogId, "");
   });
 
-  $(".btnSaveNSend").click(function () {
+  $(".btnSaveNSend").on("click", function () {
     updatePrescription(
       mCallLogId,
       $("#patientAge").val(),
@@ -133,7 +116,7 @@ $(function () {
   });
 
   //===========start functionality calling=================
-  $("#btnCallNow").click(function () {
+  $("#btnCallNow").on("click", function () {
     checkOnlineStatusandCall(mPatientID, "Patient")
       .then((data) => {
         if (data) {
@@ -204,10 +187,29 @@ function initializeSession(key, sessId, tokenId) {
         $("#log").css("display", "block").text("Disconnected");
         $("#log").delay(3000).fadeOut("slow");
       }
-    },
 
-    streamCreated: function (event) {
+      disconnect();
+    },
+    connectionCreated: function (event) {
+      if (
+        event.connection.connectionId !=
+        AudioVideosession.connection.connectionId
+      ) {
+        PlayCallingSound(false);
+      }
+    },
+    connectionDestroyed: function connectionDestroyedHandler(event) {
       PlayCallingSound(false);
+    },
+    streamCreated: function (event) {
+      callPerformed = true;
+      if (mCallQueId != "0" && $("#insertedID").val() == "0") {
+        UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
+      }
+      timer = setInterval(countTimer, 1000);
+      $("#divCallNow").hide();
+      $(".three-icons").show();
+
       var subscriberOptions = {
         insertMode: "append",
         width: "100%",
@@ -220,42 +222,7 @@ function initializeSession(key, sessId, tokenId) {
         subscriberOptions,
         handleError
       );
-
-      // var subscriberDisconnectedNotification = document.createElement("div");
-      // subscriberDisconnectedNotification.className =
-      //   "subscriberDisconnectedNotification";
-      // subscriberDisconnectedNotification.innerText =
-      //   "Disconnected unexpectedly. Attempting to automatically reconnect...";
-      // subscriber.element.appendChild(subscriberDisconnectedNotification);
-
-      // subscriber.on({
-      //   disconnected: function (event) {
-      //     subscriberDisconnectedNotification.style.visibility = "visible";
-      //     $(".subscriberDisconnectedNotification").css({
-      //       "z-index": "9999",
-      //       "font-color": "#fff",
-      //     });
-      //   },
-      //   connected: function (event) {
-      //     subscriberDisconnectedNotification.style.visibility = "hidden";
-      //  },
-      // });
     },
-    // signal: function (event) {
-    //   if (event.from == session.connection) {
-    //     var fromStr = "from you";
-    //   } else {
-    //     fromStr = "from another client";
-    //   }
-    //   var timeStamp = new Date().toLocaleString();
-    //   timeStamp = timeStamp.substring(timeStamp.indexOf(",") + 2);
-    //   document.getElementById("signals").innerHTML =
-    //     timeStamp +
-    //     " - Signal received " +
-    //     fromStr +
-    //     ".<br>" +
-    //     document.getElementById("signals").innerHTML;
-    // },
   });
 
   // initialize the publisher
@@ -309,16 +276,7 @@ function enabldDisableMic() {
 
 //======================= end managing Audio/Video communication=======================
 
-function performCall() {
-  callPerformed = true;
-
-  if (mCallQueId != "0" && $("#insertedID").val() == "0") {
-    UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
-  }
-  timer = setInterval(countTimer, 1000);
-  $("#divCallNow").hide();
-  $(".three-icons").show();
-}
+function performCall() {}
 
 //============calculate calling time==============
 //var timerVar = setInterval(countTimer, 1000);
@@ -341,20 +299,24 @@ function countTimer() {
 function disconnect() {
   var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
   clearInterval(timer);
-  if (callPerformed) {
-    UpdateCallLogEndtime(newCalllogId, onCallduration);
+  AudioVideosession.off();
+  AudioVideosession.disconnect();
+  AudioVideosession.unpublish(publisher, handleError);
+  publisher.destroy();
 
-    AudioVideosession.off();
-    AudioVideosession.disconnect();
-    AudioVideosession.unpublish(publisher, handleError);
-    publisher.destroy();
+  $(".three-icons, #timer").css("display", "none");
+  $("#divCallNow").css("display", "block");
+  $("#callImg").css("display", "block");
+  PlayCallingSound(false);
+
+  // ========if call is connected then on disconnect update time log and close patient popup========
+  if (callPerformed && mArea == "Doctor") {
+    soc.emit("ClosePatientScreen", {
+      pName: mPname,
+    });
     AudioVideosession.unsubscribe(subscriber);
-
-    $(".three-icons, #timer").css("display", "none");
-    $("#divCallNow").css("display", "block");
-    $("#callImg").css("display", "block");
-    PlayCallingSound(false);
-
+    UpdateCallLogEndtime(newCalllogId, onCallduration);
+  } else {
     soc.emit("ClosePatientScreen", {
       pName: mPname,
     });

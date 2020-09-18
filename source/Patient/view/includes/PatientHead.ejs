@@ -14,6 +14,7 @@
       href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
       rel="stylesheet"
     />
+    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
     <script src="/js/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/services/mustache.js"></script>
@@ -24,7 +25,14 @@
     <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
     <title><%= pageTitle %></title>
     <!-- common CSS -->
-
+    <style>
+      .three-icons {
+        bottom: 3px !important;
+      }
+      html {
+        height: 100%;
+      }
+    </style>
     <script type="text/javascript">
       var apiKey;
       var sessionId;
@@ -47,6 +55,14 @@
           userId: userID,
           userType: userType,
         });
+        $(".btnDisconnect").click(function () {
+          $("#windowComm #callImg").remove();
+          $("#windowComm").modal("hide");
+          // AudioVideosession.off();
+          // AudioVideosession.disconnect();
+          // AudioVideosession.unsubscribe(subscriber);
+          disconnect();
+        });
       }); //=================end of document.ready function=======
       function getcookie(cookiename) {
         var cookiestring = document.cookie;
@@ -60,6 +76,7 @@
       }
       function deleteAllCookies() {
         changePatientOlineStaus(userID, "Offline", uName);
+
         var cookies = document.cookie.split(";");
         for (var i = 0; i < cookies.length; i++) {
           var cookie = cookies[i];
@@ -67,7 +84,7 @@
           var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
           document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
         }
-        window.location.href = "/login";
+        window.location.href = "/logout";
       }
       function changePatientOlineStaus(userId, status, uName) {
         //=============update status in database=============
@@ -82,6 +99,7 @@
             status: status,
             uName: userName,
           });
+
           var useStatus = status == "Online" ? true : false;
           var url =
             baseURL +
@@ -140,17 +158,17 @@
         PlayCallingSound(true);
       });
       soc.on("ClosePatientScreen", function (data) {
-        AudioVideosession.off();
-        AudioVideosession.disconnect();
-        AudioVideosession.unpublish(publisher, handleError);
-        publisher.destroy();
-        AudioVideosession.unsubscribe(subscriber);
-        $("#windowComm #callImg").remove();
-        $("#windowComm").modal("hide");
-
-        // disconnect();
+        if (AudioVideosession != null) {
+          AudioVideosession.off();
+          AudioVideosession.disconnect();
+          AudioVideosession.unsubscribe(subscriber);
+          $("#windowComm #callImg").remove();
+          $("#windowComm").modal("hide");
+        }
+        $("#notificationmodal, #incommingCall").modal("hide");
       });
       soc.on("DoctorPatientScreenClosed", function (data) {
+        alert("exist");
         //alert('doctor close its screen 8 ' +data.area + " On Req "+ data.onReq);
         if (data.area == "Patient" && data.onReq == false) {
           Swal.fire({

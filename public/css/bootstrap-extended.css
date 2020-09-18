@@ -2926,7 +2926,7 @@ _:-ms-lang(x),
 }
 
 .modal .modal-content i {
-  top: 0;
+  top: 3px;
 }
 
 .modal .modal-content .modal-header {

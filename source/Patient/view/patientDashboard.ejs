@@ -53,10 +53,10 @@
           <span class="txtDocOffLinneStatus">&nbsp;(Not Available Today)</span>
           {{/OnlineStatus}}
         </h5>
-        <span class="txtspecialization"><b> Specialization</b> :  {{Specialization}}</span>
+        <span class="txtspecialization"><span style="font-weight:500"> Specialization :</span>  {{Specialization}}</span>
         
          <div class="modal-primary mr-1   ">                
-                <button type="button" docID="{{DoctorId}}" class="pt-dash-button btndoctorProfile btn btn-outline-primary   btn-sm">
+                <button  style="font-size:0.8rem"type="button" docID="{{DoctorId}}" class="pt-dash-button btndoctorProfile btn btn-outline-primary   btn-sm">
                   <i class="bx bxs-show"></i>
                   <b>View Doctor Profile</b>
                 </button>
@@ -69,7 +69,7 @@
               <!-- VIEW DOCTOR PROFILE START -->             
               <div style="text-align:left"  class="call-Queue-icons">
                 <a href="/patient/appointment?DoctorId={{DoctorId}}&DocName={{FullName}}"  >
-                <button type="button" class="btn btn-outline-primary  mr-1  btn-sm" style="width:205.953px">
+                <button style="font-size:0.8rem" type="button" class="btn btn-outline-primary  mr-1  btn-sm" style="width:205.953px">
                   <i class="bx bx-calendar"></i>
                   <b>Request an Appointment</b>
                 </button>
@@ -80,9 +80,9 @@
               {{#OnlineStatus}}
               <a >                              
                 <!-- Button trigger for request a call modal -->                              
-                <button type="button" fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}"
+                <button  type="button" fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}"
                  class=" btnSencCallReq drcall_{{DoctorId}} btn btn-outline-primary  mr-1  btn-sm" 
-                 style="width:205.953px; margin-top: 3%;">
+                 style="font-size:0.8rem;width:205.953px; margin-top: 3%;">
                   <i class="bx bx-phone-call"></i>
                   <b>Join Sameday Waiting list</b>
                 </button>                            
@@ -93,7 +93,7 @@
                 <!-- Button trigger for request a call modal -->  
                 <button type="button" disabled="disabled" fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}" 
                  class="btnSencCallReq drcall_{{DoctorId}} btn btn-outline-primary mr-1  btn-sm" 
-                style="width:205.953px; margin-top: 3%;">
+                style="font-size?0.8rem;width:205.953px; margin-top: 3%;">
                   <i class="bx bx-phone-call"></i>
                   <b>Join Sameday Waiting list</b>
                 </button>                            
@@ -116,12 +116,15 @@
       class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
       role="document"
     >
+   
       <div class="modal-content">
+       
         <div class="modal-header bg-primary " style="text-align:center">
           <h4>Doctor Profile</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" style="top:5px" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>         
+          </button> 
+         
          
         </div>
         <div class="modal-body">
@@ -144,8 +147,9 @@
           <h5 class="docName">
              {{FullName}}
           </h5>
-            
+           <span style="font-size:16px"> 
           <b>Specialization</b>: {{DoctorSpecialization}}
+           </span>
         </div>
         </div>
 
@@ -157,7 +161,7 @@
             <div class="row" style="background-color:#F3F8FF;">
                <br/>
                <div class="col-sm-5">              
-               <span class="editprofile-icons">Designation :</span>
+               <span class="editprofile-icons">Designation </span>
                </div>
                <div class="col-sm-5 txtnormal">              
               {{Gender}}
@@ -168,7 +172,7 @@
             <div class="row">
                <br/>
                <div class="col-sm-5">             
-               <span class="editprofile-icons">Experience : </span>
+               <span class="editprofile-icons">Experience  </span>
                </div>
                <div class="col-sm-7 txtnormal">             
                 {{#DoctorExperianceModel}} {{HospitalName}}
@@ -182,7 +186,7 @@
              <div class="row" style="background-color:#F3F8FF;">
                 <br/>
                 <div class="col-sm-5 ">               
-                <span class="editprofile-icons">Proficiency :</span>
+                <span class="editprofile-icons">Proficiency </span>
                 </div>
                 <div class="col-sm-7 txtnormal">
                 {{#DoctorEducationsModel}}
@@ -194,7 +198,7 @@
      
            <div class="row">             
               <div class="col-sm-5">             
-              <span class="editprofile-icons">Career :</span>
+              <span class="editprofile-icons">Career </span>
              
               </div>
               <div class="col-sm-7 txtnormal">             

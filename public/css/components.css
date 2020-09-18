@@ -39,7 +39,6 @@
 /* ----------- */
 html {
   font-size: 15px;
-  height: 100%;
   letter-spacing: 0.01rem;
 }
 
@@ -3746,7 +3745,7 @@ body.navbar-static .navbar-container .search-input.open {
 /* Timeline */
 /* ---------------- */
 .widget-timeline {
-  padding-left: 10px;
+  padding-left: 4px;
 }
 .widget-timeline li {
   padding: 0.6rem 0;
@@ -3793,11 +3792,11 @@ body.navbar-static .navbar-container .search-input.open {
 }
 
 h6.patientName {
-  font-size: 14px;
+  font-size: 1rem;
   margin-bottom: 0.35rem;
   color: #076dfa;
   line-height: 12px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .pImage {
   position: relative;

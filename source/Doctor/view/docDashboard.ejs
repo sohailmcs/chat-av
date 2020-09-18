@@ -70,82 +70,99 @@
 
 <!--start of EMR detail-->
 <div class="modal fade text-left" id="popupHistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-    aria-hidden="true">
-    
+    aria-hidden="true">    
+</div>
+<!--end of EMR Details-->
+
+<!--Start of Prescription from CallLog-->
+
+<div class="modal fade text-left" id="popupPrescriptionEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+    aria-hidden="true">    
 </div>
 
-
-<!-- start modal on prescription  -->
-<div class="modal-primary mr-1 mb-1 d-inline-block">
-    <!-- Button trigger for primary themes modal -->
-
-    <div class="modal fade text-left" id="prescription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-primary">
-                    <h5 class="modal-title black" id="myModalLabel160">
-                       Patient History
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                </div>
-                <div class="modal-body">
-                    <div class="card-content side-bar">
-                        <div class="card-body">
-                            <div class="media">
-                                <a class="pr-1" href="#">
-                                    <img id="imgPatient" src="" alt="image" style="
-                                        height: 100px;
-                                        width: 100px;
-                                        border-radius: 50%;" />
-                                </a>
-                                <div>
-                                    <h5 class="media-heading">
-                                        <span id="patientName"></span>
-                                    </h5>
-                                    <div id="details">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <br />
-                            <input type="hidden" id="hdncallLogId" value="">
-
-                            <textarea  class="form-control" id="txtExamEdit" rows="3"
-                                placeholder="Write History and Exams"></textarea>
-
-
-                            <textarea class="form-control" id="txtAllergiesEdit" rows="3"
-                                placeholder="Write about Allergies"></textarea>
-
-
-                            <textarea class="form-control" id="txtDiagnosisEdit" rows="3"
-                                placeholder="Write Diagnosis"></textarea>
-
-                            <textarea class="form-control" id="txtRxEdit" 
-                            rows="3" placeholder="Write RX "></textarea>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button id="btnSaveUpdateEMR" type="button" class="btn btn-light-primary">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Save</span>
-                    </button>
-                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Close</span>
-                    </button>
-                </div>
-            </div>
+<script  id="PrescriptionEdit-template" type="text/html">
+    <div
+    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+    role="document"
+  >
+    <div class="modal-content">
+      <div class="modal-header bg-primary " style="text-align:center">
+        <h4><strong>Patient History</strong></h4>
+        <button type="button" class="close"   aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>         
+       
+      </div>
+      <div class="modal-body">
+     <div class="row">
+          <div class="col-lg-3">
+            {{#PatientPhoto}}
+            <img
+            src="{{PatientPhoto}}"
+            alt="image"
+            style="
+            height: 90px;
+            width: 90px;
+            border-radius: 10px;
+            margin-bottom:10px;"
+             />
+           {{/PatientPhoto}}
+           {{^PatientPhoto}}
+           <img src="/assets/images/patient.png" alt="image" style="
+           height: 90px;
+           width: 90px;
+           border-radius: 10px;
+           margin-bottom:10px;" /> 
+           {{/PatientPhoto}}          
         </div>
+      <div class="col-lg-4">
+        <br/>
+        <h5 class="docName">
+          {{PatientName}}
+        </h5>          
+        <b>Age</b>: {{Age}} years old
+      </div>
+      <div  style="margin-top:10px" class="col-lg-5">
+        <br/>        
+        <b> Visit Date : </b> {{AddedDate | Shortdate}} <br>                  
+        <b>Phone </b>: {{PatientPhone}}
+      </div>
+     </div>
+    
+     <div class="row">
+        <div class="col-sm-12">        
+        <span>History and Exams</span>
+        <textarea  class="form-control" id="txtExamEdit" rows="2"
+            placeholder="Write History and Exams">{{HistoryAndExam}}</textarea>
+        </div>
+        <div class="col-sm-12">
+            <span>Allergies</span>
+        <textarea class="form-control"  id="txtAllergiesEdit" rows="2"
+            placeholder="Write about Allergies">{{Allergies}}</textarea>
+        </div>
+        <div class="col-sm-12">
+        <span>Diagnosis</span>
+        <textarea class="form-control"  id="txtDiagnosisEdit" rows="2"
+            placeholder="Write Diagnosis">{{Diagnosis}}</textarea>
+        </div>
+        <div class="col-sm-12">
+        <span>RX</span>
+        <textarea class="form-control"  id="txtRxEdit" 
+        rows="2" placeholder="Write RX ">{{Diagnosis}}</textarea>
+        </div>
+     </div>
+     <div style="text-align:left;">
+        <button style="padding:8px 30px;" cLogId ="{{CallLogID}}" id="btnSaveUpdateEMR" type="button" class="btn btn-primary">
+            <i class="bx bx-check d-block d-sm-none"></i>
+            <span class="d-none d-sm-block">SAVE</span>
+        </button>
+       
     </div>
-</div>
-<!-- start end on prescription  -->
+    </div>
+  </div>   
+  </div>
+  </script>
+
 <!-- Scheduled Tempates-->
 <script id="Scheduled-template" type="text/html">
     {{#PatientScheduleded}}
@@ -162,7 +179,7 @@
     {{^PatientPhoto}}
     <img src="/assets/images/maledoc.png" alt="image" style="width: 25px;height: 25px; float:left;"/>
     {{/PatientPhoto}} -->
-    <span class="onlinStatus status_{{PatientID}}" style="margin-right: 10px; !important" ><b>
+    <span class="onlinStatus status_{{PatientID}}" style="margin-right: 5px; !important" ><b>
     {{#OnlineStatus}}
     <span class="bullet bullet-success bullet-sm" ></span>
     {{/OnlineStatus}}
@@ -193,12 +210,12 @@
     <strong>Time: {{AppointmentStartTime}}-{{AppointmentEndTime}}</strong>
     </p>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3" style="padding: 0 10px;">
     <button type="button" docID="{{DoctorID}}" PName="{{patientName}}"
      patientId="{{PatientID}}" scheId = "{{scheduledID}}"
       class="btn btn-outline-primary btncheckIn_sch mb-1 btnAcceptSch checkin_{{PatientID}}">
     <i class="bx bx-purchase-tag"></i>
-    <b>Check in</b>
+    <b>CHECK IN</b>
     </button>
     </div>
     </div><!--end of row-->
@@ -235,7 +252,7 @@
     {{^PatientPhoto}}
     <img src="/assets/images/maledoc.png" alt="image" style="width: 25px;height: 25px; float:left;"/>
     {{/PatientPhoto}} -->
-    <span class="onlinStatus status_{{PatientID}}" style="margin-right: 10px; !important" ><b>
+    <span class="onlinStatus status_{{PatientID}}" style="margin-right: 5px; !important" ><b>
     {{#OnlineStatus}}
     <span class="bullet bullet-success bullet-sm" ></span>
     {{/OnlineStatus}}
@@ -272,12 +289,12 @@
     <strong>Time:</strong> {{CallRequestDateTime | time}}
     </p>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4" style="padding: 0 6px;">
     <button type="button" type="button" docID="{{DoctorID}}"
     patientId="{{PatientID}}" PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}"
     class="btn btn-outline-primary btncheckIn mb-1 btnAcceptCall checkin_{{PatientID}}">
     <i class="bx bx-purchase-tag"></i>
-    <b>Check in</b>
+    <b>CHECK IN</b>
     </button>
     <button type="button" docID="{{DoctorID}}" PName="{{patientName}}"
     patientId="{{PatientID}}" callreqID="{{CallrequestID}}"
@@ -619,8 +636,9 @@
 <!-- BEGIN: JS-->
 <!--     -->
 
-<script src="/js/KendoUi/kendo.all.min.js"></script>
+
 <script src="/js/vendors.js"></script>
+
 <script src="/js/sweetalert2.all.min.js"></script>
 <script src="/js/polyfill.min.js"></script>
 <script src="/js/sweet-alerts.js"></script>

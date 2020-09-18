@@ -9,10 +9,27 @@ var uName = $(".user-name").text();
 
 $(function () {
   $("#txtMedication").kendoEditor({
-    resizable: {
-      content: false,
-      toolbar: true,
-    },
+    tools: [
+      "bold",
+      "italic",
+      "underline",
+      "strikethrough",
+
+      "justifyLeft",
+      "justifyCenter",
+      "justifyRight",
+      "justifyFull",
+      "insertUnorderedList",
+      "insertOrderedList",
+      "formatBlock",
+      "viewHtml",
+
+      "print",
+    ],
+    // resizable: {
+    //   content: false,
+    //   toolbar: false,
+    // },
   });
 
   getDashBoardAllScheduled(false);
@@ -39,7 +56,7 @@ $(function () {
   });
   //=================open dialog to update patient EMR ==============
   $(document).on("click", "#btnSaveUpdateEMR", function () {
-    var callLogId = $("#hdncallLogId").val();
+    var callLogId = $(this).attr("cLogId");
     updatePatientEMR(callLogId, "");
   });
   //===============Accept call ==============
@@ -390,28 +407,35 @@ function getCallLogDetils(callLogId, details) {
         $("#popupHistory").html(Mustache.to_html(ViewHistoryTemplate, data));
         $("#popupHistory").modal("show");
       } else {
-        //=========open dialog for update==========
         $("#hdncallLogId").val(callLogId);
-        $("#imgPatient").attr(
-          "src",
-          data.PatientPhoto == null
-            ? "/assets/images/patient.png"
-            : data.PatientPhoto
+        var ViewHistoryTemplate = $("#PrescriptionEdit-template").html();
+        $("#popupPrescriptionEdit").html(
+          Mustache.to_html(ViewHistoryTemplate, data)
         );
-        $("#patientName").text(data.PatientName);
-        $("#details").html(
-          "<p><b>Visit Date :</b>" +
-            data.AddedDate +
-            "<br><b>Contact Number :</b>" +
-            data.PatientPhone +
-            "</P>"
-        );
-        $("#txtExamEdit").val(data.HistoryAndExam);
-        $("#txtAllergiesEdit").val(data.Allergies);
-        $("#txtDiagnosisEdit").val(data.Diagnosis);
-        $("#txtRxEdit").val(data.PatientRX);
+        $("#popupPrescriptionEdit").modal("show");
 
-        $("#prescription").modal("show");
+        //=========open dialog for update==========
+
+        // $("#imgPatient").attr(
+        //   "src",
+        //   data.PatientPhoto == null
+        //     ? "/assets/images/patient.png"
+        //     : data.PatientPhoto
+        // );
+        // $("#patientName").text(data.PatientName);
+        // $("#details").html(
+        //   "<p><b>Visit Date :</b>" +
+        //     data.AddedDate +
+        //     "<br><b>Contact Number :</b>" +
+        //     data.PatientPhone +
+        //     "</P>"
+        // );
+        // $("#txtExamEdit").val(data.HistoryAndExam);
+        // $("#txtAllergiesEdit").val(data.Allergies);
+        // $("#txtDiagnosisEdit").val(data.Diagnosis);
+        // $("#txtRxEdit").val(data.PatientRX);
+
+        // $("#prescription").modal("show");
       }
     },
     error: function (xhr, textStatus, err) {

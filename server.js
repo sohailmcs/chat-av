@@ -16,15 +16,15 @@ app.set("views", "views");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(
-  session({
-    secret: "ssshhhhh",
-    // create new redis store.
-    //store: new redisStore({ host: 'localhost', port: 1338, client: client,ttl : 260}),
-    saveUninitialized: false,
-    resave: false,
-  })
-);
+// app.use(
+//   session({
+//     secret: "ssshhhhh",
+//     // create new redis store.
+//     //store: new redisStore({ host: 'localhost', port: 1338, client: client,ttl : 260}),
+//     saveUninitialized: false,
+//     resave: false,
+//   })
+// );
 
 var webServer = http.createServer(app);
 // Start Socket.io so it attaches itself to Express server
@@ -73,7 +73,6 @@ socketServer.sockets.on("connection", function (socket) {
     }
   });
   socket.on("showStream", function (data) {
-    console.log(JSON.stringify(data));
     if (clients[data.username]) {
       socketServer.sockets.connected[clients[data.username].socket].emit(
         "callAccpetedandShowStream",
@@ -156,7 +155,7 @@ socketServer.sockets.on("connection", function (socket) {
             uName: name,
           });
         } else if (clients[name].userType == "Patient")
-          //============send information for Patient offline to all online patients
+          //============send information for Patient offline to all online doctors
           socket.broadcast.emit("UpdatePatientOnlineStatus", {
             uID: clients[name].userId,
             status: "Offline",
