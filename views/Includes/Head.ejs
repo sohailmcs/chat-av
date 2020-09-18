@@ -67,9 +67,12 @@
     $(document).ready(function () {
       //=========save id for video/Audio chat=============
       $(".goog-te-menu-value").children().last().remove();
-      uName = getcookie("kindahUserName");
-      userID = getcookie("kindahUserId");
-      var userType = getcookie("kindahUserType");
+      uName = $(".user-name").text();
+      userID = $(".user-name").attr("userinfo");
+      var userType = "Doctor";
+      // uName = getcookie("kindahUserName");
+      // userID = getcookie("kindahUserId");
+      // var userType = getcookie("kindahUserType");
       soc.emit("add-user", {
         username: uName,
         userId: userID,
@@ -221,6 +224,38 @@
       }
 
       changeDoctorOlineStaus(userID, x.innerHTML, uName);
+    }
+
+    function functionCreateMenu(roleId) {
+      var url =
+        baseURL +
+        "User/GetAssignedMenu?roleId=" +
+        UserID +
+        "&Onlinestatus=" +
+        useStatus +
+        "&userType=" +
+        userType;
+
+      $.ajax({
+        url: url,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        type: "GET",
+        datatype: "application/json",
+        contentType: "application/json; charset=utf-8",
+        data: "",
+        beforeSend: function () {},
+        success: function (data, textStatus, xhr) {
+          resolve(data);
+        },
+        error: function (xhr, textStatus, err) {
+          reject(err);
+        },
+        complete: function (data) {
+          // Hide Loading
+        },
+      });
     }
   </script>
 

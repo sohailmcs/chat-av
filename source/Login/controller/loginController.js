@@ -14,6 +14,7 @@ class loginController {
     if (!req.session.userId) {
       res.render(appRoot + "/source/Login/view/login", {
         PageTitle: "Login",
+        PageError: "",
       });
     } else {
       if (req.session.userType == "Patient") {
@@ -25,7 +26,7 @@ class loginController {
   }
 
   async postLogin(req, res, next) {
-    console.log("action fire " + req.body.email);
+   // console.log("action fire " + req.body.email);
 
     var url = config.serviceURL + "User/SignIn";
     //console.log('url '+url);
@@ -43,12 +44,20 @@ class loginController {
       },
     };
 
-    request.post(options, (err, resp, data) => {
+    request.post(options, (err, resp, data) => {   
+      //console.log('fire method '+JSON.stringify(data));      
       if (err) {
-        return console.log(err);
+        //console.log('err '+err);
+       // return console.log(err);
+          res.render(appRoot + "/source/Login/view/login", {
+            PageTitle: "Login",
+            PageError: err,
+          });        
+        //return console.log(err);
+
       } else {
-        console.log(`Status: ${resp.statusCode}`);
-        console.log(data);
+        //console.log(`Status: ${resp.statusCode}`);
+        //console.log(data);
         //   setCookie("kindahUserType", data.UserType, 1);
         // setCookie("kindahUserId", data.UserId, 1);
         // setCookie("kindahUserName", data.FullName, 1);
@@ -56,7 +65,27 @@ class loginController {
         req.session.userId = data.UserId;
         req.session.userName = data.FullName;
 
-        if (data.UserType == "Patient") {
+        // console.log('resp '+JSON.stringify(resp));
+        // console.log('data '+JSON.stringify(data));
+        // console.log('resp.status '+ resp[0]['status']);
+
+        if (data == "Wrong userName or Password") {
+          //console.log('error count');
+          // res.send('User already exist but unverified');
+          res.render(appRoot + "/source/Login/view/login", {
+            PageTitle: "Login",
+            PageError: data,
+          });
+        }
+        else if (data.Message == "User doest not exist") {
+          //console.log('error count');
+          // res.send('User already exist but unverified');
+          res.render(appRoot + "/source/Login/view/login", {
+            PageTitle: "Login",
+            PageError: data.Message,
+          });
+        }
+         else if (data.UserType == "Patient") {
           //window.location.href = "/patient/dashboard";
           //res.redirect('/patient/dashboard');
           // res.render(appRoot+'/source/Patient/view/patientDashboard', {
@@ -85,6 +114,7 @@ class loginController {
             // res.send('User already exist but unverified');
             res.render(appRoot + "/source/Login/view/login", {
               PageTitle: "Login",
+              PageError: data.statusText,
             });
           }
 

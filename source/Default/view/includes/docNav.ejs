@@ -28,6 +28,10 @@
 
           <ul class="nav navbar-nav float-right">
             <li class="dropdown dropdown-language nav-item">
+              <div class="dropdown-menu" aria-labelledby="dropdown-flag">
+                <a class="dropdown-item" href="#" data-language="en">English</a
+                ><a class="dropdown-item" href="#" data-language="fr"> AR</a>
+              </div>
               <a
                 class="dropdown-toggle nav-link"
                 id="dropdown-flag"
@@ -35,39 +39,44 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-                ><i class="flag-icon flag-icon-us"></i
-                ><span class="selected-language">English</span></a
               >
-              <div class="dropdown-menu" aria-labelledby="dropdown-flag">
-                <a class="dropdown-item" href="#" data-language="en"
-                  ><i class="flag-icon flag-icon-us mr-50"></i> English</a
-                ><a class="dropdown-item" href="#" data-language="fr"
-                  ><i class="flag-icon flag-icon-sa mr-50"></i> Arabic</a
-                >
-              </div>
+                <span class="selected-language">ENG</span>
+                <i class="bx bx-caret-down"></i>
+              </a>
             </li>
-
-            <!-- FULL SCREEN START -->
-            <li class="nav-item d-none d-lg-block">
-              <a class="nav-link nav-link-expand"
-                ><i class="ficon bx bx-fullscreen"></i
-              ></a>
-            </li>
-            <!-- FULL SCREEN END -->
-
-            <!-- CORNER PROFILE  START-->
-            <li class="dropdown dropdown-user nav-item">
+            <li class="dropdown dropdown-notification nav-item show">
               <a
+                class="nav-link nav-link-label"
+                href="#"
+                data-toggle="dropdown"
+                aria-expanded="true"
+                ><i class="ficon bx bx-bell bx-flip-horizontal"></i
+                ><span class="badge badge-pill badge-danger badge-up"
+                  >&nbsp;</span
+                ></a
+              >
+            </li>
+            <li class="dropdown dropdown-notification nav-item show">
+              <a
+                style="padding: 10px 0 0 10px"
                 class="dropdown-toggle nav-link dropdown-user-link"
                 href="#"
                 data-toggle="dropdown"
               >
                 <div class="user-nav d-sm-flex d-none">
                   <span UserInfo="<%= userId %>" class="user-name"
-                    ><%= UserName %></span
-                  >
-                  <span class="user-status text-muted">Available</span>
+                    ><%= userName %></span
+                  ><span class="user-status text-muted">Available</span>
                 </div>
+              </a>
+            </li>
+            <li class="dropdown dropdown-user nav-item">
+              <a
+                style="padding-left: 3px"
+                class="dropdown-toggle nav-link dropdown-user-link"
+                href="#"
+                data-toggle="dropdown"
+              >
                 <span
                   ><img
                     class="round"
@@ -78,17 +87,18 @@
                 /></span>
               </a>
               <div class="dropdown-menu dropdown-menu-right pb-0">
-                <a class="dropdown-item" href="/docViewProfile"
-                  ><i class="bx bx-user mr-50"></i> View Profile</a
+                <a class="dropdown-item" href="#"
+                  ><i class="bx bx-user mr-50"></i> Edit Profile</a
                 >
                 <div class="dropdown-divider mb-0"></div>
                 <!-- <button class="dropdown-item" onclick="deleteAllCookies()">
                   <i class="bx bx-power-off mr-50"></i> Logout
                 </button> -->
-                <a class="dropdown-item" href="/logout"> <i class="bx bx-power-off mr-50"></i>Logout</a>
+                <a class="dropdown-item" onclick="deleteAllCookies()">
+                  <i class="bx bx-power-off mr-50"></i>Logout</a
+                >
               </div>
             </li>
-            <!-- CORNER PROFILE  END-->
           </ul>
         </div>
       </div>
