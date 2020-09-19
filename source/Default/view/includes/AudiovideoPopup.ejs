@@ -21,31 +21,31 @@
     </div>
     <div class="modal-body">
    <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-2">
           {{#PatientPhoto}}
           <img
           src="{{PatientPhoto}}"
           alt="image"
           style="
-          height: 100px;
-          width: 100px;
-          border-radius: 50%;" />
+          height: 80px;
+          width: 80px;
+          border-radius: 10px;" />
          {{/PatientPhoto}}
          {{^PatientPhoto}}
          <img src="/assets/images/patient.png" alt="image" style="
-         height: 100px;
-         width: 100px;
-         border-radius: 50%;" /> 
+         height: 80px;
+          width: 80px;
+          border-radius: 10px;" /> 
          {{/PatientPhoto}}          
       </div>
-    <div class="col-lg-4">
+    <div class="col-lg-5">
       <br/>
-      <h5 class="docName">
+      <h5 class="docName" style="margin:0;">
         {{PatientName}}
       </h5>          
       <b>Age</b>: {{Age}} years old
     </div>
-    <div  style="margin-top:10px" class="col-lg-5">
+    <div  class="col-lg-5">
       <br/>        
       <b> Visit Date : </b> {{AddedDate | Shortdate}} <br>                  
       <b>Phone </b>: {{PatientPhone}}
@@ -125,31 +125,31 @@
     </div>
     <div class="modal-body">
    <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-2">
           {{#ProfilePicture}}
           <img
           src="{{ProfilePicture}}"
           alt="image"
           style="
-          height: 100px;
-          width: 100px;
-          border-radius: 50%;" />
+          height: 80px;
+          width: 80px;
+          border-radius: 10px" />
          {{/ProfilePicture}}
          {{^ProfilePicture}}
          <img src="/assets/images/patient.png" alt="image" style="
-         height: 100px;
-         width: 100px;
-         border-radius: 50%;" /> 
+         height: 80px;
+          width: 80px;
+          border-radius: 10px"/> 
          {{/ProfilePicture}}          
       </div>
-    <div class="col-lg-4">
+    <div class="col-lg-5">
       <br/>
-      <h5 class="docName">
+      <h5 class="docName" style="margin:0;">
         {{PatientName}}
       </h5>          
       <b>Age</b>: {{Age}} years old
     </div>
-    <div  style="margin-top:10px" class="col-lg-5">
+    <div   class="col-lg-5">
       <br/>        
       <b> Date : </b> {{AddeddDate | Shortdate}} <br>                  
       <b>Phone </b>: {{PatientPhone}}

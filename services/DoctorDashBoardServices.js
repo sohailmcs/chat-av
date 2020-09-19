@@ -65,7 +65,7 @@ $(function () {
     var docId = $(this).attr("docID");
     var patientId = $(this).attr("PatientID");
     var PatientName = $(this).attr("PName");
-    toast("Patient Has Been Added in Call Queue");
+
     AcceptOrRejectCallSaveToQue(
       callreqId,
       "Accepted",
@@ -132,6 +132,7 @@ $(function () {
       .then((data) => {
         GetAllQuedScheduled(docId, clientCurrentDt);
         GetDoctorBookedScheduled(docId, clientCurrentDt, false);
+        toast("Patient Has Been Added in Call Queue");
       })
       .catch((error) => {
         console.log(error);
@@ -633,22 +634,8 @@ Mustache.Formatters = {
 };
 
 function toast(msg) {
-  // make sure..
-  setTimeout(function () {
-    // create the notification
-    var notification = new NotificationFx({
-      message: "<p>" + msg + " </p>",
-      layout: "growl",
-      effect: "genie",
-      type: "notice", // notice, warning or error
-      // onClose: function () {
-      // // bttn.disabled = false;
-      // },
-    });
-    // show the notification
-    notification.show();
-    this.disabled = true;
-  }, 100);
+  $("#toastText").text(msg);
+  $("#myToast").toast("show");
 }
 
 //======for automatic play sound we just need to add this code for modern===

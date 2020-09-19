@@ -31,6 +31,10 @@
 <!-- complete side menu of doctor -->
 <%- include('includes/docSideMenu.ejs') %>
 
+
+
+
+
 <!-- BEGIN: Content-->
 <input type="hidden" id="insertedID" value="0">
 <!--SMS pop up -->
@@ -95,34 +99,34 @@
       </div>
       <div class="modal-body">
      <div class="row">
-          <div class="col-lg-3">
+          <div class="col-lg-2">
             {{#PatientPhoto}}
             <img
             src="{{PatientPhoto}}"
             alt="image"
             style="
-            height: 90px;
-            width: 90px;
+            height: 80px;
+            width: 80px;
             border-radius: 10px;
             margin-bottom:10px;"
              />
            {{/PatientPhoto}}
            {{^PatientPhoto}}
            <img src="/assets/images/patient.png" alt="image" style="
-           height: 90px;
-           width: 90px;
+           height: 80px;
+           width: 80px;
            border-radius: 10px;
            margin-bottom:10px;" /> 
            {{/PatientPhoto}}          
         </div>
-      <div class="col-lg-4">
+      <div class="col-lg-5">
         <br/>
-        <h5 class="docName">
+        <h5 class="docName" style="margin:0;">
           {{PatientName}}
         </h5>          
         <b>Age</b>: {{Age}} years old
       </div>
-      <div  style="margin-top:10px" class="col-lg-5">
+      <div   class="col-lg-5">
         <br/>        
         <b> Visit Date : </b> {{AddedDate | Shortdate}} <br>                  
         <b>Phone </b>: {{PatientPhone}}
@@ -376,7 +380,7 @@
                       </p>
             </div>
 
-        <div class="col-sm-4 text-md-right">
+        <div class="col-sm-4 text-md-right" style="padding: 4px 3px;">
             <div class="audioVideoBtnArea">
                 {{#OnlineStatus}}
                 <a >
@@ -506,9 +510,25 @@
 </script>
 <!--start of Call Log Template-->
 
-<div class="app-content content">
+<div class="app-content content" style="position: relative;">
     <div class="content-overlay"></div>
-    <div class="content-wrapper">
+    <div class="content-wrapper" >
+
+<!------start of toast message ------->
+<div class="toast fade slow" data-delay="100000" id="myToast" style="position: absolute;
+ ">
+   
+    <div class="toast-body toast-header">
+        <div class="row">           
+        <div class="col-xs-6"><div id="toastText"></div></div>
+        <div class="col-xs-6"> <button type="button" class="ml-2 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button></div>
+        </div>        
+    </div>
+</div>
+<!------end of toas message ---------->
+
         <div class="content-header row"></div>
         <div class="content-body">
             <div class="d-flex flex-row">

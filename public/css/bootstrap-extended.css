@@ -2668,8 +2668,8 @@ ul.list-inline.list-inline-pipe > li + li:before {
   border-radius: 1.5rem;
   margin-left: 1rem;
   opacity: 1;
-  color: #475f7b;
-  background-color: #f2f4f4;
+  color: #fff;
+  opacity: 1 !important;
 }
 
 .toast .toast-header .close:focus,
@@ -2945,8 +2945,20 @@ _:-ms-lang(x),
   margin: 0;
   height: 2.4rem;
   width: 2.4rem;
-  background-color: #f2f4f4;
+  background-color: #076dfa;
+  color: #fff;
   border-radius: 50%;
+}
+.toast-header {
+  border-bottom: none;
+  background-clip: unset;
+}
+.toast .toast-body {
+  padding: 0.8rem 30px;
+  color: #ffffff;
+  background-color: #5a8dee;
+  display: flex;
+  align-items: center;
 }
 
 .modal .modal-content .modal-header .close:hover,

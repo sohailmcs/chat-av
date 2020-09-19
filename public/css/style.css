@@ -288,8 +288,8 @@ table.dataTable thead td {
 
 .toast {
   position: absolute;
-  top: 20%;
-  right: 30%;
+  top: 8%;
+  right: 3%;
   z-index: 10000;
   border: 2px solid #3eb8d7;
 }
@@ -361,13 +361,24 @@ h1.txtwelcome {
   color: #00193a;
 }
 
-#txtEmailPhone {
+#txtEmailPhone,
+.txtResetPassword {
   background: #ffffff;
   border: 2px solid #d9e9ff;
   box-sizing: border-box;
   border-radius: 5px;
   padding: 24px 5px;
 }
+
+#frmresetpwd input[type="password"],
+#frmresetpwd input[type="text"] {
+  background: #ffffff;
+  border: 2px solid #d9e9ff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 24px 5px;
+}
+
 .loginArea input[type="text"],
 .loginArea input[type="Email"],
 .loginArea input[type="password"] {

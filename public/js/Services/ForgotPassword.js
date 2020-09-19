@@ -45,8 +45,8 @@ $(function () {
           $(".error").show().text("Server not respose. Please agan later");
         else if (xhr.status == "404" && xhr.statusText == "Not Found") {
           Swal.fire({
-            type: "error",
-            title: "Oops...",
+            type: "info",
+            title: "SORRY!",
             html:
               "User doest not exist <br> <b >" +
               $("#txtEmailPhone").val() +
@@ -195,8 +195,8 @@ $(function () {
     var confirmPassword = $("#txtConfirmNewPassword").val();
     if (password != confirmPassword) {
       Swal.fire({
-        type: "error",
-        title: "Oops...",
+        type: "info",
+        title: "SORRY!",
         html:
           "Passwords do not match. <br> <b >" +
           $("#txtOldPassword").val() +
@@ -245,8 +245,8 @@ $(function () {
           $(".error").show().text("Server not respose. Please agan later");
         } else if (xhr.status == "404" && xhr.statusText == "Not Found") {
           Swal.fire({
-            type: "error",
-            title: "Oops...",
+            type: "info",
+            title: "SORRY!",
             html:
               "old password does not exist in our system <br> <b >" +
               $("#txtOldPassword").val() +

@@ -66,7 +66,7 @@
   >
     <div class="modal-content">
       <div class="modal-header bg-primary " style="text-align:center">
-        <h4>Patient History</h4>
+        <h4><strong>Patient History</strong></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>         
@@ -74,31 +74,31 @@
       </div>
       <div class="modal-body">
      <div class="row">
-          <div class="col-lg-3">
+          <div class="col-lg-2">
             {{#PatientPhoto}}
             <img
             src="{{PatientPhoto}}"
             alt="image"
             style="
-            height: 100px;
-            width: 100px;
-            border-radius: 50%;" />
+            height: 80px;
+            width: 80px;
+            border-radius: 10px;" />
            {{/PatientPhoto}}
            {{^PatientPhoto}}
            <img src="/assets/images/patient.png" alt="image" style="
-           height: 100px;
-           width: 100px;
-           border-radius: 50%;" /> 
+           height: 80px;
+           width: 80px;
+           border-radius: 10px;" /> 
            {{/PatientPhoto}}          
         </div>
-      <div class="col-lg-4">
+      <div class="col-lg-5">
         <br/>
-        <h5 class="docName">
+        <h5 class="docName" style="margin:0">
           {{PatientName}}
         </h5>          
         <b>Age</b> {{Age}} years old
       </div>
-      <div  style="margin-top:10px" class="col-lg-5">
+      <div   class="col-lg-5">
         <br/>        
         <b> Visit Date : </b> {{CallLogStartDateTime | Shortdate}} <br>                  
         <b>Phone </b> {{PatientPhone}}

@@ -17,7 +17,8 @@
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
     <link rel="stylesheet" type="text/css" href="/css/components.css" />
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
-    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/colors.css" />
+   
     <!-- END CSS-->
   </head>
   <!-- END: Head-->
@@ -30,7 +31,7 @@
     data-menu="vertical-menu-modern"
     data-col="1-column"
   >
-    <!--primary theme Modal -->
+    <!--start Forgot password Modal -->
     <div
       class="modal fade text-left"
       id="primary"
@@ -42,21 +43,23 @@
       <div
         class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
         role="document"
-      >
-    
-      <span aria-hidden="true">&times;</span>
-    </button>
+      >   
+   
         <div class="modal-content">
-        
+          <div class="modal-header bg-primary ">
+            <h4 id="myModalLabel160">
+              Forgot Password?
+            </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>       
+          </div>
           <div class="modal-body">
-
-            
-             
                 <div class="card-header">
                   <div class="card-title" style="text-align: center;">
-                    <h5 class="LoginHeading">
+                    <!-- <h5 class="LoginHeading">
                       Forgot Password?
-                    </h5>
+                    </h5> -->
                     <span class="txtlogin"
                       >Enter the email or phone number you used when you
                       joined and we will send you temporary password</span
@@ -120,6 +123,75 @@
         </div>
       </div>
     </div>
+  <!--end Forgot password Modal -->
+
+ <!--start Forgot password Modal -->
+ <div
+ class="modal fade text-left"
+ id="popupResetPassword"
+ tabindex="-1"
+ role="dialog"
+ aria-labelledby="myModalLabel160"
+ aria-hidden="true"
+>
+ <div
+   class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+   role="document"
+ >   
+
+</button>
+   <div class="modal-content">
+     <div class="modal-header bg-primary ">
+       <h4 id="myModalLabel160">
+         Reset Password?
+       </h4>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>       
+     </div>
+   
+     <div class="modal-body">
+         
+           <div class="card-content">
+             <div class="card-body">
+              <form id="frmresetpwd" class="mb-2">
+                <div class="form-group mb-2">
+                  <label class="text-bold-600" for="exampleInputusername">Username</label>
+                  <input required type="text" class="form-control" 
+                  name="username" id="txtUsername" placeholder="Username"/>
+                </div>
+                <div class="form-group mb-2">
+                  <label class="text-bold-600" for="exampleInputEmailPhone1">Old Password</label>
+                  <input required type="password" class="form-control" name="oldPassword" id="txtOldPassword" placeholder="Old Password"/>
+                </div>
+                <div class="form-group mb-2">
+                  <label class="text-bold-600" for="exampleInputEmailPhone1">New Password</label>
+                  <input required type="password" class="form-control" name="newPassword" id="txtNewPassword" placeholder="New Password"/>
+                </div>
+                <div class="form-group mb-2">
+                  <label class="text-bold-600" for="exampleInputEmailPhone1">Confirm New Password</label>
+                  <input required type="password" class="form-control" name="confirmNewPassword" id="txtConfirmNewPassword" placeholder="Confirm New Password"/>
+                </div>
+
+                <div style="text-align: center;">
+                  <button style="padding:10px 30px"
+                    type="submit"
+                    class="btn btn-primary glow position-relative"
+                  >
+                  RESET PASSWORD</button>
+                    </div>
+                    </form>
+             </div>
+           </div>
+        
+       
+
+     </div>
+   </div>
+ </div>
+</div>
+<!--end Forgot password Modal -->
+
 
     <!-- BEGIN: Content-->
     <div class="app-content content">
@@ -249,16 +321,13 @@
                               class="form-group d-flex flex-md-row flex-column justify-content-between"
                             >
                               <div style="padding: 0" class="col-md-9 mb-50">
-
-
                                 <a href="#" data-toggle="modal" class="card-link"
                                    data-target="#primary"> <small>Forgot Password?</small></a>
 
                               </div>
                               <div style="padding: 0" class="col-sm-4">
-                                <a href="/resetPassword" class="card-link"
-                                  ><small>Reset Password</small></a
-                                >
+                                <a href="#" data-toggle="modal" class="card-link"
+                                data-target="#popupResetPassword"> <small>Reset Password</small></a>
                               </div>
                             </div>
                           </form>
@@ -277,7 +346,7 @@
     <!-- END: Content-->
 
     <!-- BEGIN: Vendor JS-->
-    <script src="/socket.io/socket.io.js"></script>
+   
     <script src="js/vendors.min.js"></script>
     <script src="/js/sweetalert2.all.min.js"></script>
 

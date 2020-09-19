@@ -191,12 +191,24 @@ $(function () {
   $("#frmresetpwd").submit(function (e) {
     e.preventDefault();
 
+    var username = $("#txtUsername").val();
     var password = $("#txtNewPassword").val();
     var confirmPassword = $("#txtConfirmNewPassword").val();
+    if (username == "") {
+      Swal.fire({
+        type: "info",
+        title: "SORRY!",
+        html:
+          "Please enter valid username. <br> <b >" +
+          $("#txtUsername").val() +
+          "</b><br> ",
+      });
+      return false;
+    }
     if (password != confirmPassword) {
       Swal.fire({
         type: "error",
-        title: "Oops...",
+        title: "SORRY!...",
         html:
           "Passwords do not match. <br> <b >" +
           $("#txtOldPassword").val() +
@@ -209,6 +221,7 @@ $(function () {
 
     var url = baseURL + "User/ResetPassword";
     var ResetPassword = {
+      Username: $("#txtUsername").val(),
       OldPassword: $("#txtOldPassword").val(),
       NewPassword: $("#txtNewPassword").val(),
     };
@@ -235,6 +248,7 @@ $(function () {
           buttonsStyling: false,
           confirmButtonText: "Ok",
         });
+        $("#txtUsername").val("");
         $("#txtOldPassword").val("");
         $("#txtNewPassword").val("");
         $("#txtConfirmNewPassword").val("");
@@ -246,10 +260,10 @@ $(function () {
         } else if (xhr.status == "404" && xhr.statusText == "Not Found") {
           Swal.fire({
             type: "error",
-            title: "Oops...",
+            title: "SORRY!",
             html:
-              "old password does not exist in our system <br> <b >" +
-              $("#txtOldPassword").val() +
+              "username or current password does not exist in our system <br> <b >" +
+              $("#txtUsername").val() +
               "</b><br> ",
           });
         }

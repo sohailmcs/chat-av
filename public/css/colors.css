@@ -2240,6 +2240,7 @@ input:focus ~ .bg-primary {
   text-transform: uppercase;
   font-size: 11px;
   margin-bottom: 7px;
+  width: 68px;
 }
 .btn-outline-primary:hover,
 .btn-outline-primary.hover {

@@ -17,7 +17,6 @@ var options = {
 var currentDt = new Date().toLocaleDateString("en-US", options);
 
 $(function () {
-  $("#primary").modal("show");
   GetPatientAppointment(userLoginId);
   $(document).on("click", ".btnMain", function () {
     appointmentId = $(this).attr("appId");

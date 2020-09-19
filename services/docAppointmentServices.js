@@ -4,6 +4,7 @@ var useLoginId = $(".user-name").attr("UserInfo");
 var UserName = $(".user-name").text();
 
 $(function () {
+  $("#popupConfirm").modal("show");
   var currentDt = kendo.toString(new Date(), "d");
   GetDoctorAllSlots(useLoginId, currentDt);
 

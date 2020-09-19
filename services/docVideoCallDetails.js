@@ -15,6 +15,7 @@ var mPname;
 var mDocName;
 var mDocId;
 var mArea;
+var fistCallLogId = 0;
 
 var timer;
 var onCallduration;
@@ -578,6 +579,8 @@ function updateDoctorNotes(callLogId, status) {
         buttonsStyling: false,
         confirmButtonText: "Ok",
       });
+
+      if (mCallQueId != 0 && mCallLogId == 0) mCallLogId == data.cLogId;
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
