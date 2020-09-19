@@ -3,8 +3,7 @@ var baseURL = "https://kindahclinic.com/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
 var UserName = $(".user-name").text();
 
-$(function () {
-  $("#popupConfirm").modal("show");
+$(function () {  
   var currentDt = kendo.toString(new Date(), "d");
   GetDoctorAllSlots(useLoginId, currentDt);
 
