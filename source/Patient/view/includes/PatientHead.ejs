@@ -162,13 +162,14 @@
           AudioVideosession.off();
           AudioVideosession.disconnect();
           AudioVideosession.unsubscribe(subscriber);
+          AudioVideosession.unpublish(publisher, handleError);
+          publisher.destroy();
           $("#windowComm #callImg").remove();
           $("#windowComm").modal("hide");
         }
         $("#notificationmodal, #incommingCall").modal("hide");
       });
       soc.on("DoctorPatientScreenClosed", function (data) {
-        alert("exist");
         //alert('doctor close its screen 8 ' +data.area + " On Req "+ data.onReq);
         if (data.area == "Patient" && data.onReq == false) {
           Swal.fire({
