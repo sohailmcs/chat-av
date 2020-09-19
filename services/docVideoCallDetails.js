@@ -189,7 +189,7 @@ function initializeSession(key, sessId, tokenId) {
         $("#log").delay(3000).fadeOut("slow");
       }
 
-      disconnect();
+      // disconnect();
     },
     connectionCreated: function (event) {
       if (
@@ -201,6 +201,7 @@ function initializeSession(key, sessId, tokenId) {
     },
     connectionDestroyed: function connectionDestroyedHandler(event) {
       PlayCallingSound(false);
+      disconnect();
     },
     streamCreated: function (event) {
       callPerformed = true;
@@ -244,12 +245,26 @@ function initializeSession(key, sessId, tokenId) {
       AudioVideosession.publish(publisher, handleError).on(
         "streamDestroyed",
         function (event) {
-          event.preventDefault();
+          streamDestroyed(event);
         }
       );
     }
   });
 }
+
+function streamDestroyed(event) {
+  AudioVideosession.unsubscribe(subscriber);
+  AudioVideosession.off();
+  AudioVideosession.disconnect();
+  AudioVideosession.unpublish(publisher, handleError);
+  publisher.destroy();
+  $("#windowComm").modal("hide");
+  $(".three-icons, #timer").css("display", "none");
+  $("#divCallNow").css("display", "block");
+  $("#callImg").css("display", "block");
+  event.preventDefault();
+}
+
 function enabldDisableCamera() {
   if (isShowVideo) {
     AudioVideosession.publish(publisher);
@@ -682,7 +697,7 @@ function UpdateCallLogEndtime(CallLogId, duration) {
     },
     complete: function (data) {
       $.LoadingOverlay("hide");
-      getDashBoardAllScheduled(true);
+      if (mArea == "Doctor") getDashBoardAllScheduled(true);
     },
   });
 }

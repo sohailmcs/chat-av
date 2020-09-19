@@ -55,14 +55,21 @@
           userId: userID,
           userType: userType,
         });
-        $(".btnDisconnect").click(function () {
-          $("#windowComm #callImg").remove();
-          $("#windowComm").modal("hide");
-          // AudioVideosession.off();
-          // AudioVideosession.disconnect();
-          // AudioVideosession.unsubscribe(subscriber);
-          disconnect();
-        });
+        // $(".btnDisconnect").click(function () {
+        //   aler("patientside");
+        //   AudioVideosession.off();
+        //   AudioVideosession.disconnect();
+        //   AudioVideosession.unpublish(publisher, handleError);
+        //   publisher.destroy();
+        //   AudioVideosession.unsubscribe(subscriber);
+        //   $("#windowComm #callImg").remove();
+        //   $("#windowComm").modal("hide");
+
+        //   // AudioVideosession.off();
+        //   // AudioVideosession.disconnect();
+        //   // AudioVideosession.unsubscribe(subscriber);
+        //   //  disconnect();
+        // });
       }); //=================end of document.ready function=======
       function getcookie(cookiename) {
         var cookiestring = document.cookie;
@@ -158,15 +165,14 @@
         PlayCallingSound(true);
       });
       soc.on("ClosePatientScreen", function (data) {
-        if (AudioVideosession != null) {
-          AudioVideosession.off();
-          AudioVideosession.disconnect();
-          AudioVideosession.unsubscribe(subscriber);
-          AudioVideosession.unpublish(publisher, handleError);
-          publisher.destroy();
-          $("#windowComm #callImg").remove();
-          $("#windowComm").modal("hide");
-        }
+        AudioVideosession.unsubscribe(subscriber);
+        AudioVideosession.off();
+        AudioVideosession.disconnect();
+        AudioVideosession.unpublish(publisher, handleError);
+        publisher.destroy();
+        $("#windowComm #callImg").remove();
+        $("#windowComm").modal("hide");
+
         $("#notificationmodal, #incommingCall").modal("hide");
       });
       soc.on("DoctorPatientScreenClosed", function (data) {
