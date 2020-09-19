@@ -90,8 +90,7 @@
     }
     $("body").removeClass("modal-open");
     soc.on("UpdatePatientOnlineStatus", function (data) {
-      if (!urlParams.has("comm"))
-        updatePatientOnlineStatus(data.uID, data.status, data.uName);
+      updatePatientOnlineStatus(data.uID, data.status, data.uName);
     });
 
     function updatePatientOnlineStatus(UserID, status, uName) {
@@ -112,7 +111,10 @@
         $(".video_" + UserID + "").prop("disabled", true);
         $(".checkin_" + UserID + "").prop("disabled", true);
       }
+
+      UpdateUserOnlineStatus(userID, status, uName, "Patient");
     }
+
     function deleteAllCookies() {
       //=============update status in database=============
       changeDoctorOlineStaus(userID, "Offline", uName);
@@ -127,18 +129,18 @@
     }
 
     function changeDoctorOlineStaus(userId, status, uName) {
+      soc.emit("UpdateOnlineStatus", {
+        uID: userID,
+        status: status,
+        uName: userName,
+      });
+
       //=============update status in database=============
       UpdateUserOnlineStatus(userId, status, uName, "Doctor");
     }
 
     function UpdateUserOnlineStatus(UserID, status, userName, userType) {
       return new Promise((resolve, reject) => {
-        soc.emit("UpdateOnlineStatus", {
-          uID: userID,
-          status: status,
-          uName: userName,
-        });
-
         var useStatus = status == "Online" ? true : false;
         var url =
           baseURL +
