@@ -55,31 +55,31 @@
         </div>
         <div class="modal-body">
        <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-2">
               {{#PatientPhoto}}
               <img
               src="{{PatientPhoto}}"
               alt="image"
               style="
-              height: 100px;
-              width: 100px;
-              border-radius: 50%;" />
+              height: 80px;
+              width: 80px;
+              border-radius: 10px" />
              {{/PatientPhoto}}
              {{^PatientPhoto}}
              <img src="/assets/images/patient.png" alt="image" style="
-             height: 100px;
-             width: 100px;
-             border-radius: 50%;" /> 
+             height: 80px;
+             width: 80px;
+             border-radius: 10px" /> 
              {{/PatientPhoto}}          
           </div>
-        <div class="col-lg-4">
+        <div class="col-lg-5">
           <br/>
-          <h5 class="docName">
+          <h5 class="docName" style="margin:0">
             {{PatientName}}
           </h5>          
           <b>Age</b>: {{Age}} years old
         </div>
-        <div  style="margin-top:10px" class="col-lg-5">
+        <div  class="col-lg-5">
           <br/>        
           <b> Visit Date : </b> {{CallLogStartDateTime | Shortdate}} <br>                  
           <b>Phone </b>: {{PatientPhone}}
@@ -92,7 +92,7 @@
             <div class="row" style="background-color:#F3F8FF;">
                <br/>
                <div class="col-sm-5">              
-               <span class="editprofile-icons">History and Exams :</span>
+               <span class="editprofile-icons">History and Exams</span>
                </div>
                <div class="col-sm-7 txtnormal">              
                 {{HistoryAndExam}}
@@ -103,7 +103,7 @@
             <div class="row">
                <br/>
                <div class="col-sm-5">             
-               <span class="editprofile-icons">Allergies : </span>
+               <span class="editprofile-icons">Allergies</span>
                </div>
                <div class="col-sm-7 txtnormal">             
                 {{Allergies}}
@@ -115,7 +115,7 @@
              <div class="row" style="background-color:#F3F8FF;">
                 <br/>
                 <div class="col-sm-5 ">               
-                <span class="editprofile-icons">Diagnosis :</span>
+                <span class="editprofile-icons">Diagnosis</span>
                 </div>
                 <div class="col-sm-7 txtnormal">
                   {{Diagnosis}}             
@@ -124,7 +124,7 @@
      
            <div class="row">             
               <div class="col-sm-5">             
-              <span class="editprofile-icons">RX :</span>
+              <span class="editprofile-icons">RX</span>
              
               </div>
               <div class="col-sm-7 txtnormal">             
