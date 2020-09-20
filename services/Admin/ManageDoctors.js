@@ -150,7 +150,7 @@ function GetAllRegisterDoctor() {
 
 function EditDoctorFile(id) {
   var doctorid = $(id).attr("doctorId");
-  window.location.href = "KindahDocEditProfile?id=" + doctorid;
+  window.location.href = "/Admin/edit-profile?id=" + doctorid;
 }
 
 function Filldatatable(data) {

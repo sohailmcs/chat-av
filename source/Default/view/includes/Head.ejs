@@ -59,7 +59,7 @@
     $(document).ready(function () {
       //=========save id for video/Audio chat=============
       $(".goog-te-menu-value").children().last().remove();
-      uName = $(".user-name").text();
+      uName = $(".user-name").find("strong").text();
       userID = $(".user-name").attr("userinfo");
       var userType = "Doctor";
       soc.emit("add-user", {
@@ -93,7 +93,8 @@
       updatePatientOnlineStatus(data.uID, data.status, data.uName);
     });
 
-    function updatePatientOnlineStatus(UserID, status, uName) {
+    async function updatePatientOnlineStatus(UserID, status, uName) {
+      await UpdateUserOnlineStatus(userID, status, uName, "Patient");
       if (status == "Online") {
         $(".status_" + UserID + "")
           .find(".bullet-sm")
@@ -111,8 +112,6 @@
         $(".video_" + UserID + "").prop("disabled", true);
         $(".checkin_" + UserID + "").prop("disabled", true);
       }
-
-      UpdateUserOnlineStatus(userID, status, uName, "Patient");
     }
 
     function deleteAllCookies() {
@@ -132,7 +131,7 @@
       soc.emit("UpdateOnlineStatus", {
         uID: userID,
         status: status,
-        uName: userName,
+        uName: uName,
       });
 
       //=============update status in database=============

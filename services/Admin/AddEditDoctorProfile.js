@@ -1,3 +1,9 @@
+var baseURL = "https://kindahclinic.com/KindahService/";
+var urlParams = new URLSearchParams(window.location.search);
+var doctorId = 0;
+var doctorId = urlParams.get("id");
+if (urlParams.has("id")) doctorId = urlParams.get("id");
+
 $(function () {
   $("#txtPwd").focusout(function () {
     var txt = $(this).val();

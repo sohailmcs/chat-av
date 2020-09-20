@@ -4,14 +4,52 @@ var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
 
 //==login==========
+function validatephonenumber(inputtxt) {
+  var isValid = true;
+  var regex = new RegExp(/^(?:\+?0*?966)?0?5[0-9]{8}$/);
+  var phoneNo = inputtxt;
+  if (!regex.test(phoneNo)) {
+    isValid = false;
+  } else {
+    isValid = true;
+  }
+  return isValid;
+}
+function validEmail(mail) {
+  return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(
+    mail
+  );
+}
+
 $(function () {
   $("#frmforgotpwd").submit(function (e) {
     e.preventDefault();
 
+    //validate phone
+    var enterdText = $("#txtEmailPhone").val();
+    if (!validEmail(enterdText)) {
+      if (!validatephonenumber(enterdText)) {
+        Swal.fire({
+          type: "info",
+          title: "SORRY!",
+          html:
+            "Plase enter correct phone no<br> <b >" +
+            $("#txtEmailPhone").val() +
+            "</b><br> ",
+        });
+        return false;
+      } else {
+        if (enterdText.length >= 9) {
+          enterdText = enterdText.replace(/\D/g, "").slice(-9);
+          enterdText = "+966" + enterdText;
+        } else enterdText = enterdText;
+      }
+    }
+
     var url =
       baseURL +
       "User/ForGotPassword?criteria=" +
-      encodeURIComponent($("#txtEmailPhone").val()) +
+      encodeURIComponent(enterdText) +
       "&pageName=forgotPassword" +
       "&pageUrl=" +
       window.location.href;
@@ -209,6 +247,7 @@ $(function () {
 
     var url = baseURL + "User/ResetPassword";
     var ResetPassword = {
+      Username: $("#txtUsername").val(),
       OldPassword: $("#txtOldPassword").val(),
       NewPassword: $("#txtNewPassword").val(),
     };

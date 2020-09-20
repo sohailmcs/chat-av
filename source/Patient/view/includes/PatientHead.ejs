@@ -46,7 +46,7 @@
       $(document).ready(function () {
         //=========save id for video/Audio chat=============
         $(".goog-te-menu-value").children().last().remove();
-        uName = $(".user-name").text();
+        uName = $(".user-name").find("strong").text();
         userID = $(".user-name").attr("userinfo");
         var userType = "Patient";
         changePatientOlineStaus(userID, "Online", uName);
