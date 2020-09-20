@@ -47,16 +47,7 @@
 <br>
           <!-- Call Queue Start -->
           <section id="table-Marketing">
-            <div class="card">
-              <div class="card-content">
-                <div class="pb-0">
-                  <!-- patient start -->
-                  
-                      <div id="callQueueId">
-                        
-                </div>
-              </div>
-            </div>
+           
           </section>
 
           <!-- Call Queue Ends -->
@@ -66,9 +57,10 @@
        
 
             {{#result}}
+            <div class="card">
             <!-- Patient one  -->
             <div class="row" style="margin: 2% 0 2% 1%;">
-               <div class="col-sm-3">
+               <div class="col-sm-4">
                    <div class="d-inline-block">
                        <div class="pr-50 pImage " style="float:left;display: inline-block; align-self: stretch;">
                            {{#PatientModel.PatientPhoto}}
@@ -105,7 +97,7 @@
                        </div>
                    </div>
                
-                   <div class="col-sm-5 call-Queue-icons">
+                   <div class="col-sm-4 call-Queue-icons">
                        <p><strong>Contact Number :</strong> {{PatientPhone}}</p>                        
                        <p><strong>Patient waiting since :</strong> 
                        <input type= "hidden" class="hdnCallQueDate" value="{{{CallQueDateTime}}}" >
@@ -115,8 +107,8 @@
                              </p>
                    </div>
                    
-               <div class="col-sm-4 text-md-right">
-                   <div class="call-Queue-icons">
+               <div class="col-sm-4 text-md-right" style="padding: 4px 3px;">
+                   <div class="audioVideoBtnArea">
                        {{#OnlineStatus}}
                        <a >
                            <button  type="button" patientName="{{PatientName}}" 
@@ -171,6 +163,7 @@
                </div>
            </div>
        </div>
+      </div>
            <!-- patient one ends --> 
          
           {{/result}}
@@ -180,7 +173,7 @@
                    No Call Que Available
                </h6>   
           {{/result.0}}
-         
+            
          </script>
 
 

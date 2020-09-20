@@ -28,7 +28,7 @@ function GetDoctorTodayCallQue(doctorId) {
     },
     success: function (data, textStatus, xhr) {
       var CallQueueTemplate = $("#callQueue-template").html();
-      $("#callQueueId").html(Mustache.to_html(CallQueueTemplate, data));
+      $("#table-Marketing").html(Mustache.to_html(CallQueueTemplate, data));
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
