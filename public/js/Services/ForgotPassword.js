@@ -242,9 +242,9 @@ $(function () {
         title: "SORRY!",
         html:
           "Passwords do not match. <br> <b >" +
-          $("#txtOldPassword").val() +
-          "=" +
           $("#txtNewPassword").val() +
+          "=" +
+          $("#txtConfirmNewPassword").val() +
           "</b><br> ",
       });
       return false;
