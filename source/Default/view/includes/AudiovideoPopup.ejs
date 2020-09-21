@@ -1,4 +1,7 @@
 <!-- <link href="/css/KendoUi/examples-offline.css" rel="stylesheet" /> -->
+<link rel="stylesheet" type="text/css" href="/css/pickadate.css" />
+<link rel="stylesheet" type="text/css" href="/css/daterangepicker.css" />
+
 <link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
 <link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
 <link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
@@ -460,7 +463,7 @@
                </fieldset>
            </div>
            
-           <div class="col-md-6">
+           <div class="col-md-3">
            <div class="form-label-group">
              <p>Age</p>
              <input type="text" id="patientAge" class="textbox form-control"
@@ -468,11 +471,11 @@
           
            </div>
            </div>
-           <div class="col-md-6">
+           <div class="col-md-9">
            <div class="form-label-group">
              <p>Date</p>
            <fieldset class="form-group position-relative has-icon-left">     
-           <input type="text" id=" prescribeDT" class="textbox form-control pickadate-months-year"
+           <input type="text" id="prescribeDT" class="textbox form-control pickadate-months-year"
            placeholder="Select Date" />
            <div class="form-control-position">
            <i class="bx bx-calendar"></i>
@@ -585,7 +588,14 @@
   </div>
 </div>
 
+<script src="/js/pickadate/picker.js"></script>
+<script src="/js/pickadate/picker.date.js"></script>
+<!-- <script src="/js/pickadate/picker.time.js"></script>
+<script src="/js/pickadate/legacy.js"></script> -->
+<!-- <script src="/js/daterange/daterangepicker.js"></script> -->
 
+<script src="/js/daterange/moment.min.js"></script>
+<script src="/js/pick-a-datetime.js"></script>
 
 <script src="/js/slidevideocall.js"></script>
 <script src="/services/loadingoverlay.min.js"></script>
