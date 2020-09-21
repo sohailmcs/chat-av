@@ -22,6 +22,11 @@ function validEmail(mail) {
 }
 
 $(function () {
+  $("#btnResend").click(function (e) {
+    e.preventDefault();
+    $("#frmforgotpwd").submit();
+  });
+
   $("#frmforgotpwd").submit(function (e) {
     e.preventDefault();
 

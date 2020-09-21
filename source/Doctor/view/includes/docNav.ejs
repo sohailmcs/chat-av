@@ -27,7 +27,7 @@
           <!-- <div id="google_translate_element"></div> -->
 
           <ul class="nav navbar-nav float-right">
-            <li class="dropdown dropdown-language nav-item">
+            <!-- <li class="dropdown dropdown-language nav-item">
               <div class="dropdown-menu" aria-labelledby="dropdown-flag">
                 <a class="dropdown-item" href="#" data-language="en">English</a
                 ><a class="dropdown-item" href="#" data-language="fr"> AR</a>
@@ -43,7 +43,7 @@
                 <span class="selected-language">ENG</span>
                 <i class="bx bx-caret-down"></i>
               </a>
-            </li>
+            </li> -->
             <li class="dropdown dropdown-notification nav-item show">
               <a
                 class="nav-link nav-link-label"
@@ -77,8 +77,17 @@
                 href="#"
                 data-toggle="dropdown"
               >
-                <span
-                  ><img
+                <span style="position: relative">
+                  <span
+                    style="
+                      top: 30px !important;
+                      right: 3px !important;
+                      position: absolute;
+                    "
+                    class="badge badge-pill badge-danger badge-up"
+                    >&nbsp;</span
+                  >
+                  <img
                     class="round"
                     src="/assets/images/doctorprofile.jpg"
                     alt="avatar"
