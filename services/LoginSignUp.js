@@ -1,6 +1,6 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
 //var baseURL = "http://localhost:1042/KindahService/";
-var soc = io({ transports: ["websocket"], upgrade: false });
+
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
 function setCookie(cname, cvalue, exdays) {
@@ -124,6 +124,17 @@ $(function () {
     });
   }); //==end of Loginform submit
 
+  function validatephonenumber(inputtxt) {
+    var isValid = true;
+    var regex = new RegExp(/^(?:\+?0*?966)?0?5[0-9]{8}$/);
+    var phoneNo = inputtxt;
+    if (!regex.test(phoneNo)) {
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+    return isValid;
+  }
   //========SignUp=============
   //========SignUp=============
   $("#frmSignUp").submit(function (e) {
@@ -131,6 +142,18 @@ $(function () {
 
     // Validate requried fileds
     validtion();
+    var enterdText = $("#txtPhoneNo").val();
+    if (!validatephonenumber(enterdText)) {
+      Swal.fire({
+        type: "info",
+        title: "SORRY!",
+        html:
+          "Plase enter correct phone no<br> <b >" +
+          $("#txtPhoneNo").val() +
+          "</b><br> ",
+      });
+      return false;
+    }
 
     var ddluserType = $("#dboUserType").val();
 
@@ -216,9 +239,10 @@ $(function () {
         //if (xhr.status == "406" && xhr.statusText == "Not Acceptable") {
         if (xhr.status == "406" && textStatus != "InValidOTP") {
           Swal.fire({
-            title: "Opps!",
+            type: "info",
+            title: "SORRY!",
             text:
-              "Email" +
+              "Email " +
               $("#txtEmail").val() +
               " already exist. Please choose different email",
             type: "error",
@@ -228,7 +252,8 @@ $(function () {
           });
           if (xhr.status == "406" && textStatus == "InValidOTP") {
             Swal.fire({
-              title: "Opps!",
+              type: "info",
+              title: "SORRY!",
               text:
                 "OTP" +
                 $("#squareText").val() +

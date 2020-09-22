@@ -9,6 +9,9 @@ var subscriber;
 var allsubscribers;
 
 var mCallQueId;
+if ($(".modal-backdrop").length > 1) {
+  $(".modal-backdrop").not(":first").remove();
+}
 var mPatientID;
 var mCallLogId;
 var mPname;
@@ -398,10 +401,9 @@ function ViewHistory(CallLogId) {
       // $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      console.log("success ");
-      console.log(data);
       var ViewHistoryTemplate = $("#viewHistory-template").html();
       $("#viewhistory").html(Mustache.to_html(ViewHistoryTemplate, data));
+
       $("#viewhistory").modal("show");
     },
     error: function (xhr, textStatus, err) {

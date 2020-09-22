@@ -9,6 +9,7 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
 .navbar-brand {
   text-decoration: none;
 }
@@ -568,6 +569,16 @@ body {
 
 .viewalldoc-icon {
   font-size: larger;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
 }
 
 /* left menu css */
@@ -1621,7 +1632,7 @@ tr.shown td.details-control {
   margin: 0 !important;
   height: 2.4rem !important;
   width: 2.4rem !important;
-  background-color: #f2f4f4 !important;
+  background-color: #076dfa !important;
   border-radius: 50% !important;
 }
 #viewhistory .modal-header h4,

@@ -6,9 +6,13 @@
 <link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
 <link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
 
+<style>
+.modal-backdrop+.modal-backdrop {
+ z-index:1100;
+}
+</style>
 
  <!-- VIEW History  POP UP TEMPLATE -->
-
  <script  id="viewHistory-template" type="text/html">
   <div
   class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -109,8 +113,11 @@
   </div>
 </div>   
 </script>
-
- 
+ <!--patient history popup Modal start -->
+ <div class=" modal fade text-left" id="viewhistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+ aria-hidden="true">
+ </div>
+ <!--patient history popup Modal End -->
 
 <!-- VIEW PRESCRIPTION POP UP TEMPLATE -->
 <script id="viewPres-template" type="text/html">
@@ -193,6 +200,13 @@
   
   </div>
 </script>
+ 
+ <!--view prescription theme Modal start -->
+ <div class="modal fade text-left" id="viewprescription" tabindex="-1" role="dialog"
+ aria-labelledby="myModalLabel160" aria-hidden="true">
+ 
+ </div>
+ <!--view prescription theme Modal end -->
 
 <div class="modal  fade mymodal" id="windowComm" role="dialog">
   <div  
@@ -253,19 +267,7 @@
            <span UserInfo="<%= userId %>" class="user-name" style="visibility: hidden;"></span>
            
               
-           <!--patient history popup Modal start -->
-           <div class=" modal fade text-left" id="viewhistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-           aria-hidden="true">
-           
-           </div>
-           <!--patient history popup Modal End -->
-           
-           <!--view prescription theme Modal start -->
-           <div class="modal fade text-left" id="viewprescription" tabindex="-1" role="dialog"
-           aria-labelledby="myModalLabel160" aria-hidden="true">
-           
-           </div>
-           <!--view prescription theme Modal end -->
+          
            
            <!-- video call page Start -->
            <section id="dashboard-analytics">
