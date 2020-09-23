@@ -97,6 +97,13 @@ class loginController {
           // console.log('session userName '+req.session.userName);
           //res.redirect('/doctor');
           return res.redirect("/doctor/dashboard/");
+        } else if (data.UserType == "Admin") {
+          //req.location.href = "/doctor/dashboard";
+          // console.log('redirect url');
+          // console.log('session userName '+req.session.userName);
+          //res.redirect('/doctor');
+          return res.redirect("/Admin/all-doctors/");
+
           //res.redirect('/patient/dashboard');
           // res.render(appRoot+'/source/Doctor/view/docDashboard', {
           //   pageTitle: "Doctor Dashboard",
