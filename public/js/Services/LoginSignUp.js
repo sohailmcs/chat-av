@@ -216,24 +216,24 @@ $(function () {
         //if (xhr.status == "406" && xhr.statusText == "Not Acceptable") {
         if (xhr.status == "406" && textStatus != "InValidOTP") {
           Swal.fire({
-            title: "Opps!",
+            title: "SORRY!",
             text:
               "Email" +
               $("#txtEmail").val() +
               " already exist. Please choose different email",
-            type: "error",
+            type: "info",
             confirmButtonClass: "btn btn-primary",
             buttonsStyling: false,
             confirmButtonText: "<a style='color:#fff'>OK</a>",
           });
           if (xhr.status == "406" && textStatus == "InValidOTP") {
             Swal.fire({
-              title: "Opps!",
+              title: "SORRY!",
               text:
                 "OTP" +
                 $("#squareText").val() +
                 " invalid OTP. Please enter valid OTP code",
-              type: "error",
+              type: "info",
               confirmButtonClass: "btn btn-primary",
               buttonsStyling: false,
               confirmButtonText: "<a style='color:#fff'>OK</a>",
@@ -313,9 +313,9 @@ $(function () {
       error: function (xhr, textStatus, err) {
         if (xhr.status == "404" && xhr.statusText == "NotFound") {
           Swal.fire({
-            title: "Error!",
+            title: "SORRY!",
             text: "Check your Email and Enter the Code Again ",
-            type: "error",
+            type: "info",
             confirmButtonClass: "btn btn-primary",
             buttonsStyling: false,
             confirmButtonText: "<a style='color:#fff'>OK</a>",
@@ -325,9 +325,9 @@ $(function () {
           xhr.responseJSON.Message == "InValidOTP"
         ) {
           Swal.fire({
-            title: "Error!",
+            title: "SORRY!",
             text: "Check your Email and Enter the valid Code Again ",
-            type: "error",
+            type: "info",
             confirmButtonClass: "btn btn-primary",
             buttonsStyling: false,
             confirmButtonText: "<a style='color:#fff'>OK</a>",

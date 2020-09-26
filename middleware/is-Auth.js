@@ -20,7 +20,8 @@ function isLoginExist(req, res, next) {
   if (req.session.userId) {
     if (req.session.userType == "Patient")
       return res.redirect("/patientDashboard");
-    else return res.redirect("/docDashboard");
+    if (req.session.userType == "Doctor") return res.redirect("/docDashboard");
+    else return res.redirect("/Admin/all-doctors/");
   }
   res.set(
     "Cache-Control",

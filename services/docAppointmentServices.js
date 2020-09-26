@@ -3,7 +3,7 @@ var baseURL = "https://kindahclinic.com/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
 var UserName = $(".user-name").text();
 
-$(function () {  
+$(function () {
   var currentDt = kendo.toString(new Date(), "d");
   GetDoctorAllSlots(useLoginId, currentDt);
 
@@ -61,6 +61,14 @@ $(function () {
     )
       .then((data) => {
         $("#popupConfirm").modal("hide");
+        Swal.fire({
+          title: "Confirmation",
+          text: "Your appointment has been deleted ",
+          type: "info",
+          confirmButtonClass: "btn btn-primary",
+          buttonsStyling: false,
+          confirmButtonText: "<a style='color:#fff'>OK</a>",
+        });
         calendar.trigger("change");
       })
       .catch((error) => {

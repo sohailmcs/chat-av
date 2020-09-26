@@ -1,0 +1,429 @@
+<%- include('includes/PatientHead.ejs') %>
+
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+
+
+<!-- END: Vendor CSS-->
+
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+<link rel="stylesheet" type="text/css" href="/css/colors.css" />
+<link rel="stylesheet" type="text/css" href="/css/components.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" />
+
+
+
+<!-- END: Theme CSS-->
+
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+<!-- END: Page CSS-->
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<!-- END: Custom CSS-->
+</head>
+<!-- END: Head-->
+
+<!-- body tag and blue nav bar  -->
+<%- include('includes/patientNav.ejs') %>
+
+<!-- complete side menu of Patient -->
+<%- include('includes/patientSideMenu.ejs') %>
+
+    
+
+<!-- BEGIN: Content-->
+
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row"></div>
+    <div class="content-body">
+
+      <div class="d-flex flex-row">
+        <div class="page-heading">
+          <h3><i class='iconapp bx bx-group'></i><span>Add Patients</span></h3>
+        </div>
+       
+      </div>
+     
+      
+      <section id="dashboard-analytics">
+
+        
+          <div class="row justify-content-center mt-0">
+              <div class="col-11 col-sm-9 col-md-7 col-lg-12 text-center">
+                  <div class="card px-0 pt-4 pb-0 mt-1 mb-3">
+                    
+                      <div class="row">
+                          <div class="col-md-12 mx-0">
+                              <form id="msform">
+                                  <!-- progressbar -->
+                                  <ul id="progressbar">
+                                      <li class="active" id="account">
+                                       <strong>Step 1</strong></li>
+                                      <li id="personal"><strong>Step 2</strong></li>
+                                      <li id="payment"><strong>Step 3</strong></li>
+                                      <li id="confirm"><strong>Step 4</strong></li>
+                                  </ul> <!-- fieldsets -->
+                                  <fieldset>
+                                      <div class="form-card">
+                                        <div class="card-content">
+                                          <div class="card-body">
+                                            <div class="row">
+                                              <div class="col-sm-6">
+                                                <div class="card-header">                                          
+                                                  <h6 style="font-size:25px !important;" class="d-flex mb-25 mb-sm-0 dashboard-headings">
+                                                    Who is the patient?
+                                                  </h6>
+                                              </div>
+                                                <div class="card-body" style="padding:0 1.2rem">
+                                                 
+                                                  <button style="font-size:1rem" type="button" class="btn btn-outline-primary  mr-1  mb-1">                                         
+                                                    Me
+                                                  </button>
+                                                  <button style="font-size:1rem" type="button" class="btn btn-outline-primary  mr-1  mb-1">                                         
+                                                    My Child
+                                                  </button>
+                                                  <button style="font-size:1rem" type="button" class="btn btn-outline-primary  mr-1  mb-1">                                         
+                                                    My Relative
+                                                  </button>
+                                                  <br>
+                                                  <br>
+                                                  <br>
+                                                  <br>
+                                                  <br>
+                                                  <button style="font-size:1rem;padding: 10px 30px;" 
+                                                  type="button" class="next action-button btn btn-primary  mr-1  btn-sm">                                         
+                                                   NEXT
+                                                  </button>
+                                                  
+                                                  </div><!--end of card-body-->
+                                              </div><!--end of col-sm-6-->
+          
+                                              <div class="col-sm-6">
+                                                <div >
+                                                  <br>
+                                                  <br>
+                                                  <div class="col-sm-12">                                                 
+                                                  <div class="form-group">
+                                                    <span for="txtspecialization">Select Previous Patient Info</span>
+                                                    <select style="padding:5px 11px 5px;" class="form-control" id="dboInfo">
+                                                      <option>Choose patient</option>
+                                                      <option>1</option>
+                                                      <option>2</option>
+                                                      <option>3</option>
+                                                      <option>4</option>
+                                                    </select>
+                                                  </div><!--end of form-group-->
+                                                  <div >
+                                                    <br>
+                                                    <h5 class="docName" style="margin:0 0 5px;padding:0">
+                                                      sohail rasheed
+                                                    </h5>          
+                                                    <b>Age:</b> 40 years old
+                                                    <br>
+                                                    <b>Gender:</b> Male
+                                                    <br>
+                                                    <b>Age:</b> Texas,Usa
+                                                    <br>
+                                                    <b>Phone:</b> +9961569874568
+                                                    
+                                                  </div>
+          
+          
+                                                </div>
+          
+          
+                                                  </div><!--end of card-body-->
+                                              </div><!--end of col-sm-6-->
+          
+                                            </div>
+                                          </div>
+                                      </div>
+                                      </div> 
+                                  </fieldset>
+                                  <fieldset>
+                                      <div class="form-card">
+                                        <div class="card-content">
+                                          <div class="card-body">
+                                            <div class="row">
+                                              <div class="col-sm-7">
+                                                <div class="card-header">                                          
+                                                  <h6 style="font-size:25px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                                   Patient info
+                                                  </h6>
+                                              </div>
+                                                <div class="card-body" style="padding:0 1.2rem">
+                                                <div class="row">
+                                                   <div class="col-sm-6">
+                                                    <label>First Name</label>
+                                                    <input type="text" placeholder="First Name" class="txtInfo" id="txtInfoFirstName">
+                                                  </div><!--end of col-sm-6-->
+                                                  <div class="col-sm-6">
+                                                    <label>Last Name</label>
+                                                    <input type="text" placeholder="Last Name" class="txtInfo" id="txtInfoLastName">
+                                                  </div><!--end of col-sm-6-->                                                  
+                                                </div><!--end of row-->
+                                                <div class="row">
+                                                  <div class="col-sm-12">
+                                                   <label>Phone</label>
+                                                   <input type="text" placeholder="Phone" class="txtInfo" id="txtInfoPhone">
+                                                 </div><!--end of col-sm-6-->                                                                                              
+                                               </div><!--end of row-->
+                                               <div class="row">
+                                                <div class="col-sm-6">
+                                                 <label>Age</label>
+                                                 <input type="text" placeholder="Age" class="txtInfo" id="txtInfoAge">
+                                               </div><!--end of col-sm-6--> 
+                                               <div class="col-sm-6">
+                                                <label>Gender</label><br>
+                                                <div style="margin-top:10px;" class="form-check form-check-inline">
+                                                  <input class="form-check-input" type="radio" name="gender" id="rdoMale" value="Male" checked>
+                                                  <label class="form-check-label" for="rdoMale"> Male</label>&nbsp;
+                                                  <input class="form-check-input" type="radio" name="gender" id="rdoFemale" value="Female">
+                                                  <label class="form-check-label" for="rdoFemale">Female</label>
+                                                </div>                                               
+                                              </div><!--end of col-sm-6-->                                                                                              
+                                             </div><!--end of row-->
+                                             <div class="row">
+                                              <div class="col-sm-6">
+                                               <label>Country</label>
+                                               <select style="padding:5px 11px 5px" name="Specialization" id="dboCountry" class="form-control">
+                                                <option>Select country</option>
+                                                 <option>Pakistan</option>
+                                                 <option>Saudia Arabia</option>
+                                                 </select>
+                                             </div><!--end of col-sm-6--> 
+                                             <div class="col-sm-6">
+                                              <label>City</label>
+                                              <select style="padding:5px 11px 5px" name="Specialization" id="dboCity" class="form-control">
+                                               <option>Select city</option>
+                                                <option>Karachi</option>
+                                               
+                                                </select>
+                                            </div><!--end of col-sm-6-->
+                                             </div><!--end of row-->
+                                                  <br>
+                                                  <button style="font-size:1rem;padding: 13px 30px;" 
+                                                  type="button" class="previous btn btn-primary  mr-1 mb-1  btn-sm">                                         
+                                                   PREVIOUS
+                                                  </button>
+                                                  <button style="font-size:1rem;padding: 13px 30px;" 
+                                                  type="button" class="next btn btn-primary  mr-1 mb-1  btn-sm">                                         
+                                                   NEXT
+                                                  </button>                                      
+                                                  </div><!--end of card-body-->
+                                              </div><!--end of col-sm-6-->
+          
+                                              <div class="col-sm-4">
+                                                <div class="card-body" style="padding:1.2rem">
+                                                  
+                                                  <div class="col-lg-12">
+                                                    <br>
+                                                     <br>
+                                                    <lable>Profile Picture</lable>     
+                                                    <img src="/assets/images/maledoc.png" class="infoProfilePic" alt="avtar img holder">
+                                                    <button style="font-size:1rem;padding: 8px 22px; margin:0 auto;"
+                                                     type="button" class="next btn btn-primary  mr-1  btn-sm">                                         
+                                                      UPLOAD
+                                                     </button>
+                                                  </div>
+          
+                                                
+          
+          
+                                                  </div><!--end of card-body-->
+                                              </div><!--end of col-sm-6-->
+          
+                                            </div>
+                                          </div>
+                                      </div>
+                                      </div> 
+                                     
+                                  </fieldset>
+                                    <fieldset>
+                                      <div class="form-card">
+                                        <div class="card-content">
+                                          <div class="card-body">
+                                            <div class="row">
+                                              <div class="col-sm-7">
+                                                <div class="card-header">                                          
+                                                  <h6 style="font-size:25px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                                    Taking Any Medications?
+                                                  </h6>
+                                              </div>
+                                                <div class="card-body" style="padding:0 1.2rem">
+                                                <div class="row">
+                                                   <div class="col-sm-12">
+                                                    <div style="margin-top:10px;" class="form-check form-check-inline">                 
+                                                      <input class="form-check-input" type="radio" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                      <label class="form-check-label" for="rdoFemale">Not Taking Any Medications</label>
+                                                    </div>   
+                                                  </div><!--end of col-sm-6-->                                                                                               
+                                                </div><!--end of row-->
+                                                <div class="row">
+                                                  <div class="col-sm-12 mb-1 mt-1">
+                                                   <strong>If Any-</strong> 
+                                                  </div>                                                  
+                                                </div>
+                                                <div class="row">
+                                                  <div class="col-sm-5">
+                                                   <label>Medication Name</label>
+                                                   <input type="text" placeholder="Phone" class="txtInfo" id="txtInfoPhone">
+                                                 </div><!--end of col-sm-6-->
+                                                 <div class="col-sm-5">
+                                                  <label>Upload Image</label>
+                                                  <div class="input-group">
+                                                    <div class="input-group-prepend">                                                     
+                                                    </div>
+                                                    <div class="custom-file">
+                                                      <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                                      <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                    </div>
+                                                  </div>
+                                                 
+                                                </div><!--end of col-sm-5-->  
+                                               
+                                               </div><!--end of row-->
+                                               <div class="row">
+                                                <div class="col-sm-5">
+                                                 <label>Medication Name</label>
+                                                 <input type="text" placeholder="Phone" class="txtInfo" id="txtInfoPhone">
+                                               </div><!--end of col-sm-6-->
+                                               <div class="col-sm-5">
+                                                <label>Upload Image</label>
+                                                <div class="input-group">
+                                                  <div class="input-group-prepend">                                                     
+                                                  </div>
+                                                  <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                  </div>
+                                                </div>
+                                               
+                                              </div><!--end of col-sm-5-->  
+                                              <div class="col-sm-2">
+                                                <br>
+                                                <button style="font-size:1rem;padding: 10px 17px;font-weight: bolder;" type="button" 
+                                                class="next btn btn-primary  mr-1 mb-1  btn-sm">                                         
+                                                  +
+                                                 </button>
+                                              </div>
+                                             </div><!--end of row-->
+                                              <br>
+                                                  <button style="font-size:1rem;padding: 13px 30px;" 
+                                                  type="button" class="previous btn btn-primary  mr-1 mb-1  btn-sm">                                         
+                                                   PREVIOUS
+                                                  </button>
+                                                  <button style="font-size:1rem;padding: 13px 30px;" 
+                                                  type="button" class="next btn btn-primary  mr-1 mb-1  btn-sm">                                         
+                                                   NEXT
+                                                  </button>                                      
+                                                  </div><!--end of card-body-->
+                                              </div><!--end of col-sm-6-->
+                                              <div class="col-sm-5">
+                                                <div class="card-header">                                          
+                                                  <h6 style="font-size:25px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                                    Have Any Allergies?
+                                                  </h6>
+                                              </div>
+                                                <div class="card-body" style="padding:0 1.2rem">
+                                                <div class="row">
+                                                   <div class="col-sm-12">
+                                                    <div style="margin-top:10px;" class="form-check form-check-inline">                 
+                                                      <input class="form-check-input" type="radio" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                      <label class="form-check-label" for="rdoFemale">Not Have Any Allergies</label>
+                                                    </div>   
+                                                  </div><!--end of col-sm-6-->                                                                                               
+                                                </div><!--end of row-->
+                                                <div class="row">
+                                                  <div class="col-sm-12 mb-1 mt-1">
+                                                   <strong>If Any-</strong> 
+                                                  </div>                                                  
+                                                </div>
+                                                <div class="row">
+                                                  <div class="col-sm-10">
+                                                   <label>Allergy 01</label>
+                                                   <input type="text" placeholder="Phone" class="txtInfo" id="txtInfoPhone">
+                                                 </div><!--end of col-sm-6-->                                               
+                                               
+                                               </div><!--end of row-->
+                                               <div class="row">
+                                                <div class="col-sm-10">
+                                                 <label>Allergy 01</label>
+                                                 <input type="text" placeholder="Phone" class="txtInfo" id="txtInfoPhone">
+                                               </div><!--end of col-sm-6-->                                               
+                                              <div class="col-sm-2">
+                                                <br>
+                                                <button style="font-size:1rem;padding: 10px 17px;font-weight: bolder;" type="button" 
+                                                class="next btn btn-primary  mr-1 mb-1  btn-sm">                                         
+                                                  +
+                                                 </button>
+                                              </div>
+                                             </div><!--end of row-->
+                                              <br>
+                                                 
+                                                                                                 
+                                                  </div><!--end of card-body-->
+                                              </div><!--end of col-sm-6-->
+          
+                                            </div>
+                                          </div>
+                                      </div>
+                                      </div> 
+                                     
+                                  </fieldset>
+
+                                  <fieldset>
+                                      <div class="form-card">
+                                          <h2 class="fs-title text-center">Success !</h2> <br><br>
+                                          <div class="row justify-content-center">
+                                              <div class="col-3"> <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image"> </div>
+                                          </div> <br><br>
+                                          <div class="row justify-content-center">
+                                              <div class="col-7 text-center">
+                                                  <h5>You Have Successfully Signed Up</h5>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </fieldset>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+   
+        <!--========================================================================================-->
+       
+      
+  </div>
+</div>
+
+<!-- END: Content-->
+
+<!-- END: Content-->
+
+<script src="/js/vendors.js"></script>
+<!-- BEGIN Vendor JS-->
+
+<script src="/js/vertical-menu-light.js"></script>
+<script src="/js/app-menu.js"></script>
+<script src="/js/app.js"></script>
+
+<!-- BEGIN: Services calling JS-->
+<script src="/services/AddPatientWizerd.js"></script>
+<script src="/services/loadingoverlay.min.js"></script>
+
+<!-- END: Page JS-->
+
+<!-- END: JS-->
+</body>
+<!-- END: Body-->
+
+</html>

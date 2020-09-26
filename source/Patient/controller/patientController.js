@@ -71,6 +71,16 @@ class patientController {
       token: gentoken,
     });
   }
+  async getPatientWizerd(req, res, next) {
+    res.render(appRoot + "/source/Patient/view/AddPatientWizerd", {
+      pageTitle: "Add Patient ",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      apiKey: apiKey,
+      sessionId: sessionId,
+      token: gentoken,
+    });
+  }
 
   async getPatientVideo(req, res, next) {
     // var UserName = req.cookies.kindahUserName;

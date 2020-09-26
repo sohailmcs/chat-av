@@ -27,6 +27,15 @@ $(function () {
   $(".btnConfirm").click(function () {
     CancelAppointment(appointmentId, userLoginId, doctorId, PageName, PageUrl)
       .then((data) => {
+        Swal.fire({
+          title: "Confirmation",
+          text: "Your appointment has been cancelled ",
+          type: "info",
+          confirmButtonClass: "btn btn-primary",
+          buttonsStyling: false,
+          confirmButtonText: "<a style='color:#fff'>OK</a>",
+        });
+
         GetPatientAppointment(userLoginId);
       })
       .catch((error) => {

@@ -13,6 +13,11 @@ router.get(
   "/dashboard",
   PatientController.getPatientDashboard.bind(PatientController)
 );
+router.get(
+  "/AddPatient",
+  PatientController.getPatientWizerd.bind(PatientController)
+);
+
 router.get("/video", PatientController.getPatientVideo.bind(PatientController));
 router.get(
   "/appointment/:docId?/:docName?/:date?/:appId?",

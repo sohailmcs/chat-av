@@ -74,14 +74,13 @@
 
 <!--start of EMR detail-->
 <div class="modal fade text-left" id="popupHistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-    aria-hidden="true">    
+    aria-hidden="true">
 </div>
 <!--end of EMR Details-->
 
 <!--Start of Prescription from CallLog-->
-
 <div class="modal fade text-left" id="popupPrescriptionEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-    aria-hidden="true">    
+    aria-hidden="true">
 </div>
 
 <script  id="PrescriptionEdit-template" type="text/html">
@@ -94,8 +93,8 @@
         <h4><strong>Patient History</strong></h4>
         <button type="button" class="close"   aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>         
-       
+        </button>
+
       </div>
       <div class="modal-body">
      <div class="row">
@@ -116,25 +115,25 @@
            height: 80px;
            width: 80px;
            border-radius: 10px;
-           margin-bottom:10px;" /> 
-           {{/PatientPhoto}}          
+           margin-bottom:10px;" />
+           {{/PatientPhoto}}
         </div>
       <div class="col-lg-5">
         <br/>
         <h5 class="docName" style="margin:0;">
           {{PatientName}}
-        </h5>          
+        </h5>
         <b>Age</b>: {{Age}} years old
       </div>
       <div   class="col-lg-5">
-        <br/>        
-        <b> Visit Date : </b> {{AddedDate | Shortdate}} <br>                  
+        <br/>
+        <b> Visit Date : </b> {{AddedDate | Shortdate}} <br>
         <b>Phone </b>: {{PatientPhone}}
       </div>
      </div>
-    
+
      <div class="row">
-        <div class="col-sm-12">        
+        <div class="col-sm-12">
         <span>History and Exams</span>
         <textarea  class="form-control" id="txtExamEdit" rows="2"
             placeholder="Write History and Exams">{{HistoryAndExam}}</textarea>
@@ -151,7 +150,7 @@
         </div>
         <div class="col-sm-12">
         <span>RX</span>
-        <textarea class="form-control"  id="txtRxEdit" 
+        <textarea class="form-control"  id="txtRxEdit"
         rows="2" placeholder="Write RX ">{{Diagnosis}}</textarea>
         </div>
      </div>
@@ -160,10 +159,10 @@
             <i class="bx bx-check d-block d-sm-none"></i>
             <span class="d-none d-sm-block">SAVE</span>
         </button>
-       
+
     </div>
     </div>
-  </div>   
+  </div>
   </div>
   </script>
 
@@ -517,14 +516,14 @@
 <!------start of toast message ------->
 <div class="toast fade slow" data-delay="3000" id="myToast" style="position: absolute;
  ">
-   
+
     <div class="toast-body toast-header">
-        <div class="row">           
+        <div class="row">
         <div class="col-xs-6"><div id="toastText"></div></div>
         <div class="col-xs-6"> <button type="button" class="ml-2 close" data-dismiss="toast" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button></div>
-        </div>        
+        </div>
     </div>
 </div>
 <!------end of toas message ---------->
@@ -667,10 +666,10 @@
 <script src="/js/vertical-menu-light.js"></script>
 <script src="/js/app-menu.js"></script>
 <script src="/js/app.js"></script>
+<!-- 
 
-<!-- END: JS-->
 <script src="/js/classie.js"></script>
-<script src="/js/notificationFx.js"></script>
+<script src="/js/notificationFx.js"></script> -->
 
 <!-- BEGIN: Services calling JS-->
 <script src="/services/DoctorDashBoardServices.js"></script>
