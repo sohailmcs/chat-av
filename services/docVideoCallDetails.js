@@ -256,11 +256,13 @@ function initializeSession(key, sessId, tokenId) {
 }
 
 function streamDestroyed(event) {
-  AudioVideosession.unsubscribe(subscriber);
+  if (subscriber) AudioVideosession.unsubscribe(subscriber);
   AudioVideosession.off();
   AudioVideosession.disconnect();
-  AudioVideosession.unpublish(publisher, handleError);
-  publisher.destroy();
+  if (publisher) {
+    AudioVideosession.unpublish(publisher, handleError);
+    publisher.destroy();
+  }
   $("#windowComm").modal("hide");
   $(".three-icons, #timer").css("display", "none");
   $("#divCallNow").css("display", "block");
