@@ -320,10 +320,13 @@ function countTimer() {
 function disconnect() {
   var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
   clearInterval(timer);
-  AudioVideosession.off();
-  AudioVideosession.disconnect();
-  AudioVideosession.unpublish(publisher, handleError);
-  publisher.destroy();
+
+  if (publisher) {
+    AudioVideosession.off();
+    AudioVideosession.disconnect();
+    AudioVideosession.unpublish(publisher, handleError);
+    publisher.destroy();
+  }
 
   $(".three-icons, #timer").css("display", "none");
   $("#divCallNow").css("display", "block");
