@@ -9,6 +9,9 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+.btnBookAppointment {
+  margin-top: 10px;
+}
 
 .custom-file-label::after {
   height: auto;
@@ -478,6 +481,21 @@ table.k-editor {
     height: 265px;
     width: 100%;
     margin: 0 auto;
+  }
+  .btnBookAppointment {
+    float: right;
+    width: 100%;
+    font-size: 10px;
+    padding: 1px 3px;
+    margin-top: 10px;
+  }
+  .sch-rows h6.schappointment-text {
+    padding-top: 16px;
+    font-size: 75%;
+  }
+  .slot-booked .btnViewDetail,
+  .slot-booked .btnDelete {
+    font-size: 9px;
   }
 
   #msform fieldset .form-card {

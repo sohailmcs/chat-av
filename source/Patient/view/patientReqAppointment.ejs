@@ -45,20 +45,28 @@
 <!-- appointment  slot start -->
 <div class="container">
     {{#AppointmentsDetailsModel}}
-    <div class="row sch-rows">
-        <div class="col-12 col-md-8 " style="vertical-align: middle; margin: auto;">
-            <h6 class="schappointment-text ">
+
+
+    <div class="row text-center sch-rows">
+        <div class="col-12 col-sm-12">
+          <div class="row">
+            <div class="col-7 co-lg-7">
+                  <h6 style="padding-top:16px" class="schappointment-text">
                 <i class="bx bx-time-five"></i>&nbsp;&nbsp;{{AppointmentStartTime}} - {{AppointmentEndTime}}
             </h6>
+            </div>
+            <div class="col-5 co-lg-7">
+                <input class="hdnSlotId" type="hidden" name="hdnSlotId" value="{{AppointmentDetailID}}" />
+                <button type="button" class="btnBookAppointment btn  btn-outline-primary" style=" float: right;">
+                    <i class='bx bx-check-circle'></i>
+                   <strong> Book</strong>
+                </button>
+            </div>
+                     
         </div>
-        <div class="col-8 col-md-4" style="vertical-align: middle; margin: auto;">
-            <input class="hdnSlotId" type="hidden" name="hdnSlotId" value="{{AppointmentDetailID}}" />
-            <button type="button" class="btnBookAppointment btn  btn-outline-primary" style=" float: right;">
-                <i class='bx bx-check-circle'></i>
-               <strong> Book</strong>
-            </button>
-        </div>
+      </div>
     </div>
+
     {{/AppointmentsDetailsModel}}
     <br />
 </div>
