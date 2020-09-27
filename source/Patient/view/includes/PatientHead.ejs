@@ -166,11 +166,15 @@
         PlayCallingSound(true);
       });
       soc.on("ClosePatientScreen", function (data) {
-        AudioVideosession.unsubscribe(subscriber);
-        AudioVideosession.off();
-        AudioVideosession.disconnect();
-        AudioVideosession.unpublish(publisher, handleError);
-        publisher.destroy();
+        if (subscriber) AudioVideosession.unsubscribe(subscriber);
+        if (AudioVideosession) {
+          AudioVideosession.off();
+          AudioVideosession.disconnect();
+        }
+        if (publisher) {
+          AudioVideosession.unpublish(publisher, handleError);
+          publisher.destroy();
+        }
         $("#windowComm #callImg").remove();
         $("#windowComm").modal("hide");
 
