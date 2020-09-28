@@ -180,7 +180,11 @@ function initializeSession(key, sessId, tokenId) {
       $("#log").delay(3000).fadeOut("slow");
     },
     sessionDisconnected: function (event) {
-      alert("sessionDisconect");
+      if (mArea == "Patient") {
+        AudioVideosession.unpublish(publisher, handleError);
+        publisher.destroy();
+        AudioVideosession.unsubscribe(subscriber);
+      }
       if (event.reason == "networkDisconnected") {
         $("#log")
           .css("display", "block")
@@ -326,24 +330,13 @@ function streamDestroyed(event) {
 }
 
 function disconnect() {
-  if (mArea == "Patient") {
-    AudioVideosession.unpublish(publisher, handleError);
-    publisher.destroy();
-    AudioVideosession.unsubscribe(subscriber);
-    clearInterval(timer);
-    AudioVideosession.disconnect();
-    UpdateCallLogEndtime(newCalllogId, onCallduration);
-
-    var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
-    clearInterval(timer);
-    $("#windowComm").modal("hide");
-  }
+  AudioVideosession.disconnect();
 
   if (publisher) {
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
   }
-  AudioVideosession.disconnect();
+
   var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
   clearInterval(timer);
 
