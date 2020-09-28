@@ -309,7 +309,18 @@ function streamDestroyed(event) {
 }
 
 function disconnect() {
-  $("#windowComm").modal("hide");
+  if (mArea == "Patient") {
+    AudioVideosession.unpublish(publisher, handleError);
+    publisher.destroy();
+    AudioVideosession.unsubscribe(subscriber);
+    clearInterval(timer);
+    AudioVideosession.disconnect();
+    UpdateCallLogEndtime(newCalllogId, onCallduration);
+
+    var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
+    clearInterval(timer);
+  }
+
   if (publisher) {
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
