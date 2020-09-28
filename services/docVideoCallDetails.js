@@ -309,7 +309,6 @@ function streamDestroyed(event) {
 }
 
 function disconnect() {
-  alert("asdfasd");
   if (publisher) {
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
@@ -334,7 +333,6 @@ function disconnect() {
     UpdateCallLogEndtime(newCalllogId, onCallduration);
   } else {
     // else only close patient incomming call window.
-    alert("patient");
     soc.emit("ClosePatientScreen", {
       pName: mPname,
     });

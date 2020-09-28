@@ -151,7 +151,7 @@
         PlayCallingSound(true);
       });
       soc.on("ClosePatientScreen", function (data) {
-        alert("ClosePatientScreen");
+        alert("closePatient");
         if (subscriber) AudioVideosession.unsubscribe(subscriber);
         if (AudioVideosession) {
           AudioVideosession.off();
