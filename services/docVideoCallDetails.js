@@ -181,13 +181,12 @@ function initializeSession(key, sessId, tokenId) {
     },
     sessionDisconnected: function (event) {
       if (mArea == "Patient") {
-        if (subscriber) AudioVideosession.unsubscribe(subscriber);
-        if (publisher) {
-          AudioVideosession.unpublish(publisher, handleError);
-          publisher.destroy();
-        }
         $("#windowComm").modal("hide");
       }
+      AudioVideosession.unsubscribe(subscriber);
+      AudioVideosession.unpublish(publisher, handleError);
+      publisher.destroy();
+
       if (event.reason == "networkDisconnected") {
         $("#log")
           .css({ display: "block", color: "#525a65" })
@@ -219,11 +218,10 @@ function initializeSession(key, sessId, tokenId) {
       $(".three-icons, #timer").css("display", "none");
       $("#divCallNow").css("display", "block");
       $("#callImg").css("display", "block");
-      if (subscriber) AudioVideosession.unsubscribe(subscriber);
-      if (publisher) {
-        AudioVideosession.unpublish(publisher, handleError);
-        publisher.destroy();
-      }
+      AudioVideosession.unsubscribe(subscriber);
+
+      AudioVideosession.unpublish(publisher, handleError);
+      publisher.destroy();
 
       $("#log")
         .css({ display: "block", color: "#525a65" })
