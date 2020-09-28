@@ -342,7 +342,7 @@ function countTimer() {
 //============calculate calling time==============
 
 function streamDestroyed(event) {
-  event.preventDefault();
+  // event.preventDefault();
 }
 
 function disconnect() {
