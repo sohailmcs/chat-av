@@ -210,14 +210,16 @@ function initializeSession(key, sessId, tokenId) {
     },
     connectionDestroyed: function connectionDestroyedHandler(event) {
       //letting others know you left the connection in this method.
-      if (mArea == "Patient") {
-        PlayCallingSound(false);
-        $(".three-icons, #timer").css("display", "none");
-        $("#divCallNow").css("display", "block");
-        $("#callImg").css("display", "block");
+
+      PlayCallingSound(false);
+      $(".three-icons, #timer").css("display", "none");
+      $("#divCallNow").css("display", "block");
+      $("#callImg").css("display", "block");
+      if (publisher) {
         AudioVideosession.unpublish(publisher, handleError);
         publisher.destroy();
       }
+
       $("#log")
         .css({ display: "block", color: "#525a65" })
         .text("Disconnected")
