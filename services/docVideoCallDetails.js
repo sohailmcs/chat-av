@@ -305,7 +305,7 @@ function countTimer() {
 //============calculate calling time==============
 
 function streamDestroyed(event) {
-  // event.preventDefault();
+  event.preventDefault();
   var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
   clearInterval(timer);
 
