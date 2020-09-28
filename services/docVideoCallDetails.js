@@ -215,6 +215,7 @@ function initializeSession(key, sessId, tokenId) {
       $(".three-icons, #timer").css("display", "none");
       $("#divCallNow").css("display", "block");
       $("#callImg").css("display", "block");
+      if (subscriber) AudioVideosession.unsubscribe(subscriber);
       if (publisher) {
         AudioVideosession.unpublish(publisher, handleError);
         publisher.destroy();
