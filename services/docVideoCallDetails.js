@@ -181,9 +181,8 @@ function initializeSession(key, sessId, tokenId) {
     },
     sessionDisconnected: function (event) {
       if (mArea == "Patient") {
-        AudioVideosession.unpublish(publisher, handleError);
-        publisher.destroy();
         AudioVideosession.unsubscribe(subscriber);
+        $("#windowComm").modal("hide");
       }
       if (event.reason == "networkDisconnected") {
         $("#log")
@@ -211,10 +210,19 @@ function initializeSession(key, sessId, tokenId) {
     },
     connectionDestroyed: function connectionDestroyedHandler(event) {
       //letting others know you left the connection in this method.
-      PlayCallingSound(false);
-      $(".three-icons, #timer").css("display", "none");
-      $("#divCallNow").css("display", "block");
-      $("#callImg").css("display", "block");
+      if (mArea == "Patient") {
+        PlayCallingSound(false);
+        $(".three-icons, #timer").css("display", "none");
+        $("#divCallNow").css("display", "block");
+        $("#callImg").css("display", "block");
+        AudioVideosession.unpublish(publisher, handleError);
+        publisher.destroy();
+      }
+      $("#log")
+        .css({ display: "block", color: "#525a65" })
+        .text("Disconnected")
+        .delay(3000)
+        .fadeOut("slow");
     },
     streamCreated: function (event) {
       callPerformed = true;
