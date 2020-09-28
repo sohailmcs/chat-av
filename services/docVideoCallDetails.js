@@ -183,9 +183,11 @@ function initializeSession(key, sessId, tokenId) {
       if (mArea == "Patient") {
         $("#windowComm").modal("hide");
       }
-      AudioVideosession.unsubscribe(subscriber);
-      AudioVideosession.unpublish(publisher, handleError);
-      publisher.destroy();
+      if (unsubscribe) AudioVideosession.unsubscribe(subscriber);
+      if (publisher) {
+        AudioVideosession.unpublish(publisher, handleError);
+        publisher.destroy();
+      }
 
       if (event.reason == "networkDisconnected") {
         $("#log")
@@ -218,10 +220,12 @@ function initializeSession(key, sessId, tokenId) {
       $(".three-icons, #timer").css("display", "none");
       $("#divCallNow").css("display", "block");
       $("#callImg").css("display", "block");
-      AudioVideosession.unsubscribe(subscriber);
-
-      AudioVideosession.unpublish(publisher, handleError);
-      publisher.destroy();
+      AudioVideosession.disconnect();
+      if (unsubscribe) AudioVideosession.unsubscribe(subscriber);
+      if (publisher) {
+        AudioVideosession.unpublish(publisher, handleError);
+        publisher.destroy();
+      }
 
       $("#log")
         .css({ display: "block", color: "#525a65" })
@@ -342,7 +346,7 @@ function countTimer() {
 //============calculate calling time==============
 
 function streamDestroyed(event) {
-  // event.preventDefault();
+  event.preventDefault();
 }
 
 function disconnect() {
