@@ -306,6 +306,14 @@ function countTimer() {
 
 function streamDestroyed(event) {
   event.preventDefault();
+}
+
+function disconnect() {
+  if (publisher) {
+    AudioVideosession.unpublish(publisher, handleError);
+    publisher.destroy();
+  }
+  AudioVideosession.disconnect();
   var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
   clearInterval(timer);
 
@@ -329,40 +337,6 @@ function streamDestroyed(event) {
       pName: mPname,
     });
   }
-}
-
-function disconnect() {
-  //AudioVideosession.off();
-  AudioVideosession.disconnect();
-  if (publisher) {
-    AudioVideosession.unpublish(publisher, handleError);
-    publisher.destroy();
-  }
-  // AudioVideosession.off();
-  // AudioVideosession.disconnect();
-  // if (publisher) {
-  //   AudioVideosession.unpublish(publisher, handleError);
-  //   publisher.destroy();
-  // }
-
-  // $(".three-icons, #timer").css("display", "none");
-  // $("#divCallNow").css("display", "block");
-  // $("#callImg").css("display", "block");
-  //PlayCallingSound(false);
-
-  // ========if call is connected then on disconnect update time log and close patient popup========
-  // if (callPerformed && mArea == "Doctor") {
-  //   soc.emit("ClosePatientScreen", {
-  //     pName: mPname,
-  //   });
-  //   AudioVideosession.unsubscribe(subscriber);
-  //   UpdateCallLogEndtime(newCalllogId, onCallduration);
-  // } else {
-  //   // else only close patient incomming call window.
-  //   soc.emit("ClosePatientScreen", {
-  //     pName: mPname,
-  //   });
-  // }
 }
 
 function PlayCallingSound(play) {
