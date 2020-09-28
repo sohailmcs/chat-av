@@ -335,7 +335,7 @@ function disconnect() {
 
     var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
     clearInterval(timer);
-    ".three-icons, #timer".css("display", "none");
+    $(".three-icons, #timer").css("display", "none");
     $("#divCallNow").css("display", "block");
     $("#callImg").css("display", "block");
     $("#windowComm").modal("hide");
