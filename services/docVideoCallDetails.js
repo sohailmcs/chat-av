@@ -187,14 +187,16 @@ function initializeSession(key, sessId, tokenId) {
       }
       if (event.reason == "networkDisconnected") {
         $("#log")
-          .css("display", "block")
-          .text(
-            "No internet connection.Please check and try connecting again."
-          );
-        $("#log").delay(3000).fadeOut("slow");
+          .css({ display: "block", color: "#525a65" })
+          .text("No internet connection.Please check and try connecting again.")
+          .delay(3000)
+          .fadeOut("slow");
       } else {
-        $("#log").css("display", "block").text("Disconnected");
-        $("#log").delay(3000).fadeOut("slow");
+        $("#log")
+          .css({ display: "block", color: "#525a65" })
+          .text("Disconnected")
+          .delay(3000)
+          .fadeOut("slow");
       }
 
       // disconnect();
@@ -208,10 +210,11 @@ function initializeSession(key, sessId, tokenId) {
       }
     },
     connectionDestroyed: function connectionDestroyedHandler(event) {
+      //letting others know you left the connection in this method.
       PlayCallingSound(false);
-      alert("conectionDestroyed");
-      //letting them know you left the connection in this method.
-      //disconnect();
+      $(".three-icons, #timer").css("display", "none");
+      $("#divCallNow").css("display", "block");
+      $("#callImg").css("display", "block");
     },
     streamCreated: function (event) {
       callPerformed = true;
