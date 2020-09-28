@@ -346,16 +346,12 @@ function countTimer() {
 //============calculate calling time==============
 
 function streamDestroyed(event) {
+  alert("asdfadsfa");
   event.preventDefault();
-  if (publisher) {
-    AudioVideosession.unpublish(publisher, handleError);
-    publisher.destroy();
-  }
-
-  if (subscriber) AudioVideosession.unsubscribe(subscriber);
 }
 
 function disconnect() {
+  AudioVideosession.off();
   AudioVideosession.disconnect();
 
   if (publisher) {
