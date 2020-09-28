@@ -180,6 +180,7 @@ function initializeSession(key, sessId, tokenId) {
       $("#log").delay(3000).fadeOut("slow");
     },
     sessionDisconnected: function (event) {
+      alert("sessionDisconect");
       if (event.reason == "networkDisconnected") {
         $("#log")
           .css("display", "block")
@@ -204,7 +205,7 @@ function initializeSession(key, sessId, tokenId) {
     },
     connectionDestroyed: function connectionDestroyedHandler(event) {
       PlayCallingSound(false);
-
+      alert("conectionDestroyed");
       //letting them know you left the connection in this method.
       //disconnect();
     },
@@ -335,9 +336,6 @@ function disconnect() {
 
     var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
     clearInterval(timer);
-    $(".three-icons, #timer").css("display", "none");
-    $("#divCallNow").css("display", "block");
-    $("#callImg").css("display", "block");
     $("#windowComm").modal("hide");
   }
 
