@@ -309,6 +309,7 @@ function streamDestroyed(event) {
 }
 
 function disconnect() {
+  alert("asdfasd");
   if (publisher) {
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();

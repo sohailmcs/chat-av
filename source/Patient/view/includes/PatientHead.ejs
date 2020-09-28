@@ -151,6 +151,7 @@
         PlayCallingSound(true);
       });
       soc.on("ClosePatientScreen", function (data) {
+        alert("ClosePatientScreen");
         if (subscriber) AudioVideosession.unsubscribe(subscriber);
         if (AudioVideosession) {
           AudioVideosession.off();
@@ -160,7 +161,7 @@
           AudioVideosession.unpublish(publisher, handleError);
           publisher.destroy();
         }
-        $("#windowComm #callImg").remove();
+
         $("#windowComm").modal("hide");
         $("#notificationmodal, #incommingCall").modal("hide");
       });
