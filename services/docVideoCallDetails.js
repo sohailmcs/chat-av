@@ -183,7 +183,7 @@ function initializeSession(key, sessId, tokenId) {
       if (mArea == "Patient") {
         $("#windowComm").modal("hide");
       }
-      if (unsubscribe) AudioVideosession.unsubscribe(subscriber);
+      if (subscriber) AudioVideosession.unsubscribe(subscriber);
       if (publisher) {
         AudioVideosession.unpublish(publisher, handleError);
         publisher.destroy();
@@ -221,7 +221,7 @@ function initializeSession(key, sessId, tokenId) {
       $("#divCallNow").css("display", "block");
       $("#callImg").css("display", "block");
       AudioVideosession.disconnect();
-      if (unsubscribe) AudioVideosession.unsubscribe(subscriber);
+      if (subscriber) AudioVideosession.unsubscribe(subscriber);
       if (publisher) {
         AudioVideosession.unpublish(publisher, handleError);
         publisher.destroy();
