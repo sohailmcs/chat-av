@@ -225,7 +225,7 @@ function initializeSession(key, sessId, tokenId) {
         publisher.destroy();
       }
       if (subscriber) AudioVideosession.unsubscribe(subscriber);
-
+      AudioVideosession.disconnect();
       $("#log")
         .css({ display: "block", color: "#525a65" })
         .text("Disconnected")
@@ -345,7 +345,6 @@ function countTimer() {
 //============calculate calling time==============
 
 function streamDestroyed(event) {
-  AudioVideosession.disconnect();
   event.preventDefault();
 }
 
