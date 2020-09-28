@@ -347,6 +347,12 @@ function countTimer() {
 
 function streamDestroyed(event) {
   event.preventDefault();
+  if (publisher) {
+    AudioVideosession.unpublish(publisher, handleError);
+    publisher.destroy();
+  }
+
+  if (subscriber) AudioVideosession.unsubscribe(subscriber);
 }
 
 function disconnect() {
