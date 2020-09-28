@@ -309,6 +309,7 @@ function streamDestroyed(event) {
 }
 
 function disconnect() {
+  $("#windowComm").modal("hide");
   if (publisher) {
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
