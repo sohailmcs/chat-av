@@ -345,23 +345,20 @@ function countTimer() {
 //============calculate calling time==============
 
 function streamDestroyed(event) {
-  alert("asdfadsfa");
+  AudioVideosession.disconnect();
   event.preventDefault();
 }
 
 function disconnect() {
-  AudioVideosession.off();
-  AudioVideosession.disconnect();
-
   if (publisher) {
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
   }
-
   var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
   clearInterval(timer);
-
   if (subscriber) AudioVideosession.unsubscribe(subscriber);
+  AudioVideosession.off();
+  AudioVideosession.disconnect();
 
   // $("#windowComm").modal("hide");
   PlayCallingSound(false);
