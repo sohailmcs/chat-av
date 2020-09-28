@@ -229,6 +229,22 @@ function initializeSession(key, sessId, tokenId) {
         subscriberOptions,
         handleError
       );
+      subscriber.on({
+        audioBlocked: function (event) {
+          $("#log")
+            .css("display", "block")
+            .text("Your partner audio is block.")
+            .delay(4000)
+            .fadeOut("slow");
+        },
+        audioUnblocked: function (event) {
+          $("#log")
+            .css("display", "block")
+            .text("Your partner audio is unblocked.")
+            .delay(4000)
+            .fadeOut("slow");
+        },
+      });
     },
   });
 
