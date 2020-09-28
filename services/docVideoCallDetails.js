@@ -181,7 +181,11 @@ function initializeSession(key, sessId, tokenId) {
     },
     sessionDisconnected: function (event) {
       if (mArea == "Patient") {
-        AudioVideosession.unsubscribe(subscriber);
+        if (subscriber) AudioVideosession.unsubscribe(subscriber);
+        if (publisher) {
+          AudioVideosession.unpublish(publisher, handleError);
+          publisher.destroy();
+        }
         $("#windowComm").modal("hide");
       }
       if (event.reason == "networkDisconnected") {
