@@ -147,7 +147,13 @@
         $("#btnReject").attr("doctorName", data.username);
         $("#inncommingCallHead").text("Dr." + data.username);
         $("#notificationmodal").modal("hide");
-        $("#incommingCall").modal("show");
+        $("#incommingCall").modal({
+          backdrop: "static",
+          keyboard: true,
+          show: true,
+        });
+
+        // $("#incommingCall").modal("show");
         PlayCallingSound(true);
       });
       soc.on("ClosePatientScreen", function (data) {
