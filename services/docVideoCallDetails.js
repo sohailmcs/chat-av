@@ -123,9 +123,7 @@ $(function () {
   $("#btnCallNow").on("click", function () {
     checkOnlineStatusandCall(mPatientID, "Patient")
       .then((data) => {
-        console.log(JSON.stringify(data));
         if (data) {
-          alert(data);
           //=============Play calling sound =====================
           $("#callImg").css("display", "none");
           PlayCallingSound(true);
@@ -144,8 +142,8 @@ $(function () {
           $(".three-icons").show();
         } else {
           Swal.fire({
-            type: "error",
-            title: "Oops...",
+            type: "SORRY!",
+            title: "info...",
             text: "Patient is not available ",
             confirmButtonClass: "btn btn-primary",
             buttonsStyling: false,
@@ -511,7 +509,6 @@ function checkOnlineStatusandCall(patientId, userType) {
         $.LoadingOverlay("show");
       },
       success: function (data, textStatus, xhr) {
-        console.log("this is online status= " + data);
         resolve(data);
       },
       error: function (xhr, textStatus, err) {
