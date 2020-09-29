@@ -1,5 +1,3 @@
-const { json } = require("body-parser");
-
 var baseURL = "https://kindahclinic.com/KindahService/";
 //var baseURL = "http://localhost:1042/KindahService/";
 
