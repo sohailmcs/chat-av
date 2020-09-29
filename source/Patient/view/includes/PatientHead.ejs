@@ -75,12 +75,12 @@
           document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
         }
         changePatientOlineStaus(userID, "Offline", uName);
+        window.location.href = "/logout";
       }
       async function changePatientOlineStaus(userId, status, uName) {
         //=============update status in database=============
         await UpdateUserOnlineStatus(userId, status, uName, "Patient");
         //==============update status for other's user================
-        window.location.href = "/logout";
       }
       function UpdateUserOnlineStatus(UserID, status, userName, userType) {
         return new Promise((resolve, reject) => {
