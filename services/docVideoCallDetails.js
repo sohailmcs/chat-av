@@ -1,3 +1,5 @@
+const { json } = require("body-parser");
+
 var baseURL = "https://kindahclinic.com/KindahService/";
 //var baseURL = "http://localhost:1042/KindahService/";
 
@@ -123,6 +125,7 @@ $(function () {
   $("#btnCallNow").on("click", function () {
     checkOnlineStatusandCall(mPatientID, "Patient")
       .then((data) => {
+        console.log(JSON.stringify(data));
         if (data) {
           alert(data);
           //=============Play calling sound =====================
