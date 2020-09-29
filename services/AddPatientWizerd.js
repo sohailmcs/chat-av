@@ -67,6 +67,6 @@ $(function () {
   });
 
   $(".submit").click(function () {
-    return false;
+    window.location.href = "/patient/dashboard";
   });
 });

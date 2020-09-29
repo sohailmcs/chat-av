@@ -180,15 +180,6 @@ function initializeSession(key, sessId, tokenId) {
       $("#log").delay(3000).fadeOut("slow");
     },
     sessionDisconnected: function (event) {
-      if (mArea == "Patient") {
-        $("#windowComm").modal("hide");
-      }
-      if (publisher) {
-        AudioVideosession.unpublish(publisher, handleError);
-        publisher.destroy();
-      }
-      if (subscriber) AudioVideosession.unsubscribe(subscriber);
-
       if (event.reason == "networkDisconnected") {
         $("#log")
           .css({ display: "block", color: "#525a65" })
@@ -196,6 +187,15 @@ function initializeSession(key, sessId, tokenId) {
           .delay(3000)
           .fadeOut("slow");
       } else {
+        if (mArea == "Patient") {
+          $("#windowComm").modal("hide");
+        }
+        if (publisher) {
+          AudioVideosession.unpublish(publisher, handleError);
+          publisher.destroy();
+        }
+        if (subscriber) AudioVideosession.unsubscribe(subscriber);
+
         $("#log")
           .css({ display: "block", color: "#525a65" })
           .text("Disconnected")
