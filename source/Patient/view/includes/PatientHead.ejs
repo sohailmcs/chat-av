@@ -78,11 +78,7 @@
       }
       async function changePatientOlineStaus(userId, status, uName) {
         //=============update status in database=============
-        await UpdateUserOnlineStatus(userId, status, uName, "Patient").then(
-          (data) => {
-            window.location.href = "/logout";
-          }
-        );
+        await UpdateUserOnlineStatus(userId, status, uName, "Patient");
         //==============update status for other's user================
       }
       function UpdateUserOnlineStatus(UserID, status, userName, userType) {
@@ -129,6 +125,7 @@
           })
           .catch((error) => {
             console.log(error);
+            window.location.href = "/logout";
           });
       }
 
