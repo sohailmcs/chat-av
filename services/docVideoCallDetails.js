@@ -124,6 +124,7 @@ $(function () {
     checkOnlineStatusandCall(mPatientID, "Patient")
       .then((data) => {
         if (data) {
+          alert(data);
           //=============Play calling sound =====================
           $("#callImg").css("display", "none");
           PlayCallingSound(true);
@@ -509,6 +510,7 @@ function checkOnlineStatusandCall(patientId, userType) {
         $.LoadingOverlay("show");
       },
       success: function (data, textStatus, xhr) {
+        console.log("this is online status= " + data);
         resolve(data);
       },
       error: function (xhr, textStatus, err) {
