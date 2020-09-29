@@ -122,10 +122,10 @@
         })
           .then((data) => {
             console.log(data);
+            if (!status) window.location.href = "/logout";
           })
           .catch((error) => {
             console.log(error);
-            window.location.href = "/logout";
           });
       }
 
