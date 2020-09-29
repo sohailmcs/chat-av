@@ -67,8 +67,6 @@
         return null;
       }
       function deleteAllCookies() {
-        changePatientOlineStaus(userID, "Offline", uName);
-
         var cookies = document.cookie.split(";");
         for (var i = 0; i < cookies.length; i++) {
           var cookie = cookies[i];
@@ -76,11 +74,15 @@
           var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
           document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
         }
-        window.location.href = "/logout";
+        changePatientOlineStaus(userID, "Offline", uName);
       }
       async function changePatientOlineStaus(userId, status, uName) {
         //=============update status in database=============
-        await UpdateUserOnlineStatus(userId, status, uName, "Patient");
+        await UpdateUserOnlineStatus(userId, status, uName, "Patient").then(
+          (data) => {
+            window.location.href = "/logout";
+          }
+        );
         //==============update status for other's user================
       }
       function UpdateUserOnlineStatus(UserID, status, userName, userType) {
