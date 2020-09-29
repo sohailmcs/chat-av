@@ -111,7 +111,7 @@
               uName: userName,
             });
 
-            if (!status) window.location.href = "/logout";
+            if (status == "Offline") window.location.href = "/logout";
           },
           error: function (xhr, textStatus, err) {
             console.log(err);
