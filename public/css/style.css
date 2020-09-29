@@ -169,7 +169,7 @@ select.list-dt:focus {
 }
 
 #progressbar li#confirm:after {
-  left: -7px;
+  left: -15px;
 }
 
 #progressbar #account:before {
