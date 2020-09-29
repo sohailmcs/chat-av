@@ -133,7 +133,9 @@
       window.location.href = "/Logout";
     }
 
-    function changeDoctorOlineStaus(userId, status, uName) {
+    async function changeDoctorOlineStaus(userId, status, uName) {
+      await UpdateUserOnlineStatus(userId, status, uName, "Doctor");
+
       soc.emit("UpdateOnlineStatus", {
         uID: userID,
         status: status,
@@ -141,7 +143,6 @@
       });
 
       //=============update status in database=============
-      UpdateUserOnlineStatus(userId, status, uName, "Doctor");
     }
 
     function UpdateUserOnlineStatus(UserID, status, userName, userType) {

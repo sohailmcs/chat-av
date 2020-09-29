@@ -78,9 +78,9 @@
         }
         window.location.href = "/logout";
       }
-      function changePatientOlineStaus(userId, status, uName) {
+      async function changePatientOlineStaus(userId, status, uName) {
         //=============update status in database=============
-        UpdateUserOnlineStatus(userId, status, uName, "Patient");
+        await UpdateUserOnlineStatus(userId, status, uName, "Patient");
         //==============update status for other's user================
       }
       function UpdateUserOnlineStatus(UserID, status, userName, userType) {
