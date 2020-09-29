@@ -75,7 +75,6 @@
           document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
         }
         changePatientOlineStaus(userID, "Offline", uName);
-        if (!status) window.location.href = "/logout";
       }
       function changePatientOlineStaus(userId, status, uName) {
         //=============update status in database=============
@@ -84,50 +83,43 @@
         //==============update status for other's user================
       }
       function UpdateUserOnlineStatus(UserID, status, userName, userType) {
-        return new Promise((resolve, reject) => {
-          //==============update status for other's user================
-          soc.emit("UpdatePatientOnlineStatus", {
-            uID: UserID,
-            status: status,
-            uName: userName,
-          });
+        //==============update status for other's user================
 
-          var useStatus = status == "Online" ? true : false;
-          var url =
-            baseURL +
-            "User/UpdateUserOnlineStatus?userId=" +
-            UserID +
-            "&Onlinestatus=" +
-            useStatus +
-            "&userType=" +
-            userType;
-          $.ajax({
-            url: url,
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            type: "GET",
-            datatype: "application/json",
-            contentType: "application/json; charset=utf-8",
-            data: "",
-            beforeSend: function () {},
-            success: function (data, textStatus, xhr) {
-              resolve(data);
-            },
-            error: function (xhr, textStatus, err) {
-              reject(err);
-            },
-            complete: function (data) {
-              // Hide Loading
-            },
-          });
-        })
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        var useStatus = status == "Online" ? true : false;
+        var url =
+          baseURL +
+          "User/UpdateUserOnlineStatus?userId=" +
+          UserID +
+          "&Onlinestatus=" +
+          useStatus +
+          "&userType=" +
+          userType;
+        $.ajax({
+          url: url,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          type: "GET",
+          datatype: "application/json",
+          contentType: "application/json; charset=utf-8",
+          data: "",
+          beforeSend: function () {},
+          success: function (data, textStatus, xhr) {
+            soc.emit("UpdatePatientOnlineStatus", {
+              uID: UserID,
+              status: status,
+              uName: userName,
+            });
+
+            if (!status) window.location.href = "/logout";
+          },
+          error: function (xhr, textStatus, err) {
+            console.log(err);
+          },
+          complete: function (data) {
+            // Hide Loading
+          },
+        });
       }
 
       function PlayCallingSound(play) {
