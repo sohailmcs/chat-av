@@ -356,8 +356,10 @@ function disconnect() {
   var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
   clearInterval(timer);
   if (subscriber) AudioVideosession.unsubscribe(subscriber);
-  AudioVideosession.off();
-  AudioVideosession.disconnect();
+  if (AudioVideosession) {
+    AudioVideosession.off();
+    AudioVideosession.disconnect();
+  }
 
   // $("#windowComm").modal("hide");
   PlayCallingSound(false);
