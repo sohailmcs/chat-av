@@ -655,6 +655,7 @@ h1.txtwelcome {
   padding: 24px 5px;
 }
 
+.loginArea input[type="number"],
 .loginArea input[type="text"],
 .loginArea input[type="Email"],
 .loginArea input[type="password"] {
