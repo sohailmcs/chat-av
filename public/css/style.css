@@ -81,6 +81,8 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 }
 #msform input[type="text"],
 #msform textarea,
+#msform input[type="number"],
+.form-control:disabled,
 #msform select {
   padding: 12px 8px;
   background: #ffffff;

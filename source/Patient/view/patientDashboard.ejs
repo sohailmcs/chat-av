@@ -69,20 +69,20 @@
               <!-- VIEW DOCTOR PROFILE START -->             
               <div style="text-align:left"  class="call-Queue-icons">
                 <a href="/patient/appointment?DoctorId={{DoctorId}}&DocName={{FullName}}"  >
-                <button style="font-size:0.8rem" type="button" class="btn btn-outline-primary  mr-1  btn-sm" style="width:205.953px">
+                <button style="font-size:0.8rem" type="button" class="btn btn-outline-primary  mr-1  
+                btn-sm btn-block"
+                >
                   <i class="bx bx-calendar"></i>
                   <b>Request an Appointment</b>
                 </button>
-              </a>
-
-               <br>
+              </a>            
 
               {{#OnlineStatus}}
               <a >                              
                 <!-- Button trigger for request a call modal -->                              
                 <button  type="button" fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}"
-                 class=" btnSencCallReq drcall_{{DoctorId}} btn btn-outline-primary  mr-1  btn-sm" 
-                 style="font-size:0.8rem;width:205.953px; margin-top: 3%;">
+                 class=" btnSencCallReq drcall_{{DoctorId}} btn btn-outline-primary  mr-1  btn-sm btn-block" 
+                 style="font-size:0.8rem; margin-top: 3%;">
                   <i class="bx bx-phone-call"></i>
                   <b>Join Sameday Waiting list</b>
                 </button>                            
@@ -92,8 +92,8 @@
               <a >                              
                 <!-- Button trigger for request a call modal -->  
                 <button type="button" disabled="disabled" fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}" 
-                 class="btnSencCallReq drcall_{{DoctorId}} btn btn-outline-primary mr-1  btn-sm" 
-                style="font-size:0.8rem;width:205.953px; margin-top: 3%;">
+                 class="btnSencCallReq drcall_{{DoctorId}} btn btn-outline-primary mr-1  btn-sm btn-block" 
+                style="font-size:0.8rem; margin-top: 3%;">
                   <i class="bx bx-phone-call"></i>
                   <b>Join Sameday Waiting list</b>
                 </button>                            
