@@ -2,65 +2,80 @@
 //     Const = require(appRoot+'/common/flashMessageStrings').CONST,
 //     config = require(appRoot+'/config/'+appRoot_config+'/sqlConfig');
 
-     //model class
-  // const defaultModel = require('../model/defaultModel');
+//model class
+// const defaultModel = require('../model/defaultModel');
 
 class defaultController {
-    //Contructor Declaration
-    constructor() {
-        this.name = 'Admin';          
-    }    
+  //Contructor Declaration
+  constructor() {
+    this.name = "Admin";
+  }
 
-// async welcome(req, res) {    
-//     return res.json(flashMessage.success(Const.SUCCESS, {
-//         output:["Welcome to sonasoft api."]
-//     }));      
-// };
+  // async welcome(req, res) {
+  //     return res.json(flashMessage.success(Const.SUCCESS, {
+  //         output:["Welcome to sonasoft api."]
+  //     }));
+  // };
 
-async getkindahAdmin (req, res, next) {
-   // var UserName = req.cookies.kindahUserName;
-   // var userId = req.cookies.kindahUserId;
+  async getkindahAdmin(req, res, next) {
+    // var UserName = req.cookies.kindahUserName;
+    // var userId = req.cookies.kindahUserId;
     //res.render("Admin/KindahAdmin.ejs", {
-      res.render(appRoot+'/source/Admin/view/KindahAdmin', {
+    res.render(appRoot + "/source/Admin/view/KindahAdmin", {
       pageTitle: "Kindah Admin",
-      userName: req.session.userName ,
-      userId: req.session.userId ,
+      userName: req.session.userName,
+      userId: req.session.userId,
     });
-  };
+  }
 
-  async getkindahCreateDoctor (req, res, next) {
-   // var UserName = req.cookies.kindahUserName;
+  async getkindahCreateDoctor(req, res, next) {
+    // var UserName = req.cookies.kindahUserName;
     //var userId = req.cookies.kindahUserId;
     //res.render("Admin/KindahCreateDoctor.ejs", {
-      res.render(appRoot+'/source/Admin/view/KindahCreateDoctor', {
+    res.render(appRoot + "/source/Admin/view/KindahCreateDoctor", {
       pageTitle: "Kindah Create Doctor",
-      userName: req.session.userName ,
-      userId: req.session.userId ,
+      userName: req.session.userName,
+      userId: req.session.userId,
     });
-  };
-  
-  async getkindahGetAllDoctors (req, res, next) {
-   // var UserName = req.cookies.kindahUserName;
+  }
+
+  async getkindahGetAllDoctors(req, res, next) {
+    // var UserName = req.cookies.kindahUserName;
     //var userId = req.cookies.kindahUserId;
     //res.render("Admin/KindahGetAllDoctors.ejs", {
-      res.render(appRoot+'/source/Admin/view/KindahGetAllDoctors', {
+    res.render(appRoot + "/source/Admin/view/KindahGetAllDoctors", {
       pageTitle: "Kindah All Doctors",
-      userName: req.session.userName ,
-      userId: req.session.userId ,
+      userName: req.session.userName,
+      userId: req.session.userId,
     });
-  };
-  
-  async getDoctorEditProfile  (req, res, next) {
-   // var UserName = req.cookies.kindahUserName;
-   // var userId = req.cookies.kindahUserId;
-    //res.render("Admin/KindahDocEditProfile.ejs", {
-      res.render(appRoot+'/source/Admin/view/KindahDocEditProfile', {
-      pageTitle: "Doctor  Edit Profile",
-      userName: req.session.userName ,
-      userId: req.session.userId ,
-    });
-  };
+  }
 
+  async getDoctorEditProfile(req, res, next) {
+    // var UserName = req.cookies.kindahUserName;
+    // var userId = req.cookies.kindahUserId;
+    //res.render("Admin/KindahDocEditProfile.ejs", {
+    res.render(appRoot + "/source/Admin/view/KindahDocEditProfile", {
+      pageTitle: "Doctor  Edit Profile",
+      userName: req.session.userName,
+      userId: req.session.userId,
+    });
+  }
+
+  async getkindahGetAllSpecialities(req, res, next) {
+    res.render(appRoot + "/source/Admin/view/KindahGetAllSpecialities", {
+      pageTitle: "Kindah All Specialities",
+      userName: req.session.userName,
+      userId: req.session.userId,
+    });
+  }
+
+  async getEditSpeciality(req, res, next) {
+    res.render(appRoot + "/source/Admin/view/KindahEditSpeciality", {
+      pageTitle: "Kindah Edit Speciality",
+      userName: req.session.userName,
+      userId: req.session.userId,
+    });
+  }
 }
 
 module.exports = defaultController;

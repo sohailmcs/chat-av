@@ -147,6 +147,9 @@ code {
   background-color: #eee;
   border-radius: 0.1335rem;
 }
+.shadow-lg {
+  box-shadow: 0px 10px 50px rgba(0, 69, 173, 0.1) !important;
+}
 
 /* code inside pre */
 pre {

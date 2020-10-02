@@ -90,7 +90,7 @@ class loginController {
           //   UserName: data.FullName,
           //   userId: data.UserId,
           // });
-          return res.redirect("/patient/AddPatient/");
+          return res.redirect("/patient/Speciality/");
         } else if (data.UserType == "Doctor") {
           //req.location.href = "/doctor/dashboard";
           // console.log('redirect url');

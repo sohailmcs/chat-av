@@ -81,6 +81,16 @@ class patientController {
       token: gentoken,
     });
   }
+  async getSpeciality(req, res, next) {
+    res.render(appRoot + "/source/Patient/view/Speciality", {
+      pageTitle: "Speciality ",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      apiKey: apiKey,
+      sessionId: sessionId,
+      token: gentoken,
+    });
+  }
 
   async getPatientVideo(req, res, next) {
     // var UserName = req.cookies.kindahUserName;

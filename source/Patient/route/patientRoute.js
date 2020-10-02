@@ -13,6 +13,11 @@ router.get(
   "/dashboard",
   PatientController.getPatientDashboard.bind(PatientController)
 );
+
+router.get(
+  "/Speciality",
+  PatientController.getSpeciality.bind(PatientController)
+);
 router.get(
   "/AddPatient",
   PatientController.getPatientWizerd.bind(PatientController)

@@ -12,6 +12,12 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .btnBookAppointment {
   margin-top: 10px;
 }
+.imgspeciality {
+  height: 16vh;
+
+  object-fit: cover;
+  border-radius: 1rem;
+}
 
 .custom-file-label::after {
   height: auto;
@@ -2240,6 +2246,10 @@ article {
   margin: 10px;
 }
 
+#frmSpeciality .thumbnail {
+  height: unset;
+  width: unset;
+}
 .years {
   width: 100%;
   border: 1px solid #dfe3e7;
