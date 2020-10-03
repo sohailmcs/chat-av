@@ -1,3 +1,13 @@
+var baseURL = "https://kindahclinic.com/KindahService/";
+//var baseURL = "http://localhost:1042/KindahService/";
+var useLoginId = $(".user-name").attr("UserInfo");
+
+var urlParams = new URLSearchParams(window.location.search);
+var doctorId = 0;
+var name = "";
+if (urlParams.has("doctorId")) doctorId = urlParams.get("doctorId");
+if (urlParams.has("name")) name = urlParams.get("name");
+
 var app;
 
 (function () {
@@ -267,4 +277,66 @@ $(function () {
     $(".paymentbox").removeClass("selectedColor");
     $(this).addClass("selectedColor");
   });
+  $(".submit").click(function () {
+    SendCallRequestToDoctor(doctorId, name);
+  });
 });
+
+function SendCallRequestToDoctor(doctorId, fullName) {
+  var currentDt = new Date().toLocaleDateString("en-US", options);
+  var url =
+    baseURL +
+    "PatientCallRequest/SendRequestCallToDoctor?PatientID=" +
+    useLoginId +
+    "&DoctorID=" +
+    doctorId +
+    "&RequestStatus=Pending" +
+    "&date=" +
+    currentDt;
+
+  //=======  set post model=========
+  var model = {
+    PatientID: useLoginId, //==get from session
+    DoctorID: doctorId,
+    RequestStatus: "Pending",
+  };
+
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+      $("#reqcall").modal("show");
+      setTimeout(function () {
+        $("#reqcall").modal("hide");
+      }, 3000);
+
+      //======== send notification to doctor for callRequest
+      soc.emit("NotifyDoctor", {
+        username: fullName, // get doctorUsername from session
+        docId: doctorId,
+      });
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+      setTimeout(function () {
+        window.location.href = "/patient/dashboard";
+      }, 3000);
+    },
+  });
+}

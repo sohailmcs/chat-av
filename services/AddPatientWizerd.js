@@ -1,3 +1,9 @@
+var urlParams = new URLSearchParams(window.location.search);
+var doctorId = 0;
+var name = "";
+if (urlParams.has("doctorId")) doctorId = urlParams.get("doctorId");
+if (urlParams.has("name")) name = urlParams.get("name");
+
 $(function () {
   var current_fs, next_fs, previous_fs; //fieldsets
   var opacity;
@@ -67,6 +73,7 @@ $(function () {
   });
 
   $(".submit").click(function () {
-    window.location.href = "/patient/dashboard";
+    window.location.href =
+      "/patient/payment?doctorId=" + doctorId + "&name=" + name;
   });
 });
