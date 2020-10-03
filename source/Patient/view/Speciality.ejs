@@ -37,8 +37,11 @@
     
 
 <script type="text/html" id="template-speciality">
+  
 {{#result}}
-  <div class="col-sm-4   mb-3">
+
+  <div class="col-sm-4 mb-3 lnkSpeciality" spid="{{SpId}}">
+    
     <div class="shadow-lg p-2 bg-white rounded">
       {{#image}}
     <img class="imgspeciality mb-1" src="{{image}}" alt="avatar" >
@@ -78,9 +81,7 @@
           <div class="row justify-content-center mt-0">
               <div class="col-11 col-sm-9 col-md-7 col-lg-12 text-center">
                   <div class="card px-0 pt-4 pb-0 mt-1 mb-3">                    
-                      <div class="row ml-1 mr-1" id="specialities">
-                         
-                       
+                      <div class="row ml-1 mr-1" id="specialities">                                              
                           
                       </div><!--end of row-->
                   </div>

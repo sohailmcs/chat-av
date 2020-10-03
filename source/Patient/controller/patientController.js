@@ -91,6 +91,16 @@ class patientController {
       token: gentoken,
     });
   }
+  async getPayment(req, res, next) {
+    res.render(appRoot + "/source/Patient/view/Payment", {
+      pageTitle: "Payment ",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      apiKey: apiKey,
+      sessionId: sessionId,
+      token: gentoken,
+    });
+  }
 
   async getPatientVideo(req, res, next) {
     // var UserName = req.cookies.kindahUserName;

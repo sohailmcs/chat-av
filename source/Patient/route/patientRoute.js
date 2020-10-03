@@ -22,6 +22,7 @@ router.get(
   "/AddPatient",
   PatientController.getPatientWizerd.bind(PatientController)
 );
+router.get("/Payment", PatientController.getPayment.bind(PatientController));
 
 router.get("/video", PatientController.getPatientVideo.bind(PatientController));
 router.get(

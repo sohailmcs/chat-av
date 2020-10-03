@@ -37,7 +37,9 @@ $(function () {
             buttonsStyling: false,
             confirmButtonText: "Ok",
           });
-        } else SendCallRequestToDoctor(doctorId, fullName);
+        } else
+          window.location.href = "/patient/Addpatient?doctorId=" + doctorId;
+        //SendCallRequestToDoctor(doctorId, fullName);
       })
       .catch((error) => {
         console.log(error);

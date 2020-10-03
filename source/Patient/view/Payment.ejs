@@ -1,0 +1,250 @@
+<%- include('includes/PatientHead.ejs') %>
+
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+
+
+<!-- END: Vendor CSS-->
+
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+<link rel="stylesheet" type="text/css" href="/css/colors.css" />
+<link rel="stylesheet" type="text/css" href="/css/components.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" />
+
+
+
+<!-- END: Theme CSS-->
+
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+<!-- END: Page CSS-->
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<!-- END: Custom CSS-->
+</head>
+<!-- END: Head-->
+
+<!-- body tag and blue nav bar  -->
+<%- include('includes/patientNav.ejs') %>
+
+<!-- complete side menu of Patient -->
+<%- include('includes/patientSideMenu.ejs') %>
+
+ 
+<!-- BEGIN: Content-->
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row"></div>
+    <div class="content-body">
+
+      <div class="d-flex flex-row">
+        <div class="page-heading">
+          <h3><i class='iconapp bx bx-layer'></i><span>Payment Option</span></h3>
+        </div>
+       
+      </div>
+     
+      
+      <section id="dashboard-analytics">        
+          <div class="row">
+            <div class="col-sm-7 mb-4">
+              <div class="row">
+                  <div class="col-12">
+                      <div class="widget-todo" >
+                          <div class="card-header dashboard-heading-1">
+                              <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                Select A Payment Method
+                              </h6>
+                          </div>
+                          <div class="card-content">
+                              <div class="card-body" id="msform">
+                                <div class="row mr-1 ml-1">
+                                  <div class="col-sm-2 selectedColor paymentbox text-center mb-1" >
+                                    <img src="/assets/master.png" alt="avtar img holder">                                    
+                                    </div><!--end of paymentbox-->
+                                    
+                                    <div class="col-sm-2 paymentbox  text-center mb-1" >
+                                      <img src="/assets/visa.png" alt="avtar img holder">                                    
+                                      </div><!--end of paymentbox-->
+                                      <div class="col-sm-2 paymentbox text-center mb-1" >
+                                        <img src="/assets/stc.png" alt="avtar img holder">                                    
+                                        </div><!--end of paymentbox-->
+                                        <div class="col-sm-2 paymentbox text-center mb-1" >
+                                          <img src="/assets/express.png" alt="avtar img holder">                                    
+                                          </div><!--end of paymentbox-->
+                                          <div class="col-sm-2 paymentbox text-center mb-1" >
+                                            <img src="/assets/adad.png" alt="avtar img holder">                                    
+                                            </div><!--end of paymentbox-->
+                                            <div class="col-sm-2 paymentbox text-center mb-1" >
+                                              <img src="/assets/made.png" alt="avtar img holder">                                    
+                                              </div><!--end of paymentbox-->
+                                  </div><!--end of row-->
+                                  <div class="row mr-1 ml-1 mt-2">
+                                    <div class="col-sm-12">
+                                      <label>Card Number</label>
+                                      <input type="text" placeholder="1151 2589 2365 2569" class="ccFormatMonitor txtcardNo" id="txtcardNo">
+                                    </div>
+                                  </div><!--end of row-->
+                                  <div class="row mr-1 ml-1">
+                                    <div class="col-sm-12">
+                                      <label>Name On Card</label>
+                                      <input type="text" placeholder="HUMAYRA KABIR ANAMIKA" class="txtcardName" id="txtcardName">
+                                    </div>
+                                  </div><!--end of row-->
+                                  <div class="row mr-1 ml-1">
+                                    <div class="col-sm-6">
+                                      <label>CCV </label>
+                                      <input type="password" placeholder="****" class="cvv" id="txtCCV">
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <label>Expiry Date</label>                                      
+                                      <input 
+                                          type="text" 
+                                          id="inputExpDate" 
+                                          placeholder="MM / YY" 
+                                          maxlength='7'
+                                          id="txtexpireDt">
+                                    </div>
+                                  </div><!--end of row-->
+                                  <div class="row mr-1 ml-1 mt-1">
+                                    <div class="col-sm-12">
+                                    <button style="font-size:0.9rem;padding: 13px 27px;" type="button" 
+                                    class="submit btn btn-primary  mb-1  btn-sm">                                         
+                                      SUBMIT
+                                     </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+           
+            <div class="col-sm-5">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="widget-todo" >
+                                    <div class="card-header dashboard-heading-1">
+                                        <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                          Payment Summary
+                                        </h6>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body" id="msform">
+                                           
+                                            <div class="row  mr-1 ml-1 mb-1">
+                                              <div class="col-md-12">
+                                                <div class="row">
+                                                  <div class="col">
+                                                    <label class="lblheading">amount</label>
+                                                  </div>
+                                                  <div class="col text-right">
+                                                    <label id="lblDueAmount" class="lblSummary"> $ 100</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                            </div>
+
+                                            <div class="row  mr-1 ml-1 mb-1">
+                                              <div class="col-md-12">
+                                                <div class="row">
+                                                  <div class="col">
+                                                    <label class="lblheading">Service charge</label>
+                                                  </div>
+                                                  <div class="col text-right">
+                                                    <label id="lblDueAmount" class="lblSummary"> $ 10</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                            </div>
+                                            <div class="row  mr-1 ml-1 mb-1">
+                                              <div class="col-md-12">
+                                                <div class="row">
+                                                  <div class="col">
+                                                    <label class="lblheading">Tax</label>
+                                                  </div>
+                                                  <div class="col text-right">
+                                                    <label id="lblDueAmount" class="lblSummary"> $ 3</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                            </div>                                           
+                                            <div class="row mr-1 ml-1 mb-1">
+                                              <hr style="width:100%">
+                                              </div>
+
+                                              <div class="row  mr-1 ml-1 mb-1">
+                                                <div class="col-md-12">
+                                                  <div class="row">
+                                                    <div class="col">
+                                                      <label class="lblheading">Total payable</label>
+                                                    </div>
+                                                    <div class="col text-right">
+                                                      <label id="lblDueAmount" class="lblSummary"> $ 13</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                              </div>                                             
+                                              <div class="row mr-1 ml-1 mt-1">
+                                                <div class="col-sm-8">
+                                                  <input type="text" placeholder="Enter Promotion Code" 
+                                                  class="txtpromoCode" id="txtpromoCode">
+                                                </div>
+                                                <div class="col-sm-4 text-right">
+                                                  <button style="font-size:0.9rem;padding: 13px 25px;" type="button" 
+                                                  class="submit btn btn-primary  mb-1  btn-sm">                                         
+                                                    APPLY
+                                                   </button>
+                                                </div>
+                                              </div>
+                                              <div class="row  mr-1 ml-1 mb-1">
+                                                <div class="col-md-12">
+                                                  <div class="row">
+                                                    <div class="col">
+                                                      <label class="lblheading">Total</label>
+                                                    </div>
+                                                    <div class="col text-right">
+                                                      <label id="lblDueAmount" style="color:#0367FF" class="lblSummary"> $ 110</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+             </div>  <!--end of col-sm-6-->           
+          </div><!--end of row-->      
+  </div>
+</div>
+
+<!-- END: Content-->
+
+<!-- END: Content-->
+
+<script src="/js/vendors.js"></script>
+<!-- BEGIN Vendor JS-->
+
+<script src="/js/vertical-menu-light.js"></script>
+<script src="/js/app-menu.js"></script>
+<script src="/js/app.js"></script>
+
+<!-- BEGIN: Services calling JS-->
+
+<script src="/services/loadingoverlay.min.js"></script>
+<script src="/services/Payment.js"></script>
+
+<!-- END: Page JS-->
+
+<!-- END: JS-->
+</body>
+<!-- END: Body-->
+
+</html>

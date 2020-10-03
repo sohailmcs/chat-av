@@ -12,6 +12,33 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .btnBookAppointment {
   margin-top: 10px;
 }
+.lnkSpeciality {
+  cursor: pointer;
+}
+
+.lblSummary {
+  font-weight: bold;
+  font-size: 17px;
+}
+.lblheading {
+  font-size: 15px;
+}
+.paymentbox {
+  background: #f5f9ff;
+  border-right: 2px solid #e7effe;
+  padding: 15px;
+  cursor: pointer;
+}
+.paymentbox:last-child {
+  border: none;
+}
+.selectedColor {
+  background: #cfdff9;
+}
+.paymentbox:hover {
+  background: #cfdff9;
+}
+
 .imgspeciality {
   height: 16vh;
 
@@ -88,6 +115,8 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 #msform input[type="text"],
 #msform textarea,
 #msform input[type="number"],
+#msform input[type="password"],
+#msform input[type="date"],
 .form-control:disabled,
 #msform select {
   padding: 12px 8px;

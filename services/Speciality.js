@@ -3,6 +3,12 @@ var baseURL = "https://kindahclinic.com/KindahService/";
 
 $(function () {
   GetAllSpecialities();
+
+  $(document).on("click", ".lnkSpeciality", function (e) {
+    e.stopPropagation();
+    var specialityId = $(this).attr("spid");
+    getSpecialityDoctor(specialityId);
+  });
 }); //end of $function
 
 function GetAllSpecialities() {
@@ -36,4 +42,8 @@ function GetAllSpecialities() {
       $.LoadingOverlay("hide");
     },
   });
+}
+
+function getSpecialityDoctor(spId) {
+  window.location.href = "/patient/dashboard?id=" + spId;
 }
