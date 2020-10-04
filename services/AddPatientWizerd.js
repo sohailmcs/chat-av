@@ -73,7 +73,7 @@ $(function () {
   });
 
   $(".submit").click(function () {
-    window.location.href =
-      "/patient/payment?doctorId=" + doctorId + "&name=" + name;
+    var param = encodeURIComponent(doctorId + "&name=" + name);
+    window.location.href = "/patient/payment?doctorId=" + param;
   });
 });

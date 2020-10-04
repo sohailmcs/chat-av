@@ -52,11 +52,13 @@ function format(d) {
               "<td>" +
               val.DoctorPhone +
               "</td><td>" +
-              val.CallLogStartDateTime +
+              new Date(val.CallLogEndDateTime).toLocaleDateString() +
               "</td><td>" +
-              val.CallLogEndDateTime +
+              new Date(val.CallLogEndDateTime).getHours() +
+              ":" +
+              new Date(val.CallLogEndDateTime).getMinutes() +
               "</td><td>" +
-              val.OnCallDuration +
+              (val.OnCallDuration == null ? "" : val.OnCallDuration) +
               "</td><td><a href='#' onclick='ViewPatientHistory(" +
               val.CallLogID +
               " );'>" +
@@ -134,6 +136,12 @@ function Filldatatable(data) {
       { data: "Gender" },
       { data: "Email" },
       { data: "PhoneNo" },
+    ],
+    columnDefs: [
+      {
+        targets: "_all",
+        defaultContent: "",
+      },
     ],
     order: [[1, "asc"]],
     language: {
