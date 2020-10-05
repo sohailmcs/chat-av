@@ -105,15 +105,15 @@
     });
 
     // Tooltip Initialization
-    $('[data-toggle="tooltip"]').tooltip({
-      container: "body",
-    });
+    // $('[data-toggle="tooltip"]').tooltip({
+    //   container: "body",
+    // });
 
     // Tooltip For Horizontal Layout - Bookmark Icons
     /* tooltip-horizontal-bookmark - Add Custom Class */
-    $(".tooltip-horizontal-bookmark").tooltip({
-      customClass: "tooltip-horizontal-bookmark",
-    });
+    // $(".tooltip-horizontal-bookmark").tooltip({
+    //   customClass: "tooltip-horizontal-bookmark",
+    // });
 
     // Top Navbars - Hide on Scroll
     if ($(".navbar-hide-on-scroll").length > 0) {
@@ -462,9 +462,9 @@
   // Add Children Class
   $(".navigation").find("li").has("ul").addClass("has-sub");
 
-  $(".carousel").carousel({
-    interval: 2000,
-  });
+  // $(".carousel").carousel({
+  //   interval: 2000,
+  // });
 
   // Page full screen
   $(".nav-link-expand").on("click", function (e) {

@@ -1,6 +1,9 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
 //var baseURL = "http://localhost:1042/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
+var urlParams = new URLSearchParams(window.location.search);
+var spName;
+if (urlParams.has("spName")) spName = urlParams.get("spName");
 
 var options = {
   year: "numeric",
@@ -98,7 +101,7 @@ function SetDoctorsList(data) {
 }
 function GetDoctors(isSync) {
   return new Promise((resolve, reject) => {
-    var url = baseURL + "Doctor/GetDoctors";
+    var url = baseURL + "Doctor/GetDoctors?Speciality=" + spName;
 
     $.ajax({
       url: url,
