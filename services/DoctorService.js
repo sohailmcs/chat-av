@@ -40,10 +40,10 @@ $(function () {
             buttonsStyling: false,
             confirmButtonText: "Ok",
           });
-        } else
-          window.location.href =
-            "/patient/Addpatient?doctorId=" + doctorId + "&name=" + fullName;
-        //SendCallRequestToDoctor(doctorId, fullName);
+        }
+        // window.location.href =
+        //   "/patient/Addpatient?doctorId=" + doctorId + "&name=" + fullName;
+        else SendCallRequestToDoctor(doctorId, fullName);
       })
       .catch((error) => {
         console.log(error);
@@ -101,7 +101,7 @@ function SetDoctorsList(data) {
 }
 function GetDoctors(isSync) {
   return new Promise((resolve, reject) => {
-    var url = baseURL + "Doctor/GetDoctors?Speciality=" + spName;
+    var url = baseURL + "Doctor/GetDoctors?Speciality=Dentist"; // + spName;
 
     $.ajax({
       url: url,

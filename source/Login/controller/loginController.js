@@ -83,14 +83,8 @@ class loginController {
             PageError: data.Message,
           });
         } else if (data.UserType == "Patient") {
-          //window.location.href = "/patient/dashboard";
-          //res.redirect('/patient/dashboard');
-          // res.render(appRoot+'/source/Patient/view/patientDashboard', {
-          //   pageTitle: "Patient Dashboard",
-          //   UserName: data.FullName,
-          //   userId: data.UserId,
-          // });
-          return res.redirect("/patient/speciality/");
+          // return res.redirect("/patient/speciality/");
+          return res.redirect("/patient/dashboard/");
         } else if (data.UserType == "Doctor") {
           //req.location.href = "/doctor/dashboard";
           // console.log('redirect url');

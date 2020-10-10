@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 
 $(function () {
   GetAllSpecialities();
@@ -45,6 +45,6 @@ function GetAllSpecialities() {
 }
 
 function getSpecialityDoctor(spName) {
-  window.location.href =
-    "/patient/dashboard?spName=" + encodeURIComponent(spName);
+  var url = encodeURI("/patient/dashboard?spName=" + spName);
+  window.location.href = url;
 }

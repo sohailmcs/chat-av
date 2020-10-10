@@ -36,8 +36,54 @@
 
     
 
-<!-- BEGIN: Content-->
+<script type="text/html" id="template-BasicInfo">
+  <div>
+    <br>
+    <h5 class="docName" style="margin:0 0 5px;padding:0">
+      {{FullName}}
+    </h5>          
+    <b>Age:</b> {{Age}}
+    <br>
+    <b>Gender:</b> {{Gender}}
+    <br>
+    <b>Country:</b> Texas,Usa
+    <br>
+    <b>Phone:</b>  {{PhoneNo}}
+    
+  </div>
 
+
+</script>
+
+<script type="text/html" id="template-ChildInfo">
+  {{#info}}
+  <div>
+    <br>
+    <h5 class="docName" style="margin:0 0 5px;padding:0">
+      {{FullName}}
+    </h5>          
+    <b>Age:</b> {{Age}}
+    <br>
+    <b>Gender:</b> {{Gender}}
+    <br>
+    <b>Country:</b> Texas,Usa
+    <br>
+    <b>Phone:</b>  {{PhoneNo}}    
+  </div>
+  {{/info}}
+  {{^info}}
+  <div>
+    <br>
+    <br>
+  <h5 class="docName" style="margin:0 0 5px;padding:0">
+   No details found
+  </h5> 
+</div>
+  {{/info}}
+
+</script>
+
+<!-- BEGIN: Content-->
 <div class="app-content content">
   <div class="content-overlay"></div>
   <div class="content-wrapper">
@@ -81,13 +127,13 @@
                                               </div>
                                                 <div class="card-body" style="padding:0 1.2rem">
                                                  
-                                                  <button style="font-size:1rem" type="button" class="btn btn-outline-primary  mr-1  mb-1">                                         
+                                                  <button style="font-size:1rem" type="button" PatientType="Me" class="btnMe btn btn-outline-primary  mr-1  mb-1">                                         
                                                     Me
                                                   </button>
-                                                  <button style="font-size:1rem" type="button" class="btn btn-outline-primary  mr-1  mb-1">                                         
+                                                  <button style="font-size:1rem" type="button" PatientType="Child" class="btnChild btn btn-outline-primary  mr-1  mb-1">                                         
                                                     My Child
                                                   </button>
-                                                  <button style="font-size:1rem" type="button" class="btn btn-outline-primary  mr-1  mb-1">                                         
+                                                  <button style="font-size:1rem" type="button" PatientType="Relative" class="btnRelative btn btn-outline-primary  mr-1  mb-1">                                         
                                                     My Relative
                                                   </button>
 
@@ -118,24 +164,8 @@
                                                 <div >
                                                   <br>
                                                   <br>
-                                                  <div class="col-sm-12">                                                 
-                                                 
-                                                  <div>
-                                                    <br>
-                                                    <h5 class="docName" style="margin:0 0 5px;padding:0">
-                                                      sohail rasheed
-                                                    </h5>          
-                                                    <b>Age:</b> 40 years old
-                                                    <br>
-                                                    <b>Gender:</b> Male
-                                                    <br>
-                                                    <b>Age:</b> Texas,Usa
-                                                    <br>
-                                                    <b>Phone:</b> +9961569874568
-                                                    
-                                                  </div>
-          
-          
+                                                  <div id="patientBasicInfo" class="col-sm-12">
+                                                
                                                 </div>
           
           

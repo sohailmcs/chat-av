@@ -187,9 +187,6 @@ function initializeSession(key, sessId, tokenId) {
           .delay(3000)
           .fadeOut("slow");
       } else {
-        if (mArea == "Patient") {
-          $("#windowComm").modal("hide");
-        }
         if (publisher) {
           AudioVideosession.unpublish(publisher, handleError);
           publisher.destroy();
@@ -211,6 +208,8 @@ function initializeSession(key, sessId, tokenId) {
         AudioVideosession.connection.connectionId
       ) {
         PlayCallingSound(false);
+        callPerformed = true;
+        timer = setInterval(countTimer, 1000);
       }
     },
     connectionDestroyed: function connectionDestroyedHandler(event) {
@@ -237,7 +236,7 @@ function initializeSession(key, sessId, tokenId) {
       if (mCallQueId != "0" && $("#insertedID").val() == "0") {
         UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
       }
-      timer = setInterval(countTimer, 1000);
+
       $("#divCallNow").hide();
       $(".three-icons").show();
 
@@ -366,6 +365,10 @@ function disconnect() {
   $(".three-icons, #timer").css("display", "none");
   $("#divCallNow").css("display", "block");
   $("#callImg").css("display", "block");
+
+  if (callPerformed && mArea == "Patient") {
+    $("#windowComm").modal("hide");
+  }
 
   if (callPerformed && mArea == "Doctor") {
     soc.emit("ClosePatientScreen", {
