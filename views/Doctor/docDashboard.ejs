@@ -271,7 +271,7 @@
     </div>
     <div class="col-sm-3">
     <button type="button" docID="{{DoctorID}}" PName="{{patientName}}"
-     patientId="{{PatientID}}" scheId = "{{scheduledID}}"
+     patientId="{{PatientID}}" parentId="{{ParentId}}"  pType="{{PatientType}}" scheId = "{{scheduledID}}"
       class="btn btn-outline-primary btncheckIn_sch mb-1 btnAcceptSch checkin_{{PatientID}}">
     <i class="bx bx-purchase-tag"></i>
     <b>Check in</b>
@@ -350,13 +350,13 @@
     </div>
     <div class="col-sm-4">
     <button type="button" type="button" docID="{{DoctorID}}"
-    patientId="{{PatientID}}" PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}"
+    patientId="{{PatientID}}"  parentId="{{ParentId}}"  pType="{{PatientType}}"   PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}"
     class="btn btn-outline-primary btncheckIn mb-1 btnAcceptCall checkin_{{PatientID}}">
     <i class="bx bx-purchase-tag"></i>
     <b>Check in</b>
     </button>
     <button type="button" docID="{{DoctorID}}" PName="{{patientName}}"
-    patientId="{{PatientID}}" callreqID="{{CallrequestID}}"
+    patientId="{{PatientID}}" parentId="{{ParentId}}"  pType="{{PatientType}}" callreqID="{{CallrequestID}}"
     class="btn btn-icon btn-outline-danger mb-1 btnRejectCall">
     <i class="bx bx-x"></i>
     </button>

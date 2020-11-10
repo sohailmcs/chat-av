@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 var urlParams = new URLSearchParams(window.location.search);
 var spId = 0;
 var spId = urlParams.get("id");

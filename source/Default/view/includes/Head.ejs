@@ -80,6 +80,9 @@
     function OpenCommunicationWindow(btn) {
       mCallQueId = $(btn).attr("callqueid");
       mPatientID = $(btn).attr("patientid");
+      mParentId = $(btn).attr("parentid");
+      pType = $(btn).attr("pType");
+      mParentName = $(btn).attr("parentName");
       mCallLogId = $(btn).attr("clogid");
       mPname = $(btn).attr("patientname");
       mDocName = uName;
@@ -94,6 +97,7 @@
       GetDoctorNotes(mCallLogId);
       getPatientInfo(mPatientID);
     }
+
     $("body").removeClass("modal-open");
     soc.on("UpdatePatientOnlineStatus", function (data) {
       updatePatientOnlineStatus(data.uID, data.status, data.uName);

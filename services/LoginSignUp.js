@@ -204,6 +204,7 @@ $(function () {
             PhoneNo: d.PhoneNo,
             FullName: d.FullName,
             Gender: gender,
+            PatientType: "Me",
           };
         } else if (
           hdnUserType == "admin" &&
@@ -216,6 +217,7 @@ $(function () {
             PhoneNo: d.PhoneNo,
             FullName: d.FullName,
             Gender: gender,
+            PatientType: "Me",
           };
         } else {
           modelDetails = {

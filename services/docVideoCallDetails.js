@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 
 var isShowVideo = false;
 var isAudioEnable = false;
@@ -12,9 +12,13 @@ var mCallQueId;
 if ($(".modal-backdrop").length > 1) {
   $(".modal-backdrop").not(":first").remove();
 }
+
 var mPatientID;
 var mCallLogId;
 var mPname;
+var mParentId;
+var pType;
+var mParentName;
 var mDocName;
 var mDocId;
 var mArea;
@@ -121,7 +125,9 @@ $(function () {
 
   //===========start functionality calling=================
   $("#btnCallNow").on("click", function () {
-    checkOnlineStatusandCall(mPatientID, "Patient")
+    var patientId = mPatientID;
+    if (pType != "Me") patientId = mParentId;
+    checkOnlineStatusandCall(patientId, "Patient")
       .then((data) => {
         if (data) {
           //=============Play calling sound =====================
@@ -187,9 +193,6 @@ function initializeSession(key, sessId, tokenId) {
           .delay(3000)
           .fadeOut("slow");
       } else {
-        if (mArea == "Patient") {
-          $("#windowComm").modal("hide");
-        }
         if (publisher) {
           AudioVideosession.unpublish(publisher, handleError);
           publisher.destroy();
@@ -201,6 +204,9 @@ function initializeSession(key, sessId, tokenId) {
           .text("Disconnected")
           .delay(3000)
           .fadeOut("slow");
+        if (mArea == "Patient") {
+          $("#windowComm").modal("hide");
+        }
       }
 
       // disconnect();
@@ -211,10 +217,18 @@ function initializeSession(key, sessId, tokenId) {
         AudioVideosession.connection.connectionId
       ) {
         PlayCallingSound(false);
+        timer = setInterval(countTimer, 1000);
+        callPerformed = true;
+        if (mCallQueId != "0" && $("#insertedID").val() == "0") {
+          UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
+        }
       }
     },
     connectionDestroyed: function connectionDestroyedHandler(event) {
       //letting others know you left the connection in this method.
+      soc.emit("ClosePatientScreen", {
+        pName: mPname,
+      });
 
       PlayCallingSound(false);
       $(".three-icons, #timer").css("display", "none");
@@ -233,11 +247,7 @@ function initializeSession(key, sessId, tokenId) {
         .fadeOut("slow");
     },
     streamCreated: function (event) {
-      callPerformed = true;
-      if (mCallQueId != "0" && $("#insertedID").val() == "0") {
-        UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
-      }
-      timer = setInterval(countTimer, 1000);
+      //  timer = setInterval(countTimer, 1000);
       $("#divCallNow").hide();
       $(".three-icons").show();
 
@@ -367,11 +377,12 @@ function disconnect() {
   $("#divCallNow").css("display", "block");
   $("#callImg").css("display", "block");
 
-  if (callPerformed && mArea == "Doctor") {
+  //if (callPerformed && mArea == "Doctor") {
+  if (callPerformed) {
     soc.emit("ClosePatientScreen", {
       pName: mPname,
     });
-    AudioVideosession.unsubscribe(subscriber);
+    // AudioVideosession.unsubscribe(subscriber);
     UpdateCallLogEndtime(newCalllogId, onCallduration);
   } else {
     // else only close patient incomming call window.
@@ -379,6 +390,7 @@ function disconnect() {
       pName: mPname,
     });
   }
+  callPerformed = false;
 }
 
 function PlayCallingSound(play) {
@@ -521,6 +533,50 @@ function checkOnlineStatusandCall(patientId, userType) {
         $.LoadingOverlay("hide");
       },
     });
+  });
+}
+
+function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
+  var url =
+    baseURL +
+    "CallQue/UpdateCallQueStatus?CallQueId=" +
+    CallQueId +
+    "&status=" +
+    status;
+
+  var model = {
+    DoctorID: doctorID,
+    PatientID: PatientId,
+    CallQueID: CallQueId,
+    AddedBy: doctorID,
+    CallLogStartDateTime: new Date().toLocaleDateString("en-US", options),
+    AddedDate: new Date().toLocaleDateString("en-us"),
+  };
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "POST",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: model,
+    beforeSend: function () {
+      // $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      // $.LoadingOverlay("hide");
+
+      $("#insertedID").val(data);
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      getDashBoardAllScheduled(true);
+    },
   });
 }
 

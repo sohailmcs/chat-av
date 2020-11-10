@@ -68,14 +68,16 @@
           <div class="col-sm-3" >            
               <!-- VIEW DOCTOR PROFILE START -->             
               <div style="text-align:left"  class="call-Queue-icons">
-                <a href="/patient/appointment?DoctorId={{DoctorId}}&DocName={{FullName}}"  >
-                <button style="font-size:0.8rem" type="button" class="btn btn-outline-primary  mr-1  
+                <!-- <a href="/patient/appointment?DoctorId={{DoctorId}}&DocName={{FullName}}"  > -->
+                <button  fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}"
+                style="font-size:0.8rem" type="button"             
+                class="btnAppointments btn btn-outline-primary  mr-1  
                 btn-sm btn-block"
                 >
                   <i class="bx bx-calendar"></i>
                   <b>Request an Appointment</b>
                 </button>
-              </a>            
+              <!-- </a>             -->
 
               {{#OnlineStatus}}
               <a >                              

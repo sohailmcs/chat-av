@@ -19,9 +19,11 @@ var doctorId = urlParams.get("DoctorId");
 var currentDt = kendo.toString(new Date(), "d");
 var appOldId = 0;
 var doctName = "";
+var spName;
 if (urlParams.has("DocName")) doctName = urlParams.get("DocName");
 if (urlParams.has("date")) currentDt = urlParams.get("date");
 if (urlParams.has("appId")) appOldId = urlParams.get("appId");
+if (urlParams.has("spName")) spName = urlParams.get("spName");
 
 $(function () {
   //=====get selected doctor scheduled on load====
@@ -68,14 +70,24 @@ $(function () {
         });
     } else {
       //===========Book new Appointment=======
-      BookPatientAppointment(useLoginId, appDetailID)
-        .then((data) => {
-          calendar.trigger("change");
-          $("#primary").modal("show");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+
+      window.location.href =
+        "/patient/Addpatient?doctorId=" +
+        doctorId +
+        "&name=" +
+        doctName +
+        "&type=sch" +
+        "&appId=" +
+        appDetailID;
+      "&spName=" + spName;
+      // BookPatientAppointment(useLoginId, appDetailID)
+      //   .then((data) => {
+      //     calendar.trigger("change");
+      //     $("#primary").modal("show");
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
     }
     //======== send notification to doctor for callRequest
     socket.emit("NotifyDoctor", {

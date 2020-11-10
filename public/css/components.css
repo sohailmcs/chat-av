@@ -3803,11 +3803,20 @@ h6.patientName {
 }
 .onlinStatus {
   position: absolute;
-  right: 5px;
-  bottom: 0px;
+  right: -1px;
+  bottom: -10px;
   color: #4dd0bb;
   font-weight: 300;
 }
+
+.onlinStatus_Calls {
+  position: absolute;
+  right: 4px;
+  bottom: 6px;
+  color: #4dd0bb;
+  font-weight: 300;
+}
+
 .widget-timeline li h4 {
   margin-bottom: 2px !important;
   font-size: 12px;

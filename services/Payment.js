@@ -1,13 +1,22 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
+var UserName = $(".user-name").text();
 
 var urlParams = new URLSearchParams(window.location.search);
 var doctorId = 0;
 var name = "";
+var spName = "";
+var patientId = "";
+var type;
+var appointmentId;
 if (urlParams.has("doctorId")) doctorId = urlParams.get("doctorId");
 if (urlParams.has("name")) name = urlParams.get("name");
-
+if (urlParams.has("spName")) spName = urlParams.get("spName");
+if (urlParams.has("pId")) patientId = urlParams.get("pId");
+if (urlParams.has("type")) type = urlParams.get("type");
+if (urlParams.has("appointmentId"))
+  appointmentId = urlParams.get("appointmentId");
 var app;
 
 (function () {
@@ -278,7 +287,20 @@ $(function () {
     $(this).addClass("selectedColor");
   });
   $(".submit").click(function () {
-    SendCallRequestToDoctor(doctorId, name);
+    if (type == "call") SendCallRequestToDoctor(doctorId, name);
+    else {
+      BookPatientAppointment(patientId, doctorId, appointmentId)
+        .then((data) => {
+          $("#primary").modal("show");
+          setTimeout(function () {
+            $("#primary").modal("hide");
+            window.location.href = "/patient/dashboard?spName=" + spName;
+          }, 2500);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   });
 });
 
@@ -287,19 +309,19 @@ function SendCallRequestToDoctor(doctorId, fullName) {
   var url =
     baseURL +
     "PatientCallRequest/SendRequestCallToDoctor?PatientID=" +
-    useLoginId +
+    patientId +
     "&DoctorID=" +
     doctorId +
     "&RequestStatus=Pending" +
     "&date=" +
     currentDt;
 
-  //=======  set post model=========
-  var model = {
-    PatientID: useLoginId, //==get from session
-    DoctorID: doctorId,
-    RequestStatus: "Pending",
-  };
+  // //=======  set post model=========
+  // var model = {
+  //   PatientID: useLoginId, //==get from session
+  //   DoctorID: doctorId,
+  //   RequestStatus: "Pending",
+  // };
 
   $.ajax({
     url: url,
@@ -335,8 +357,55 @@ function SendCallRequestToDoctor(doctorId, fullName) {
       // Hide Loading
       $.LoadingOverlay("hide");
       setTimeout(function () {
-        window.location.href = "/patient/dashboard";
-      }, 3000);
+        window.location.href = "/patient/dashboard?spName=" + spName;
+      }, 2500);
     },
+  });
+}
+
+//==Book patient Appointment
+function BookPatientAppointment(patientId, docId, AppointmentDetailId) {
+  return new Promise((resolve, reject) => {
+    var currentDt = new Date().toLocaleDateString("en-US", options);
+
+    var url = baseURL + "Appointments/BookPatientAppointment";
+
+    //======= set post model
+    var model = {
+      AppointmentDetailId: AppointmentDetailId,
+      PatientId: patientId,
+      doctorId: docId,
+      doctorName: name,
+      PatientName: UserName,
+      BookedDateTime: currentDt,
+      Status: "Booked",
+      PageName: "PatientAppointmentBook",
+      PageURL: window.location.href,
+    };
+
+    ///==============start post request to book appointment
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "POST",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: model,
+      beforeSend: function () {
+        $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+        resolve(data);
+      },
+      error: function (xhr, textStatus, err) {
+        reject(err);
+      },
+      complete: function (data) {
+        // Hide Loading
+        $.LoadingOverlay("hide");
+      },
+    });
   });
 }

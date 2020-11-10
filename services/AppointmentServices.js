@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
 var UserName = $(".user-name").text();
 var socket = io();
@@ -19,9 +19,13 @@ var doctorId = urlParams.get("DoctorId");
 var currentDt = kendo.toString(new Date(), "d");
 var appOldId = 0;
 var doctName = "";
-if (urlParams.has("DocName")) doctName = urlParams.get("DocName");
+var spName;
+var doctorId;
+if (urlParams.has("name")) doctName = urlParams.get("name");
 if (urlParams.has("date")) currentDt = urlParams.get("date");
 if (urlParams.has("appId")) appOldId = urlParams.get("appId");
+if (urlParams.has("spName")) spName = urlParams.get("spName");
+if (urlParams.has("doctorId")) doctorId = urlParams.get("doctorId");
 
 $(function () {
   //=====get selected doctor scheduled on load====
@@ -68,21 +72,31 @@ $(function () {
           console.log(error);
         });
     } else {
-      //===========Book new Appointment=======
-      BookPatientAppointment(useLoginId, appDetailID)
-        .then((data) => {
-          calendar.trigger("change");
-          $("#primary").modal("show");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      //===========Book new Appointment===============
+      window.location.href =
+        "/patient/Addpatient?doctorId=" +
+        doctorId +
+        "&name=" +
+        doctName +
+        "&type=sch" +
+        "&appId=" +
+        appDetailID +
+        "&spName=" +
+        spName;
+      // BookPatientAppointment(useLoginId, appDetailID)
+      //   .then((data) => {
+      //     calendar.trigger("change");
+      //     $("#primary").modal("show");
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
     }
-    //======== send notification to doctor for callRequest
-    socket.emit("NotifyDoctor", {
-      username: doctName, // get doctorUsername from session
-      docId: doctorId,
-    });
+    // //======== send notification to doctor for callRequest
+    // socket.emit("NotifyDoctor", {
+    //   username: doctName, // get doctorUsername from session
+    //   docId: doctorId,
+    // });
   });
 }); //==end of jquery $function
 

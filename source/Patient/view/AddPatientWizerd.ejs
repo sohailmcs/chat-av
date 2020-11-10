@@ -35,9 +35,27 @@
 <%- include('includes/patientSideMenu.ejs') %>
 
     
+<input type="hidden" id="hdnPatientId" value="">
+<script type="text/html" id="template-BasicInfo">
+  <div>
+    <br>
+    <h5 class="docName" style="margin:0 0 5px;padding:0">
+      {{FullName}}
+    </h5>          
+    <b>Age:</b> {{Age}}
+    <br>
+    <b>Gender:</b> {{Gender}}
+    <br>
+    <b>Country:</b> Texas,Usa
+    <br>
+    <b>Phone:</b>  {{PhoneNo}}
+    
+  </div>
+
+</script>
+
 
 <!-- BEGIN: Content-->
-
 <div class="app-content content">
   <div class="content-overlay"></div>
   <div class="content-wrapper">
@@ -81,13 +99,13 @@
                                               </div>
                                                 <div class="card-body" style="padding:0 1.2rem">
                                                  
-                                                  <button style="font-size:1rem" type="button" class="btn btn-outline-primary  mr-1  mb-1">                                         
+                                                  <button style="font-size:1rem" type="button" PatientType="Me" class="btnMe btnPatientTypeSelected btn btn-outline-primary  mr-1  mb-1">                                         
                                                     Me
                                                   </button>
-                                                  <button style="font-size:1rem" type="button" class="btn btn-outline-primary  mr-1  mb-1">                                         
+                                                  <button style="font-size:1rem" type="button" PatientType="Child" class="btnChild btn btn-outline-primary  mr-1  mb-1">                                         
                                                     My Child
                                                   </button>
-                                                  <button style="font-size:1rem" type="button" class="btn btn-outline-primary  mr-1  mb-1">                                         
+                                                  <button style="font-size:1rem" type="button" PatientType="Relative" class="btnRelative btn btn-outline-primary  mr-1  mb-1">                                         
                                                     My Relative
                                                   </button>
 
@@ -95,18 +113,14 @@
                                                   <div class="form-group mt-1">
                                                     <span for="txtspecialization">Select Previous Patient Info</span>
                                                     <select style="padding:5px 11px 5px;" class="form-control" id="dboInfo">
-                                                      <option>Choose patient</option>
-                                                      <option>1</option>
-                                                      <option>2</option>
-                                                      <option>3</option>
-                                                      <option>4</option>
+                                                     
                                                     </select>
                                                   </div><!--end of form-group-->
                                                   <br>
                                                   <br>
                                                   <br>
                                                 
-                                                  <button style="font-size:0.9rem;padding: 13px 40px;" 
+                                                  <button step="first" style="font-size:0.9rem;padding: 13px 40px;" 
                                                   type="button" class="next action-button btn btn-primary  mr-1  btn-sm">                                         
                                                    NEXT
                                                   </button>
@@ -118,24 +132,8 @@
                                                 <div >
                                                   <br>
                                                   <br>
-                                                  <div class="col-sm-12">                                                 
-                                                 
-                                                  <div>
-                                                    <br>
-                                                    <h5 class="docName" style="margin:0 0 5px;padding:0">
-                                                      sohail rasheed
-                                                    </h5>          
-                                                    <b>Age:</b> 40 years old
-                                                    <br>
-                                                    <b>Gender:</b> Male
-                                                    <br>
-                                                    <b>Age:</b> Texas,Usa
-                                                    <br>
-                                                    <b>Phone:</b> +9961569874568
-                                                    
-                                                  </div>
-          
-          
+                                                  <div id="patientBasicInfo" class="col-sm-12">
+                                                
                                                 </div>
           
           
@@ -170,7 +168,14 @@
                                                   </div><!--end of col-sm-6-->                                                  
                                                 </div><!--end of row-->
                                                 <div class="row">
-                                                 
+                                                  <div class="col-sm-12">
+                                                   <label>Email</label>
+                                                   <input readonly type="text" placeholder="Email" class="txtInfo" id="txtEmail">
+                                                 </div><!--end of col-sm-6-->
+                                                                                                 
+                                               </div><!--end of row-->
+
+                                                <div class="row">                                                 
                                                  <div class="form-group mb-50 col-sm-12">
                                                   <label class="text-bold-600" for="exampleInputEmail1">Phone no</label>
                                                   <div class="row">
@@ -179,7 +184,7 @@
                                                     </div>
                   
                                                     <div class="col">
-                                                      <input required="" name="contactNo" type="number" class="form-control" id="txtPhoneNo" placeholder="Contact Number">
+                                                      <input readonly  required="" name="contactNo" type="number" class="form-control" id="txtPhoneNo" placeholder="Contact Number">
                                                     </div>
                                                   </div>
                                                 </div>
@@ -221,11 +226,11 @@
                                             </div><!--end of col-sm-6-->
                                              </div><!--end of row-->
                                                   <br>
-                                                  <button style="font-size:0.9rem;padding: 13px 27px;" 
+                                                  <button step="second" style="font-size:0.9rem;padding: 13px 27px;" 
                                                   type="button" class="previous btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                                    PREVIOUS
                                                   </button>
-                                                  <button style="font-size:0.9rem;padding: 13px 40px;"
+                                                  <button step="second" style="font-size:0.9rem;padding: 13px 40px;"
                                                   type="button" class="next btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                                    NEXT
                                                   </button>                                      
@@ -239,16 +244,20 @@
                                                     <br>
                                                      <br>
                                                     <label>Profile Picture</label>
-
-                                                    <img src="/assets/images/maledoc.png" class="infoProfilePic" alt="avtar img holder">
-                                                    <button style="font-size:1rem;padding: 8px 22px; margin:0 auto;"
+                                                    <output id="result">
+                                                      <div>
+                                                        <img src="/assets/images/maledoc.png" class="infoProfilePic" alt="avtar img holder">
+                                                      </div>
+                                                    </output>
+                                                    <!-- <img src="/assets/images/maledoc.png" class="infoProfilePic" alt="avtar img holder"> -->
+                                                    <input type="file" id="imgupload" style="display:none"/>
+                                                      
+                                                    <button id="btnPatientimgUpload" style="font-size:1rem;padding: 8px 22px; margin:0 auto;"
                                                      type="button" class=" btn btn-primary  mr-1  btn-sm">                                         
-                                                      UPLOAD
+                                                      UPLOAD &nbsp;
+                                                      <span id="fname"></span>
                                                      </button>
                                                   </div>
-          
-                                                
-          
           
                                                   </div><!--end of card-body-->
                                               </div><!--end of col-sm-6-->
@@ -270,70 +279,57 @@
                                                     Taking Any Medications?
                                                   </h6>
                                               </div>
-                                                <div class="card-body" style="padding:0 1.2rem">
+                                                <div id="divMedication" class="card-body" style="padding:0 1.2rem">
                                                 <div class="row">
                                                    <div class="col-sm-12">
                                                     <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                      <input class="form-check-input" type="radio" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                      <input class="form-check-input" checked="checked" type="radio" name="medication" id="rdTakingMedNo" 
+                                                      value="0">                                                                                           
                                                       <label class="form-check-label" for="rdoFemale">Not Taking Any Medications</label>
                                                     </div>   
-                                                  </div><!--end of col-sm-6-->                                                                                               
+                                                  </div><!--end of col-sm-6-->  
+                                                                                                                                             
                                                 </div><!--end of row-->
                                                 <div class="row">
                                                   <div class="col-sm-12 mb-1 mt-1">
-                                                  <label><strong>If Any-</strong></label>
-                                                  </div>                                                  
-                                                </div>
-                                                <div class="row">
-                                                  <div class="col-sm-5">
-                                                   <label>Medication Name</label>
-                                                   <input type="text" placeholder="Phone" class="txtInfo" id="txtInfoPhone">
-                                                 </div><!--end of col-sm-6-->
-                                                 <div class="col-sm-5">
-                                                  <label>Upload Image</label>
-                                                  <div class="input-group">
-                                                    <div class="input-group-prepend">                                                     
-                                                    </div>
-                                                    <div class="custom-file">
-                                                      <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                                      <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                                    </div>
+                                                    <div  class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="medication" id="rdTakingMedYes" value="1">                                                                                           
+                                                    <label class="form-check-label" for="rdoFemale"><strong>If Any-</strong></label>
                                                   </div>
-                                                 
-                                                </div><!--end of col-sm-5-->  
-                                               
-                                               </div><!--end of row-->
-                                               <div class="row">
+                                                  <!-- <label><strong>If Any-</strong></label> -->
+                                                  </div>                                                  
+                                                </div>                                               
+                                               <div  class="row divMed">
                                                 <div class="col-sm-5">
                                                  <label>Medication Name</label>
-                                                 <input type="text" placeholder="Phone" class="txtInfo" id="txtInfoPhone">
+                                                 <input type="text" placeholder="Name" class="txtMedicationName txtInfo">
                                                </div><!--end of col-sm-6-->
-                                               <div class="col-sm-5">
+                                               <div class="col-sm-7">
                                                 <label>Upload Image</label>
                                                 <div class="input-group">
                                                   <div class="input-group-prepend">                                                     
                                                   </div>
                                                   <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                                    <input type="hidden" value="" class="imgMedicine">
+                                                    <input type="file" style='cursor:pointer'  class="custom-file-input MedicationReciept" >
                                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                                   </div>
-                                                </div>
-                                               
-                                              </div><!--end of col-sm-5-->  
-                                              <div class="col-sm-2">
-                                                <br>
-                                                <button style="font-size:1rem;padding: 10px 17px;font-weight: bolder;" type="button" 
-                                                class="btn btn-primary  mr-1 mb-1  btn-sm">                                         
-                                                  +
-                                                 </button>
-                                              </div>
+                                                  <div class='ml-1 mb-1'>                                                  
+                                                    <button id="btnAddMedication" style="font-size:1rem;padding: 10px 17px;font-weight: bolder;" type="button" 
+                                                    class="btn btn-primary  mr-1 mb-1  btn-sm">                                         
+                                                      +
+                                                     </button>
+                                                  </div>
+                                                </div><!--end of input group-->
+                                             
+                                            </div><!--end of col-sm-5-->  
                                              </div><!--end of row-->
-                                              <br>
+                                             
                                                   <button style="font-size:0.9rem;padding: 13px 27px;" 
                                                   type="button" class="previous btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                                    PREVIOUS
                                                   </button>
-                                                  <button style="font-size:0.9rem;padding: 13px 40px;"
+                                                  <button step="third" style="font-size:0.9rem;padding: 13px 40px;"
                                                   type="button" class="next btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                                    NEXT
                                                   </button>                                      
@@ -345,35 +341,35 @@
                                                     Have Any Allergies?
                                                   </h6>
                                               </div>
-                                                <div class="card-body" style="padding:0 1.2rem">
+                                                <div class="card-body" id="divAlergy" style="padding:0 1.2rem">
                                                 <div class="row">
                                                    <div class="col-sm-12">
                                                     <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                      <input class="form-check-input" type="radio" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                      <input class="form-check-input" checked="checked" type="radio" name="alergy" 
+                                                      id="rdoHaveAlergyNo" value="0">                                                                                           
                                                       <label class="form-check-label" for="rdoFemale">Not Have Any Allergies</label>
                                                     </div>   
-                                                  </div><!--end of col-sm-6-->                                                                                               
+                                                  </div><!--end of col-sm-6-->
+                                                                                                                                               
                                                 </div><!--end of row-->
                                                 <div class="row">
                                                   <div class="col-sm-12 mb-1 mt-1">
-                                                 <label><strong>If Any-</strong> </label> 
+                                                    <div style="margin-top:10px;" class="form-check form-check-inline">                 
+                                                      <input class="form-check-input" type="radio" name="alergy" id="rdoHaveAlergyYes" value="1">                                                                                           
+                                                      <label class="form-check-label" for="rdoFemale"><strong>If Any-</strong></label>
+                                                    </div> 
+                                                
                                                   </div>                                                  
                                                 </div>
-                                                <div class="row">
-                                                  <div class="col-sm-10">
-                                                   <label>Allergy 01</label>
-                                                   <input type="text" placeholder="Phone" class="txtInfo" id="txtInfoPhone">
-                                                 </div><!--end of col-sm-6-->                                               
                                                
-                                               </div><!--end of row-->
-                                               <div class="row">
+                                               <div class="row PatientAlergy">
                                                 <div class="col-sm-10">
                                                  <label>Allergy 01</label>
-                                                 <input type="text" placeholder="Phone" class="txtInfo" id="txtInfoPhone">
+                                                 <input type="text" placeholder="Alergy" class="txtInfo txtAlergy">
                                                </div><!--end of col-sm-6-->                                               
-                                              <div class="col-sm-2">
+                                              <div class="col-sm-2 mt-0">
                                                 <br>
-                                                <button style="font-size:1rem;padding: 10px 17px;font-weight: bolder;" type="button" 
+                                                <button  id="btnAddAlergy" style="font-size:1rem;padding: 10px 17px;font-weight: bolder;" type="button" 
                                                 class="btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                                   +
                                                  </button>
@@ -407,31 +403,34 @@
                                               <div class="row">
                                                  <div class="col-sm-12">
                                                   <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                    <input class="form-check-input" type="radio" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                    <input class="form-check-input" checked="checked" type="radio" name="condition" id="rdoTakeMedNo" value="0">                                                                                           
                                                     <label class="form-check-label" for="rdoFemale">No known medical conditions</label>
                                                   </div>   
                                                 </div><!--end of col-sm-6-->                                                                                               
                                               </div><!--end of row-->
                                               <div class="row">
                                                 <div class="col-sm-12 mb-1 mt-1">
-                                                <label><strong>If Any-</strong></label>
+                                                  <div style="margin-top:10px;" class="form-check form-check-inline">                 
+                                                      <input class="form-check-input" type="radio" name="condition" id="rdoTakeMedYes" value="1">                                                                                           
+                                                      <label class="form-check-label" for="rdoFemale"><strong>If Any-</strong></label>
+                                                    </div>                                               
                                                 </div>                                                  
                                               </div>
-                                              <div class="row">
+                                              <div class="divCondition row">
                                               <div class="col-sm-6">
                                                   <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                    <input class="form-check-input" type="checkbox" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                    <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="0">                                                                                           
                                                     <label class="form-check-label" for="rdoFemale">Cancer</label>
                                                   </div>   
                                                 </div><!--end of col-sm-6--> 
                                                  <div class="col-sm-6">
                                                   <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                    <input class="form-check-input" type="checkbox" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                    <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="0">                                                                                           
                                                     <label class="form-check-label" for="rdoFemale">Cancer</label>
                                                   </div>   
                                                 </div><!--end of col-sm-6--> 
                                               </div>  <!--end of row-->
-                                              <div class="row">
+                                              <div class="divCondition row">
                                                 <div class="col-sm-6">
                                                     <div style="margin-top:10px;" class="form-check form-check-inline">                 
                                                       <input class="form-check-input" type="checkbox" name="gender" id="rdotakeMed" value="0">                                                                                           
@@ -440,49 +439,49 @@
                                                   </div><!--end of col-sm-6--> 
                                                   <div class="col-sm-6">
                                                     <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                      <input class="form-check-input" type="checkbox" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                      <input class="form-check-input" type="checkbox" name="gender" id="rdotakeMed1" value="0">                                                                                           
                                                       <label class="form-check-label" for="rdoFemale">Diabetes</label>
                                                     </div>   
                                                   </div><!--end of col-sm-6--> 
                                                 </div>  <!--end of row-->
-                                                <div class="row">
+                                                <div class="divCondition row">
                                                   <div class="col-sm-6">
                                                       <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                        <input class="form-check-input" type="checkbox" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                        <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="0">                                                                                           
                                                         <label class="form-check-label" for="rdoFemale">Heart Disease</label>
                                                       </div>   
                                                     </div><!--end of col-sm-6--> 
                                                     <div class="col-sm-6">
                                                       <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                        <input class="form-check-input" type="checkbox" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                        <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="0">                                                                                          
                                                         <label class="form-check-label" for="rdoFemale">Heart Disease</label>
                                                       </div>   
                                                     </div><!--end of col-sm-6--> 
                                                   </div>  <!--end of row-->
-                                                  <div class="row">
+                                                  <div class="divCondition row">
                                                     <div class="col-sm-6">
                                                         <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                          <input class="form-check-input" type="checkbox" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                          <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="0">                                                                                           
                                                           <label class="form-check-label" for="rdoFemale">Stroke</label>
                                                         </div>   
                                                       </div><!--end of col-sm-6--> 
                                                       <div class="col-sm-6">
                                                         <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                          <input class="form-check-input" type="checkbox" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                          <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="0">                                                                                           
                                                           <label class="form-check-label" for="rdoFemale">Stroke</label>
                                                         </div>   
                                                       </div><!--end of col-sm-6--> 
                                                     </div>  <!--end of row-->
-                                                    <div class="row">
+                                                    <div class="divCondition row">
                                                       <div class="col-sm-6">
                                                           <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                            <input class="form-check-input" type="checkbox" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                            <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="0">                                                                                           
                                                             <label class="form-check-label" for="rdoFemale">Blood Pressure</label>
                                                           </div>   
                                                         </div><!--end of col-sm-6--> 
                                                         <div class="col-sm-6">
                                                           <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                            <input class="form-check-input" type="checkbox" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                            <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="0">                                                                                           
                                                             <label class="form-check-label" for="rdoFemale">Blood Pressure</label>
                                                           </div>   
                                                         </div><!--end of col-sm-6--> 
@@ -491,7 +490,7 @@
                                                       <div class="row">
                                                         <div class="col-sm-6">
                                                             <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                              <input class="form-check-input" type="checkbox" name="gender" id="rdotakeMed" value="0">                                                                                           
+                                                              <input class="form-check-input" type="checkbox" name="Other" id="otherCondition" value="0">                                                                                           
                                                               <label class="form-check-label" for="rdoFemale">Other</label>
                                                             </div>   
                                                           </div><!--end of col-sm-6--> 
@@ -519,7 +518,8 @@
                                                       <div class="input-group-prepend">                                                     
                                                       </div>
                                                       <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                                        <input type="hidden" value="" class="hdnimgcomplain">
+                                                        <input type="file" class="custom-file-input" style="cursor: pointer;" id="imgcomplain">
                                                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                                       </div>
                                                     </div>
@@ -572,6 +572,70 @@
 <!-- END: Content-->
 
 <!-- END: Content-->
+
+<script>
+  window.onload = function () {
+
+      //Check File API support
+      if (window.File && window.FileList && window.FileReader) {
+          var filesInput = document.getElementById("imgupload");
+          var imgcomplain = document.getElementById("imgcomplain");
+             
+          
+       filesInput.addEventListener("change", function (event) {
+              var files = event.target.files; //FileList object
+             
+              var file = $(this).val().replace(/C:\\fakepath\\/gi, "");
+              $("#fname").text(file);
+              $("#result").html('');
+              var output = document.getElementById("result");                
+              for (var i = 0; i < files.length; i++) {
+                  var file = files[i];
+                  //Only pics
+                  if (!file.type.match('image'))
+                      continue;
+                  var picReader = new FileReader();
+                  picReader.addEventListener("load", function (event) {
+                      var picFile = event.target;
+                      var div = document.createElement("div");
+                      div.innerHTML = "<img class='infoProfilePic' src='" + picFile.result + "'" +
+                          "title='" + picFile.name + "'/>";
+                      output.insertBefore(div, null);
+                    });
+                  //Read the image
+                  picReader.readAsDataURL(file);
+              }
+
+          });
+         
+          imgcomplain.addEventListener("change", function (event) {
+              var files = event.target.files; //FileList object             
+              var file = $(this).val().replace(/C:\\fakepath\\/gi, "");             
+              for (var i = 0; i < files.length; i++) {
+                  var file = files[i];
+                  //Only pics
+                  if (!file.type.match('image'))
+                      continue;
+                  var picReader = new FileReader();
+                  picReader.addEventListener("load", function (event) {
+                      var picFile = event.target;
+                      $(".hdnimgcomplain").val('');
+                      $(".hdnimgcomplain").val(picFile.result)                      
+                    });
+                  //Read the image
+                  picReader.readAsDataURL(file);
+              }
+
+          });
+          
+     
+        }
+      else {
+          console.log("Your browser does not support File API");
+      }
+  }
+
+</script>
 
 <script src="/js/vendors.js"></script>
 <!-- BEGIN Vendor JS-->
