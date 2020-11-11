@@ -392,10 +392,7 @@ function AddUpdatePatientDetails() {
     FullName: $("#txtInfoFirstName").val() + " " + $("#txtInfoLastName").val(),
     Email: $("#txtEmail").val(),
     PatientType: pType,
-    PhoneNo:
-      $("input:disabled").val() +
-      "" +
-      $("#txtPhoneNo").val().replace(/^0+/, ""), //======remove leadng zero from phone number
+    PhoneNo: $("#txtPhoneNo").val().replace(/^0+/, ""), //======remove leadng zero from phone number
 
     PatientPhoto: $(".infoProfilePic").attr("src"),
     AddedBy: userLoginId,
