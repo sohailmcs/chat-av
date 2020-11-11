@@ -118,7 +118,7 @@
            margin-bottom:10px;" />
            {{/PatientPhoto}}
         </div>
-      <div class="col-lg-5">
+      <div class="col-lg-5 pl-2">
         <br/>
         <h5 class="docName" style="margin:0;">
           {{PatientName}}
@@ -155,7 +155,8 @@
         </div>
      </div>
      <div style="text-align:left;">
-        <button style="padding:8px 30px;" cLogId ="{{CallLogID}}" id="btnSaveUpdateEMR" type="button" class="btn btn-primary">
+        <button style="padding:8px 30px;" cLogId ="{{CallLogID}}" id="btnSaveUpdateEMR"
+         type="button" class="btn btn-primary">
             <i class="bx bx-check d-block d-sm-none"></i>
             <span class="d-none d-sm-block">SAVE</span>
         </button>
@@ -175,14 +176,8 @@
     <div class="col-sm-4">
 
 
-    <div class="pr-50 pImage " style="float:left;top:30px;">
-    <!-- {{#PatientPhoto}}
-    <img src="{{PatientPhoto}}" alt="image" style="width: 25px;height: 25px; float:left;"/>
-    {{/PatientPhoto}}
-    {{^PatientPhoto}}
-    <img src="/assets/images/maledoc.png" alt="image" style="width: 25px;height: 25px; float:left;"/>
-    {{/PatientPhoto}} -->
-    <span class="onlinStatus status_{{PatientID}}" style="margin-right: 5px; !important" ><b>
+    <div class="pr-50 pImage " style="float:left;top:30px;">  
+    <span class="onlinStatus_Calls status_{{ParentId}}" style="margin-right: 5px; !important" ><b>
     {{#OnlineStatus}}
     <span class="bullet bullet-success bullet-sm" ></span>
     {{/OnlineStatus}}
@@ -214,9 +209,10 @@
     </p>
     </div>
     <div class="col-sm-3" style="padding: 0 10px;">
-    <button type="button" docID="{{DoctorID}}" PName="{{patientName}}"
-     patientId="{{PatientID}}" scheId = "{{scheduledID}}"
-      class="btn btn-outline-primary btncheckIn_sch mb-1 btnAcceptSch checkin_{{PatientID}}">
+    <button type="button"  docID="{{DoctorID}}" PName="{{patientName}}"
+     patientId="{{PatientID}}" parentId="{{ParentID}}"  pType="{{PatientType}}" parentName="{{ParentName}}"  
+      scheId = "{{scheduledID}}"
+      class="btn btn-outline-primary btncheckIn_sch mb-1 btnAcceptSch checkin_{{ParentID}}">
     <i class="bx bx-purchase-tag"></i>
     <b>CHECK IN</b>
     </button>
@@ -255,7 +251,7 @@
     {{^PatientPhoto}}
     <img src="/assets/images/maledoc.png" alt="image" style="width: 25px;height: 25px; float:left;"/>
     {{/PatientPhoto}} -->
-    <span class="onlinStatus status_{{PatientID}}" style="margin-right: 5px; !important" ><b>
+    <span class="onlinStatus_Calls status_{{ParentId}}" style="margin-right: 5px; !important" ><b>
     {{#OnlineStatus}}
     <span class="bullet bullet-success bullet-sm" ></span>
     {{/OnlineStatus}}
@@ -293,13 +289,16 @@
     </p>
     </div>
     <div class="col-sm-4" style="padding: 0 6px;">
-    <button type="button" type="button" docID="{{DoctorID}}"
-    patientId="{{PatientID}}" PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}"
-    class="btn btn-outline-primary btncheckIn mb-1 btnAcceptCall checkin_{{PatientID}}">
+    <button type="button" type="button" docID="{{DoctorID}}"  
+    patientId="{{PatientID}}"  parentId="{{ParentId}}"  pType="{{PatientType}}" 
+    parentName="{{ParentName}}" PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}"
+    class="btn btn-outline-primary btncheckIn mb-1 btnAcceptCall checkin_{{ParentId}}">
     <i class="bx bx-purchase-tag"></i>
     <b>CHECK IN</b>
     </button>
-    <button type="button" docID="{{DoctorID}}" PName="{{patientName}}"
+    <button type="button"  docID="{{DoctorID}}"
+      parentId="{{ParentId}}"  pType="{{PatientType}}" 
+    parentName="{{ParentName}}" PName="{{patientName}}"
     patientId="{{PatientID}}" callreqID="{{CallrequestID}}"
     class="btn btn-icon btn-outline-danger mb-1 btnRejectCall">
     <i class="bx bx-x"></i>
@@ -327,7 +326,7 @@
      <div class="row" style="margin: 1%;">
         <div class="col-sm-4">
             <div class="d-inline-block">
-                <div class="pr-50 pImage " style="float:left;display: inline-block; align-self: stretch;">
+                <div class="pr-50 pImage " style="border-radius:5px;float:left;display: inline-block; align-self: stretch;">
                     {{#PatientPhoto}}
                     <img
                     src="{{PatientPhoto}}"
@@ -349,7 +348,7 @@
                  float:left;"
                />
                  {{/PatientPhoto}}
-                         <span class="onlinStatus status_{{PatientID}}"><b>
+                         <span class="onlinStatus status_{{ParentID}}"><b>
                                 {{#OnlineStatus}}
                                 <span class="bullet bullet-success bullet-sm"></span>
                                 {{/OnlineStatus}}
@@ -383,38 +382,42 @@
             <div class="audioVideoBtnArea">
                 {{#OnlineStatus}}
                 <a >
-                    <button  type="button" patientName="{{PatientName}}"
-                     CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}"
+                    <button  type="button" patientName="{{ParentName}}"
+                     CallQueId="{{CallQueID}}" pType="{{PatientType}}"   cLogId ="0"  parentName = "{{ParentName}}" 
+                     parentid ="{{ParentID}}" patientID ="{{PatientID}}"
                      onclick="OpenCommunicationWindow(this)"
-                     class="btn btn-audio-video mb-1 audio_{{PatientID}}">
+                     class="btn btn-audio-video mb-1 audio_{{ParentID}}">
                         <i class="bx bx-microphone"></i>
                         <b>Audio</b>
                     </button>
                 </a>
                 <a>
-                    <button type="button"  patientName="{{PatientName}}"
-                    CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}"
-                     onclick="OpenCommunicationWindow(this)"
-                     class="btn btn-audio-video mb-1 video_{{PatientID}}">
+                    <button type="button"  patientName="{{ParentName}}"
+                    CallQueId="{{CallQueID}}"  pType="{{PatientType}}" cLogId ="0"
+                     parentName = "{{ParentName}}"  parentid ="{{ParentID}}"  patientID ="{{PatientID}}"
+                     onclick="OpenCommunicationWindow(this )"
+                     class="btn btn-audio-video mb-1 video_{{ParentID}}">
                         <i class="bx bx-video"></i>
                         <b>Video</b>
                     </button>
                 </a>
                 {{/OnlineStatus}}
                 {{^OnlineStatus}}
-                <button  type="button" patientName="{{PatientName}}"  disabled
-                CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}"
+                <button  type="button" patientName="{{ParentName}}"  disabled
+                CallQueId="{{CallQueID}}"  pType="{{PatientType}}" cLogId ="0"  parentName = "{{ParentName}}"
+                parentid ="{{ParentID}}" patientID ="{{PatientID}}"
                 onclick="OpenCommunicationWindow(this)"
-                class="btn btn-audio-video mb-1 audio_{{PatientID}}">
+                class="btn btn-audio-video mb-1 audio_{{ParentID}}">
                    <i class="bx bx-microphone"></i>
                    <b>Audio</b>
                </button>
            </a>
            <a>
-               <button type="button"  patientName="{{PatientName}}" disabled
-               CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}"
+               <button type="button"  patientName="{{ParentName}}" disabled
+               CallQueId="{{CallQueID}}" pType="{{PatientType}}" cLogId ="0"  parentName = "{{ParentName}}"
+               parentid ="{{ParentID}}" patientID ="{{PatientID}}"
                 onclick="OpenCommunicationWindow(this)"
-                class="btn btn-audio-video mb-1 video_{{PatientID}}">
+                class="btn btn-audio-video mb-1 video_{{ParentID}}">
                    <i class="bx bx-video"></i>
                    <b>Video</b>
                </button>
@@ -424,7 +427,7 @@
 
                 <a>
                     <!-- Button for SMS Popup -->
-                    <button type="button"patientName="{{PatientName}}"  phoneNo="{{PatientPhone}}"
+                    <button type="button" patientName="{{PatientName}}"  phoneNo="{{PatientPhone}}"
                      class="btnpopupSmsReminder btn btn-audio-video mb-1"
                         >
                         <i class="bx bx-chat"></i>
@@ -465,13 +468,17 @@
         </td>
         <td>
             <!-- modal on eye icon close-->
-            <a href="#" patientName="{{PatientName}}"  PatientID="{{PatientID}}"   cLogId="{{CallLogID }}" CallQueId="0"
+            <a href="#" patientName="{{ParentName}}"  PatientID="{{PatientID}}" 
+            parentName = "{{ParentName}}"  parentid ="{{ParentID}}" 
+             cLogId="{{CallLogID}}" CallQueId="0"
             onclick="OpenCommunicationWindow(this)" data-toggle="tooltip" data-placement="bottom" title="Audio Call" >
             <i class="bx bx-microphone"></i>
             </a>
 
 
-            <a href="#" patientName="{{PatientName}}"  PatientID="{{PatientID}}"  cLogId="{{CallLogID }}" CallQueId="0"
+            <a href="#" patientName="{{ParentName}}"  PatientID="{{PatientID}}" 
+            parentName = "{{ParentName}}"  parentid ="{{ParentID}}" 
+            cLogId="{{CallLogID}}" CallQueId="0"
             onclick="OpenCommunicationWindow(this)" data-toggle="tooltip" data-placement="bottom" title="Video Call">
             <i class="bx bx-video"></i>
             </a>

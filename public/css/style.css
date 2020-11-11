@@ -9,6 +9,11 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+.btnPatientTypeSelected {
+  background-color: #437dec;
+  color: #fff !important;
+}
+
 .btnBookAppointment {
   margin-top: 10px;
 }
@@ -399,11 +404,10 @@ select.list-dt:focus {
   text-align: center;
   left: 30px;
   top: 30px;
-  z-index: 1200;
   /* border: 1px solid; */
-  color: #525a65;
-  font-size: 13px;
-  font-weight: 500;
+  color: #171819;
+  font-size: 14px;
+  font-weight: bold;
 }
 .icons {
   bottom: 5px;
@@ -1651,6 +1655,12 @@ button:focus {
   }
 }
 
+@media (min-width: 576px) {
+  .modal-xlg {
+    max-width: 700px !important;
+  }
+}
+
 .video-nav {
   padding-bottom: 0rem !important;
 }
@@ -1726,9 +1736,32 @@ button:focus {
   padding-left: 21px;
 }
 
+.medicineName {
+  text-align: center;
+  width: 40%;
+  margin-top: 5px;
+}
+.divMedication {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.Listalergy {
+  padding-left: 12px;
+}
+.Listalergy li {
+  list-style: disc;
+  font-size: 13px;
+  font-weight: normal;
+}
+
 .side-bar {
   overflow: auto;
   padding: 0rem !important;
+}
+.side-bar-doc {
+  overflow: auto;
+  padding: 0rem 1.2rem !important;
 }
 
 .text-color {

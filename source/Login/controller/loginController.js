@@ -83,8 +83,8 @@ class loginController {
             PageError: data.Message,
           });
         } else if (data.UserType == "Patient") {
-          // return res.redirect("/patient/speciality/");
-          return res.redirect("/patient/dashboard/");
+          return res.redirect("/patient/speciality/");
+          // return res.redirect("/patient/dashboard/");
         } else if (data.UserType == "Doctor") {
           //req.location.href = "/doctor/dashboard";
           // console.log('redirect url');

@@ -68,14 +68,16 @@
           <div class="col-sm-3" >            
               <!-- VIEW DOCTOR PROFILE START -->             
               <div style="text-align:left"  class="call-Queue-icons">
-                <a href="/patient/appointment?DoctorId={{DoctorId}}&DocName={{FullName}}"  >
-                <button style="font-size:0.8rem" type="button" class="btn btn-outline-primary  mr-1  
+                <!-- <a href="/patient/appointment?DoctorId={{DoctorId}}&DocName={{FullName}}"  > -->
+                <button  fullName="{{FullName}}"  docEmail="{{Email}}" docID="{{DoctorId}}"
+                style="font-size:0.8rem" type="button"             
+                class="btnAppointments btn btn-outline-primary  mr-1  
                 btn-sm btn-block"
                 >
                   <i class="bx bx-calendar"></i>
                   <b>Request an Appointment</b>
                 </button>
-              </a>            
+              <!-- </a>             -->
 
               {{#OnlineStatus}}
               <a >                              
@@ -289,31 +291,7 @@
 </div>
 <!--end of reject call -->
     
-<!--start of request call Model-->
-<div class="modal fade text-left" id="reqcall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-primary ">
-        <h4 id="myModalLabel160">
-          Request a Call
-        </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>       
-      </div>
-      <div class="modal-body" style="text-align: center;">
-        <div style="text-align: center; margin:12px 0; ">
-          <img src="/assets/Frame 10.png" alt="Calling " />
-        </div>
-        <br>
-        <p  class="txtnormal"><strong>Your request has been sent to doctor. <br>
-          Please wait.</strong></p>
-      </div>
-    </div>
-  </div>
-</div>
-<!--end of request call Model-->
+
 
 
 <div class="app-content content">

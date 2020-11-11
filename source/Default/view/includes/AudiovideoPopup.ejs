@@ -12,6 +12,7 @@
 }
 </style>
 
+
  <!-- VIEW History  POP UP TEMPLATE -->
  <script  id="viewHistory-template" type="text/html">
   <div
@@ -45,7 +46,7 @@
           border-radius: 10px;" /> 
          {{/PatientPhoto}}          
       </div>
-    <div class="col-lg-5">
+    <div class="col-lg-5 pl-2">
       <br/>
       <h5 class="docName" style="margin:0;">
         {{PatientName}}
@@ -136,23 +137,23 @@
     <div class="modal-body">
    <div class="row">
         <div class="col-lg-2">
-          {{#ProfilePicture}}
+          {{#PatientPhoto}}
           <img
-          src="{{ProfilePicture}}"
+          src="{{PatientPhoto}}"
           alt="image"
           style="
           height: 80px;
           width: 80px;
           border-radius: 10px" />
-         {{/ProfilePicture}}
-         {{^ProfilePicture}}
+         {{/PatientPhoto}}
+         {{^PatientPhoto}}
          <img src="/assets/images/patient.png" alt="image" style="
          height: 80px;
           width: 80px;
           border-radius: 10px"/> 
-         {{/ProfilePicture}}          
+         {{/PatientPhoto}}          
       </div>
-    <div class="col-lg-5">
+    <div class="col-lg-5 pl-2">
       <br/>
       <h5 class="docName" style="margin:0;">
         {{PatientName}}
@@ -161,7 +162,7 @@
     </div>
     <div   class="col-lg-5">
       <br/>        
-      <b> Date : </b> {{AddeddDate | Shortdate}} <br>                  
+      <b> Date : </b> {{AddedDate | Shortdate}} <br>                  
       <b>Phone </b>: {{PatientPhone}}
     </div>  
 

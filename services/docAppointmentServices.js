@@ -4,6 +4,8 @@ var useLoginId = $(".user-name").attr("UserInfo");
 var UserName = $(".user-name").text();
 
 $(function () {
+  //ViewBookingDetails(1);
+
   var currentDt = kendo.toString(new Date(), "d");
   GetDoctorAllSlots(useLoginId, currentDt);
 
@@ -425,7 +427,8 @@ function CancelAppointment(
 }
 
 function ViewBookingDetails(PatientId) {
-  var url = baseURL + "Patient/GetPatientDetails?PatientId=" + PatientId;
+  var url =
+    baseURL + "Patient/GetPatientInitialAssisments?PatientId=" + PatientId;
   $.ajax({
     url: url,
     headers: {

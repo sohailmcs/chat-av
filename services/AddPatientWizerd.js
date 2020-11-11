@@ -1,22 +1,119 @@
-//var baseURL = "https://kindahclinic.com/KindahService/";
-var baseURL = "http://localhost:1042/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
+//var baseURL = "http://localhost:1042/KindahService/";
 
 var urlParams = new URLSearchParams(window.location.search);
 var doctorId = 0;
 var name = "";
+var spName;
+var type;
+var appId;
 if (urlParams.has("doctorId")) doctorId = urlParams.get("doctorId");
 if (urlParams.has("name")) name = urlParams.get("name");
-var userLoginId = $(".user-name").attr("UserInfo");
-$(function () {
-  PatientBasicInfo(userLoginId);
+if (urlParams.has("spName")) spName = urlParams.get("spName");
+if (urlParams.has("type")) type = urlParams.get("type");
+if (urlParams.has("appId")) appId = urlParams.get("appId");
 
-  $(".btnChild, .btnRelative").on("click", function () {
-    var type = $(this).attr("PatientType");
-    GetChildPatientInfo(userLoginId, type);
+var userLoginId = $(".user-name").attr("UserInfo");
+
+var pType = "Me";
+
+$("#hdnPatientId").val(userLoginId);
+$(function () {
+  $(document).on("change", ".MedicationReciept", function (event) {
+    var files = event.target.files; //FileList object
+    var imgHidden = $(this).siblings(".imgMedicine");
+    var file = $(this)
+      .val()
+      .replace(/C:\\fakepath\\/gi, "");
+
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      //Only pics
+      if (!file.type.match("image")) continue;
+      var picReader = new FileReader();
+      picReader.addEventListener("load", function (event) {
+        var picFile = event.target;
+        imgHidden.val(picFile.result);
+      });
+      //Read the image
+      picReader.readAsDataURL(file);
+    }
   });
 
+  PatientBasicInfo(userLoginId, false, "Parent");
+
   $(".btnMe").on("click", function () {
-    PatientBasicInfo(userLoginId);
+    pType = $(this).attr("PatientType");
+    PatientBasicInfo(userLoginId, false, "Parent");
+    $("#hdnPatientId").val(userLoginId);
+    $(".btnChild, .btnRelative,.btnMe").removeClass("btnPatientTypeSelected");
+    $(this).addClass("btnPatientTypeSelected");
+  });
+
+  $(".btnChild, .btnRelative").on("click", function () {
+    pType = $(this).attr("PatientType");
+    GetChildPatientInfo(userLoginId, pType);
+    $("#patientBasicInfo").html("");
+    $("#hdnPatientId").val("0");
+    $(".btnChild, .btnRelative,.btnMe").removeClass("btnPatientTypeSelected");
+    $(this).addClass("btnPatientTypeSelected");
+  });
+
+  $("#dboInfo").change(function () {
+    $(this).css("border-color", " ");
+    var childId = $(this).val();
+    GetChildDetails(childId);
+    $("#hdnPatientId").val(childId);
+  });
+
+  $("#btnPatientimgUpload").click(function () {
+    $("#imgupload").click();
+  });
+
+  //========Add new Medication============
+  $("#btnAddMedication").click(function () {
+    AddMedication();
+  });
+
+  $(document).on("click", ".btnRemoveMedication", function () {
+    $(this).parents(".divMed").remove();
+  });
+  $(document).on("click", ".btnAddAlergy", function () {
+    $(this).parents(".PatientAlergy").remove();
+  });
+
+  //========Add new Medication============
+  $("#btnAddAlergy").click(function () {
+    AddAlergy();
+  });
+
+  $(".divMed").find("*").prop("disabled", true);
+  $(".PatientAlergy").find("*").prop("disabled", true);
+  $(".divCondition").find("*").prop("disabled", true);
+  $("#txtMedCondition").prop("disabled", true);
+
+  $('input:radio[name="medication"]').change(function () {
+    if (this.checked && this.value == "0") {
+      $(".divMed").find("*").prop("disabled", true);
+    } else $(".divMed").find("*").prop("disabled", false);
+  });
+
+  $('input:radio[name="alergy"]').change(function () {
+    if (this.checked && this.value == "0") {
+      $(".PatientAlergy").find("*").prop("disabled", true);
+    } else $(".PatientAlergy").find("*").prop("disabled", false);
+  });
+
+  $('input:radio[name="condition"]').change(function () {
+    if (this.checked && this.value == "0") {
+      $(".divCondition").find("*").prop("disabled", true);
+    } else $(".divCondition").find("*").prop("disabled", false);
+  });
+
+  $("#otherCondition").change(function () {
+    if ($(this).is(":checked")) {
+      $("#txtMedCondition").prop("disabled", false);
+    } else $("#txtMedCondition").prop("disabled", true);
   });
 
   //=============start wizard==================
@@ -24,6 +121,25 @@ $(function () {
   var opacity;
 
   $(".next").click(function () {
+    //==========on first next button click in wazerd======
+    var step = $(this).attr("step");
+
+    switch (step) {
+      case "first":
+        PatientBasicInfo($("#hdnPatientId").val(), true, "Child");
+        // if (!Validate()) return false;
+        // else PatientBasicInfo($("#hdnPatientId").val(), true);
+        break;
+      case "second":
+        AddUpdatePatientDetails();
+        break;
+      case "third":
+        AddPatientMedication();
+      default:
+      // return true;
+    }
+
+    //==========on first next button click in wazerd======
     current_fs = $(this).parents("fieldset");
     next_fs = $(this).parents("fieldset").next();
 
@@ -62,6 +178,7 @@ $(function () {
 
     //show the previous fieldset
     previous_fs.show();
+    if ($(this).attr("step") == "second") $(".btnMe").trigger("click");
 
     //hide the current fieldset with style
     current_fs.animate(
@@ -88,14 +205,29 @@ $(function () {
   });
 
   $(".submit").click(function () {
-    var param = encodeURIComponent(doctorId + "&name=" + name);
-    window.location.href = "/patient/payment?doctorId=" + param;
+    AddPatientConditon();
   });
 
   //================end wizard ===============
 });
 
-function PatientBasicInfo(PatientId) {
+function Validate() {
+  var result = true;
+
+  var len = $("select#dboInfo option").length;
+  if ((pType == "Child" || pType == "Relative") && len > 1) {
+    if ($("#dboInfo").val() == "0") {
+      $("#dboInfo").css("border-color", "red");
+      result = false;
+    }
+  } else {
+    $("#dboInfo").css("border-color", " ");
+    result = true;
+  }
+  return result;
+}
+
+function PatientBasicInfo(PatientId, isDetails, type) {
   var url = baseURL + "Patient/GetPatientDetails?PatientId=" + PatientId;
   $.ajax({
     url: url,
@@ -111,9 +243,22 @@ function PatientBasicInfo(PatientId) {
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
-      //=====set values for slots templates======
-      var patientInfo = $("#template-BasicInfo").html();
-      $("#patientBasicInfo").html(Mustache.to_html(patientInfo, data));
+      if (type == "Parent") {
+        $("#txtPhoneNo").val(parseInt(data.PhoneNo));
+        $("#txtEmail").val(data.Email);
+      }
+      if (isDetails) FillDetails(data);
+      else {
+        //=====set values for slots templates======
+        var patientInfo = $("#template-BasicInfo").html();
+        $("#patientBasicInfo").html(Mustache.to_html(patientInfo, data));
+
+        $("#dboInfo option").remove();
+        $("#dboInfo").append(
+          $("<option>").text("Choose patient").attr("value", "0")
+        );
+        $("#dboInfo").attr("disabled", "disabled");
+      }
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -127,10 +272,35 @@ function PatientBasicInfo(PatientId) {
   });
 }
 
+function FillDetails(d) {
+  $("#txtInfoFirstName").val(d.FirstName);
+  $("#txtInfoLastName").val(d.LastName);
+
+  $("#txtInfoAge").val(d.Age);
+  if (d.Gender == "Male") $("#rdoMale").prop("checked", true);
+  else $("#rdoFemale").prop("checked", true);
+  $("#dboCountry").val(d.CountryId);
+  $("#dboCity").val(d.CityId);
+
+  var div = document.createElement("div");
+  if (d.PatientPhoto != null) {
+    div.innerHTML =
+      "<img class='infoProfilePic' src='" +
+      d.PatientPhoto +
+      "'" +
+      "title='ProfilePicture'/>";
+  } else {
+    div.innerHTML =
+      "<img class='infoProfilePic' src='/assets/images/maledoc.png'/>";
+  }
+  //=========set image control============
+  $("#result").html(div);
+}
+
 function GetChildPatientInfo(patientId, patientType) {
   var url =
     baseURL +
-    "Patient/GetChildPatient?PatientId=" +
+    "Patient/GetChildsPatient?PatientId=" +
     patientId +
     "&PatientType=" +
     patientType;
@@ -148,9 +318,342 @@ function GetChildPatientInfo(patientId, patientType) {
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
+
+      //==========enabled child patient dropdown============
+      $("#dboInfo").removeAttr("disabled");
+      $("#dboInfo option").remove();
+      $("#dboInfo").append(
+        $("<option>").text("Choose patient").attr("value", "0")
+      );
+
+      for (var key in data.info) {
+        $("#dboInfo").append(
+          $("<option>")
+            .text(data.info[key].FullName)
+            .attr("value", data.info[key].PatientId)
+        );
+      }
+
+      //==========fill child patient dropdown============
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+
+function GetChildDetails(patientId) {
+  var url = baseURL + "Patient/GetChildDetails?PatientId=" + patientId;
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+      console.log(JSON.stringify(data));
       //=====set values for slots templates======
-      var patientInfo = $("#template-ChildInfo").html();
+      var patientInfo = $("#template-BasicInfo").html();
       $("#patientBasicInfo").html(Mustache.to_html(patientInfo, data));
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+
+function AddUpdatePatientDetails() {
+  var gender = $("#rdoMale").prop("checked") ? "Male" : "Female";
+  var model = {
+    PatientId: $("#hdnPatientId").val(),
+    parentId: userLoginId,
+    PatientType: pType,
+    FirstName: $("#txtInfoFirstName").val(),
+    LastName: $("#txtInfoLastName").val(),
+    FullName: $("#txtInfoFirstName").val() + " " + $("#txtInfoLastName").val(),
+    Email: $("#txtEmail").val(),
+    PatientType: pType,
+    PhoneNo:
+      $("input:disabled").val() +
+      "" +
+      $("#txtPhoneNo").val().replace(/^0+/, ""), //======remove leadng zero from phone number
+
+    PatientPhoto: $(".infoProfilePic").attr("src"),
+    AddedBy: userLoginId,
+    Gender: gender,
+    Age: $("#txtInfoAge").val(),
+    CountryId: $("#dboCountry").val(),
+    CityId: $("#dboCity").val(),
+  };
+
+  var url = baseURL + "Patient/AddUpdatePatient";
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "POST",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: model,
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+      if (xhr.status == "200" && xhr.statusText == "OK")
+        $("#hdnPatientId").val(data);
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+
+function AddMedication() {
+  var newMedication =
+    "<div class='row divMed'>" +
+    "<div class='col-sm-5'>" +
+    "<label>Medication Name</label>" +
+    "<input type='text' placeholder='Name' class='txtMedicationName txtInfo'>" +
+    "</div>" +
+    "<div class='col-sm-7'>" +
+    "<label>Upload Image</label>" +
+    "<div class='input-group'>" +
+    "<div class='input-group-prepend'>" +
+    "</div>" +
+    "<div class='custom-file'>" +
+    "<input type='hidden' value='' class='imgMedicine'>" +
+    "<input type='file' style='cursor:pointer' class='custom-file-input MedicationReciept'>" +
+    "<label class='custom-file-label' for='inputGroupFile01'>Choose file</label>" +
+    "</div>" +
+    "<div class='ml-1 mb-1'>" +
+    "<button  style='font-size:1rem;padding: 10px 17px;font-weight: bolder;' type='button'" +
+    "class='btnRemoveMedication btn btn-primary  mr-1 mb-1  btn-sm'>-</button>" +
+    "</div>" +
+    "</div>";
+  $("#divMedication").find(".row").last().prev().after(newMedication);
+  //$("#divMedication .row").eq(-1).before(newMedication);
+}
+
+function AddAlergy() {
+  var newAlergy =
+    "<div class='row PatientAlergy'>" +
+    "<div class='col-sm-10'>" +
+    "<label>Allergy 01</label>" +
+    "<input type='text' placeholder='Alergy' class='txtInfo txtAlergy'>" +
+    "</div>" +
+    "<div class='col-sm-2 mt-0'>" +
+    "<br>" +
+    "<button style='font-size:1rem;padding: 10px 17px;font-weight: bolder;'" +
+    "type='button' class='btnAddAlergy btn btn-primary  mr-1 mb-1  btn-sm'>-</button>" +
+    "</div>" +
+    "</div>";
+  $("#divAlergy").find(".row").last().prev().after(newAlergy);
+}
+
+function AddPatientMedication() {
+  var PatientMedication = new Array();
+  var PatientAlergy = new Array();
+
+  //===========create Medication if any======
+  $(".divMed").each(function (i) {
+    if ($("#rdTakingMedYes").prop("checked")) {
+      PatientMedication.push({
+        PatientId: $("#hdnPatientId").val(),
+        IsTakingMedication: $("#rdTakingMedYes").prop("checked"),
+        MedicationName: $(this).find(".txtMedicationName").val(),
+        ImageUrl: $(this).find(".imgMedicine").val(),
+        AddedBy: userLoginId,
+      });
+    }
+    if ($("#rdTakingMedNo").prop("checked")) {
+      PatientMedication.push({
+        PatientId: $("#hdnPatientId").val(),
+        IsTakingMedication: false,
+        MedicationName: "",
+        ImageUrl: "",
+        AddedBy: userLoginId,
+      });
+    }
+  });
+
+  $(".PatientAlergy").each(function (i) {
+    if ($("#rdoHaveAlergyYes").prop("checked")) {
+      PatientAlergy.push({
+        PatientId: $("#hdnPatientId").val(),
+        IsAlergy: $("#rdoHaveAlergyYes").prop("checked"),
+        AlergyName: $(this).find(".txtInfo").val(),
+        AddedBy: userLoginId,
+      });
+    }
+
+    if ($("#rdoHaveAlergyNo").prop("checked")) {
+      PatientAlergy.push({
+        PatientId: $("#hdnPatientId").val(),
+        IsAlergy: false,
+        AlergyName: "",
+        AddedBy: userLoginId,
+      });
+    }
+  });
+
+  var model = {
+    PatientMedication: PatientMedication,
+    PatientAlergy: PatientAlergy,
+  };
+
+  var url = baseURL + "PatientMedication/AddPatientMedication";
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "POST",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: model,
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+
+function AddPatientConditon() {
+  var PatientMedCondition = new Array();
+
+  if ($("#rdoTakeMedNo").prop("checked")) {
+    PatientMedCondition.push({
+      PatientId: $("#hdnPatientId").val(),
+      IsCondition: false,
+      ConditionID: null,
+      IsOtherCondition: $("#otherCondition").prop("checked"),
+      MedConditionDesc:
+        $("#otherCondition").prop("checked") == true
+          ? $("#txtMedCondition").val()
+          : "",
+      AddedBy: userLoginId,
+    });
+  }
+
+  //===========create Medication if any======
+
+  if ($("#rdoTakeMedYes").prop("checked")) {
+    $(".divCondition").each(function (i) {
+      if ($(this).find(".rdoCondition").prop("checked")) {
+        PatientMedCondition.push({
+          PatientId: $("#hdnPatientId").val(),
+          IsCondition: true,
+          ConditionID: $(this).find(".rdoCondition").val(),
+          IsOtherCondition: $("#otherCondition").prop("checked"),
+          MedConditionDesc:
+            $("#otherCondition").prop("checked") == true
+              ? $("#txtMedCondition").val()
+              : "",
+          AddedBy: userLoginId,
+        });
+      }
+    });
+  }
+
+  var PatientComplain = {
+    PatientId: $("#hdnPatientId").val(),
+    PatientComplainDesc: $("#txtcomplain").val(),
+    PatComplainImage: $(".hdnimgcomplain").val(),
+    // "/assets/images/" +
+    // $("#imgcomplain")
+    //   .val()
+    //   .replace(/.*(\/|\\)/, ""),
+    AddedBy: userLoginId,
+  };
+
+  var model = {
+    PatientMedCondition: PatientMedCondition,
+    PatientComplain: PatientComplain,
+  };
+
+  var url = baseURL + "PatientMedCondition/AddPatientMedCondition";
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "POST",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: model,
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+      var param;
+      if (type == "call") {
+        param =
+          "doctorId=" +
+          doctorId +
+          "&name=" +
+          name +
+          "&spName=" +
+          spName +
+          "&type=" +
+          type +
+          "&pId=" +
+          $("#hdnPatientId").val();
+      } else {
+        param =
+          "doctorId=" +
+          doctorId +
+          "&name=" +
+          name +
+          "&spName=" +
+          spName +
+          "&type=" +
+          type +
+          "&pId=" +
+          $("#hdnPatientId").val() +
+          "&appointmentId=" +
+          appId;
+      }
+
+      window.location.href = "/patient/payment?" + param;
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")

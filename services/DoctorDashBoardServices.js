@@ -63,15 +63,21 @@ $(function () {
   $(document).on("click", ".btnAcceptCall", function () {
     var callreqId = $(this).attr("callreqID");
     var docId = $(this).attr("docID");
+    // var patientId =
+    //   $(this).attr("ptype") == "Me"
+    //     ? $(this).attr("PatientID")
+    //     : $(this).attr("parentId");
+    var PatientType = $(this).attr("pType");
     var patientId = $(this).attr("PatientID");
-    var PatientName = $(this).attr("PName");
+    var PatientName = $(this).attr("parentName");
 
     AcceptOrRejectCallSaveToQue(
       callreqId,
       "Accepted",
       docId,
       "Direct",
-      patientId
+      patientId,
+      PatientType
     )
       .then((data) => {
         GetAllQuedScheduled(docId, clientCurrentDt);
@@ -97,10 +103,22 @@ $(function () {
   $(document).on("click", ".btnRejectCall", function () {
     var callreqId = $(this).attr("callreqID");
     var docId = $(this).attr("docID");
+    // var patientId =
+    //   $(this).attr("ptype") == "Me"
+    //     ? $(this).attr("PatientID")
+    //     : $(this).attr("parentId");
+    var PatientType = $(this).attr("pType");
     var patientId = $(this).attr("PatientID");
-    var PatientName = $(this).attr("PName");
+    var PatientName = $(this).attr("parentName");
 
-    AcceptOrRejectCallSaveToQue(callreqId, "Reject", docId, "Direct", patientId)
+    AcceptOrRejectCallSaveToQue(
+      callreqId,
+      "Reject",
+      docId,
+      "Direct",
+      patientId,
+      PatientType
+    )
       .then((data) => {
         GetAllQuedScheduled(docId, clientCurrentDt);
         GetDoctorBookedScheduled(docId, clientCurrentDt, false);
@@ -120,14 +138,20 @@ $(function () {
   $(document).on("click", ".btnAcceptSch", function () {
     var callreqId = $(this).attr("scheId");
     var docId = $(this).attr("docID");
-    var patientId = $(this).attr("PatientID");
+    // var patientId =
+    //   $(this).attr("ptype") == "Me"
+    //     ? $(this).attr("patientId")
+    //     : $(this).attr("parentId");
+    var PatientType = $(this).attr("pType");
+    var patientId = $(this).attr("patientId");
 
     AcceptOrRejectCallSaveToQue(
       callreqId,
       "Accepted",
       docId,
       "Scheduled",
-      patientId
+      patientId,
+      PatientType
     )
       .then((data) => {
         GetAllQuedScheduled(docId, clientCurrentDt);
@@ -193,7 +217,8 @@ function AcceptOrRejectCallSaveToQue(
   status,
   docId,
   reqType,
-  patientId
+  patientId,
+  PatientType
 ) {
   return new Promise((resolve, reject) => {
     var currentDt = new Date().toLocaleDateString("en-US", options);
@@ -205,6 +230,7 @@ function AcceptOrRejectCallSaveToQue(
       doctorId: docId,
       requestType: reqType,
       patientId: patientId,
+      PatientType: PatientType,
       currDt: currentDt,
       pageName: window.location.pathname,
       pageUrl: window.location.href,
@@ -267,50 +293,6 @@ function GetAllQuedScheduled(doctorId, date, issync) {
       //======show patient waiting time in quee=========
       updateClock();
       $.LoadingOverlay("hide");
-    },
-  });
-}
-
-function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
-  var url =
-    baseURL +
-    "CallQue/UpdateCallQueStatus?CallQueId=" +
-    CallQueId +
-    "&status=" +
-    status;
-
-  var model = {
-    DoctorID: doctorID,
-    PatientID: PatientId,
-    CallQueID: CallQueId,
-    AddedBy: doctorID,
-    CallLogStartDateTime: new Date().toLocaleDateString("en-US", options),
-    AddedDate: new Date().toLocaleDateString("en-us"),
-  };
-  $.ajax({
-    url: url,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    type: "POST",
-    datatype: "application/json",
-    contentType: "application/json; charset=utf-8",
-    data: model,
-    beforeSend: function () {
-      // $.LoadingOverlay("show");
-    },
-    success: function (data, textStatus, xhr) {
-      // $.LoadingOverlay("hide");
-
-      $("#insertedID").val(data);
-    },
-    error: function (xhr, textStatus, err) {
-      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
-        console.log(xhr.statusText);
-      else console.log(xhr.statusText);
-    },
-    complete: function (data) {
-      getDashBoardAllScheduled(true);
     },
   });
 }

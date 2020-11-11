@@ -34,6 +34,25 @@
 <!-- complete side menu of Patient -->
 <%- include('includes/patientSideMenu.ejs') %>
 
+
+ <!--primary theme Modal -->
+ <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+ aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+     <div class="modal-content">
+         <div class="modal-header bg-primary " style="text-align:center">
+             <h4>Appointment confirmation</h4>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button> 
+           </div>                    
+         <div class="modal-body">
+             <h5 class="txtnormal">Your appointment has been confirmed.</h5>
+         </div>                  
+     </div>
+ </div>
+</div>
+
 <!--start of request call Model-->
 <div class="modal fade text-left" id="reqcall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
   aria-hidden="true">

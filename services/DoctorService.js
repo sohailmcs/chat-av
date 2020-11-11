@@ -2,8 +2,9 @@ var baseURL = "https://kindahclinic.com/KindahService/";
 //var baseURL = "http://localhost:1042/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
 var urlParams = new URLSearchParams(window.location.search);
-var spName;
+var spName = "";
 if (urlParams.has("spName")) spName = urlParams.get("spName");
+if (spName == "") spName = "all";
 
 var options = {
   year: "numeric",
@@ -40,14 +41,34 @@ $(function () {
             buttonsStyling: false,
             confirmButtonText: "Ok",
           });
-        }
-        // window.location.href =
-        //   "/patient/Addpatient?doctorId=" + doctorId + "&name=" + fullName;
-        else SendCallRequestToDoctor(doctorId, fullName);
+        } else
+          window.location.href =
+            "/patient/Addpatient?doctorId=" +
+            doctorId +
+            "&name=" +
+            fullName +
+            "&type=call" +
+            "&spName=" +
+            spName;
+        //SendCallRequestToDoctor(doctorId, fullName);
       })
       .catch((error) => {
         console.log(error);
       });
+  });
+
+  $(document).on("click", ".btnAppointments", function () {
+    var doctorId = $(this).attr("docID");
+    var fullName = $(this).attr("fullName");
+
+    window.location.href =
+      "/patient/appointment?doctorId=" +
+      doctorId +
+      "&name=" +
+      fullName +
+      "&type=sch" +
+      "&spName=" +
+      spName;
   });
 
   $(document).on("click", ".btndoctorProfile", function () {
@@ -101,7 +122,7 @@ function SetDoctorsList(data) {
 }
 function GetDoctors(isSync) {
   return new Promise((resolve, reject) => {
-    var url = baseURL + "Doctor/GetDoctors?Speciality=Dentist"; // + spName;
+    var url = baseURL + "Doctor/GetDoctors?Speciality=" + spName;
 
     $.ajax({
       url: url,
