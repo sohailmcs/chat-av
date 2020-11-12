@@ -83,6 +83,132 @@
     aria-hidden="true">
 </div>
 
+<!--start of patient profile details------>
+<div class="modal fade text-left" id="ModelDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xlg modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title black" id="myModalLabel160">
+           Patient Details
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+    </div>
+    
+        <div class="card-content side-bar-doc" id="bookDetails">
+
+      
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script id="BookingDetail-Template" type="text/html">
+    <div class="card-body">    
+     
+      <div class="row">
+        <div class="col-lg-3">
+          {{#PatientPhoto}}
+          <img
+          src="{{PatientPhoto}}"
+          alt="image"
+          style="
+          height: 140px;
+          width: 140px;
+          border-radius: 5px;" />
+         {{/PatientPhoto}}
+         {{^PatientPhoto}}
+         <img src="/assets/images/patient.png" alt="image" style="
+         height: 140px;
+          width: 140px;
+          border-radius: 5px;" /> 
+         {{/PatientPhoto}}          
+      </div>
+    <div class="col-lg-4">
+      <br/>
+      <h5 class="docName" style="margin:0 0 5px 0;">
+        {{FullName}}
+      </h5>          
+      <b>Age :</b> {{Age}} years old<br>
+      <b>Gender :</b> {{Gender}} 
+    </div>
+    <div  class="col-lg-5 mt-1">
+      <br/>        
+      <b> Email :</b> {{Email}} <br>                  
+      <b>Phone :</b> {{PhoneNo}}
+    </div>
+      </div><!--end of row-->
+  
+      <div class="divMedication row mt-3">      
+        <div class="col-sm-7">
+          <h4>Medications</h4>
+          <div class="row">
+            {{#PatientMedicationModel}}
+            {{#IsTakingMedication}}
+            <div class="col-sm-4 text-left mb-1">
+              <img  src="{{ImageUrl}}" height="100" width="100">
+              <span class="medicineName">{{MedicationName}}</span>
+            </div>
+            {{/IsTakingMedication}}
+            {{^IsTakingMedication}}
+            <div class="col-sm-12 text-left">
+              No Taking Medications
+            </div>
+            {{/IsTakingMedication}}
+            {{/PatientMedicationModel}}
+          </div>
+        </div><!--end of row-->      
+        <div class="col-sm-5">
+          <h4>Allergy</h4>
+          <ul class="Listalergy">
+            {{#PatientAlergyModel}}
+              {{#IsAlergy}}
+                <li>{{AlergyName}}</li>
+              {{/IsAlergy}}
+              {{^IsAlergy}}
+                <li><strong>No Alergy</strong></li>
+              {{/IsAlergy}}           
+            {{/PatientAlergyModel}}          
+          </ul>
+        </div>      
+      </div><!--end of row-->
+      <div class="row mt-3">
+        <div class="col-sm-7 mb-1">
+          <h4>Medical Conditions</h4>       
+          <ul class="Listalergy">  
+            {{#PatientMedConditonModel}}       
+              {{#IsCondition}}
+                <li>{{ConditionID}}</li>
+              {{/IsCondition}}
+              {{^IsCondition}}
+                <li><strong>No Medical Condition</strong></li>
+              {{/IsCondition}} 
+           {{/PatientMedConditonModel}} 
+            </ul>         
+            {{#IsOtherCondition}}
+              <p>{{OtherConditionDesc}}</p>
+          {{/IsOtherCondition}}
+            
+        </div>
+        <div class="col-sm-5">
+          <h4>Complain</h4>
+          {{#PatientComplainModel}}          
+            <img  src="{{PatComplainImage}}" height="100" width="100"><br>
+            <p class="mt-1">{{PatientComplainDesc}}
+          {{/PatientComplainModel}}
+          {{^PatientComplainModel}}
+            <p><strong>No Complain</strong><br>       
+         {{/PatientComplainModel}}
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </script> 
+
 <script  id="PrescriptionEdit-template" type="text/html">
     <div
     class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
@@ -190,9 +316,11 @@
 
 
     <div class="sh_divqueue" style="display: inline-block;">
-    <h6 class='patientName' style="padding-top: 2%;">
-    {{patientName}}
-    </h6>
+        <a class="btnViewDetail" patientId ="{{PatientID}}" href="#">
+            <h6 class='patientName' style="padding-top: 2%;">
+                {{patientName}}
+                </h6>
+        </a>
     </div>
 
 
@@ -270,10 +398,13 @@
 
 
     <div class="req_divqueue" style="display: inline-block;">
-    <h6 class='patientName'>
-    {{patientName}}
-    </h6>
+    <a class="btnViewDetail" patientId ="{{PatientID}}" href="#">
+        <h6 class='patientName'>
+            {{patientName}}
+        </h6>
+    </a>
     </div>
+
 
 
     <P class="timeline-title-Gender">

@@ -59,6 +59,12 @@ $(function () {
     var callLogId = $(this).attr("cLogId");
     updatePatientEMR(callLogId, "");
   });
+  //==============show Patient initial assisment details==========
+  $(document).on("click", ".btnViewDetail", function () {
+    var patientId = $(this).attr("PatientId");
+    ViewBookingDetails(patientId);
+  });
+
   //===============Accept call ==============
   $(document).on("click", ".btnAcceptCall", function () {
     var callreqId = $(this).attr("callreqID");
@@ -566,6 +572,40 @@ function SendSMStoPatient(mobileNo, doctorName, patientName) {
       }).then((result) => {
         $("#primary").modal("hide");
       });
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+
+function ViewBookingDetails(PatientId) {
+  var url =
+    baseURL + "Patient/GetPatientInitialAssisments?PatientId=" + PatientId;
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+      //=====set values for slots templates======
+      var bookDetails = $("#BookingDetail-Template").html();
+      $("#bookDetails").html(Mustache.to_html(bookDetails, data));
+      $("#ModelDetails").modal("show");
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
