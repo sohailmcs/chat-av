@@ -240,10 +240,7 @@ function initializeSession(key, sessId, tokenId) {
       }
       if (subscriber) AudioVideosession.unsubscribe(subscriber);
 
-      if (AudioVideosession) {
-        AudioVideosession.off();
-        AudioVideosession.disconnect();
-      }
+      
       $("#log")
         .css({ display: "block", color: "#525a65" })
         .text("Disconnected")

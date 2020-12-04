@@ -218,7 +218,15 @@
     soc.on("ClosePatientScreen", function (data) {     
       $("#windowComm #callImg").remove();
       $("#windowComm").modal("hide");
-      disconnect();
+      // disconnect();
+      if (publisher) {
+        AudioVideosession.unpublish(publisher, handleError);
+        publisher.destroy();
+      }
+      if (subscriber) AudioVideosession.unsubscribe(subscriber);
+
+
+
     });
 
     // soc.on("DoctorPatientScreenClosed", function (data) {
