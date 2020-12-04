@@ -43,8 +43,7 @@ $(function () {
     var $this = $(event.currentTarget);
     var modalId = $this.closest("div.modal").attr("id");
 
-    if (modalId == "windowComm") {  
-      
+    if (modalId == "windowComm") {     
       disconnect();
     }
     $("#" + modalId + "").modal("hide");
@@ -81,8 +80,7 @@ $(function () {
     }
   });
 
-  $("button[data-dismiss='modal']").on("click", function () {     
-    // disconnect();
+  $("button[data-dismiss='modal']").on("click", function () {        
     $(this).closest(".mymodal").removeClass("min");
 
     // $(".container").removeClass($apnData);
@@ -195,11 +193,11 @@ function initializeSession(key, sessId, tokenId) {
           .delay(3000)
           .fadeOut("slow");
       } else {
-        // if (publisher) {
-        //   AudioVideosession.unpublish(publisher, handleError);
-        //   publisher.destroy();
-        // }
-        // if (subscriber) AudioVideosession.unsubscribe(subscriber);
+        if (publisher) {
+          AudioVideosession.unpublish(publisher, handleError);
+          publisher.destroy();
+        }
+        if (subscriber) AudioVideosession.unsubscribe(subscriber);
 
         $("#log")
           .css({ display: "block", color: "#525a65" })
@@ -210,7 +208,7 @@ function initializeSession(key, sessId, tokenId) {
           $("#windowComm").modal("hide");
         }
       }
-     
+
       // disconnect();
     },
     connectionCreated: function (event) {
@@ -228,8 +226,10 @@ function initializeSession(key, sessId, tokenId) {
     },
     connectionDestroyed: function connectionDestroyedHandler(event) {
       //letting others know you left the connection in this method.
-     
-      alert("connectionDestroyed")
+      soc.emit("ClosePatientScreen", {
+        pName: mPname,
+      });
+
       PlayCallingSound(false);
       $(".three-icons, #timer").css("display", "none");
       $("#divCallNow").css("display", "block");
@@ -237,12 +237,13 @@ function initializeSession(key, sessId, tokenId) {
       if (publisher) {
         AudioVideosession.unpublish(publisher, handleError);
         publisher.destroy();
-       }
-      // if (subscriber) AudioVideosession.unsubscribe(subscriber);
-      soc.emit("ClosePatientScreen", {
-        pName: mPname,
-      });
+      }
+      if (subscriber) AudioVideosession.unsubscribe(subscriber);
 
+      if (AudioVideosession) {
+        AudioVideosession.off();
+        AudioVideosession.disconnect();
+      }
       $("#log")
         .css({ display: "block", color: "#525a65" })
         .text("Disconnected")
@@ -362,7 +363,7 @@ function streamDestroyed(event) {
 }
 
 function disconnect() {
- 
+
   if (publisher) {
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
@@ -380,7 +381,7 @@ function disconnect() {
   $(".three-icons, #timer").css("display", "none");
   $("#divCallNow").css("display", "block");
   $("#callImg").css("display", "block");
-alert(callPerformed);
+
   //if (callPerformed && mArea == "Doctor") {
   if (callPerformed) {
     soc.emit("ClosePatientScreen", {

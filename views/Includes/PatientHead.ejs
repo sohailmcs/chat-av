@@ -215,8 +215,7 @@
       PlayCallingSound(true);
     });
 
-    soc.on("ClosePatientScreen", function (data) {
-      alert("ClosePatientScreen");
+    soc.on("ClosePatientScreen", function (data) {     
       $("#windowComm #callImg").remove();
       $("#windowComm").modal("hide");
       disconnect();
