@@ -21,11 +21,15 @@ var appOldId = 0;
 var doctName = "";
 var spName;
 var doctorId;
+var walkingCustomer = false;
+
 if (urlParams.has("name")) doctName = urlParams.get("name");
 if (urlParams.has("date")) currentDt = urlParams.get("date");
 if (urlParams.has("appId")) appOldId = urlParams.get("appId");
 if (urlParams.has("spName")) spName = urlParams.get("spName");
 if (urlParams.has("doctorId")) doctorId = urlParams.get("doctorId");
+if (urlParams.has("walkingCustomer"))
+  walkingCustomer = urlParams.get("walkingCustomer");
 
 $(function () {
   //=====get selected doctor scheduled on load====
@@ -73,16 +77,33 @@ $(function () {
         });
     } else {
       //===========Book new Appointment===============
-      window.location.href =
-        "/patient/Addpatient?doctorId=" +
-        doctorId +
-        "&name=" +
-        doctName +
-        "&type=sch" +
-        "&appId=" +
-        appDetailID +
-        "&spName=" +
-        spName;
+
+      if (walkingCustomer) {
+        window.location.href =
+          "/patient/payment?doctorId=" +
+          doctorId +
+          "&name=" +
+          doctName +
+          "&spName=" +
+          spName +
+          "&type=sch" +
+          "&pId=" +
+          useLoginId +
+          "&appointmentId=" +
+          appDetailID;
+      } else {
+        window.location.href =
+          "/patient/Addpatient?doctorId=" +
+          doctorId +
+          "&name=" +
+          doctName +
+          "&type=sch" +
+          "&appId=" +
+          appDetailID +
+          "&spName=" +
+          spName +
+          "&walkingCustomer=false";
+      }
       // BookPatientAppointment(useLoginId, appDetailID)
       //   .then((data) => {
       //     calendar.trigger("change");

@@ -41,17 +41,20 @@ $(function () {
   });
 
   PatientBasicInfo(userLoginId, false, "Parent");
-
+  $(".dbInfo").css("display", "none");
   $(".btnMe").on("click", function () {
-    pType = $(this).attr("PatientType");
+    pType = $(this).attr("patienttype");
+    ShowHideChildInfoDropDown($(this));
     PatientBasicInfo(userLoginId, false, "Parent");
     $("#hdnPatientId").val(userLoginId);
     $(".btnChild, .btnRelative,.btnMe").removeClass("btnPatientTypeSelected");
     $(this).addClass("btnPatientTypeSelected");
+    ShowHideChildInfoDropDown($(this));
   });
 
   $(".btnChild, .btnRelative").on("click", function () {
-    pType = $(this).attr("PatientType");
+    pType = $(this).attr("patienttype");
+    ShowHideChildInfoDropDown($(this));
     GetChildPatientInfo(userLoginId, pType);
     $("#patientBasicInfo").html("");
     $("#hdnPatientId").val("0");
@@ -211,6 +214,18 @@ $(function () {
   //================end wizard ===============
 });
 
+function ShowHideChildInfoDropDown(ths) {
+  var txt = ths.attr("patienttype");
+  if (txt == "Me") {
+    $(".dbInfo").css("display", "none");
+  } else if (txt == "Child") {
+    $(".dbInfo").css("display", "block");
+    $(".spnDboInfo").text("Select Child Info");
+  } else {
+    $(".dbInfo").css("display", "block");
+    $(".spnDboInfo").text("Select Relative Info");
+  }
+}
 function Validate() {
   var result = true;
 

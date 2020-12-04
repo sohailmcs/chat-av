@@ -43,7 +43,7 @@ $(function () {
     var $this = $(event.currentTarget);
     var modalId = $this.closest("div.modal").attr("id");
 
-    if (modalId == "windowComm") {
+    if (modalId == "windowComm") {     
       disconnect();
     }
     $("#" + modalId + "").modal("hide");
@@ -80,7 +80,8 @@ $(function () {
     }
   });
 
-  $("button[data-dismiss='modal']").on("click", function () {
+  $("button[data-dismiss='modal']").on("click", function () {     
+    disconnect();
     $(this).closest(".mymodal").removeClass("min");
 
     // $(".container").removeClass($apnData);

@@ -110,8 +110,8 @@
                                                   </button>
 
 
-                                                  <div class="form-group mt-1">
-                                                    <span for="txtspecialization">Select Previous Patient Info</span>
+                                                  <div class="dbInfo form-group mt-1">
+                                                    <span class="spnDboInfo" for="txtspecialization">Select Previous Patient Info</span>
                                                     <select style="padding:5px 11px 5px;" class="form-control" id="dboInfo">
                                                      
                                                     </select>
@@ -195,7 +195,7 @@
                                                <div class="row">
                                                 <div class="col-sm-6">
                                                  <label>Age</label>
-                                                 <input type="text" placeholder="Age" class="txtInfo" id="txtInfoAge">
+                                                 <input type="number" placeholder="Age" class="txtInfo" id="txtInfoAge">
                                                </div><!--end of col-sm-6--> 
                                                <div class="col-sm-6">
                                                 <label>Gender</label><br>
@@ -283,9 +283,10 @@
                                                 <div class="row">
                                                    <div class="col-sm-12">
                                                     <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                      <input class="form-check-input" checked="checked" type="radio" name="medication" id="rdTakingMedNo" 
+                                                      <input class="form-check-input" group="takingMed" checked="checked" type="radio"
+                                                       name="medication" id="rdTakingMedNo" 
                                                       value="0">                                                                                           
-                                                      <label class="form-check-label" for="rdoFemale">Not Taking Any Medications</label>
+                                                      <label class="form-check-label" for="rdTakingMedNo">Not Taking Any Medications</label>
                                                     </div>   
                                                   </div><!--end of col-sm-6-->  
                                                                                                                                              
@@ -293,8 +294,8 @@
                                                 <div class="row">
                                                   <div class="col-sm-12 mb-1 mt-1">
                                                     <div  class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="medication" id="rdTakingMedYes" value="1">                                                                                           
-                                                    <label class="form-check-label" for="rdoFemale"><strong>If Any-</strong></label>
+                                                    <input class="form-check-input" group="takingMed" type="radio" name="medication" id="rdTakingMedYes" value="1">                                                                                           
+                                                    <label class="form-check-label" for="rdTakingMedYes"><strong>If Any-</strong></label>
                                                   </div>
                                                   <!-- <label><strong>If Any-</strong></label> -->
                                                   </div>                                                  
@@ -345,9 +346,9 @@
                                                 <div class="row">
                                                    <div class="col-sm-12">
                                                     <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                      <input class="form-check-input" checked="checked" type="radio" name="alergy" 
+                                                      <input class="form-check-input" group="alergy" checked="checked" type="radio" name="alergy" 
                                                       id="rdoHaveAlergyNo" value="0">                                                                                           
-                                                      <label class="form-check-label" for="rdoFemale">Not Have Any Allergies</label>
+                                                      <label class="form-check-label" for="rdoHaveAlergyNo">Not Have Any Allergies</label>
                                                     </div>   
                                                   </div><!--end of col-sm-6-->
                                                                                                                                                
@@ -355,8 +356,8 @@
                                                 <div class="row">
                                                   <div class="col-sm-12 mb-1 mt-1">
                                                     <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                      <input class="form-check-input" type="radio" name="alergy" id="rdoHaveAlergyYes" value="1">                                                                                           
-                                                      <label class="form-check-label" for="rdoFemale"><strong>If Any-</strong></label>
+                                                      <input class="form-check-input" group="alergy" type="radio" name="alergy" id="rdoHaveAlergyYes" value="1">                                                                                           
+                                                      <label class="form-check-label" for="rdoHaveAlergyYes"><strong>If Any-</strong></label>
                                                     </div> 
                                                 
                                                   </div>                                                  
@@ -403,16 +404,18 @@
                                               <div class="row">
                                                  <div class="col-sm-12">
                                                   <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                    <input class="form-check-input" checked="checked" type="radio" name="condition" id="rdoTakeMedNo" value="0">                                                                                           
-                                                    <label class="form-check-label" for="rdoFemale">No known medical conditions</label>
+                                                    <input class="form-check-input" group="MedCondition" checked="checked" type="radio" name="condition"
+                                                     id="rdoTakeMedNo" value="0">                                                                                           
+                                                    <label class="form-check-label" for="rdoTakeMedNo">No known medical conditions</label>
                                                   </div>   
                                                 </div><!--end of col-sm-6-->                                                                                               
                                               </div><!--end of row-->
                                               <div class="row">
                                                 <div class="col-sm-12 mb-1 mt-1">
                                                   <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                      <input class="form-check-input" type="radio" name="condition" id="rdoTakeMedYes" value="1">                                                                                           
-                                                      <label class="form-check-label" for="rdoFemale"><strong>If Any-</strong></label>
+                                                      <input class="form-check-input" type="radio" group="MedCondition" name="condition"
+                                                       id="rdoTakeMedYes" value="1">                                                                                           
+                                                      <label class="form-check-label" for="rdoTakeMedYes"><strong>If Any-</strong></label>
                                                     </div>                                               
                                                 </div>                                                  
                                               </div>

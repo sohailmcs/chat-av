@@ -287,8 +287,41 @@ $(function () {
     $(this).addClass("selectedColor");
   });
   $(".submit").click(function () {
-    if (type == "call") SendCallRequestToDoctor(doctorId, name);
-    else {
+    if (type == "call") {
+      // if request type is call
+      //check if docotor is online or not
+      checkOnlineStatusandCall(doctorId, "Doctor").then((data) => {
+        //if docotr is online then send request to doctor
+        if (data) {
+          SendCallRequestToDoctor(doctorId, name);
+        } else {
+          Swal.fire({
+            type: "warning",
+            title: "info...",
+            text: "Doctor is not available.You can book appointment",
+            showCancelButton: true,
+            cancelButtonClass: "btn btn-primary",
+            confirmButtonClass: "btn btn-primary",
+            // buttonsStyling: false,
+            confirmButtonText: "Book Appointment",
+          }).then(function (isConfirm) {
+            if (isConfirm.value) {
+              window.location.href =
+                "/patient/appointment?doctorId=" +
+                doctorId +
+                "&name=" +
+                name +
+                "&type=sch" +
+                "&spName=" +
+                spName +
+                "&walkingCustomer=true";
+            }
+            // else return false;
+          });
+        }
+      });
+    } else {
+      // if request type is appointment
       BookPatientAppointment(patientId, doctorId, appointmentId)
         .then((data) => {
           $("#primary").modal("show");
@@ -304,6 +337,41 @@ $(function () {
   });
 });
 
+function checkOnlineStatusandCall(patientId, userType) {
+  return new Promise((resolve, reject) => {
+    var url =
+      baseURL +
+      "User/getUserInfo?patientId=" +
+      patientId +
+      "&userType=" +
+      userType;
+
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "GET",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {
+        $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+        resolve(data);
+      },
+      error: function (xhr, textStatus, err) {
+        reject(err);
+      },
+      complete: function (data) {
+        // Hide Loading
+        $.LoadingOverlay("hide");
+      },
+    });
+  });
+}
+
 function SendCallRequestToDoctor(doctorId, fullName) {
   var currentDt = new Date().toLocaleDateString("en-US", options);
   var url =
@@ -315,13 +383,6 @@ function SendCallRequestToDoctor(doctorId, fullName) {
     "&RequestStatus=Pending" +
     "&date=" +
     currentDt;
-
-  // //=======  set post model=========
-  // var model = {
-  //   PatientID: useLoginId, //==get from session
-  //   DoctorID: doctorId,
-  //   RequestStatus: "Pending",
-  // };
 
   $.ajax({
     url: url,

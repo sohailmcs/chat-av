@@ -126,7 +126,7 @@
 
     function deleteAllCookies() {
       //=============update status in database=============
-      changeDoctorOlineStaus(userID, "Offline", uName);
+     
       var cookies = document.cookie.split(";");
       for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i];
@@ -134,7 +134,9 @@
         var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
       }
-      window.location.href = "/Logout";
+      changeDoctorOlineStaus(userID, "Offline", uName).then((data)=>{       
+        window.location.href = "/Logout";
+      })
     }
 
     async function changeDoctorOlineStaus(userId, status, uName) {
@@ -145,7 +147,7 @@
         status: status,
         uName: uName,
       });
-
+     
       //=============update status in database=============
     }
 

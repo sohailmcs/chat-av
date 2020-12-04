@@ -18,7 +18,7 @@ class loginController {
       });
     } else {
       if (req.session.userType == "Patient") {
-        return res.redirect("/patient/dashboard/");
+        return res.redirect("/patient/speciality/");
       } else if (req.session.userType == "Doctor") {
         return res.redirect("/doctor/dashboard/");
       }

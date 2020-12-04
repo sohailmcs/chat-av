@@ -19,7 +19,7 @@ function isLoginExist(req, res, next) {
   //   if (req.cookies.kindahUserType == "Patient")
   if (req.session.userId) {
     if (req.session.userType == "Patient")
-      return res.redirect("/patientDashboard");
+      return res.redirect("/speciality/");
     if (req.session.userType == "Doctor") return res.redirect("/docDashboard");
     else return res.redirect("/Admin/all-doctors/");
   }
