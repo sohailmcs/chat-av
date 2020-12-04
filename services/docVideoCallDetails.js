@@ -80,7 +80,8 @@ $(function () {
     }
   });
 
-  $("button[data-dismiss='modal']").on("click", function () {        
+  $("button[data-dismiss='modal']").on("click", function () {     
+   // disconnect();
     $(this).closest(".mymodal").removeClass("min");
 
     // $(".container").removeClass($apnData);
@@ -193,11 +194,11 @@ function initializeSession(key, sessId, tokenId) {
           .delay(3000)
           .fadeOut("slow");
       } else {
-        // if (publisher) {
-        //   AudioVideosession.unpublish(publisher, handleError);
-        //   publisher.destroy();
-        // }
-        // if (subscriber) AudioVideosession.unsubscribe(subscriber);
+        if (publisher) {
+          AudioVideosession.unpublish(publisher, handleError);
+          publisher.destroy();
+        }
+        if (subscriber) AudioVideosession.unsubscribe(subscriber);
 
         $("#log")
           .css({ display: "block", color: "#525a65" })
@@ -234,13 +235,12 @@ function initializeSession(key, sessId, tokenId) {
       $(".three-icons, #timer").css("display", "none");
       $("#divCallNow").css("display", "block");
       $("#callImg").css("display", "block");
-      // if (publisher) {
-      //   AudioVideosession.unpublish(publisher, handleError);
-      //   publisher.destroy();
-      // }
-      // if (subscriber) AudioVideosession.unsubscribe(subscriber);
+      if (publisher) {
+        AudioVideosession.unpublish(publisher, handleError);
+        publisher.destroy();
+      }
+      if (subscriber) AudioVideosession.unsubscribe(subscriber);
 
-      
       $("#log")
         .css({ display: "block", color: "#525a65" })
         .text("Disconnected")
@@ -360,7 +360,6 @@ function streamDestroyed(event) {
 }
 
 function disconnect() {
-
   if (publisher) {
     AudioVideosession.unpublish(publisher, handleError);
     publisher.destroy();
