@@ -229,7 +229,7 @@ function initializeSession(key, sessId, tokenId) {
     connectionDestroyed: function connectionDestroyedHandler(event) {
       //letting others know you left the connection in this method.
      
-
+      alert("connectionDestroyed")
       PlayCallingSound(false);
       $(".three-icons, #timer").css("display", "none");
       $("#divCallNow").css("display", "block");
