@@ -43,7 +43,8 @@ $(function () {
     var $this = $(event.currentTarget);
     var modalId = $this.closest("div.modal").attr("id");
 
-    if (modalId == "windowComm") {     
+    if (modalId == "windowComm") {  
+      alert("asdfasd") ;
       disconnect();
     }
     $("#" + modalId + "").modal("hide");
@@ -81,7 +82,7 @@ $(function () {
   });
 
   $("button[data-dismiss='modal']").on("click", function () {     
-    disconnect();
+    // disconnect();
     $(this).closest(".mymodal").removeClass("min");
 
     // $(".container").removeClass($apnData);
@@ -767,22 +768,13 @@ function UpdateCallLogEndtime(CallLogId, duration) {
   var currentDt = new Date().toLocaleDateString("en-US", options);
 
   var url =
-  baseURL +
-  "CallLogs/UpdateCallLogEndtime?CallLogId=" +
-  102 +
-  "&Duration=" +
-  duration +
-  "&CallLogEndDateTime=" +
-  currentDt;
-
-  // var url =
-  //   baseURL +
-  //   "CallLogs/UpdateCallLogEndtime?CallLogId=" +
-  //   CallLogId +
-  //   "&Duration=" +
-  //   duration +
-  //   "&CallLogEndDateTime=" +
-  //   currentDt;
+    baseURL +
+    "CallLogs/UpdateCallLogEndtime?CallLogId=" +
+    CallLogId +
+    "&Duration=" +
+    duration +
+    "&CallLogEndDateTime=" +
+    currentDt;
 
   $.ajax({
     url: url,
