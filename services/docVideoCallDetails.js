@@ -210,7 +210,7 @@ function initializeSession(key, sessId, tokenId) {
           $("#windowComm").modal("hide");
         }
       }
-      alert("sessionDisconnect")
+     
       // disconnect();
     },
     connectionCreated: function (event) {
@@ -229,7 +229,7 @@ function initializeSession(key, sessId, tokenId) {
     connectionDestroyed: function connectionDestroyedHandler(event) {
       //letting others know you left the connection in this method.
      
-alert("connectionDestroyed")
+
       PlayCallingSound(false);
       $(".three-icons, #timer").css("display", "none");
       $("#divCallNow").css("display", "block");
@@ -239,9 +239,9 @@ alert("connectionDestroyed")
         publisher.destroy();
       }
       if (subscriber) AudioVideosession.unsubscribe(subscriber);
-      // soc.emit("ClosePatientScreen", {
-      //   pName: mPname,
-      // });
+      soc.emit("ClosePatientScreen", {
+        pName: mPname,
+      });
 
       $("#log")
         .css({ display: "block", color: "#525a65" })

@@ -216,13 +216,14 @@
     });
 
     soc.on("ClosePatientScreen", function (data) {
+      alert("disconnect");
       $("#windowComm #callImg").remove();
       $("#windowComm").modal("hide");
      // disconnect();
     });
 
     soc.on("DoctorPatientScreenClosed", function (data) {
-      //alert('doctor close its screen 8 ' +data.area + " On Req "+ data.onReq);
+      alert('doctor close its screen 8 ' +data.area + " On Req "+ data.onReq);
       if (data.area == "Patient" && data.onReq == false) {
         Swal.fire({
           title: "Sorry!",
