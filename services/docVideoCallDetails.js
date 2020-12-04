@@ -44,7 +44,7 @@ $(function () {
     var modalId = $this.closest("div.modal").attr("id");
 
     if (modalId == "windowComm") {  
-      alert("asdfasd") ;
+      
       disconnect();
     }
     $("#" + modalId + "").modal("hide");
@@ -195,6 +195,7 @@ function initializeSession(key, sessId, tokenId) {
           .delay(3000)
           .fadeOut("slow");
       } else {
+        alert("sessionDisconnect");
         if (publisher) {
           AudioVideosession.unpublish(publisher, handleError);
           publisher.destroy();
@@ -228,10 +229,10 @@ function initializeSession(key, sessId, tokenId) {
     },
     connectionDestroyed: function connectionDestroyedHandler(event) {
       //letting others know you left the connection in this method.
-      soc.emit("ClosePatientScreen", {
-        pName: mPname,
-      });
-
+      // soc.emit("ClosePatientScreen", {
+      //   pName: mPname,
+      // });
+      alert("connectionDestroyed");
       PlayCallingSound(false);
       $(".three-icons, #timer").css("display", "none");
       $("#divCallNow").css("display", "block");
