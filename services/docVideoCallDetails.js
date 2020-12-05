@@ -36,7 +36,7 @@ var options = {
   minute: "2-digit",
   second: "2-digit",
 };
-dragElement(document.getElementById("subscribers"));
+dragElement(document.getElementById("publisher"));
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
