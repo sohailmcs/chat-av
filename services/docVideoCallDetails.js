@@ -43,7 +43,7 @@ $(function () {
     var $this = $(event.currentTarget);
     var modalId = $this.closest("div.modal").attr("id");
 
-    if (modalId == "windowComm") {     
+    if (modalId == "windowComm") {
       disconnect();
     }
     $("#" + modalId + "").modal("hide");
@@ -81,8 +81,8 @@ $(function () {
     }
   });
 
-  $("button[data-dismiss='modal']").on("click", function () {     
-   // disconnect();
+  $("button[data-dismiss='modal']").on("click", function () {
+    // disconnect();
     $(this).closest(".mymodal").removeClass("min");
 
     // $(".container").removeClass($apnData);
@@ -231,7 +231,7 @@ function initializeSession(key, sessId, tokenId) {
       // soc.emit("ClosePatientScreen", {
       //   pName: mPname,
       // });
-      $(".btnDisconnect").trigger("click");
+      disconnect();
 
       PlayCallingSound(false);
       $(".three-icons, #timer").css("display", "none");
@@ -381,13 +381,13 @@ function disconnect() {
   $("#callImg").css("display", "block");
 
   //if (callPerformed && mArea == "Doctor") {
-  if (callPerformed) {
+  if (callPerformed && mArea == "Doctor") {
     soc.emit("ClosePatientScreen", {
       pName: mPname,
     });
     // AudioVideosession.unsubscribe(subscriber);
     UpdateCallLogEndtime(newCalllogId, onCallduration);
-  } else {
+  } else if (mArea == "Doctor") {
     // else only close patient incomming call window.
     soc.emit("ClosePatientScreen", {
       pName: mPname,
