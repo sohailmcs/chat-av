@@ -38,6 +38,10 @@ var options = {
 };
 
 $(function () {
+
+ $("#subscribers").draggable();
+
+
   $(document).on("click", "button.close", function (event) {
     event.preventDefault();
     var $this = $(event.currentTarget);
@@ -227,10 +231,7 @@ function initializeSession(key, sessId, tokenId) {
       }
     },
     connectionDestroyed: function connectionDestroyedHandler(event) {
-      //letting others know you left the connection in this method.
-      // soc.emit("ClosePatientScreen", {
-      //   pName: mPname,
-      // });
+      //letting others know you left the connection in this method.     
       disconnect();
 
       PlayCallingSound(false);
