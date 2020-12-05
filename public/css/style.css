@@ -409,9 +409,10 @@ select.list-dt:focus {
   left: 30px;
   top: 30px;
   /* border: 1px solid; */
-  color: #171819;
+  /* color: #171819; */
   font-size: 14px;
   font-weight: bold;
+  z-index: 9999;
 }
 .icons {
   bottom: 5px;

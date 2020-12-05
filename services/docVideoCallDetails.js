@@ -267,6 +267,7 @@ function initializeSession(key, sessId, tokenId) {
       ) {
         PlayCallingSound(false);
         timer = setInterval(countTimer, 1000);
+        $("#timer").css("display", "block");
         callPerformed = true;
         if (mCallQueId != "0" && $("#insertedID").val() == "0") {
           UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
@@ -294,7 +295,7 @@ function initializeSession(key, sessId, tokenId) {
         .fadeOut("slow");
     },
     streamCreated: function (event) {
-      //  timer = setInterval(countTimer, 1000);
+     // timer = setInterval(countTimer, 1000);
       $("#divCallNow").hide();
       $(".three-icons").show();
 
