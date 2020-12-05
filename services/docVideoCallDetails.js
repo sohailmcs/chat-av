@@ -387,7 +387,7 @@ function disconnect() {
     });
     // AudioVideosession.unsubscribe(subscriber);
     UpdateCallLogEndtime(newCalllogId, onCallduration);
-  } else if (mArea == "Doctor") {
+  } else  {
     // else only close patient incomming call window.
     soc.emit("ClosePatientScreen", {
       pName: mPname,
