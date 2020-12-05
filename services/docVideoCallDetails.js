@@ -53,6 +53,7 @@ $(function () {
   $content = $(".min");
 
   $(".btnDisconnect").click(function () {
+    alert("trigger");
     disconnect();
   });
 
@@ -227,19 +228,20 @@ function initializeSession(key, sessId, tokenId) {
     },
     connectionDestroyed: function connectionDestroyedHandler(event) {
       //letting others know you left the connection in this method.
-      soc.emit("ClosePatientScreen", {
-        pName: mPname,
-      });
+      // soc.emit("ClosePatientScreen", {
+      //   pName: mPname,
+      // });
+      $(".btnDisconnect").trigger("click");
 
       PlayCallingSound(false);
       $(".three-icons, #timer").css("display", "none");
       $("#divCallNow").css("display", "block");
       $("#callImg").css("display", "block");
-      if (publisher) {
-        AudioVideosession.unpublish(publisher, handleError);
-        publisher.destroy();
-      }
-      if (subscriber) AudioVideosession.unsubscribe(subscriber);
+      // if (publisher) {
+      //   AudioVideosession.unpublish(publisher, handleError);
+      //   publisher.destroy();
+      // }
+      // if (subscriber) AudioVideosession.unsubscribe(subscriber);
 
       $("#log")
         .css({ display: "block", color: "#525a65" })
