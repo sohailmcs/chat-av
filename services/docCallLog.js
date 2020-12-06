@@ -11,6 +11,7 @@ $(function () {
   });
 });
 
+
 function GetAllDoctorCallLog(userId) {
   var url = baseURL + `CallLogs/GetDoctorRecentCallLog?doctorId=${userId}`;
 

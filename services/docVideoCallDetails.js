@@ -282,12 +282,7 @@ function initializeSession(key, sessId, tokenId) {
       $(".three-icons, #timer").css("display", "none");
       $("#divCallNow").css("display", "block");
       $("#callImg").css("display", "block");
-      // if (publisher) {
-      //   AudioVideosession.unpublish(publisher, handleError);
-      //   publisher.destroy();
-      // }
-      // if (subscriber) AudioVideosession.unsubscribe(subscriber);
-
+    
       $("#log")
         .css({ display: "block", color: "#525a65" })
         .text("Disconnected")
@@ -295,7 +290,7 @@ function initializeSession(key, sessId, tokenId) {
         .fadeOut("slow");
     },
     streamCreated: function (event) {
-     // timer = setInterval(countTimer, 1000);
+     
       $("#divCallNow").hide();
       $(".three-icons").show();
 

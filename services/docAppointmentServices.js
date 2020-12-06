@@ -99,12 +99,31 @@ function ConfilictValidation() {
     var shift1Min = shift1Element[1];
     var Shift1dayName = $(this).attr("cls");
 
+    var txtStartVal = shift1Parent.find(".txtStart").val();
+    var txtEndVal = shift1Parent.find(".txtEnd").val();
+    if(txtStartVal=="" || txtEndVal=="")
+    {
+      Swal.fire({
+        title: "Confirmation!",
+        text: "Please select start and end time property",
+        type: "info",
+        confirmButtonClass: "btn btn-primary",
+        confirmButtonText: "Ok",
+      });
+      shift1Parent.find(".txtStart").css("border","1px solid red");
+      shift1Parent.find(".txtEnd").css("border","1px solid red");
+      result = false;
+      return false;
+
+    }
+
     var Shift1Checkbox = $("#Shift1").find(
       "input[cls='" + Shift1dayName + "']"
     );
     var Shift2Checkbox = $("#Shift2").find(
       "input[cls='" + Shift1dayName + "']"
     );
+
 
     if (allCheckedShift2.length > 0 && Shift2Checkbox.prop("checked")) {
       var shift2Parent = Shift2Checkbox.parents("div.sch-app");
@@ -113,7 +132,14 @@ function ConfilictValidation() {
       var shift2Hours = shift2Element[0];
       var shift2Min = shift2Element[1];
       if (parseInt(shift1Hours) > parseInt(shift2Hours)) {
-        alert(Shift1dayName + " schduleded is conflicted");
+        Swal.fire({
+          title: "Confirmation!",
+          text: Shift1dayName + "schduleded is conflicted",
+          type: "info",
+          confirmButtonClass: "btn btn-primary",
+          confirmButtonText: "Ok",
+        });
+        // alert(Shift1dayName + " schduleded is conflicted");
         //========highLight conflicted day========
         shift2Txtbox.css("border", "1px solid red");
         shift1Txtbox.css("border", "1px solid red");
@@ -128,7 +154,7 @@ function Validation() {
   var chkShift1 = $("#Shift1").find("input[type='checkbox']:checked").length;
   var chkShift2 = $("#Shift2").find("input[type='checkbox']:checked").length;
 
-  if ($("#dtFrom").val() == "") {
+    if ($("#dtFrom").val() == "") {
     $("#dtFrom").css("border", "1px solid red");
     return false;
   } else if ($("#toDT").val() == "") {
@@ -138,7 +164,13 @@ function Validation() {
     $("#toDT").css("border", "1px solid red");
     return false;
   } else if (chkShift1 == 0 && chkShift2 == 0) {
-    alert("Please create at least one shift");
+    Swal.fire({
+      title: "Confirmation!",
+      text: "Please created at least one shift ",
+      type: "info",
+      confirmButtonClass: "btn btn-primary",
+      confirmButtonText: "Ok",
+    });
     return false;
   } else return true;
 }

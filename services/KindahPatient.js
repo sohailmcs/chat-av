@@ -136,14 +136,18 @@ function Filldatatable(data) {
       { data: "Gender" },
       { data: "Email" },
       { data: "PhoneNo" },
+      { data: "callLogDummyId" },
     ],
     columnDefs: [
       {
-        targets: "_all",
-        defaultContent: "",
+        // targets: "_all",
+        // defaultContent: "",
+        targets: [7],
+        visible: false,
+        searchable: false,
       },
     ],
-    order: [[1, "asc"]],
+    order: [[7, "desc"]],
     language: {
       searchPlaceholder: "  Search records....",
     },

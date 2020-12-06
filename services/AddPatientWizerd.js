@@ -100,6 +100,11 @@ $(function () {
       $(".divMed").find("*").prop("disabled", true);
     } else $(".divMed").find("*").prop("disabled", false);
   });
+  $(document).on("click", ".divMed", function () {
+    $("#rdTakingMedYes").prop("checked", true);
+    $(this).find("*").prop("disabled", false);
+    $(this).find(".txtMedicationName").focus();
+  });
 
   $('input:radio[name="alergy"]').change(function () {
     if (this.checked && this.value == "0") {
@@ -107,16 +112,30 @@ $(function () {
     } else $(".PatientAlergy").find("*").prop("disabled", false);
   });
 
+  $(document).on("click", ".PatientAlergy", function () {
+    $("#rdoHaveAlergyYes").prop("checked", true);
+    $(this).find("*").prop("disabled", false);
+    $(this).find(".txtAlergy").focus();
+  });
+
   $('input:radio[name="condition"]').change(function () {
     if (this.checked && this.value == "0") {
       $(".divCondition").find("*").prop("disabled", true);
     } else $(".divCondition").find("*").prop("disabled", false);
+  });
+  $(document).on("click", ".divCondition", function () {
+    $("#rdoTakeMedYes").prop("checked", true);
+    $(this).find("*").prop("disabled", false);    
   });
 
   $("#otherCondition").change(function () {
     if ($(this).is(":checked")) {
       $("#txtMedCondition").prop("disabled", false);
     } else $("#txtMedCondition").prop("disabled", true);
+  });
+  $(document).on("click", "#txtMedCondition", function () {
+    $("#otherCondition").prop("checked", true);
+    $(this).prop("disabled", false);    
   });
 
   //=============start wizard==================
