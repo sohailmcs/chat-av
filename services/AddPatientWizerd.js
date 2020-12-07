@@ -286,7 +286,7 @@ function FillCity() {
           $("#dboCity").append(
             $("<option>")
               .text(data.info[key].NameEn)
-              .attr("value", data.info[key].CityId)
+              .attr("value", data.info[key].CityID)
           );
         }
         
