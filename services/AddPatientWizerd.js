@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 
 var urlParams = new URLSearchParams(window.location.search);
 var doctorId = 0;
@@ -286,7 +286,7 @@ function FillCity() {
           $("#dboCity").append(
             $("<option>")
               .text(data.info[key].NameEn)
-              .attr("value", data.info[key].City)
+              .attr("value", data.info[key].CityId)
           );
         }
         
