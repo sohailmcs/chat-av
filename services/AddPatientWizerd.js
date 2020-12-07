@@ -261,6 +261,119 @@ function Validate() {
   return result;
 }
 
+function FillCity() {
+  var url = baseURL + "City/GetCity"
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+     
+        $("#dboCity").append(
+          $("<option>").text("Select City").attr("value", "0")
+        );
+        
+        for (var key in data.info) {
+          $("#dboCity").append(
+            $("<option>")
+              .text(data.info[key].NameEn)
+              .attr("value", data.info[key].City)
+          );
+        }
+        
+      
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+
+
+function FillCountry() {
+  var url = baseURL + "Country/GetCountry"
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+     
+        $("#dboCountry").append(
+          $("<option>").text("Select Country").attr("value", "0")
+        );
+        
+        for (var key in data.info) {
+          $("#dboCountry").append(
+            $("<option>")
+              .text(data.info[key].NameEn)
+              .attr("value", data.info[key].CountryID)
+          );
+        }
+        
+      
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+function FillDetails(d) {
+  FillCountry();
+  FillCity()
+  $("#txtInfoFirstName").val(d.FirstName);
+  $("#txtInfoLastName").val(d.LastName);
+
+  $("#txtInfoAge").val(d.Age);
+  if (d.Gender == "Male") $("#rdoMale").prop("checked", true);
+  else $("#rdoFemale").prop("checked", true);
+  $("#dboCountry").val(d.CountryId);
+  $("#dboCity").val(d.CityId);
+
+  var div = document.createElement("div");
+  if (d.PatientPhoto != null) {
+    div.innerHTML =
+      "<img class='infoProfilePic' src='" +
+      d.PatientPhoto +
+      "'" +
+      "title='ProfilePicture'/>";
+  } else {
+    div.innerHTML =
+      "<img class='infoProfilePic' src='/assets/images/maledoc.png'/>";
+  }
+  //=========set image control============
+  $("#result").html(div);
+}
+
 function PatientBasicInfo(PatientId, isDetails, type) {
   var url = baseURL + "Patient/GetPatientDetails?PatientId=" + PatientId;
   $.ajax({
@@ -306,30 +419,7 @@ function PatientBasicInfo(PatientId, isDetails, type) {
   });
 }
 
-function FillDetails(d) {
-  $("#txtInfoFirstName").val(d.FirstName);
-  $("#txtInfoLastName").val(d.LastName);
 
-  $("#txtInfoAge").val(d.Age);
-  if (d.Gender == "Male") $("#rdoMale").prop("checked", true);
-  else $("#rdoFemale").prop("checked", true);
-  $("#dboCountry").val(d.CountryId);
-  $("#dboCity").val(d.CityId);
-
-  var div = document.createElement("div");
-  if (d.PatientPhoto != null) {
-    div.innerHTML =
-      "<img class='infoProfilePic' src='" +
-      d.PatientPhoto +
-      "'" +
-      "title='ProfilePicture'/>";
-  } else {
-    div.innerHTML =
-      "<img class='infoProfilePic' src='/assets/images/maledoc.png'/>";
-  }
-  //=========set image control============
-  $("#result").html(div);
-}
 
 function GetChildPatientInfo(patientId, patientType) {
   var url =
