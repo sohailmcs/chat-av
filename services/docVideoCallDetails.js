@@ -135,8 +135,8 @@ $(function () {
     // $(".container").removeClass($apnData);
   });
   $(".btnSave").on("click", function () {
-    updateDoctorNotes(mCallLogId, "");
-  });
+    updateDoctorNotes($("#insertedID").val(), "OnGoing");
+  });``
 
   $(".btnSaveNSend").on("click", function () {
     updatePrescription(

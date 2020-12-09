@@ -1,4 +1,5 @@
 var baseURL = "https://kindahclinic.com/KindahService/";
+//var baseURL = "http://localhost:1042/KindahService/";
 var urlParams = new URLSearchParams(window.location.search);
 var queId = urlParams.get("queId");
 var patientId = urlParams.get("patientId");

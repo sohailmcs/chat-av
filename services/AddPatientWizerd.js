@@ -348,8 +348,7 @@ function FillCountry() {
   });
 }
 function FillDetails(d) {
-  FillCountry();
-  FillCity()
+
   $("#txtInfoFirstName").val(d.FirstName);
   $("#txtInfoLastName").val(d.LastName);
 
@@ -394,6 +393,8 @@ function PatientBasicInfo(PatientId, isDetails, type) {
         $("#txtPhoneNo").val(parseInt(data.PhoneNo));
         $("#txtEmail").val(data.Email);
       }
+      FillCountry();
+      FillCity()
       if (isDetails) FillDetails(data);
       else {
         //=====set values for slots templates======

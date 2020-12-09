@@ -5,7 +5,7 @@ var appointmentId = 0;
 var doctorId = 0;
 var PageName = window.location.pathname;
 var PageUrl = window.location.href;
-
+var apointmentDivClass;
 var options = {
   year: "numeric",
   month: "numeric",
@@ -19,14 +19,17 @@ var currentDt = new Date().toLocaleDateString("en-US", options);
 $(function () {
   GetPatientAppointment(userLoginId);
   $(document).on("click", ".btnMain", function () {
+    apointmentDivClass=   $(this).parents('.appointmentRow');
     appointmentId = $(this).attr("appId");
     doctorId = $(this).attr("doctorId");
     $("#primary").modal("show");
   });
 
   $(".btnConfirm").click(function () {
+   
     CancelAppointment(appointmentId, userLoginId, doctorId, PageName, PageUrl)
       .then((data) => {
+        apointmentDivClass.remove();
         Swal.fire({
           title: "Confirmation",
           text: "Your appointment has been cancelled ",
