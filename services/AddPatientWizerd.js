@@ -738,7 +738,7 @@ function  AddPatientConditon() {
     PatientMedCondition.push({
       PatientId: $("#hdnPatientId").val(),
       IsCondition: false,
-      ConditionID: null,
+      Condition: null,
       IsOtherCondition: $("#otherCondition").prop("checked"),
       MedConditionDesc:
         $("#otherCondition").prop("checked") == true
