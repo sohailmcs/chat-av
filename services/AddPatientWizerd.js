@@ -125,7 +125,7 @@ $(function () {
   });
   $(document).on("click", ".divCondition", function () {
     $("#rdoTakeMedYes").prop("checked", true);
-    $(this).find("*").prop("disabled", false);    
+    $(this).find("*").prop("disabled", false);
   });
 
   $("#otherCondition").change(function () {
@@ -135,7 +135,7 @@ $(function () {
   });
   $(document).on("click", "#txtMedCondition", function () {
     $("#otherCondition").prop("checked", true);
-    $(this).prop("disabled", false);    
+    $(this).prop("disabled", false);
   });
 
   //=============start wizard==================
@@ -148,45 +148,38 @@ $(function () {
 
     switch (step) {
       case "first":
-        PatientBasicInfo($("#hdnPatientId").val(), true, "Child");
-        // if (!Validate()) return false;
-        // else PatientBasicInfo($("#hdnPatientId").val(), true);
+        CheckIFcalledBefore(doctorId, $("#hdnPatientId").val())
+          .then((data) => {
+            if (data > 0) {
+              Swal.fire({
+                type: "error",
+                title: "Oops...",
+                text: "Your's today call already pending",
+                confirmButtonClass: "btn btn-primary",
+                buttonsStyling: false,
+                confirmButtonText: "Ok",
+              });
+              return false;
+            } else {
+              PatientBasicInfo($("#hdnPatientId").val(), true, "Child");
+              ShowHideNextStep($(this));
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         break;
       case "second":
         AddUpdatePatientDetails();
+        ShowHideNextStep($(this));
         break;
       case "third":
         AddPatientMedication();
+        ShowHideNextStep($(this));
       default:
       // return true;
     }
-
-    //==========on first next button click in wazerd======
-    current_fs = $(this).parents("fieldset");
-    next_fs = $(this).parents("fieldset").next();
-
-    //Add Class Active
-    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-    //show the next fieldset
-    next_fs.show();
-    //hide the current fieldset with style
-    current_fs.animate(
-      { opacity: 0 },
-      {
-        step: function (now) {
-          // for making fielset appear animation
-          opacity = 1 - now;
-
-          current_fs.css({
-            display: "none",
-            position: "relative",
-          });
-          next_fs.css({ opacity: opacity });
-        },
-        duration: 600,
-      }
-    );
+    //ShowHideNextStep($(this));
   });
 
   $(".previous").click(function () {
@@ -233,6 +226,35 @@ $(function () {
   //================end wizard ===============
 });
 
+function ShowHideNextStep(btnNext) {
+  //==========on first next button click in wazerd======
+  current_fs = btnNext.parents("fieldset");
+  next_fs = btnNext.parents("fieldset").next();
+
+  //Add Class Active
+  $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+  //show the next fieldset
+  next_fs.show();
+  //hide the current fieldset with style
+  current_fs.animate(
+    { opacity: 0 },
+    {
+      step: function (now) {
+        // for making fielset appear animation
+        opacity = 1 - now;
+
+        current_fs.css({
+          display: "none",
+          position: "relative",
+        });
+        next_fs.css({ opacity: opacity });
+      },
+      duration: 600,
+    }
+  );
+}
+
 function ShowHideChildInfoDropDown(ths) {
   var txt = ths.attr("patienttype");
   if (txt == "Me") {
@@ -261,8 +283,47 @@ function Validate() {
   return result;
 }
 
+function CheckIFcalledBefore(doctorId, patientId) {
+  return new Promise((resolve, reject) => {
+    var currentDt = new Date().toLocaleDateString("en-US");
+    var url =
+      baseURL +
+      "CallQue/CheckIfCallQuesExist?doctorID=" +
+      doctorId +
+      "&patiendId=" +
+      patientId +
+      "&date=" +
+      currentDt;
+
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "GET",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {
+        $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+        resolve(data);
+        $.LoadingOverlay("hide");
+      },
+      error: function (xhr, textStatus, err) {
+        reject(err);
+      },
+      complete: function (data) {
+        // Hide Loading
+        $.LoadingOverlay("hide");
+      },
+    });
+  });
+}
+
 function FillCity() {
-  var url = baseURL + "City/GetCity"
+  var url = baseURL + "City/GetCity";
   $.ajax({
     url: url,
     headers: {
@@ -277,20 +338,18 @@ function FillCity() {
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
-     
+
+      $("#dboCity").append(
+        $("<option>").text("Select City").attr("value", "0")
+      );
+
+      for (var key in data.info) {
         $("#dboCity").append(
-          $("<option>").text("Select City").attr("value", "0")
+          $("<option>")
+            .text(data.info[key].NameEn)
+            .attr("value", data.info[key].CityID)
         );
-        
-        for (var key in data.info) {
-          $("#dboCity").append(
-            $("<option>")
-              .text(data.info[key].NameEn)
-              .attr("value", data.info[key].CityID)
-          );
-        }
-        
-      
+      }
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -304,9 +363,8 @@ function FillCity() {
   });
 }
 
-
 function FillCountry() {
-  var url = baseURL + "Country/GetCountry"
+  var url = baseURL + "Country/GetCountry";
   $.ajax({
     url: url,
     headers: {
@@ -321,20 +379,18 @@ function FillCountry() {
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
-     
+
+      $("#dboCountry").append(
+        $("<option>").text("Select Country").attr("value", "0")
+      );
+
+      for (var key in data.info) {
         $("#dboCountry").append(
-          $("<option>").text("Select Country").attr("value", "0")
+          $("<option>")
+            .text(data.info[key].NameEn)
+            .attr("value", data.info[key].CountryID)
         );
-        
-        for (var key in data.info) {
-          $("#dboCountry").append(
-            $("<option>")
-              .text(data.info[key].NameEn)
-              .attr("value", data.info[key].CountryID)
-          );
-        }
-        
-      
+      }
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -348,7 +404,6 @@ function FillCountry() {
   });
 }
 function FillDetails(d) {
-
   $("#txtInfoFirstName").val(d.FirstName);
   $("#txtInfoLastName").val(d.LastName);
 
@@ -394,7 +449,7 @@ function PatientBasicInfo(PatientId, isDetails, type) {
         $("#txtEmail").val(data.Email);
       }
       FillCountry();
-      FillCity()
+      FillCity();
       if (isDetails) FillDetails(data);
       else {
         //=====set values for slots templates======
@@ -419,8 +474,6 @@ function PatientBasicInfo(PatientId, isDetails, type) {
     },
   });
 }
-
-
 
 function GetChildPatientInfo(patientId, patientType) {
   var url =

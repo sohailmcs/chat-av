@@ -30,31 +30,40 @@ $(function () {
     var doctorId = $(this).attr("docID");
     var fullName = $(this).attr("fullName");
 
-    CheckIFcalledBefore(doctorId, useLoginId)
-      .then((data) => {
-        if (data > 0) {
-          Swal.fire({
-            type: "info",
-            title: "SORRY!",
-            text: "Your's today call already pending",
-            confirmButtonClass: "btn btn-primary",
-            buttonsStyling: false,
-            confirmButtonText: "Ok",
-          });
-        } else
-          window.location.href =
-            "/patient/Addpatient?doctorId=" +
-            doctorId +
-            "&name=" +
-            fullName +
-            "&type=call" +
-            "&spName=" +
-            spName;
-        //SendCallRequestToDoctor(doctorId, fullName);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    window.location.href =
+      "/patient/Addpatient?doctorId=" +
+      doctorId +
+      "&name=" +
+      fullName +
+      "&type=call" +
+      "&spName=" +
+      spName;
+
+    // CheckIFcalledBefore(doctorId, useLoginId)
+    //   .then((data) => {
+    //     if (data > 0) {
+    //       Swal.fire({
+    //         type: "info",
+    //         title: "SORRY!",
+    //         text: "Your's today call already pending",
+    //         confirmButtonClass: "btn btn-primary",
+    //         buttonsStyling: false,
+    //         confirmButtonText: "Ok",
+    //       });
+    //     } else
+    //       window.location.href =
+    //         "/patient/Addpatient?doctorId=" +
+    //         doctorId +
+    //         "&name=" +
+    //         fullName +
+    //         "&type=call" +
+    //         "&spName=" +
+    //         spName;
+    //     //SendCallRequestToDoctor(doctorId, fullName);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   });
 
   $(document).on("click", ".btnAppointments", function () {

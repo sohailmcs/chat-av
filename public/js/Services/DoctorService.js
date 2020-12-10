@@ -26,22 +26,22 @@ $(function () {
     var doctorId = $(this).attr("docID");
     var fullName = $(this).attr("fullName");
 
-    CheckIFcalledBefore(doctorId, useLoginId)
-      .then((data) => {
-        if (data > 0) {
-          Swal.fire({
-            type: "error",
-            title: "Oops...",
-            text: "Your's today call already pending",
-            confirmButtonClass: "btn btn-primary",
-            buttonsStyling: false,
-            confirmButtonText: "Ok",
-          });
-        } else SendCallRequestToDoctor(doctorId, fullName);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // CheckIFcalledBefore(doctorId, useLoginId)
+    //   .then((data) => {
+    //     if (data > 0) {
+    //       Swal.fire({
+    //         type: "error",
+    //         title: "Oops...",
+    //         text: "Your's today call already pending",
+    //         confirmButtonClass: "btn btn-primary",
+    //         buttonsStyling: false,
+    //         confirmButtonText: "Ok",
+    //       });
+    //     } else SendCallRequestToDoctor(doctorId, fullName);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   });
 
   $(document).on("click", ".btndoctorProfile", function () {

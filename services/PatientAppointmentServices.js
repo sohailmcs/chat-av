@@ -39,7 +39,7 @@ $(function () {
           confirmButtonText: "<a style='color:#fff'>OK</a>",
         });
 
-        GetPatientAppointment(userLoginId);
+      //  GetPatientAppointment(userLoginId);
       })
       .catch((error) => {
         console.log(error);
