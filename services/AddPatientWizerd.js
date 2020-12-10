@@ -731,7 +731,7 @@ function AddPatientMedication() {
   });
 }
 
-function AddPatientConditon() {
+function  AddPatientConditon() {
   var PatientMedCondition = new Array();
 
   if ($("#rdoTakeMedNo").prop("checked")) {
@@ -756,7 +756,7 @@ function AddPatientConditon() {
         PatientMedCondition.push({
           PatientId: $("#hdnPatientId").val(),
           IsCondition: true,
-          ConditionID: $(this).find(".rdoCondition").val(),
+          Condition: $(this).find(".rdoCondition").val(),
           IsOtherCondition: $("#otherCondition").prop("checked"),
           MedConditionDesc:
             $("#otherCondition").prop("checked") == true
