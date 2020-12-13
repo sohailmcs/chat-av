@@ -402,6 +402,19 @@ select.list-dt:focus {
   margin: 0;
   /* border: 2px solid #3eb8d7 !important; */
 }
+.CheckBoxOverlay{
+  position:relative;
+  display:inline-block;
+  width:100%;
+}
+.CheckBoxOverlay div{
+  position:absolute;
+  left:0; 
+  right:0; 
+  top:0; 
+  bottom:0; 
+  cursor: pointer;    
+}
 
 #timer {
   position: absolute;
@@ -1743,8 +1756,9 @@ button:focus {
 
 .medicineName {
   text-align: center;
-  width: 40%;
+  width: 100%;
   margin-top: 5px;
+  display: block;
 }
 .divMedication {
   font-size: 12px;
@@ -1756,7 +1770,7 @@ button:focus {
 }
 .Listalergy li {
   list-style: disc;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: normal;
 }
 

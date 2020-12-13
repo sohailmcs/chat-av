@@ -16,8 +16,21 @@ if (urlParams.has("appId")) appId = urlParams.get("appId");
 var userLoginId = $(".user-name").attr("UserInfo");
 
 var pType = "Me";
-
 $("#hdnPatientId").val(userLoginId);
+
+function EnableMedCondition(EleOv) {
+  $("#rdoTakeMedYes").prop("checked", true);
+  $(".rdoCondition").prop("disabled", false);
+  $(EleOverlay).parent().find(".rdoCondition").prop("checked", true);
+}
+
+function EnableOtherOption(EleOverlay) {
+  $("#otherCondition").prop("checked", true);
+  $("#txtMedCondition").prop("disabled", false);
+  $("#txtMedCondition").focus();
+  //$(EleOverlay).parent().find(".rdoCondition").prop("checked", true);
+}
+
 $(function () {
   $(document).on("change", ".MedicationReciept", function (event) {
     var files = event.target.files; //FileList object
@@ -123,10 +136,10 @@ $(function () {
       $(".divCondition").find("*").prop("disabled", true);
     } else $(".divCondition").find("*").prop("disabled", false);
   });
-  $(document).on("click", ".divCondition", function () {
-    $("#rdoTakeMedYes").prop("checked", true);
-    $(this).find("*").prop("disabled", false);
-  });
+  // $(document).on("click", ".divCondition input ", function () {
+  //   $("#rdoTakeMedYes").prop("checked", true);
+  //   $(this).find("*").prop("disabled", false);
+  // });
 
   $("#otherCondition").change(function () {
     if ($(this).is(":checked")) {
@@ -134,6 +147,7 @@ $(function () {
     } else $("#txtMedCondition").prop("disabled", true);
   });
   $(document).on("click", "#txtMedCondition", function () {
+    alert("asdfasd");
     $("#otherCondition").prop("checked", true);
     $(this).prop("disabled", false);
   });
@@ -334,10 +348,10 @@ function FillCity() {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-      $.LoadingOverlay("show");
+      // $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      $.LoadingOverlay("hide");
+      // $.LoadingOverlay("hide");
 
       $("#dboCity").append(
         $("<option>").text("Select City").attr("value", "0")
@@ -358,7 +372,7 @@ function FillCity() {
     },
     complete: function (data) {
       // Hide Loading
-      $.LoadingOverlay("hide");
+      // $.LoadingOverlay("hide");
     },
   });
 }
@@ -375,10 +389,10 @@ function FillCountry() {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-      $.LoadingOverlay("show");
+      //  $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      $.LoadingOverlay("hide");
+      // $.LoadingOverlay("hide");
 
       $("#dboCountry").append(
         $("<option>").text("Select Country").attr("value", "0")
@@ -399,7 +413,7 @@ function FillCountry() {
     },
     complete: function (data) {
       // Hide Loading
-      $.LoadingOverlay("hide");
+      // $.LoadingOverlay("hide");
     },
   });
 }
@@ -458,7 +472,7 @@ function PatientBasicInfo(PatientId, isDetails, type) {
 
         $("#dboInfo option").remove();
         $("#dboInfo").append(
-          $("<option>").text("Choose patient").attr("value", "0")
+          $("<option>").text("New patient").attr("value", "0")
         );
         $("#dboInfo").attr("disabled", "disabled");
       }
@@ -501,7 +515,7 @@ function GetChildPatientInfo(patientId, patientType) {
       $("#dboInfo").removeAttr("disabled");
       $("#dboInfo option").remove();
       $("#dboInfo").append(
-        $("<option>").text("Choose patient").attr("value", "0")
+        $("<option>").text("New patient").attr("value", "0")
       );
 
       for (var key in data.info) {
@@ -625,7 +639,7 @@ function AddMedication() {
     "<div class='custom-file'>" +
     "<input type='hidden' value='' class='imgMedicine'>" +
     "<input type='file' style='cursor:pointer' class='custom-file-input MedicationReciept'>" +
-    "<label class='custom-file-label' for='inputGroupFile01'>Choose file</label>" +
+    "<label class='custom-file-label'>Choose file</label>" +
     "</div>" +
     "<div class='ml-1 mb-1'>" +
     "<button  style='font-size:1rem;padding: 10px 17px;font-weight: bolder;' type='button'" +
@@ -731,7 +745,7 @@ function AddPatientMedication() {
   });
 }
 
-function  AddPatientConditon() {
+function AddPatientConditon() {
   var PatientMedCondition = new Array();
 
   if ($("#rdoTakeMedNo").prop("checked")) {

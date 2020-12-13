@@ -54,9 +54,9 @@ function format(d) {
               "</td><td>" +
               new Date(val.CallLogEndDateTime).toLocaleDateString() +
               "</td><td>" +
-              new Date(val.CallLogEndDateTime).getHours() +
+              new Date(val.CallLogStartDateTime).getHours() +
               ":" +
-              new Date(val.CallLogEndDateTime).getMinutes() +
+              new Date(val.CallLogStartDateTime).getMinutes() +
               "</td><td>" +
               (val.OnCallDuration == null ? "" : val.OnCallDuration) +
               "</td><td><a href='#' onclick='ViewPatientHistory(" +
