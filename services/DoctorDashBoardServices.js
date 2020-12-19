@@ -173,7 +173,7 @@ $(function () {
 }); //==end of jquery $function
 
 function getDashBoardAllScheduled(isSync) {
-  GetDoctorBookedScheduled(userLoginId, clientCurrentDt, isSync);
+  //GetDoctorBookedScheduled(userLoginId, clientCurrentDt, isSync);
   GetAllQuedScheduled(userLoginId, clientCurrentDt, isSync);
   GetCallLog(userLoginId, clientCurrentDt, isSync);
 }
