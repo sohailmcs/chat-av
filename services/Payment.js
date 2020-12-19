@@ -5,13 +5,13 @@ var UserName = $(".user-name").text();
 
 var urlParams = new URLSearchParams(window.location.search);
 var doctorId = 0;
-var name = "";
+var docname = "";
 var spName = "";
 var patientId = "";
 var type;
 var appointmentId;
 if (urlParams.has("doctorId")) doctorId = urlParams.get("doctorId");
-if (urlParams.has("name")) name = urlParams.get("name");
+if (urlParams.has("name")) docname = urlParams.get("name");
 if (urlParams.has("spName")) spName = urlParams.get("spName");
 if (urlParams.has("pId")) patientId = urlParams.get("pId");
 if (urlParams.has("type")) type = urlParams.get("type");
@@ -287,13 +287,13 @@ $(function () {
     $(this).addClass("selectedColor");
   });
   $(".submit").click(function () {
-    if (type == "call") {
+    if (type.toLowerCase() == "call".toLowerCase()) {
       // if request type is call
       //check if docotor is online or not
       checkOnlineStatusandCall(doctorId, "Doctor").then((data) => {
         //if docotr is online then send request to doctor
         if (data) {
-          SendCallRequestToDoctor(doctorId, name);
+          SendCallRequestToDoctor(doctorId, docname);
         } else {
           Swal.fire({
             type: "warning",
@@ -310,7 +310,7 @@ $(function () {
                 "/patient/appointment?doctorId=" +
                 doctorId +
                 "&name=" +
-                name +
+                docname +
                 "&type=sch" +
                 "&spName=" +
                 spName +
@@ -324,6 +324,10 @@ $(function () {
       // if request type is appointment
       BookPatientAppointment(patientId, doctorId, appointmentId)
         .then((data) => {
+          soc.emit("NotifyDoctor", {
+            username: docname, // get doctorUsername from session
+            docId: doctorId,
+          });
           $("#primary").modal("show");
           setTimeout(function () {
             $("#primary").modal("hide");
@@ -436,7 +440,7 @@ function BookPatientAppointment(patientId, docId, AppointmentDetailId) {
       AppointmentDetailId: AppointmentDetailId,
       PatientId: patientId,
       doctorId: docId,
-      doctorName: name,
+      doctorName: docname,
       PatientName: UserName,
       BookedDateTime: currentDt,
       Status: "Booked",

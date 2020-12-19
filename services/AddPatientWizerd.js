@@ -166,7 +166,7 @@ $(function () {
       case "first":
         CheckIFcalledBefore(doctorId, $("#hdnPatientId").val())
           .then((data) => {
-            if (data > 0 && type == "Call") {
+            if (data > 0 && type.toLowerCase() == "call".toLowerCase()) {
               Swal.fire({
                 type: "error",
                 title: "Oops...",

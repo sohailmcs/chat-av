@@ -43,6 +43,7 @@ function format(d) {
       var callLogData = data.result;
       if (callLogData.length > 0) {
         $.each(callLogData, function (ind, val) {
+          console.log(val.DoctorPhone);
           callLogtable.append(
             "<tr><td class='callLogId'>" +
               val.CallLogID +
