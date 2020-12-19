@@ -3798,6 +3798,14 @@ h6.patientName {
   line-height: 12px;
   font-weight: 600;
 }
+h6.patientNameDashBoard {
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+  color: #076dfa;
+  line-height: 12px;
+  font-weight: 600;
+}
+
 .pImage {
   position: relative;
 }

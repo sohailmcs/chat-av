@@ -21,7 +21,7 @@ $("#hdnPatientId").val(userLoginId);
 function EnableMedCondition(EleOv) {
   $("#rdoTakeMedYes").prop("checked", true);
   $(".rdoCondition").prop("disabled", false);
-  $(EleOverlay).parent().find(".rdoCondition").prop("checked", true);
+  $(EleOv).parent().find(".rdoCondition").prop("checked", true);
 }
 
 function EnableOtherOption(EleOverlay) {
@@ -32,6 +32,7 @@ function EnableOtherOption(EleOverlay) {
 }
 
 $(function () {
+  $("#dboCountry, #dboCity").select2(); //searchable dropdown
   $(document).on("change", ".MedicationReciept", function (event) {
     var files = event.target.files; //FileList object
     var imgHidden = $(this).siblings(".imgMedicine");
@@ -133,6 +134,7 @@ $(function () {
 
   $('input:radio[name="condition"]').change(function () {
     if (this.checked && this.value == "0") {
+      $(".rdoCondition").prop("checked", false);
       $(".divCondition").find("*").prop("disabled", true);
     } else $(".divCondition").find("*").prop("disabled", false);
   });
@@ -164,7 +166,7 @@ $(function () {
       case "first":
         CheckIFcalledBefore(doctorId, $("#hdnPatientId").val())
           .then((data) => {
-            if (data > 0) {
+            if (data > 0 && type == "Call") {
               Swal.fire({
                 type: "error",
                 title: "Oops...",
@@ -207,7 +209,11 @@ $(function () {
 
     //show the previous fieldset
     previous_fs.show();
+
     if ($(this).attr("step") == "second") $(".btnMe").trigger("click");
+
+    if ($(this).attr("step") == "third")
+      PatientBasicInfo($("#hdnPatientId").val(), true, pType);
 
     //hide the current fieldset with style
     current_fs.animate(
@@ -424,8 +430,11 @@ function FillDetails(d) {
   $("#txtInfoAge").val(d.Age);
   if (d.Gender == "Male") $("#rdoMale").prop("checked", true);
   else $("#rdoFemale").prop("checked", true);
+  
   $("#dboCountry").val(d.CountryId);
   $("#dboCity").val(d.CityId);
+  $("#select2-dboCountry-container").text(d.CountryName);
+  $("#select2-dboCity-container").text(d.CityName);
 
   var div = document.createElement("div");
   if (d.PatientPhoto != null) {
@@ -460,6 +469,9 @@ function PatientBasicInfo(PatientId, isDetails, type) {
       $.LoadingOverlay("hide");
       if (type == "Parent") {
         $("#txtPhoneNo").val(parseInt(data.PhoneNo));
+
+        if (data.PhoneExt) $("#txtphoneExt").val(parseInt(data.PhoneExt));
+
         $("#txtEmail").val(data.Email);
       }
       FillCountry();
@@ -585,7 +597,7 @@ function AddUpdatePatientDetails() {
     Email: $("#txtEmail").val(),
     PatientType: pType,
     PhoneNo: $("#txtPhoneNo").val().replace(/^0+/, ""), //======remove leadng zero from phone number
-
+    PhoneExt: $("#txtphoneExt").val(),
     PatientPhoto: $(".infoProfilePic").attr("src"),
     AddedBy: userLoginId,
     Gender: gender,

@@ -291,6 +291,11 @@
     });  
     
 
+    //Custom File Input
+    $(document).on("change","#imgcomplain",function(e){      
+      $(this).parent().find(".custom-file-label").html(e.target.files[0].name);
+    });   
+
     /* Text Area Counter Set Start */
 
     $(".char-textarea").on("keyup", function (event) {

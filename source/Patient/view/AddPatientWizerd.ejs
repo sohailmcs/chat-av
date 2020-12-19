@@ -13,18 +13,16 @@
 <link rel="stylesheet" type="text/css" href="/css/components.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" />
-
-
-
 <!-- END: Theme CSS-->
-
 <!-- BEGIN: Page CSS-->
 <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
 <!-- END: Page CSS-->
-
 <!-- BEGIN: Custom CSS-->
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 <!-- END: Custom CSS-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+
 </head>
 <!-- END: Head-->
 
@@ -178,11 +176,11 @@
                                                   <label class="text-bold-600" for="exampleInputEmail1">Phone no</label>
                                                   <div class="row">
                                                     <div class="col-sm-3">
-                                                      <input required="" disabled="disabled" class="form-control" value="+966">
+                                                      <input required="" id="txtphoneExt" class="form-control" value="+966">
                                                     </div>
                   
                                                     <div class="col">
-                                                      <input readonly  required="" name="contactNo" type="number" class="form-control" id="txtPhoneNo" placeholder="Contact Number">
+                                                      <input  required="" name="contactNo" type="number" class="form-control" id="txtPhoneNo" placeholder="Contact Number">
                                                     </div>
                                                   </div>
                                                 </div>
@@ -207,20 +205,19 @@
                                              </div><!--end of row-->
                                              <div class="row">
                                               <div class="col-sm-6">
-                                               <label>Country</label>
-                                               <select style="padding:5px 11px 5px" name="dbocountry" id="dboCountry" class="form-control">
-                                                <!-- <option>Select country</option>
-                                                 <option>Pakistan</option>
-                                                 <option>Saudia Arabia</option> -->
+                                               <label>Country</label><br>
+                                               <select style="padding:5px 11px 5px;width:100%;" name="dbocountry" id="dboCountry" class="form-control">
+                                              
                                                  </select>
                                              </div><!--end of col-sm-6--> 
                                              <div class="col-sm-6">
-                                              <label>City</label>
-                                              <select style="padding:5px 11px 5px" name="dboCity" id="dboCity" class="form-control">
+                                              <label>City</label><br>
+                                              <select style="padding:5px 11px 5px;width:100%;" name="dboCity" id="dboCity" class="form-control">
                                                <!-- <option>Select city</option>
                                                 <option>Karachi</option> -->
                                                
                                                 </select>
+                                               
                                             </div><!--end of col-sm-6-->
                                              </div><!--end of row-->
                                                   <br>
@@ -324,7 +321,7 @@
                                             </div><!--end of col-sm-5-->  
                                              </div><!--end of row-->
                                              
-                                                  <button style="font-size:0.9rem;padding: 13px 27px;" 
+                                                  <button step="third" style="font-size:0.9rem;padding: 13px 27px;" 
                                                   type="button" class="previous btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                                    PREVIOUS
                                                   </button>
@@ -673,7 +670,7 @@
 
 <script src="/js/vendors.js"></script>
 <!-- BEGIN Vendor JS-->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="/js/sweetalert2.all.min.js"></script>
 <script src="/js/polyfill.min.js"></script>
 <script src="/js/sweet-alerts.js"></script>

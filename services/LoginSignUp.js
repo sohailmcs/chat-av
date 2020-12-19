@@ -13,7 +13,6 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-
 function validtion() {
   $("form").validate({
     rules: {
@@ -164,10 +163,8 @@ $(function () {
       FullName: $("#txtFirstName").val() + " " + $("#txtLastName").val(),
       Email: $("#txtEmail").val(),
       Password: $("#txtPassword").val(),
-      PhoneNo:
-        $("input:disabled").val() +
-        "" +
-        $("#txtPhoneNo").val().replace(/^0+/, ""), //======remove leadng zero from phone number
+      PhoneNo: $("#txtPhoneNo").val().replace(/^0+/, ""), //======remove leadng zero from phone number
+      PhoneExt: $("input:disabled").val(),
       UserType: hdnUserType == "patient" ? "Patient" : ddluserType,
       pageName: "Signup",
       pageUrl: window.location.href,

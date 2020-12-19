@@ -5,6 +5,7 @@ var appointmentId = 0;
 var doctorId = 0;
 var PageName = window.location.pathname;
 var PageUrl = window.location.href;
+var docName;
 var apointmentDivClass;
 var options = {
   year: "numeric",
@@ -22,11 +23,12 @@ $(function () {
     apointmentDivClass=   $(this).parents('.appointmentRow');
     appointmentId = $(this).attr("appId");
     doctorId = $(this).attr("doctorId");
+    docName =  $(this).attr("docName");
     $("#primary").modal("show");
   });
 
   $(".btnConfirm").click(function () {
-   
+    $.LoadingOverlay("show");
     CancelAppointment(appointmentId, userLoginId, doctorId, PageName, PageUrl)
       .then((data) => {
         apointmentDivClass.remove();
@@ -38,7 +40,12 @@ $(function () {
           buttonsStyling: false,
           confirmButtonText: "<a style='color:#fff'>OK</a>",
         });
-
+        $.LoadingOverlay("hide");
+        //======== send notification to doctor for callRequest
+      soc.emit("NotifyDoctor", {
+        username: docName, // get doctorUsername from session
+        docId: doctorId,
+      });
       //  GetPatientAppointment(userLoginId);
       })
       .catch((error) => {
@@ -61,7 +68,7 @@ function GetPatientAppointment(patientId) {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-      $.LoadingOverlay("show");
+     // $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
@@ -75,7 +82,7 @@ function GetPatientAppointment(patientId) {
     },
     complete: function (data) {
       // Hide Loading
-      $.LoadingOverlay("hide");
+     // $.LoadingOverlay("hide");
     },
   });
 }
@@ -84,7 +91,7 @@ function GetPatientAppointment(patientId) {
 function CancelAppointment(
   appointmentDetailsId,
   patientId,
-  doctorId,
+  doctorId,  
   pageName,
   pageUrl
 ) {
