@@ -291,7 +291,7 @@
         <div class="col-sm-12">
         <span>RX</span>
         <textarea class="form-control"  id="txtRxEdit"
-        rows="2" placeholder="Write RX ">{{Diagnosis}}</textarea>
+        rows="2" placeholder="Write RX ">{{PatientRX}}</textarea>
         </div>
      </div>
      <div style="text-align:left;">
@@ -327,18 +327,14 @@
     </b>
     </span>
     </div>
-
-
     <div class="sh_divqueue" style="display: inline-block;">
         <a class="btnViewDetail" patientId ="{{PatientID}}" href="#">
+         <span class="TypeLabel">{{TypeLabel}}</span>
             <h6 class='patientName' style="padding-top: 2%; ">
-             <u>{{patientName}}</u>
-             <!-- ({{TypeLabel}}) -->
+             <u>{{patientName}}</u>             
                 </h6>
         </a>
     </div>
-
-
     <P class="timeline-title-Gender">
     <span class="spnGender"><strong>Gender:</strong> </span> {{Gender}}
     </p>
@@ -411,9 +407,9 @@
 
     <div class="req_divqueue" style="display: inline-block;">
     <a class="btnViewDetail" patientId ="{{PatientID}}" href="#">
-        <h6 class='patientName'>
-           <u>{{patientName}}</u>
-           <!-- ({{TypeLabel}}) -->
+      <span class="TypeLabel">{{TypeLabel}}</span>
+      <h6 class='patientName'>
+           <u>{{patientName}}</u>           
         </h6>
     </a>
     </div>
