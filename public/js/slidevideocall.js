@@ -97,7 +97,6 @@ function viewDocProfile() {
 }
 
 // Call log jQuery code
-var baseURL = "https://kindahclinic.com/KindahService/";
 
 // Call log jQuery code
 

@@ -138,7 +138,12 @@
           {{#PatientMedicationModel}}
           {{#IsTakingMedication}}
           <div class="col-sm-4 text-left mb-1">
+            {{#ImageUrl}}
             <img  src="{{ImageUrl}}" height="100" width="100">
+            {{/ImageUrl}}
+            {{^ImageUrl}}
+            <img  src="/assets/images/medication.jpg" alt="Medication" height="100" width="100">
+            {{/ImageUrl}}
             <span class="medicineName">{{MedicationName}}</span>
           </div>
           {{/IsTakingMedication}}
@@ -170,7 +175,7 @@
         <ul class="Listalergy">  
           {{#PatientMedConditonModel}}       
             {{#IsCondition}}
-              <li>{{ConditionID}}</li>
+              <li>{{Condition}}</li>
             {{/IsCondition}}
             {{^IsCondition}}
               <li><strong>No Medical Condition</strong></li>
@@ -178,15 +183,24 @@
          {{/PatientMedConditonModel}} 
           </ul>         
           {{#IsOtherCondition}}
+          <ul class="Listalergy" style="margin-bottom:2px">
+            <li>Other</li>
+          </ul>
             <p>{{OtherConditionDesc}}</p>
         {{/IsOtherCondition}}
           
       </div>
       <div class="col-sm-5">
         <h4>Complain</h4>
-        {{#PatientComplainModel}}          
-          <img  src="{{PatComplainImage}}" height="100" width="100"><br>
-          <p class="mt-1">{{PatientComplainDesc}}
+        {{#PatientComplainModel}} 
+        <p class="mb-1">{{PatientComplainDesc}}</p> 
+        {{#PatComplainImage}}
+        <img  src="{{PatComplainImage}}"  alt="Complain" height="100" width="100">
+        {{/PatComplainImage}}
+        {{^PatComplainImage}}
+        <img  src="/assets/images/complain.jpg" alt="Complain" height="100" width="100">
+        {{/PatComplainImage}}
+        
         {{/PatientComplainModel}}
         {{^PatientComplainModel}}
           <p><strong>No Complain</strong><br>       
