@@ -1,4 +1,4 @@
-//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
 //var baseURL = "http://localhost:1042/KindahService/";
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
@@ -46,7 +46,7 @@ $(function () {
       } else {
         if (enterdText.length >= 9) {
           enterdText = enterdText.replace(/\D/g, "").slice(-9);
-          enterdText = "+966" + enterdText;
+          //enterdText = "+966" + enterdText;
         } else enterdText = enterdText;
       }
     }
@@ -282,6 +282,7 @@ $(function () {
         $("#txtOldPassword").val("");
         $("#txtNewPassword").val("");
         $("#txtConfirmNewPassword").val("");
+        $("#popupResetPassword").modal('hide');
       },
 
       error: function (xhr, textStatus, err) {
