@@ -33,6 +33,11 @@ function EnableOtherOption(EleOverlay) {
 
 $(function () {
   $("#dboCountry, #dboCity").select2(); //searchable dropdown
+  $("#dboCountry").on("change", function () {
+    var countryId = this.value;
+   FillCity(countryId)
+  });
+
   $(document).on("change", ".MedicationReciept", function (event) {
     var files = event.target.files; //FileList object
     var imgHidden = $(this).siblings(".imgMedicine");
@@ -342,8 +347,9 @@ function CheckIFcalledBefore(doctorId, patientId) {
   });
 }
 
-function FillCity() {
-  var url = baseURL + "City/GetCity";
+function FillCity(countryID) {
+  alert(countryID);
+  var url = baseURL + "City/GetCity?countryId=" + countryID;
   $.ajax({
     url: url,
     headers: {
@@ -354,11 +360,10 @@ function FillCity() {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-      // $.LoadingOverlay("show");
+       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      // $.LoadingOverlay("hide");
-
+      
       $("#dboCity").append(
         $("<option>").text("Select City").attr("value", "0")
       );
@@ -378,7 +383,7 @@ function FillCity() {
     },
     complete: function (data) {
       // Hide Loading
-      // $.LoadingOverlay("hide");
+       $.LoadingOverlay("hide");
     },
   });
 }
@@ -424,13 +429,14 @@ function FillCountry() {
   });
 }
 function FillDetails(d) {
+  FillCountry();
   $("#txtInfoFirstName").val(d.FirstName);
   $("#txtInfoLastName").val(d.LastName);
 
   $("#txtInfoAge").val(d.Age);
   if (d.Gender == "Male") $("#rdoMale").prop("checked", true);
   else $("#rdoFemale").prop("checked", true);
-  
+
   $("#dboCountry").val(d.CountryId);
   $("#dboCity").val(d.CityId);
   $("#select2-dboCountry-container").text(d.CountryName);
@@ -474,8 +480,8 @@ function PatientBasicInfo(PatientId, isDetails, type) {
 
         $("#txtEmail").val(data.Email);
       }
-      FillCountry();
-      FillCity();
+    
+     // FillCity();
       if (isDetails) FillDetails(data);
       else {
         //=====set values for slots templates======

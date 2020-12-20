@@ -43,13 +43,12 @@
   </head>
 
   <script type="text/javascript">
-
     var uName = "";
     var userID = "";
 
     var soc = io({ transports: ["websocket"], upgrade: false });
-   // var baseURL = "http://localhost:1042/KindahService/";
-   var baseURL = "https://kindahclinic.com/KindahService/";
+    //var baseURL = "http://localhost:1042/KindahService/";
+    var baseURL = "https://kindahclinic.com/KindahService/";
     var urlParams = new URLSearchParams(window.location.search);
 
     function getcookie(cookiename) {
@@ -127,7 +126,7 @@
 
     function deleteAllCookies() {
       //=============update status in database=============
-     
+
       var cookies = document.cookie.split(";");
       for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i];
@@ -135,9 +134,9 @@
         var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
       }
-      changeDoctorOlineStaus(userID, "Offline", uName).then((data)=>{       
+      changeDoctorOlineStaus(userID, "Offline", uName).then((data) => {
         window.location.href = "/Logout";
-      })
+      });
     }
 
     async function changeDoctorOlineStaus(userId, status, uName) {
@@ -148,7 +147,7 @@
         status: status,
         uName: uName,
       });
-     
+
       //=============update status in database=============
     }
 
