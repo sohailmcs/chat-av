@@ -154,7 +154,7 @@ $(function () {
     } else $("#txtMedCondition").prop("disabled", true);
   });
   $(document).on("click", "#txtMedCondition", function () {
-    alert("asdfasd");
+    
     $("#otherCondition").prop("checked", true);
     $(this).prop("disabled", false);
   });
@@ -348,7 +348,7 @@ function CheckIFcalledBefore(doctorId, patientId) {
 }
 
 function FillCity(countryID) {
-  alert(countryID);
+  
   var url = baseURL + "City/GetCity?countryId=" + countryID;
   $.ajax({
     url: url,

@@ -6,7 +6,7 @@ var hdnUserType = $("#hdnUserType").val();
 //==login==========
 $(function () {
   $("#btnResend").click(function (e) {
-    alert("asdfasda");
+    
     e.preventDefault();
     $("#frmforgotpwd").submit();
   });
