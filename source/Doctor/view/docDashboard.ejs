@@ -95,11 +95,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-    </div>
-    
-        <div class="card-content side-bar-doc" id="bookDetails">
-
-      
+    </div>       
+        <div class="card-content side-bar-doc" id="bookDetails">      
       </div>
       
     </div>
@@ -195,7 +192,7 @@
             </ul>         
             {{#IsOtherCondition}}
             <ul class="Listalergy" style="margin-bottom:2px">
-              <li>Other</li>
+              <li><b>Other</b></li>
             </ul>
               <p>{{OtherConditionDesc}}</p>
           {{/IsOtherCondition}}
@@ -209,7 +206,7 @@
           <img  src="{{PatComplainImage}}"  alt="Complain" height="100" width="100">
           {{/PatComplainImage}}
           {{^PatComplainImage}}
-          <img  src="/assets/images/complain.jpg" alt="Complain" height="100" width="100">
+          <img  src="/assets/images/complain.png" alt="Complain" height="100" width="100">
           {{/PatComplainImage}}
           
           {{/PatientComplainModel}}
