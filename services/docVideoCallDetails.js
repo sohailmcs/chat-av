@@ -39,7 +39,10 @@ var options = {
 dragElement(document.getElementById("publisher"));
 
 function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
   if (document.getElementById(elmnt.id)) {
     // if present, the header is where you move the DIV from:
     document.getElementById(elmnt.id).onmousedown = dragMouseDown;
@@ -68,8 +71,8 @@ function dragElement(elmnt) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
   }
 
   function closeDragElement() {
@@ -79,12 +82,7 @@ function dragElement(elmnt) {
   }
 }
 
-
-
-
 $(function () {
-
- 
   $(document).on("click", "button.close", function (event) {
     event.preventDefault();
     var $this = $(event.currentTarget);
@@ -100,7 +98,6 @@ $(function () {
   $content = $(".min");
 
   $(".btnDisconnect").click(function () {
-    alert("trigger");
     disconnect();
   });
 
@@ -136,11 +133,12 @@ $(function () {
   });
   $(".btnSave").on("click", function () {
     updateDoctorNotes($("#insertedID").val(), "OnGoing");
-  });``
+  });
+  ``;
 
   $(".btnSaveNSend").on("click", function () {
     updatePrescription(
-      mCallLogId,
+      $("#insertedID").val(),
       $("#patientAge").val(),
       $("#txtName").val(),
       mPatientID
@@ -247,7 +245,7 @@ function initializeSession(key, sessId, tokenId) {
           publisher.destroy();
         }
         if (subscriber) AudioVideosession.unsubscribe(subscriber);
-      
+
         $("#log")
           .css({ display: "block", color: "#525a65" })
           .text("Disconnected")
@@ -257,7 +255,7 @@ function initializeSession(key, sessId, tokenId) {
           $("#windowComm").modal("hide");
         }
       }
-     PlayCallingSound(false)
+      PlayCallingSound(false);
     },
     connectionCreated: function (event) {
       if (
@@ -274,14 +272,14 @@ function initializeSession(key, sessId, tokenId) {
       }
     },
     connectionDestroyed: function connectionDestroyedHandler(event) {
-      //letting others know you left the connection in this method.     
+      //letting others know you left the connection in this method.
       disconnect();
 
       PlayCallingSound(false);
       $(".three-icons, #timer").css("display", "none");
       $("#divCallNow").css("display", "block");
       $("#callImg").css("display", "block");
-    
+
       $("#log")
         .css({ display: "block", color: "#525a65" })
         .text("Disconnected")
@@ -289,7 +287,6 @@ function initializeSession(key, sessId, tokenId) {
         .fadeOut("slow");
     },
     streamCreated: function (event) {
-     
       $("#divCallNow").hide();
       $(".three-icons").show();
 
@@ -426,7 +423,7 @@ function disconnect() {
     });
     // AudioVideosession.unsubscribe(subscriber);
     UpdateCallLogEndtime(newCalllogId, onCallduration);
-  } else  {
+  } else {
     // else only close patient incomming call window.
     soc.emit("ClosePatientScreen", {
       pName: mPname,
