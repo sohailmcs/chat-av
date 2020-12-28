@@ -247,7 +247,7 @@ function initializeSession(key, sessId, tokenId) {
           publisher.destroy();
         }
         if (subscriber) AudioVideosession.unsubscribe(subscriber);
-
+      
         $("#log")
           .css({ display: "block", color: "#525a65" })
           .text("Disconnected")
@@ -257,8 +257,7 @@ function initializeSession(key, sessId, tokenId) {
           $("#windowComm").modal("hide");
         }
       }
-
-      // disconnect();
+     PlayCallingSound(false)
     },
     connectionCreated: function (event) {
       if (

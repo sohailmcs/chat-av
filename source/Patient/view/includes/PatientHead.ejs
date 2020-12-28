@@ -48,7 +48,7 @@
       var soc = io({ transports: ["websocket"], upgrade: false });
       //var baseURL = "http://localhost:1042/KindahService/";
       var baseURL = "https://kindahclinic.com/KindahService/";
-      // var soc = io("https://chat-av.herokuapp.com");
+      
       $(document).ready(function () {
         //=========save id for video/Audio chat=============
         $(".goog-te-menu-value").children().last().remove();
@@ -164,7 +164,7 @@
           AudioVideosession.unpublish(publisher, handleError);
           publisher.destroy();
         }
-
+        PlayCallingSound(false)
         $("#windowComm").modal("hide");
         $("#notificationmodal, #incommingCall").modal("hide");
       });
