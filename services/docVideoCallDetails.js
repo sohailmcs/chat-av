@@ -398,7 +398,8 @@ function streamDestroyed(event) {
 }
 
 function disconnect() {
-  $(".slide-left").trigger("click");
+  if ($(".slide-left").css("display") == "block")
+    $(".slide-left").trigger("click");
 
   if (publisher) {
     AudioVideosession.unpublish(publisher, handleError);
@@ -577,7 +578,7 @@ function checkOnlineStatusandCall(patientId, userType) {
   });
 }
 
-function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {  
+function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
   var url =
     baseURL +
     "CallQue/UpdateCallQueStatus?CallQueId=" +
