@@ -429,7 +429,7 @@ function FillCountry() {
   });
 }
 function FillDetails(d) {
-  FillCountry();
+  
   $("#txtInfoFirstName").val(d.FirstName);
   $("#txtInfoLastName").val(d.LastName);
 
@@ -439,6 +439,7 @@ function FillDetails(d) {
 
   $("#dboCountry").val(d.CountryId);
   $("#dboCity").val(d.CityId);
+ 
   $("#select2-dboCountry-container").text(d.CountryName);
   $("#select2-dboCity-container").text(d.CityName);
 
@@ -458,6 +459,7 @@ function FillDetails(d) {
 }
 
 function PatientBasicInfo(PatientId, isDetails, type) {
+  FillCountry();
   var url = baseURL + "Patient/GetPatientDetails?PatientId=" + PatientId;
   $.ajax({
     url: url,
@@ -482,7 +484,10 @@ function PatientBasicInfo(PatientId, isDetails, type) {
       }
     
      // FillCity();
-      if (isDetails) FillDetails(data);
+      if (isDetails){ 
+       
+        FillDetails(data);
+      }
       else {
         //=====set values for slots templates======
         var patientInfo = $("#template-BasicInfo").html();
