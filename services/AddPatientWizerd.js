@@ -364,6 +364,7 @@ function FillCity(countryID) {
     },
     success: function (data, textStatus, xhr) {
       
+      $("#dboCity").empty();
       $("#dboCity").append(
         $("<option>").text("Select City").attr("value", "0")
       );
