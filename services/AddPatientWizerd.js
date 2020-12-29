@@ -405,6 +405,7 @@ function FillCountry() {
     success: function (data, textStatus, xhr) {
       // $.LoadingOverlay("hide");
 
+      $("#dboCountry").empty();
       $("#dboCountry").append(
         $("<option>").text("Select Country").attr("value", "0")
       );

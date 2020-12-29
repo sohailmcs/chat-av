@@ -517,8 +517,20 @@
 
         <div class="col-sm-4 text-md-right" style="padding: 4px 3px;">
             <div class="audioVideoBtnArea">
-                {{#OnlineStatus}}
+
                 <a >
+                    <button  type="button" patientName="{{ParentName}}"
+                     CallQueId="{{CallQueID}}" pType="{{PatientType}}"   cLogId ="0"  parentName = "{{ParentName}}" 
+                     parentid ="{{ParentID}}" patientID ="{{PatientID}}"
+                   
+                     class="btn btn-audio-video mb-1 btnDone">
+                     <i class='bx bx-check-double'></i>
+                       <b>Done</b>
+                    </button>
+                </a>
+
+                {{#OnlineStatus}}
+                <!-- <a >
                     <button  type="button" patientName="{{ParentName}}"
                      CallQueId="{{CallQueID}}" pType="{{PatientType}}"   cLogId ="0"  parentName = "{{ParentName}}" 
                      parentid ="{{ParentID}}" patientID ="{{PatientID}}"
@@ -527,7 +539,7 @@
                         <i class="bx bx-microphone"></i>
                         <b>Audio</b>
                     </button>
-                </a>
+                </a> -->
                 <a>
                     <button type="button"  patientName="{{ParentName}}"
                     CallQueId="{{CallQueID}}"  pType="{{PatientType}}" cLogId ="0"
@@ -540,14 +552,14 @@
                 </a>
                 {{/OnlineStatus}}
                 {{^OnlineStatus}}
-                <button  type="button" patientName="{{ParentName}}"  disabled
+                <!-- <button  type="button" patientName="{{ParentName}}"  disabled
                 CallQueId="{{CallQueID}}"  pType="{{PatientType}}" cLogId ="0"  parentName = "{{ParentName}}"
                 parentid ="{{ParentID}}" patientID ="{{PatientID}}"
                 onclick="OpenCommunicationWindow(this)"
                 class="btn btn-audio-video mb-1 audio_{{ParentID}}">
                    <i class="bx bx-microphone"></i>
                    <b>Audio</b>
-               </button>
+               </button> -->
            </a>
            <a>
                <button type="button"  patientName="{{ParentName}}" disabled

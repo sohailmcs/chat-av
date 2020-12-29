@@ -33,6 +33,14 @@ $(function () {
   });
 
   getDashBoardAllScheduled(false);
+
+  $(document).on("click", ".btnDone", function () {
+    var quId = $(this).attr("CallQueId");
+    var patientId = $(this).attr("patientID");
+    UpdateQueAddSaveCallLog(quId, "Called", userLoginId, patientId);
+    getDashBoardAllScheduled(false);
+  });
+
   //=================Update patient EMR ==============
   $(document).on("click", ".btnUpdatePrescription", function () {
     var callLogId = $(this).attr("callLogId");

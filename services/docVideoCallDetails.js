@@ -577,7 +577,7 @@ function checkOnlineStatusandCall(patientId, userType) {
   });
 }
 
-function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
+function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {  
   var url =
     baseURL +
     "CallQue/UpdateCallQueStatus?CallQueId=" +
