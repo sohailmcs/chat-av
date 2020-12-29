@@ -35,7 +35,7 @@ $(function () {
   $("#dboCountry, #dboCity").select2(); //searchable dropdown
   $("#dboCountry").on("change", function () {
     var countryId = this.value;
-   FillCity(countryId)
+    FillCity(countryId, "0");
   });
 
   $(document).on("change", ".MedicationReciept", function (event) {
@@ -154,7 +154,6 @@ $(function () {
     } else $("#txtMedCondition").prop("disabled", true);
   });
   $(document).on("click", "#txtMedCondition", function () {
-    
     $("#otherCondition").prop("checked", true);
     $(this).prop("disabled", false);
   });
@@ -347,8 +346,7 @@ function CheckIFcalledBefore(doctorId, patientId) {
   });
 }
 
-function FillCity(countryID) {
-  
+function FillCity(countryID, selectedval) {
   var url = baseURL + "City/GetCity?countryId=" + countryID;
   $.ajax({
     url: url,
@@ -360,10 +358,9 @@ function FillCity(countryID) {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-       $.LoadingOverlay("show");
+      $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      
       $("#dboCity").empty();
       $("#dboCity").append(
         $("<option>").text("Select City").attr("value", "0")
@@ -376,6 +373,8 @@ function FillCity(countryID) {
             .attr("value", data.info[key].CityID)
         );
       }
+
+      if (selectedval != "0") $("#dboCity").val(selectedval);
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -384,7 +383,7 @@ function FillCity(countryID) {
     },
     complete: function (data) {
       // Hide Loading
-       $.LoadingOverlay("hide");
+      $.LoadingOverlay("hide");
     },
   });
 }
@@ -431,7 +430,6 @@ function FillCountry() {
   });
 }
 function FillDetails(d) {
-  
   $("#txtInfoFirstName").val(d.FirstName);
   $("#txtInfoLastName").val(d.LastName);
 
@@ -440,11 +438,15 @@ function FillDetails(d) {
   else $("#rdoFemale").prop("checked", true);
 
   $("#dboCountry").val(d.CountryId);
-  $("#dboCity").val(d.CityId);
- 
+  $('#dboCountry').trigger('change');
 
-  $("#select2-dboCountry-container").text(d.CountryName);
-  $("#select2-dboCity-container").text(d.CityName);
+  //  $('#dboCity').trigger('change');
+
+   //$("#select2-dboCountry-container").text(d.CountryName);
+  //  $("#select2-dboCity-container").text(d.CityName);
+  FillCity(d.CountryId, d.CityId);
+
+  
 
   var div = document.createElement("div");
   if (d.PatientPhoto != null) {
@@ -485,13 +487,11 @@ function PatientBasicInfo(PatientId, isDetails, type) {
 
         $("#txtEmail").val(data.Email);
       }
-    
-     // FillCity();
-      if (isDetails){ 
-       
+
+      // FillCity();
+      if (isDetails) {
         FillDetails(data);
-      }
-      else {
+      } else {
         //=====set values for slots templates======
         var patientInfo = $("#template-BasicInfo").html();
         $("#patientBasicInfo").html(Mustache.to_html(patientInfo, data));
