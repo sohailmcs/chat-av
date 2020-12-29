@@ -398,7 +398,7 @@ function streamDestroyed(event) {
 }
 
 function disconnect() {
-  if ($(".slide-left").css("display") == "block")
+  if ($(".slide-left").css("display") == "inline-block")
     $(".slide-left").trigger("click");
 
   if (publisher) {
