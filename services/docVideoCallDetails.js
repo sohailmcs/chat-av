@@ -137,8 +137,10 @@ $(function () {
   ``;
 
   $(".btnSaveNSend").on("click", function () {
+    var newCalllogId =
+      $("#insertedID").val() == "0" ? mCallLogId : $("#insertedID").val();
     updatePrescription(
-      $("#insertedID").val(),
+      newCalllogId,
       $("#patientAge").val(),
       $("#txtName").val(),
       mPatientID

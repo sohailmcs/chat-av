@@ -669,9 +669,9 @@ function toast(msg) {
 }
 
 //======for automatic play sound we just need to add this code for modern===
-window.onload = function () {
-  context = new AudioContext();
-};
+// window.onload = function () {
+//   context = new AudioContext();
+// };
 
 //==========push notification from patient
 soc.on("SendNotificationToDoctor", function (data) {

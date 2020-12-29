@@ -631,17 +631,17 @@ function toast(msg) {
 }
 
 //======for automatic play sound we just need to add this code for modern===
-window.onload = function () {
-  context = new AudioContext();
-};
+// window.onload = function () {
+//   context = new AudioContext();
+// };
 
 //==========push notification from patient
 soc.on("SendNotificationToDoctor", function (data) {
   GetDoctorBookedScheduled(data.docId, clientCurrentDt, true);
   //======Play Notification sould for incomming CallRequest
   $(
-    ' <audio id="chatAudio"><source src="/js/Services/notify.ogg" type="audio/ogg"> <source src="/js/Services/notify.mp3" type="audio/mpeg"><source src="/js/Services/notify.wav" type="audio/wav"></audio>'
+    ' <audio id="NotifyAudio"><source src="/js/Services/notify.ogg" type="audio/ogg"> <source src="/js/Services/notify.mp3" type="audio/mpeg"><source src="/js/Services/notify.wav" type="audio/wav"></audio>'
   ).appendTo("body");
 
-  $("#chatAudio").get(0).play();
+  $("#NotifyAudio").get(0).play();
 });

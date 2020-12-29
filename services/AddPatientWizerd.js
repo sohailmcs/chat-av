@@ -442,6 +442,7 @@ function FillDetails(d) {
   $("#dboCountry").val(d.CountryId);
   $("#dboCity").val(d.CityId);
  
+
   $("#select2-dboCountry-container").text(d.CountryName);
   $("#select2-dboCity-container").text(d.CityName);
 
