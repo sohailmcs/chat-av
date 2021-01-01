@@ -191,6 +191,7 @@ $(function () {
       },
       success: function (d, textStatus, xhr) {
         $(".error").hide();
+        console.log(JSON.stringify(d));
         //=====intiliaze details to add patient when OTP verified
         // debugger;
         var gender = $("#dbogender").val();
