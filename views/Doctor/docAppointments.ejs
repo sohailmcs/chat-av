@@ -65,53 +65,129 @@
 </div>
 <!--end of patient prfile details-->
 <script id="BookingDetail-Template" type="text/html">
-  <div class="card-body">
-    <div class="media">    
-      {{#PatientPhoto}}
-    <img src=" {{PatientPhoto}}" alt="image" style="
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    margin-left: 12px;
-    " />
-    {{/PatientPhoto}}
-    {{^PatientPhoto}}
-    <img src="/assets/images/patient.png" alt="image" style="
-    height: 150px;
-    width: 150px;    
-    margin:0 15px;
-    " />
-    {{/PatientPhoto}}
-
-    <div>
-    <h5 class="media-heading">
-    <br />
-    <b>{{FullName}}</b>
-    </h5>
-    <div>
-      <p>
-      <b>Gender</b>: {{Gender}}
-      </p>
-      </div>
-      <div>
-        <p>
-        <b>Email</b>: {{Email}}
-        </p>
-        </div>  
-    <div>
-    <p>
-    <b>Phone</b>: {{PhoneNo}}
-    </p>
-    </div>
-      
-    </div>
-    </div>
-        
+  <div class="card-body">    
    
+    <div class="row">
+      <div class="col-lg-3">
+        {{#PatientPhoto}}
+        <img
+        src="{{PatientPhoto}}"
+        alt="image"
+        style="
+        height: 140px;
+        width: 140px;
+        border-radius: 5px;" />
+       {{/PatientPhoto}}
+       {{^PatientPhoto}}
+       <img src="/assets/images/patient.png" alt="image" style="
+       height: 140px;
+        width: 140px;
+        border-radius: 5px;" /> 
+       {{/PatientPhoto}}          
+    </div>
+  <div class="col-lg-4">
+    <br/>
+    <h5 class="docName" style="margin:0 0 5px 0;">
+      {{FullName}}
+    </h5>          
+    <b>Age :</b> {{Age}} years old<br>
+    <b>Gender :</b> {{Gender}} 
+  </div>
+  <div  class="col-lg-5 mt-1">
+    <br/>        
+    <b> Email :</b> {{Email}} <br>                  
+    <b>Phone :</b> {{PhoneNo}}
+  </div>
+    </div><!--end of row-->
+
+    <div class="divMedication row mt-3">      
+      <div class="col-sm-7">
+        <h4>Medications</h4>
+        <div class="row">
+          {{#PatientMedicationModel}}
+          {{#IsTakingMedication}}
+          <div class="col-sm-4 text-left mb-1">
+            {{#ImageUrl}}
+            <img  src="{{ImageUrl}}" height="100" width="100">
+            {{/ImageUrl}}
+            {{^ImageUrl}}
+            <img  src="/assets/images/medication.jpg" alt="Medication" height="100" width="100">
+            {{/ImageUrl}}
+            <span class="medicineName">{{MedicationName}}</span>
+          </div>
+          {{/IsTakingMedication}}
+          {{^IsTakingMedication}}
+          <div class="col-sm-12 text-left">
+           <p> No Taking Medications</p>
+          </div>
+          {{/IsTakingMedication}}
+          {{/PatientMedicationModel}}
+        </div>
+      </div><!--end of row-->      
+      <div class="col-sm-5">
+        <h4>Allergy</h4>
+        <ul class="Listalergy">
+          {{#PatientAlergyModel}}
+            {{#IsAlergy}}
+              <li>{{AlergyName}}</li>
+            {{/IsAlergy}}
+            {{^IsAlergy}}
+              <li><strong>No Alergy</strong></li>
+            {{/IsAlergy}}           
+          {{/PatientAlergyModel}}          
+        </ul>
+      </div>      
+    </div><!--end of row-->
+    <div class="row mt-3">
+      <div class="col-sm-7 mb-1">
+        <h4>Medical Conditions</h4>       
+        <ul class="Listalergy">  
+          {{#PatientMedConditonModel}}       
+            {{#IsCondition}}
+              <li>{{Condition}}</li>
+            {{/IsCondition}}
+            {{^IsCondition}}
+              <li><strong>No Medical Condition</strong></li>
+            {{/IsCondition}} 
+         {{/PatientMedConditonModel}} 
+          </ul>         
+          {{#IsOtherCondition}}
+          <ul class="Listalergy" style="margin-bottom:2px">
+            <li><b>Other</b></li>
+          </ul>
+            <p>{{OtherConditionDesc}}</p>
+        {{/IsOtherCondition}}
+          
+      </div>
+      <div class="col-sm-5">
+        <h4>Complain</h4>
+        {{#PatientComplainModel}} 
+         
+          {{#PatientComplainDesc}}
+            <p class="mb-1">{{PatientComplainDesc}}</p> 
+          {{/PatientComplainDesc}}
+          {{^PatientComplainDesc}}
+            <p><strong>No Complain</strong><br>        
+          {{/PatientComplainDesc}}
+
+          
+          {{#PatComplainImage}}
+             <img  src="{{PatComplainImage}}"  alt="Complain" height="100" width="100">
+          {{/PatComplainImage}}
+          {{^PatComplainImage}}
+           <img  src="/assets/images/complain.png" alt="Complain" height="100" width="100">
+          {{/PatComplainImage}}
+          
+        {{/PatientComplainModel}}
+        {{^PatientComplainModel}}
+          <p><strong>No Complain</strong><br>       
+       {{/PatientComplainModel}}
+      </div>
     </div>
     </div>
     </div>
-</script>
+    </div>
+    </script> 
 
 
 <script id="slots-template" type="text/html">

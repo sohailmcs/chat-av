@@ -149,7 +149,7 @@
           {{/IsTakingMedication}}
           {{^IsTakingMedication}}
           <div class="col-sm-12 text-left">
-            No Taking Medications
+           <p> No Taking Medications</p>
           </div>
           {{/IsTakingMedication}}
           {{/PatientMedicationModel}}
@@ -184,7 +184,7 @@
           </ul>         
           {{#IsOtherCondition}}
           <ul class="Listalergy" style="margin-bottom:2px">
-            <li>Other</li>
+            <li><b>Other</b></li>
           </ul>
             <p>{{OtherConditionDesc}}</p>
         {{/IsOtherCondition}}
@@ -193,14 +193,22 @@
       <div class="col-sm-5">
         <h4>Complain</h4>
         {{#PatientComplainModel}} 
-        <p class="mb-1">{{PatientComplainDesc}}</p> 
-        {{#PatComplainImage}}
-        <img  src="{{PatComplainImage}}"  alt="Complain" height="100" width="100">
-        {{/PatComplainImage}}
-        {{^PatComplainImage}}
-        <img  src="/assets/images/complain.jpg" alt="Complain" height="100" width="100">
-        {{/PatComplainImage}}
-        
+         
+          {{#PatientComplainDesc}}
+            <p class="mb-1">{{PatientComplainDesc}}</p> 
+          {{/PatientComplainDesc}}
+          {{^PatientComplainDesc}}
+            <p><strong>No Complain</strong><br>        
+          {{/PatientComplainDesc}}
+
+          
+          {{#PatComplainImage}}
+             <img  src="{{PatComplainImage}}"  alt="Complain" height="100" width="100">
+          {{/PatComplainImage}}
+          {{^PatComplainImage}}
+           <img  src="/assets/images/complain.png" alt="Complain" height="100" width="100">
+          {{/PatComplainImage}}
+          
         {{/PatientComplainModel}}
         {{^PatientComplainModel}}
           <p><strong>No Complain</strong><br>       
