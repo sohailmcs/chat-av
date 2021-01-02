@@ -24,6 +24,8 @@
 <!-- BEGIN: Custom CSS-->
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
 <!-- END: Custom CSS-->
 </head>
 <!-- END: Head-->
@@ -137,6 +139,7 @@
                                                             <option value="3">3</option>
                                                             <option value="5">5</option>
                                                             <option value="10">10</option>
+                                                            <option value="10">15</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -345,22 +348,6 @@
                                                     <div class="form-label-group">
                                                         <select name="Specialization" id="txtspe"
                                                             class="form-control">
-                                                           
-                                                            <!-- <option value="0">Select Specialization</option>
-                                                            <option value="1">Anesthesiology</option>
-                                                            <option value="2">Dermatology</option>
-                                                            <option value="3">Diagnostic radiology</option>
-                                                            <option value="4">Clinical neurophysiology</option>
-                                                            <option value="5">Mascular neurology</option>
-                                                            <option value="6">Gynecologic oncology</option>
-                                                            <option value="7">Retina/uveitis</option>
-                                                            <option value="8">Hematology</option>
-                                                            <option value="9">Neuropathology</option>
-                                                            <option value="10">Pediatric transplant hepatology</option>
-                                                            <option value="11">Spinal cord injury medicine</option>
-                                                            <option value="12">Urologic oncology</option>
-                                                            <option value="13">Renal transplant</option>
-                                                            <option value="14">Cytopathology</option> -->
                                                         </select>
                                                     </div>
                                                 </div>
@@ -368,7 +355,36 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                    
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">
+                                            Proficiency
+                                        </h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <form class="form repeater-default">
+                                                <div data-repeater-list="group-a">
+                                                    <div data-repeater-item>
+                                                        <div class="row justify-content-between">
+                                                            <div class="col-md-3 col-sm-12 form-group">
+                                                                <select name="Proficiency"  multiple="multiple" id="dboProficiency"
+                                                                        class="form-control">
+                                                                   <option value="Arabic">Arabic</option>
+                                                                   <option value="English">English</option>
+                                                                   </select>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                        <hr />
+                                                    </div>
+                                                </div>
+                                               
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- Education repeater forms -->
                                 <section id="form-repeater-wrapper">
                                     <!-- form default repeater -->
@@ -441,6 +457,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </section>
@@ -644,6 +661,7 @@
 <!-- BEGIN: JS-->
 <!-- BEGIN: Vendor JS-->
 <script src="/js/vendors.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="/js/sweetalert2.all.min.js"></script>
 <script src="/js/polyfill.min.js"></script>
 <script src="/js/sweet-alerts.js"></script>

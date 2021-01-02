@@ -30,9 +30,295 @@
 
 <!-- complete side menu of doctor -->
 <%- include('includes/docSideMenu.ejs') %>
+<!--start of patient profile details------>
+<div class="modal fade text-left" id="ModelDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xlg modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title black" id="myModalLabel160">
+           Patient Details
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+    </div>       
+        <div class="card-content side-bar-doc" id="bookDetails">      
+      </div>
+      
+    </div>
+  </div>
+</div>
+   
+    <script id="BookingDetail-Template" type="text/html">
+      <div class="card-body">    
+       
+        <div class="row">
+          <div class="col-lg-3">
+            {{#PatientPhoto}}
+            <img
+            src="{{PatientPhoto}}"
+            alt="image"
+            style="
+            height: 140px;
+            width: 140px;
+            border-radius: 5px;" />
+           {{/PatientPhoto}}
+           {{^PatientPhoto}}
+           <img src="/assets/images/patient.png" alt="image" style="
+           height: 140px;
+            width: 140px;
+            border-radius: 5px;" /> 
+           {{/PatientPhoto}}          
+        </div>
+      <div class="col-lg-4">
+        <br/>
+        <h5 class="docName" style="margin:0 0 5px 0;">
+          {{FullName}}
+        </h5>          
+        <b>Age :</b> {{Age}} years old<br>
+        <b>Gender :</b> {{Gender}} 
+      </div>
+      <div  class="col-lg-5 mt-1">
+        <br/>        
+        <b> Email :</b> {{Email}} <br>                  
+        <b>Phone :</b> {{PhoneNo}}
+      </div>
+        </div><!--end of row-->
+    
+        <div class="divMedication row mt-3">      
+          <div class="col-sm-7">
+            <h4>Medications</h4>
+            <div class="row">
+              {{#PatientMedicationModel}}
+              {{#IsTakingMedication}}
+              <div class="col-sm-4 text-left mb-1">
+                {{#ImageUrl}}
+                <img  src="{{ImageUrl}}" height="100" width="100">
+                {{/ImageUrl}}
+                {{^ImageUrl}}
+                <img  src="/assets/images/medication.jpg" alt="Medication" height="100" width="100">
+                {{/ImageUrl}}
+                <span class="medicineName">{{MedicationName}}</span>
+              </div>
+              {{/IsTakingMedication}}
+              {{^IsTakingMedication}}
+              <div class="col-sm-12 text-left">
+               <p> No Taking Medications</p>
+              </div>
+              {{/IsTakingMedication}}
+              {{/PatientMedicationModel}}
+            </div>
+          </div><!--end of row-->      
+          <div class="col-sm-5">
+            <h4>Allergy</h4>
+            <ul class="Listalergy">
+              {{#PatientAlergyModel}}
+                {{#IsAlergy}}
+                  <li>{{AlergyName}}</li>
+                {{/IsAlergy}}
+                {{^IsAlergy}}
+                  <li><strong>No Alergy</strong></li>
+                {{/IsAlergy}}           
+              {{/PatientAlergyModel}}          
+            </ul>
+          </div>      
+        </div><!--end of row-->
+        <div class="row mt-3">
+          <div class="col-sm-7 mb-1">
+            <h4>Medical Conditions</h4>       
+            <ul class="Listalergy">  
+              {{#PatientMedConditonModel}}       
+                {{#IsCondition}}
+                  <li>{{Condition}}</li>
+                {{/IsCondition}}
+                {{^IsCondition}}
+                  <li><strong>No Medical Condition</strong></li>
+                {{/IsCondition}} 
+             {{/PatientMedConditonModel}} 
+              </ul>         
+              {{#IsOtherCondition}}
+              <ul class="Listalergy" style="margin-bottom:2px">
+                <li><b>Other</b></li>
+              </ul>
+                <p>{{OtherConditionDesc}}</p>
+            {{/IsOtherCondition}}
+              
+          </div>
+          <div class="col-sm-5">
+            <h4>Complain</h4>
+            {{#PatientComplainModel}} 
+             
+              {{#PatientComplainDesc}}
+                <p class="mb-1">{{PatientComplainDesc}}</p> 
+              {{/PatientComplainDesc}}
+              {{^PatientComplainDesc}}
+                <p><strong>No Complain</strong><br>        
+              {{/PatientComplainDesc}}
+  
+              
+              {{#PatComplainImage}}
+                 <img  src="{{PatComplainImage}}"  alt="Complain" height="100" width="100">
+              {{/PatComplainImage}}
+              {{^PatComplainImage}}
+               <img  src="/assets/images/complain.png" alt="Complain" height="100" width="100">
+              {{/PatComplainImage}}
+              
+            {{/PatientComplainModel}}
+            {{^PatientComplainModel}}
+              <p><strong>No Complain</strong><br>       
+           {{/PatientComplainModel}}
+          </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </script> 
+<!--start of que Templates-->
+<script id="que-template" type="text/html">
+  {{#result}}
+   <!-- Patient one  -->
+   <div class="row" style="margin: 1%;">
+      <div class="col-sm-4">
+          <div class="d-inline-block">
+              <div class="pr-50 pImage " style="border-radius:5px;float:left;display: inline-block; align-self: stretch;">
+                  {{#PatientPhoto}}
+                  <img
+                  src="{{PatientPhoto}}"
+                  alt="image"
+                  style="
+                  width: 80px;
+                  height: 80px;
+                  float:left;
+                "
+                />
+               {{/PatientPhoto}}
+               {{^PatientPhoto}}
+               <img
+               src="/assets/images/maledoc.png"
+               alt="image"
+               style="
+               width: 80px;
+               height: 80px;
+               float:left;"
+             />
+               {{/PatientPhoto}}
+                       <span class="onlinStatus status_{{ParentID}}"><b>
+                              {{#OnlineStatus}}
+                              <span class="bullet bullet-success bullet-sm"></span>
+                              {{/OnlineStatus}}
+                              {{^OnlineStatus}}
+                              <span class="bullet bullet-offline bullet-sm"></span>
+                              {{/OnlineStatus}}
+                          </b>
+                          </span>                 </div>
 
-    <!-- BEGIN: Content-->
+                  <div class="divqueue" style="display: inline-block;">
+                    <a class="btnViewDetail" patientId ="{{PatientID}}"  href="#">
+                      <h6 class='patientName' style="padding-top: 2%;">
+                       <u>{{PatientName}}</u>
+                      </h6>
+                    </a>
+                      <p class="callType">{{RequestType}}</p>
 
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-sm-4 call-Queue-icons">
+              <p><strong>Contact Number :</strong> {{PatientPhone}}</p>
+              <p><strong>Patient waiting since :</strong>
+              <input type= "hidden" class="hdnCallQueDate" value="{{{CallQueDateTime}}}" >
+              <span class="spnWaitingTime" >
+                 {{{CallQueDateTime}}}
+              </span>
+                    </p>
+          </div>
+
+      <div class="col-sm-4 text-md-right" style="padding: 4px 3px;">
+          <div class="audioVideoBtnArea">
+
+              <a >
+                  <button  type="button" patientName="{{ParentName}}"
+                   CallQueId="{{CallQueID}}" pType="{{PatientType}}"   cLogId ="0"  parentName = "{{ParentName}}" 
+                   parentid ="{{ParentID}}" patientID ="{{PatientID}}"
+                 
+                   class="btn btn-audio-video mb-1 btnDone">
+                   <i class='bx bx-check-double'></i>
+                     <b>Done</b>
+                  </button>
+              </a>
+
+              {{#OnlineStatus}}
+              <!-- <a >
+                  <button  type="button" patientName="{{ParentName}}"
+                   CallQueId="{{CallQueID}}" pType="{{PatientType}}"   cLogId ="0"  parentName = "{{ParentName}}" 
+                   parentid ="{{ParentID}}" patientID ="{{PatientID}}"
+                   onclick="OpenCommunicationWindow(this)"
+                   class="btn btn-audio-video mb-1 audio_{{ParentID}}">
+                      <i class="bx bx-microphone"></i>
+                      <b>Audio</b>
+                  </button>
+              </a> -->
+              <a>
+                  <button type="button"  patientName="{{ParentName}}"
+                  CallQueId="{{CallQueID}}"  pType="{{PatientType}}" cLogId ="0"
+                   parentName = "{{ParentName}}"  parentid ="{{ParentID}}"  patientID ="{{PatientID}}"
+                   onclick="OpenCommunicationWindow(this )"
+                   class="btn btn-audio-video mb-1 video_{{ParentID}}">
+                      <i class="bx bx-video"></i>
+                      <b>Video</b>
+                  </button>
+              </a>
+              {{/OnlineStatus}}
+              {{^OnlineStatus}}
+              <!-- <button  type="button" patientName="{{ParentName}}"  disabled
+              CallQueId="{{CallQueID}}"  pType="{{PatientType}}" cLogId ="0"  parentName = "{{ParentName}}"
+              parentid ="{{ParentID}}" patientID ="{{PatientID}}"
+              onclick="OpenCommunicationWindow(this)"
+              class="btn btn-audio-video mb-1 audio_{{ParentID}}">
+                 <i class="bx bx-microphone"></i>
+                 <b>Audio</b>
+             </button> -->
+         </a>
+         <a>
+             <button type="button"  patientName="{{ParentName}}" disabled
+             CallQueId="{{CallQueID}}" pType="{{PatientType}}" cLogId ="0"  parentName = "{{ParentName}}"
+             parentid ="{{ParentID}}" patientID ="{{PatientID}}"
+              onclick="OpenCommunicationWindow(this)"
+              class="btn btn-audio-video mb-1 video_{{ParentID}}">
+                 <i class="bx bx-video"></i>
+                 <b>Video</b>
+             </button>
+              {{/OnlineStatus}}
+
+
+
+              <a>
+                  <!-- Button for SMS Popup -->
+                  <button type="button" patientName="{{PatientName}}"  phoneNo="{{PatientPhone}}"
+                   class="btnpopupSmsReminder btn btn-audio-video mb-1"
+                      >
+                      <i class="bx bx-chat"></i>
+                      <b>SMS</b>
+                  </button>
+              </a>
+          </div>
+      </div>
+  </div>
+</div>
+  <!-- patient one ends -->
+
+ {{/result}}
+
+ {{^result.0}}
+      <h3 class="timeline-title">
+          No Call Que Available
+      </h3>
+ {{/result.0}}
+</script>
+<!--end of que template-->
+         <!-- BEGIN: Content-->
     <div class="app-content content">
       <div class="content-overlay"></div>
       <div class="content-wrapper">
@@ -51,130 +337,6 @@
           </section>
 
           <!-- Call Queue Ends -->
-
-          <!-- Call Queue Template -->
-          <script id="callQueue-template" type="text/html">
-       
-
-            {{#result}}
-            <div class="card">
-            <!-- Patient one  -->
-            <div class="row" style="margin: 2% 0 2% 1%;">
-               <div class="col-sm-4">
-                   <div class="d-inline-block">
-                       <div class="pr-50 pImage " style="float:left;display: inline-block; align-self: stretch;">
-                           {{#PatientModel.PatientPhoto}}
-                           <img   src="{{PatientPhoto}}"  alt="image" style="   width: 80px;
-                           height: 80px;                    
-                           float:left;
-                         "
-                         />
-                        {{/PatientModel.PatientPhoto}}
-                        {{^PatientModel.PatientPhoto}}
-                        <img  src="/assets/images/maledoc.png"  alt="image" style="
-                        width: 80px;
-                        height: 80px;                 
-                        float:left;"
-                      />
-                        {{/PatientModel.PatientPhoto}}
-                                <span class="onlinStatus"><b>                             
-                                       {{#OnlineStatus}}
-                                       <span class="bullet bullet-success bullet-sm"></span> 
-                                       {{/OnlineStatus}}
-                                       {{^OnlineStatus}}
-                                       <span class="bullet bullet-offline bullet-sm"></span>
-                                       {{/OnlineStatus}}                            
-                                   </b>                            
-                                   </span>                 </div>
-       
-                           <div class="divqueue" style="display: inline-block;">
-                               <h6 class='patientName' style="padding-top: 2%;">
-                                   {{PatientName}}
-                               </h6>
-                               <p class="callType">{{RequestType}}</p>
-                               
-                           </div>
-                       </div>
-                   </div>
-               
-                   <div class="col-sm-4 call-Queue-icons">
-                       <p><strong>Contact Number :</strong> {{PatientPhone}}</p>                        
-                       <p><strong>Patient waiting since :</strong> 
-                       <input type= "hidden" class="hdnCallQueDate" value="{{{CallQueDateTime}}}" >
-                       <span class="spnWaitingTime" >
-                          {{{CallQueDateTime}}}    
-                       </span>
-                             </p>
-                   </div>
-                   
-               <div class="col-sm-4 text-md-right" style="padding: 4px 3px;">
-                   <div class="audioVideoBtnArea">
-                       {{#OnlineStatus}}
-                       <a >
-                           <button  type="button" patientName="{{PatientName}}" 
-                            CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}" 
-                            onclick="OpenCommunicationWindow(this)" 
-                            class="btncomm btn btn-audio-video mb-1">
-                               <i class="bx bx-microphone"></i>
-                               <b>Audio</b>
-                           </button>
-                       </a>
-                       <a>
-                           <button type="button"  patientName="{{PatientName}}" 
-                           CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}" 
-                            onclick="OpenCommunicationWindow(this)" 
-                            class="btncomm btn btn-audio-video mb-1">
-                               <i class="bx bx-video"></i>
-                               <b>Video</b>
-                           </button>
-                       </a>        
-                       {{/OnlineStatus}}
-                       {{^OnlineStatus}}
-                       <button  type="button" patientName="{{PatientName}}"  disabled
-                       CallQueId="{{CallQueID}}"  cLogId ="0" patientID ="{{PatientID}}" 
-                       onclick="OpenCommunicationWindow(this)" 
-                       class="btncomm btn btn-audio-video mb-1">
-                          <i class="bx bx-microphone"></i>
-                          <b>Audio</b>
-                      </button>
-                  </a>
-                  <a>
-                      <button type="button"  patientName="{{PatientName}}" disabled
-                      CallQueId="{{CallQueID}}" cLogId ="0" patientID ="{{PatientID}}" 
-                       onclick="OpenCommunicationWindow(this)" 
-                       class="btncomm btn btn-audio-video mb-1">
-                          <i class="bx bx-video"></i>
-                          <b>Video</b>
-                      </button>
-                       {{/OnlineStatus}}
-       
-       
-       
-                       <a>
-                           <!-- Button for SMS Popup -->
-                           <button type="button"patientName="{{PatientName}}"  phoneNo="{{PatientPhone}}"
-                            class="btnpopupSmsReminder btn btn-audio-video mb-1"
-                               >
-                               <i class="bx bx-chat"></i>
-                               <b>SMS</b>
-                           </button>                    
-                       </a>
-                   </div>
-               </div>
-           </div>
-       </div>
-      </div>
-           <!-- patient one ends --> 
-         
-          {{/result}}
-       
-          {{^result.0}}   
-               <h6 class="timeline-title">
-                   No Call Que Available
-               </h6>   
-          {{/result.0}}
-            
-         </script>
 
 
           <!--SMS pop up -->

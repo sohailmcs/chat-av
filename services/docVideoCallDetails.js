@@ -132,9 +132,10 @@ $(function () {
     // $(".container").removeClass($apnData);
   });
   $(".btnSave").on("click", function () {
-    updateDoctorNotes($("#insertedID").val(), "OnGoing");
+    var newCalllogId =
+      $("#insertedID").val() == "0" ? mCallLogId : $("#insertedID").val();
+    updateDoctorNotes(newCalllogId, "OnGoing");
   });
-  ``;
 
   $(".btnSaveNSend").on("click", function () {
     var newCalllogId =
@@ -626,6 +627,7 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
 
 function GetDoctorNotes(callLogId) {
   var url = baseURL + "CallLogs/GetPatientHistory?callLogId=" + callLogId;
+  $("textarea").val("");
 
   $.ajax({
     url: url,
@@ -648,6 +650,7 @@ function GetDoctorNotes(callLogId) {
         $("#txtDiagnosis").val(data.Diagnosis);
         $("#txtRx").val(data.PatientRX);
         $("#txtName").val(data.PatientName);
+        $("#txtPresDiagnosis").val(data.Diagnosis);
         // $("#txtMedication").val(data.Medication);
         $("#txtMedication").data("kendoEditor").value(data.Medication);
         $("#patientAge").val(data.Age);

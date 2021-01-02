@@ -29,41 +29,32 @@ $(function () {
   $(document).on("click", ".btnSencCallReq", function () {
     var doctorId = $(this).attr("docID");
     var fullName = $(this).attr("fullName");
-
-    window.location.href =
-      "/patient/Addpatient?doctorId=" +
-      doctorId +
-      "&name=" +
-      fullName +
-      "&type=call" +
-      "&spName=" +
-      spName;
-
-    // CheckIFcalledBefore(doctorId, useLoginId)
-    //   .then((data) => {
-    //     if (data > 0) {
-    //       Swal.fire({
-    //         type: "info",
-    //         title: "SORRY!",
-    //         text: "Your's today call already pending",
-    //         confirmButtonClass: "btn btn-primary",
-    //         buttonsStyling: false,
-    //         confirmButtonText: "Ok",
-    //       });
-    //     } else
-    //       window.location.href =
-    //         "/patient/Addpatient?doctorId=" +
-    //         doctorId +
-    //         "&name=" +
-    //         fullName +
-    //         "&type=call" +
-    //         "&spName=" +
-    //         spName;
-    //     //SendCallRequestToDoctor(doctorId, fullName);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    CheckIfCallLimitsEnd(doctorId)
+      .then((data) => {
+        if (data.toUpperCase() == "LimitsEnd".toUpperCase()) {
+          Swal.fire({
+            type: "info",
+            title: "SORRY!",
+            text: "Doctor's today call limits end. You can book appointment ",
+            confirmButtonClass: "btn btn-primary",
+            buttonsStyling: false,
+            confirmButtonText: "Ok",
+          });
+          return false;
+        } else
+          window.location.href =
+            "/patient/Addpatient?doctorId=" +
+            doctorId +
+            "&name=" +
+            fullName +
+            "&type=call" +
+            "&spName=" +
+            spName;
+        //SendCallRequestToDoctor(doctorId, fullName);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 
   $(document).on("click", ".btnAppointments", function () {
@@ -85,6 +76,42 @@ $(function () {
     GetDoctorsProfile(doctorId);
   });
 }); //==end of jquery $function
+
+function CheckIfCallLimitsEnd(doctorId) {
+  return new Promise((resolve, reject) => {
+    var url =
+      baseURL +
+      "PatientCallRequest/GetCallLimit?doctorId=" +
+      doctorId +
+      "&status=Pending" +
+      "&date=" +
+      new Date().toLocaleDateString("en-US");
+
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "GET",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {
+        $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+        resolve(data);
+      },
+      error: function (xhr, textStatus, err) {
+        reject(err);
+      },
+      complete: function (data) {
+        // Hide Loading
+        $.LoadingOverlay("hide");
+      },
+    });
+  });
+}
 
 function CheckIFcalledBefore(doctorId, patientId) {
   return new Promise((resolve, reject) => {

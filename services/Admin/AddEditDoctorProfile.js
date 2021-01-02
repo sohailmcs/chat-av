@@ -6,6 +6,12 @@ var doctorId = urlParams.get("id");
 if (urlParams.has("id")) doctorId = urlParams.get("id");
 
 $(function () {
+ // $("#dboProficiency").select2();
+  
+  $('#dboProficiency').select2({
+    placeholder: "Select Proficiency"
+  });
+
   GetAllSpecialities();
   $("#txtPwd").focusout(function () {
     var txt = $(this).val();
@@ -66,16 +72,14 @@ function SetDoctorProfile(d) {
     "selected",
     "selected"
   );
-  $("#CallLimt option:contains(" + d.DoctorCall_Limit + ")").attr(
-    "selected",
-    "selected"
-  );
+  
+    $("#txtAward").val(d.Award);
+  $("#CallLimt").val(d.DoctorCall_Limit);
 
-  $("#txtAward").val(d.Award);
-  $("#CallLimt option:contains(" + d.DoctorCall_Limit + ")").attr(
-    "selected",
-    "selected"
-  );
+  // $("#CallLimt option:contains(" + d.DoctorCall_Limit + ")").attr(
+  //   "selected",
+  //   "selected"
+  // );
   $("#txtAwarYear option:contains(" + d.AwardYear + ")").attr(
     "selected",
     "selected"
@@ -147,7 +151,6 @@ function AddEditDoctorProfile(doctorId) {
     YearsOfCompletion: jQuery("#dboYear option:selected").text(),
   });
 
-  console.log(JSON.stringify(DoctorEducationsModel));
   var DoctorExperianceModel = new Array();
   DoctorExperianceModel.push({
     HospitalName: $("#txtHospital").val(),
@@ -179,7 +182,7 @@ function AddEditDoctorProfile(doctorId) {
   modelDetails.ProfilePicture = $(".thumbnail").attr("src");
   modelDetails.Cansee = "Adult";
   modelDetails.DoctorSignature = "";
-  modelDetails.DoctorCall_Limit = jQuery("#CallLimt option:selected").text(); // $("#CallLimt").val();
+  modelDetails.DoctorCall_Limit = jQuery("#CallLimt").val(); // $("#CallLimt").val();
   modelDetails.Award = $("#txtAward").val();
   modelDetails.AwardYear = jQuery("#txtAwarYear option:selected").text();
   modelDetails.DoctorEducations = DoctorEducationsModel;

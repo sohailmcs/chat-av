@@ -38,7 +38,9 @@ $(function () {
     var quId = $(this).attr("CallQueId");
     var patientId = $(this).attr("patientID");
     UpdateQueAddSaveCallLog(quId, "Called", userLoginId, patientId);
-    getDashBoardAllScheduled(false);
+
+    $(this).parents(".row").remove();
+    getDashBoardAllScheduled(false );
   });
 
   //=================Update patient EMR ==============
@@ -678,8 +680,8 @@ soc.on("SendNotificationToDoctor", function (data) {
   GetDoctorBookedScheduled(data.docId, clientCurrentDt, true);
   //======Play Notification sould for incomming CallRequest
   $(
-    ' <audio id="chatAudio"><source src="/js/Services/notify.ogg" type="audio/ogg"> <source src="/js/Services/notify.mp3" type="audio/mpeg"><source src="/js/Services/notify.wav" type="audio/wav"></audio>'
+    ' <audio id="NotifyAudio"><source src="/js/Services/notify.ogg" type="audio/ogg"> <source src="/js/Services/notify.mp3" type="audio/mpeg"><source src="/js/Services/notify.wav" type="audio/wav"></audio>'
   ).appendTo("body");
-
-  $("#chatAudio").get(0).play();
+ 
+  $("#NotifyAudio").get(0).play();
 });

@@ -5,7 +5,47 @@ var d = new Date();
 
 $(function () {
   GetDoctorTodayCallQue(useLoginId);
-});
+
+  $(document).on("click", ".btnViewDetail", function () {
+    var patientId = $(this).attr("PatientId");
+    ViewBookingDetails(patientId);
+  });
+});//end of $(function)
+
+function ViewBookingDetails(PatientId) {
+  var url =
+    baseURL + "Patient/GetPatientInitialAssisments?PatientId=" + PatientId;
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+      //=====set values for slots templates======
+      var bookDetails = $("#BookingDetail-Template").html();
+      $("#bookDetails").html(Mustache.to_html(bookDetails, data));
+      $("#ModelDetails").modal("show");
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+
 
 function GetDoctorTodayCallQue(doctorId) {
   var url =
@@ -27,7 +67,7 @@ function GetDoctorTodayCallQue(doctorId) {
       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      var CallQueueTemplate = $("#callQueue-template").html();
+      var CallQueueTemplate = $("#que-template").html();
       $("#table-Marketing").html(Mustache.to_html(CallQueueTemplate, data));
     },
     error: function (xhr, textStatus, err) {

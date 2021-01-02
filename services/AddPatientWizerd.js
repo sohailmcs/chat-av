@@ -35,7 +35,7 @@ $(function () {
   $("#dboCountry, #dboCity").select2(); //searchable dropdown
   $("#dboCountry").on("change", function () {
     var countryId = this.value;
-    FillCity(countryId, "0");
+    FillCity(countryId, "0", true);
   });
 
   $(document).on("change", ".MedicationReciept", function (event) {
@@ -122,7 +122,7 @@ $(function () {
   $(document).on("click", ".divMed", function () {
     $("#rdTakingMedYes").prop("checked", true);
     $(this).find("*").prop("disabled", false);
-    $(this).find(".txtMedicationName").focus();
+    //$(this).find(".txtMedicationName").focus();
   });
 
   $('input:radio[name="alergy"]').change(function () {
@@ -134,7 +134,7 @@ $(function () {
   $(document).on("click", ".PatientAlergy", function () {
     $("#rdoHaveAlergyYes").prop("checked", true);
     $(this).find("*").prop("disabled", false);
-    $(this).find(".txtAlergy").focus();
+   // $(this).find(".txtAlergy").focus();
   });
 
   $('input:radio[name="condition"]').change(function () {
@@ -346,7 +346,7 @@ function CheckIFcalledBefore(doctorId, patientId) {
   });
 }
 
-function FillCity(countryID, selectedval) {
+function FillCity(countryID, selectedval, isSync) {
   var url = baseURL + "City/GetCity?countryId=" + countryID;
   $.ajax({
     url: url,
@@ -358,7 +358,7 @@ function FillCity(countryID, selectedval) {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-      $.LoadingOverlay("show");
+      // if (isSync) $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
       $("#dboCity").empty();
@@ -438,10 +438,7 @@ function FillDetails(d) {
   else $("#rdoFemale").prop("checked", true);
 
   $("#dboCountry").val(d.CountryId);
-  $('#dboCountry').trigger('change');
-  FillCity(d.CountryId, d.CityId);
-
-  
+  $("#dboCountry").trigger("change");
 
   var div = document.createElement("div");
   if (d.PatientPhoto != null) {
@@ -456,6 +453,8 @@ function FillDetails(d) {
   }
   //=========set image control============
   $("#result").html(div);
+
+  FillCity(d.CountryId, d.CityId, false);
 }
 
 function PatientBasicInfo(PatientId, isDetails, type) {
@@ -645,12 +644,16 @@ function AddUpdatePatientDetails() {
   });
 }
 
+var txtCnt = 0;
 function AddMedication() {
+  txtCnt = txtCnt + 1;
   var newMedication =
     "<div class='row divMed'>" +
     "<div class='col-sm-5'>" +
     "<label>Medication Name</label>" +
-    "<input type='text' placeholder='Name' class='txtMedicationName txtInfo'>" +
+    "<input type='text' placeholder='Name' class='tb" +
+    txtCnt +
+    " txtMedicationName txtInfo'>" +
     "</div>" +
     "<div class='col-sm-7'>" +
     "<label>Upload Image</label>" +
@@ -668,15 +671,23 @@ function AddMedication() {
     "</div>" +
     "</div>";
   $("#divMedication").find(".row").last().prev().after(newMedication);
+  $(".tb" + txtCnt).focus();
+  /// $('.divMed').first().children(":first").focus();
+
+  // $(document).focus()   $(".tb" + txtCnt).focus();
   //$("#divMedication .row").eq(-1).before(newMedication);
 }
 
+var txtAlerCnt = 0;
 function AddAlergy() {
+  txtAlerCnt = txtAlerCnt + 1;
   var newAlergy =
     "<div class='row PatientAlergy'>" +
     "<div class='col-sm-10'>" +
     "<label>Allergy 01</label>" +
-    "<input type='text' placeholder='Alergy' class='txtInfo txtAlergy'>" +
+    "<input type='text' placeholder='Alergy' class='tbAlergy" +
+    txtAlerCnt +
+    " txtInfo txtAlergy'>" +
     "</div>" +
     "<div class='col-sm-2 mt-0'>" +
     "<br>" +
@@ -685,6 +696,7 @@ function AddAlergy() {
     "</div>" +
     "</div>";
   $("#divAlergy").find(".row").last().prev().after(newAlergy);
+  $(".tbAlergy" + txtAlerCnt).focus();
 }
 
 function AddPatientMedication() {

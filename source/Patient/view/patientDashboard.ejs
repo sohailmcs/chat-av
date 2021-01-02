@@ -147,7 +147,7 @@
              {{FullName}}
           </h5>
            <span style="font-size:16px"> 
-          <b>Specialization</b>: {{DoctorSpecialization}}
+          <b>Specialization</b>: {{Specialization}}
            </span>
         </div>
         </div>
@@ -159,10 +159,10 @@
             <div class="container profileArea">
             <div class="row" style="background-color:#F3F8FF;">
                <br/>
-               <div class="col-sm-5">              
-               <span class="editprofile-icons">Designation </span>
+               <div class="col-sm-4">              
+               <span class="editprofile-icons">Gender </span>
                </div>
-               <div class="col-sm-5 txtnormal">              
+               <div class="col-sm-8 txtnormal">              
               {{Gender}}
                </div>
             </div>
@@ -170,12 +170,14 @@
              
             <div class="row">
                <br/>
-               <div class="col-sm-5">             
+               <div class="col-sm-4">             
                <span class="editprofile-icons">Experience  </span>
                </div>
-               <div class="col-sm-7 txtnormal">             
-                {{#DoctorExperianceModel}} {{HospitalName}}
-               <span>  {{From}} to {{To}} </span>
+               <div class="col-sm-8 txtnormal">             
+                {{#DoctorExperianceModel}}
+                <span>{{Designation}}</span>&nbsp;               
+               <span>{{From}}to{{To}} </span>&nbsp;
+               at&nbsp;<span>{{HospitalName}}</span><br>
                {{/DoctorExperianceModel}}
                <br/>
                </div>
@@ -184,26 +186,23 @@
            
              <div class="row" style="background-color:#F3F8FF;">
                 <br/>
-                <div class="col-sm-5 ">               
+                <div class="col-sm-4 ">               
                 <span class="editprofile-icons">Proficiency </span>
                 </div>
-                <div class="col-sm-7 txtnormal">
+                <div class="col-sm-8 txtnormal">
                 {{#DoctorEducationsModel}}
-               <span>Get {{Degree}} In {{YearsOfCompletion}} </span>
+               <span>Get {{Degree}} In {{YearsOfCompletion}} </span><br>
                {{/DoctorEducationsModel}}
                
                </div>
              </div>
      
            <div class="row">             
-              <div class="col-sm-5">             
-              <span class="editprofile-icons">Career </span>
-             
+              <div class="col-sm-4">             
+              <span class="editprofile-icons">Career </span>             
               </div>
-              <div class="col-sm-7 txtnormal">             
-                {{#DoctorExperianceModel}}
-                <span>{{Designation}} at {{HospitalName}}  </span>
-                {{/DoctorExperianceModel}}
+              <div class="col-sm-8 txtnormal txtBiography">             
+               {{{Biography}}}
                 </div>
 
              </div>

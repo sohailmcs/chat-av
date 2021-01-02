@@ -490,6 +490,8 @@ function checkOnlineStatusandCall(patientId, userType) {
 }
 
 function GetDoctorNotes(callLogId) {
+  //=============empty all value first====
+ 
   var url = baseURL + "CallLogs/GetPatientHistory?callLogId=" + callLogId;
 
   $.ajax({
@@ -507,6 +509,7 @@ function GetDoctorNotes(callLogId) {
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
       if (data != null) {
+        
         //=========open dialog for update==========
         $("#txtExam").val(data.HistoryAndExam);
         $("#txtAllergies").val(data.Allergies);
