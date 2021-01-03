@@ -127,31 +127,33 @@
          
         </div>
         <div class="modal-body">
-
-          <div class="media">
-        {{#doctorPhoto}}
-        <img
-        src="{{ProfilePicture}}"
-        alt="image"
-       style="height: 100px; width: 100px; border-radius: 5px;" />
-       {{/doctorPhoto}}
-       {{^doctorPhoto}}
-       <img
-        src="/assets/images/maledoc.png"
-        alt="image"
-        style="height: 100px; width: 100px; border-radius: 5px; margin:0 10px;" />
-       {{/doctorPhoto}} 
-        <div>
-          <br/>
-          <h5 class="docName">
-             {{FullName}}
-          </h5>
-           <span style="font-size:16px"> 
-          <b>Specialization</b>: {{Specialization}}
-           </span>
+    <div class="row">
+          <div class="col-sm-3">    
+              {{#ProfilePicture}}
+              <img
+              src="{{ProfilePicture}}"
+              alt="image"
+            style="height: 100px; width: 100px; border-radius: 5px;" />
+            {{/ProfilePicture}}
+            {{^ProfilePicture}}
+            <img
+              src="/assets/images/maledoc.png"
+              alt="image"
+              style="height: 100px; width: 100px; border-radius: 5px; margin:0 10px;" />
+            {{/ProfilePicture}} 
+          </div>
+          <div class="col-sm-8">
+            <div>
+              <br/>
+              <h5 class="docName">
+                 {{FullName}}
+              </h5>
+               <span style="font-size:16px"> 
+              <b>Specialization</b>: {{Specialization}}
+               </span>
+            </div>
+          </div>
         </div>
-        </div>
-
           <ul style="padding-left:0;font-size:13px;">
             <br/>
             <br/>
@@ -189,10 +191,9 @@
                 <div class="col-sm-4 ">               
                 <span class="editprofile-icons">Proficiency </span>
                 </div>
-                <div class="col-sm-8 txtnormal">
-                {{#DoctorEducationsModel}}
-               <span>Get {{Degree}} In {{YearsOfCompletion}} </span><br>
-               {{/DoctorEducationsModel}}
+                <div class="col-sm-8 txtnormal">                
+               <span>{{Proficiency}} </span>
+               
                
                </div>
              </div>

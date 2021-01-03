@@ -259,6 +259,7 @@ function initializeSession(key, sessId, tokenId) {
         }
       }
       PlayCallingSound(false);
+      clearInterval(timer);
     },
     connectionCreated: function (event) {
       if (
@@ -277,7 +278,7 @@ function initializeSession(key, sessId, tokenId) {
     connectionDestroyed: function connectionDestroyedHandler(event) {
       //letting others know you left the connection in this method.
       disconnect();
-
+      clearInterval(timer);
       PlayCallingSound(false);
       $(".three-icons, #timer").css("display", "none");
       $("#divCallNow").css("display", "block");
@@ -401,6 +402,7 @@ function streamDestroyed(event) {
 }
 
 function disconnect() {
+  clearInterval(timer);
   if ($(".slide-left").css("display") == "inline-block")
     $(".slide-left").trigger("click");
 
@@ -409,7 +411,7 @@ function disconnect() {
     publisher.destroy();
   }
   var newCalllogId = mCallLogId == 0 ? $("#insertedID").val() : mCallLogId;
-  clearInterval(timer);
+  //clearInterval(timer);
   if (subscriber) AudioVideosession.unsubscribe(subscriber);
   if (AudioVideosession) {
     AudioVideosession.off();

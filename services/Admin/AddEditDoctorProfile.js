@@ -6,10 +6,20 @@ var doctorId = urlParams.get("id");
 if (urlParams.has("id")) doctorId = urlParams.get("id");
 
 $(function () {
- // $("#dboProficiency").select2();
   
-  $('#dboProficiency').select2({
-    placeholder: "Select Proficiency"
+  $("#dboCountry").select2({
+    placeholder: "Select Country",
+  });
+  $("#dboCity").select2({
+    placeholder: "Select City",
+  });
+  FillCountry();
+  $("#dboCountry").on("change", function () {
+    var countryId = this.value;
+    FillCity(countryId, "0", true);
+  });
+  $("#dboProficiency").select2({
+    placeholder: "Select Proficiency",
   });
 
   GetAllSpecialities();
@@ -31,6 +41,85 @@ $(function () {
     AddEditDoctorProfile(doctorId);
   });
 });
+
+function FillCity(countryID, selectedval) {
+  var url = baseURL + "City/GetCity?countryId=" + countryID;
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      // if (isSync) $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $("#dboCity").empty();
+     
+      for (var key in data.info) {
+        $("#dboCity").append(
+          $("<option>")
+            .text(data.info[key].NameEn)
+            .attr("value", data.info[key].CityID)
+        );
+      }
+
+      if (selectedval != "0") $("#dboCity").val(selectedval);
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+
+function FillCountry() {
+  var url = baseURL + "Country/GetCountry";
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      //  $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      // $.LoadingOverlay("hide");
+
+      $("#dboCountry").empty();
+    
+      for (var key in data.info) {
+        $("#dboCountry").append(
+          $("<option>")
+            .text(data.info[key].NameEn)
+            .attr("value", data.info[key].CountryID)
+        );
+      }
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      // $.LoadingOverlay("hide");
+    },
+  });
+}
+
 
 function SetDoctorProfile(d) {
   //====check if profile picture is exist then display dummy image
@@ -61,30 +150,34 @@ function SetDoctorProfile(d) {
   $("#clinicAddress").val(d.ClinicAddress);
   $("#txtAddress1").val(d.Address);
   $("#txtAddress2").val(d.AddressLine1);
-  $("#dboCountry option:contains(" + d.Country + ")").attr(
-    "selected",
-    "selected"
-  );
+  $("#dboCountry").val(d.Country);
+  $("#dboCountry").trigger("change");
+
+  FillCity(d.Country,d.City)
+
+  // $("#dboCountry option:contains(" + d.Country + ")").attr(
+  //   "selected",
+  //   "selected"
+  // );
   $("#txtState option:contains(" + d.State + ")").attr("selected", "selected");
-  $("#dboCity").val(d.City).change();
+  // $("#dboCity").val(d.City).change();
   $("#txtServices").val(d.Services);
   $("#txtspe option:contains(" + d.Specialization + ")").attr(
     "selected",
     "selected"
   );
-  
-    $("#txtAward").val(d.Award);
+
+  $("#txtAward").val(d.Award);
   $("#CallLimt").val(d.DoctorCall_Limit);
 
-  // $("#CallLimt option:contains(" + d.DoctorCall_Limit + ")").attr(
-  //   "selected",
-  //   "selected"
-  // );
   $("#txtAwarYear option:contains(" + d.AwardYear + ")").attr(
     "selected",
     "selected"
   );
+   var prof = d.Proficiency.split(',');  
+  $("#dboProficiency").val(prof).trigger('change');
 
+ 
   //====set hospital information=====
   setDoctorExperiance(d.DoctorExperianceModel);
 
@@ -159,6 +252,12 @@ function AddEditDoctorProfile(doctorId) {
     Designation: $("#txtDesignation").val(),
   });
 
+  var proficiency = $("#dboProficiency").val();
+  var selectedSource = "";
+  if (proficiency !== null && proficiency.length > 0) {
+    selectedSource = proficiency.join(",");
+  }
+
   //modelDetails.push({
   modelDetails.DoctorId = doctorId;
   modelDetails.FirstName = $("#txtFname").val();
@@ -176,14 +275,15 @@ function AddEditDoctorProfile(doctorId) {
   modelDetails.ClinicPhotoPath = "";
   modelDetails.Address = $("#txtAddress1").val();
   modelDetails.AddressLine1 = $("#txtAddress2").val();
-  modelDetails.City = jQuery("#dboCity option:selected").text();
-  modelDetails.Country = jQuery("#dboCountry option:selected").text();
+  modelDetails.City = jQuery("#dboCity").val();
+  modelDetails.Country = jQuery("#dboCountry").val();
   modelDetails.Title = "";
   modelDetails.ProfilePicture = $(".thumbnail").attr("src");
   modelDetails.Cansee = "Adult";
   modelDetails.DoctorSignature = "";
   modelDetails.DoctorCall_Limit = jQuery("#CallLimt").val(); // $("#CallLimt").val();
   modelDetails.Award = $("#txtAward").val();
+  modelDetails.Proficiency = selectedSource;
   modelDetails.AwardYear = jQuery("#txtAwarYear option:selected").text();
   modelDetails.DoctorEducations = DoctorEducationsModel;
   modelDetails.DoctorExperiance = DoctorExperianceModel;

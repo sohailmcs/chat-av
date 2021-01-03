@@ -125,7 +125,7 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <input type="number" readonly id="txtPno" name="name" class="form-control"
+                                                        <input type="text" id="txtPno" name="name" class="form-control"
                                                             placeholder="Phone Number" required
                                                             data-validation-required-message="This  field is required" />
                                                     </div>
@@ -134,13 +134,11 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <select name="CallLimg" id="CallLimt" class="form-control">
-                                                            <option value="0">Select Call Limit</option>
-                                                            <option value="3">3</option>
-                                                            <option value="5">5</option>
-                                                            <option value="10">10</option>
-                                                            <option value="10">15</option>
-                                                        </select>
+
+                                                        <input type="number" id="CallLimt" name="CallLimt" class="form-control"
+                                                        placeholder="Call Limit" required
+                                                        data-validation-required-message="This  field is required" />
+                                               
                                                     </div>
                                                 </div>
                                             </div>
@@ -266,23 +264,9 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <div class="controls">
-                                                            <select name="Country" id="dboCountry" class="form-control">
-                                                                <option value="0">Select Country</option>
-                                                                <option value="1">Afghanistan</option>
-                                                                <option value="2">Bangladesh</option>
-                                                                <option value="3">China</option>
-                                                                <option value="4">Pakistan</option>
-                                                                <option value="5">Iran</option>
-                                                                <option value="6">Bangladesh</option>
-                                                                <option value="7">Iraq</option>
-                                                                <option value="8">Saudi Arabia</option>
-                                                                <option value="9">India</option>
-                                                                <option value="10">Srilanka</option>
-                                                                <option value="11">Austria</option>
-                                                                <option value="12">Zimbabwe</option>
-                                                                <option value="13">Chilli</option>
-                                                                <option value="14">USA</option>
-                                                            </select>
+                                                            <select style="padding:5px 11px 5px;width:100%;"  name="dbocountry" id="dboCountry" class="form-control">
+                                                        </select>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -295,25 +279,11 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <div class="controls">
-                                                            <select name="City" id="dboCity" class="form-control">
-                                                                <option value="0">Select City</option>
-                                                                <option value="1">Afghanistan</option>
-                                                                <option value="2">Bangladesh</option>
-                                                                <option value="3">China</option>
-                                                                <option value="4">Pakistan</option>
-                                                                <option value="5">Iran</option>
-                                                                <option value="6">Bangladesh</option>
-                                                                <option value="7">Iraq</option>
-                                                                <option value="8">Saudi Arabia</option>
-                                                                <option value="9">India</option>
-                                                                <option value="10">Srilanka</option>
-                                                                <option value="11">Austria</option>
-                                                                <option value="12">Zimbabwe</option>
-                                                                <option value="13">Chilli</option>
-                                                                <option value="14">USA</option>
-                                                            </select>
+                                                            <select style="padding:5px 11px 5px;width:100%;" name="dboCity" id="dboCity" class="form-control"></select>                                                           
+                                                            
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    
                                                 </div>
 
                                                 <div class="col-md-6 col-12">
@@ -660,7 +630,7 @@
 
 <!-- BEGIN: JS-->
 <!-- BEGIN: Vendor JS-->
-<script src="/js/vendors.js"></script>
+<!-- <script src="/js/vendors.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="/js/sweetalert2.all.min.js"></script>
 <script src="/js/polyfill.min.js"></script>
