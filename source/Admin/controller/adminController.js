@@ -76,6 +76,23 @@ class defaultController {
       userId: req.session.userId,
     });
   }
+
+  async getkindahGetAllRole(req, res, next) {    
+    res.render(appRoot + "/source/Admin/view/KindahGetAllRole", {
+      pageTitle: "Kindah All Roles",
+      userName: req.session.userName,
+      userId: req.session.userId,
+    });
+  }
+
+  async getEditRole(req, res, next) {
+    res.render(appRoot + "/source/Admin/view/KindahAddEditRole", {
+      pageTitle: "Kindah Edit Roles",
+      userName: req.session.userName,
+      userId: req.session.userId,
+    });
+  }
+
 }
 
 module.exports = defaultController;

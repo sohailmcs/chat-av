@@ -12,6 +12,12 @@ $(function () {
   });
 });//end of $(function)
 
+
+function getAge()
+{
+  var getAge = $("#hdnPatientAge").val(); 
+  $("#popupAge").html(CalculateAge(getAge));
+}
 function ViewBookingDetails(PatientId) {
   var url =
     baseURL + "Patient/GetPatientInitialAssisments?PatientId=" + PatientId;
@@ -39,9 +45,10 @@ function ViewBookingDetails(PatientId) {
         console.log(xhr.statusText);
       else console.log(xhr.statusText);
     },
-    complete: function (data) {
+    complete: function (data) {      
       // Hide Loading
       $.LoadingOverlay("hide");
+      getAge();
     },
   });
 }

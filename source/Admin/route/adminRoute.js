@@ -31,6 +31,17 @@ router.get(
   "/edit-speciality",
   AdminController.getEditSpeciality.bind(AdminController)
 );
+router.get(
+  "/all-role",
+  AdminController.getkindahGetAllRole.bind(AdminController)
+);
+
+router.get(
+  "/edit-role",
+  AdminController.getEditRole.bind(AdminController)
+);
+
+
 
 // router.get("/KindahAdmin", KindahController.getkindahAdmin);
 // router.get("/KindahCreateDoctor", KindahController.getkindahCreateDoctor);

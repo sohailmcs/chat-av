@@ -349,13 +349,13 @@
            <div class="doc-pres-card" style="display: block;">
            <div class="card-body">
            <ul class="nav nav-tabs nav-justified" id="myTab2" role="tablist">
-           <li class="nav-item">
-           <a class="nav-link active" id="home-tab-justified" data-toggle="tab" href="#home-just"
+           <li class="nav-item ">
+           <a class="nav-link" id="home-tab-justified" data-toggle="tab" href="#home-just"
            role="tab" aria-controls="home-just" aria-selected="true">
             Note
            </a>
            </li>
-           <li class="nav-item">
+           <li class="nav-item ">
            <a class="nav-link" id="profile-tab-justified" data-toggle="tab" href="#profile-just"
            role="tab" aria-controls="profile-just" aria-selected="true">
            Prescription
@@ -467,15 +467,8 @@
                </fieldset>
            </div>
            
-           <div class="col-md-3">
-           <div class="form-label-group">
-             <p>Age</p>
-             <input type="text" id="patientAge" class="textbox form-control"
-             placeholder="Age" name="fname-floating" />    
           
-           </div>
-           </div>
-           <div class="col-md-9">
+           <div class="col-md-12">
            <div class="form-label-group">
              <p>Date</p>
            <fieldset class="form-group position-relative has-icon-left">     
@@ -489,7 +482,17 @@
            </div>
            </div>
            
-           <div class="col-12">
+           <div class="col-md-6">
+            <div class="form-label-group">
+              <span>DOB</span> 
+              <span style="font-size: 11px;" id="spnAge"></span>
+              <input readonly type="text" id="patientAge" class="textbox form-control"
+              placeholder="Age" name="fname-floating" />    
+           
+            </div>
+
+            </div>
+           <div class="col-6">
            <div class="form-label-group">
              <p>Diagnosis</p>
            <input type="text" id="txtPresDiagnosis" class="textbox form-control"

@@ -40,7 +40,7 @@ $(function () {
     UpdateQueAddSaveCallLog(quId, "Called", userLoginId, patientId);
 
     $(this).parents(".row").remove();
-    getDashBoardAllScheduled(false );
+    getDashBoardAllScheduled(false);
   });
 
   //=================Update patient EMR ==============
@@ -595,6 +595,12 @@ function SendSMStoPatient(mobileNo, doctorName, patientName) {
   });
 }
 
+function getAge()
+{
+  var getAge = $("#hdnPatientAge").val(); 
+  $("#popupAge").html(CalculateAge(getAge));
+}
+
 function ViewBookingDetails(PatientId) {
   var url =
     baseURL + "Patient/GetPatientInitialAssisments?PatientId=" + PatientId;
@@ -622,9 +628,10 @@ function ViewBookingDetails(PatientId) {
         console.log(xhr.statusText);
       else console.log(xhr.statusText);
     },
-    complete: function (data) {
-      // Hide Loading
-      $.LoadingOverlay("hide");
+    complete: function (data) {   
+    // Hide Loading
+     $.LoadingOverlay("hide");
+     getAge();
     },
   });
 }
@@ -682,6 +689,6 @@ soc.on("SendNotificationToDoctor", function (data) {
   $(
     ' <audio id="NotifyAudio"><source src="/js/Services/notify.ogg" type="audio/ogg"> <source src="/js/Services/notify.mp3" type="audio/mpeg"><source src="/js/Services/notify.wav" type="audio/wav"></audio>'
   ).appendTo("body");
- 
+
   $("#NotifyAudio").get(0).play();
 });

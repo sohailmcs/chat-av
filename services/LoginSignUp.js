@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
@@ -66,6 +66,11 @@ function moveToNext() {
 //==login==========
 $(function () {
   moveToNext();
+
+  $("#btnResendOTP").on("click", function () {
+    ResendOTP("Patient");
+  });
+
   $("#frmLogin").submit(function (e) {
     e.preventDefault();
 
@@ -124,18 +129,6 @@ $(function () {
     });
   }); //==end of Loginform submit
 
-  function validatephonenumber(inputtxt) {
-    var isValid = true;
-    var regex = new RegExp(/^(?:\+?0*?966)?0?5[0-9]{8}$/);
-    var phoneNo = inputtxt;
-    if (!regex.test(phoneNo)) {
-      isValid = false;
-    } else {
-      isValid = true;
-    }
-    return isValid;
-  }
-  //========SignUp=============
   //========SignUp=============
   $("#frmSignUp").submit(function (e) {
     e.preventDefault();
@@ -231,7 +224,10 @@ $(function () {
         }
         // debugger;
         if (hdnUserType == "patient") {
-          $("#primary").modal("show");
+          $("#primary").modal({
+            backdrop: "static",
+            keyboard: false,
+          });
         } else {
           OTPVerify(); // remove OTP verifiction from doctor
         }
@@ -366,4 +362,73 @@ $(function () {
       },
     });
   } //====end of one time password verification=======
+
+  function ResendOTP(useType) {
+    var url = baseURL + "User/ResendOTP";
+
+    var model = {
+      userRefId: modelDetails.PatientId,
+      UserType: useType,
+      FullName: modelDetails.FullName,
+      Email: modelDetails.Email,
+      pageName: "Signup",
+      pageUrl: window.location.href,
+    };
+
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "POST",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: model,
+      beforeSend: function () {
+        //Show Loading if validate pass
+        $.LoadingOverlay("show");
+      },
+      success: function (d, textStatus, xhr) {
+        if (xhr.status == 200) {
+          Swal.fire({
+            title: "Congratulations",
+            text: "OTP resend successfully.",
+            type: "success",
+            confirmButtonClass: "btn btn-primary",
+            buttonsStyling: false,
+            confirmButtonText: "<a style='color:#fff'>OK</a>",
+          });
+        }
+        //=====intiliaze patientModel to add patient
+      },
+      error: function (xhr, textStatus, err) {
+        if (xhr.status == "404" && xhr.statusText == "NotFound") {
+          Swal.fire({
+            title: "Error!",
+            text: "User Not Found ",
+            type: "error",
+            confirmButtonClass: "btn btn-primary",
+            buttonsStyling: false,
+            confirmButtonText: "<a style='color:#fff'>OK</a>",
+          });
+        }
+      },
+      complete: function (data) {
+        // Hide Loading
+        $.LoadingOverlay("hide");
+      },
+    });
+  } //====end of one time password verification=======
+
+  function validatephonenumber(inputtxt) {
+    var isValid = true;
+    var regex = new RegExp(/^(?:\+?0*?966)?0?5[0-9]{8}$/);
+    var phoneNo = inputtxt;
+    if (!regex.test(phoneNo)) {
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+    return isValid;
+  }
 }); //==end of jquery $function

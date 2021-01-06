@@ -47,7 +47,7 @@
     var userID = "";
 
     var soc = io({ transports: ["websocket"], upgrade: false });
-   //var baseURL = "http://localhost:1042/KindahService/";
+    //var baseURL = "http://localhost:1042/KindahService/";
     var baseURL = "https://kindahclinic.com/KindahService/";
     var urlParams = new URLSearchParams(window.location.search);
 
@@ -89,6 +89,17 @@
       mDocId = userLoginId;
       mArea = "Doctor";
 
+      if (mCallLogId == 0){
+        $("#home-tab-justified, #profile-tab-justified").addClass("disabled").removeClass("active");
+        $("#home-just, #profile-just").removeClass("active");
+        $("#messages-tab-justified, #messages-just").addClass("active");        
+      }
+      else{
+        $("#home-tab-justified, #profile-tab-justified").removeClass("disabled");
+        $("#messages-tab-justified, #messages-just").removeClass("active");
+        $("#home-tab-justified, #home-just").addClass("active");
+        
+      }
       $("#windowComm").modal({
         backdrop: "static",
         keyboard: false,

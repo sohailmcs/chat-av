@@ -39,8 +39,8 @@
     <br>
     <h5 class="docName" style="margin:0 0 5px;padding:0">
       {{FullName}}
-    </h5>          
-    <b>Age:</b> {{Age}}
+    </h5> 
+    <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span>    
     <br>
     <b>Gender:</b> {{Gender}}
     <br>
@@ -189,12 +189,19 @@
 
                                                </div><!--end of row-->
                                                <div class="row">
-                                                <div class="col-sm-6">
-                                                 <label>Age</label>
-                                                 <input type="number" placeholder="Age" class="txtInfo" id="txtInfoAge">
+                                                <div class="col-sm-8">                                                
+                                                  <!-- <input type="number" placeholder="Age" class="txtInfo" id="txtInfoAge">  -->                                               
+                                                  <label>Age</label> <span id="spnAge"></span>
+                                                  <div class="form-group position-relative has-icon-left">     
+                                                    <input type="text" id="txtInfoAge" name="dob" class="txtInfo form-control pickadate"
+                                                    placeholder="Select Date" />
+                                                    <div class="form-control-position">
+                                                       <i class="bx bx-calendar"></i>
+                                                   </div>
+                                                  </div>   
                                                </div><!--end of col-sm-6--> 
-                                               <div class="col-sm-6">
-                                                <label>Gender</label><br>
+                                               <div class="col-sm-4">
+                                                <label>Gender</label>
                                                 <div style="margin-top:10px;" class="form-check form-check-inline">
                                                   <input class="form-check-input" type="radio" name="gender" id="rdoMale" value="Male" checked>
                                                   <label class="form-check-label" for="rdoMale"> Male</label>&nbsp;
@@ -668,6 +675,10 @@
 
 </script>
 
+
+<script src="/js/daterange/moment.min.js"></script>
+<script src="/js/pick-a-datetime.js"></script>
+
 <script src="/js/vendors.js"></script>
 <!-- BEGIN Vendor JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
@@ -681,11 +692,9 @@
 <!-- BEGIN: Services calling JS-->
 <script src="/services/AddPatientWizerd.js"></script>
 <script src="/services/loadingoverlay.min.js"></script>
-
 <!-- END: Page JS-->
-
 <!-- END: JS-->
-</body>
+</body> 
 <!-- END: Body-->
 
 </html>
