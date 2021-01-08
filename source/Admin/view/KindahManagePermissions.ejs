@@ -17,7 +17,7 @@
 
 <!-- BEGIN: Custom CSS-->
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
 <!-- END: Custom CSS-->
 </head>
@@ -40,31 +40,32 @@
             <br />
             <div class="d-flex flex-row">
                 <div class="page-heading">
-                    <h3>Add/Edit Role</h3>
+                    <h3>Kindah Manage Permissions</h3>
                 </div>
             </div>
             <!-- basic info -->
             <section>
                 <div class="row">
                     <div class="col-md-12">
-                        <form id="frmRole" class="form-horizontal">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title" id="lblRoleHeading"></h4>
-                                    <div class="row col-sm-6">
-                                        <span class="error" style="display: none;"></span>
-                                    </div>
-                                </div>
+                        <form id="frmMenu" class="form-horizontal">
+                            <div class="card">                              
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label>Role Name:</label>
-                                                        <input maxlength="20" type="text" id="txtRoleName" name="name" class="form-control"
-                                                            placeholder="Role Name" required
-                                                            data-validation-required-message="This  field is required" />
+                                                        <label><strong>Role:</strong></label>
+                                                            <select style="padding:5px 11px 5px;width:100%;" 
+                                                             name="dboRole" id="dboRole" class="form-control"></select>                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label><strong> Menus:</strong></label>
+                                                        <div id="listMenus">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -72,10 +73,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <button id="btnSubmit" type="submit" class="btn btn-primary">
-                                Add Role
+                            <button id="btnAssignMenu" type="button" class="btn btn-primary">
+                                Assign Menu
                             </button> &nbsp;
-                            <a href="/Admin/all-role">
+                            <a href="/Admin/manage-permission">
                             <button id="btnCancel" type="button" class="btn btn-primary">
                                 Cancel
                             </button>
@@ -97,7 +98,7 @@
 <!-- <script src="/js/vendors.min.js"></script> -->
 
 <!-- BEGIN Vendor JS-->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="/js/vertical-menu-light.js"></script>
 <script src="/js/app-menu.js"></script>
 <script src="/js/app.js"></script>
@@ -110,7 +111,7 @@
 
 <!-- BEGIN: Services calling JS-->
 <script src="/services/jquery.validate.min.js"></script>
-<script src="/services/Admin/AddEditRole.js"></script>
+<script src="/services/Admin/ManagePermission.js"></script>
 <script src="/services/loadingoverlay.min.js"></script>
 
 

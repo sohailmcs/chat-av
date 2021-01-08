@@ -41,6 +41,21 @@ router.get(
   AdminController.getEditRole.bind(AdminController)
 );
 
+router.get(
+  "/all-menus",
+  AdminController.getkindahGetAllMenu.bind(AdminController)
+);
+
+router.get(
+  "/edit-menu",
+  AdminController.getEditMenu.bind(AdminController)
+);
+
+router.get(
+  "/manage-permission",
+  AdminController.getPermission.bind(AdminController)
+);
+
 
 
 // router.get("/KindahAdmin", KindahController.getkindahAdmin);

@@ -1,30 +1,31 @@
 //var baseURL = "https://kindahclinic.com/KindahService/";
 //var baseURL = "http://localhost:1042/KindahService/";
 var urlParams = new URLSearchParams(window.location.search);
-var roleID = 0;
+var menuID = 0;
 //var roleID = urlParams.get("id");
-if (urlParams.has("id")) roleID = urlParams.get("id");
+if (urlParams.has("id")) menuID = urlParams.get("id");
 
 $(function () {
-  if (roleID > 0) {GetRole(roleID);
-    $("#lblRoleHeading").text("Edit Role");
-    $("#btnSubmit").text("Update Role");
-  }
-  else
-  $("#lblRoleHeading").text("Create Role");
-  $("#frmRole").submit(function (e) {
+  if (menuID > 0) {
+    GetMenu(menuID);
+    $("#lblMenuHeading").text("Edit Menu");
+    $("#btnSubmit").text("Update Menu")
+  } else $("#lblMenuHeading").text("Create Menu");
+  $("#frmMenu").submit(function (e) {
     e.preventDefault();
-    if (roleID > 0) EditRole($("#txtRoleName").val());
-    else AddRole();
+    if (menuID > 0) EditMenu();
+    else AddMenu();
   });
-
-  
-
 }); //====end of $function
 
 //== creat doctor with login
-function AddRole() {
-  var url = baseURL + "Role/AddRole?roleName=" + $("#txtRoleName").val();
+function AddMenu() {
+  var url =
+    baseURL +
+    "Menu/AddMenu?MenuName=" +
+    $("#txtMenuName").val() +
+    "&MenuURL=" +
+    $("#txtMenuURL").val();
 
   ///==============start post request to add doctor
   $.ajax({
@@ -43,7 +44,7 @@ function AddRole() {
       $.LoadingOverlay("hide");
       Swal.fire({
         title: "Confirmation!",
-        text: "Role Created ",
+        text: "Menu Created ",
         type: "success",
         confirmButtonClass: "btn btn-primary",
         buttonsStyling: false,
@@ -63,9 +64,16 @@ function AddRole() {
     },
   });
 }
-//== creat doctor with login
-function EditRole(name) {
-  var url = baseURL + "Role/UpdateRole?roleId=" + roleID + "&roleName=" + name;
+//== Edit menu
+function EditMenu() {
+  var url =
+    baseURL +
+    "Menu/UpdateMenu?MenuId=" +
+    menuID +
+    "&MenuName=" +
+    $("#txtMenuName").val() +
+    "&MenuURL=" +
+    $("#txtMenuURL").val();
 
   ///==============start post request to add doctor
   $.ajax({
@@ -85,7 +93,7 @@ function EditRole(name) {
       $.LoadingOverlay("hide");
       Swal.fire({
         title: "Confirmation!",
-        text: "Role Edit ",
+        text: "Menu Edit ",
         type: "success",
         confirmButtonClass: "btn btn-primary",
         buttonsStyling: false,
@@ -106,8 +114,8 @@ function EditRole(name) {
   });
 }
 
-function GetRole(id) {
-  var url = baseURL + "Role/GetRole?roleId=" + id;
+function GetMenu(id) {
+  var url = baseURL + "Menu/GetMenu?MenuId=" + id;
   $.ajax({
     url: url,
     headers: {
@@ -122,7 +130,8 @@ function GetRole(id) {
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
-      $("#txtRoleName").val(data.RoleName);
+      $("#txtMenuName").val(data.MenuName);
+      $("#txtMenuURL").val(data.MenuUrl);
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")

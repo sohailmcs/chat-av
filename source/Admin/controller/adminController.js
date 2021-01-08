@@ -93,6 +93,31 @@ class defaultController {
     });
   }
 
+  async getkindahGetAllMenu(req, res, next) {    
+    res.render(appRoot + "/source/Admin/view/KindahGetAllMenus", {
+      pageTitle: "Kindah All Menus",
+      userName: req.session.userName,
+      userId: req.session.userId,
+    });
+  }
+
+  async getEditMenu(req, res, next) {
+    res.render(appRoot + "/source/Admin/view/KindahAddEditMenus", {
+      pageTitle: "Kindah Edit Menus",
+      userName: req.session.userName,
+      userId: req.session.userId,
+    });
+  }
+
+  async getPermission(req, res, next) {
+    res.render(appRoot + "/source/Admin/view/KindahManagePermissions", {
+      pageTitle: "Kindah Permissions",
+      userName: req.session.userName,
+      userId: req.session.userId,
+    });
+  }
+
+
 }
 
 module.exports = defaultController;
