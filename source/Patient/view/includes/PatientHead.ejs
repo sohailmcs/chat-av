@@ -33,9 +33,9 @@
         height: 100%;
       }
 
-    #windowComm {
-      display:none;
-    }
+      #windowComm {
+        display: none;
+      }
     </style>
     <script type="text/javascript">
       var apiKey;
@@ -46,21 +46,26 @@
       var userID = "";
       var mArea = "Patient";
       var soc = io({ transports: ["websocket"], upgrade: false });
-      //var baseURL = "http://localhost:1042/KindahService/";
-      var baseURL = "https://kindahclinic.com/KindahService/";
-      
+      var baseURL = "http://localhost:1042/KindahService/";
+      //var baseURL = "https://kindahclinic.com/KindahService/";
+
       $(document).ready(function () {
         //=========save id for video/Audio chat=============
         $(".goog-te-menu-value").children().last().remove();
         uName = $(".user-name").find("strong").text();
         userID = $(".user-name").attr("userinfo");
         var userType = "Patient";
-        changePatientOlineStaus(userID, "Online", uName);
-        soc.emit("add-user", {
+        if (!localStorage.getItem("PatientonlineStatus")) {        
+          changePatientOlineStaus(userID, "Online", uName);
+          localStorage.setItem("PatientonlineStatus", "true");
+          soc.emit("add-user", {
           username: uName,
           userId: userID,
           userType: userType,
         });
+        }
+
+       
       }); //=================end of document.ready function=======
       function getcookie(cookiename) {
         var cookiestring = document.cookie;
@@ -73,6 +78,8 @@
         return null;
       }
       function deleteAllCookies() {
+        localStorage.removeItem("PatientonlineStatus");
+
         var cookies = document.cookie.split(";");
         for (var i = 0; i < cookies.length; i++) {
           var cookie = cookies[i];
@@ -164,7 +171,7 @@
           AudioVideosession.unpublish(publisher, handleError);
           publisher.destroy();
         }
-        PlayCallingSound(false)
+        PlayCallingSound(false);
         $("#windowComm").modal("hide");
         $("#notificationmodal, #incommingCall").modal("hide");
       });

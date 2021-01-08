@@ -47,8 +47,8 @@
     var userID = "";
 
     var soc = io({ transports: ["websocket"], upgrade: false });
-    //var baseURL = "http://localhost:1042/KindahService/";
-    var baseURL = "https://kindahclinic.com/KindahService/";
+    var baseURL = "http://localhost:1042/KindahService/";
+    //var baseURL = "https://kindahclinic.com/KindahService/";
     var urlParams = new URLSearchParams(window.location.search);
 
     function getcookie(cookiename) {
@@ -68,13 +68,17 @@
       uName = $(".user-name").find("strong").text();
       userID = $(".user-name").attr("userinfo");
       var userType = "Doctor";
+
+      if (!localStorage.getItem("DoctoronlineStatus")) { 
+        changeDoctorOlineStaus(userID, "Online", uName);
+        localStorage.setItem("DoctoronlineStatus", "true");
       soc.emit("add-user", {
         username: uName,
         userId: userID,
         userType: userType,
       });
-
-      changeDoctorOlineStaus(userID, "Online", uName);
+    }
+     
     }); //============end of document.ready========
 
     function OpenCommunicationWindow(btn) {
@@ -137,6 +141,7 @@
 
     function deleteAllCookies() {
       //=============update status in database=============
+      localStorage.removeItem("DoctoronlineStatus");
 
       var cookies = document.cookie.split(";");
       for (var i = 0; i < cookies.length; i++) {

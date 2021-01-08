@@ -15,7 +15,7 @@ $(function () {
 
   $("#dboRole").on("change", function () {
     var roleId = this.value;
-    if (roleId!="0") GetAssignMenu(roleId);
+    if (roleId != "0") GetAssignMenu(roleId);
   });
 }); //====end of $function
 
@@ -103,8 +103,6 @@ function GetAllMenus() {
 }
 
 function AssignMenuToRole() {
-  var url = baseURL + "Permissions/AddPermission";
-
   var ListPermission = new Array();
 
   $(".chkMenu").each(function () {
@@ -121,6 +119,7 @@ function AssignMenuToRole() {
   var Permission = {
     ListPermission: ListPermission,
   };
+  var url = baseURL + "Permissions/AddPermission?RoleId=" + $("#dboRole").val();
 
   $.ajax({
     url: url,
