@@ -98,7 +98,8 @@ $(function () {
   });
 
   //========Add new Medication============
-  $("#btnAddMedication").click(function () {
+  $("#btnAddMedication").click(function (event) {
+    event.stopImmediatePropagation();
     AddMedication();
   });
 
@@ -110,7 +111,8 @@ $(function () {
   });
 
   //========Add new Medication============
-  $("#btnAddAlergy").click(function () {
+   $("#btnAddAlergy").click(function (event) {
+    event.stopImmediatePropagation();
     AddAlergy();
   });
 
@@ -127,7 +129,7 @@ $(function () {
   $(document).on("click", ".divMed", function () {
     $("#rdTakingMedYes").prop("checked", true);
     $(this).find("*").prop("disabled", false);
-    //$(this).find(".txtMedicationName").focus();
+    $(this).find(".txtMedicationName").focus();
   });
 
   $('input:radio[name="alergy"]').change(function () {
@@ -136,10 +138,10 @@ $(function () {
     } else $(".PatientAlergy").find("*").prop("disabled", false);
   });
 
-  $(document).on("click", ".PatientAlergy", function () {
+  $(document).on("click", ".PatientAlergy", function () {    
     $("#rdoHaveAlergyYes").prop("checked", true);
     $(this).find("*").prop("disabled", false);
-   // $(this).find(".txtAlergy").focus();
+   $(this).find(".txtAlergy")[0].focus();
   });
 
   $('input:radio[name="condition"]').change(function () {
@@ -712,6 +714,7 @@ function AddAlergy() {
     "</div>" +
     "</div>";
   $("#divAlergy").find(".row").last().prev().after(newAlergy);
+  console.log($(".tbAlergy" + txtAlerCnt));
   $(".tbAlergy" + txtAlerCnt).focus();
 }
 

@@ -295,7 +295,7 @@ $(function () {
     } else {
       var OTPCode = concatOTP.trim();
       modelDetails.OTPKey = OTPCode;
-      modelDetails.Age = "30";
+      modelDetails.Age = "";
     }
     var url =
       ddluserType.toLowerCase() == "patient"

@@ -82,7 +82,8 @@
   $(".pickadate-months-year").pickadate({
     selectYears: true,
     selectMonths: true,
-    min: new Date(),
+    max: new Date(),
+    min : [1950,12,1]
   });
 
   // Short String Date Picker
