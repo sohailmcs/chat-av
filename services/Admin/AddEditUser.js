@@ -11,7 +11,7 @@ $(function () {
     GetUser(UserId);
     $("#lblUserHeading").text("Edit User");
     $("#btnSubmit").text("Update User");
-$("#txtFirstName, #txtLastName").prop("disabled",true);
+$("#txtFirstName, #txtLastName").attr('readonly','readonly');
 
   } else $("#lblUserHeading").text("Create User");
   $("#frmSignUpAdmin").submit(function (e) {
