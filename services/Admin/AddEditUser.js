@@ -196,6 +196,8 @@ function GetUser(id) {
         );
 
       $("#dboRole").val(data.RoleId);
+      $("#txtFirstName").val(data.FirstName);
+      $("#txtLastName").val(data.LastName);
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
