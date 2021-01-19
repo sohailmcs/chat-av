@@ -17,9 +17,9 @@ class loginController {
         PageError: "",
       });
     } else {
-      if (req.session.userType == "Patient") {
+      if (req.session.userType.toLowerCase() == "Patient".toLowerCase()) {
         return res.redirect("/patient/speciality/");
-      } else if (req.session.userType == "Doctor") {
+      } else if (req.session.userType.toLowerCase() == "Doctor".toLowerCase()) {
         return res.redirect("/doctor/dashboard/");
       }
     }
@@ -63,7 +63,8 @@ class loginController {
         req.session.userType = data.UserType;
         req.session.userId = data.UserId;
         req.session.userName = data.FullName;
-
+        req.session.roleId = data.RoleId
+      
         // console.log('resp '+JSON.stringify(resp));
         // console.log('data '+JSON.stringify(data));
         // console.log('resp.status '+ resp[0]['status']);
@@ -82,16 +83,16 @@ class loginController {
             PageTitle: "Login",
             PageError: data.Message,
           });
-        } else if (data.UserType == "Patient") {
+        } else if (data.UserType.toLowerCase() == "Patient".toLowerCase()) {
           return res.redirect("/patient/speciality/");
           // return res.redirect("/patient/dashboard/");
-        } else if (data.UserType == "Doctor") {
+        } else if (data.UserType.toLowerCase() == "Doctor".toLowerCase()) {
           //req.location.href = "/doctor/dashboard";
           // console.log('redirect url');
           // console.log('session userName '+req.session.userName);
           //res.redirect('/doctor');
           return res.redirect("/doctor/dashboard/");
-        } else if (data.UserType == "Admin") {
+        } else if (data.UserType.toLowerCase() == "Admin".toLowerCase()) {
           //req.location.href = "/doctor/dashboard";
           // console.log('redirect url');
           // console.log('session userName '+req.session.userName);

@@ -50,9 +50,11 @@
                 data-toggle="dropdown"
               >
                 <div class="user-nav d-sm-flex d-none">
-                  <span UserInfo="<%= userId %>" class="user-name"
-                    ><strong><%= userName %></strong></span
-                  ><span class="text-muted">Available</span>
+                  <span UserInfo="<%= userId %>" class="user-name">
+                    <strong><%= userName %></strong></span
+                  >
+                  <input type="hidden" id="hdnroleId" value="<%= roleId %>" />
+                  <span class="text-muted">Available</span>
                 </div>
               </a>
             </li>
@@ -91,7 +93,7 @@
                 <!-- <button class="dropdown-item" onclick="deleteAllCookies()">
                   <i class="bx bx-power-off mr-50"></i> Logout
                 </button> -->
-                <a class="dropdown-item" href="#" onclick="deleteAllCookies()">
+                <a class="dropdown-item"  onclick="deleteAllCookies()">
                   <i class="bx bx-power-off mr-50"></i>Logout</a
                 >
               </div>

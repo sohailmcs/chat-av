@@ -167,8 +167,9 @@ function Filldatatable(data) {
       { data: "FullName" },
       { data: "Specialization" },
       { data: "PhoneNumber" },
+      { data: "Country" },
       { data: "City" },
-      { data: "Cansee:" },
+      // { data: "Cansee:" },
 
       {
         mRender: function (data, type, row) {

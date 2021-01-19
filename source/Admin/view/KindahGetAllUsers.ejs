@@ -1,0 +1,125 @@
+<%- include('includes/AdminHead.ejs') %>
+
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+
+<!-- END: Vendor CSS-->
+
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+<link rel="stylesheet" type="text/css" href="/css/colors.css" />
+<link rel="stylesheet" type="text/css" href="/css/components.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" 
+
+/>
+
+<!-- END: Theme CSS-->
+
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+<!-- END: Page CSS-->
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<!-- END: Custom CSS-->
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<!-- body tag and blue nav bar  -->
+<%- include('includes/adminNav.ejs') %>
+
+<!-- complete side menu of doctor -->
+<%- include('includes/adminSideMenu.ejs') %>
+
+<!-- BEGIN: Content-->
+
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row"></div>
+        <div class="content-body">
+            <section class="sideMenuId" id="slideDocProfile" style="
+              margin-right: -60%;
+              overflow: auto;
+              display: none;
+              width: 60%;
+              margin-top: 10px;
+            ">
+                <!-- User new mail right area -->
+
+            </section>
+
+            <!-- end side bar -->
+
+            <br />
+            <div class="d-flex flex-row">
+                <div class="page-heading">
+                    <h3>KINDAH USERS</h3>
+                </div>
+            </div>
+
+            <!-- Start  table -->
+
+            
+                <div class="row">
+              
+                    <div class="col-sm-12 text-right mb-1">
+                        <a href="/admin/edit-user">
+                        <button type="buton" class="btn btn-primary">
+                            Add User
+                        </button>
+                    </a>
+                    </div>
+                </div>
+            
+            <div class="table-responsive">
+                <br />
+                <table class="table call-log-table" id="tblUsers">
+                    <thead>
+                        <tr class="call-log-table-header">
+                            <th class="call-log-table-head">UserId</th>
+                            <th class="call-log-table-head">Login</th>
+                            <th class="call-log-table-head">Role</th>                              
+                            <th class="call-log-table-head">Phone</th>
+                            <th class="call-log-table-head">UserType</th> 
+                            <th class="call-log-table-head">status</th>                           
+                            <th class="call-log-table-head">Status</th> 
+                            <th class="call-log-table-head">Action</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+<br>
+<br>
+            <!-- End  table -->
+        </div>
+    </div>
+</div>
+<!-- END: Content-->
+
+<!-- END: Content-->
+
+<!-- BEGIN: Vendor JS-->
+<!-- <script src="/js/vendors.min.js"></script> -->
+
+<script src="/js/vertical-menu-light.js"></script>
+<script src="/js/app-menu.js"></script>
+<script src="/js/app.js"></script>
+
+<script type="text/javascript" charset="utf8" 
+
+src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+<script src="/js/slidevideocall.js"></script>
+<!-- END: Theme JS-->
+
+<!-- BEGIN: Services calling JS-->
+<script src="/services/Admin/ManageUsers.js"></script>
+<script src="/services/loadingoverlay.min.js"></script>
+<!-- END: JS-->
+
+<%- include('../../Default/view/includes/End.ejs') %>

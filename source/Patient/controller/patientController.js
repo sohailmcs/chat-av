@@ -55,6 +55,7 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
 
@@ -69,6 +70,7 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
   async getPatientWizerd(req, res, next) {
@@ -79,6 +81,7 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
   async getSpeciality(req, res, next) {
@@ -89,6 +92,7 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
   async getPayment(req, res, next) {
@@ -99,6 +103,7 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
 
@@ -110,6 +115,7 @@ class patientController {
       pageTitle: "Patient Video Call ",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -124,6 +130,7 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
 }

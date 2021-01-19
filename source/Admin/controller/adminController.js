@@ -118,6 +118,44 @@ class defaultController {
   }
 
 
+  async getkindahGetAllUsers(req, res, next) {    
+    res.render(appRoot + "/source/Admin/view/KindahGetAllUsers", {
+      pageTitle: "Kindah All Users",
+      userName: req.session.userName,
+      userId: req.session.userId,
+    });
+  }
+
+
+  async getEditUser(req, res, next) {
+    res.render(appRoot + "/source/Admin/view/KindahAddEditUser", {
+      pageTitle: "Kindah Edit Menus",
+      userName: req.session.userName,
+      userId: req.session.userId,
+    });
+  }
+
+  async getkindahGetAllPatient(req, res, next) {    
+    res.render(appRoot + "/source/Admin/view/KindahGetAllPatients", {
+      pageTitle: "Kindah All Roles",
+      userName: req.session.userName,
+      userId: req.session.userId,
+    });
+  }
+
+  async getEditPatient(req, res, next) {
+    res.render(appRoot + "/source/Admin/view/KindahAddEditPatient", {
+      pageTitle: "Kindah Edit Roles",
+      userName: req.session.userName,
+      userId: req.session.userId,
+    });
+  }
+
+
+
 }
+
+
+
 
 module.exports = defaultController;

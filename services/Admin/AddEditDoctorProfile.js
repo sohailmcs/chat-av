@@ -174,9 +174,10 @@ function SetDoctorProfile(d) {
     "selected",
     "selected"
   );
+  if(d.Proficiency){
    var prof = d.Proficiency.split(',');  
   $("#dboProficiency").val(prof).trigger('change');
-
+  }
  
   //====set hospital information=====
   setDoctorExperiance(d.DoctorExperianceModel);
@@ -311,7 +312,8 @@ function AddEditDoctorProfile(doctorId) {
         buttonsStyling: false,
         confirmButtonText: "Ok",
       }).then((result) => {
-        window.location.reload();
+        window.location.href="/admin/all-doctors"
+        
       });
     },
     error: function (xhr, textStatus, err) {

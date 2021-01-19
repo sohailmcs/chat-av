@@ -17,7 +17,7 @@
 
 <!-- BEGIN: Custom CSS-->
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
 <!-- END: Custom CSS-->
 </head>
@@ -40,14 +40,14 @@
             <br />
             <div class="d-flex flex-row">
                 <div class="page-heading">
-                    <h3>CREATE DOCTOR</h3>
+                    <h3 id="lblUserHeading" >CREATE User</h3>
                 </div>
             </div>
             <!-- basic info -->
             <section>
                 <div class="row">
                     <div class="col-md-12">
-                        <form id="frmSignUp" class="form-horizontal">
+                        <form id="frmSignUpAdmin" class="form-horizontal">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Basic Information</h4>
@@ -61,19 +61,24 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <input type="text" name="name" class="form-control"
-                                                            placeholder="UserName" required
-                                                            data-validation-required-message="This  field is required" />
+                                                        <input type="email" id="txtEmail" name="email"
+                                                            class="form-control" placeholder="Your Email" required
+                                                            data-validation-required-message="The  field is required" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="password" id="txtPassword" name="email"
-                                                            class="form-control" placeholder="Password" required
-                                                            data-validation-required-message="The  field is required" />
-                                                    </div>
+                                                    
+                                                            <div class="input-group">
+                                                                <input type="password" id="txtPassword" class="form-control pwd">
+                                                                <span class="input-group-btn">
+                                                                  <button class="btn btn-default reveal" type="button">
+                                                                    <i class="fa fa-eye-slash" aria-hidden="true"></i></button>
+                                                                </span>          
+                                                             
+                                                   
+                                                        </div>                                                   
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
@@ -94,15 +99,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="email" id="txtEmail" name="email"
-                                                            class="form-control" placeholder="Your Email" required
-                                                            data-validation-required-message="The  field is required" />
-                                                    </div>
-                                                </div>
-                                            </div>
+                                          
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <div class="controls">
@@ -122,25 +119,25 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="hidden" d="hdnUserType" value="admin">
-                                                        <select name="gender" id="dboUserType" name="Gender"
+                                                    <div class="controls">                                                       
+                                                        <select name="UserType" id="dboUserType" name="Gender"
                                                             class="form-control">
                                                             <option value="0">User Type</option>
                                                             <option value="Patient">Patient</option>
                                                             <option value="Doctor">Doctor</option>
+                                                            <option value="Doctor">Admin</option>
+                                                            <option value="Others">Others</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
+                                           
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <select name="gender" id="dbogender" name="Gender"
+                                                        <select name="role" id="dboRole"
                                                             class="form-control">
-                                                            <option value="0">Select Gender</option>
-                                                            <option value="F">Male</option>
-                                                            <option value="M">female</option>
+                                                               
                                                         </select>
                                                     </div>
                                                 </div>
@@ -150,55 +147,19 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-                            <button type="submit" class="btn btn-primary">
-                                Create Doctor
+                            <button type="submit" id="btnSubmit" class="btn btn-primary">
+                                Create User
+                            </button>&nbsp;
+                            <a href="/admin/all-users">
+                            <button type="button"  class="btn btn-primary">
+                                Cancel
                             </button>
+                        </a>
                         </form>
                     </div>
                 </div>
             </section>
 
-
-            <!-- password enter popup -->
-            <div class="modal-primary mr-1 mb-1 d-inline-block">
-                <!--primary theme Modal -->
-                <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog"
-                    aria-labelledby="myModalLabel160" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title white" style="color: #fff;" id="myModalLabel160">
-                                    One Time Password
-                                </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <i class="bx bx-x"></i>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="text-center">
-                                    <p>
-                                        Please enter the One Time password that has been sent to
-                                        your email address and to your phone number
-                                    </p>
-                                </div>
-                                <br />
-                                <input type="number" id="squareText" class="form-control square"
-                                    placeholder="Enter Code" />
-                                <br />
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-success mr-1 mb-1" id="btnOTPVerify">
-                                    Verify
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -225,7 +186,7 @@
 
 <!-- BEGIN: Services calling JS-->
 <script src="/services/jquery.validate.min.js"></script>
-<script src="/services/LoginSignUp.js"></script>
+<script src="/services/Admin/AddEditUser.js"></script>
 <script src="/services/loadingoverlay.min.js"></script>
 
 

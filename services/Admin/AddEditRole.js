@@ -49,7 +49,7 @@ function AddRole() {
         buttonsStyling: false,
         confirmButtonText: "<a style='color:#fff'>OK</a>",
       }).then((resuut) => {
-        window.location.reload();
+        window.location.href = "/admin/all-role"
       });
     },
     error: function (xhr, textStatus, err) {
@@ -90,8 +90,8 @@ function EditRole(name) {
         confirmButtonClass: "btn btn-primary",
         buttonsStyling: false,
         confirmButtonText: "<a style='color:#fff'>OK</a>",
-        // }).then((resuut) => {
-        //   window.location.reload();
+        }).then((resuut) => {
+          window.location.href = "/admin/all-role"
       });
     },
     error: function (xhr, textStatus, err) {

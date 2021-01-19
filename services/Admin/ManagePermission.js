@@ -79,7 +79,6 @@ function GetAllMenus() {
       $.LoadingOverlay("hide");
 
       $.each(data, function (i, v) {
-        console.log(v.MenuId);
         $("#listMenus")
           .append(
             `<input type="checkbox" style="margin-right:0.20rem" class="chkMenu form-check form-check-inline" id="chk${v.MenuId}" name="menu" value="${v.MenuId}">`
@@ -173,11 +172,9 @@ function GetAssignMenu(roleId) {
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
-
+      $(".chkMenu").prop("checked", false);
       $.each(data.result, function (i, v) {
-        $("#listMenus")
-          .find("#chk" + v.MenuId)
-          .attr("checked", true);
+        $("#chk" + v.Menu.MenuId).prop("checked", true);
       });
     },
     error: function (xhr, textStatus, err) {

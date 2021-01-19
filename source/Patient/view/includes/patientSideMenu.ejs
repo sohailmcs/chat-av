@@ -28,7 +28,7 @@
       data-menu="menu-navigation"
       data-icon-style="lines"
     >
-      <a class="firstChild" href="/patient/speciality/">
+      <!-- <a class="firstChild" href="/patient/speciality/">
         <button class="sideButtons hvr-sweep-to-right">
           <i class="bx bx-layer"></i><span>Choose Speciality</span>
         </button>
@@ -37,12 +37,72 @@
         <button class="sideButtons hvr-sweep-to-right">
           <i class="bx bx-time-five"></i><span>My Booked Appointments</span>
         </button>
-      </a>
-      <!-- <a href="/patient/AddPatient">
-        <button class="sideButtons hvr-sweep-to-right">
-          <i class="bx bx-group"></i><span>Add Patients</span>
-        </button>
       </a> -->
     </ul>
   </div>
 </div>
+<script>
+  $(function () {
+    GetMenus();
+  });
+  function GetMenus() {
+    var url =
+      baseURL +
+      "Permissions/getMenuBasedOnRole?RoleId=" +
+      $("#hdnroleId").val();
+    ///==============start post request to add doctor
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "GET",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {
+        //   $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+        var cls = "firstChild";
+        $.each(data, function (ind, v) {
+          if (ind == 0) {
+            $("#main-menu-navigation").append(
+              "<a class='firstChild' href='" +
+                v.MenuUrl +
+                "''>" +
+                "<button class='sideButtons hvr-sweep-to-right'>" +
+                "<i class='" +
+                v.MenuIcon +
+                "'></i><span>" +
+                v.MenuName +
+                "</span>" +
+                "</button> </a>"
+            );
+          } else {
+            $("#main-menu-navigation").append(
+              "<a href='" +
+                v.MenuUrl +
+                "''>" +
+                "<button class='sideButtons hvr-sweep-to-right'>" +
+                "<i class='" +
+                v.MenuIcon +
+                "'></i><span>" +
+                v.MenuName +
+                "</span>" +
+                "</button> </a>"
+            );
+          }
+        });
+      },
+      error: function (xhr, textStatus, err) {
+        if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+          console.log(xhr.statusText);
+        else console.log(xhr.statusText);
+      },
+      complete: function (data) {
+        // Hide Loading
+      },
+    });
+  }
+</script>

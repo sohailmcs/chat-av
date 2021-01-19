@@ -9,7 +9,7 @@ $(function () {
   if (menuID > 0) {
     GetMenu(menuID);
     $("#lblMenuHeading").text("Edit Menu");
-    $("#btnSubmit").text("Update Menu")
+    $("#btnSubmit").text("Update Menu");
   } else $("#lblMenuHeading").text("Create Menu");
   $("#frmMenu").submit(function (e) {
     e.preventDefault();
@@ -25,8 +25,11 @@ function AddMenu() {
     "Menu/AddMenu?MenuName=" +
     $("#txtMenuName").val() +
     "&MenuURL=" +
-    $("#txtMenuURL").val();
+    $("#txtMenuURL").val() +
+    "&MenuIcon=" +
+    $("#txtMenuIcon").val();
 
+  txtMenuIcon;
   ///==============start post request to add doctor
   $.ajax({
     url: url,
@@ -50,7 +53,7 @@ function AddMenu() {
         buttonsStyling: false,
         confirmButtonText: "<a style='color:#fff'>OK</a>",
       }).then((resuut) => {
-        window.location.reload();
+        window.location.href = "/admin/all-menus";
       });
     },
     error: function (xhr, textStatus, err) {
@@ -73,7 +76,9 @@ function EditMenu() {
     "&MenuName=" +
     $("#txtMenuName").val() +
     "&MenuURL=" +
-    $("#txtMenuURL").val();
+    $("#txtMenuURL").val() +
+    "&MenuIcon=" +
+    $("#txtMenuIcon").val();
 
   ///==============start post request to add doctor
   $.ajax({
@@ -98,8 +103,8 @@ function EditMenu() {
         confirmButtonClass: "btn btn-primary",
         buttonsStyling: false,
         confirmButtonText: "<a style='color:#fff'>OK</a>",
-        // }).then((resuut) => {
-        //   window.location.reload();
+         }).then((resuut) => {
+          window.location.href = "/admin/all-menus"
       });
     },
     error: function (xhr, textStatus, err) {
@@ -132,6 +137,7 @@ function GetMenu(id) {
       $.LoadingOverlay("hide");
       $("#txtMenuName").val(data.MenuName);
       $("#txtMenuURL").val(data.MenuUrl);
+      $("#txtMenuIcon").val(data.MenuIcon);
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
