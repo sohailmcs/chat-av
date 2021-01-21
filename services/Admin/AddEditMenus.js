@@ -43,7 +43,7 @@ function AddMenu() {
     "&MenuIcon=" +
     $("#txtMenuIcon").val() +
     "&MenuOrder=" +
-    $("txtMenuOrder").val();
+    $("#txtMenuOrder").val();
 
   txtMenuIcon;
   ///==============start post request to add doctor
@@ -96,7 +96,7 @@ function EditMenu() {
     "&MenuIcon=" +
     $("#txtMenuIcon").val() +
     "&MenuOrder=" +
-    $("txtMenuOrder").val();
+    $("#txtMenuOrder").val();
 
   ///==============start post request to add doctor
   $.ajax({
