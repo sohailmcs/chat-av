@@ -144,7 +144,7 @@ function EditUser() {
     UserType: $("#dboUserType option:selected").text(),
     PhoneNo: $("#txtPhoneNo").val(),
     PhoneExt: $("input:disabled").val(),
-    role: $("#dboRole").val(),
+    RoleId: $("#dboRole").val(),
     UserId: UserId,
   };
   ///==============start post request to add doctor
