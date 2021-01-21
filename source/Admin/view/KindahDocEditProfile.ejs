@@ -25,6 +25,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
 <!-- END: Custom CSS-->
 </head>
@@ -85,75 +86,77 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <div class="controls">
-                                                        <input readonly type="text" id="txtUname" name="name" class="form-control"
-                                                            placeholder="UserName" required
+                                                    <label class="form-label" for="txtUname">User Name</label>
+                                                        <input readonly type="text" id="txtUname" name="name" 
+                                                        class="form-input form-control" required
                                                             data-validation-required-message="This  field is required" />
-                                                    </div>
+                                                  
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <div class="controls">
+                                                    <label class="form-label" for="txtPwd">Password</label>
+                                                    <div class="input-group">
                                                           <input type="hidden" id="hdnpwd" value="" >
-                                                        <input type="text" id="txtPwd"  value="********" name="name" class="form-control"
-                                                            placeholder="Password" required
-                                                            data-validation-required-message="This  field is required" />
-                                                    </div>
+                                                        <input readonly type="password" id="txtPwd"  value="" name="name" 
+                                                             class="form-input form-control pwd" required
+                                                            data-validation-required-message="This  field is required" /> 
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default reveal" type="button">
+                                                                  <i class="fa fa-eye-slash" aria-hidden="true"></i></button>
+                                                              </span>  
+                                                            </div>
                                                 </div>
                                             </div>
                                            
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtFname" name="name" class="form-control"
-                                                            placeholder="First Name" required
+                                                    <label class="form-label" for="txtFname">First Name</label>
+                                                        <input type="text" id="txtFname" name="name" class="form-input form-control"
+                                                             required
                                                             data-validation-required-message="This  field is required" />
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtLname" name="name" class="form-control"
-                                                            placeholder="Last Name" required
+                                                    <label class="form-label" for="txtLname">Last Name</label>
+                                                        <input type="text" id="txtLname" name="name" class="form-input form-control"
+                                                             required
                                                             data-validation-required-message="This  field is required" />
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtPno" name="name" class="form-control"
-                                                            placeholder="Phone Number" required
+                                                    <label class="form-label" for="txtPno">Phone Number</label>
+                                                        <input type="text" id="txtPno" name="name" class="form-input form-control"
+                                                             required
                                                             data-validation-required-message="This  field is required" />
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <div class="controls">
-
-                                                        <input type="number" id="CallLimt" name="CallLimt" class="form-control"
-                                                        placeholder="Call Limit" required
-                                                        data-validation-required-message="This  field is required" />
-                                               
-                                                    </div>
+                                                    <label class="form-label" for="CallLimt">Call Limit</label>
+                                                        <input type="number" id="CallLimt" name="CallLimt"
+                                                         class="form-input form-control"
+                                                         required
+                                                        data-validation-required-message="This  field is required" />                                                    
                                                 </div>
                                             </div>
 
                                            
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <div class="controls">
-                                                        <select name="gender" id="dbogender" class="form-control">
+                                                    <label class="form-label" for="dbogender">Gender</label>
+                                                        <select name="gender" id="dbogender" class="form-input form-control">
                                                             <option value="0">Select Gender</option>
                                                             <option value="Male">Male</option>
                                                             <option value="Female">female</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                                        </select>                                                   
+                                                 
                                             </div>
 
                                         </div>
@@ -171,8 +174,9 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <fieldset class="form-group">
-                                                    <textarea class="form-control" id="txtbioGraphy" rows="3"
-                                                        placeholder="Biography"></textarea>
+                                                    <label class="form-label" for="txtbioGraphy">BioGraphy</label>
+                                                    <textarea class="form-input form-control" id="txtbioGraphy" rows="3"
+                                                        ></textarea>
                                                 </fieldset>
                                             </div>
                                         </div>
@@ -190,18 +194,18 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtClinicName" name="text" class="form-control"
-                                                            placeholder="Clinic Name" />
-                                                    </div>
+                                                    <label class="form-label" for="txtClinicName">Clinic Name</label>
+                                                        <input type="text" id="txtClinicName" name="text"
+                                                         class="form-input  form-control" />
+                                                    
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" name="clinicAddress" class="form-control"
-                                                            placeholder="Clinic Address" />
-                                                    </div>
+                                                    <label class="form-label" for="txtClinicAddress">Clinic Address</label>
+                                                        <input type="text" id="txtClinicAddress" name="clinicAddress"
+                                                         class="form-input form-control" />
+                                                    
                                                 </div>
                                             </div>
 
@@ -250,46 +254,49 @@
                                         <div class="form-body">
                                             <div class="row">
                                                 <div class="col-md-6 col-12">
-                                                    <div class="form-label-group">
-                                                        <input type="text" id="txtAddress1" class="form-control"
-                                                            placeholder="Address Line 1" name="fname-column" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-label-group">
-                                                        <input type="text" id="txtAddress2" class="form-control"
-                                                            placeholder="Address Line 2" name="lname-column" />
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="txtAddress1">Address1</label>
+                                                        <input type="text" id="txtAddress1" class="form-input form-control"
+                                                             name="fname-column" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <div class="controls">
-                                                            <select style="padding:5px 11px 5px;width:100%;"  name="dbocountry" id="dboCountry" class="form-control">
-                                                        </select>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-label-group">
-                                                        <input type="text" id="txtState" class="form-control"
-                                                            placeholder="State/Province" name="city-column" />
+                                                        <label class="form-label" for="txtAddress2">Address2</label>
+                                                        <input type="text" id="txtAddress2" class="form-input form-control"
+                                                             name="lname-column" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <div class="controls">
-                                                            <select style="padding:5px 11px 5px;width:100%;" name="dboCity" id="dboCity" class="form-control"></select>                                                           
+                                                        <label class="form-label" for="dboCountry">Country</label>
+                                                            <select style="padding:5px 11px 5px;width:100%;" 
+                                                             name="dbocountry" id="dboCountry" class="form-input form-control">
+                                                        </select>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="txtState">State</label>
+                                                        <input type="text" id="txtState" class="form-input form-control"
+                                                             name="city-column" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="dboCity">City</label>
+                                                            <select style="padding:5px 11px 5px;width:100%;"
+                                                             name="dboCity" id="dboCity" class="form-input form-control"></select>                                                           
                                                             
-                                                            </div>
                                                         </div>
                                                     
                                                 </div>
 
                                                 <div class="col-md-6 col-12">
-                                                    <div class="form-label-group">
-                                                        <input  type="text" id="txtZip" class="form-control"
-                                                             placeholder="Zip Postal Code" />
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="txtZip">Zip</label>
+                                                        <input  type="text" id="txtZip" class="form-input form-control"
+                                                              />
                                                     </div>
                                                 </div>
                                             </div>
@@ -309,15 +316,17 @@
                                         <div class="form-body">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <div class="form-label-group">
-                                                        <input type="text" id="txtServices" class="form-control"
-                                                            placeholder="Services" name="fname-column" />
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="txtServices">Services</label>
+                                                        <input type="text" id="txtServices" class="form-input form-control"
+                                                             name="fname-column" />
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <div class="form-label-group">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="txtspe">Specialization</label>
                                                         <select name="Specialization" id="txtspe"
-                                                            class="form-control">
+                                                            class="form-input form-control">
                                                         </select>
                                                     </div>
                                                 </div>
@@ -338,9 +347,10 @@
                                                 <div data-repeater-list="group-a">
                                                     <div data-repeater-item>
                                                         <div class="row justify-content-between">
-                                                            <div class="col-md-3 col-sm-12 form-group">
+                                                            <div class="col-md-3 col-sm-12 form-group focused">
+                                                                <label class="form-label" for="dboProficiency">Proficiency</label>
                                                                 <select name="Proficiency"  multiple="multiple" id="dboProficiency"
-                                                                        class="form-control">
+                                                                        class="form-input form-control">
                                                                    <option value="Arabic">Arabic</option>
                                                                    <option value="English">English</option>
                                                                    </select>
@@ -373,14 +383,16 @@
                                                                 <div data-repeater-item>
                                                                     <div class="row justify-content-between">
                                                                         <div class="col-md-3 col-sm-12 form-group">
-                                                                            <input type="text" class="form-control"
-                                                                                id="txtDegree" placeholder="Degree" />
+                                                                            <label class="form-label" for="txtDegree">Degree </label>
+                                                                            <input type="text" class="form-input form-control"
+                                                                                id="txtDegree"  />
                                                                         </div>
                                                                        
                                                                         <div class="col-md-3 col-sm-12 form-group">
-                                                                            <div class="form-label-group">
+                                                                            <div class="form-group">
+                                                                                <label class="form-label" for="dboYear">Year</label>
                                                                                 <select name="Year" id="dboYear"
-                                                                                    class="form-control">
+                                                                                    class="form-input form-control">
                                                                                     <option value="0">Year of completion
                                                                                     </option>
                                                                                     <option value="2020">2020</option>
@@ -450,24 +462,27 @@
                                                             <div data-repeater-list="group-a">
                                                                 <div data-repeater-item>
                                                                     <div class="row justify-content-between">
-                                                                        <div class="col-md-3 col-sm-12 form-group">
-                                                                            <input type="text" class="form-control"
-                                                                                id="txtHospital" placeholder="Hospital" />
+                                                                        <div class="col-md-3 col-sm-12 form-group ">
+                                                                            <label class="form-label" for="txtHospital">Hispital Name</label>
+                                                                            <input type="text" class="form-input form-control"
+                                                                                id="txtHospital"  />
                                                                         </div>
-                                                                        <div class="col-md-3 col-sm-12 form-group">
-                                                                            <input id="txtTo" placeholder="To" class="form-control"
+                                                                        <div class="col-md-3 col-sm-12 form-group focused">
+                                                                            <label class="form-label" for="txtTo">Start To</label>
+                                                                            <input id="txtTo"  class="form-input form-control"
                                                                                 type="date"
                                                                                >
                                                                         </div>
-                                                                        <div class="col-md-3 col-sm-12 form-group">
-                                                                            <input id="txtFrom" placeholder="From"
-                                                                                class="form-control" type="date"
-                                                                                o>
+                                                                        <div class="col-md-3 col-sm-12 form-group focused">
+                                                                            <label class="form-label" for="txtFrom">Start From</label>
+                                                                            <input id="txtFrom" 
+                                                                                class="form-input form-control" type="date">
                                                                         </div>
                                                                         <div class="col-md-3 col-sm-12 form-group">
-                                                                            <input type="text" class="form-control"
+                                                                            <label class="form-label" for="txtDesignation">Designation</label>
+                                                                            <input type="text" class="form-input form-control"
                                                                                 id="txtDesignation"
-                                                                                placeholder="Designation" />
+                                                                                 />
                                                                         </div>
 
                                                                         <div
@@ -519,14 +534,16 @@
                                                                 <div data-repeater-item>
                                                                     <div class="row justify-content-between">
                                                                         <div class="col-md-4 col-sm-12 form-group">
-                                                                            <input type="text" class="form-control"
-                                                                                id="txtAward" placeholder="Award" />
+                                                                            <label class="form-label" for="txtAward">Award</label>
+                                                                            <input type="text" class="form-input form-control"
+                                                                                id="txtAward"  />
                                                                         </div>
 
                                                                         <div class="col-md-4 col-sm-12 form-group">
-                                                                            <div class="form-label-group">
+                                                                            
+                                                                                <label class="form-label" for="txtAwarYear">Award Year</label>
                                                                                 <select name="Year" id="txtAwarYear"
-                                                                                    class="form-control">
+                                                                                    class="form-input form-control">
                                                                                     <option value="2020">2021</option>                                                                                    
                                                                                     <option value="2020">2020</option>
                                                                                     <option value="2019">2019</option>
@@ -543,7 +560,7 @@
                                                                                     <option value="2008">2008</option>
                                                                                     <option value="2007">2007</option>
                                                                                 </select>
-                                                                            </div>
+                                                                            
                                                                         </div>
 
                                                                         <div

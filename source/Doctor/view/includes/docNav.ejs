@@ -36,8 +36,9 @@
               >
                 <div class="user-nav d-sm-flex d-none">
                   <span UserInfo="<%= userId %>" class="user-name"
-                    ><strong><%= userName %></strong></span
-                  ><span class="text-muted">Available</span>
+                    ><strong><%= userName %></strong></span>
+                    <input type="hidden" id="hdnroleId" value="<%= roleId %>" />
+                    <span class="text-muted">Available</span>
                 </div>
               </a>
             </li>

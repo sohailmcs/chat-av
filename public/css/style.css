@@ -11,11 +11,15 @@ PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
 
 /*=============start animated placeholder============*/
+select.form-control:not([multiple="multiple"]) {
+  -webkit-appearance:checkbox !important;
+}
+
+
 
 .form-group {
-  position:relative;  
+  position: relative;
   margin-top: 30px;
-  
 }
 
 .form-label {
@@ -30,11 +34,11 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 
 .focused .form-label {
   transform: translateY(-125%);
-  font-size: .75em;
+  font-size: 0.75em;
 }
 
 .form-input {
-  font-size:15px !important;
+  font-size: 15px !important;
   position: relative !important;
   padding: 12px 0px 5px 8px !important;
   width: 100% !important;
@@ -44,58 +48,54 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   transition: box-shadow 150ms ease-out !important;
 }
 .form-input:focus {
-    box-shadow: 0 2px 0 0 blue;
-  }
-
+  box-shadow: 0 2px 0 0 blue;
+}
 
 .form-input.filled {
   box-shadow: 0 2px 0 0 lightgreen !important;
 }
 /*=============end animated placeholder=============*/
 
-
-
-
-.form-control+.input-group-btn:not(:first-child) {
+.form-control + .input-group-btn:not(:first-child) {
   border-left: 0;
 }
 .input-group-btn {
-  padding:3px 12px 3px 5px;
+  padding: 3px 12px 3px 5px;
   margin-bottom: 0;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.25;
   color: #495057;
   text-align: center;
-  background-color: #e9ecef;
-  border: 1px solid rgba(0,0,0,.15);
-  border-radius: .25rem;
+  position: absolute;
+  right: 0;
+  border-radius: 0.25rem;
 }
 
-.input-group-btn:not(:first-child)
-{
+.input-group-btn:not(:first-child) {
   border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 .input-group-btn .btn {
-  padding:0;
+  padding: 0;
   width: auto;
 }
 
-.picker__select--year, .picker__select--month {
-  width:auto !important;
+.picker__select--year,
+.picker__select--month {
+  width: auto !important;
 }
 
-.disabledTab{
+.disabledTab {
   pointer-events: none;
 }
 
 #spnAge {
-  color:#076dfa;
-  font-size:14px;
+  color: #076dfa;
+  font-size: 14px;
 }
 .txtBiography ul {
-  padding-left:0;
+  padding-left: 0;
 }
 .TypeLabel {
   font-size: 11px;

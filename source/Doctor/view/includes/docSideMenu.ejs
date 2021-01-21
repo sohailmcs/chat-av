@@ -39,7 +39,7 @@
         </label>
       </li>
 
-      <a class="firstChild" href="/doctor/dashboard">
+      <!-- <a class="firstChild" href="/doctor/dashboard">
         <button class="sideButtons hvr-sweep-to-right">
           <i class="bx bx-layer"></i><span> Doctor Dashboard</span>
         </button>
@@ -63,21 +63,73 @@
         <button class="sideButtons hvr-sweep-to-right">
           <i class="bx bxs-phone-call bx-rotate-90"></i><span>Call Log</span>
         </button>
-      </a>
+      </a> -->
     </ul>
   </div>
 </div>
 
-<!-- <script>
-  function OnlineOffline() {
-    var x = document.getElementById("myDIV");
-
-    if (x.innerHTML === "Online") {
-      x.innerHTML = "Offline";
-      x.style.color = "rgb(228, 83, 83)";
-    } else {
-      x.innerHTML = "Online";
-      x.style.color = "#39da8a";
-    }
+<script>
+  $(function () {
+    GetMenus();
+  });
+  function GetMenus() {
+    var url =
+      baseURL +
+      "Permissions/getMenuBasedOnRole?RoleId=" +
+      $("#hdnroleId").val();
+    ///==============start post request to add doctor
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "GET",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {
+        //   $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+        var cls = "firstChild";
+        $.each(data, function (ind, v) {
+          if (ind == 0) {
+            $("#main-menu-navigation").append(
+              "<a class='firstChild' href='" +
+                v.MenuUrl +
+                "''>" +
+                "<button class='sideButtons hvr-sweep-to-right'>" +
+                "<i class='" +
+                v.MenuIcon +
+                "'></i><span>" +
+                v.MenuName +
+                "</span>" +
+                "</button> </a>"
+            );
+          } else {
+            $("#main-menu-navigation").append(
+              "<a href='" +
+                v.MenuUrl +
+                "''>" +
+                "<button class='sideButtons hvr-sweep-to-right'>" +
+                "<i class='" +
+                v.MenuIcon +
+                "'></i><span>" +
+                v.MenuName +
+                "</span>" +
+                "</button> </a>"
+            );
+          }
+        });
+      },
+      error: function (xhr, textStatus, err) {
+        if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+          console.log(xhr.statusText);
+        else console.log(xhr.statusText);
+      },
+      complete: function (data) {
+        // Hide Loading
+      },
+    });
   }
-</script> -->
+</script>

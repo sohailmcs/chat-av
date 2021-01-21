@@ -55,6 +55,7 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
 
@@ -69,6 +70,7 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
 
@@ -83,6 +85,7 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
 
@@ -97,22 +100,11 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
 
-  async getDoctorDashboard(req, res, next) {
-    // var UserName = req.cookies.kindahUserName;
-    // var userId = req.cookies.kindahUserId;
-
-    // console.log('userName '+req.session.userName );
-    // console.log('userId '+req.session.userId);
-    // console.log('userType '+req.session.userType);
-
-    // res.set(
-    //   "Cache-Control",
-    //   "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
-    // );
-    //res.render("Doctor/docDashboard.ejs", {
+  async getDoctorDashboard(req, res, next) {  
     res.render(appRoot + "/source/Doctor/view/docDashboard", {
       pageTitle: "Doctor Dashboard ",
       userName: req.session.userName,
@@ -120,6 +112,7 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
 
@@ -134,6 +127,7 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
 
@@ -145,6 +139,7 @@ class doctorController {
       pageTitle: "Doctor Video Call ",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -160,6 +155,7 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
+      roleId:req.session.roleId
     });
   }
 }

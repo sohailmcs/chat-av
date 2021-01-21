@@ -53,6 +53,7 @@ function Filldatatable(data) {
       },
       { data: "MenuName" },
       { data: "MenuUrl" },
+      { data: "MenuOrder" },
 
       {
         mRender: function (data, type, row) {

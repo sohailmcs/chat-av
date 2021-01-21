@@ -11,8 +11,7 @@ $(function () {
     GetUser(UserId);
     $("#lblUserHeading").text("Edit User");
     $("#btnSubmit").text("Update User");
-$("#txtFirstName, #txtLastName").attr('readonly','readonly');
-
+    $("#txtFirstName, #txtLastName").attr("readonly", "readonly");
   } else $("#lblUserHeading").text("Create User");
   $("#frmSignUpAdmin").submit(function (e) {
     e.preventDefault();
@@ -20,19 +19,36 @@ $("#txtFirstName, #txtLastName").attr('readonly','readonly');
     else AddUser();
   });
 
-
-  $(".reveal").on('click',function() {
+  //==================show hide password when click eye icon====
+  $(".reveal").on("click", function () {
     var $pwd = $(".pwd");
-    if ($pwd.attr('type') === 'password') {
-      $(this).find('i').addClass( "fa-eye-slash" );
-      $(this).find('i').removeClass( "fa-eye" );
-        $pwd.attr('type', 'text');
+    if ($pwd.attr("type") === "password") {
+      $(this).find("i").addClass("fa-eye-slash");
+      $(this).find("i").removeClass("fa-eye");
+      $pwd.attr("type", "text");
     } else {
-        $pwd.attr('type', 'password');
-        $(this).find('i').removeClass( "fa-eye-slash" );
-        $(this).find('i').addClass( "fa-eye" );
+      $pwd.attr("type", "password");
+      $(this).find("i").removeClass("fa-eye-slash");
+      $(this).find("i").addClass("fa-eye");
     }
+  });
+ //===========start animated placeholder============
+ $(".form-input").focus(function () {
+  $(this).parents(".form-group").addClass("focused");
 });
+
+$(".form-input").blur(function () {
+  var inputValue = $(this).val();
+  if (inputValue == "") {
+    $(this).removeClass("filled");
+    $(this).parents(".form-group").removeClass("focused");
+  } else {
+    $(this).addClass("filled");
+  }
+});
+
+
+
 }); //====end of $function
 
 //== creat doctor with login
@@ -49,7 +65,7 @@ function AddUser() {
         "</b><br> ",
     });
     return false;
-  } 
+  }
 
   var model = {
     FirstName: $("#txtFirstName").val(),
@@ -59,7 +75,7 @@ function AddUser() {
     Password: $("#txtPassword").val(),
     PhoneNo: $("#txtPhoneNo").val().replace(/^0+/, ""), //======remove leadng zero from phone number
     PhoneExt: $("input:disabled").val(),
-    UserType:$("#dboUserType option:selected").text(),
+    UserType: $("#dboUserType option:selected").text(),
     RoleId: $("#dboRole").val(),
     pageName: "Admin Signup",
     pageUrl: window.location.href,
@@ -96,7 +112,7 @@ function AddUser() {
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "406" && xhr.statusText == "Not Acceptable") {
-     // if (xhr.status == "406" && textStatus == "NotAcceptable") {
+        // if (xhr.status == "406" && textStatus == "NotAcceptable") {
         Swal.fire({
           type: "info",
           title: "SORRY!",
@@ -129,7 +145,7 @@ function EditUser() {
     PhoneNo: $("#txtPhoneNo").val(),
     PhoneExt: $("input:disabled").val(),
     role: $("#dboRole").val(),
-    UserId:UserId
+    UserId: UserId,
   };
   ///==============start post request to add doctor
   $.ajax({
@@ -205,6 +221,15 @@ function GetUser(id) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
+      var inputValue = $(".form-input").val();
+      if (inputValue == "") {
+        $(".form-input").removeClass("filled");
+        $(".form-input").parents(".form-group").removeClass("focused");
+      } else {
+        $(".form-input").addClass("filled");
+        $(".form-input").parents(".form-group").addClass("focused");
+      }
+
       // Hide Loading
       $.LoadingOverlay("hide");
     },

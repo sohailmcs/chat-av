@@ -36,6 +36,7 @@ class defaultController {
       pageTitle: "Kindah Create Doctor",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -47,6 +48,7 @@ class defaultController {
       pageTitle: "Kindah All Doctors",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -58,6 +60,7 @@ class defaultController {
       pageTitle: "Doctor  Edit Profile",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -66,6 +69,7 @@ class defaultController {
       pageTitle: "Kindah All Specialities",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -74,6 +78,7 @@ class defaultController {
       pageTitle: "Kindah Edit Speciality",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -82,6 +87,7 @@ class defaultController {
       pageTitle: "Kindah All Roles",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -90,6 +96,7 @@ class defaultController {
       pageTitle: "Kindah Edit Roles",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -98,6 +105,7 @@ class defaultController {
       pageTitle: "Kindah All Menus",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -106,6 +114,7 @@ class defaultController {
       pageTitle: "Kindah Edit Menus",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -114,6 +123,7 @@ class defaultController {
       pageTitle: "Kindah Permissions",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -123,6 +133,7 @@ class defaultController {
       pageTitle: "Kindah All Users",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -132,6 +143,7 @@ class defaultController {
       pageTitle: "Kindah Edit Menus",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -140,6 +152,7 @@ class defaultController {
       pageTitle: "Kindah All Roles",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 
@@ -148,6 +161,7 @@ class defaultController {
       pageTitle: "Kindah Edit Roles",
       userName: req.session.userName,
       userId: req.session.userId,
+      roleId:req.session.roleId
     });
   }
 

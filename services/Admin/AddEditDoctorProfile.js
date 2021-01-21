@@ -6,7 +6,35 @@ var doctorId = urlParams.get("id");
 if (urlParams.has("id")) doctorId = urlParams.get("id");
 
 $(function () {
-  
+   //===========start animated placeholder============
+   $(".form-input").focus(function () {
+    $(this).parents(".form-group").addClass("focused");
+  });
+
+  $(".form-input").blur(function () {
+    var inputValue = $(this).val();
+    if (inputValue == "") {
+      $(this).removeClass("filled");
+      $(this).parents(".form-group").removeClass("focused");
+    } else {
+      $(this).addClass("filled");
+    }
+  });
+
+  //==================show hide password when click eye icon====
+  $(".reveal").on("click", function () {
+    var $pwd = $(".pwd");
+    if ($pwd.attr("type") === "password") {
+      $(this).find("i").addClass("fa-eye-slash");
+      $(this).find("i").removeClass("fa-eye");
+      $pwd.attr("type", "text");
+    } else {
+      $pwd.attr("type", "password");
+      $(this).find("i").removeClass("fa-eye-slash");
+      $(this).find("i").addClass("fa-eye");
+    }
+  });
+
   $("#dboCountry").select2({
     placeholder: "Select Country",
   });
@@ -23,10 +51,10 @@ $(function () {
   });
 
   GetAllSpecialities();
-  $("#txtPwd").focusout(function () {
-    var txt = $(this).val();
-    $("#hdnpwd").val(txt);
-  });
+  // $("#txtPwd").focusout(function () {
+  //   var txt = $(this).val();
+  //   $("#hdnpwd").val(txt);
+  // });
 
   $("#txtbioGraphy").kendoEditor({
     resizable: {
@@ -137,7 +165,8 @@ function SetDoctorProfile(d) {
   $("#result").html(div);
 
   $("#txtUname").val(d.Email);
-  $("#hdnpwd").val(d.password);
+  //$("#hdnpwd").val(d.password);
+  $("#txtPwd").val(d.password);
   $("#txtFname").val(d.FirstName);
   $("#txtLname").val(d.LastName);
   $("#txtbioGraphy").data("kendoEditor").value(d.Biography);
@@ -206,6 +235,7 @@ function setDoctorEducation(data) {
 }
 
 function GetDoctorsProfile(doctorId) {
+  
   var url = baseURL + "Doctor/GetDoctorProfile?doctorId=" + doctorId;
   $.ajax({
     url: url,
@@ -229,6 +259,18 @@ function GetDoctorsProfile(doctorId) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
+      var inputValue = $(".form-input").val();
+     
+      $(".form-input").each(function(){
+        if ($(this).val() == "") {      
+          $(this).removeClass("filled");
+          $(this).parents(".form-group").removeClass("focused");
+        } else {
+          $(this).addClass("filled");
+          $(this).parents(".form-group").addClass("focused");
+        }
+      })
+     
       // Hide Loading
       $.LoadingOverlay("hide");
     },
@@ -263,7 +305,7 @@ function AddEditDoctorProfile(doctorId) {
   modelDetails.DoctorId = doctorId;
   modelDetails.FirstName = $("#txtFname").val();
   modelDetails.LastName = $("#txtLname").val();
-  modelDetails.password = $("#hdnpwd").val();
+  modelDetails.password = $("#txtPwd").val();
 
   modelDetails.FullName = $("#txtFname").val() + " " + $("#txtLname").val();
   modelDetails.Specialization = jQuery("#txtspe option:selected").text();
