@@ -60,10 +60,19 @@ router.get(
   "/all-users",
   AdminController.getkindahGetAllUsers.bind(AdminController)
 );
-
 router.get(
   "/edit-user",
   AdminController.getEditUser.bind(AdminController)
+);
+
+router.get(
+  "/all-values",
+  AdminController.getkindahGetAllValues.bind(AdminController)
+);
+
+router.get(
+  "/edit-values",
+  AdminController.getEditValues.bind(AdminController)
 );
 
 router.get(
@@ -75,6 +84,18 @@ router.get(
   "/edit-patient",
   AdminController.getEditPatient.bind(AdminController)
 );
+
+router.get(
+  "/all-feedBack",
+  AdminController.getkindahGetAllFeedBack.bind(AdminController)
+);
+
+router.get(
+  "/view-details",
+  AdminController.getViewFeedBack.bind(AdminController)
+);
+
+
 // router.get("/KindahAdmin", KindahController.getkindahAdmin);
 // router.get("/KindahCreateDoctor", KindahController.getkindahCreateDoctor);
 // router.get("/KindahGetAllDoctors", KindahController.getkindahGetAllDoctors);

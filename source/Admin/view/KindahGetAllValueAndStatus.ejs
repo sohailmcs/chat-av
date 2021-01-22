@@ -1,0 +1,105 @@
+<%- include('includes/AdminHead.ejs') %>
+
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+
+<!-- END: Vendor CSS-->
+
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+<link rel="stylesheet" type="text/css" href="/css/colors.css" />
+<link rel="stylesheet" type="text/css" href="/css/components.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" 
+
+/>
+
+<!-- END: Theme CSS-->
+
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+<!-- END: Page CSS-->
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<!-- END: Custom CSS-->
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<!-- body tag and blue nav bar  -->
+<%- include('includes/adminNav.ejs') %>
+
+<!-- complete side menu of doctor -->
+<%- include('includes/adminSideMenu.ejs') %>
+
+<!-- BEGIN: Content-->
+
+
+<!-- BEGIN: Content-->
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row"></div>
+        <div class="content-body">        <div class="d-flex flex-row">
+                <div class="page-heading">
+                    <h3>KINDAH Value And Status</h3>
+                </div>
+            </div>
+            <div class="row">
+              
+                <div class="col-sm-12 text-right mb-1">
+                    <a href="/admin/edit-values">
+                    <button type="buton" class="btn btn-primary">
+                        Add Value
+                    </button>
+                </a>
+                </div>
+            </div>
+
+            <!-- Start  table -->
+
+          
+            <div class="table-responsive">
+                
+                <table class="table call-log-table" id="tblValueAndStatus">
+                    <thead>
+                        <tr class="call-log-table-header">
+                            <th class="call-log-table-head">ValueID</th>
+                            <!-- <th class="call-log-table-head">Values English</th>
+                            <th class="call-log-table-head">Values Arabic</th> -->
+                            <th class="call-log-table-head">Key Value</th>
+                            <th class="call-log-table-head">Action</th>                            
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <!-- End  table -->
+        </div>
+    </div>
+</div>
+<!-- END: Content-->
+
+<!-- END: Content-->
+
+<!-- BEGIN: Vendor JS-->
+<!-- <script src="/js/vendors.min.js"></script> -->
+
+<script src="/js/vertical-menu-light.js"></script>
+<script src="/js/app-menu.js"></script>
+<script src="/js/app.js"></script>
+
+<script type="text/javascript" charset="utf8" 
+
+src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+
+<!-- BEGIN: Services calling JS-->
+<script src="/services/Admin/ManageTermsAndConditions.js"></script>
+<script src="/services/loadingoverlay.min.js"></script>
+<!-- END: JS-->
+
+<%- include('../../Default/view/includes/End.ejs') %>

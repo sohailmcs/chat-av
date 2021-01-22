@@ -147,6 +147,25 @@ class defaultController {
     });
   }
 
+  async getkindahGetAllValues(req, res, next) {    
+    res.render(appRoot + "/source/Admin/view/KindahGetAllValueAndStatus", {
+      pageTitle: "Kindah All Status",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      roleId:req.session.roleId
+    });
+  }
+
+
+  async getEditValues(req, res, next) {
+    res.render(appRoot + "/source/Admin/view/KindahAddEditTermsConditions", {
+      pageTitle: "Kindah Edit Status",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      roleId:req.session.roleId
+    });
+  }
+
   async getkindahGetAllPatient(req, res, next) {    
     res.render(appRoot + "/source/Admin/view/KindahGetAllPatients", {
       pageTitle: "Kindah All Roles",
@@ -165,6 +184,24 @@ class defaultController {
     });
   }
 
+
+  async getkindahGetAllFeedBack(req, res, next) {    
+    res.render(appRoot + "/source/Admin/view/KindahGetAllFeedback", {
+      pageTitle: "Kindah All Roles",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      roleId:req.session.roleId
+    });
+  }
+
+  async getViewFeedBack(req, res, next) {
+    res.render(appRoot + "/source/Admin/view/KindahAddEditFeedback", {
+      pageTitle: "Kindah Edit Roles",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      roleId:req.session.roleId
+    });
+  }
 
 
 }

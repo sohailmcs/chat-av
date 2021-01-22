@@ -1,51 +1,83 @@
 //var baseURL = "https://kindahclinic.com/KindahService/";
 //var baseURL = "http://localhost:1042/KindahService/";
 var urlParams = new URLSearchParams(window.location.search);
-var menuID = 0;
+var KeyId = 0;
 //var roleID = urlParams.get("id");
-if (urlParams.has("id")) menuID = urlParams.get("id");
+if (urlParams.has("id")) KeyId = urlParams.get("id");
 
 $(function () {
-  if (menuID > 0) {
-    GetMenu(menuID);
-    $("#lblMenuHeading").text("Edit Menu");
-    $("#btnSubmit").text("Update Menu");
-  } else $("#lblMenuHeading").text("Create Menu");
-  $("#frmMenu").submit(function (e) {
+  if (KeyId > 0) {
+    GetValueAndStatus(KeyId);
+    $("#lblHeading").text("Edit Value And Status");
+    $("#btnSubmit").text("Update");
+  } else $("#lblHeading").text("Update Value And Status");
+  $("#frmTerms").submit(function (e) {
     e.preventDefault();
-    if (menuID > 0) EditMenu();
-    else AddMenu();
+    if (KeyId > 0) EditValueAndStatus();
+    else AddGetValueAndStatus();
   });
-  //===========start animated placeholder============
-  $(".form-input").focus(function () {
-    $(this).parents(".form-group").addClass("focused");
-  });
-
-  $(".form-input").blur(function () {
-    var inputValue = $(this).val();
-    if (inputValue == "") {
-      $(this).removeClass("filled");
-      $(this).parents(".form-group").removeClass("focused");
-    } else {
-      $(this).addClass("filled");
-    }
+  $("#txtValueNamEn").kendoEditor({
+    tools: [
+      "bold",
+      "italic",
+      "underline",
+      "strikethrough",
+      "justifyLeft",
+      "justifyCenter",
+      "justifyRight",
+      "justifyFull",
+      "insertUnorderedList",
+      "insertOrderedList",
+      "indent",
+      "outdent",
+      "createLink",
+      "unlink",
+      "insertImage",
+      "insertFile",
+      "subscript",
+      "superscript",
+      "tableWizard",
+      "createTable",
+      "addRowAbove",
+      "addRowBelow",
+      "addColumnLeft",
+      "addColumnRight",
+      "deleteRow",
+      "deleteColumn",
+      "viewHtml",
+      "formatting",
+      "cleanFormatting",
+      "fontName",
+      "fontSize",
+      "foreColor",
+      "backColor",
+      "print",
+      "pdf",
+    ],
+    pdf: {
+      fileName: "TermsAndCondtions.pdf",
+      proxyURL: "https://demos.telerik.com/kendo-ui/service/export",
+      paperSize: "a4",
+      margin: {
+        bottom: 20,
+        left: 20,
+        right: 20,
+        top: 20,
+      },
+    },
   });
 }); //====end of $function
 
 //== creat doctor with login
-function AddMenu() {
-  var url =
-    baseURL +
-    "Menu/AddMenu?MenuName=" +
-    $("#txtMenuName").val() +
-    "&MenuURL=" +
-    $("#txtMenuURL").val() +
-    "&MenuIcon=" +
-    $("#txtMenuIcon").val() +
-    "&MenuOrder=" +
-    $("#txtMenuOrder").val();
+function AddGetValueAndStatus() {
+  var url = baseURL + "ValueAndStatus/AddValueAndStatus";
+  var model = {
+    ValueNameEn: $("#txtValueNamEn").value(),
+    ValueNameAr: $("#txtValueNamEn").value(),
+    KeyValue: "TermsAndConditions",
+  };
 
-   ///==============start post request to add doctor
+  ///==============start post request to add doctor
   $.ajax({
     url: url,
     headers: {
@@ -54,7 +86,7 @@ function AddMenu() {
     type: "POST",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
-    data: "",
+    data: model,
     beforeSend: function () {
       $.LoadingOverlay("show");
     },
@@ -62,13 +94,13 @@ function AddMenu() {
       $.LoadingOverlay("hide");
       Swal.fire({
         title: "Confirmation!",
-        text: "Menu Created ",
+        text: "Saved Successfully ",
         type: "success",
         confirmButtonClass: "btn btn-primary",
         buttonsStyling: false,
         confirmButtonText: "<a style='color:#fff'>OK</a>",
       }).then((resuut) => {
-        window.location.href = "/admin/all-menus";
+        window.location.href = "/admin/all-values";
       });
     },
     error: function (xhr, textStatus, err) {
@@ -83,19 +115,13 @@ function AddMenu() {
   });
 }
 //== Edit menu
-function EditMenu() {
+function EditValueAndStatus() {
   var url =
     baseURL +
-    "Menu/UpdateMenu?MenuId=" +
-    menuID +
-    "&MenuName=" +
-    $("#txtMenuName").val() +
-    "&MenuURL=" +
-    $("#txtMenuURL").val() +
-    "&MenuIcon=" +
-    $("#txtMenuIcon").val() +
-    "&MenuOrder=" +
-    $("#txtMenuOrder").val();
+    "ValueAndStatus/UpdateKeyAndValueStatus?KeyId=" +
+    KeyId +
+    "&ValueEn=" +
+    $("#txtValueNamEn").data("kendoEditor").value();
 
   ///==============start post request to add doctor
   $.ajax({
@@ -115,13 +141,13 @@ function EditMenu() {
       $.LoadingOverlay("hide");
       Swal.fire({
         title: "Confirmation!",
-        text: "Menu Edit ",
+        text: "Updated Successfully",
         type: "success",
         confirmButtonClass: "btn btn-primary",
         buttonsStyling: false,
         confirmButtonText: "<a style='color:#fff'>OK</a>",
       }).then((resuut) => {
-        window.location.href = "/admin/all-menus";
+        window.location.href = "/admin/all-values";
       });
     },
     error: function (xhr, textStatus, err) {
@@ -136,8 +162,8 @@ function EditMenu() {
   });
 }
 
-function GetMenu(id) {
-  var url = baseURL + "Menu/GetMenu?MenuId=" + id;
+function GetValueAndStatus(id) {
+  var url = baseURL + "ValueAndStatus/GetValueAndStatusByKey?valueKey=" + id;
   $.ajax({
     url: url,
     headers: {
@@ -152,10 +178,7 @@ function GetMenu(id) {
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
-      $("#txtMenuName").val(data.MenuName);
-      $("#txtMenuURL").val(data.MenuUrl);
-      $("#txtMenuIcon").val(data.MenuIcon);
-      $("#txtMenuOrder").val(data.MenuOrder);
+      $("#txtValueNamEn").data("kendoEditor").value(data.ValueNameEn);
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -163,15 +186,6 @@ function GetMenu(id) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
-      var inputValue = $(".form-input").val();
-      if (inputValue == "") {
-        $(".form-input").removeClass("filled");
-        $(".form-input").parents(".form-group").removeClass("focused");
-      } else {
-        $(".form-input").addClass("filled");
-        $(".form-input").parents(".form-group").addClass("focused");
-      }
-
       // Hide Loading
       $.LoadingOverlay("hide");
     },
