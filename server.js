@@ -156,7 +156,6 @@ socketServer.sockets.on("connection", function (socket) {
           // });
         } else if (clients[name].userType == "Patient") {
           //============send information for Patient offline to all online doctors
-
           // socket.broadcast.emit("UpdatePatientOnlineStatus", {
           //   uID: clients[name].userId,
           //   status: "Offline",

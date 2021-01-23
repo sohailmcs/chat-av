@@ -69,16 +69,16 @@
       userID = $(".user-name").attr("userinfo");
       var userType = "Doctor";
 
-      if (!localStorage.getItem("DoctoronlineStatus")) { 
-        changeDoctorOlineStaus(userID, "Online", uName);
-        localStorage.setItem("DoctoronlineStatus", "true");
       soc.emit("add-user", {
         username: uName,
         userId: userID,
         userType: userType,
       });
-    }
-     
+
+      if (!localStorage.getItem("DoctoronlineStatus")) {
+        changeDoctorOlineStaus(userID, "Online", uName);
+        localStorage.setItem("DoctoronlineStatus", "true");
+      }
     }); //============end of document.ready========
 
     function OpenCommunicationWindow(btn) {
@@ -93,16 +93,18 @@
       mDocId = userLoginId;
       mArea = "Doctor";
 
-      if (mCallLogId == 0){
-        $("#home-tab-justified, #profile-tab-justified").addClass("disabled").removeClass("active");
+      if (mCallLogId == 0) {
+        $("#home-tab-justified, #profile-tab-justified")
+          .addClass("disabled")
+          .removeClass("active");
         $("#home-just, #profile-just").removeClass("active");
-        $("#messages-tab-justified, #messages-just").addClass("active");        
-      }
-      else{
-        $("#home-tab-justified, #profile-tab-justified").removeClass("disabled");
+        $("#messages-tab-justified, #messages-just").addClass("active");
+      } else {
+        $("#home-tab-justified, #profile-tab-justified").removeClass(
+          "disabled"
+        );
         $("#messages-tab-justified, #messages-just").removeClass("active");
         $("#home-tab-justified, #home-just").addClass("active");
-        
       }
       $("#windowComm").modal({
         backdrop: "static",
