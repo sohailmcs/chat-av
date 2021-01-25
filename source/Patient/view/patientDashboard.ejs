@@ -40,7 +40,7 @@
   <!-- picture start -->
 
   <!-- description start -->
-      <div class="col-sm-7" style="display: inline-block;">
+      <div class="col-sm-4" style="display: inline-block;">
        <h5 class="docName status_{{DoctorId}}">
          Dr. {{FullName}}
           {{#OnlineStatus}} 
@@ -53,7 +53,12 @@
           <span class="txtDocOffLinneStatus">&nbsp;(Not Available Today)</span>
           {{/OnlineStatus}}
         </h5>
-        <span class="txtspecialization"><span style="font-weight:500"> Specialization :</span>  {{Specialization}}</span>
+        <span class="txtspecialization">
+          <span style="font-weight:500"> Rating :</span>
+           <i class='bx bxs-star'></i>
+           <i class='bx bxs-star'></i>
+           <i class='bx bxs-star'></i>
+      </span>
         
          <div class="modal-primary mr-1   ">                
                 <button  style="font-size:0.8rem"type="button" docID="{{DoctorId}}" class="pt-dash-button btndoctorProfile btn btn-outline-primary   btn-sm">
@@ -62,8 +67,15 @@
                 </button>
          </div>         
       </div>
-   <!-- description start -->
-
+   <!-- description end -->
+      <!--- payment area start -->
+      <div class="col-sm-3 mt-0">
+        <h5 class="docName status_1">Dr. {{FullName}} Fee </h5>
+        {{#FeeStructure}}
+        <span class="txtspecialization"><b> {{CallType}} : {{FeeAmount}} SAR / {{CallDuration}}</b></span>
+        {{/FeeStructure}}
+      </div>
+      <!--- payment area end -->
     <!-- buttons start -->
           <div class="col-sm-3" >            
               <!-- VIEW DOCTOR PROFILE START -->             
@@ -301,10 +313,19 @@
     <div class="content-body">
         
       <div class="d-flex flex-row">
-        <div class="page-heading">
-          <h3><i class='iconapp bx bxs-data'></i><span>Choose a Provider</span></h3>
+        
+        <div class="page-heading col-sm-10">
+          <h3><i class='iconapp bx bxs-data'></i><span id="lblDoctorListHeading"></span></h3>
+        </div><!--end of page-heading-->
+        <div class="col-sm-2 text-left mt-2 ">
+        <label>Order By Min/Max fee</label>
+          <select class="form-control" id="dbofee">
+            <option value="min">Min</option>
+            <option value="max">Max</option>
+          </select>
         </div>
-      </div>
+      </div><!--end of row-->
+
       <div class="email-user-list list-group">
         <ul class="users-list-wrapper media-list" id="doctorList">
 

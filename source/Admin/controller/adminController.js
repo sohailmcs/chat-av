@@ -184,6 +184,26 @@ class defaultController {
     });
   }
 
+ async getkindahGetAllFee(req, res, next) {    
+    res.render(appRoot + "/source/Admin/view/KindahGetAllFeeStructure", {
+      pageTitle: "Kindah All Roles",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      roleId:req.session.roleId
+    });
+  }
+
+  async getEditFee(req, res, next) {
+    res.render(appRoot + "/source/Admin/view/KindahAddEditFeeStructure", {
+      pageTitle: "Kindah Edit Roles",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      roleId:req.session.roleId
+    });
+  }
+
+
+
 
   async getkindahGetAllFeedBack(req, res, next) {    
     res.render(appRoot + "/source/Admin/view/KindahGetAllFeedback", {

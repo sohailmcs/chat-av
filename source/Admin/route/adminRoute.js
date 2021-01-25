@@ -95,6 +95,16 @@ router.get(
   AdminController.getViewFeedBack.bind(AdminController)
 );
 
+router.get(
+  "/all-fee",
+  AdminController.getkindahGetAllFee.bind(AdminController)
+);
+
+router.get(
+  "/addEdit-Fee",
+  AdminController.getEditFee.bind(AdminController)
+);
+
 
 // router.get("/KindahAdmin", KindahController.getkindahAdmin);
 // router.get("/KindahCreateDoctor", KindahController.getkindahCreateDoctor);

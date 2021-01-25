@@ -18,7 +18,13 @@ var currentDt = new Date().toLocaleDateString("en-US", options);
 
 //==login==========
 $(function () {
-  GetDoctors(false)
+  $("#lblDoctorListHeading").text(spName);
+  $("#dbofee").on("change", function () {
+    var value = $(this).val();
+    GetDoctors(false, value);
+  });
+
+  GetDoctors(false, "min")
     .then((data) => {
       SetDoctorsList(data);
     })
@@ -156,9 +162,14 @@ function SetDoctorsList(data) {
   var Usertemplate = $("#user-template").html();
   $("#doctorList").html(Mustache.to_html(Usertemplate, data));
 }
-function GetDoctors(isSync) {
+function GetDoctors(isSync, orderByFee) {
   return new Promise((resolve, reject) => {
-    var url = baseURL + "Doctor/GetDoctors?Speciality=" + spName;
+    var url =
+      baseURL +
+      "Doctor/GetDoctors?Speciality=" +
+      spName +
+      "&orderBy=" +
+      orderByFee;
 
     $.ajax({
       url: url,
@@ -314,7 +325,7 @@ function updateDoctorOnlineStatus(UserID, status) {
     });
   })
     .then((date) => {
-      GetDoctors(true);
+      GetDoctors(true, $("#dbofee").val());
     })
     .catch((error) => {
       console.log(error);

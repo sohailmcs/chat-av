@@ -171,7 +171,6 @@ function GetMenu(id) {
         $(".form-input").addClass("filled");
         $(".form-input").parents(".form-group").addClass("focused");
       }
-
       // Hide Loading
       $.LoadingOverlay("hide");
     },

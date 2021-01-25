@@ -8,6 +8,7 @@ if (urlParams.has("id")) KeyId = urlParams.get("id");
 $(function () {
   if (KeyId > 0) {
     GetValueAndStatus(KeyId);
+    $("#txtKeyValue").prop("readonly", true);
     $("#lblHeading").text("Edit Value And Status");
     $("#btnSubmit").text("Update");
   } else $("#lblHeading").text("Update Value And Status");
@@ -74,7 +75,7 @@ function AddGetValueAndStatus() {
   var model = {
     ValueNameEn: $("#txtValueNamEn").value(),
     ValueNameAr: $("#txtValueNamEn").value(),
-    KeyValue: "TermsAndConditions",
+    KeyValue: $("#txtKeyValue").val(),
   };
 
   ///==============start post request to add doctor

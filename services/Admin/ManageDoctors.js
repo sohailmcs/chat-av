@@ -118,7 +118,7 @@ function CreateDoctor() {
   });
 }
 function GetAllRegisterDoctor() {
-  var url = baseURL + "Doctor/GetDoctors?Speciality=all";
+  var url = baseURL + "Doctor/GetDoctorsWithDetails?Speciality=all";
   ///==============start post request to add doctor
   $.ajax({
     url: url,

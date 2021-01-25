@@ -1,0 +1,161 @@
+<%- include('includes/AdminHead.ejs') %>
+
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+<!-- END: Vendor CSS-->
+
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+
+<link rel="stylesheet" type="text/css" href="/css/components.css" />
+<!-- END: Theme CSS-->
+
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+<!-- END: Page CSS-->
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+
+<!-- END: Custom CSS-->
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<!-- body tag and blue nav bar  -->
+<%- include('includes/adminNav.ejs') %>
+
+<!-- complete side menu of doctor -->
+<%- include('includes/adminSideMenu.ejs') %>
+
+
+<!-- BEGIN: Content-->
+
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-body">
+            <br />
+            <div class="d-flex flex-row">
+                <div class="page-heading">
+                    <h3>Add/Edit Fee Structure</h3>
+                </div>
+            </div>
+            <!-- basic info -->
+            <section>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form id="frmfee" class="form-horizontal">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title" id="lblHeading"></h4>
+                                    <div class="row col-sm-6">
+                                        <span class="error" style="display: none;"></span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group" focused>
+                                                    <label class="form-label" for="dbospe">Specialization</label>
+                                                    <select name="Specialization" id="dbospe"
+                                                        class="form-input form-control">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group" focused>
+                                                    <label class="form-label" for="dboDoctor">Doctor Name</label>
+                                                        <select style="padding:5px 11px 5px;width:100%;" 
+                                                         name="dboDoctor" id="dboDoctor" class="form-input form-control">
+                                                        
+                                                    </select>                                                        
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="dbofeeType">CallType Type</label>
+                                                        <select style="padding:5px 11px 5px;width:100%;" 
+                                                         name="dbofeeType" id="dbofeeType" class="form-input form-control">
+                                                         <option value=" ">Select Fee Type</option>
+                                                         <option value="1">Direct</option>
+                                                         <option value="2">Appointment</option>
+                                                    </select>                                                        
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="dboDuration">Call Duration</label>
+                                                        <select style="padding:5px 11px 5px;width:100%;" 
+                                                         name="dboDuration" id="dboDuration" class="form-input form-control">
+                                                         <option value="15">15 minutes</option>
+                                                        <option value="30">30 minutes</option>
+                                                        <option value="45">45 minutes</option>
+                                                        <option value="60">60 minutes</option>
+                                                    </select>                                                        
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="txtAmount">Fee Amount</label>
+                                                        <input maxlength="40" type="number" id="txtAmount" name="txtAmount" class="form-input form-control"
+                                                             required
+                                                            data-validation-required-message="This  field is required" />                                                            
+                                                            <label style="color: green;font-weight: bold;" class="mt-1" id="txtTotalFee"></label>                                                    
+                                                </div>
+                                               
+                                            </div>                                            
+                                        <div class="col-sm-4">
+                                            <button id="btnSubmit" type="submit" class="btn btn-primary">
+                                                Create Fee Structure
+                                            </button> &nbsp;
+                                            <a href="/Admin/all-fee">
+                                            <button id="btnCancel" type="button" class="btn btn-primary">
+                                                Cancel
+                                            </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- BEGIN: Content-->
+
+<!-- END: Content-->
+
+<!-- BEGIN: JS-->
+<!-- BEGIN: Vendor JS-->
+<!-- <script src="/js/vendors.min.js"></script> -->
+
+<!-- BEGIN Vendor JS-->
+
+<script src="/js/vertical-menu-light.js"></script>
+<script src="/js/app-menu.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/sweetalert2.all.min.js"></script>
+<script src="/js/sweet-alerts.js"></script>
+
+
+<!-- END: Theme JS-->
+
+
+<!-- BEGIN: Services calling JS-->
+<script src="/services/jquery.validate.min.js"></script>
+<script src="/services/Admin/AddEditFeeStucture.js"></script>
+<script src="/services/loadingoverlay.min.js"></script>
+
+
+<!-- END: JS-->
+<%- include('../../Default/view/includes/End.ejs') %>

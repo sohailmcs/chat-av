@@ -8,6 +8,7 @@ if (urlParams.has("id")) UserId = urlParams.get("id");
 $(function () {
   GetAllRoles();
   if (UserId > 0) {
+    $("#dboUserType").prop("disabled",true);
     GetUser(UserId);
     $("#lblUserHeading").text("Edit User");
     $("#btnSubmit").text("Update User");

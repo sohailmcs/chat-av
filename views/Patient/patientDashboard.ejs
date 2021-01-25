@@ -38,7 +38,7 @@
   <!-- picture start -->
 
   <!-- description start -->
-      <div class="col-sm-7" style="display: inline-block;">
+      <div class="col-sm-4" style="display: inline-block;">
        <h5 class="docName status_{{DoctorId}}">
          Dr. {{FullName}}
           {{#OnlineStatus}} 
@@ -60,8 +60,15 @@
                 </button>
          </div>         
       </div>
-   <!-- description start -->
+   <!-- description end -->
+    <!--- payment area start -->
 
+    <div col-sm-3>
+      {{#FeeStructure}}
+      <span class="txtspecialization"><b> {{CallType}}</b> : {{FeeAmount}}SAR / {{CallDuration}}</span>
+      {{/FeeStructure}}
+    </div>
+    <!--- payment area end -->
     <!-- buttons start -->
           <div class="col-sm-3" >            
               <!-- VIEW DOCTOR PROFILE START -->             
