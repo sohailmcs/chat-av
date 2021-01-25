@@ -1,4 +1,3 @@
-
 //var baseURL = "http://localhost:1042/KindahService/";
 var urlParams = new URLSearchParams(window.location.search);
 var feeId = 0;
@@ -6,12 +5,25 @@ var feeId = 0;
 if (urlParams.has("id")) feeId = urlParams.get("id");
 
 $(function () {
-  GetAllSpecialities();
   if (feeId > 0) {
     GetFee(feeId);
     $("#lblHeading").text("Edit Fee Structure");
     $("#btnSubmit").text("Update Fee Structure");
-  } else $("#lblHeading").text("Create Fee Structure");
+  } else {
+    $("#lblHeading").text("Create Fee Structure");
+    GetAllSpecialities()
+      .then((d) => {
+        $("#dbospe").append(
+          $("<option>").text("Select Specialization").attr("value", "0")
+        );
+        $.each(d.result, function (i, v) {
+          $("#dbospe").append($("<option>").text(v.Name).attr("value", v.SpId));
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   $("#frmfee").submit(function (e) {
     e.preventDefault();
     if (feeId > 0) EditFee();
@@ -188,10 +200,31 @@ function GetFee(id) {
       $("#dboDuration").val(data.CallDuration);
       $("#txtAmount").val(data.FeeAmount);
 
-      $("#dbospe").val(data.SpecializationId);
-     //$("#dbospe").trigger("change");
-
-      GetDoctors($("#dbospe").find("option:selected").text(), data.DoctorId);
+     
+      GetAllSpecialities()
+        .then((d) => {
+          $("#dbospe").append(
+            $("<option>").text("Select Specialization").attr("value", "0")
+          );
+          $.each(d.result, function (i, v) {
+            $("#dbospe").append(
+              $("<option>").text(v.Name).attr("value", v.SpId)
+            );
+          });
+          var selectedVal = data.SpecializationId + "";
+          $("#dbospe option")
+            .filter(function () {
+              return $(this).val() == selectedVal; //To select Blue
+            })
+            .prop("selected", true);
+          GetDoctors(
+            $("#dbospe").find("option:selected").text(),
+            data.DoctorId
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -201,51 +234,47 @@ function GetFee(id) {
     complete: function (data) {
       // Hide Loading
       $.LoadingOverlay("hide");
-     
 
       CalculateTotalFee();
     },
   });
 }
 function GetAllSpecialities() {
-  var url = baseURL + "Speciality/GetAllSpeciality";
-  ///==============start post request to add doctor
-  $.ajax({
-    url: url,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    type: "GET",
-    datatype: "application/json",
-    contentType: "application/json; charset=utf-8",
-    data: "",
-    beforeSend: function () {
-      $.LoadingOverlay("show");
-    },
-    success: function (data, textStatus, xhr) {
-      //=====set values for slots templates======
-
-      $("#dbospe").append(
-        $("<option>").text("Select Specialization").attr("value", "0")
-      );
-      $.each(data.result, function (i, v) {
-        $("#dbospe").append($("<option>").text(v.Name).attr("value", v.SpId));
-      });
-    },
-    error: function (xhr, textStatus, err) {
-      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
-        console.log(xhr.statusText);
-      else console.log(xhr.statusText);
-    },
-    complete: function (data) {
-      // Hide Loading
-      $.LoadingOverlay("hide");
-    },
+  return new Promise((resolve, reject) => {
+    var url = baseURL + "Speciality/GetAllSpeciality";
+    ///==============start post request to add doctor
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "GET",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {
+        $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+        //=====set values for slots templates======
+        resolve(data);
+      
+      },
+      error: function (xhr, textStatus, err) {
+        reject(err);
+        // if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        //   console.log(xhr.statusText);
+        // else console.log(xhr.statusText);
+      },
+      complete: function (data) {
+        // Hide Loading
+        $.LoadingOverlay("hide");
+      },
+    });
   });
 }
 
 function GetDoctors(Id, selectedId) {
-  
   var url = baseURL + "Doctor/GetDoctorsList?Speciality=" + Id;
 
   $.ajax({
@@ -259,12 +288,12 @@ function GetDoctors(Id, selectedId) {
     data: "",
 
     beforeSend: function () {
-      $.LoadingOverlay("show");
+      // $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      $.LoadingOverlay("hide");
-      
-     
+      // $.LoadingOverlay("hide");
+      $("#dboDoctor").empty();
+
       $("#dboDoctor").append(
         $("<option>").text("Select Doctor").attr("value", "0")
       );
