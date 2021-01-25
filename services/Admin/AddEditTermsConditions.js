@@ -88,8 +88,8 @@ $(function () {
 function AddGetValueAndStatus() {
   var url = baseURL + "ValueAndStatus/AddValueAndStatus";
   var model = {
-    ValueNameEn: $("#txtValueNamEn").value(),
-    ValueNameAr: $("#txtValueNamEn").value(),
+    ValueNameEn: $("#txtValueNamEn").data("kendoEditor").value(),
+    ValueNameAr: $("#txtValueNamEn").data("kendoEditor").value(),
     KeyValue: $("#txtKeyValue").val(),
   };
 
@@ -125,8 +125,6 @@ function AddGetValueAndStatus() {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
-      
-
       // Hide Loading
       $.LoadingOverlay("hide");
     },
