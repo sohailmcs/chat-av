@@ -106,6 +106,7 @@ function AddFee() {
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
+
       Swal.fire({
         title: "Confirmation!",
         text: "Fee Structure Created ",
@@ -120,7 +121,16 @@ function AddFee() {
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
         console.log(xhr.statusText);
-      else console.log(xhr.statusText);
+      else if (xhr.status == "409" && xhr.statusText == "Conflict") {
+        Swal.fire({
+          title: "Info!",
+          text: "Fee Structure already Exist for selected Doctor ",
+          type: "Info",
+          confirmButtonClass: "btn btn-primary",
+          buttonsStyling: false,
+          confirmButtonText: "<a style='color:#fff'>OK</a>",
+        });
+      } else console.log(xhr.statusText);
     },
     complete: function (data) {
       // Hide Loading
@@ -200,7 +210,6 @@ function GetFee(id) {
       $("#dboDuration").val(data.CallDuration);
       $("#txtAmount").val(data.FeeAmount);
 
-     
       GetAllSpecialities()
         .then((d) => {
           $("#dbospe").append(
@@ -258,7 +267,6 @@ function GetAllSpecialities() {
       success: function (data, textStatus, xhr) {
         //=====set values for slots templates======
         resolve(data);
-      
       },
       error: function (xhr, textStatus, err) {
         reject(err);
