@@ -125,14 +125,7 @@ function AddGetValueAndStatus() {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
-      var inputValue = $(".form-input").val();
-      if (inputValue == "") {
-        $(".form-input").removeClass("filled");
-        $(".form-input").parents(".form-group").removeClass("focused");
-      } else {
-        $(".form-input").addClass("filled");
-        $(".form-input").parents(".form-group").addClass("focused");
-      }
+      
 
       // Hide Loading
       $.LoadingOverlay("hide");
@@ -212,6 +205,15 @@ function GetValueAndStatus(id) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
+      var inputValue = $(".form-input").val();
+      if (inputValue == "") {
+        $(".form-input").removeClass("filled");
+        $(".form-input").parents(".form-group").removeClass("focused");
+      } else {
+        $(".form-input").addClass("filled");
+        $(".form-input").parents(".form-group").addClass("focused");
+      }
+
       // Hide Loading
       $.LoadingOverlay("hide");
     },
