@@ -67,6 +67,30 @@ $(function () {
       },
     },
   });
+
+  var inputValue = $(".form-input").val();
+  if (inputValue == "") {
+    $(".form-input").removeClass("filled");
+    $(".form-input").parents(".form-group").removeClass("focused");
+  } else {
+    $(".form-input").addClass("filled");
+    $(".form-input").parents(".form-group").addClass("focused");
+  }
+
+  //===========start animated placeholder============
+  $(".form-input").focus(function () {
+    $(this).parents(".form-group").addClass("focused");
+  });
+
+  $(".form-input").blur(function () {
+    var inputValue = $(this).val();
+    if (inputValue == "") {
+      $(this).removeClass("filled");
+      $(this).parents(".form-group").removeClass("focused");
+    } else {
+      $(this).addClass("filled");
+    }
+  });
 }); //====end of $function
 
 //== creat doctor with login
@@ -180,6 +204,7 @@ function GetValueAndStatus(id) {
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
       $("#txtValueNamEn").data("kendoEditor").value(data.ValueNameEn);
+      $("#txtKeyValue").val(data.KeyValue);
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
