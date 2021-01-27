@@ -19,6 +19,12 @@ router.get(
   PatientController.getSpeciality.bind(PatientController)
 );
 router.get(
+  "/Suggestion",
+  PatientController.getPatientSuggestion.bind(PatientController)
+);
+
+
+router.get(
   "/AddPatient",
   PatientController.getPatientWizerd.bind(PatientController)
 );

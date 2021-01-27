@@ -133,6 +133,20 @@ class patientController {
       roleId:req.session.roleId
     });
   }
+  async getPatientSuggestion(req, res, next) {
+    res.render(appRoot + "/source/Patient/view/PatientComplainAndSuggestions", {
+      pageTitle: "Complain and Suggestions ",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      apiKey: apiKey,
+      sessionId: sessionId,
+      token: gentoken,
+      roleId:req.session.roleId
+    });
+  }
 }
+
+
+
 
 module.exports = patientController;

@@ -106,6 +106,17 @@ router.get(
 );
 
 
+router.get(
+  "/all-suggestions",
+  AdminController.getkindahGetAllSuggestion.bind(AdminController)
+);
+
+router.get(
+  "/view-detialSuggestions",
+  AdminController.getViewSuggestion.bind(AdminController)
+);
+
+
 // router.get("/KindahAdmin", KindahController.getkindahAdmin);
 // router.get("/KindahCreateDoctor", KindahController.getkindahCreateDoctor);
 // router.get("/KindahGetAllDoctors", KindahController.getkindahGetAllDoctors);

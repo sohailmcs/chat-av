@@ -1,0 +1,190 @@
+<%- include('includes/AdminHead.ejs') %>
+
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+<!-- END: Vendor CSS-->
+
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+
+<link rel="stylesheet" type="text/css" href="/css/components.css" />
+<!-- END: Theme CSS-->
+
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+<!-- END: Page CSS-->
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+
+<!-- END: Custom CSS-->
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<!-- body tag and blue nav bar  -->
+<%- include('includes/adminNav.ejs') %>
+
+<!-- complete side menu of doctor -->
+<%- include('includes/adminSideMenu.ejs') %>
+
+
+<!-- BEGIN: Content-->
+
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-body">
+            <br />
+            <div class="d-flex flex-row">
+                <div class="page-heading">
+                    <h3>FeedBack Details</h3>
+                </div>
+            </div>
+            <!-- basic info -->
+            <section>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form id="frmRole" class="form-horizontal">
+                            <div class="card">
+                               
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-12 m">
+                                                <input id="files" type="file" multiple />
+                                                <br />
+                                                <output id="result"></output>
+                                                <br />
+                                                <br />
+                                                </div>
+
+                                          <div class="col-sm-6">
+                                                <div class="form-group">                                                    
+                                                    <label class="form-label" for="txtUserName">User Name</label>
+                                                        <input maxlength="50" disabled="disabled" type="text"
+                                                         id="txtUserName" name="name"
+                                                         class="form-input form-control "
+                                                             required
+                                                            data-validation-required-message="This  field is required" />                                                   
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">                                                    
+                                                    <label class="form-label" for="txtFullName">FullName</label>
+                                                        <input maxlength="50" disabled="disabled" type="text" 
+                                                        id="txtFullName" name="name"
+                                                         class="form-input form-control "
+                                                             required
+                                                            data-validation-required-message="This  field is required" />                                                   
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">                                                    
+                                                    <label class="form-label" for="txtPhoneNumber">PhoneNumber</label>
+                                                        <input disabled="disabled" maxlength="50" type="text"
+                                                         id="txtPhoneNumber" name="name"
+                                                         class="form-input form-control "
+                                                             required
+                                                            data-validation-required-message="This  field is required" />                                                   
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">                                                    
+                                                    <label class="form-label" for="txtComplain">Complain</label>
+                                                        <input disabled="disabled" maxlength="50" type="text"
+                                                         id="txtComplain" name="name"
+                                                         class="form-input form-control "
+                                                             required
+                                                            data-validation-required-message="This  field is required" />                                                   
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-sm-12">
+                                                <div class="form-group"> 
+                                                    <a href="/Admin/all-suggestion">
+                                                        <button id="btnCancel" type="button" class="btn btn-primary">
+                                                            Go Back
+                                                        </button>
+                                                        </a>
+                                                        <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- BEGIN: Content-->
+
+<!-- END: Content-->
+<script>
+    window.onload = function () {
+
+        //Check File API support
+        if (window.File && window.FileList && window.FileReader) {
+            var filesInput = document.getElementById("files");
+
+            filesInput.addEventListener("change", function (event) {
+                var files = event.target.files; //FileList object
+                $("#result").html('');
+                var output = document.getElementById("result");                
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    //Only pics
+                    if (!file.type.match('image'))
+                        continue;
+                    var picReader = new FileReader();
+                    picReader.addEventListener("load", function (event) {
+                        var picFile = event.target;
+                        var div = document.createElement("div");
+                        div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                            "title='" + picFile.name + "'/>";
+                        output.insertBefore(div, null);
+
+                    });
+
+                    //Read the image
+                    picReader.readAsDataURL(file);
+                }
+
+            });
+        }
+        else {
+            console.log("Your browser does not support File API");
+        }
+    }
+
+</script>
+
+<script src="/js/vertical-menu-light.js"></script>
+<script src="/js/app-menu.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/sweetalert2.all.min.js"></script>
+<script src="/js/sweet-alerts.js"></script>
+
+
+<!-- END: Theme JS-->
+
+
+<!-- BEGIN: Services calling JS-->
+<script src="/services/jquery.validate.min.js"></script>
+<script src="/services/Admin/AddEditSuggestions.js"></script>
+<script src="/services/loadingoverlay.min.js"></script>
+
+
+<!-- END: JS-->
+<%- include('../../Default/view/includes/End.ejs') %>

@@ -140,7 +140,7 @@ class defaultController {
 
   async getEditUser(req, res, next) {
     res.render(appRoot + "/source/Admin/view/KindahAddEditUser", {
-      pageTitle: "Kindah Edit Menus",
+      pageTitle: "Kindah Edit Users",
       userName: req.session.userName,
       userId: req.session.userId,
       roleId:req.session.roleId
@@ -168,7 +168,7 @@ class defaultController {
 
   async getkindahGetAllPatient(req, res, next) {    
     res.render(appRoot + "/source/Admin/view/KindahGetAllPatients", {
-      pageTitle: "Kindah All Roles",
+      pageTitle: "Kindah All Patient",
       userName: req.session.userName,
       userId: req.session.userId,
       roleId:req.session.roleId
@@ -177,7 +177,7 @@ class defaultController {
 
   async getEditPatient(req, res, next) {
     res.render(appRoot + "/source/Admin/view/KindahAddEditPatient", {
-      pageTitle: "Kindah Edit Roles",
+      pageTitle: "Kindah Edit Patient",
       userName: req.session.userName,
       userId: req.session.userId,
       roleId:req.session.roleId
@@ -186,7 +186,7 @@ class defaultController {
 
  async getkindahGetAllFee(req, res, next) {    
     res.render(appRoot + "/source/Admin/view/KindahGetAllFeeStructure", {
-      pageTitle: "Kindah All Roles",
+      pageTitle: "Kindah All Fee",
       userName: req.session.userName,
       userId: req.session.userId,
       roleId:req.session.roleId
@@ -195,7 +195,7 @@ class defaultController {
 
   async getEditFee(req, res, next) {
     res.render(appRoot + "/source/Admin/view/KindahAddEditFeeStructure", {
-      pageTitle: "Kindah Edit Roles",
+      pageTitle: "Kindah Edit Fee",
       userName: req.session.userName,
       userId: req.session.userId,
       roleId:req.session.roleId
@@ -204,10 +204,9 @@ class defaultController {
 
 
 
-
   async getkindahGetAllFeedBack(req, res, next) {    
     res.render(appRoot + "/source/Admin/view/KindahGetAllFeedback", {
-      pageTitle: "Kindah All Roles",
+      pageTitle: "Kindah All Feedback",
       userName: req.session.userName,
       userId: req.session.userId,
       roleId:req.session.roleId
@@ -216,7 +215,25 @@ class defaultController {
 
   async getViewFeedBack(req, res, next) {
     res.render(appRoot + "/source/Admin/view/KindahAddEditFeedback", {
-      pageTitle: "Kindah Edit Roles",
+      pageTitle: "Kindah Edit Feedback",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      roleId:req.session.roleId
+    });
+  }
+
+  async getkindahGetAllSuggestion(req, res, next) {    
+    res.render(appRoot + "/source/Admin/view/KindahGetAllSuggestion", {
+      pageTitle: "Kindah All Suggestions",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      roleId:req.session.roleId
+    });
+  }
+
+  async getViewSuggestion(req, res, next) {
+    res.render(appRoot + "/source/Admin/view/KindahAddEditSuggestions", {
+      pageTitle: "Kindah View Suggestions",
       userName: req.session.userName,
       userId: req.session.userId,
       roleId:req.session.roleId
@@ -225,8 +242,6 @@ class defaultController {
 
 
 }
-
-
 
 
 module.exports = defaultController;

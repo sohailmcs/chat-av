@@ -1,0 +1,170 @@
+<%- include('includes/PatientHead.ejs') %>
+
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+
+
+<!-- END: Vendor CSS-->
+
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+<link rel="stylesheet" type="text/css" href="/css/colors.css" />
+<link rel="stylesheet" type="text/css" href="/css/components.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" />
+<!-- END: Theme CSS-->
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+<!-- END: Page CSS-->
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<!-- END: Custom CSS-->
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<!-- END: Head-->
+
+<!-- body tag and blue nav bar  -->
+<%- include('includes/patientNav.ejs') %>
+
+<!-- complete side menu of Patient -->
+<%- include('includes/patientSideMenu.ejs') %>
+
+
+<!-- BEGIN: Content-->
+
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-body">
+            <br />
+            <div class="d-flex flex-row">
+                <div class="page-heading">
+                    <h3>Suggestion Details</h3>
+                </div>
+            </div>
+            <!-- basic info -->
+            <section>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form id="frmSuggestion" class="form-horizontal">
+                            <div class="card">
+                               
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">                                                    
+                                                    <label class="form-label" for="txtUserName">User Name</label>
+                                                        <input maxlength="50"  type="text"
+                                                         id="txtUserName" name="name"
+                                                         class="form-input form-control "
+                                                             required
+                                                            data-validation-required-message="This  field is required" />                                                   
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">                                                    
+                                                    <label class="form-label" for="txtFullName">FullName</label>
+                                                        <input maxlength="50"  type="text" 
+                                                        id="txtFullName" name="name"
+                                                         class="form-input form-control "
+                                                             required
+                                                            data-validation-required-message="This  field is required" />                                                   
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">                                                   
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <input required disabled="disabled" class="form-control"
+                                                                    value="+966" />
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <label class="form-label" for="txtPhoneNumber">Phone No</label>
+                                                                <input required name="contactNo" type="number"
+                                                                    class="form-input form-control" id="txtPhoneNumber"
+                                                                     />
+                                                            </div>                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            
+                                            <div class="col-sm-6">
+                                                <div class="form-group focused">                                                    
+                                                    <label class="form-label" for="txtComplain">Complain</label>
+                                                        <textarea cols="60"  rows="3" id="txtComplain" 
+                                                        class=" form-control "
+                                                        required
+                                                       data-validation-required-message="This  field is required"></textarea>
+
+                                                                                              
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group focused">                                                    
+                                                    <label class="form-label" for="txtComplain">Attachment</label>
+                                                    <div class="custom-file">
+                                                        <input type="hidden" value="" class="lblAttachment">
+                                                        <input type="file" style='cursor:pointer'  class="custom-file-input suggestionAttachment" >
+                                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                      </div>                                                 
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group"> 
+                                                        <button id="btnCancel" type="submit" class="btn btn-primary">
+                                                           Send
+                                                        </button>
+                                                        
+                                                        <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- BEGIN: Content-->
+
+<!-- END: Content-->
+
+<!-- BEGIN: JS-->
+<!-- BEGIN: Vendor JS-->
+<!-- <script src="/js/vendors.min.js"></script> -->
+
+<!-- BEGIN Vendor JS-->
+
+
+<script src="/js/vendors.js"></script>
+<!-- BEGIN Vendor JS-->
+<script src="/js/sweetalert2.all.min.js"></script>
+<script src="/js/polyfill.min.js"></script>
+<script src="/js/sweet-alerts.js"></script>
+<script src="/js/vertical-menu-light.js"></script>
+<script src="/js/app-menu.js"></script>
+<script src="/js/app.js"></script>
+<!-- END: Theme JS-->
+
+
+<!-- BEGIN: Services calling JS-->
+<script src="/services/Admin/AddEditSuggestions.js"></script>
+<script src="/services/loadingoverlay.min.js"></script>
+
+
+<!-- END: JS-->
