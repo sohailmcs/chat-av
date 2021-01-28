@@ -28,8 +28,8 @@ $(function () {
     .then((data) => {
       SetDoctorsList(data);
       $(".ratingArea").each(function () {
-        var sumOfRating = $(this).find(".SumOfRating").val();
-        var totalRating = $(this).find(".totalRating").val();
+        var sumOfRating = parseInt($(this).find(".SumOfRating").val());
+        var totalRating = parseInt($(this).find(".totalRating").val());
         var totalStars = sumOfRating / totalRating;
         totalStars = Math.round(totalStars);
         var remainingStars = 5 - totalStars;
