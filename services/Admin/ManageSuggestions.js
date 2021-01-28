@@ -65,6 +65,7 @@ function Filldatatable(data) {
       { data: "UserId" },
       { data: "FullName" },
       { data: "PhoneNumber" },
+      { data: "Status" },
 
       {
         mRender: function (data, type, row) {
