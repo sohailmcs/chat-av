@@ -54,7 +54,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-12 m">
-                                                <input id="files" type="file" multiple />
+                                                <label>Attachment</label>
+                                                <!-- <input id="files" type="file" multiple /> -->
                                                 <br />
                                                 <output id="result"></output>
                                                 <br />
@@ -104,7 +105,7 @@
                                            
                                             <div class="col-sm-12">
                                                 <div class="form-group"> 
-                                                    <a href="/Admin/all-suggestion">
+                                                    <a href="/Admin/all-suggestions">
                                                         <button id="btnCancel" type="button" class="btn btn-primary">
                                                             Go Back
                                                         </button>
@@ -129,46 +130,6 @@
 </div>
 
 <!-- BEGIN: Content-->
-
-<!-- END: Content-->
-<script>
-    window.onload = function () {
-
-        //Check File API support
-        if (window.File && window.FileList && window.FileReader) {
-            var filesInput = document.getElementById("files");
-
-            filesInput.addEventListener("change", function (event) {
-                var files = event.target.files; //FileList object
-                $("#result").html('');
-                var output = document.getElementById("result");                
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    //Only pics
-                    if (!file.type.match('image'))
-                        continue;
-                    var picReader = new FileReader();
-                    picReader.addEventListener("load", function (event) {
-                        var picFile = event.target;
-                        var div = document.createElement("div");
-                        div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
-                            "title='" + picFile.name + "'/>";
-                        output.insertBefore(div, null);
-
-                    });
-
-                    //Read the image
-                    picReader.readAsDataURL(file);
-                }
-
-            });
-        }
-        else {
-            console.log("Your browser does not support File API");
-        }
-    }
-
-</script>
 
 <script src="/js/vertical-menu-light.js"></script>
 <script src="/js/app-menu.js"></script>

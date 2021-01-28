@@ -28,8 +28,13 @@
   </head>
 
   <script type="text/javascript">
-    // var uName = "";
-    //var userID = "";
+     var uName = "";;
+    var userID = "";
+    $(document).ready(function () {
+    uName = $(".user-name").find("strong").text();
+    userID = $(".user-name").attr("userinfo");
+    });
+   
     var baseURL = "https://kindahclinic.com/KindahService/";
     //var baseURL = "http://localhost:1042/KindahService/";
     function getcookie(cookiename) {

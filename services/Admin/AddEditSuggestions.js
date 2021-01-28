@@ -45,11 +45,14 @@ function GetSuggestionDetails(id) {
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
+
+      var div = document.createElement("div");
       $("#txtUserName").val(data.UserId);
       $("#txtFullName").val(data.FullName);
       $("#txtPhoneNumber").val(data.PhoneNumber);
       $("#txtComplain").val(data.Complain);
       if (data.attachment != null) {
+
         div.innerHTML =
           "<img class='thumbnail' src='" +
           data.attachment +
@@ -59,6 +62,7 @@ function GetSuggestionDetails(id) {
         div.innerHTML =
           "<img class='thumbnail' src='/assets/images/maledoc.png'/>";
       }
+      $("#result").html(div);
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -97,7 +101,7 @@ function submitsuggestions() {
   var url = baseURL + "PatientSuggestion/AddSuggestion";
 
   var model = {
-    UserId: $("#txtUserName").val(),
+    UserId: $("#txtEmail").val(),
     FullName: $("#txtFullName").val(),
     PhoneNumber: $("#txtPhoneNumber").val(),
     Complain: $("#txtComplain").val(),

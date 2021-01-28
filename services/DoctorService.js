@@ -27,6 +27,20 @@ $(function () {
   GetDoctors(false, "min")
     .then((data) => {
       SetDoctorsList(data);
+      $(".ratingArea").each(function () {
+        var sumOfRating = $(this).find(".SumOfRating").val();
+        var totalRating = $(this).find(".totalRating").val();
+        var totalStars =   sumOfRating / totalRating;
+        totalStars  = Math.round(totalStars);
+        var remainingStars = 5 - totalStars;
+        for (var i = 0; i < totalStars; i++) {
+          $(this).append('<i class="bx bxs-star"></i>');
+        }
+        for (var i = 0; i < remainingStars; i++) {
+          $(this).append('<i class="bx bx-star"></i>');
+        }
+
+      });
     })
     .catch((error) => {
       console.log(error);

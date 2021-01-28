@@ -10,12 +10,16 @@ NOTE:
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
 
+
+.ratingArea i {
+  color:rgb(184, 184, 23);
+}
+
+
 /*=============start animated placeholder============*/
 select.form-control:not([multiple="multiple"]) {
   -webkit-appearance:checkbox !important;
 }
-
-
 
 .form-group {
   position: relative;
