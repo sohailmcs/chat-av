@@ -30,7 +30,8 @@ $(function () {
       $(".ratingArea").each(function () {
         var sumOfRating = parseInt($(this).find(".SumOfRating").val());
         var totalRating = parseInt($(this).find(".totalRating").val());
-        var totalStars = parseInt(sumOfRating) / parseInt(totalRating);
+        var totalStars =
+          totalRating > 0 ? parseInt(sumOfRating) / parseInt(totalRating) : 0;
         totalStars = Math.round(totalStars);
         var remainingStars = 5 - totalStars;
         if (totalStars > 0) {
