@@ -51,6 +51,7 @@ function GetSuggestionDetails(id) {
       $("#txtFullName").val(data.FullName);
       $("#txtPhoneNumber").val(data.PhoneNumber);
       $("#txtComplain").val(data.Complain);
+      $("#txtReply").val(data.Reply);
       if (data.attachment != null) {
 
         div.innerHTML =

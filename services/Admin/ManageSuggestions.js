@@ -66,6 +66,7 @@ function Filldatatable(data) {
       { data: "FullName" },
       { data: "PhoneNumber" },
       { data: "Status" },
+      { data: "ModifiedBy" },
 
       {
         mRender: function (data, type, row) {
@@ -100,12 +101,7 @@ function SendReply(suggestionId) {
     "&Reply=" +
     $("#txtSuggestion").val() +
     "&modifyBy=" +
-    uName;
-
-  // var model = {
-  //   ComplainSuggestionId:$("#hdnSuggestionId").val(),
-  //   Reply : $("#txtSuggestion").val(),
-  // };
+    $(".user-name").find("strong").text();
 
   $.ajax({
     url: url,
@@ -129,7 +125,7 @@ function SendReply(suggestionId) {
         buttonsStyling: false,
         confirmButtonText: "Ok",
       }).then((result) => {
-        $("#primary").modal("hide");
+        window.location.reload();
       });
     },
     error: function (xhr, textStatus, err) {
@@ -138,6 +134,8 @@ function SendReply(suggestionId) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
+      // GetAllSuggestions();
+
       // Hide Loading
       $.LoadingOverlay("hide");
     },
