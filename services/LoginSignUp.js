@@ -137,6 +137,7 @@ $(function () {
     validtion();
     var enterdText = $("#txtPhoneNo").val();
     if (!validatephonenumber(enterdText)) {
+      $("#txtPhoneNo").focus();
       Swal.fire({
         type: "info",
         title: "SORRY!",

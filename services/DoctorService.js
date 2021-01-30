@@ -21,7 +21,29 @@ $(function () {
   $("#lblDoctorListHeading").text(spName);
   $("#dbofee").on("change", function () {
     var value = $(this).val();
-    GetDoctors(false, value);
+    GetDoctors(false, value)
+      .then((data) => {
+        SetDoctorsList(data);
+        $(".ratingArea").each(function () {
+          var sumOfRating = parseInt($(this).find(".SumOfRating").val());
+          var totalRating = parseInt($(this).find(".totalRating").val());
+          var totalStars =
+            totalRating > 0 ? parseInt(sumOfRating) / parseInt(totalRating) : 0;
+          totalStars = Math.round(totalStars);
+          var remainingStars = 5 - totalStars;
+          if (totalStars > 0) {
+            for (var i = 0; i < totalStars; i++) {
+              $(this).append('<i class="bx bxs-star"></i>');
+            }
+          }
+          for (var i = 0; i < remainingStars; i++) {
+            $(this).append('<i class="bx bx-star"></i>');
+          }
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 
   GetDoctors(false, "min")

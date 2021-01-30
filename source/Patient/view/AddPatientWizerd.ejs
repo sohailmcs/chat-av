@@ -192,9 +192,11 @@
                                                   <!-- <input type="number" placeholder="Age" class="txtInfo" id="txtInfoAge">  -->                                               
                                                   <label>Age</label> <span id="spnAge"></span>
                                                   <div class="position-relative has-icon-left">     
-                                                    <input type="text" id="txtInfoAge" name="dob" 
-                                                    class="txtInfo form-control pickadate-months-year"
-                                                    placeholder="Select Date" />
+                                                    <input type="date" id="txtInfoAge" name="dob" 
+                                                    class="txtInfo form-control"
+                                                    required
+                                                    data-validation-required-message="The  field is required"
+                                                     />
                                                     <div class="form-control-position">
                                                        <i class="bx bx-calendar"></i>
                                                    </div>

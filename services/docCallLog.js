@@ -11,6 +11,10 @@ $(function () {
   });
 });
 
+function ViewDetails(id) {
+  var callLogId = $(id).attr("callLogId");
+  ViewPatientHistory(callLogId);
+}
 
 function GetAllDoctorCallLog(userId) {
   var url = baseURL + `CallLogs/GetDoctorRecentCallLog?doctorId=${userId}`;
@@ -28,8 +32,9 @@ function GetAllDoctorCallLog(userId) {
       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      var CallLogTemplate = $("#callLog-template").html();
-      $("#callLogId").html(Mustache.to_html(CallLogTemplate, data));
+      // var CallLogTemplate = $("#callLog-template").html();
+      // $("#callLogId").html(Mustache.to_html(CallLogTemplate, data));
+      Filldatatable(data.result);
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -76,6 +81,43 @@ function ViewPatientHistory(CallLogID) {
   });
 }
 
+
+function Filldatatable(data) {
+  $("#tblCallLogs").DataTable({
+    bAutoWidth: false,
+    data: data,
+    columns: [
+      {
+        visible: false,
+        data: "CallLogID",
+      },
+
+      { data: "PatientID" },
+      { data: "PatientName" },
+      { data: "PatientPhone" },
+      { data: "CallLogAddDateTime" },
+      { data: "OnCallDuration" },
+
+      {
+        mRender: function (data, type, row) {
+          return (
+            '<a href="#" onclick="ViewDetails(this)" callLogId="' +
+            row.CallLogID +
+            '" data-toggle="tooltip" data-placement="bottom" title="View FeedBack">' +
+            ' <i class="bx bx-show call-log-eye-btn"></i></i></a'
+          );
+        },
+      },
+    ],
+    columnDefs: [
+      {
+        targets: "_all",
+        defaultContent: "",
+      },
+    ],
+    order: [[1, "asc"]],
+  });
+}
 //====date formater by using mustache=====
 Mustache.Formatters = {
   date: function (str) {

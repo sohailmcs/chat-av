@@ -6,8 +6,8 @@ var doctorId = urlParams.get("id");
 if (urlParams.has("id")) doctorId = urlParams.get("id");
 
 $(function () {
-   //===========start animated placeholder============
-   $(".form-input").focus(function () {
+  //===========start animated placeholder============
+  $(".form-input").focus(function () {
     $(this).parents(".form-group").addClass("focused");
   });
 
@@ -50,7 +50,6 @@ $(function () {
     placeholder: "Select Proficiency",
   });
 
-  GetAllSpecialities();
   // $("#txtPwd").focusout(function () {
   //   var txt = $(this).val();
   //   $("#hdnpwd").val(txt);
@@ -86,7 +85,7 @@ function FillCity(countryID, selectedval) {
     },
     success: function (data, textStatus, xhr) {
       $("#dboCity").empty();
-     
+
       for (var key in data.info) {
         $("#dboCity").append(
           $("<option>")
@@ -127,7 +126,7 @@ function FillCountry() {
       // $.LoadingOverlay("hide");
 
       $("#dboCountry").empty();
-    
+
       for (var key in data.info) {
         $("#dboCountry").append(
           $("<option>")
@@ -148,7 +147,6 @@ function FillCountry() {
   });
 }
 
-
 function SetDoctorProfile(d) {
   //====check if profile picture is exist then display dummy image
   var div = document.createElement("div");
@@ -163,7 +161,6 @@ function SetDoctorProfile(d) {
   }
   //=========set image control============
   $("#result").html(div);
-
 
   console.log(d.PhoneNumber);
   $("#txtUname").val(d.Email);
@@ -184,7 +181,7 @@ function SetDoctorProfile(d) {
   $("#dboCountry").val(d.Country);
   $("#dboCountry").trigger("change");
 
-  FillCity(d.Country,d.City)
+  FillCity(d.Country, d.City);
 
   // $("#dboCountry option:contains(" + d.Country + ")").attr(
   //   "selected",
@@ -193,10 +190,12 @@ function SetDoctorProfile(d) {
   $("#txtState option:contains(" + d.State + ")").attr("selected", "selected");
   // $("#dboCity").val(d.City).change();
   $("#txtServices").val(d.Services);
-  $("#txtspe option:contains(" + d.Specialization + ")").attr(
-    "selected",
-    "selected"
-  );
+  GetAllSpecialities(d.Specialization);
+
+  // $("#txtspe option:contains(" + d.Specialization + ")").attr(
+  //   "selected",
+  //   "selected"
+  // );
 
   $("#txtAward").val(d.Award);
   $("#CallLimt").val(d.DoctorCall_Limit);
@@ -205,11 +204,11 @@ function SetDoctorProfile(d) {
     "selected",
     "selected"
   );
-  if(d.Proficiency){
-   var prof = d.Proficiency.split(',');  
-  $("#dboProficiency").val(prof).trigger('change');
+  if (d.Proficiency) {
+    var prof = d.Proficiency.split(",");
+    $("#dboProficiency").val(prof).trigger("change");
   }
- 
+
   //====set hospital information=====
   setDoctorExperiance(d.DoctorExperianceModel);
 
@@ -220,8 +219,8 @@ function SetDoctorProfile(d) {
 function setDoctorExperiance(data) {
   $.each(data, function (ind, val) {
     $("#txtHospital").val(val.HospitalName);
-    //$("#txtTo").val(formatDt);
-    // $("#txtFrom").val(val.From);
+    $("#txtTo").val(val.To);
+    $("#txtFrom").val(val.From);
     $("#txtDesignation").val(val.Designation);
   });
 }
@@ -237,7 +236,6 @@ function setDoctorEducation(data) {
 }
 
 function GetDoctorsProfile(doctorId) {
-  
   var url = baseURL + "Doctor/GetDoctorProfile?doctorId=" + doctorId;
   $.ajax({
     url: url,
@@ -262,17 +260,17 @@ function GetDoctorsProfile(doctorId) {
     },
     complete: function (data) {
       var inputValue = $(".form-input").val();
-     
-      $(".form-input").each(function(){
-        if ($(this).val() == "") {      
+
+      $(".form-input").each(function () {
+        if ($(this).val() == "") {
           $(this).removeClass("filled");
           $(this).parents(".form-group").removeClass("focused");
         } else {
           $(this).addClass("filled");
           $(this).parents(".form-group").addClass("focused");
         }
-      })
-     
+      });
+
       // Hide Loading
       $.LoadingOverlay("hide");
     },
@@ -292,7 +290,7 @@ function AddEditDoctorProfile(doctorId) {
   var DoctorExperianceModel = new Array();
   DoctorExperianceModel.push({
     HospitalName: $("#txtHospital").val(),
-    From: $("#txtTo").val(),
+    From: $("#txtFrom").val(),
     To: $("#txtTo").val(),
     Designation: $("#txtDesignation").val(),
   });
@@ -356,8 +354,7 @@ function AddEditDoctorProfile(doctorId) {
         buttonsStyling: false,
         confirmButtonText: "Ok",
       }).then((result) => {
-        window.location.href="/admin/all-doctors"
-        
+        window.location.href = "/admin/all-doctors";
       });
     },
     error: function (xhr, textStatus, err) {
@@ -372,7 +369,7 @@ function AddEditDoctorProfile(doctorId) {
   });
 }
 
-function GetAllSpecialities() {
+function GetAllSpecialities(selectedValue) {
   var url = baseURL + "Speciality/GetAllSpeciality";
   ///==============start post request to add doctor
   $.ajax({
@@ -396,9 +393,13 @@ function GetAllSpecialities() {
       $.each(data.result, function (i, v) {
         $("#txtspe").append($("<option>").text(v.Name).attr("value", v.SpId));
       });
-
-      var slotTemplate = $("#template-speciality").html();
-      $("#specialities").html(Mustache.to_html(slotTemplate, data));
+      $("#txtspe option:contains(" + selectedValue + ")").attr(
+        "selected",
+        "selected"
+      );
+      
+      // var slotTemplate = $("#template-speciality").html();
+      // $("#specialities").html(Mustache.to_html(slotTemplate, data));
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")

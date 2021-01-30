@@ -204,7 +204,7 @@ function GetFee(id) {
       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      $.LoadingOverlay("hide");
+     // $.LoadingOverlay("hide");
 
       $("#dbofeeType").val(data.CallType);
       $("#dboDuration").val(data.CallDuration);
@@ -296,7 +296,7 @@ function GetDoctors(Id, selectedId) {
     data: "",
 
     beforeSend: function () {
-      // $.LoadingOverlay("show");
+       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
       // $.LoadingOverlay("hide");
