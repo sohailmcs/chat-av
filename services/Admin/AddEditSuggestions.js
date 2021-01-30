@@ -158,7 +158,8 @@ function validatephonenumber(inputtxt) {
   return isValid;
 }
 
-$(document).on("change", ".suggestionAttachment", function (event) {
+
+$(document).on("change", ".MedicationReciept", function (event) {
   var files = event.target.files; //FileList object
   var imgHidden = $(this).siblings(".lblAttachment");
   var file = $(this)
@@ -178,3 +179,23 @@ $(document).on("change", ".suggestionAttachment", function (event) {
     picReader.readAsDataURL(file);
   }
 });
+// $(document).on("change", ".suggestionAttachment", function (event) {
+//   var files = event.target.files; //FileList object
+//   var imgHidden = $(this).siblings(".lblAttachment");
+//   var file = $(this)
+//     .val()
+//     .replace(/C:\\fakepath\\/gi, "");
+
+//   for (var i = 0; i < files.length; i++) {
+//     var file = files[i];
+//     //Only pics
+//     if (!file.type.match("image")) continue;
+//     var picReader = new FileReader();
+//     picReader.addEventListener("load", function (event) {
+//       var picFile = event.target;
+//       imgHidden.val(picFile.result);
+//     });
+//     //Read the image
+//     picReader.readAsDataURL(file);
+//   }
+// });

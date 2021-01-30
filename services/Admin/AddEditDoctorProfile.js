@@ -164,13 +164,15 @@ function SetDoctorProfile(d) {
   //=========set image control============
   $("#result").html(div);
 
+
+  console.log(d.PhoneNumber);
   $("#txtUname").val(d.Email);
   //$("#hdnpwd").val(d.password);
   $("#txtPwd").val(d.password);
   $("#txtFname").val(d.FirstName);
   $("#txtLname").val(d.LastName);
   $("#txtbioGraphy").data("kendoEditor").value(d.Biography);
-  $("#txtPno").val(d.PhoneNumber);
+  $("#txtPno").val(parseInt(d.PhoneNumber));
   $("#dbogender option:contains(" + d.Gender + ")").attr(
     "selected",
     "selected"

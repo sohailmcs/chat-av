@@ -100,27 +100,36 @@
                                                         <textarea cols="60"  rows="3" id="txtComplain" 
                                                         class=" form-control "
                                                         required
-                                                       data-validation-required-message="This  field is required"></textarea>
-
-                                                                                              
+                                                       data-validation-required-message="This  field is required"></textarea>                                                                                              
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group focused">                                                    
                                                     <label class="form-label" for="txtComplain">Attachment</label>
-                                                    <div class="custom-file">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">                                                     
+                                                        </div>
+                                                        <div class="custom-file">
+                                                          <input type="hidden" value="" class="lblAttachment">
+                                                          <input type="file" style='cursor:pointer'  class="custom-file-input MedicationReciept" >
+                                                          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                        </div>
+                                                     
+                                                      </div><!--end of input group-->
+
+
+                                                    <!-- <div class="custom-file">
                                                         <input type="hidden" value="" class="lblAttachment">
                                                         <input type="file" style='cursor:pointer'  class="custom-file-input suggestionAttachment" >
                                                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                                      </div>                                                 
+                                                      </div>                                                  -->
                                                 </div>
                                             </div>
                                             <div class="col-sm-12">
                                                 <div class="form-group"> 
                                                         <button id="btnCancel" type="submit" class="btn btn-primary">
                                                            Send
-                                                        </button>
-                                                        
+                                                        </button>                                                        
                                                         <br>
                                                 </div>
                                             </div>

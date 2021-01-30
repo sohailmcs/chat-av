@@ -129,6 +129,24 @@
                                             </div>
 
                                             <div class="col-sm-6">
+                                                <div class="form-group">                                                   
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <input required disabled="disabled" class="form-control"
+                                                                    value="+966" />
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <label class="form-label" for="txtPno">Phone No</label>
+                                                                <input  required name="txtPno" type="number"
+                                                                    class="form-input form-control" id="txtPno"
+                                                                     />
+                                                            </div>                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <!-- <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="form-label" for="txtPno">Phone Number</label>
                                                         <input type="text" id="txtPno" name="name" class="form-input form-control"
@@ -136,14 +154,17 @@
                                                             data-validation-required-message="This  field is required" />
                                                     
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="form-label" for="CallLimt">Call Limit</label>
-                                                        <input type="number" id="CallLimt" name="CallLimt"
-                                                         class="form-input form-control"
-                                                         required
-                                                        data-validation-required-message="This  field is required" />                                                    
+                                                    <input id="CallLimt" type="number" 
+                                                    pattern="/^-?\d+\.?\d*$/"
+                                                     onKeyPress="if(this.value.length==4) return false;"
+                                                     class="form-input form-control"
+                                                     required
+                                                    data-validation-required-message="This  field is required" />   
+                                                    
                                                 </div>
                                             </div>
 
@@ -173,8 +194,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12">
-                                                <fieldset class="form-group">
-                                                    <label class="form-label" for="txtbioGraphy">BioGraphy</label>
+                                                <fieldset class="form-group  ">
+                                                    <label style="transform:translateY(-125%)" class="form-label" for="txtbioGraphy">BioGraphy</label>
                                                     <textarea class="form-input form-control" id="txtbioGraphy" rows="3"
                                                         ></textarea>
                                                 </fieldset>
@@ -389,7 +410,7 @@
                                                                         </div>
                                                                        
                                                                         <div class="col-md-3 col-sm-12 form-group">
-                                                                            <div class="form-group">
+                                                                          
                                                                                 <label class="form-label" for="dboYear">Year</label>
                                                                                 <select name="Year" id="dboYear"
                                                                                     class="form-input form-control">
@@ -410,7 +431,7 @@
                                                                                     <option value="2008">2008</option>
                                                                                     <option value="2007">2007</option>
                                                                                 </select>
-                                                                            </div>
+                                                                          
                                                                         </div>
 
                                                                         <div
@@ -468,13 +489,13 @@
                                                                                 id="txtHospital"  />
                                                                         </div>
                                                                         <div class="col-md-3 col-sm-12 form-group focused">
-                                                                            <label class="form-label" for="txtTo">Start To</label>
+                                                                            <label style="transform: translateY(-125%);" class="form-label" for="txtTo">Start To</label>
                                                                             <input id="txtTo"  class="form-input form-control"
                                                                                 type="date"
                                                                                >
                                                                         </div>
                                                                         <div class="col-md-3 col-sm-12 form-group focused">
-                                                                            <label class="form-label" for="txtFrom">Start From</label>
+                                                                            <label style="transform: translateY(-125%);" class="form-label" for="txtFrom">Start From</label>
                                                                             <input id="txtFrom" 
                                                                                 class="form-input form-control" type="date">
                                                                         </div>
