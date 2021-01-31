@@ -214,7 +214,7 @@ class defaultController {
   }
 
   async getViewFeedBack(req, res, next) {
-    res.render(appRoot + "/source/Admin/view/KindahAddEditFeedback", {
+    res.render(appRoot + "/source/Admin/view/KindahAddEditFeedBack", {
       pageTitle: "Kindah Edit Feedback",
       userName: req.session.userName,
       userId: req.session.userId,
