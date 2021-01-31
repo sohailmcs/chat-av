@@ -84,6 +84,13 @@ $(function () {
   });
 }); //=====end of $(function)=====
 
+function DateValidation() {
+  var result = true;
+  var DtFrom = new Date($("#dtFrom").val());
+  var DtTo = new Date($("#toDT").val());
+  if (DtFrom > DtTo) result = false;
+  return result;
+}
 //=====validate any day of shift 1 confilict with any day of shift 2================
 function ConfilictValidation() {
   var result = true;
@@ -101,8 +108,7 @@ function ConfilictValidation() {
 
     var txtStartVal = shift1Parent.find(".txtStart").val();
     var txtEndVal = shift1Parent.find(".txtEnd").val();
-    if(txtStartVal=="" || txtEndVal=="")
-    {
+    if (txtStartVal == "" || txtEndVal == "") {
       Swal.fire({
         title: "Confirmation!",
         text: "Please select start and end time property",
@@ -110,11 +116,10 @@ function ConfilictValidation() {
         confirmButtonClass: "btn btn-primary",
         confirmButtonText: "Ok",
       });
-      shift1Parent.find(".txtStart").css("border","1px solid red");
-      shift1Parent.find(".txtEnd").css("border","1px solid red");
+      shift1Parent.find(".txtStart").css("border", "1px solid red");
+      shift1Parent.find(".txtEnd").css("border", "1px solid red");
       result = false;
       return false;
-
     }
 
     var Shift1Checkbox = $("#Shift1").find(
@@ -123,7 +128,6 @@ function ConfilictValidation() {
     var Shift2Checkbox = $("#Shift2").find(
       "input[cls='" + Shift1dayName + "']"
     );
-
 
     if (allCheckedShift2.length > 0 && Shift2Checkbox.prop("checked")) {
       var shift2Parent = Shift2Checkbox.parents("div.sch-app");
@@ -154,14 +158,15 @@ function Validation() {
   var chkShift1 = $("#Shift1").find("input[type='checkbox']:checked").length;
   var chkShift2 = $("#Shift2").find("input[type='checkbox']:checked").length;
 
-    if ($("#dtFrom").val() == "") {
+  if ($("#dtFrom").val() == "") {
     $("#dtFrom").css("border", "1px solid red");
     return false;
   } else if ($("#toDT").val() == "") {
     $("#toDT").css("border", "1px solid red");
     return false;
-  } else if ($("#toDT").val() == "") {
+  } else if (!DateValidation()) {
     $("#toDT").css("border", "1px solid red");
+    $("#dtFrom").css("border", "1px solid red");
     return false;
   } else if (chkShift1 == 0 && chkShift2 == 0) {
     Swal.fire({
@@ -457,12 +462,10 @@ function CancelAppointment(
     });
   }); //end of promises
 }
-function getAge()
-{
-  var getAge = $("#hdnPatientAge").val(); 
+function getAge() {
+  var getAge = $("#hdnPatientAge").val();
   $("#popupAge").html(CalculateAge(getAge));
 }
-
 
 function ViewBookingDetails(PatientId) {
   var url =
@@ -499,90 +502,95 @@ function ViewBookingDetails(PatientId) {
   });
 }
 
-function CalculateAge(userinput) { 
+function CalculateAge(userinput) {
   //collect input from HTML form and convert into date format
   // var userinput = document.getElementById("txtInfoAge").value;
   var dob = new Date(userinput);
-  
+
   //check user provide input or not
-  if(userinput==null || userinput==''){
-    document.getElementById("spnAge").innerHTML = "**Choose a date please!";  
-    return false; 
-  } 
-  
-  //execute if the user entered a date 
-  else {
-  //extract the year, month, and date from user date input
-  var dobYear = dob.getYear();
-  var dobMonth = dob.getMonth();
-  var dobDate = dob.getDate();
-  
-  //get the current date from the system
-  var now = new Date();
-  //extract the year, month, and date from current date
-  var currentYear = now.getYear();
-  var currentMonth = now.getMonth();
-  var currentDate = now.getDate();
-
-  //declare a variable to collect the age in year, month, and days
-  var age = {};
-  var ageString = "";
-
-  //get years
-  yearAge = currentYear - dobYear;
-
-  //get months
-  if (currentMonth >= dobMonth)
-    //get months when current month is greater
-    var monthAge = currentMonth - dobMonth;
-  else {
-    yearAge--;
-    var monthAge = 12 + currentMonth - dobMonth;
+  if (userinput == null || userinput == "") {
+    document.getElementById("spnAge").innerHTML = "**Choose a date please!";
+    return false;
   }
 
-  //get days
-  if (currentDate >= dobDate)
-    //get days when the current date is greater
-    var dateAge = currentDate - dobDate;
+  //execute if the user entered a date
   else {
-    monthAge--;
-    var dateAge = 31 + currentDate - dobDate;
+    //extract the year, month, and date from user date input
+    var dobYear = dob.getYear();
+    var dobMonth = dob.getMonth();
+    var dobDate = dob.getDate();
 
-    if (monthAge < 0) {
-      monthAge = 11;
+    //get the current date from the system
+    var now = new Date();
+    //extract the year, month, and date from current date
+    var currentYear = now.getYear();
+    var currentMonth = now.getMonth();
+    var currentDate = now.getDate();
+
+    //declare a variable to collect the age in year, month, and days
+    var age = {};
+    var ageString = "";
+
+    //get years
+    yearAge = currentYear - dobYear;
+
+    //get months
+    if (currentMonth >= dobMonth)
+      //get months when current month is greater
+      var monthAge = currentMonth - dobMonth;
+    else {
       yearAge--;
+      var monthAge = 12 + currentMonth - dobMonth;
     }
-  }
-  //group the age in a single variable
-  age = {
-  years: yearAge,
-  months: monthAge,
-  days: dateAge
-  };
-    
-    
-  if ( (age.years > 0) && (age.months > 0) && (age.days > 0) )
-     ageString = age.years + " years, " + age.months + " months, and " + age.days + " days old.";
-  else if ( (age.years == 0) && (age.months == 0) && (age.days > 0) )
-     ageString = "Only " + age.days + " days old!";
-  //when current month and date is same as birth date and month
-  else if ( (age.years > 0) && (age.months == 0) && (age.days == 0) )
-     ageString = age.years +  " years old. Happy Birthday!!";
-  else if ( (age.years > 0) && (age.months > 0) && (age.days == 0) )
-     ageString = age.years + " years and " + age.months + " months old.";
-  else if ( (age.years == 0) && (age.months > 0) && (age.days > 0) )
-     ageString = age.months + " months and " + age.days + " days old.";
-  else if ( (age.years > 0) && (age.months == 0) && (age.days > 0) )
-     ageString = age.years + " years, and" + age.days + " days old.";
-  else if ( (age.years == 0) && (age.months > 0) && (age.days == 0) )
-     ageString = age.months + " months old.";
-  //when current date is same as dob(date of birth)
-  else ageString = "It's first day on Earth!"; 
 
-  //display the calculated age
-  return document.getElementById("spnAge").innerHTML = "("+ ageString + ")"; 
-           
-}
+    //get days
+    if (currentDate >= dobDate)
+      //get days when the current date is greater
+      var dateAge = currentDate - dobDate;
+    else {
+      monthAge--;
+      var dateAge = 31 + currentDate - dobDate;
+
+      if (monthAge < 0) {
+        monthAge = 11;
+        yearAge--;
+      }
+    }
+    //group the age in a single variable
+    age = {
+      years: yearAge,
+      months: monthAge,
+      days: dateAge,
+    };
+
+    if (age.years > 0 && age.months > 0 && age.days > 0)
+      ageString =
+        age.years +
+        " years, " +
+        age.months +
+        " months, and " +
+        age.days +
+        " days old.";
+    else if (age.years == 0 && age.months == 0 && age.days > 0)
+      ageString = "Only " + age.days + " days old!";
+    //when current month and date is same as birth date and month
+    else if (age.years > 0 && age.months == 0 && age.days == 0)
+      ageString = age.years + " years old. Happy Birthday!!";
+    else if (age.years > 0 && age.months > 0 && age.days == 0)
+      ageString = age.years + " years and " + age.months + " months old.";
+    else if (age.years == 0 && age.months > 0 && age.days > 0)
+      ageString = age.months + " months and " + age.days + " days old.";
+    else if (age.years > 0 && age.months == 0 && age.days > 0)
+      ageString = age.years + " years, and" + age.days + " days old.";
+    else if (age.years == 0 && age.months > 0 && age.days == 0)
+      ageString = age.months + " months old.";
+    //when current date is same as dob(date of birth)
+    else ageString = "It's first day on Earth!";
+
+    //display the calculated age
+    return (document.getElementById("spnAge").innerHTML =
+      "(" + ageString + ")");
+  }
 }
 
 //====date formater by using mustache=====
@@ -597,4 +605,3 @@ Mustache.Formatters = {
     return new Date(str).toLocaleDateString("en-US", options);
   },
 };
-

@@ -9,16 +9,36 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+.timers fieldset {
+  margin:0px 0 12px;
+}
 
-
-.ratingArea i {
-  color:rgb(184, 184, 23);
+.popupRatingTxt {
+  font-weight: bold;
+  font-size: 1rem;
+}
+.lblrating {
+  border-radius: 7px;
+    border: 1.5px solid #c5cfdd;
+    padding: 8px 13px 8px 13px;
+    margin: 0 0 2px 0;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.lblrating:hover 
+{
+  background-color: #647796;
+  color:#fff;
 }
 
 
+.ratingArea i {
+  color: rgb(184, 184, 23);
+}
+
 /*=============start animated placeholder============*/
 select.form-control:not([multiple="multiple"]) {
-  -webkit-appearance:checkbox !important;
+  -webkit-appearance: checkbox !important;
 }
 
 .form-group {

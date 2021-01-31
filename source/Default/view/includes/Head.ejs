@@ -75,10 +75,10 @@
         userType: userType,
       });
 
-      if (!localStorage.getItem("DoctoronlineStatus")) {
+     // if (!localStorage.getItem("DoctoronlineStatus")) {
         changeDoctorOlineStaus(userID, "Online", uName);
-        localStorage.setItem("DoctoronlineStatus", "true");
-      }
+       // localStorage.setItem("DoctoronlineStatus", "true");
+     // }
     }); //============end of document.ready========
 
     function OpenCommunicationWindow(btn) {
@@ -143,7 +143,7 @@
 
     function deleteAllCookies() {
       //=============update status in database=============
-      localStorage.removeItem("DoctoronlineStatus");
+    //  localStorage.removeItem("DoctoronlineStatus");
 
       var cookies = document.cookie.split(";");
       for (var i = 0; i < cookies.length; i++) {

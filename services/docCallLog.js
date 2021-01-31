@@ -115,7 +115,7 @@ function Filldatatable(data) {
         defaultContent: "",
       },
     ],
-    order: [[1, "asc"]],
+    order: [[0, "desc"]],
   });
 }
 //====date formater by using mustache=====

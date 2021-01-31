@@ -61,6 +61,7 @@ socketServer.sockets.on("connection", function (socket) {
   });
 
   socket.on("SendCallRequestToPatient", function (data) {
+    console.log(clients[data.pName]);
     if (clients[data.pName]) {
       socketServer.sockets.connected[clients[data.pName].socket].emit(
         "CallRequest",
@@ -99,10 +100,10 @@ socketServer.sockets.on("connection", function (socket) {
   });
   //==========close patient calling screen on disconnect or end call============
   socket.on("ClosePatientScreen", function (data) {
-    if (clients[data.pName]) {
+    if (clients[data.pName]) {     
       socketServer.sockets.connected[clients[data.pName].socket].emit(
         "ClosePatientScreen",
-        data.pName
+        data
       );
     } else {
       console.log("User does not exist on ClosePatientScreen: " + data.pName);

@@ -440,8 +440,11 @@ function disconnect() {
 
   //if (callPerformed && mArea == "Doctor") {
   if (callPerformed && mArea == "Doctor") {
-    soc.emit("ClosePatientScreen", {
+    soc.emit("ClosePatientScreen", {     
       pName: mPname,
+      CallLogId :mCallLogId,
+      DoctorId :mDocId,
+      PatientId : mPatientID
     });
     // AudioVideosession.unsubscribe(subscriber);
     UpdateCallLogEndtime(newCalllogId, onCallduration);
@@ -449,6 +452,9 @@ function disconnect() {
     // else only close patient incomming call window.
     soc.emit("ClosePatientScreen", {
       pName: mPname,
+      CallLogId :mCallLogId,
+      DoctorId :mDocId,
+      PatientId : mPatientID
     });
   }
   callPerformed = false;
