@@ -202,7 +202,7 @@
                                                    </div>
                                                   </div>   
                                                </div><!--end of col-sm-6--> 
-                                               <div class="col-sm-4">
+                                               <div class="col-sm- pt-2">
                                                 <label>Gender</label>
                                                 <div style="margin-top:10px;" class="form-check form-check-inline">
                                                   <input class="form-check-input" type="radio" name="gender" id="rdoMale" value="Male" checked>
@@ -415,7 +415,7 @@
                                                 </div><!--end of col-sm-6-->                                                                                               
                                               </div><!--end of row-->
                                               <div class="row">
-                                                <div class="col-sm-12 mb-1 mt-1">
+                                                <div class="col-sm-12 mt-1">
                                                   <div style="margin-top:10px;" class="form-check form-check-inline">                 
                                                       <input class="form-check-input" type="radio" group="MedCondition" name="condition"
                                                        id="rdoTakeMedYes" value="1">                                                                                           
@@ -423,116 +423,19 @@
                                                     </div>                                               
                                                 </div>                                                  
                                               </div>
-                                              <div class="row">
-                                              <div class="divCondition col-sm-6">
-                                                  <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                    <div class="CheckBoxOverlay">
-                                                      <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="Cancer"> 
-                                                      <label class="form-check-label" for="lblcondition">Cancer</label>
-                                                      <div onclick="EnableMedCondition(this)"></div>                                              
-                                                      </div><!--end of checkBoxoverlay-->
-                                                  </div>   
-                                                </div><!--end of col-sm-6--> 
-                                                 <div class="divCondition col-sm-6">
-                                                  <div style="margin-top:10px;" class="form-check form-check-inline"> 
-                                                    <div class="CheckBoxOverlay">
-                                                      <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="Cancer"> 
-                                                      <label class="form-check-label" for="lblcondition">Cancer</label>
-                                                      <div onclick="EnableMedCondition(this)"></div>                                              
-                                                      </div><!--end of checkBoxoverlay-->
-                                                  </div>   
-                                                </div><!--end of col-sm-6--> 
-                                              </div>  <!--end of row-->
-                                              <div class="row">
-                                                <div class="divCondition col-sm-6">
-                                                    <div style="margin-top:10px;" class="form-check form-check-inline">  
-                                                      <div class="CheckBoxOverlay">             
-                                                      <input class="form-check-input rdoCondition" type="checkbox" name="chkcondition"  value="Diabetes">                                                                                           
-                                                      <label class="form-check-label" for="lblcondition">Diabetes</label>
-                                                      <div onclick="EnableMedCondition(this)"></div>                                              
-                                                    </div><!--end of checkBoxoverlay-->
-                                                    </div>   
-                                                  </div><!--end of col-sm-6--> 
-                                                  <div class="divCondition col-sm-6">
-                                                    <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                      <div class="CheckBoxOverlay">             
-                                                        <input class="form-check-input rdoCondition" type="checkbox" name="chkcondition" value="Diabetes">                                                                                           
-                                                        <label class="form-check-label" for="lblcondition">Diabetes</label>
-                                                        <div onclick="EnableMedCondition(this)"></div>                                              
-                                                      </div><!--end of checkBoxoverlay-->
-                                                    </div>   
-                                                  </div><!--end of col-sm-6--> 
-                                                </div>  <!--end of row-->
+                                              <div class="col-sm-12" id="medList">
+                                               
                                                 <div class="row">
-                                                  <div class="divCondition col-sm-6">
-                                                      <div style="margin-top:10px;" class="form-check form-check-inline"> 
-                                                        <div class="CheckBoxOverlay">                 
-                                                        <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="Heart Disease">                                                                                           
-                                                        <label class="form-check-label" for="lblcondition">Heart Disease</label>
-                                                        <div onclick="EnableMedCondition(this)"></div>                                              
-                                                      </div><!--end of checkBoxoverlay-->
-                                                      </div>   
-                                                    </div><!--end of col-sm-6--> 
-                                                    <div class="divCondition col-sm-6">
+                                                  <div class="col-sm-6">
                                                       <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                        <div class="CheckBoxOverlay">                 
-                                                          <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="Heart Disease">                                                                                           
-                                                          <label class="form-check-label" for="lblcondition">Heart Disease</label>
-                                                          <div onclick="EnableMedCondition(this)"></div>                                              
-                                                        </div><!--end of checkBoxoverlay-->
+                                                        <input class="form-check-input" type="checkbox" name="Other" id="otherCondition" value="0">                                                                                           
+                                                        <label class="form-check-label" for="lblcondition">Other</label>
                                                       </div>   
                                                     </div><!--end of col-sm-6--> 
+                                                  
                                                   </div>  <!--end of row-->
-                                                  <div class="row">
-                                                    <div class="divCondition col-sm-6">
-                                                        <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                          <div class="CheckBoxOverlay">                 
-                                                          <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="Stroke">                                                                                           
-                                                          <label class="form-check-label" for="lblcondition">Stroke</label>
-                                                          <div onclick="EnableMedCondition(this)"></div>                                              
-                                                        </div><!--end of checkBoxoverlay-->
-                                                        </div>   
-                                                      </div><!--end of col-sm-6--> 
-                                                      <div class="divCondition col-sm-6">
-                                                        <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                          <div class="CheckBoxOverlay">                 
-                                                            <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="Stroke">                                                                                           
-                                                            <label class="form-check-label" for="lblcondition">Stroke</label>
-                                                            <div onclick="EnableMedCondition(this)"></div>                                              
-                                                          </div><!--end of checkBoxoverlay-->
-                                                        </div>   
-                                                      </div><!--end of col-sm-6--> 
-                                                    </div>  <!--end of row-->
-                                                    <div class="row">
-                                                      <div class=" divCondition col-sm-6">
-                                                          <div style="margin-top:10px;" class="form-check form-check-inline">  
-                                                            <div class="CheckBoxOverlay">                                
-                                                            <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="Blood Pressure">                                                                                           
-                                                            <label class="form-check-label" for="lblcondition">Blood Pressure</label>
-                                                            <div onclick="EnableMedCondition(this)"></div>                                              
-                                                          </div><!--end of checkBoxoverlay-->
-                                                          </div>   
-                                                        </div><!--end of col-sm-6--> 
-                                                        <div class="divCondition col-sm-6">
-                                                          <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                            <div class="CheckBoxOverlay">                                
-                                                              <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="Blood Pressure">                                                                                           
-                                                              <label class="form-check-label" for="lblcondition">Blood Pressure</label>
-                                                              <div onclick="EnableMedCondition(this)"></div>                                              
-                                                            </div><!--end of checkBoxoverlay-->
-                                                          </div>   
-                                                        </div><!--end of col-sm-6--> 
-                                                      </div>  <!--end of row-->
-                                                      <br>
-                                                      <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                              <input class="form-check-input" type="checkbox" name="Other" id="otherCondition" value="0">                                                                                           
-                                                              <label class="form-check-label" for="lblcondition">Other</label>
-                                                            </div>   
-                                                          </div><!--end of col-sm-6--> 
-                                                        
-                                                        </div>  <!--end of row-->
+                                              </div><!--end of row medList-->
+                                              
                                                         <div class="row">
                                                           <div class="col-sm-12 col-sm-12 mt-1 mb-1">
                                                             <div class="CheckBoxOverlay">   

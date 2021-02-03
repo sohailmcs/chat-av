@@ -32,9 +32,13 @@ function EnableOtherOption(EleOverlay) {
 }
 
 $(function () {
+  GetMedicationContidionList("MedConditionList");
+  $(".divMed").find("*").prop("disabled", true);
+  $(".PatientAlergy").find("*").prop("disabled", true); 
+  $("#txtMedCondition").prop("disabled", true);
 
-  $('#txtInfoAge').on('change',function(){    
-   CalculateAge($(this).val());
+  $("#txtInfoAge").on("change", function () {
+    CalculateAge($(this).val());
   });
 
   $("#dboCountry, #dboCity").select2(); //searchable dropdown
@@ -111,15 +115,12 @@ $(function () {
   });
 
   //========Add new Medication============
-   $("#btnAddAlergy").click(function (event) {
+  $("#btnAddAlergy").click(function (event) {
     event.stopImmediatePropagation();
     AddAlergy();
   });
 
-  $(".divMed").find("*").prop("disabled", true);
-  $(".PatientAlergy").find("*").prop("disabled", true);
-  $(".divCondition").find("*").prop("disabled", true);
-  $("#txtMedCondition").prop("disabled", true);
+ 
 
   $('input:radio[name="medication"]').change(function () {
     if (this.checked && this.value == "0") {
@@ -138,10 +139,10 @@ $(function () {
     } else $(".PatientAlergy").find("*").prop("disabled", false);
   });
 
-  $(document).on("click", ".PatientAlergy", function () {    
+  $(document).on("click", ".PatientAlergy", function () {
     $("#rdoHaveAlergyYes").prop("checked", true);
     $(this).find("*").prop("disabled", false);
-   $(this).find(".txtAlergy")[0].focus();
+    $(this).find(".txtAlergy")[0].focus();
   });
 
   $('input:radio[name="condition"]').change(function () {
@@ -468,9 +469,8 @@ function FillDetails(d) {
   FillCity(d.CountryId, d.CityId, false);
 }
 
-function getAge()
-{
-  var getAge = $("#hdnPatientAge").val(); 
+function getAge() {
+  var getAge = $("#hdnPatientAge").val();
   $("#popupAge").html(CalculateAge(getAge));
 }
 
@@ -607,6 +607,62 @@ function GetChildDetails(patientId) {
     complete: function (data) {
       // Hide Loading
       $.LoadingOverlay("hide");
+    },
+  });
+}
+
+function GetMedicationContidionList(MedicationCondition) {
+  FillCountry();
+  var url =
+    baseURL +
+    "ValueAndStatus/GetValueAndStatusListByKey?valueKey=" +
+    MedicationCondition;
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+      var item='<div class="row">';
+      $.each(data, function (i, v) {
+        // if (i % 2 != 0) {
+        //   item = item + '<div class="row">';
+        // }
+        item =
+          item +
+          '<div class="divCondition col-sm-6">' +
+          ' <div style="margin-top:10px;" class="form-check form-check-inline">  ' +
+          ' <div class="CheckBoxOverlay"> ' +
+          ' <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="' + v.ValueNameEn  +'"> ' +
+          ' <label class="form-check-label" for="lblcondition">' + v.ValueNameEn  +'</label> ' +
+          ' <div onclick="EnableMedCondition(this)"></div> ' +
+          " </div>" +
+          "</div>" +
+          "</div>";
+        // if (i % 2 != 0) {
+        //   item = item + "</div>";
+        // }
+      });
+      item = item + "</div><br>";
+      $("#medList").prepend(item);
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+      $(".divCondition").find("*").prop("disabled", true);
     },
   });
 }
@@ -911,84 +967,89 @@ function CalculateAge(userinput) {
   //collect input from HTML form and convert into date format
   // var userinput = document.getElementById("txtInfoAge").value;
   var dob = new Date(userinput);
-  
+
   //check user provide input or not
-  if(userinput==null || userinput==''){
-    document.getElementById("spnAge").innerHTML = "**Choose a date please!";  
-    return false; 
-  } 
-  
-  //execute if the user entered a date 
-  else {
-  //extract the year, month, and date from user date input
-  var dobYear = dob.getYear();
-  var dobMonth = dob.getMonth();
-  var dobDate = dob.getDate();
-  
-  //get the current date from the system
-  var now = new Date();
-  //extract the year, month, and date from current date
-  var currentYear = now.getYear();
-  var currentMonth = now.getMonth();
-  var currentDate = now.getDate();
-
-  //declare a variable to collect the age in year, month, and days
-  var age = {};
-  var ageString = "";
-
-  //get years
-  yearAge = currentYear - dobYear;
-
-  //get months
-  if (currentMonth >= dobMonth)
-    //get months when current month is greater
-    var monthAge = currentMonth - dobMonth;
-  else {
-    yearAge--;
-    var monthAge = 12 + currentMonth - dobMonth;
+  if (userinput == null || userinput == "") {
+    document.getElementById("spnAge").innerHTML = "**Choose a date please!";
+    return false;
   }
 
-  //get days
-  if (currentDate >= dobDate)
-    //get days when the current date is greater
-    var dateAge = currentDate - dobDate;
+  //execute if the user entered a date
   else {
-    monthAge--;
-    var dateAge = 31 + currentDate - dobDate;
+    //extract the year, month, and date from user date input
+    var dobYear = dob.getYear();
+    var dobMonth = dob.getMonth();
+    var dobDate = dob.getDate();
 
-    if (monthAge < 0) {
-      monthAge = 11;
+    //get the current date from the system
+    var now = new Date();
+    //extract the year, month, and date from current date
+    var currentYear = now.getYear();
+    var currentMonth = now.getMonth();
+    var currentDate = now.getDate();
+
+    //declare a variable to collect the age in year, month, and days
+    var age = {};
+    var ageString = "";
+
+    //get years
+    yearAge = currentYear - dobYear;
+
+    //get months
+    if (currentMonth >= dobMonth)
+      //get months when current month is greater
+      var monthAge = currentMonth - dobMonth;
+    else {
       yearAge--;
+      var monthAge = 12 + currentMonth - dobMonth;
     }
-  }
-  //group the age in a single variable
-  age = {
-  years: yearAge,
-  months: monthAge,
-  days: dateAge
-  };
-    
-    
-  if ( (age.years > 0) && (age.months > 0) && (age.days > 0) )
-     ageString = age.years + " years, " + age.months + " months, and " + age.days + " days old.";
-  else if ( (age.years == 0) && (age.months == 0) && (age.days > 0) )
-     ageString = "Only " + age.days + " days old!";
-  //when current month and date is same as birth date and month
-  else if ( (age.years > 0) && (age.months == 0) && (age.days == 0) )
-     ageString = age.years +  " years old. Happy Birthday!!";
-  else if ( (age.years > 0) && (age.months > 0) && (age.days == 0) )
-     ageString = age.years + " years and " + age.months + " months old.";
-  else if ( (age.years == 0) && (age.months > 0) && (age.days > 0) )
-     ageString = age.months + " months and " + age.days + " days old.";
-  else if ( (age.years > 0) && (age.months == 0) && (age.days > 0) )
-     ageString = age.years + " years, and" + age.days + " days old.";
-  else if ( (age.years == 0) && (age.months > 0) && (age.days == 0) )
-     ageString = age.months + " months old.";
-  //when current date is same as dob(date of birth)
-  else ageString = "It's first day on Earth!"; 
 
-  //display the calculated age
-  return document.getElementById("spnAge").innerHTML = "("+ ageString + ")"; 
-           
-}
+    //get days
+    if (currentDate >= dobDate)
+      //get days when the current date is greater
+      var dateAge = currentDate - dobDate;
+    else {
+      monthAge--;
+      var dateAge = 31 + currentDate - dobDate;
+
+      if (monthAge < 0) {
+        monthAge = 11;
+        yearAge--;
+      }
+    }
+    //group the age in a single variable
+    age = {
+      years: yearAge,
+      months: monthAge,
+      days: dateAge,
+    };
+
+    if (age.years > 0 && age.months > 0 && age.days > 0)
+      ageString =
+        age.years +
+        " years, " +
+        age.months +
+        " months, and " +
+        age.days +
+        " days old.";
+    else if (age.years == 0 && age.months == 0 && age.days > 0)
+      ageString = "Only " + age.days + " days old!";
+    //when current month and date is same as birth date and month
+    else if (age.years > 0 && age.months == 0 && age.days == 0)
+      ageString = age.years + " years old. Happy Birthday!!";
+    else if (age.years > 0 && age.months > 0 && age.days == 0)
+      ageString = age.years + " years and " + age.months + " months old.";
+    else if (age.years == 0 && age.months > 0 && age.days > 0)
+      ageString = age.months + " months and " + age.days + " days old.";
+    else if (age.years > 0 && age.months == 0 && age.days > 0)
+      ageString = age.years + " years, and" + age.days + " days old.";
+    else if (age.years == 0 && age.months > 0 && age.days == 0)
+      ageString = age.months + " months old.";
+    //when current date is same as dob(date of birth)
+    else ageString = "It's first day on Earth!";
+
+    //display the calculated age
+    return (document.getElementById("spnAge").innerHTML =
+      "(" + ageString + ")");
+  }
 }

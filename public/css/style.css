@@ -9,28 +9,78 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
-.timers fieldset {
-  margin:0px 0 12px;
+
+/*===========start of HightChats========*/
+
+.PatientCountHeader,.DepartMentWiseHeader {
+  background-color:#437dec;
+  color:#fff;
+  padding:10px;
+  text-align: center;;
+}
+.highcharts-figure,
+.highcharts-data-table table {
+  min-width: 320px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
+#PatientChart {
+  height: 400px;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ebebeb;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  padding: 0.5em;
+}
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+
+/*===========end of HightChats==========*/
+
+.timers fieldset {
+  margin: 0px 0 12px;
+}
 .popupRatingTxt {
   font-weight: bold;
   font-size: 1rem;
 }
 .lblrating {
   border-radius: 7px;
-    border: 1.5px solid #c5cfdd;
-    padding: 8px 13px 8px 13px;
-    margin: 0 0 2px 0;
-    font-size: 1rem;
-    cursor: pointer;
+  border: 1.5px solid #c5cfdd;
+  padding: 8px 13px 8px 13px;
+  margin: 0 0 2px 0;
+  font-size: 1rem;
+  cursor: pointer;
 }
-.lblrating:hover 
-{
+.lblrating:hover {
   background-color: #647796;
-  color:#fff;
+  color: #fff;
 }
-
 
 .ratingArea i {
   color: rgb(184, 184, 23);

@@ -116,6 +116,11 @@ router.get(
   AdminController.getViewSuggestion.bind(AdminController)
 );
 
+router.get(
+  "/view-financial",
+  AdminController.getKindahFinancial.bind(AdminController)
+);
+
 
 // router.get("/KindahAdmin", KindahController.getkindahAdmin);
 // router.get("/KindahCreateDoctor", KindahController.getkindahCreateDoctor);

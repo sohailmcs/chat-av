@@ -240,6 +240,15 @@ class defaultController {
     });
   }
 
+  async getKindahFinancial(req, res, next) {
+    res.render(appRoot + "/source/Admin/view/KindahFinancial", {
+      pageTitle: "Kindah Financial",
+      userName: req.session.userName,
+      userId: req.session.userId,
+      roleId:req.session.roleId
+    });
+  }
+
 
 }
 
