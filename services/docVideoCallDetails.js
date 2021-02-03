@@ -83,7 +83,6 @@ function dragElement(elmnt) {
 }
 
 $(function () {
- 
   $("#patientAge").on("change", function () {
     CalculateAge($(this).val());
   });
@@ -223,6 +222,7 @@ $(function () {
 function handleError(error) {
   if (error) {
     console.log(error.message);
+    disconnect();
   }
 }
 
@@ -346,7 +346,14 @@ function initializeSession(key, sessId, tokenId) {
   // Connect to the session
   AudioVideosession.connect(tokenId, function callback(error) {
     if (error) {
+      if (error.name === "OT_NOT_CONNECTED") {
+        console.log(
+          "You are not connected to the internet. Check your network connection."
+          );
+      }
+      console.log("Failed to connect: ", error.message);
       handleError(error);
+
     } else {
       // If the connection is successful, publish the publisher to the session
       AudioVideosession.publish(publisher, handleError).on(
@@ -408,11 +415,11 @@ function countTimer() {
 
 function streamDestroyed(event) {
   event.preventDefault();
-//  AudioVideosession.disconnect(); 
-//  AudioVideosession.destroy();
-//  AudioVideosession.unpublish(publisher);
-//                  console.log("The publisher stopped streaming. Reason: "
-//                   + event.reason);
+  //  AudioVideosession.disconnect();
+  //  AudioVideosession.destroy();
+  //  AudioVideosession.unpublish(publisher);
+  //                  console.log("The publisher stopped streaming. Reason: "
+  //                   + event.reason);
 }
 
 function disconnect() {
@@ -440,11 +447,12 @@ function disconnect() {
 
   //if (callPerformed && mArea == "Doctor") {
   if (callPerformed && mArea == "Doctor") {
-    soc.emit("ClosePatientScreen", {     
+    soc.emit("ClosePatientScreen", {
       pName: mPname,
-      CallLogId :mCallLogId,
-      DoctorId :mDocId,
-      PatientId : mPatientID
+      CallLogId: mCallLogId,
+      DoctorId: mDocId,
+      PatientId: mPatientID,
+      callConnect : callPerformed
     });
     // AudioVideosession.unsubscribe(subscriber);
     UpdateCallLogEndtime(newCalllogId, onCallduration);
@@ -452,9 +460,9 @@ function disconnect() {
     // else only close patient incomming call window.
     soc.emit("ClosePatientScreen", {
       pName: mPname,
-      CallLogId :mCallLogId,
-      DoctorId :mDocId,
-      PatientId : mPatientID
+      CallLogId: mCallLogId,
+      DoctorId: mDocId,
+      PatientId: mPatientID,
     });
   }
   callPerformed = false;
