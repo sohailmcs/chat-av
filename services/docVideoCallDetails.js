@@ -407,12 +407,12 @@ function countTimer() {
 //============calculate calling time==============
 
 function streamDestroyed(event) {
- // event.preventDefault();
- AudioVideosession.disconnect(); 
- AudioVideosession.destroy();
- AudioVideosession.unpublish(publisher);
-                 console.log("The publisher stopped streaming. Reason: "
-                  + event.reason);
+  event.preventDefault();
+//  AudioVideosession.disconnect(); 
+//  AudioVideosession.destroy();
+//  AudioVideosession.unpublish(publisher);
+//                  console.log("The publisher stopped streaming. Reason: "
+//                   + event.reason);
 }
 
 function disconnect() {
