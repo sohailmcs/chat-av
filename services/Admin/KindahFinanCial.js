@@ -18,15 +18,58 @@ function CreateCharts() {
       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-      // Populate series
+      //=======start  patient montly chart========
+      var patientchart = data.MontlyPatient;
+      var depChart = data.GroupDepartment;
+      var doctorChart = data.GroupDoctor
       var TotalPatints = 0;
       var processed_json = new Array();
-      for (i = 0; i < data.length; i++) {
-        TotalPatints = TotalPatints + parseInt(data[i].MonthyCount);
-        processed_json.push([data[i].MonthName, parseInt(data[i].MonthyCount)]);
+      for (i = 0; i < patientchart.length; i++) {
+        TotalPatints = TotalPatints + parseInt(patientchart[i].MonthyCount);
+        processed_json.push([
+          patientchart[i].MonthName,
+          parseInt(patientchart[i].MonthyCount),
+        ]);
       }
       GetPatientWiseChart(processed_json, TotalPatints);
-      CreateDepartmentWiseCharts();
+      //=======end patient montly chart========
+
+      //=======start  department montly chart========
+      var seriesArray = new Array();
+      $.each(depChart, function (i, val) {
+        var dataArray = new Array();
+        $.each(val.DepartmentWiseRevenueList, function (ind, v) {
+          dataArray.push(v.TotalAmount);
+        });
+        seriesArray.push({
+          name: val.DepartmentName,
+          data: dataArray,
+        });
+      });
+
+      CreateDepartmentWiseCharts(seriesArray);
+      //=======end  department montly chart========
+
+       //=======start  doctor wise chart========
+      var seriesArrayDoctor = new Array();
+      var docName = '';
+      $.each(doctorChart, function (i, val) {
+        var dataArray = new Array();
+         docName = val.DoctorName
+        $.each(val.doctorWiseRevenueList, function (ind, v) {
+          dataArray.push(v.TotalAmount);
+        });
+
+        seriesArrayDoctor.push({
+          name: val.DoctorName,
+          data: dataArray,
+        });
+      });
+
+      CreateDoctorWiseCharts(seriesArrayDoctor);
+      //=======end  doctor wise chart========
+
+
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -41,7 +84,6 @@ function CreateCharts() {
 }
 
 function GetPatientWiseChart(data, TotalPatints) {
-  console.log(JSON.stringify(data));
   Highcharts.chart("PatientChart", {
     chart: {
       plotBackgroundColor: null,
@@ -57,7 +99,6 @@ function GetPatientWiseChart(data, TotalPatints) {
       verticalAlign: "middle",
       y: 70,
       useHtml: true,
-      
     },
 
     credits: false,
@@ -82,7 +123,7 @@ function GetPatientWiseChart(data, TotalPatints) {
         startAngle: -180,
         endAngle: 180,
         center: ["50%", "50%"],
-        size: "110%",
+        size: "100%",
       },
     },
     series: [
@@ -91,42 +132,115 @@ function GetPatientWiseChart(data, TotalPatints) {
         name: "Total patient seen",
         innerSize: "80%",
         data: data,
-        // [
-        //   ["Chrome", 58.9],
-        //   ["Firefox", 13.29],
-        //   ["Internet Explorer", 13],
-        //   ["Edge", 3.78],
-        //   ["Safari", 3.42],
-        //   {
-        //     name: "Other",
-        //     y: 7.61,
-        //     dataLabels: {
-        //       enabled: false,
-        //     },
-        //   },
-        // ],
       },
     ],
   });
 }
 
-function CreateDepartmentWiseCharts()
-{
-    const chart = Highcharts.chart('DepartmentWiseChart', {
-        title: {
-            text: ''
-        },
-        subtitle: {
-            text: 'Plain'
-        },
-        xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        },
-        series: [{
-            type: 'column',
-            colorByPoint: true,
-            data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
-            showInLegend: false
-        }]
-    });
+function CreateDepartmentWiseCharts(SeriesData) {
+  Highcharts.chart("DepartmentWiseChart", {
+    chart: {
+      type: "column",
+    },
+    title: {
+      text: " ",
+    },
+    credits: false,
+    // subtitle: {
+    //   text: "Source: WorldClimate.com",
+    // },
+    xAxis: {
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ],
+      crosshair: true,
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: "Revenue ( SAR )",
+      },
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat:
+        '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y} SAR</b></td></tr>',
+      footerFormat: "</table>",
+      shared: true,
+      useHTML: true,
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0.2,
+        borderWidth: 0,
+      },
+    },
+    series: SeriesData,
+  });
+}
+
+function CreateDoctorWiseCharts(SeriesData) {
+  Highcharts.chart("DoctorWiseChart", {
+    chart: {
+      type: "column",
+    },
+    title: {
+      text: " ",
+    },
+    credits: false,
+    // subtitle: {
+    //   text: "Source: WorldClimate.com",
+    // },
+    xAxis: {
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ],
+      crosshair: true,
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: "Revenue ( SAR )",
+      },
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat:
+        '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y} SAR</b></td></tr>',
+      footerFormat: "</table>",
+      shared: true,
+      useHTML: true,
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0.2,
+        borderWidth: 0,
+      },
+    },
+    series: SeriesData,
+  });
 }

@@ -46,20 +46,44 @@
         <div class="content-header row"></div>
         <div class="content-body">        <div class="d-flex flex-row">
                 <div class="page-heading">
-                    <h3>KINDAH Fincial</h3>
+                    <h3>Kindah Dashboard</h3>
                 </div>
             </div>
           
             <!-- Start  table -->
-          
+          <div class="row col-sm mb-2">
+                  <div style="padding-left:0" class="col-md-3">
+                    <label>From Date</label>
+                    <fieldset class="position-relative has-icon-left">
+                      <input id="dtFrom" type="date" class="form-control " placeholder="Select Date" />
+                      <div class="form-control-position">
+                        <i class="bx bx-calendar"></i>
+                      </div>
+                    </fieldset>
+                  </div>
+                  <div class="col-md-3">
+                    <label>To Date</label>
+                    <fieldset class="position-relative has-icon-left">
+                      <input id="toDT" type="date" class="form-control" placeholder="Select Date" />
+                      <div class="form-control-position">
+                        <i class="bx bx-calendar"></i>
+                      </div>
+                    </fieldset>
+                  </div>
+              
+          </div>
           <div class="row col-sm">
-            <div class="col-sm-4">
+            <div class=" col-sm-4" style="padding-left:0;">
                 <div class="PatientCountHeader col-sm-12">No of patients seen for last 6 months</div>
                 <div id="PatientChart"></div>                
             </div>
             <div class="col-sm-4">
                 <div class="DepartMentWiseHeader col-sm-12">No of visits for last 6 months</div>
                 <div id="DepartmentWiseChart"></div>                
+            </div>
+            <div class="col-sm-4">
+                <div class="DoctorWiseHeader col-sm-12">The balance for last 6 months</div>
+                <div id="DoctorWiseChart"></div>                
             </div>
           </div><!--end of row-->
 
@@ -81,9 +105,15 @@
 <script src="/js/vertical-menu-light.js"></script>
 <script src="/js/app-menu.js"></script>
 <script src="/js/app.js"></script>
+<script src="/js/pickadate/picker.js"></script>
+<!-- <script src="/js/pickadate/picker.date.js"></script> -->
+<!-- <script src="/js/pickadate/picker.time.js"></script> -->
+<!-- <script src="/js/pickadate/legacy.js"></script> -->
+<!-- <script src="/js/daterange/moment.min.js"></script> -->
+<!-- <script src="/js/daterange/daterangepicker.js"></script> -->
+
 
 <script type="text/javascript" charset="utf8" 
-
 src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
 

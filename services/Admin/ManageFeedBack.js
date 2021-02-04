@@ -57,6 +57,7 @@ function Filldatatable(data) {
       { data: "PatientEmail" },
       { data: "DoctName" },
       { data: "Rating" },
+      { data: "AddedDate" },
 
       {
         mRender: function (data, type, row) {

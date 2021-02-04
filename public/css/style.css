@@ -14,9 +14,10 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .labelStar {
   font-size:14px;
   color:#0367FF;
+  background-color: #0367FF;;
 }
 
-.PatientCountHeader,.DepartMentWiseHeader {
+.PatientCountHeader,.DepartMentWiseHeader,.DoctorWiseHeader {
   background-color:#437dec;
   color:#fff;
   padding:10px;
