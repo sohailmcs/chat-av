@@ -1,9 +1,37 @@
+//=====global variable of fromDate and ToDate=========
+var DtFrom = new Date(
+  new Date().getFullYear(),
+  new Date().getMonth() - 6,
+  new Date().getDate()
+).toLocaleDateString();
+var DtTo = new Date().toLocaleDateString();
+
 $(function () {
-  CreateCharts();
+  CreateCharts(DtFrom, DtTo);
+
+  $("#btnShowReport").on("click", function () {
+    var dateFrom = $("#dtFrom").val() == "" ? DtFrom : $("#dtFrom").val();
+    var dateTo = $("#toDT").val() == "" ? DtTo : $("#toDT").val();
+    CreateCharts(dateFrom, dateTo);
+    $(".PatientCountHeader").html(
+      "Patients seen from<strong> " + dateFrom + " </strong>To <strong> " + dateTo +"</srong>"
+    );
+    $(".DepartMentWiseHeader").html(
+      "Visits from <strong> " + dateFrom + " </strong>To <strong> " + dateTo +"</srong>"
+    );
+    $(".DoctorWiseHeader").html(
+      "Balance from<strong> " + dateFrom + " </strong>To <strong> " + dateTo +"</srong>"
+    );
+  });
 });
 
-function CreateCharts() {
-  var url = baseURL + "CallLogs/GetMonthtlyPatientInfo";
+function CreateCharts(DtFrom, DtTo) {
+  var url =
+    baseURL +
+    "CallLogs/GetMonthtlyPatientInfo?FromDt=" +
+    DtFrom +
+    "&ToDt=" +
+    DtTo;
   ///==============start post request to add doctor
   $.ajax({
     url: url,
@@ -21,7 +49,7 @@ function CreateCharts() {
       //=======start  patient montly chart========
       var patientchart = data.MontlyPatient;
       var depChart = data.GroupDepartment;
-      var doctorChart = data.GroupDoctor
+      var doctorChart = data.GroupDoctor;
       var TotalPatints = 0;
       var processed_json = new Array();
       for (i = 0; i < patientchart.length; i++) {
@@ -50,12 +78,12 @@ function CreateCharts() {
       CreateDepartmentWiseCharts(seriesArray);
       //=======end  department montly chart========
 
-       //=======start  doctor wise chart========
+      //=======start  doctor wise chart========
       var seriesArrayDoctor = new Array();
-      var docName = '';
+      var docName = "";
       $.each(doctorChart, function (i, val) {
         var dataArray = new Array();
-         docName = val.DoctorName
+        docName = val.DoctorName;
         $.each(val.doctorWiseRevenueList, function (ind, v) {
           dataArray.push(v.TotalAmount);
         });
@@ -68,8 +96,6 @@ function CreateCharts() {
 
       CreateDoctorWiseCharts(seriesArrayDoctor);
       //=======end  doctor wise chart========
-
-
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
