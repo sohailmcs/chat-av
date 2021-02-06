@@ -3,8 +3,9 @@ var baseURL = "https://kindahclinic.com/KindahService/";
 //var baseURL = "http://localhost:1042/KindahService/";
 
 $(function () {
- // GetTermAndCondition();
+ GetTermAndCondition();
 });
+
 
 function GetTermAndCondition() {
   var url = baseURL + "ValueAndStatus/GetByName?valueKey=TermsAndConditions";
