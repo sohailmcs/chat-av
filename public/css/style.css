@@ -11,6 +11,11 @@ PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
 
 /*===========start of HightChats========*/
+#lnkTermCondition {
+  cursor: pointer;
+  
+}
+
 .labelStar {
   font-size:14px;
   color:#0367FF;

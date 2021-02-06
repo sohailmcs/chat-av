@@ -1,5 +1,5 @@
-//var baseURL = "https://kindahclinic.com/KindahService/";
-var baseURL = "http://localhost:1042/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
+//var baseURL = "http://localhost:1042/KindahService/";
 
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
@@ -70,6 +70,8 @@ $(function () {
   $("#btnResendOTP").on("click", function () {
     ResendOTP("Patient");
   });
+  
+  
 
   $("#frmLogin").submit(function (e) {
     e.preventDefault();
