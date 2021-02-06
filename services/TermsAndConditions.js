@@ -1,3 +1,5 @@
+const { json } = require("express");
+
 var baseURL = "https://kindahclinic.com/KindahService/";
 //var baseURL = "http://localhost:1042/KindahService/";
 
@@ -20,7 +22,7 @@ function GetTermAndCondition() {
        $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-        
+        console.log(JSON.stringify(data));
      $("#content").html(data.ValueNameEn);
     },
     error: function (xhr, textStatus, err) {
