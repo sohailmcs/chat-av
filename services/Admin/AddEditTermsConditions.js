@@ -132,12 +132,12 @@ function AddGetValueAndStatus() {
 }
 //== Edit menu
 function EditValueAndStatus() {
-  var url =
-    baseURL +
-    "ValueAndStatus/UpdateKeyAndValueStatus?KeyId=" +
-    KeyId +
-    "&ValueEn=" +
-    $("#txtValueNamEn").data("kendoEditor").value();
+  var url = baseURL + "ValueAndStatus/UpdateKeyAndValueStatus";
+    var model = {
+      ValueNameEn: $("#txtValueNamEn").data("kendoEditor").value(),
+      ValueNameAr: $("#txtValueNamEn").data("kendoEditor").value(),
+      ValueID: KeyId
+    };
 
   ///==============start post request to add doctor
   $.ajax({
@@ -148,7 +148,7 @@ function EditValueAndStatus() {
     type: "POST",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
-    data: "",
+    data: model,
 
     beforeSend: function () {
       $.LoadingOverlay("show");
