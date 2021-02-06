@@ -25,7 +25,7 @@ function GetTermAndCondition() {
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
-        console.log(xhr.statusText);
+        console.log(xhr.statusText + ""  + err);
       else console.log(xhr.statusText);
     },
     complete: function (data) {
