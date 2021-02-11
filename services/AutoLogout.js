@@ -29,9 +29,9 @@ class AutoLogout {
     }
 
     setTimeout() {
-      this.warnTimeout = setTimeout(this.warn, 4 * 60 * 1000);
+      this.warnTimeout = setTimeout(this.warn, 29 * 60 * 1000);
 
-      this.logoutTimeout = setTimeout(this.logout, 5 * 60 * 1000);
+      this.logoutTimeout = setTimeout(this.logout, 30 * 60 * 1000);
     }
 
     resetTimeout() {
