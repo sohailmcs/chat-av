@@ -21,6 +21,7 @@
     /> -->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/KendoUi/kendo.all.min.js"></script>
+    <script src="/services/AutoLogout.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -47,8 +48,8 @@
     var userID = "";
 
     var soc = io({ transports: ["websocket"], upgrade: false });
-    //var baseURL = "http://localhost:1042/KindahService/";
-    var baseURL = "https://kindahclinic.com/KindahService/";
+    var baseURL = "http://localhost:1042/KindahService/";
+    //var baseURL = "https://kindahclinic.com/KindahService/";
     var urlParams = new URLSearchParams(window.location.search);
 
     function getcookie(cookiename) {
@@ -61,6 +62,8 @@
       }
       return null;
     }
+
+   
 
     $(document).ready(function () {
       //=========save id for video/Audio chat=============
@@ -75,10 +78,11 @@
         userType: userType,
       });
 
-     // if (!localStorage.getItem("DoctoronlineStatus")) {
-        changeDoctorOlineStaus(userID, "Online", uName);
-       // localStorage.setItem("DoctoronlineStatus", "true");
-     // }
+      // if (!localStorage.getItem("DoctoronlineStatus")) {
+      changeDoctorOlineStaus(userID, "Online", uName);
+      // localStorage.setItem("DoctoronlineStatus", "true");
+      // }
+
     }); //============end of document.ready========
 
     function OpenCommunicationWindow(btn) {
@@ -143,7 +147,7 @@
 
     function deleteAllCookies() {
       //=============update status in database=============
-    //  localStorage.removeItem("DoctoronlineStatus");
+      //  localStorage.removeItem("DoctoronlineStatus");
 
       var cookies = document.cookie.split(";");
       for (var i = 0; i < cookies.length; i++) {
@@ -246,6 +250,10 @@
 
       changeDoctorOlineStaus(userID, x.innerHTML, uName);
     }
+
+    //==================start call auto Logout===================
+    var func = new AutoLogout();
+    //==================end call auto Logout=====================
   </script>
 
   <%- include('AudiovideoPopup.ejs') %>

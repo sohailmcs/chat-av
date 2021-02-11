@@ -31,6 +31,6 @@ function isLoginExist(req, res, next) {
 }
 
 module.exports = {
-  isLoginExist: isLoginExist,
+  c: isLoginExist,
   isAuthorization: isAuthorization,
 };

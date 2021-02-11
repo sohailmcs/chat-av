@@ -145,10 +145,10 @@ socketServer.sockets.on("connection", function (socket) {
   });
 
   //Removing the socket on disconnect
-  socket.on("disconnect", function () {
+  socket.on("disconnect", function () {   
     for (var name in clients) {
       if (clients[name].socket === socket.id) {
-        if (clients[name].userType == "Doctor") {
+        if (clients[name].userType == "Doctor") {         
           //============send information for doctor offline to all online patients
           // socket.broadcast.emit("UpdateDoctorOnlineStatus", {
           //   uID: clients[name].userId,
