@@ -6,7 +6,7 @@ let patientController = require(appRoot +
 let PatientController = new patientController();
 
 router.get(
-  "/appointments",
+  "/my-appointments",
   PatientController.getPatientAppointments.bind(PatientController)
 );
 router.get(
