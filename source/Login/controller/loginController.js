@@ -1,4 +1,5 @@
-﻿const request = require("request");
+﻿
+const request = require("request");
 const config = require(appRoot + "/config/" + appRoot_config + "/config.js");
 
 class loginController {
@@ -15,6 +16,9 @@ class loginController {
       res.render(appRoot + "/source/Login/view/login", {
         PageTitle: "Login",
         PageError: "",
+        show_modal: false,
+        data: "",
+      
       });
     } else {
       if (req.session.userType.toLowerCase() == "Patient".toLowerCase()) {
@@ -23,6 +27,7 @@ class loginController {
         return res.redirect("/doctor/dashboard/");
       }
     }
+    
   }
 
   async postLogin(req, res, next) {
@@ -44,87 +49,68 @@ class loginController {
       },
     };
 
-    request.post(options, (err, resp, data) => {
-      //console.log('fire method '+JSON.stringify(data));
+    request.post(options, (err, resp, data) => {      
+     
       if (err) {
-        //console.log('err '+err);
+        console.log("err " + err);
         // return console.log(err);
         res.render(appRoot + "/source/Login/view/login", {
           PageTitle: "Login",
           PageError: err,
+          show_modal: false,
+          data: "",
         });
         //return console.log(err);
       } else {
-        //console.log(`Status: ${resp.statusCode}`);
-        //console.log(data);
-        //   setCookie("kindahUserType", data.UserType, 1);
-        // setCookie("kindahUserId", data.UserId, 1);
-        // setCookie("kindahUserName", data.FullName, 1);
-        req.session.userType = data.UserType;
-        req.session.userId = data.UserId;
-        req.session.userName = data.FullName;
-        req.session.roleId = data.RoleId
-      
-        // console.log('resp '+JSON.stringify(resp));
-        // console.log('data '+JSON.stringify(data));
-        // console.log('resp.status '+ resp[0]['status']);
+        if (data.UserType!=null) {
+          req.session.userType = data.UserType;
+          req.session.userId = data.UserId;
+          req.session.userName = data.FullName;
+          req.session.roleId = data.RoleId;
+          req.session.photo = data.Photo
 
-        if (data == "Wrong userName or Password") {
-          //console.log('error count');
-          // res.send('User already exist but unverified');
-          res.render(appRoot + "/source/Login/view/login", {
-            PageTitle: "Login",
-            PageError: data,
-          });
-        } else if (data.Message == "User doest not exist") {
-          //console.log('error count');
-          // res.send('User already exist but unverified');
-          res.render(appRoot + "/source/Login/view/login", {
-            PageTitle: "Login",
-            PageError: data.Message,
-          });
-        } else if (data.UserType.toLowerCase() == "Patient".toLowerCase()) {
-          return res.redirect("/patient/speciality/");
-          // return res.redirect("/patient/dashboard/");
-        } else if (data.UserType.toLowerCase() == "Doctor".toLowerCase()) {
-          //req.location.href = "/doctor/dashboard";
-          // console.log('redirect url');
-          // console.log('session userName '+req.session.userName);
-          //res.redirect('/doctor');
-          return res.redirect("/doctor/dashboard/");
-        } else if (data.UserType.toLowerCase() == "Admin".toLowerCase()) {
-          //req.location.href = "/doctor/dashboard";
-          // console.log('redirect url');
-          // console.log('session userName '+req.session.userName);
-          //res.redirect('/doctor');
-          return res.redirect("/Admin/all-doctors/");
-
-          //res.redirect('/patient/dashboard');
-          // res.render(appRoot+'/source/Doctor/view/docDashboard', {
-          //   pageTitle: "Doctor Dashboard",
-          //   UserName: data.FullName,
-          //   userId: data.UserId,
-          // });
+          if (data.UserType.toLowerCase() == "Patient".toLowerCase()) {
+            return res.redirect("/patient/speciality/");
+            // return res.redirect("/patient/dashboard/");
+          } else if (data.UserType.toLowerCase() == "Doctor".toLowerCase()) {
+            return res.redirect("/doctor/dashboard/");
+          } else if (data.UserType.toLowerCase() == "Admin".toLowerCase()) {
+            return res.redirect("/Admin/all-doctors/");
+          }
         } else {
-          //window.location.href = "/docDashboard";
-          //res.redirect('/docDashboard');
-
-          if (data.status == "401" && data.statusText == "Unauthorized") {
-            // res.send('User already exist but unverified');
+          if (resp.statusCode == "401") {
             res.render(appRoot + "/source/Login/view/login", {
               PageTitle: "Login",
-              PageError: data.statusText,
+              PageError: "User UnVerified",
+              show_modal: true,
+              data: "",
+              //data: resp.body,
+            });
+          } else if (
+            resp.statusCode == "417" &&
+            resp.body == "Wrong userName or password"
+          ) {
+            res.render(appRoot + "/source/Login/view/login", {
+              PageTitle: "Login",
+              PageError: resp.body,
+              show_modal: false
+            });
+          } else if (
+            resp.statusCode == "404" &&
+            resp.body == "User does not exist"
+          ) {
+            res.render(appRoot + "/source/Login/view/login", {
+              PageTitle: "Login",
+              PageError: resp.body,
+              show_modal: false
+            });
+          } else {
+            res.render(appRoot + "/source/Login/view/login", {
+              PageTitle: "Login",
+              PageError: "Wrong user detail. Please try ager later",
+              show_modal: false
             });
           }
-
-          //   $(".error").show().text("User already exist but unverified");
-          // else if (xhr.status == "404" && xhr.statusText == "Not Found")
-          //   $(".error").show().text(xhr.statusText);
-          // else if (xhr.status == "406" && xhr.statusText == "NotAcceptable")
-          //   $(".error").show().text("Invalid user type");
-          // else if (xhr.status == "417")
-          //   $(".error").show().text("Wrong userName or Password");
-          // else $(".error").show().text(xhr.statusText);
         }
       }
     });

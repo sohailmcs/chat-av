@@ -308,7 +308,7 @@ function AddEditDoctorProfile(doctorId) {
   modelDetails.password = $("#txtPwd").val();
 
   modelDetails.FullName = $("#txtFname").val() + " " + $("#txtLname").val();
-  modelDetails.Specialization = jQuery("#txtspe option:selected").text();
+  modelDetails.Specialization = jQuery("#txtspe").val();// option:selected").text();
   modelDetails.Services = $("#txtServices").val();
   modelDetails.Gender = jQuery("#dbogender option:selected").text();
   modelDetails.MemberShipID = 1;
@@ -393,10 +393,12 @@ function GetAllSpecialities(selectedValue) {
       $.each(data.result, function (i, v) {
         $("#txtspe").append($("<option>").text(v.Name).attr("value", v.SpId));
       });
-      $("#txtspe option:contains(" + selectedValue + ")").attr(
-        "selected",
-        "selected"
-      );
+     
+      $("#txtspe").val(selectedValue);
+      // $("#txtspe option:contains(" + selectedValue + ")").attr(
+      //   "selected",
+      //   "selected"
+      // );
       
       // var slotTemplate = $("#template-speciality").html();
       // $("#specialities").html(Mustache.to_html(slotTemplate, data));

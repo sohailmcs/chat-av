@@ -32,11 +32,8 @@
 <%- include('includes/docSideMenu.ejs') %>
 
 
-
-
-
 <!-- BEGIN: Content-->
-<input type="hidden" id="insertedID" value="0">
+
 <!--SMS pop up -->
 <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
     aria-hidden="true">
@@ -163,7 +160,7 @@
             {{/PatientMedicationModel}}
           </div>
         </div><!--end of row-->      
-        <div class="col-sm-5">
+        <div class="divMedication col-sm-5">
           <h4>Allergy</h4>
           <ul class="Listalergy">
             {{#PatientAlergyModel}}
@@ -171,14 +168,14 @@
                 <li>{{AlergyName}}</li>
               {{/IsAlergy}}
               {{^IsAlergy}}
-                <li><strong>No Alergy</strong></li>
+                <p>No Alergy</p>
               {{/IsAlergy}}           
             {{/PatientAlergyModel}}          
           </ul>
         </div>      
       </div><!--end of row-->
       <div class="row mt-3">
-        <div class="col-sm-7 mb-1">
+        <div class="divMedication col-sm-7 mb-1">
           <h4>Medical Conditions</h4>       
           <ul class="Listalergy">  
             {{#PatientMedConditonModel}}       
@@ -186,19 +183,19 @@
                 <li>{{Condition}}</li>
               {{/IsCondition}}
               {{^IsCondition}}
-                <li><strong>No Medical Condition</strong></li>
+                <p>No Medical Condition</p>
               {{/IsCondition}} 
            {{/PatientMedConditonModel}} 
             </ul>         
             {{#IsOtherCondition}}
             <ul class="Listalergy" style="margin-bottom:2px">
-              <li><b>Other</b></li>
+              <h4>Other</h4>
             </ul>
               <p>{{OtherConditionDesc}}</p>
           {{/IsOtherCondition}}
             
         </div>
-        <div class="col-sm-5">
+        <div class="divMedication col-sm-5">
           <h4>Complain</h4>
           {{#PatientComplainModel}} 
            
@@ -206,7 +203,7 @@
               <p class="mb-1">{{PatientComplainDesc}}</p> 
             {{/PatientComplainDesc}}
             {{^PatientComplainDesc}}
-              <p><strong>No Complain</strong><br>        
+              <p>No Complain</p>
             {{/PatientComplainDesc}}
 
             
@@ -219,7 +216,7 @@
             
           {{/PatientComplainModel}}
           {{^PatientComplainModel}}
-            <p><strong>No Complain</strong><br>       
+            <p>No Complain</p>
          {{/PatientComplainModel}}
         </div>
       </div>
@@ -268,7 +265,7 @@
         <h5 class="docName" style="margin:0;">
           {{PatientName}}
         </h5>
-        <b>Age</b>: {{Age}} years old
+    <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span><br>
       </div>
       <div   class="col-lg-5">
         <br/>
@@ -340,14 +337,14 @@
                 </h6>
         </a>
     </div>
-    <P class="timeline-title-Gender">
+    <!-- <P class="timeline-title-Gender">
     <span class="spnGender"><strong>Gender:</strong> </span> {{Gender}}
-    </p>
+    </p> -->
     </div>
     <div class="col-sm-5">
-    <h4 class="timeline-text">
+    <!-- <h4 class="timeline-text">
     <strong>Contact: </strong>{{patientPhone | phone}}
-    </h4>
+    </h4> -->
     <P class="timeline-text">
     <strong>Time: {{AppointmentStartTime}}-{{AppointmentEndTime}}</strong>
     </p>
@@ -421,14 +418,14 @@
 
 
 
-    <P class="timeline-title-Gender">
+    <!-- <P class="timeline-title-Gender">
     <span class="spnGender"><strong>Gender:</strong> </span> {{Gender}}
-    </p>
+    </p> -->
     </div>
     <div class="col-sm-4">
-    <h4 class="timeline-text">
+    <!-- <h4 class="timeline-text">
     <strong>Contact: </strong>{{patientPhone | phone}}
-    </h4>
+    </h4> -->
     <P class="timeline-text">
     <strong>Time:</strong> {{CallRequestDateTime | time}}
     </p>
@@ -530,7 +527,7 @@
 
                 <a >
                     <button  type="button" patientName="{{ParentName}}"
-                     CallQueId="{{CallQueID}}" pType="{{PatientType}}"   cLogId ="0"  parentName = "{{ParentName}}" 
+                     CallQueId="{{CallQueID}}" pType="{{PatientType}}"  cLogId ="0"  parentName = "{{ParentName}}" 
                      parentid ="{{ParentID}}" patientID ="{{PatientID}}"
                    
                      class="btn btn-audio-video mb-1 btnDone">
@@ -615,7 +612,7 @@
     <tr>
         <td>{{PatientName}}</td>
         <td>{{PatientPhone}}</td>
-        <td>{{CallLogAddDateTime}}</td>
+        <td>{{CallLogAddDateTime | Shortdate}}</td>
         <td>{{OnCallDuration}}</td>
 
         <td>
@@ -680,8 +677,7 @@
     <div class="content-wrapper" >
 
 <!------start of toast message ------->
-<div class="toast fade slow" data-delay="3000" id="myToast" style="position: absolute;
- ">
+<div class="toast fade slow" data-delay="3000" id="myToast" style="position: absolute;">
 
     <div class="toast-body toast-header">
         <div class="row">

@@ -16,15 +16,6 @@ app.set("views", "views");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use(
-//   session({
-//     secret: "ssshhhhh",
-//     // create new redis store.
-//     //store: new redisStore({ host: 'localhost', port: 1338, client: client,ttl : 260}),
-//     saveUninitialized: false,
-//     resave: false,
-//   })
-// );
 
 var webServer = http.createServer(app);
 // Start Socket.io so it attaches itself to Express server
@@ -138,7 +129,7 @@ socketServer.sockets.on("connection", function (socket) {
     }
   });
 
-  socket.on("UpdatePatientOnlineStatus", function (data) {
+  socket.on("UpdatePatientOnlineStatus", function (data) {  
     if (data.uID != "") {
       socket.broadcast.emit("UpdatePatientOnlineStatus", data); // for all client except sender
     }
@@ -147,21 +138,22 @@ socketServer.sockets.on("connection", function (socket) {
   //Removing the socket on disconnect
   socket.on("disconnect", function () {   
     for (var name in clients) {
-      if (clients[name].socket === socket.id) {
-        if (clients[name].userType == "Doctor") {         
+      if (clients[name].socket === socket.id) {       
+        if (clients[name].userType == "Doctor") { 
+        
           //============send information for doctor offline to all online patients
-          // socket.broadcast.emit("UpdateDoctorOnlineStatus", {
-          //   uID: clients[name].userId,
-          //   status: "Offline",
-          //   uName: name,
-          // });
+          socket.broadcast.emit("UpdateDoctorOnlineStatus", {
+            uID: clients[name].userId,
+            status: "Offline",
+            uName: name,
+          });
         } else if (clients[name].userType == "Patient") {
           //============send information for Patient offline to all online doctors
-          // socket.broadcast.emit("UpdatePatientOnlineStatus", {
-          //   uID: clients[name].userId,
-          //   status: "Offline",
-          //   uName: name,
-          // });
+          socket.broadcast.emit("UpdatePatientOnlineStatus", {
+            uID: clients[name].userId,
+            status: "Offline",
+            uName: name,
+          });
         }
         delete clients[name];
         break;
@@ -183,6 +175,7 @@ app.use(KindahRoutes);
 app.use((req, res, next) => {
   res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
   next();
+  
 });
 
 // app.use(function (req, res, next) {

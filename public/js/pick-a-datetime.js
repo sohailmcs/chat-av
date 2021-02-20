@@ -25,8 +25,10 @@
 
   // Date limits
   $(".pickadate-limits").pickadate({
-    min: [2019, 7, 20],
-    max: [2019, 7, 28],
+    min: [1950, 7, 20],
+    max: new Date(),   
+    selectYears: true,
+    selectMonths: true,
   });
 
   // Disabled Dates & Weeks

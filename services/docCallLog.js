@@ -16,6 +16,12 @@ function ViewDetails(id) {
   ViewPatientHistory(callLogId);
 }
 
+function getAge()
+{
+  
+  var getAge = $("#hdnPatientAge").val(); 
+  $("#popupAge").html(CalculateAge(getAge));
+}
 function GetAllDoctorCallLog(userId) {
   var url = baseURL + `CallLogs/GetDoctorRecentCallLog?doctorId=${userId}`;
 
@@ -75,12 +81,12 @@ function ViewPatientHistory(CallLogID) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
+      getAge();
       // Hide Loading
       $.LoadingOverlay("hide");
     },
   });
 }
-
 
 function Filldatatable(data) {
   $("#tblCallLogs").DataTable({
@@ -95,7 +101,19 @@ function Filldatatable(data) {
       { data: "PatientID" },
       { data: "PatientName" },
       { data: "PatientPhone" },
-      { data: "CallLogAddDateTime" },
+      {
+        data: "CallLogAddDateTime",
+
+        render: function (data) {
+          var date = new Date(data);
+          var options = {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          };
+          return new Date(date).toLocaleDateString("en-US", options);
+        },
+      },
       { data: "OnCallDuration" },
 
       {

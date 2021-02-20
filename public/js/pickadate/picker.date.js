@@ -1094,7 +1094,7 @@ DatePicker.prototype.nodes = function( isOpen ) {
 
             // If years selector is set to a literal "true", set it to 5. Otherwise
             // divide in half to get half before and half after focused year.
-            numberYears = settings.selectYears === true ? 5 : ~~( settings.selectYears / 2 )
+            numberYears = settings.selectYears === true ? 50 : ~~( settings.selectYears / 2 )
 
             // If there are years to select, add a dropdown menu.
             if ( numberYears ) {

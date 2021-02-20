@@ -6,13 +6,13 @@ var UserName = $(".user-name").text();
 var urlParams = new URLSearchParams(window.location.search);
 var doctorId = 0;
 var docname = "";
-var spName = "";
+var Speciality = "";
 var patientId = "";
 var type;
 var appointmentId;
 if (urlParams.has("doctorId")) doctorId = urlParams.get("doctorId");
 if (urlParams.has("name")) docname = urlParams.get("name");
-if (urlParams.has("spName")) spName = urlParams.get("spName");
+if (urlParams.has("Speciality")) Speciality = urlParams.get("Speciality");
 if (urlParams.has("pId")) patientId = urlParams.get("pId");
 if (urlParams.has("type")) type = urlParams.get("type");
 if (urlParams.has("appointmentId"))
@@ -312,8 +312,8 @@ $(function () {
                 "&name=" +
                 docname +
                 "&type=sch" +
-                "&spName=" +
-                spName +
+                "&Speciality=" +
+                Speciality +
                 "&walkingCustomer=true";
             }
             // else return false;
@@ -331,7 +331,7 @@ $(function () {
           $("#primary").modal("show");
           setTimeout(function () {
             $("#primary").modal("hide");
-            window.location.href = "/patient/dashboard?spName=" + spName;
+            window.location.href = "/patient/dashboard?Speciality=" + Speciality;
           }, 2500);
         })
         .catch((error) => {
@@ -422,7 +422,7 @@ function SendCallRequestToDoctor(doctorId, fullName) {
       // Hide Loading
       $.LoadingOverlay("hide");
       setTimeout(function () {
-        window.location.href = "/patient/dashboard?spName=" + spName;
+        window.location.href = "/patient/dashboard?Speciality=" + Speciality;
       }, 2500);
     },
   });

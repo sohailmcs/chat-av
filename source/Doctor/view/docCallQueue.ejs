@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
     <link rel="stylesheet" type="text/css" href="/css/colors.css" />
     <link rel="stylesheet" type="text/css" href="/css/components.css" />
-
+    <script src="/js/modernizr.custom.js"></script>
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
@@ -21,6 +21,10 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <!-- END: Custom CSS-->
+
+    <link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
   </head>
   <!-- END: Head-->
 
@@ -50,7 +54,7 @@
   </div>
 </div>
    
-    <script id="BookingDetail-Template" type="text/html">
+  <script id="BookingDetail-Template" type="text/html">
       <div class="card-body">    
        
         <div class="row">
@@ -76,7 +80,7 @@
         <h5 class="docName" style="margin:0 0 5px 0;">
           {{FullName}}
         </h5>          
-        <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span>    
+        <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span><br>
         <b>Gender :</b> {{Gender}} 
       </div>
       <div  class="col-lg-5 mt-1">
@@ -250,21 +254,12 @@
               </a>
 
               {{#OnlineStatus}}
-              <!-- <a >
-                  <button  type="button" patientName="{{ParentName}}"
-                   CallQueId="{{CallQueID}}" pType="{{PatientType}}"   cLogId ="0"  parentName = "{{ParentName}}" 
-                   parentid ="{{ParentID}}" patientID ="{{PatientID}}"
-                   onclick="OpenCommunicationWindow(this)"
-                   class="btn btn-audio-video mb-1 audio_{{ParentID}}">
-                      <i class="bx bx-microphone"></i>
-                      <b>Audio</b>
-                  </button>
-              </a> -->
+             
               <a>
                   <button type="button"  patientName="{{ParentName}}"
                   CallQueId="{{CallQueID}}"  pType="{{PatientType}}" cLogId ="0"
                    parentName = "{{ParentName}}"  parentid ="{{ParentID}}"  patientID ="{{PatientID}}"
-                   onclick="OpenCommunicationWindow(this )"
+                   onclick="OpenCommunicationWindow(this)"
                    class="btn btn-audio-video mb-1 video_{{ParentID}}">
                       <i class="bx bx-video"></i>
                       <b>Video</b>
@@ -318,6 +313,42 @@
  {{/result.0}}
 </script>
 <!--end of que template-->
+<!--SMS pop up -->
+<div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title black" id="myModalLabel160">
+                    Send Message
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+
+                    <input type="hidden" id="hdnPatientName" value="" >
+                    <input type="hidden" id="hdnPhone" value="" >
+                    <label>Enter Your Message Here </label>
+                    <textarea class="form-control" id="smsReminder" rows="4"
+                        placeholder="Hello I am Doctor ABC . Your consultation Session will be start in 15minutes. Please stay Online. Thank you"></textarea>
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btnSendSMSReminder btn btn-primary ml-1" data-dismiss="modal">
+                    <span class="d-sm-block"><i class='bx bx-send bx-rotate-295 sms-popup' ></i>
+                       &nbsp; SEND
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END OF SMS POPUP-->
+
+
          <!-- BEGIN: Content-->
     <div class="app-content content">
       <div class="content-overlay"></div>
@@ -332,7 +363,7 @@
           </div>
 <br>
           <!-- Call Queue Start -->
-          <section id="table-Marketing">
+          <section id="QueTemplate">
            
           </section>
 
@@ -379,7 +410,9 @@
      
     <!-- BEGIN: Vendor JS-->
     <script src="/js/vendors.js"></script>
-
+    <script src="/js/sweetalert2.all.min.js"></script>
+    <script src="/js/polyfill.min.js"></script>
+    <script src="/js/sweet-alerts.js"></script>
     <!-- BEGIN Vendor JS-->
 
     <script src="/js/vertical-menu-light.js"></script>

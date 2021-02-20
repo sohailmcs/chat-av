@@ -6,8 +6,8 @@ $(function () {
 
   $(document).on("click", ".lnkSpeciality", function (e) {
     e.stopPropagation();
-    var specialityName = $(this).attr("spNam");
-    getSpecialityDoctor(specialityName);
+    var specialityId = $(this).attr("spid");
+    getSpecialityDoctor(specialityId);
   });
 }); //end of $function
 
@@ -44,7 +44,7 @@ function GetAllSpecialities() {
   });
 }
 
-function getSpecialityDoctor(spName) {
-  var url = encodeURI("/patient/dashboard?spName=" + spName);
+function getSpecialityDoctor(SpecialityId) {
+  var url = encodeURI("/patient/dashboard?Speciality=" + SpecialityId);
   window.location.href = url;
 }

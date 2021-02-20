@@ -42,6 +42,13 @@ function format(d) {
     success: function (data, textStatus, xhr) {
       var callLogData = data.result;
       if (callLogData.length > 0) {
+        var options = {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        };
+      
+
         $.each(callLogData, function (ind, val) {
           console.log(val.DoctorPhone);
           callLogtable.append(
@@ -52,8 +59,8 @@ function format(d) {
               "</td>" +
               "<td>" +
               val.DoctorPhone +
-              "</td><td>" +
-              new Date(val.CallLogEndDateTime).toLocaleDateString() +
+              "</td><td>" +              
+              new Date(val.CallLogEndDateTime).toLocaleDateString("en-US", options) +
               "</td><td>" +
               new Date(val.CallLogStartDateTime).getHours() +
               ":" +
@@ -198,10 +205,17 @@ function ViewPatientHistory(CallLogID) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
+      getAge()
       // Hide Loading
       $.LoadingOverlay("hide");
     },
   });
+}
+function getAge()
+{
+  
+  var getAge = $("#hdnPatientAge").val(); 
+  $("#popupAge").html(CalculateAge(getAge));
 }
 //====date formater by using mustache=====
 Mustache.Formatters = {

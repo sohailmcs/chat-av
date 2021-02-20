@@ -55,7 +55,8 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
 
@@ -70,7 +71,8 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
   async getPatientWizerd(req, res, next) {
@@ -81,7 +83,8 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
   async getSpeciality(req, res, next) {
@@ -92,7 +95,8 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
   async getPayment(req, res, next) {
@@ -103,7 +107,8 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
 
@@ -115,7 +120,8 @@ class patientController {
       pageTitle: "Patient Video Call ",
       userName: req.session.userName,
       userId: req.session.userId,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
 
@@ -130,7 +136,8 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
   async getPatientSuggestion(req, res, next) {
@@ -141,7 +148,8 @@ class patientController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
 }

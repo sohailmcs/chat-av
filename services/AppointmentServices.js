@@ -19,14 +19,14 @@ var doctorId = urlParams.get("DoctorId");
 var currentDt = kendo.toString(new Date(), "d");
 var appOldId = 0;
 var doctName = "";
-var spName;
+var Speciality;
 var doctorId;
 var walkingCustomer = false;
 
 if (urlParams.has("name")) doctName = urlParams.get("name");
 if (urlParams.has("date")) currentDt = urlParams.get("date");
 if (urlParams.has("appId")) appOldId = urlParams.get("appId");
-if (urlParams.has("spName")) spName = urlParams.get("spName");
+if (urlParams.has("Speciality")) Speciality = urlParams.get("Speciality");
 if (urlParams.has("doctorId")) doctorId = urlParams.get("doctorId");
 if (urlParams.has("walkingCustomer"))
   walkingCustomer = urlParams.get("walkingCustomer");
@@ -84,8 +84,8 @@ $(function () {
           doctorId +
           "&name=" +
           doctName +
-          "&spName=" +
-          spName +
+          "&Speciality=" +
+          Speciality +
           "&type=sch" +
           "&pId=" +
           useLoginId +
@@ -100,8 +100,8 @@ $(function () {
           "&type=sch" +
           "&appId=" +
           appDetailID +
-          "&spName=" +
-          spName +
+          "&Speciality=" +
+          Speciality +
           "&walkingCustomer=false";
       }
       // BookPatientAppointment(useLoginId, appDetailID)
@@ -277,4 +277,12 @@ Mustache.Formatters = {
     };
     return new Date(str).toLocaleDateString("en-US", options);
   },
+  time: function (str) {
+    var options = {
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(str).toLocaleTimeString("en-GB", options);
+  },
+
 };

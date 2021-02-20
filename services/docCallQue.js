@@ -1,14 +1,62 @@
 //var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
-var useLoginId = $(".user-name").attr("UserInfo");
-var d = new Date();
 
+
+
+//var baseURL = "http://localhost:1042/KindahService/";
+var userLoginId = $(".user-name").attr("UserInfo");
+var d = new Date();
+page = "CallQue";
 $(function () {
-  GetDoctorTodayCallQue(useLoginId);
+  $("#txtMedication").kendoEditor({
+    tools: [
+      "bold",
+      "italic",
+      "underline",
+      "strikethrough",
+
+      "justifyLeft",
+      "justifyCenter",
+      "justifyRight",
+      "justifyFull",
+      "insertUnorderedList",
+      "insertOrderedList",
+      "formatBlock",
+      "viewHtml",
+
+      "print",
+    ],
+    // resizable: {
+    //   content: false,
+    //   toolbar: false,
+    // },
+  });
+
+  GetDoctorTodayCallQue(userLoginId,false);
 
   $(document).on("click", ".btnViewDetail", function () {
     var patientId = $(this).attr("PatientId");
     ViewBookingDetails(patientId);
+  });
+
+  $(document).on("click", ".btnDone", function () {
+    var quId = $(this).attr("CallQueId");
+    var patientId = $(this).attr("patientID");
+    UpdateQueAddSaveCallLog(quId, "Called", userLoginId, patientId,"CallQue");
+   // GetDoctorTodayCallQue(useLoginId,true);
+   
+
+  });
+
+  $(document).on("click", ".btnpopupSmsReminder", function () {
+    $("#hdnPatientName").val($(this).attr("patientName"));
+    $("#hdnPhone").val($(this).attr("phoneNo"));
+    $("#primary").modal("show");
+  });
+
+  $(document).on("click", ".btnSendSMSReminder", function () {
+    var patientName = $("#hdnPatientName").val();
+    var phoneNo = $("#hdnPhone").val();
+    SendSMStoPatient(phoneNo, uName, patientName);
   });
 });//end of $(function)
 
@@ -54,7 +102,7 @@ function ViewBookingDetails(PatientId) {
 }
 
 
-function GetDoctorTodayCallQue(doctorId) {
+function GetDoctorTodayCallQue(doctorId,IsSync) {
   var url =
     baseURL +
     `CallQue/GetCallQue?doctorId=${doctorId}&date=${
@@ -71,11 +119,12 @@ function GetDoctorTodayCallQue(doctorId) {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
+      if(!IsSync)
       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
       var CallQueueTemplate = $("#que-template").html();
-      $("#table-Marketing").html(Mustache.to_html(CallQueueTemplate, data));
+      $("#QueTemplate").html(Mustache.to_html(CallQueueTemplate, data));
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -84,6 +133,58 @@ function GetDoctorTodayCallQue(doctorId) {
     },
     complete: function (data) {
       updateClock();
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+
+function SendSMStoPatient(mobileNo, doctorName, patientName) {
+  var url =
+    baseURL +
+    "CallLogs/SendSMStoPatient?mobileNo=" +
+    mobileNo +
+    "&doctorName=" +
+    doctorName +
+    "&patientName=" +
+    patientName +
+    "&pageName=DoctorDashboard" +
+    "&pageUrl=" +
+    window.location.href;
+  if ($("#smsReminder").val() != "")
+    url = url + "&smsText=" + $("#smsReminder").val();
+
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      $.LoadingOverlay("hide");
+      Swal.fire({
+        title: "Confirmation!",
+        text: "SMS sent to patient " + patientName,
+        type: "success",
+        confirmButtonClass: "btn btn-primary",
+        buttonsStyling: false,
+        confirmButtonText: "Ok",
+      }).then((result) => {
+        $("#primary").modal("hide");
+      });
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
       // Hide Loading
       $.LoadingOverlay("hide");
     },

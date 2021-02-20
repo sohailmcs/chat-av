@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
@@ -70,8 +70,6 @@ $(function () {
   $("#btnResendOTP").on("click", function () {
     ResendOTP("Patient");
   });
-  
-  
 
   $("#frmLogin").submit(function (e) {
     e.preventDefault();
@@ -162,6 +160,7 @@ $(function () {
       PhoneNo: $("#txtPhoneNo").val().replace(/^0+/, ""), //======remove leadng zero from phone number
       PhoneExt: $("input:disabled").val(),
       UserType: hdnUserType == "patient" ? "Patient" : ddluserType,
+      Gender: $("#dbogender").val(),
       pageName: "Signup",
       pageUrl: window.location.href,
     };
@@ -187,45 +186,64 @@ $(function () {
       },
       success: function (d, textStatus, xhr) {
         $(".error").hide();
-        console.log(JSON.stringify(d));
-        //=====intiliaze details to add patient when OTP verified
-        // debugger;
-        var gender = $("#dbogender").val();
-        if (hdnUserType == "patient") {
-          modelDetails = {
-            PatientId: d.UserRefId,
-            FirstName: d.FirstName,
-            LastName: d.LastName,
-            PhoneNo: d.PhoneNo,
-            FullName: d.FullName,
-            Gender: gender,
-            PatientType: "Me",
-          };
-        } else if (
-          hdnUserType == "admin" &&
-          ddluserType.toLowerCase() == "patient"
-        ) {
-          modelDetails = {
-            PatientId: d.UserRefId,
-            FirstName: d.FirstName,
-            LastName: d.LastName,
-            PhoneNo: d.PhoneNo,
-            FullName: d.FullName,
-            Gender: gender,
-            PatientType: "Me",
-          };
+
+        if ((xhr.status = "210" && xhr.statusText == "Created")) {
+          var data = xhr.responseJSON;
+          var gender = $("#dbogender").val();
+          if (hdnUserType == "patient") {
+            modelDetails = {
+              PatientId: data.UserRefId,
+              FirstName: data.FirstName,
+              LastName: data.LastName,
+              PhoneNo: data.PhoneNo,
+              FullName: data.FullName,
+              AddedBy: d.FullName,
+              Gender: gender,
+              PatientType: "Me",
+            };
+          }
         } else {
-          modelDetails = {
-            DoctorId: d.UserRefId,
-            FirstName: d.FirstName,
-            LastName: d.LastName,
-            FullName: d.FullName,
-            PhoneNumber: d.PhoneNo,
-            Gender: gender,
-            //OTPKey: d.OTPKey,
-          };
+          //=====intiliaze details to add patient when OTP verified
+          // debugger;
+          var gender = $("#dbogender").val();
+          if (hdnUserType == "patient") {
+            modelDetails = {
+              PatientId: d.UserRefId,
+              FirstName: d.FirstName,
+              LastName: d.LastName,
+              PhoneNo: d.PhoneNo,
+              FullName: d.FullName,
+              AddedBy: d.FullName,
+              Gender: gender,
+              PatientType: "Me",
+            };
+          } else if (
+            hdnUserType == "admin" &&
+            ddluserType.toLowerCase() == "patient"
+          ) {
+            modelDetails = {
+              PatientId: d.UserRefId,
+              FirstName: d.FirstName,
+              LastName: d.LastName,
+              PhoneNo: d.PhoneNo,
+              FullName: d.FullName,
+              AddedBy: d.FullName,
+              Gender: gender,
+              PatientType: "Me",
+            };
+          } else {
+            modelDetails = {
+              DoctorId: d.UserRefId,
+              FirstName: d.FirstName,
+              LastName: d.LastName,
+              FullName: d.FullName,
+              AddedBy: d.FullName,
+              PhoneNumber: d.PhoneNo,
+              Gender: gender,
+              //OTPKey: d.OTPKey,
+            };
+          }
         }
-        // debugger;
         if (hdnUserType == "patient") {
           $("#primary").modal({
             backdrop: "static",
@@ -235,38 +253,7 @@ $(function () {
           OTPVerify(); // remove OTP verifiction from doctor
         }
       },
-      error: function (xhr, textStatus, err) {
-        //if (xhr.status == "406" && xhr.statusText == "Not Acceptable") {
-        if (xhr.status == "406" && textStatus != "InValidOTP") {
-          Swal.fire({
-            type: "info",
-            title: "SORRY!",
-            text:
-              "Email " +
-              $("#txtEmail").val() +
-              " already exist. Please choose different email",
-            type: "error",
-            confirmButtonClass: "btn btn-primary",
-            buttonsStyling: false,
-            confirmButtonText: "<a style='color:#fff'>OK</a>",
-          });
-          if (xhr.status == "406" && textStatus == "InValidOTP") {
-            Swal.fire({
-              type: "info",
-              title: "SORRY!",
-              text:
-                "OTP" +
-                $("#squareText").val() +
-                " invalid OTP. Please enter valid OTP code",
-              type: "error",
-              confirmButtonClass: "btn btn-primary",
-              buttonsStyling: false,
-              confirmButtonText: "<a style='color:#fff'>OK</a>",
-            });
-          }
-          return false;
-        }
-      },
+      error: function (xhr, textStatus, err) {},
       complete: function (data) {
         // Hide Loading
         $.LoadingOverlay("hide");
@@ -435,5 +422,3 @@ $(function () {
     return isValid;
   }
 }); //==end of jquery $function
-
-

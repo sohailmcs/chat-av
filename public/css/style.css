@@ -10,23 +10,50 @@ NOTE:
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
 
+.swalbutton
+{
+  margin:0 7px;
+}
+.btnUploadSuggestion {
+  background: none !important;
+    color: #000;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 12px;
+}
+#upload-file-info {
+  font-size:12px;
+}
+
+#imgsuggestions {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  opacity: 0;
+  background-color: transparent;
+  color: transparent;
+}
+
 /*===========start of HightChats========*/
 #lnkTermCondition {
   cursor: pointer;
-  
 }
 
 .labelStar {
-  font-size:14px;
-  color:#0367FF;
- 
+  font-size: 14px;
+  color: #0367ff;
 }
 
-.PatientCountHeader,.DepartMentWiseHeader,.DoctorWiseHeader {
-  background-color:#437dec;
-  color:#fff;
-  padding:10px;
-  text-align: center;;
+.PatientCountHeader,
+.DepartMentWiseHeader,
+.DoctorWiseHeader {
+  background-color: #437dec;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
 }
 .highcharts-figure,
 .highcharts-data-table table {
@@ -311,8 +338,7 @@ select.form-control:not([multiple="multiple"]) {
 #msform input[type="number"],
 #msform input[type="password"],
 #msform input[type="date"],
-.form-control:disabled,
-#msform select {
+.form-control:disabled {
   padding: 12px 8px;
   background: #ffffff;
   border: 2px solid #d9e9ff;
@@ -714,11 +740,11 @@ table.k-editor {
 }
 
 .k-editor .k-content {
-  height: 73% !important;
+  height: 100% !important;
 }
 
 .k-editor .k-editable-area {
-  height: 55% !important;
+  height: 120px !important;
 }
 
 @media only screen and (min-device-width: 300px) and (max-device-width: 750px) {
@@ -1951,12 +1977,14 @@ button:focus {
 }
 
 .Listalergy {
-  padding-left: 12px;
+  padding-left: 0;
 }
 .Listalergy li {
   list-style: disc;
-  font-size: 15px;
-  font-weight: normal;
+  font-size: 12px;
+  padding-left: 0px;
+  margin-left: 13px;
+  font-weight: bold;
 }
 
 .side-bar {
@@ -2288,7 +2316,7 @@ tr.shown td.details-control {
   border-radius: 3px;
 }
 .doc-pres-card .card-body {
-  padding: 1rem 0 0 !important;
+  padding: 0.4rem 0 0 !important;
 }
 
 @media screen and (max-width: 650px) {

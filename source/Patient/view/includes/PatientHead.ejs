@@ -17,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
     <script src="/services/AutoLogout.js"></script>
     <script src="/js/jquery.min.js"></script>
+    <script src="/js/sweetalert2.all.min.js"></script>
+    <script src="/js/sweet-alerts.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/services/mustache.js"></script>
     <script src="/services/mustache-wax.min.js"></script>
@@ -38,6 +40,7 @@
         display: none;
       }
     </style>
+   
     <script type="text/javascript">
       var apiKey;
       var sessionId;
@@ -51,8 +54,7 @@
       //var baseURL = "http://localhost:1042/KindahService/";
       var baseURL = "https://kindahclinic.com/KindahService/";
 
-
-       $(document).ready(function () {
+      $(document).ready(function () {
         $(".lblrating").on("click", function () {
           $(".lblrating").css({ "background-color": "#fff", color: "#475f7b" });
           $(this).css({ "background-color": "#647796", color: "#fff" });
@@ -70,17 +72,19 @@
         userID = $(".user-name").attr("userinfo");
         var userType = "Patient";
 
+       // if (!localStorage.getItem("PatientonlineStatus")) {
+          changePatientOlineStaus(userID, "Online", uName);
+          localStorage.setItem("PatientonlineStatus", true);
+      //  }
+
         soc.emit("add-user", {
           username: uName,
           userId: userID,
-          userType: userType
+          userType: userType,
         });
-
-        // if (!localStorage.getItem("PatientonlineStatus")) {
-        changePatientOlineStaus(userID, "Online", uName);
-        // localStorage.setItem("PatientonlineStatus", "true");
-        // }
       }); //=================end of document.ready function=======
+
+     
       function getcookie(cookiename) {
         var cookiestring = document.cookie;
         var cookiearray = cookiestring.split(";");
@@ -92,7 +96,7 @@
         return null;
       }
       function deleteAllCookies() {
-        // localStorage.removeItem("PatientonlineStatus");
+       //  localStorage.removeItem("PatientonlineStatus");
 
         var cookies = document.cookie.split(";");
         for (var i = 0; i < cookies.length; i++) {
@@ -132,7 +136,6 @@
           data: "",
           beforeSend: function () {},
           success: function (data, textStatus, xhr) {
-
             soc.emit("UpdatePatientOnlineStatus", {
               uID: UserID,
               status: status,
@@ -166,7 +169,8 @@
         $("#btnAccept").attr("doctorName", data.username);
         $("#btnReject").attr("doctorName", data.username);
         $("#inncommingCallHead").text("Dr." + data.username);
-        $("#notificationmodal").modal("hide");
+      
+        $("#notificationmodal, #popupfeedback").modal("hide");
         $("#incommingCall").modal({
           backdrop: "static",
           keyboard: true,
@@ -208,7 +212,8 @@
       }); //end of ClosePatientScreen
 
       soc.on("DoctorPatientScreenClosed", function (data) {
-        //alert('doctor close its screen 8 ' +data.area + " On Req "+ data.onReq);
+
+        alert('doctor close its screen 8 ' +data.area + " On Req "+ data.onReq);
         if (data.area == "Patient" && data.onReq == false) {
           Swal.fire({
             title: "Sorry!",
@@ -328,6 +333,7 @@
               confirmButtonText: "<a style='color:#fff'>OK</a>",
             }).then((result) => {
               $("#txtimprove").val("");
+              $(".lblrating").css({ "background-color": "#fff", color: "#475f7b" });
               $("#popupfeedback").modal("hide");
             });
           },
@@ -337,6 +343,7 @@
             else console.log(xhr.statusText);
           },
           complete: function (data) {
+           
             // Hide Loading
             $.LoadingOverlay("hide");
           },

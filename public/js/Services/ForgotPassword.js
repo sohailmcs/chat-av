@@ -1,5 +1,5 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
 
@@ -175,61 +175,6 @@ $(function () {
   });
   //========end of SignUp=============
 
-  //====start of one time password varification=====
-  $("#btnOTPVerify").on("click", function () {
-    var url =
-      hdnUserType == "patient"
-        ? baseURL + "Patient/AddPatient"
-        : baseURL + "Doctor/AddDoctor";
-
-    $.ajax({
-      url: url,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      type: "POST",
-      datatype: "application/json",
-      contentType: "application/json; charset=utf-8",
-      data: modelDetails,
-      beforeSend: function () {
-        //Show Loading if validate pass
-        $.LoadingOverlay("show");
-      },
-      success: function (d, textStatus, xhr) {
-        if (xhr.status == 200) {
-          Swal.fire({
-            title: "Congratulations",
-            text: "Click on button Login to Access your Account",
-            type: "success",
-            confirmButtonClass: "btn btn-primary",
-            buttonsStyling: false,
-            confirmButtonText: "<a style='color:#fff'>OK</a>",
-          }).then(function () {
-            if (hdnUserType == "patient") window.location.href = "/Login";
-            else window.location.reload();
-          });
-        }
-        //=====intiliaze patientModel to add patient
-      },
-      error: function (xhr, textStatus, err) {
-        if (xhr.status == "404" && xhr.statusText == "NotFound") {
-          Swal.fire({
-            title: "Error!",
-            text: "Check your Email and Enter the Code Again ",
-            type: "error",
-            confirmButtonClass: "btn btn-primary",
-            buttonsStyling: false,
-            confirmButtonText: "<a style='color:#fff'>OK</a>",
-          });
-        }
-      },
-      complete: function (data) {
-        // Hide Loading
-        $.LoadingOverlay("hide");
-      },
-    });
-  }); //====end of one time password verification=======
-
   // reset password
   $("#frmresetpwd").submit(function (e) {
     e.preventDefault();
@@ -282,7 +227,7 @@ $(function () {
         $("#txtOldPassword").val("");
         $("#txtNewPassword").val("");
         $("#txtConfirmNewPassword").val("");
-        $("#popupResetPassword").modal('hide');
+        $("#popupResetPassword").modal("hide");
       },
 
       error: function (xhr, textStatus, err) {
@@ -307,4 +252,135 @@ $(function () {
       },
     });
   }); //==end of reset submit
+
+  //====start of one time password varification=====
+  $("#btnOTPVerify").on("click", function () {
+    OTPVerify();
+  }); //====end of one time password verification=======
+
+  function OTPVerify() {
+    //debugger;
+    var concatOTP =
+      $("#squareText1").val() +
+      "" +
+      $("#squareText2").val() +
+      "" +
+      $("#squareText3").val() +
+      "" +
+      $("#squareText4").val();
+
+    var OTPCode = concatOTP.trim();
+    var url =
+      baseURL +
+      "User/VerifiedUserByOTP?UserId=" +
+      $("#hdnUserId").val() +
+      "&OTPKey=" +
+      OTPCode;
+
+    //console.log('url '+url);
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "POST",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {
+        //Show Loading if validate pass
+        $.LoadingOverlay("show");
+      },
+      success: function (d, textStatus, xhr) {
+        if (xhr.status == 201) {
+          Swal.fire({
+            title: "Congratulations",
+            text: "Click on button Login to Access your Account",
+            type: "success",
+            confirmButtonClass: "btn btn-primary",
+            buttonsStyling: false,
+            confirmButtonText: "<a style='color:#fff'>OK</a>",
+          }).then(function () {
+            window.location.href = "/Login";
+            $("#poupOTP").modal("hide");
+          });
+        }
+        //=====intiliaze patientModel to add patient
+      },
+      error: function (xhr, textStatus, err) {
+        if (xhr.status == "406" && xhr.responseJSON.Message == "InValidOTP") {
+          Swal.fire({
+            title: "Error!",
+            text: "Check your Email and Enter the valid Code Again ",
+            type: "error",
+            confirmButtonClass: "btn btn-primary",
+            buttonsStyling: false,
+            confirmButtonText: "<a style='color:#fff'>OK</a>",
+          });
+        }
+      },
+      complete: function (data) {
+        // Hide Loading
+        $.LoadingOverlay("hide");
+      },
+    });
+  } //====end of one time password verification=======
+
+  $("#btnResendOTP").on("click", function () {
+    ResendOTP("Patient");
+  });
+  function ResendOTP(useType) {
+    var url =
+      baseURL +
+      "User/VerifiedUserByOTP?UserId=" +
+      $("#hdnUserId").val() +
+      "&PhoneNo=" +
+      $("#hdnPhone").val() +
+      "&Email=" +
+      $("#hdnEamil").val(); 
+
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "GET",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {
+        //Show Loading if validate pass
+        $.LoadingOverlay("show");
+      },
+      success: function (d, textStatus, xhr) {
+        if (xhr.status == 200) {
+          Swal.fire({
+            title: "Congratulations",
+            text: "OTP resend successfully.",
+            type: "success",
+            confirmButtonClass: "btn btn-primary",
+            buttonsStyling: false,
+            confirmButtonText: "<a style='color:#fff'>OK</a>",
+          });
+        }
+        //=====intiliaze patientModel to add patient
+      },
+      error: function (xhr, textStatus, err) {
+        if (xhr.status == "404" && xhr.statusText == "NotFound") {
+          Swal.fire({
+            title: "Error!",
+            text: "User Not Found ",
+            type: "error",
+            confirmButtonClass: "btn btn-primary",
+            buttonsStyling: false,
+            confirmButtonText: "<a style='color:#fff'>OK</a>",
+          });
+        }
+      },
+      complete: function (data) {
+        // Hide Loading
+        $.LoadingOverlay("hide");
+      },
+    });
+  } //====end of one time password verification=======
 }); //==end of jquery $function

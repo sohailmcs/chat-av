@@ -55,7 +55,7 @@ $(function () {
   });
 
   $("#dbospe").on("change", function () {
-    var specialityId = $(this).find("option:selected").text();
+    var specialityId = $(this).val();// find("option:selected").text();
     GetDoctors(specialityId, "0");
   });
 
@@ -220,14 +220,15 @@ function GetFee(id) {
               $("<option>").text(v.Name).attr("value", v.SpId)
             );
           });
-          var selectedVal = data.SpecializationId + "";
+          var selectedVal = data.SpecializationId;
           $("#dbospe option")
             .filter(function () {
               return $(this).val() == selectedVal; //To select Blue
             })
             .prop("selected", true);
-          GetDoctors(
-            $("#dbospe").find("option:selected").text(),
+         
+            GetDoctors(
+            $("#dbospe").val(),   // find("option:selected").text(),
             data.DoctorId
           );
         })

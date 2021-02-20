@@ -13,7 +13,7 @@
 }
 </style>
 
-
+<input type="hidden" id="insertedID" value="0">
  <!-- VIEW History  POP UP TEMPLATE -->
  <script  id="viewHistory-template" type="text/html">
   <div
@@ -30,7 +30,7 @@
     </div>
     <div class="modal-body">
    <div class="row">
-        <div class="col-lg-2">
+        <div class="col-lg-3">
           {{#PatientPhoto}}
           <img
           src="{{PatientPhoto}}"
@@ -47,12 +47,12 @@
           border-radius: 10px;" /> 
          {{/PatientPhoto}}          
       </div>
-    <div class="col-lg-5 pl-2">
+    <div class="col-lg-4">
       <br/>
       <h5 class="docName" style="margin:0;">
         {{PatientName}}
       </h5>          
-      <b>Age</b>: {{Age}} years old
+      <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span><br>
     </div>
     <div  class="col-lg-5">
       <br/>        
@@ -159,7 +159,7 @@
       <h5 class="docName" style="margin:0;">
         {{PatientName}}
       </h5>          
-      <b>Age</b>: {{Age}} years old
+      <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span><br>
     </div>
     <div   class="col-lg-5">
       <br/>        
@@ -231,7 +231,7 @@
         <script id="call-history-docVideo" type="text/html">
           {{#result}}
           <tr>
-            <td class="videocall-table">{{AddedDate}}</td>
+            <td class="videocall-table">{{AddedDate | Shortdate}} </td>
             <td class="videocall-table">{{DoctorName}}</td>
             <td class="videocall-table">
               <div class="modal-primary mr-1 mb-1 d-inline-block">
@@ -382,7 +382,7 @@
            <div class="card-body">
            
            <div class="row">
-           <div class="col-12">
+           <div class="col-12 mb-1">
            <fieldset>
            <p> History & exams</p>
            <textarea class="textbox form-control" id="txtExam" rows="2"></textarea>
@@ -390,7 +390,7 @@
            </div>
            </div>
            <div class="row">
-           <div class="col-12">
+           <div class="col-12 mb-1">
            <fieldset >
            <p> Allergies</p>
            <textarea class="textbox form-control" id="txtAllergies" rows="2"></textarea>
@@ -398,7 +398,7 @@
            </div>
            </div>
            <div class="row">
-           <div class="col-12">
+           <div class="col-12 mb-1">
            <fieldset >
            <p>Diagnosis</p>
            <textarea class="textbox form-control" id="txtDiagnosis" rows="2"></textarea>
@@ -406,7 +406,7 @@
            </div>
            </div>
            <div class="row">
-           <div class="col-12">
+           <div class="col-12 mb-1">
            <fieldset>
            <p>RX</p>
            <textarea class="textbox form-control" id="txtRx" rows="2"></textarea>
@@ -416,11 +416,11 @@
            <div class="row">
              <div class="col-6">
                <button type="button"
-           class="btnSave btn btn-primary  mr-1 mb-1">   
+           class="btnSave btn btn-primary  ">   
            Save
            </button>
              </div>
-             <div class="col-sm-6">
+             <div class="col-sm-6 mt-1">
                 <div id="loadingParentNotes"  class="icons">    
                     <div  class="doctorNotesLoading">  <img
                       src="/assets/images/BlueLoading.gif" alt="image" width="40" height="40"/>
@@ -482,17 +482,18 @@
            </div>
            </div>
            
-           <div class="col-md-6">
-            <div class="form-label-group">
+           <div class="col-md-5">
+            <div class="form-label-group mt-2">
               <span>DOB</span> 
-              <span style="font-size: 11px;" id="spnAge"></span>
-              <input readonly type="text" id="patientAge" class="textbox form-control"
+              <span  id="spnAge"></span>
+              <input type="hidden" id="patientAge" value="">              
+              <!-- <input readonly type="text" id="patientAge" class="textbox form-control"
               placeholder="Age" name="fname-floating" />    
-           
+            -->
             </div>
 
             </div>
-           <div class="col-6">
+           <div class="col-7">
            <div class="form-label-group">
              <p>Diagnosis</p>
            <input type="text" id="txtPresDiagnosis" class="textbox form-control"
@@ -507,13 +508,13 @@
            placeholder="Medication"></textarea>
            </fieldset>
            </div>
-           <div class="col-md-6">
+           <div class="col-md-6 mt-1">
             <button type="button" class="btnSaveNSend btn btn-primary  mr-1 mb-1">           
              Save and Send
              </button>
            </div>
 
-           <div class="col-md-6">
+           <div class="col-md-6 mt-1">
             <div id="loadingParentPrescrip" >
               <div  class="PrescripeLoading">  <img
               src="/assets/images/BlueLoading.gif" alt="image" width="40" height="40"/>

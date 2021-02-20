@@ -7,7 +7,7 @@ var AudioVideosession;
 var publisher;
 var subscriber;
 var allsubscribers;
-
+var page;
 var mCallQueId;
 if ($(".modal-backdrop").length > 1) {
   $(".modal-backdrop").not(":first").remove();
@@ -83,9 +83,9 @@ function dragElement(elmnt) {
 }
 
 $(function () {
-  $("#patientAge").on("change", function () {
-    CalculateAge($(this).val());
-  });
+  // $("#patientAge").on("change", function () {
+  //   CalculateAge($(this).val());
+  // });
   $(document).on("click", "button.close", function (event) {
     event.preventDefault();
     var $this = $(event.currentTarget);
@@ -222,7 +222,7 @@ $(function () {
 function handleError(error) {
   if (error) {
     console.log(error.message);
-    disconnect();
+    // disconnect();
   }
 }
 
@@ -280,7 +280,13 @@ function initializeSession(key, sessId, tokenId) {
         $("#home-tab-justified, #home-just").addClass("active");
         $("#messages-tab-justified,#messages-just").removeClass("active");
         if (mCallQueId != "0" && $("#insertedID").val() == "0") {
-          UpdateQueAddSaveCallLog(mCallQueId, "Called", mDocId, mPatientID);
+          UpdateQueAddSaveCallLog(
+            mCallQueId,
+            "Called",
+            mDocId,
+            mPatientID,
+            page
+          );
         }
       }
     },
@@ -349,11 +355,10 @@ function initializeSession(key, sessId, tokenId) {
       if (error.name === "OT_NOT_CONNECTED") {
         console.log(
           "You are not connected to the internet. Check your network connection."
-          );
+        );
       }
       console.log("Failed to connect: ", error.message);
       handleError(error);
-
     } else {
       // If the connection is successful, publish the publisher to the session
       AudioVideosession.publish(publisher, handleError).on(
@@ -452,7 +457,7 @@ function disconnect() {
       CallLogId: mCallLogId,
       DoctorId: mDocId,
       PatientId: mPatientID,
-      callConnect : callPerformed
+      callConnect: callPerformed,
     });
     // AudioVideosession.unsubscribe(subscriber);
     UpdateCallLogEndtime(newCalllogId, onCallduration);
@@ -505,6 +510,7 @@ function ViewPrescription(CallLogId) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
+      getAge();
       // Hide Loading
       // $.LoadingOverlay("hide");
     },
@@ -539,6 +545,7 @@ function ViewHistory(CallLogId) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
+      getAge();
       // Hide Loading
       // $.LoadingOverlay("hide");
     },
@@ -611,7 +618,7 @@ function checkOnlineStatusandCall(patientId, userType) {
   });
 }
 
-function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
+function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId, page) {
   var url =
     baseURL +
     "CallQue/UpdateCallQueStatus?CallQueId=" +
@@ -625,7 +632,7 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
     CallQueID: CallQueId,
     AddedBy: doctorID,
     CallLogStartDateTime: new Date().toLocaleDateString("en-US", options),
-    AddedDate: new Date().toLocaleDateString("en-us"),
+    AddedDate: new Date().toLocaleDateString("en-us", options),
   };
   $.ajax({
     url: url,
@@ -650,7 +657,8 @@ function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
-      getDashBoardAllScheduled(true);
+      if (page == "DashBoard") getDashBoardAllScheduled(true);
+      else GetDoctorTodayCallQue(userLoginId, true);
     },
   });
 }
@@ -684,8 +692,9 @@ function GetDoctorNotes(callLogId) {
         // $("#txtMedication").val(data.Medication);
         $("#txtMedication").data("kendoEditor").value(data.Medication);
         //==Get DOB=====
+
         $("#patientAge").val(data.Age);
-        //==Calculate age from DOB===
+        //==Calculate age from DOB=====
         CalculateAge(data.Age);
       }
     },
@@ -722,6 +731,7 @@ function getPatientInfo(PatientId) {
       //=========open dialog for update==========
       $("#txtName").val(data.FullName);
       $("#patientAge").val(data.Age);
+      CalculateAge(data.Age);
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -874,7 +884,8 @@ function UpdateCallLogEndtime(CallLogId, duration) {
     },
     complete: function (data) {
       $.LoadingOverlay("hide");
-      if (mArea == "Doctor") getDashBoardAllScheduled(true);
+      if (mArea == "Doctor" && page == "DashBoard")
+        getDashBoardAllScheduled(true);
     },
   });
 }
@@ -941,26 +952,31 @@ function CalculateAge(userinput) {
     };
 
     if (age.years > 0 && age.months > 0 && age.days > 0)
-      ageString =
-        age.years +
-        " years, " +
-        age.months +
-        " months, and " +
-        age.days +
-        " days old.";
+      ageString = age.years + " years ";
+    //  +
+    // age.months +
+    // " months, and " +
+    // age.days +
+    // " days old.";
     else if (age.years == 0 && age.months == 0 && age.days > 0)
-      ageString = "Only " + age.days + " days old!";
+      ageString = age.days + " days ";
+    //ageString = "Only " + age.days + " days old!";
     //when current month and date is same as birth date and month
     else if (age.years > 0 && age.months == 0 && age.days == 0)
-      ageString = age.years + " years old. Happy Birthday!!";
+      ageString = age.years + " years";
+    // ageString = age.years + " years old. Happy Birthday!!";
     else if (age.years > 0 && age.months > 0 && age.days == 0)
-      ageString = age.years + " years and " + age.months + " months old.";
+      // ageString = age.years + " years and " + age.months + " months old.";
+      ageString = age.years + " years";
     else if (age.years == 0 && age.months > 0 && age.days > 0)
-      ageString = age.months + " months and " + age.days + " days old.";
+      ageString = age.months + " months";
+    //ageString = age.months + " months and " + age.days + " days old.";
     else if (age.years > 0 && age.months == 0 && age.days > 0)
-      ageString = age.years + " years, and" + age.days + " days old.";
+      ageString = age.years + " years ";
+    //ageString = age.years + " years, and" + age.days + " days old.";
     else if (age.years == 0 && age.months > 0 && age.days == 0)
-      ageString = age.months + " months old.";
+      ageString = age.months + " months";
+    //ageString = age.months + " months old.";
     //when current date is same as dob(date of birth)
     else ageString = "It's first day on Earth!";
 
@@ -969,3 +985,15 @@ function CalculateAge(userinput) {
       "(" + ageString + ")");
   }
 }
+
+// Mustache.Formatters = {
+
+//   Shortdate: function (str) {
+//     var options = {
+//       year: "numeric",
+//       month: "short",
+//       day: "numeric",
+//     };
+//     return new Date(str).toLocaleDateString("en-US", options);
+//   },
+// };

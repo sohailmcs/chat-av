@@ -4,6 +4,7 @@ function isAuthorization(req, res, next) {
   if (!req.session.userId) {
     //console.log('middle second ' + req.session.userId);
     return res.redirect("/login");
+    
   } else {
     res.set(
       "Cache-Control",
@@ -31,6 +32,6 @@ function isLoginExist(req, res, next) {
 }
 
 module.exports = {
-  c: isLoginExist,
+  isLoginExist: isLoginExist,
   isAuthorization: isAuthorization,
 };

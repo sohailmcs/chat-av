@@ -42,6 +42,30 @@ $(function () {
     window.location.href = "/Admin/addEdit-Fee?id=" + feeId;
   }
   
+  function ConfirmDeleteFee(id) {
+    var feeId = $(id).attr("feeId");
+
+    Swal.fire({
+      title: "Confirmation!",
+      text: "Are you sure want to delete! ",
+      type: "warning",
+      confirmButtonClass: "btn btn-primary swalbutton",
+      cancelButtonClass : "btn btn-primary swalbutton",
+      buttonsStyling: false,
+      showCancelButton: true,
+      confirmButtonText: "<a style='color:#fff'>OK</a>",      
+      cancelButtonText: "<a style='color:#fff'>Cancel</a>"
+    }).then(
+      function () {  DeleteFee(feeId);        
+        $(id).closest('tr').animate({ backgroundColor: 'red' }, 100).slideUp("slow", function () {
+          jQuery(this).remove();
+
+        });
+        
+       },
+      function () { return false; });  
+  }
+
   function Filldatatable(data) {
     $("#tblFee").DataTable({
       bAutoWidth: false,
@@ -50,8 +74,7 @@ $(function () {
         {
           visible: false,
           data: "FeeId",
-        },
-  
+        },  
        
         { data: "CallType" },       
         { data: "DoctorName" },
@@ -62,8 +85,12 @@ $(function () {
             return (
               '<a href="#" onclick="EditFee(this)" feeId="' +
               row.FeeId +
-              '" data-toggle="tooltip" data-placement="bottom" title="Edit Role">' +
-              ' <i class="bx bxs-pencil call-log-eye-btn"></i></a>'
+              '" data-toggle="tooltip" data-placement="bottom" title="Edit Fee">' +
+              ' <i class="bx bxs-pencil call-log-eye-btn"></i></a> &nbsp;' +
+              '<a href="#" onclick="ConfirmDeleteFee(this)" feeId="' +
+              row.FeeId +
+              '" data-toggle="tooltip" data-placement="bottom" title="Delete Role">' +
+              ' <i class="bx bx-x call-log-eye-btn"></i></a>'              
             );
           },
         },
@@ -75,6 +102,47 @@ $(function () {
         },
       ],
       order: [[1, "asc"]],
+    });
+  }
+
+  function DeleteFee(id) {
+    var url = baseURL + "FeeStructure/DeleteFee?FeeId=" + id;
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "DELETE",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {
+        $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+       // $.LoadingOverlay("hide");
+      //  Swal.fire({
+      //   title: "Confirmation!",
+      //   text: "Fee Structure Created ",
+      //   type: "success",
+      //   confirmButtonClass: "btn btn-primary",
+      //   buttonsStyling: false,
+      //   confirmButtonText: "<a style='color:#fff'>OK</a>",
+      // }).then((resuut) => {
+     
+       
+     // });
+    },
+      error: function (xhr, textStatus, err) {
+        if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+          console.log(xhr.statusText);
+        else console.log(xhr.statusText);
+      },
+      complete: function (data) {
+        // Hide Loading
+      
+        $.LoadingOverlay("hide");
+      },
     });
   }
   

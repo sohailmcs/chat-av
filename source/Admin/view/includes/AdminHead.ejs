@@ -16,6 +16,7 @@
     />
     <script src="/js/jquery.min.js"></script>
     <script src="/js/vendors.min.js"></script>
+    <script src="/services/AutoLogout.js"></script>
     <script src="/js/KendoUi/kendo.all.min.js"></script>
     <script src="/js/Services/mustache.js"></script>
     <script src="/js/Services/mustache-wax.min.js"></script>
@@ -35,8 +36,8 @@
     userID = $(".user-name").attr("userinfo");
     });
    
-    var baseURL = "https://kindahclinic.com/KindahService/";
-   // var baseURL = "http://localhost:1042/KindahService/";
+   var baseURL = "https://kindahclinic.com/KindahService/";
+   //var baseURL = "http://localhost:1042/KindahService/";
     function getcookie(cookiename) {
       var cookiestring = document.cookie;
       var cookiearray = cookiestring.split(";");

@@ -6,7 +6,7 @@ var clientCurrentDt = new Date().toLocaleDateString("en-US");
 
 var userLoginId = $(".user-name").attr("UserInfo");
 var uName = $(".user-name").text();
-
+page = "DashBoard";
 $(function () {
   $("#txtMedication").kendoEditor({
     tools: [
@@ -37,7 +37,7 @@ $(function () {
   $(document).on("click", ".btnDone", function () {
     var quId = $(this).attr("CallQueId");
     var patientId = $(this).attr("patientID");
-    UpdateQueAddSaveCallLog(quId, "Called", userLoginId, patientId);
+    UpdateQueAddSaveCallLog(quId, "Called", userLoginId, patientId,"DashBoard");
 
     $(this).parents(".row").remove();
     getDashBoardAllScheduled(false);
@@ -415,26 +415,7 @@ function getCallLogDetils(callLogId, details) {
 
         //=========open dialog for update==========
 
-        // $("#imgPatient").attr(
-        //   "src",
-        //   data.PatientPhoto == null
-        //     ? "/assets/images/patient.png"
-        //     : data.PatientPhoto
-        // );
-        // $("#patientName").text(data.PatientName);
-        // $("#details").html(
-        //   "<p><b>Visit Date :</b>" +
-        //     data.AddedDate +
-        //     "<br><b>Contact Number :</b>" +
-        //     data.PatientPhone +
-        //     "</P>"
-        // );
-        // $("#txtExamEdit").val(data.HistoryAndExam);
-        // $("#txtAllergiesEdit").val(data.Allergies);
-        // $("#txtDiagnosisEdit").val(data.Diagnosis);
-        // $("#txtRxEdit").val(data.PatientRX);
-
-        // $("#prescription").modal("show");
+        
       }
     },
     error: function (xhr, textStatus, err) {
@@ -443,6 +424,7 @@ function getCallLogDetils(callLogId, details) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
+      getAge();
       // Hide Loading
       $.LoadingOverlay("hide");
     },
@@ -597,6 +579,7 @@ function SendSMStoPatient(mobileNo, doctorName, patientName) {
 
 function getAge()
 {
+  
   var getAge = $("#hdnPatientAge").val(); 
   $("#popupAge").html(CalculateAge(getAge));
 }
@@ -636,41 +619,7 @@ function ViewBookingDetails(PatientId) {
   });
 }
 
-Mustache.Formatters = {
-  date: function (str) {
-    var options = {
-      weekday: "short",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    };
-    return new Date(str).toLocaleDateString("en-US", options);
-  },
-  Upper: function (str) {
-    return str.toUpperCase();
-  },
-  time: function (str) {
-    var options = {
-      hour: "2-digit",
-      minute: "2-digit",
-    };
-    return new Date(str).toLocaleTimeString("en-GB", options);
-  },
-  phone: function (str) {
-    var res = str.substring(4, str.length);
-    return res;
-  },
-  Shortdate: function (str) {
-    var options = {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    };
-    return new Date(str).toLocaleDateString("en-US", options);
-  },
-};
+
 
 function toast(msg) {
   $("#toastText").text(msg);

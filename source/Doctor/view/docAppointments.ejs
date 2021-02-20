@@ -155,7 +155,7 @@
           {{/PatientMedicationModel}}
         </div>
       </div><!--end of row-->      
-      <div class="col-sm-5">
+      <div class="divMedication col-sm-5">
         <h4>Allergy</h4>
         <ul class="Listalergy">
           {{#PatientAlergyModel}}
@@ -163,14 +163,14 @@
               <li>{{AlergyName}}</li>
             {{/IsAlergy}}
             {{^IsAlergy}}
-              <li><strong>No Alergy</strong></li>
+              <p>No Alergy</p>
             {{/IsAlergy}}           
           {{/PatientAlergyModel}}          
         </ul>
       </div>      
     </div><!--end of row-->
     <div class="row mt-3">
-      <div class="col-sm-7 mb-1">
+      <div class="divMedication col-sm-7 mb-1">
         <h4>Medical Conditions</h4>       
         <ul class="Listalergy">  
           {{#PatientMedConditonModel}}       
@@ -178,7 +178,7 @@
               <li>{{Condition}}</li>
             {{/IsCondition}}
             {{^IsCondition}}
-              <li><strong>No Medical Condition</strong></li>
+              <p>No Medical Condition</p>
             {{/IsCondition}} 
          {{/PatientMedConditonModel}} 
           </ul>         
@@ -190,7 +190,7 @@
         {{/IsOtherCondition}}
           
       </div>
-      <div class="col-sm-5">
+      <div class="divMedication col-sm-5">
         <h4>Complain</h4>
         {{#PatientComplainModel}} 
          
@@ -198,7 +198,7 @@
             <p class="mb-1">{{PatientComplainDesc}}</p> 
           {{/PatientComplainDesc}}
           {{^PatientComplainDesc}}
-            <p><strong>No Complain</strong><br>        
+            <p>No Complain</p>
           {{/PatientComplainDesc}}
 
           
@@ -211,7 +211,7 @@
           
         {{/PatientComplainModel}}
         {{^PatientComplainModel}}
-          <p><strong>No Complain</strong><br>       
+          <p>No Complain</p>
        {{/PatientComplainModel}}
       </div>
     </div>
@@ -234,7 +234,7 @@
           <div class="col-12 col-md-6  ">
               <h6 class="schappointment-text ">
                 <i class="bx bx-time"></i>
-                {{AppointmentStartTime}}- {{AppointmentEndTime}} 
+                {{AppointmentStartTime | time}}- {{AppointmentEndTime | time}} 
               </h6>
           </div>
           <div class="col-12 col-md-6 tr-Row">
@@ -261,7 +261,7 @@
         <div class="row tr-slot">
           <div class="col-12 col-md-6">
             <h6 class="schappointment-text">
-              <i class="bx bx-time"></i>  {{AppointmentStartTime}}- {{AppointmentEndTime}}  <span style="display:none"> {{isBooked}}</span>
+              <i class="bx bx-time"></i>  {{AppointmentStartTime | time }}- {{AppointmentEndTime | time}}  <span style="display:none"> {{isBooked}}</span>
             </h6>
           </div>
           <div class="col-8 col-md-6 tr-Row">
@@ -271,7 +271,7 @@
             style="margin-left: 1%;"
           >
             <i class="bx bx-trash"></i>
-          <strong>  DELETE</strong>
+          <strong>  DELETE </strong>
           </button>
           </div>
         </div>  
@@ -352,7 +352,14 @@
         <div class="col-md-4">
           <label>From Date</label>
           <fieldset class="position-relative has-icon-left">
-            <input id="dtFrom" type="date" class="form-control " placeholder="Select Date" />
+            <!-- <input id="dtFrom" type="date" class="form-control " placeholder="Select Date" /> -->
+            <input type="text" id="dtFrom" name="dtFrom" 
+            class="txtInfo form-control pickadate-months-year"
+            required placeholder="Select Date" 
+            data-validation-required-message="The  field is required"
+             /> 
+
+            
             <div class="form-control-position">
               <i class="bx bx-calendar"></i>
             </div>
@@ -361,7 +368,13 @@
         <div class="col-md-4">
           <label>To Date</label>
           <fieldset class="position-relative has-icon-left">
-            <input id="toDT" type="date" class="form-control" placeholder="Select Date" />
+            <!-- <input id="toDT" type="date" class="form-control" placeholder="Select Date" /> -->
+
+            <input type="text" id="toDT" name="toDT" 
+            class="txtInfo form-control pickadate-months-year"
+            required placeholder="Select Date" 
+            data-validation-required-message="The  field is required"
+             /> 
             <div class="form-control-position">
               <i class="bx bx-calendar"></i>
             </div>
@@ -820,6 +833,8 @@
 
 <!-- BEGIN: JS-->
 
+<script src="/js/daterange/moment.min.js"></script>
+<script src="/js/pick-a-datetime.js"></script>
 <script src="/js/vendors.js"></script>
 <script src="/js/sweetalert2.all.min.js"></script>
 <script src="/js/polyfill.min.js"></script>
@@ -829,14 +844,7 @@
 <script src="/js/app-menu.js"></script>
 <script src="/js/app.js"></script>
 
-<script src="/js/pickadate/picker.js"></script>
-<script src="/js/pickadate/picker.date.js"></script>
-<script src="/js/pickadate/picker.time.js"></script>
-<script src="/js/pickadate/legacy.js"></script>
-<script src="/js/daterange/moment.min.js"></script>
-<script src="/js/daterange/daterangepicker.js"></script>
 
-<script src="/js/pick-a-datetime.js"></script>
 
 <!-- <script src="/js/KendoUi/jquery.min.js"></script> -->
 <script src="/js/KendoUi/kendo.all.min.js"></script>

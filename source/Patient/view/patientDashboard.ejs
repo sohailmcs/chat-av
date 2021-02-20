@@ -71,10 +71,11 @@
       </div>
    <!-- description end -->
       <!--- payment area start -->
-      <div class="col-sm-3 mt-0">
-        <h5 class="docName status_1">Dr. {{FullName}} Fee </h5>
+      <div class="col-sm-3" style="padding-top:1%" >
+        <!-- <h5 class="docName status_1">Dr. {{FullName}} Fee </h5> -->
         {{#FeeStructure}}
-        <span class="txtspecialization"><b> {{CallType}} : {{FeeAmount}} SAR / {{CallDuration}}</b></span>
+       <span class="txtspecialization"><strong> Fee</strong> : {{FeeAmount}} SAR / {{CallDuration}}</span>
+        <!-- <span class="txtspecialization"><b> {{CallType}} : {{FeeAmount}} SAR / {{CallDuration}}</b></span> -->
         {{/FeeStructure}}
       </div>
       <!--- payment area end -->

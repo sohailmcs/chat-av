@@ -2,9 +2,9 @@
 //var baseURL = "http://localhost:1042/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
 var urlParams = new URLSearchParams(window.location.search);
-var spName = "";
-if (urlParams.has("spName")) spName = urlParams.get("spName");
-if (spName == "") spName = "all";
+var Speciality = "";
+if (urlParams.has("Speciality")) Speciality = urlParams.get("Speciality");
+if (Speciality == "") Speciality = 0
 
 var options = {
   year: "numeric",
@@ -18,10 +18,10 @@ var currentDt = new Date().toLocaleDateString("en-US", options);
 
 //==login==========
 $(function () {
-  $("#lblDoctorListHeading").text(spName);
+  
   $("#dbofee").on("change", function () {
-    var value = $(this).val();
-    GetDoctors(false, value)
+    var orderBy = $(this).val();
+    GetDoctors(false, orderBy)
       .then((data) => {
         SetDoctorsList(data);
         $(".ratingArea").each(function () {
@@ -92,8 +92,8 @@ $(function () {
             "&name=" +
             fullName +
             "&type=call" +
-            "&spName=" +
-            spName;
+            "&Speciality=" +
+            Speciality;
         //SendCallRequestToDoctor(doctorId, fullName);
       })
       .catch((error) => {
@@ -111,8 +111,8 @@ $(function () {
       "&name=" +
       fullName +
       "&type=sch" +
-      "&spName=" +
-      spName;
+      "&Speciality=" +
+      Speciality;
   });
 
   $(document).on("click", ".btndoctorProfile", function () {
@@ -196,7 +196,12 @@ function CheckIFcalledBefore(doctorId, patientId) {
   });
 }
 
-function SetDoctorsList(data) {
+function SetDoctorsList(data) {  
+  if(data!=null)
+  $("#lblDoctorListHeading").text(data.result[0].Specialization);
+  else
+  $("#lblDoctorListHeading").text("");
+
   var Usertemplate = $("#user-template").html();
   $("#doctorList").html(Mustache.to_html(Usertemplate, data));
 }
@@ -205,7 +210,7 @@ function GetDoctors(isSync, orderByFee) {
     var url =
       baseURL +
       "Doctor/GetDoctors?Speciality=" +
-      spName +
+      Speciality +
       "&orderBy=" +
       orderByFee;
 

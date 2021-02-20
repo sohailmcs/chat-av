@@ -55,83 +55,72 @@
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">                                                    
-                                                    <label class="form-label" for="txtEmail">Email</label>
-                                                        <input maxlength="50"  type="email"
-                                                         id="txtEmail" name="name"
-                                                         class="form-input form-control "
-                                                             required
-                                                            data-validation-required-message="This  field is required" />                                                   
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">                                                    
-                                                    <label class="form-label" for="txtFullName">FullName</label>
+                                            <div class="col-md-6">
+                                                <label>Email</label>                                           
+                                                  
+                                                  <input type="text" id="txtEmail" name="txtEmail" 
+                                                  class="txtInfo form-control "
+                                                  required  
+                                                  data-validation-required-message="The  field is required"
+                                                   /> 
+                                              
+                                              </div>
+                                           
+                                            <div class="col-sm-6">                                                
+                                                    <label>FullName</label>
                                                         <input maxlength="50"  type="text" 
-                                                        id="txtFullName" name="name"
-                                                         class="form-input form-control "
-                                                             required
+                                                        id="txtFullName" name="txtFullName"
+                                                        class="txtInfo form-control "
+                                                         required
                                                             data-validation-required-message="This  field is required" />                                                   
-                                                </div>
+                                                
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">                                                   
-                                                        <div class="row">
-                                                            <div class="col-sm-3">
-                                                                <input required disabled="disabled" class="form-control"
-                                                                    value="+966" />
-                                                            </div>
-                                                            <div class="col-sm-9">
-                                                                <label class="form-label" for="txtPhoneNumber">Phone No</label>
-                                                                <input required name="contactNo" type="number"
-                                                                    class="form-input form-control" id="txtPhoneNumber"
-                                                                     />
-                                                            </div>                                                      
+                                            </div><!--end of row-->
+                                            <div class="row mt-2">
+                                                <div class="col-sm-6">                                                                                                 
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <label>Ext</label>
+                                                                    <input required readonly class="form-control"
+                                                                        value="+966" />
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <label for="txtPhoneNumber">Phone No</label>
+                                                                    <input required name="contactNo" type="number"
+                                                                        class="form-control" id="txtPhoneNumber"
+                                                                        />
+                                                                </div>                                                      
+                                                    
                                                     </div>
-                                                </div>
-                                            </div>
-
-
-                                            
-                                            <div class="col-sm-6">
-                                                <div class="form-group focused">                                                    
-                                                    <label class="form-label" for="txtComplain">Complain</label>
-                                                        <textarea cols="60"  rows="3" id="txtComplain" 
-                                                        class=" form-control "
+                                                </div>                                                
+                                                <div class="col-sm-6 mt-2">                                                   
+                                                        <a class='btnUploadSuggestion' href="#" >
+                                                            AttachFile
+                                                            <input type="file" id="imgsuggestions" class="MedicationReciept"  name="file_source" size="100"  onchange='$("#upload-file-info").html($(this).val());'>
+                                                            <input type="hidden" value="" class="lblAttachment">
+                                                        </a>
+                                                        &nbsp;
+                                                        <span class='label label-info' id="upload-file-info"></span>
+                                                    </div>
+                                                
+                                        </div><!--end of row -->
+                                        <div class="row mt-2">
+                                            <div class="col-sm-6">                                                                                             
+                                                    <label  for="txtComplain">Complain</label>
+                                                        <textarea cols="60"  rows="5" id="txtComplain" 
+                                                        class="form-control"
                                                         required
                                                        data-validation-required-message="This  field is required"></textarea>                                                                                              
-                                                </div>
+                                               
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group focused">                                                    
-                                                    <label class="form-label" for="txtComplain">Attachment</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">                                                     
-                                                        </div>
-                                                        <div class="custom-file">
-                                                          <input type="hidden" value="" class="lblAttachment">
-                                                          <input type="file" style='cursor:pointer'  class="custom-file-input MedicationReciept" >
-                                                          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                                        </div>
-                                                     
-                                                      </div><!--end of input group-->
-
-
-                                                    <!-- <div class="custom-file">
-                                                        <input type="hidden" value="" class="lblAttachment">
-                                                        <input type="file" style='cursor:pointer'  class="custom-file-input suggestionAttachment" >
-                                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                                      </div>                                                  -->
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <div class="form-group"> 
-                                                        <button id="btnCancel" type="submit" class="btn btn-primary">
-                                                           Send
-                                                        </button>                                                        
-                                                        <br>
-                                                </div>
+                                        </div><!--end of row --> 
+                                        <div class="row">
+                                                <div class="col-sm-12 mt-2">                                               
+                                                    <button id="btnCancel" type="submit" class="btn btn-primary">
+                                                        Send
+                                                    </button>                                                        
+                                                    <br> 
+                                                </div>                                               
                                             </div>
                                         </div>
                                     </div>

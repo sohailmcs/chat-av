@@ -55,7 +55,8 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
 
@@ -70,7 +71,8 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
 
@@ -85,7 +87,8 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
 
@@ -100,7 +103,8 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
 
@@ -112,7 +116,8 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
 
@@ -127,7 +132,8 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
 
@@ -139,7 +145,8 @@ class doctorController {
       pageTitle: "Doctor Video Call ",
       userName: req.session.userName,
       userId: req.session.userId,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
 
@@ -155,7 +162,8 @@ class doctorController {
       apiKey: apiKey,
       sessionId: sessionId,
       token: gentoken,
-      roleId:req.session.roleId
+      roleId:req.session.roleId,
+      photo : req.session.photo
     });
   }
 }

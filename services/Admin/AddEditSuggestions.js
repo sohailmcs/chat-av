@@ -164,7 +164,7 @@ $(document).on("change", ".MedicationReciept", function (event) {
   var imgHidden = $(this).siblings(".lblAttachment");
   var file = $(this)
     .val()
-    .replace(/C:\\fakepath\\/gi, "");
+    .replace(/C:\\filepath\\/gi, "");
 
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
