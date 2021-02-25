@@ -4,20 +4,55 @@ var urlParams = new URLSearchParams(window.location.search);
 var UserId = 0;
 //var roleID = urlParams.get("id");
 if (urlParams.has("id")) UserId = urlParams.get("id");
-
+var specialityId=  0;
 $(function () {
+ //===========start animated placeholder============
+ $(".form-input").focus(function () {
+  $(this).parents(".form-group").addClass("focused");
+});
+
+$(".form-input").blur(function () {
+  var inputValue = $(this).val();
+  if (inputValue == "") {
+    $(this).removeClass("filled");
+    $(this).parents(".form-group").removeClass("focused");
+  } else {
+    $(this).addClass("filled");
+  }
+});
+
+
   GetAllRoles();
+  $("#divSpeciality").hide();
   if (UserId > 0) {
-    $("#dboUserType").prop("disabled",true);
+    $("#dboUserType").prop("disabled", true);
     GetUser(UserId);
     $("#lblUserHeading").text("Edit User");
     $("#btnSubmit").text("Update User");
     $("#txtFirstName, #txtLastName").attr("readonly", "readonly");
-  } else $("#lblUserHeading").text("Create User");
+  } else {
+    $("#lblUserHeading").text("Create User");
+    GetAllSpecialities(0);
+  }
+
   $("#frmSignUpAdmin").submit(function (e) {
     e.preventDefault();
     if (UserId > 0) EditUser();
     else AddUser();
+  });
+  $("#dboUserType").on("change", function () {
+    var val = this.value;
+    if (val.toLowerCase() == "doctor") {
+      $("#divSpeciality").show().addClass("focused");
+      $("#txtspe").attr("required", true);
+    }
+    else {
+      $("#divSpeciality").hide();
+      $("#txtspe").attr("required", false);
+    }
+  });
+  $(document).on("change", "#txtspe", function (event) {
+    specialityId = this.value;
   });
 
   //==================show hide password when click eye icon====
@@ -33,20 +68,20 @@ $(function () {
       $(this).find("i").addClass("fa-eye");
     }
   });
- //===========start animated placeholder============
- $(".form-input").focus(function () {
-  $(this).parents(".form-group").addClass("focused");
-});
+  //===========start animated placeholder============
+  $(".form-input").focus(function () {
+    $(this).parents(".form-group").addClass("focused");
+  });
 
-$(".form-input").blur(function () {
-  var inputValue = $(this).val();
-  if (inputValue == "") {
-    $(this).removeClass("filled");
-    $(this).parents(".form-group").removeClass("focused");
-  } else {
-    $(this).addClass("filled");
-  }
-});
+  $(".form-input").blur(function () {
+    var inputValue = $(this).val();
+    if (inputValue == "") {
+      $(this).removeClass("filled");
+      $(this).parents(".form-group").removeClass("focused");
+    } else {
+      $(this).addClass("filled");
+    }
+  });
 
 
 
@@ -68,6 +103,7 @@ function AddUser() {
     return false;
   }
 
+  
   var model = {
     FirstName: $("#txtFirstName").val(),
     LastName: $("#txtLastName").val(),
@@ -78,6 +114,7 @@ function AddUser() {
     PhoneExt: $("input:disabled").val(),
     UserType: $("#dboUserType option:selected").text(),
     RoleId: $("#dboRole").val(),
+    SpecializationId :specialityId,
     pageName: "Admin Signup",
     pageUrl: window.location.href,
   };
@@ -212,6 +249,7 @@ function GetUser(id) {
           "selected"
         );
 
+
       $("#dboRole").val(data.RoleId);
       $("#txtFirstName").val(data.FirstName);
       $("#txtLastName").val(data.LastName);
@@ -231,6 +269,45 @@ function GetUser(id) {
         $(".form-input").parents(".form-group").addClass("focused");
       }
 
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
+  });
+}
+
+function GetAllSpecialities() {
+  var url = baseURL + "Speciality/GetAllSpeciality";
+  ///==============start post request to add doctor
+  $.ajax({
+    url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+      $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      //=====set values for slots templates======
+
+      $("#txtspe").append(
+        $("<option>").text("Select Specialization").attr("value", "0")
+      );
+      $.each(data.result, function (i, v) {
+        $("#txtspe").append($("<option>").text(v.Name).attr("value", v.SpId));
+      });
+
+
+    },
+    error: function (xhr, textStatus, err) {
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
       // Hide Loading
       $.LoadingOverlay("hide");
     },
