@@ -22,7 +22,9 @@ var mParentName;
 var mDocName;
 var mDocId;
 var mArea;
+var mSpeciality;
 var fistCallLogId = 0;
+
 
 var timer;
 var onCallduration;
@@ -187,10 +189,11 @@ $(function () {
           $("#callImg").css("display", "none");
           PlayCallingSound(true);
           //=========send call request to paatient============
-
+          alert(mSpeciality);
           soc.emit("SendCallRequestToPatient", {
             pName: mPname,
             username: mDocName,
+            DoctorSpeciality : mSpeciality,
             apiKey: apiKey,
             sessionId: sessionId,
             token: token,

@@ -66,15 +66,22 @@ function Filldatatable(data) {
       { data: "FullName" },
       { data: "PhoneNumber" },
       { data: "Status" },
-      { data: "ModifiedBy" },
+      { data: "AddedDate",
+      render: function(data) {
+        return new Date(data).toLocaleDateString("en-us");
+      } },
+      { data: "ModifiedBy",
+    
+    },
 
       {
         mRender: function (data, type, row) {
           return (
-            '<a href="#" onclick="View(this)" suggestionId="' +
-            row.ComplainSuggestionId +
-            '" data-toggle="tooltip" data-placement="bottom" title="View FeedBack">' +
-            ' <i class="bx bx-detail"></i></i></a>&nbsp; &nbsp;' +
+            // '<a href="#" onclick="View(this)" suggestionId="' +
+            // row.ComplainSuggestionId +
+            // '" data-toggle="tooltip" data-placement="bottom" title="View FeedBack">' +
+            // ' <i class="bx bx-detail"></i></i></a>&nbsp; &nbsp;' 
+            // +
             '<a href="#" onclick="ShowDetails(this)" suggestionId="' +
             row.ComplainSuggestionId +
             '" data-toggle="tooltip" data-placement="bottom" title="Show Details">' +
@@ -89,7 +96,7 @@ function Filldatatable(data) {
         defaultContent: "",
       },
     ],
-    order: [[1, "asc"]],
+    order: [[5, "desc"]],
   });
 }
 

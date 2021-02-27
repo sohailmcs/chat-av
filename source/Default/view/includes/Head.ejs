@@ -48,8 +48,8 @@
     var userID = "";
 
     var soc = io({ transports: ["websocket"], upgrade: false });
-    //var baseURL = "http://localhost:1042/KindahService/";
-    var baseURL = "https://kindahclinic.com/KindahService/";
+   // var baseURL = "http://localhost:1042/KindahService/";
+   var baseURL = "https://kindahclinic.com/KindahService/";
     var urlParams = new URLSearchParams(window.location.search);
 
     function getcookie(cookiename) {
@@ -95,6 +95,7 @@
       mPname = $(btn).attr("patientname");
       mDocName = uName;
       mDocId = userID;
+      mSpeciality = $(btn).attr("speciality");
       mArea = "Doctor";
 
       if (mCallLogId == 0) {
@@ -126,6 +127,7 @@
 
     async function updatePatientOnlineStatus(UserID, status, uName) {
       await UpdateUserOnlineStatus(userID, status, uName, "Patient");
+      
       if (status == "Online") {
         $(".status_" + UserID + "")
           .find(".bullet-sm")
@@ -174,6 +176,7 @@
     }
 
     function UpdateUserOnlineStatus(UserID, status, userName, userType) {
+     
       return new Promise((resolve, reject) => {
         var useStatus = status == "Online" ? true : false;
         var url =

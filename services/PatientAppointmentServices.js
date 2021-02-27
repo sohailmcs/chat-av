@@ -157,4 +157,11 @@ Mustache.Formatters = {
     };
     return new Date(str).toLocaleDateString("en-US", options);
   },
+  time: function (str) {
+    var options = {
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(str).toLocaleTimeString("en-GB", options);
+  },
 };

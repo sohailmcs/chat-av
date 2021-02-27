@@ -11,7 +11,7 @@ module.exports = {
   port: 8080,
   url: "http://",
   serviceURL: "https://kindahclinic.com/KindahService/",
- // serviceURL: "http://localhost:1042/KindahService/",
+ //serviceURL: "http://localhost:1042/KindahService/",
   max_length: 50,
   name: "Kindah",
 };

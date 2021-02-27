@@ -572,7 +572,7 @@ function CalculateAge(userinput) {
         age.days +
         " days old.";
     else if (age.years == 0 && age.months == 0 && age.days > 0)
-      ageString = "Only " + age.days + " days old!";
+      ageString =  age.days + " days old!";
     //when current month and date is same as birth date and month
     else if (age.years > 0 && age.months == 0 && age.days == 0)
       ageString = age.years + " years old. Happy Birthday!!";

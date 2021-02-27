@@ -37,7 +37,7 @@ $(function () {
   $(document).on("click", ".btnDone", function () {
     var quId = $(this).attr("CallQueId");
     var patientId = $(this).attr("patientID");
-    UpdateQueAddSaveCallLog(quId, "Called", userLoginId, patientId,"DashBoard");
+    UpdateQueAddSaveCallLog(quId, "Called", userLoginId, patientId, "DashBoard");
 
     $(this).parents(".row").remove();
     getDashBoardAllScheduled(false);
@@ -415,7 +415,7 @@ function getCallLogDetils(callLogId, details) {
 
         //=========open dialog for update==========
 
-        
+
       }
     },
     error: function (xhr, textStatus, err) {
@@ -577,10 +577,9 @@ function SendSMStoPatient(mobileNo, doctorName, patientName) {
   });
 }
 
-function getAge()
-{
-  
-  var getAge = $("#hdnPatientAge").val(); 
+function getAge() {
+
+  var getAge = $("#hdnPatientAge").val();
   $("#popupAge").html(CalculateAge(getAge));
 }
 
@@ -611,15 +610,41 @@ function ViewBookingDetails(PatientId) {
         console.log(xhr.statusText);
       else console.log(xhr.statusText);
     },
-    complete: function (data) {   
-    // Hide Loading
-     $.LoadingOverlay("hide");
-     getAge();
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+      getAge();
     },
   });
 }
 
-
+//====date formater by using mustache=====
+Mustache.Formatters = {
+  date: function (str) {
+    var options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return new Date(str).toLocaleDateString("en-US", options);
+  },
+  Shortdate: function (str) {
+    var options = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+    return new Date(str).toLocaleDateString("en-US", options);
+  },
+  time: function (str) {
+    var options = {
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(str).toLocaleTimeString("en-GB", options);
+  },
+};
 
 function toast(msg) {
   $("#toastText").text(msg);

@@ -62,7 +62,7 @@
     </div>
     <div class="col-sm-3" style="vertical-align: middle; margin: auto;">
       <i class="bx bx-time"><span class="date-time-text">{{AppointmentDate | Shortdate}}</span>
-        <span class="date-time-text">{{AppointmentStartTime}} - {{AppointmentEndTime}} </span></i>
+        <span class="date-time-text">{{AppointmentStartTime | time}} - {{AppointmentEndTime | time}} </span></i>
     </div>
     <div class="col-sm-3" style="vertical-align: middle; margin: auto;">           
        <button   type="button" class="btnMain btn btn-outline-primary " 
@@ -98,7 +98,7 @@
     </div>
     <div class="col-sm-3" style="vertical-align: middle; margin: auto;text-align: center;">
       <i class="bx bx-time">
-        <span class="date-time-text">{{AppointmentStartTime}} - {{AppointmentEndTime}} </span>
+        <span class="date-time-text">{{AppointmentStartTime | time}} - {{AppointmentEndTime | time}} </span>
         <span class="date-time-text">{{AppointmentDate | Shortdate}}</span>
       </i>
     </div>

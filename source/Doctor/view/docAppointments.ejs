@@ -150,6 +150,7 @@
           {{^IsTakingMedication}}
           <div class="col-sm-12 text-left">
            <p> No Taking Medications</p>
+           <img  src="/assets/images/medication.jpg" alt="Medication" height="100" width="100">
           </div>
           {{/IsTakingMedication}}
           {{/PatientMedicationModel}}
@@ -164,6 +165,7 @@
             {{/IsAlergy}}
             {{^IsAlergy}}
               <p>No Alergy</p>
+              <img  src="/assets/images/noAlergy.jpg" alt="Medication" height="100" width="100">
             {{/IsAlergy}}           
           {{/PatientAlergyModel}}          
         </ul>
@@ -184,7 +186,7 @@
           </ul>         
           {{#IsOtherCondition}}
           <ul class="Listalergy" style="margin-bottom:2px">
-            <li><b>Other</b></li>
+            <h4>Other</h4>
           </ul>
             <p>{{OtherConditionDesc}}</p>
         {{/IsOtherCondition}}
@@ -219,7 +221,6 @@
     </div>
     </div>
     </script> 
-
 <script id="slots-template" type="text/html">
       {{#result}}  <!--  appointment start -->
       <div class="col-sm-12 selectedDt">

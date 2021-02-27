@@ -14,8 +14,8 @@ if (urlParams.has("type")) type = urlParams.get("type");
 if (urlParams.has("appId")) appId = urlParams.get("appId");
 
 var userLoginId = $(".user-name").attr("UserInfo");
-
 var pType = "Me";
+var globalCityId = "0";
 $("#hdnPatientId").val(userLoginId);
 
 function EnableMedCondition(EleOv) {
@@ -32,9 +32,11 @@ function EnableOtherOption(EleOverlay) {
 }
 
 $(function () {
-
+  FillCountry();
+  //FillCity(0, "0", true);
   PatientBasicInfo(userLoginId, false, "Parent");
   $(".dbInfo").css("display", "none");
+
   $(".btnMe").on("click", function () {
     pType = $(this).attr("patienttype");
     ShowHideChildInfoDropDown($(this));
@@ -44,9 +46,9 @@ $(function () {
     $(this).addClass("btnPatientTypeSelected");
     ShowHideChildInfoDropDown($(this));
   });
-  GetMedicationContidionList("MedConditionList");
+  // GetMedicationContidionList("MedConditionList");
   $(".divMed").find("*").prop("disabled", true);
-  $(".PatientAlergy").find("*").prop("disabled", true); 
+  $(".PatientAlergy").find("*").prop("disabled", true);
   $("#txtMedCondition").prop("disabled", true);
 
   $("#txtInfoAge").on("change", function () {
@@ -56,7 +58,7 @@ $(function () {
   $("#dboCountry, #dboCity").select2(); //searchable dropdown
   $("#dboCountry").on("change", function () {
     var countryId = this.value;
-    FillCity(countryId, "0", true);
+    FillCity(countryId, globalCityId, true);
   });
 
   $(document).on("change", ".MedicationReciept", function (event) {
@@ -80,7 +82,7 @@ $(function () {
     }
   });
 
- 
+
 
   $(".btnChild, .btnRelative").on("click", function () {
     pType = $(this).attr("patienttype");
@@ -122,7 +124,7 @@ $(function () {
     AddAlergy();
   });
 
- 
+
 
   $('input:radio[name="medication"]').change(function () {
     if (this.checked && this.value == "0") {
@@ -175,7 +177,6 @@ $(function () {
   $(".next").click(function () {
     //==========on first next button click in wazerd======
     var step = $(this).attr("step");
-
     switch (step) {
       case "first":
         CheckIFcalledBefore(doctorId, $("#hdnPatientId").val())
@@ -191,8 +192,51 @@ $(function () {
               });
               return false;
             } else {
-              PatientBasicInfo($("#hdnPatientId").val(), true, "Child");
-              ShowHideNextStep($(this));
+             ShowHideNextStep($(this));
+              PatientDetailsInfo($("#hdnPatientId").val(), "Child")
+                .then((d) => {                
+                  $("#txtPhoneNo").val(parseInt(d.PhoneNo));
+                  $("#txtphoneExt").val(parseInt(d.PhoneExt));
+                  $("#txtEmail").val(d.Email);
+                  // $.LoadingOverlay("show");
+                  //FillCity(d.CountryId, d.CityId, false);
+
+                  $("#txtInfoFirstName").val(d.FirstName);
+                  $("#txtInfoLastName").val(d.LastName);
+
+                  //==get DOB====
+                  $("#txtInfoAge").val(d.Age);
+                  //===Calculate Age from DOB
+                  //CalculateAge(d.Age);
+
+                  if (d.Gender == "Male") $("#rdoMale").prop("checked", true);
+                  else $("#rdoFemale").prop("checked", true);
+
+                  $("#dboCountry").val(d.CountryId);
+                  globalCityId = d.CityId;
+                  $("#dboCountry").trigger("change");                  
+                 // $("#dboCity").val(d.CityId);
+                  $("#dboCity").trigger("change");
+
+                  var div = document.createElement("div");
+                  if (d.PatientPhoto != null) {
+                    div.innerHTML =
+                      "<img class='infoProfilePic' src='" +
+                      d.PatientPhoto +
+                      "'" +
+                      "title='ProfilePicture'/>";
+                  } else {
+                    div.innerHTML =
+                      "<img class='infoProfilePic' src='/assets/images/maledoc.png'/>";
+                  }
+                  //=========set image control============
+                  $("#result").html(div);
+
+                  
+
+                });
+
+
             }
           })
           .catch((error) => {
@@ -224,7 +268,10 @@ $(function () {
     //show the previous fieldset
     previous_fs.show();
 
-    if ($(this).attr("step") == "second") $(".btnMe").trigger("click");
+    if ($(this).attr("step") == "second") {
+      $(".btnMe").trigger("click");
+      $.LoadingOverlay("hide");
+    }
 
     if ($(this).attr("step") == "third")
       PatientBasicInfo($("#hdnPatientId").val(), true, pType);
@@ -368,7 +415,7 @@ function FillCity(countryID, selectedval, isSync) {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-      // if (isSync) $.LoadingOverlay("show");
+      if (isSync) $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
       $("#dboCity").empty();
@@ -393,7 +440,7 @@ function FillCity(countryID, selectedval, isSync) {
     },
     complete: function (data) {
       // Hide Loading
-      $.LoadingOverlay("hide");
+      // $.LoadingOverlay("hide");
     },
   });
 }
@@ -410,7 +457,7 @@ function FillCountry() {
     contentType: "application/json; charset=utf-8",
     data: "",
     beforeSend: function () {
-      // $.LoadingOverlay("show");
+      $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
       // $.LoadingOverlay("hide");
@@ -434,42 +481,10 @@ function FillCountry() {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
-      // Hide Loading
-      // $.LoadingOverlay("hide");
+      // Hide Loading      
+      $.LoadingOverlay("hide");
     },
   });
-}
-function FillDetails(d) {
-  
-  $("#txtInfoFirstName").val(d.FirstName);
-  $("#txtInfoLastName").val(d.LastName);
-
-  //==get DOB====
-  $("#txtInfoAge").val(d.Age);
-  //===Calculate Age from DOB
-  CalculateAge(d.Age);
-
-  if (d.Gender == "Male") $("#rdoMale").prop("checked", true);
-  else $("#rdoFemale").prop("checked", true);
-
-  $("#dboCountry").val(d.CountryId);
-  $("#dboCountry").trigger("change");
-
-  var div = document.createElement("div");
-  if (d.PatientPhoto != null) {
-    div.innerHTML =
-      "<img class='infoProfilePic' src='" +
-      d.PatientPhoto +
-      "'" +
-      "title='ProfilePicture'/>";
-  } else {
-    div.innerHTML =
-      "<img class='infoProfilePic' src='/assets/images/maledoc.png'/>";
-  }
-  //=========set image control============
-  $("#result").html(div);
-
-  FillCity(d.CountryId, d.CityId, false);
 }
 
 function getAge() {
@@ -477,9 +492,8 @@ function getAge() {
   $("#popupAge").html(CalculateAge(getAge));
 }
 
-function PatientBasicInfo(PatientId, isDetails, type) {
-  $.LoadingOverlay("show");
-  FillCountry();
+function PatientBasicInfo(PatientId, type) {
+
   var url = baseURL + "Patient/GetPatientDetails?PatientId=" + PatientId;
   $.ajax({
     url: url,
@@ -494,30 +508,23 @@ function PatientBasicInfo(PatientId, isDetails, type) {
       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-     // $.LoadingOverlay("hide");
+      // $.LoadingOverlay("hide");
       if (type == "Parent") {
         $("#txtPhoneNo").val(parseInt(data.PhoneNo));
-
         if (data.PhoneExt) $("#txtphoneExt").val(parseInt(data.PhoneExt));
-
         $("#txtEmail").val(data.Email);
       }
+      //=====set values for slots templates======
+      var patientInfo = $("#template-BasicInfo").html();
+      $("#patientBasicInfo").html(Mustache.to_html(patientInfo, data));
 
-      // FillCity();
-      if (isDetails) {
-        FillDetails(data);
-      } else {
-        //=====set values for slots templates======
-        var patientInfo = $("#template-BasicInfo").html();
-        $("#patientBasicInfo").html(Mustache.to_html(patientInfo, data));
+      $("#dboInfo option").remove();
+      $("#dboInfo").append(
+        $("<option>").text("New patient").attr("value", "0")
+      );
+      $("#dboInfo").attr("disabled", "disabled");
+      getAge();
 
-        $("#dboInfo option").remove();
-        $("#dboInfo").append(
-          $("<option>").text("New patient").attr("value", "0")
-        );
-        $("#dboInfo").attr("disabled", "disabled");
-        getAge();
-      }
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -525,10 +532,44 @@ function PatientBasicInfo(PatientId, isDetails, type) {
       else console.log(xhr.statusText);
     },
     complete: function (data) {
-      // Hide Loading
-      if(!isDetails)
+      // Hide Loading     
       $.LoadingOverlay("hide");
     },
+  });
+}
+
+function PatientDetailsInfo(PatientId, type) {
+  return new Promise((resolve, reject) => {
+    var url = baseURL + "Patient/GetPatientDetails?PatientId=" + PatientId;
+    $.ajax({
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      type: "GET",
+      datatype: "application/json",
+      contentType: "application/json; charset=utf-8",
+      data: "",
+      beforeSend: function () {
+       // $.LoadingOverlay("show");
+      },
+      success: function (data, textStatus, xhr) {
+        resolve(data);
+        // $.LoadingOverlay("hide");
+        // if (type == "Parent") {
+
+      },
+      error: function (xhr, textStatus, err) {
+        reject(err);
+        // if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        //   console.log(xhr.statusText);
+        // else console.log(xhr.statusText);
+      },
+      complete: function (data) {
+        // Hide Loading
+       // $.LoadingOverlay("hide");
+      },
+    });
   });
 }
 
@@ -598,11 +639,12 @@ function GetChildDetails(patientId) {
       $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
-     // $.LoadingOverlay("hide");
-     
+      // $.LoadingOverlay("hide");
+
       //=====set values for slots templates======
       var patientInfo = $("#template-BasicInfo").html();
       $("#patientBasicInfo").html(Mustache.to_html(patientInfo, data));
+      getAge();
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")
@@ -617,7 +659,7 @@ function GetChildDetails(patientId) {
 }
 
 function GetMedicationContidionList(MedicationCondition) {
-  FillCountry();
+  //FillCountry();
   var url =
     baseURL +
     "ValueAndStatus/GetValueAndStatusListByKey?valueKey=" +
@@ -636,7 +678,7 @@ function GetMedicationContidionList(MedicationCondition) {
     },
     success: function (data, textStatus, xhr) {
       $.LoadingOverlay("hide");
-      var item='<div class="row">';
+      var item = '<div class="row">';
       $.each(data, function (i, v) {
         // if (i % 2 != 0) {
         //   item = item + '<div class="row">';
@@ -646,8 +688,8 @@ function GetMedicationContidionList(MedicationCondition) {
           '<div class="divCondition col-sm-6">' +
           ' <div style="margin-top:10px;" class="form-check form-check-inline">  ' +
           ' <div class="CheckBoxOverlay"> ' +
-          ' <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="' + v.ValueNameEn  +'"> ' +
-          ' <label class="form-check-label" for="lblcondition">' + v.ValueNameEn  +'</label> ' +
+          ' <input class="form-check-input rdoCondition " type="checkbox" name="chkcondition"  value="' + v.ValueNameEn + '"> ' +
+          ' <label class="form-check-label" for="lblcondition">' + v.ValueNameEn + '</label> ' +
           ' <div onclick="EnableMedCondition(this)"></div> ' +
           " </div>" +
           "</div>" +
