@@ -57,7 +57,11 @@ function Filldatatable(data) {
       { data: "PatientEmail" },
       { data: "DoctName" },
       { data: "Rating" },
-      { data: "AddedDate" },
+     
+      { data: "AddedDate",
+      render: function(data) {
+        return new Date(data).toLocaleDateString("en-us");
+      } },
 
       {
         mRender: function (data, type, row) {
