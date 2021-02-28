@@ -104,7 +104,7 @@ function submitsuggestions() {
   var model = {
     UserId: $("#txtEmail").val(),
     FullName: $("#txtFullName").val(),
-    PhoneNumber: $("#txtPhoneNumber").val(),
+    PhoneNumber: $("#txtExtension").val() + "" + $("#txtPhoneNumber").val(),
     Complain: $("#txtComplain").val(),
     attachment: $(".lblAttachment").val(),
   };
