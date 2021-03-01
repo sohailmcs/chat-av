@@ -5,6 +5,7 @@ $(function () {
   GetAllRoles();
 
   getTimezoneName();
+  console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
 }); //====end of $function
 
 function GetAllRoles() {
