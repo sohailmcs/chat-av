@@ -84,7 +84,7 @@ function EditRole(name) {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    type: "Put",
+    type: "POST",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
     data: "",
