@@ -12,43 +12,39 @@
 
 
 class signupController {
-    //Contructor Declaration
-    constructor() {
-        this.name = 'SignUp';
-    }   
+  //Contructor Declaration
+  constructor() {
+    this.name = 'SignUp';
+  }
 
-    async getSignup (req, res, next) 
-    {   
-      
-      if(!req.session.userId)
-      {
-          res.render(appRoot+'/source/Signup/view/signup', {
-            PageTitle: "Sign Up",
-          });
-     }
-    else{
+  async getSignup(req, res, next) {
 
-          if (req.session.userType == "Patient")
-          {      
-            return res.redirect('/patient/speciality/');
-          }   
-          else  if (req.session.userType == "Doctor")
-          {              
-            return res.redirect('/doctor/dashboard/');     
-          }         
+    if (!req.session.userId) {
+      res.render(appRoot + '/source/Signup/view/signup', {
+        PageTitle: "Sign Up",
+      });
+    }
+    else {
 
-        }
-      
-
-      };
-      
-      async getTermsAndcodition(req, res, next) {      
-        res.render(appRoot+'/source/Signup/view/TermsCondition', {
-          PageTitle: "Sign Up",
-        });
-
+      if (req.session.userType == "Patient") {
+        return res.redirect('/patient/speciality/');
       }
-      
+      else if (req.session.userType == "Doctor") {
+        return res.redirect('/doctor/dashboard/');
+      }
+
+    }
+
+
+  };
+
+  async getTermsAndcodition(req, res, next) {
+
+    res.render(appRoot + '/source/Signup/view/TermsCondition', {
+      pageTitle: "Kindah Terms & Conditions"
+    });
+  }
+
 }
 
 module.exports = signupController;
