@@ -388,4 +388,12 @@ Mustache.Formatters = {
   Upper: function (str) {
     return str.toUpperCase();
   },
+  Shortdate: function (str) {
+    var options = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+    return new Date(str).toLocaleDateString("en-US", options);
+  },
 };

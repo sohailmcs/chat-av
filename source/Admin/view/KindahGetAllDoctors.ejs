@@ -47,7 +47,7 @@ bottom px-2 py-1 side-card-title">
                             <h3 class="card-title side-card-title">
                                 <b>Doctor Profile</b>
                             </h3>
-                            <button type="button" class="close close-icon" onclick="viewDocProfile()">
+                            <button type="button" class="close close-icon" onclick="viewHistory()">
                                 <i class="bx bx-x"></i>
                             </button>
                         </div>
@@ -56,16 +56,14 @@ bottom px-2 py-1 side-card-title">
                         <div class="card-content side-bar">
                             <div class="card-body slide-card">
                                     <div class="media" style="flex-wrap: wrap" >
-                                       <div class="pr-50 doc-img" style="margin-left:10px, padding:0px !
-
-impportant">
+                                       <div class="pr-50 mt-1"  style="margin-left:10px, padding:0px !impportant">
                                        {{#ProfilePicture}}
-                                       <img src="{{ProfilePicture}}" alt="avtar img holder">                
+                                       <img src="{{ProfilePicture}}"  width="100" height="100" alt="avtar">         
 
       
                                         {{/ProfilePicture}}
                                         {{^ProfilePicture}}
-                                        <img src="/assets/images/maledoc.png" alt="avtar img holder">       
+                                        <img src="/assets/images/maledoc.png"  width="100" height="100" alt="avtar">       
 
                
                                        {{/ProfilePicture}}                             
@@ -130,13 +128,9 @@ margin"></i>Country</span>:{{Country}} </p>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <p> <span class="editprofile-icons"><i
-                                                    class="bx bx-building icon-margin"></i>Clinic 
-
-Name</span>: {{ClinicName}}
+                                                    class="bx bx-building icon-margin"></i>Clinic Name</span>: {{ClinicName}}
                                         </p>
-                                        <p> <span class="editprofile-icons"><i class="bx bx-map icon-
-
-margin"></i>Clinic
+                                        <p> <span class="editprofile-icons"><i class="bx bx-map icon-margin"></i>Clinic
                                                 Address</span>: {{ClinicAddress}} </p>
                                     </div>
                                 </div>
@@ -185,7 +179,7 @@ margin"></i>Designation</span>:
                                                  {{#DoctorExperianceModel}} 
                                         <p> <span class="editprofile-icons"><i
                                                     class="bx bx-calendar-event icon-margin"></i>Year
-                                            </span>: From {{From}} To {{To}}
+                                            </span>: From {{From | Shortdate}} To {{To | Shortdate}}
                                           {{/DoctorExperianceModel}} </p>
                                     </div>
                                 </div>
@@ -206,13 +200,12 @@ margin"></i>Year</span>:
                                     </div>
                                 </div>
                                 
-                                    <button type="button" class="btn btn-light-secondary" 
-
-onclick="viewDocProfile()"
+                                        <button type="button" class="mb-4 btn btn-light-secondary" 
+                                                onclick="viewHistory()"
                                         style="float: right;">
                                         <span class="d-none d-sm-block">Close</span>
                                     </button>
-                               <br /><br /><br /><br /><br />  
+                              
                             </div>
                         </div>
                     </div>
@@ -286,7 +279,7 @@ onclick="viewDocProfile()"
 <!-- END: Content-->
 
 <!-- BEGIN: Vendor JS-->
-<!-- <script src="/js/vendors.min.js"></script> -->
+<script src="/js/vendors.js"></script>
 
 <script src="/js/vertical-menu-light.js"></script>
 <script src="/js/app-menu.js"></script>
@@ -296,11 +289,12 @@ onclick="viewDocProfile()"
 
 src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
-<script src="/js/slidevideocall.js"></script>
+
 <!-- END: Theme JS-->
 
 <!-- BEGIN: Services calling JS-->
 <script src="/services/Admin/ManageDoctors.js"></script>
+<!-- <script src="/js/slidevideocall.js"></script> -->
 <script src="/services/loadingoverlay.min.js"></script>
 <!-- END: JS-->
 

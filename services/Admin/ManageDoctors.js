@@ -154,6 +154,12 @@ function EditDoctorFile(id) {
   window.location.href = "/Admin/edit-profile?id=" + doctorid;
 }
 
+// function viewDocProfile(id) {
+//   var doctorid = $(id).attr("doctorId");
+//   window.location.href = "/Admin/edit-profile?id=" + doctorid;
+// }
+
+
 function Filldatatable(data) {
   $("#tblDoctors").DataTable({
     bAutoWidth: false,
@@ -176,7 +182,7 @@ function Filldatatable(data) {
           return (
             '<a href="#" doctorId="' +
             row.DoctorId +
-            '" onclick="viewDocProfile(this);" data-toggle="tooltip" data-placement="bottom" title="view Doctor">' +
+            '" onclick="ViewDoctorProfile(this);" data-toggle="tooltip" data-placement="bottom" title="view Doctor">' +
             '<i class="bx bxs-show call-log-eye-btn"></i>' +
             "</a>" +
             '<a href="#" onclick="EditDoctorFile(this)" doctorId="' +
@@ -194,5 +200,57 @@ function Filldatatable(data) {
       },
     ],
     order: [[1, "asc"]],
+  });
+}
+
+function viewHistory() {
+  
+  if (
+    document.getElementsByClassName("sideMenuId")[0].style.marginRight == "-60%"
+  ) {
+    setTimeout(() => {
+      document.getElementsByClassName("sideMenuId")[0].style.marginRight = "0%";
+    }, 100);
+    document.getElementsByClassName("sideMenuId")[0].style.display = "unset";
+    
+  } else {
+    setTimeout(() => {
+      document.getElementsByClassName("sideMenuId")[0].style.display = "none";
+    }, 300);
+    document.getElementsByClassName("sideMenuId")[0].style.marginRight = "-60%";
+  }
+}
+
+
+function ViewDoctorProfile(id) {
+  var doctorid = $(id).attr("doctorId");
+ 
+  var url = baseURL + "Doctor/GetDoctorProfile?doctorId=" + doctorid;
+  $.ajax({
+    url: url,
+    type: "GET",
+    datatype: "application/json",
+    contentType: "application/json; charset=utf-8",
+    data: "",
+    beforeSend: function () {
+       $.LoadingOverlay("show");
+    },
+    success: function (data, textStatus, xhr) {
+      var ViewDoctorProfileTemplate = $("#doctorProfile-template").html();
+      $("#slideDocProfile").html(
+        Mustache.to_html(ViewDoctorProfileTemplate, data)
+      );
+      viewHistory();
+    },
+    error: function (xhr, textStatus, err) {
+      console.log("error");
+      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+        console.log(xhr.statusText);
+      else console.log(xhr.statusText);
+    },
+    complete: function (data) {
+      // Hide Loading
+      $.LoadingOverlay("hide");
+    },
   });
 }
