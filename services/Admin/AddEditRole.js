@@ -88,10 +88,10 @@ function EditRole(name) {
   ///==============start post request to add doctor
   $.ajax({
     url: url,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    type: "Put",
+    // headers: {
+    //   "Content-Type": "application/x-www-form-urlencoded",
+    // },
+    type: "PUT",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
     data: model,
