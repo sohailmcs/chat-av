@@ -42,11 +42,11 @@ class signupController {
 
       };
       
-      async getTermsAndcodition(req, res, next) {
-      
-        res.render(appRoot + "/source/signup/view/TermsCondition", {
-          pageTitle: "Kindah Terms & Conditions"         
+      async getTermsAndcodition(req, res, next) {      
+        res.render(appRoot+'/source/Signup/view/TermsCondition', {
+          PageTitle: "Sign Up",
         });
+
       }
       
 }
