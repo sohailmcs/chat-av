@@ -228,6 +228,9 @@ function ViewDoctorProfile(id) {
   var url = baseURL + "Doctor/GetDoctorProfile?doctorId=" + doctorid;
   $.ajax({
     url: url,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
     type: "GET",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
