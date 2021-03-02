@@ -76,25 +76,19 @@ function AddRole() {
 }
 //== creat doctor with login
 function EditRole(name) {
-  var url = baseURL + "Role/UpdateRole";
-  //var url = baseURL + "Role/UpdateRole?roleId=" + roleID + "&roleName=" + name;
+  var url = baseURL + "Role/UpdateRole?roleId=" + roleID + "&roleName=" + name;
 
-  var model = {
-    RoleId: roleID,
-    RoleName: name
-   
-  };
-
+  
   ///==============start post request to add doctor
   $.ajax({
     url: url,
-    // headers: {
-    //   "Content-Type": "application/x-www-form-urlencoded",
-    // },
-    type: "PUT",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    type: "POST",
     datatype: "application/json",
     contentType: "application/json; charset=utf-8",
-    data: model,
+    data: "",
 
     beforeSend: function () {
       $.LoadingOverlay("show");
