@@ -440,7 +440,7 @@ function FillCity(countryID, selectedval, isSync) {
     },
     complete: function (data) {
       // Hide Loading
-      // $.LoadingOverlay("hide");
+       $.LoadingOverlay("hide");
     },
   });
 }
