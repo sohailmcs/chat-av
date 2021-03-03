@@ -1,5 +1,5 @@
-//var baseURL = "https://kindahclinic.com/KindahService/";
-var baseURL = "http://localhost:1042/KindahService/";
+var baseURL = "https://kindahclinic.com/KindahService/";
+//var baseURL = "http://localhost:1042/KindahService/";
 
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
@@ -253,7 +253,22 @@ $(function () {
           OTPVerify(); // remove OTP verifiction from doctor
         }
       },
-      error: function (xhr, textStatus, err) {},
+      error: function (xhr, textStatus, err) {
+        if (xhr.status == "406" && xhr.statusText == "Not Acceptable") {
+          Swal.fire({
+            type: "info",
+            title: "SORRY!",
+            html: "Email or phone <strong>" +
+            $("#txtEmail").val()+ "</strong> or <strong> " + $("#txtPhoneNo").val() +
+            "</strong> already exist. Please choose different email",
+            type: "error",
+            confirmButtonClass: "btn btn-primary",
+            buttonsStyling: false,
+            confirmButtonText: "<a style='color:#fff'>OK</a>",
+          });
+          return false;
+        }
+      },
       complete: function (data) {
         // Hide Loading
         $.LoadingOverlay("hide");
