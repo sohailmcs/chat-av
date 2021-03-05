@@ -34,6 +34,9 @@ function validtion() {
         required: true,
         number: true,
       },
+      chkcondition: {
+        required: true,
+      }
     },
     messages: {
       email: {
@@ -54,6 +57,9 @@ function validtion() {
         required: "this field is required",
         number: "Allow only number",
       },
+      chkcondition: {
+        required: "this field is required",
+      }
     },
   });
 }
@@ -75,7 +81,9 @@ $(function () {
     e.preventDefault();
 
     //  Validate requried fileds
+
     validtion();
+
 
     var url = baseURL + "User/SignIn";
     var userInfo = {
@@ -135,6 +143,11 @@ $(function () {
 
     // Validate requried fileds
     validtion();
+
+    if (($("input[name='chkcondition']:checked").length) <= 0) {
+      $("input[name='chkcondition']:checked").css("border", "1px solid red");
+      return false;
+    }
     var enterdText = $("#txtPhoneNo").val();
     if (!validatephonenumber(enterdText)) {
       $("#txtPhoneNo").focus();
@@ -259,8 +272,8 @@ $(function () {
             type: "info",
             title: "SORRY!",
             html: "Email or phone <strong>" +
-            $("#txtEmail").val()+ "</strong> or <strong> " + $("#txtPhoneNo").val() +
-            "</strong> already exist. Please choose different email",
+              $("#txtEmail").val() + "</strong> or <strong> " + $("#txtPhoneNo").val() +
+              "</strong> already exist. Please choose different email",
             type: "error",
             confirmButtonClass: "btn btn-primary",
             buttonsStyling: false,
@@ -427,7 +440,8 @@ $(function () {
 
   function validatephonenumber(inputtxt) {
     var isValid = true;
-    var regex = new RegExp(/^(?:\+?0*?966)?0?5[0-9]{8}$/);
+    // var regex = new RegExp(/^(?:\+?0*?966)?0?5[0-9]{8}$/);
+    var regex = new RegExp(/^(05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/);
     var phoneNo = inputtxt;
     if (!regex.test(phoneNo)) {
       isValid = false;

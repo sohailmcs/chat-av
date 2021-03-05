@@ -148,7 +148,8 @@ function submitsuggestions() {
 }
 function validatephonenumber(inputtxt) {
   var isValid = true;
-  var regex = new RegExp(/^(?:\+?0*?966)?0?5[0-9]{8}$/);
+  // var regex = new RegExp(/^(?:\+?0*?966)?0?5[0-9]{8}$/);
+  var regex = new RegExp(/^(05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/);
   var phoneNo = inputtxt;
   if (!regex.test(phoneNo)) {
     isValid = false;
@@ -164,17 +165,26 @@ $(document).on("change", ".MedicationReciept", function (event) {
   var imgHidden = $(this).siblings(".lblAttachment");
   var file = $(this)
     .val()
-    .replace(/C:\\filepath\\/gi, "");
+    .replace(/C:\\fakepath\\/gi, "");
 
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
     //Only pics
-    if (!file.type.match("image")) continue;
-    var picReader = new FileReader();
+
+    if (!file.type.match("image")) {
+      $("#upload-file-info").html('');
+      continue;
+    }
+    else
+      var picReader = new FileReader();
     picReader.addEventListener("load", function (event) {
       var picFile = event.target;
       imgHidden.val(picFile.result);
     });
+    $("#upload-file-info").html( $(this)
+    .val()
+    .replace(/C:\\fakepath\\/gi, ""));
+
     //Read the image
     picReader.readAsDataURL(file);
   }

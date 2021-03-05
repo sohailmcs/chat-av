@@ -205,14 +205,18 @@
                                 </div>
 
                                 <div class="col">
+                                 
                                   <input
-                                    required
+                                  oninput="this.value = this.value.replace(/[^0-9.]/g, ''); 
+                                  this.value = this.value.replace(/(\..*)\./g, '$1');"
+                                    required="required"
                                     name="contactNo"
                                     type="number"
                                     class="form-control"
                                     id="txtPhoneNo"
                                     placeholder="Contact Number"
                                   />
+                                  <label class="form-check-label">eg:59xxxxx98</label>
                                 </div>
                               </div>
                             </div>
@@ -226,8 +230,8 @@
                             </button>
                           </div>
                           <div class="col-sm-8 text-right">
-                            <input required class="form-check-input chkTermCondition" 
-                             type="checkbox" name="chkcondition"  >
+                            <input required="required" class="form-check-input chkTermCondition" 
+                             type="checkbox" name="chkcondition" >
                            <label class="form-check-label" for="lblcondition">
                              I agree the <a href="/SignUp/kindah-terms" target="_blank">Terms and Conditions</a></label>
                             
@@ -260,10 +264,8 @@
                 role="document"
               >
                 <div class="modal-content">
-                  <br />
-                  <br />
-                  <br />
-                  <div class="card-title" style="text-align: center">
+                 
+                  <div class="mt-4 card-title text-center">
                     <h5 class="LoginHeading" style="font-size: 20px">
                       <strong>OTP Verification</strong>
                     </h5>
