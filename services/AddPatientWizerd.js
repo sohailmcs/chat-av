@@ -46,7 +46,7 @@ $(function () {
     $(this).addClass("btnPatientTypeSelected");
     ShowHideChildInfoDropDown($(this));
   });
-  // GetMedicationContidionList("MedConditionList");
+   GetMedicationContidionList("MedConditionList");
   $(".divMed").find("*").prop("disabled", true);
   $(".PatientAlergy").find("*").prop("disabled", true);
   $("#txtMedCondition").prop("disabled", true);
