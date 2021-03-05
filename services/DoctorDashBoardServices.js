@@ -237,6 +237,15 @@ function AcceptOrRejectCallSaveToQue(
   PatientType
 ) {
   return new Promise((resolve, reject) => {
+
+    var options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    };
     var currentDt = new Date().toLocaleDateString("en-US", options);
     var url = baseURL + "PatientCallRequest/AcceptRejectPatientCallRequest";
     //======= set post model======//
@@ -637,6 +646,17 @@ Mustache.Formatters = {
     };
     return new Date(str).toLocaleDateString("en-US", options);
   },
+  Longdate: function (str) {
+    var options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    }
+    return new Date(str).toLocaleDateString("en-US", options);
+  },
+
   time: function (str) {
     var options = {
       hour: "2-digit",

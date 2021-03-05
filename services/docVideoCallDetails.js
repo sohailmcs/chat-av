@@ -189,7 +189,7 @@ $(function () {
           $("#callImg").css("display", "none");
           PlayCallingSound(true);
           //=========send call request to paatient============
-          alert(mSpeciality);
+        
           soc.emit("SendCallRequestToPatient", {
             pName: mPname,
             username: mDocName,
