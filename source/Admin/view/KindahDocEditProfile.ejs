@@ -1,152 +1,141 @@
 <%- include('includes/AdminHead.ejs') %>
 
-<!-- BEGIN: Vendor CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
-<link href="/css/KendoUi/examples-offline.css" rel="stylesheet" />
-<link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
-<link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
-<link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+    <link href="/css/KendoUi/examples-offline.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
 
-<!-- END: Vendor CSS-->
+    <!-- END: Vendor CSS-->
 
-<!-- BEGIN: Theme CSS-->
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
-<link rel="stylesheet" type="text/css" href="/css/colors.css" />
-<link rel="stylesheet" type="text/css" href="/css/components.css" />
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+    <link rel="stylesheet" type="text/css" href="/css/colors.css" />
+    <link rel="stylesheet" type="text/css" href="/css/components.css" />
 
-<!-- END: Theme CSS-->
+    <!-- END: Theme CSS-->
 
-<!-- BEGIN: Page CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
-<!-- END: Page CSS-->
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+    <!-- END: Page CSS-->
 
-<!-- BEGIN: Custom CSS-->
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
-<!-- END: Custom CSS-->
-</head>
-<!-- END: Head-->
+    <!-- END: Custom CSS-->
+    </head>
+    <!-- END: Head-->
 
-<!-- BEGIN: Body-->
+    <!-- BEGIN: Body-->
 
-<!-- body tag and blue nav bar  -->
-<%- include('includes/adminNav.ejs') %>
+    <!-- body tag and blue nav bar  -->
+    <%- include('includes/adminNav.ejs') %>
 
-<!-- complete side menu of doctor -->
-<%- include('includes/adminSideMenu.ejs') %>
+        <!-- complete side menu of doctor -->
+        <%- include('includes/adminSideMenu.ejs') %>
 
 
-<!-- BEGIN: Content-->
+            <!-- BEGIN: Content-->
 
-<div class="app-content content">
-    <div class="content-wrapper">
-        <div class="content-body">
-            <br />
-            <div class="d-flex flex-row">
-                <div class="page-heading">
-                    <h3>EDIT DOCTOR PROFILE</h3>
-                </div>
-            </div>
-            <!-- basic info -->
-            <section class="multiple-validation">
-                <!-- clinic 'info' -->
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Profile Picture</h4>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <input  required name="ProfilePic" id="files" type="file" multiple />
-                                    <br />
-                                    <output id="result"></output>
-                                    <br />
-                                    <br />
-                                   </div>
+            <div class="app-content content">
+                <div class="content-wrapper">
+                    <div class="content-body">
+                        <br />
+                        <div class="d-flex flex-row">
+                            <div class="page-heading">
+                                <h3>EDIT DOCTOR PROFILE</h3>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <form class="form-horizontal" id="frmDoctorProfile">
+                        <!-- basic info -->
+                        <section class="multiple-validation">
+                            <!-- clinic 'info' -->
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Basic Information</h4>
+                                    <h4 class="card-title">Profile Picture</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <div class="form-group focused">
-                                                    <label class="form-label" for="txtUname">User Name</label>
-                                                        <input disabled="disabled" type="text" id="txtUname" name="name" 
-                                                        class="form-input form-control" required
-                                                            data-validation-required-message="This  field is required" />
-                                                  
-                                                </div>
+                                                <input required name="ProfilePic" id="files" type="file" multiple />
+                                                <br />
+                                                <output id="result"></output>
+                                                <br />
+                                                <br />
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group focused">
-                                                    <label class="form-label" for="txtPwd">Password</label>
-                                                    <div class="input-group">
-                                                          <input type="hidden" id="hdnpwd" value="" >
-                                                        <input disabled="disabled" type="password" id="txtPwd"  value="" name="name" 
-                                                             class="form-input form-control pwd" required
-                                                            data-validation-required-message="This  field is required" /> 
-                                                            <span class="input-group-btn">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form-horizontal" id="frmDoctorProfile">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Basic Information</h4>
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group focused">
+                                                                <label class="form-label" for="txtUname">User Name</label>
+                                                                <input disabled="disabled" type="text" id="txtUname" name="name" class="form-input form-control" required data-validation-required-message="This  field is required" />
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group focused">
+                                                                <label class="form-label" for="txtPwd">Password</label>
+                                                                <div class="input-group">
+                                                                    <input type="hidden" id="hdnpwd" value="">
+                                                                    <input disabled="disabled" type="password" id="txtPwd" value="" name="name" class="form-input form-control pwd" required data-validation-required-message="This  field is required" />
+                                                                    <span class="input-group-btn">
                                                                 <button class="btn btn-default reveal" type="button">
                                                                   <i class="fa fa-eye-slash" aria-hidden="true"></i></button>
-                                                              </span>  
+                                                              </span>
+                                                                </div>
                                                             </div>
-                                                </div>
-                                            </div>
-                                           
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="txtFname">First Name</label>
-                                                        <input type="text" id="txtFname" name="name" class="form-input form-control"
-                                                             required
-                                                            data-validation-required-message="This  field is required" />
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="txtLname">Last Name</label>
-                                                        <input type="text" id="txtLname" name="name" class="form-input form-control"
-                                                             required
-                                                            data-validation-required-message="This  field is required" />
-                                                    
-                                                </div>
-                                            </div>
+                                                        </div>
 
-                                            <div class="col-sm-6">
-                                                <div class="form-group">                                                   
-                                                        <div class="row">
-                                                            <div class="col-sm-3">
-                                                                <input required disabled="disabled" class="form-control"
-                                                                    value="+966" />
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="txtFname">First Name</label>
+                                                                <input type="text" id="txtFname" name="name" class="form-input form-control" required data-validation-required-message="This  field is required" />
+
                                                             </div>
-                                                            <div class="col-sm-9">
-                                                                <label class="form-label" for="txtPno">Phone No</label>
-                                                                <input  required name="txtPno" type="number"
-                                                                    class="form-input form-control" id="txtPno"
-                                                                     />
-                                                            </div>                                                      
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="txtLname">Last Name</label>
+                                                                <input type="text" id="txtLname" name="name" class="form-input form-control" required data-validation-required-message="This  field is required" />
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                    <div class="col-sm-3">
+                                                                        <input required disabled="disabled" class="form-control" value="+966" />
+                                                                    </div>
+                                                                    <div class="col-sm-9">
+                                                                        <label class="form-label" for="txtPno">Phone No</label>
+                                                                        <input required name="txtPno" type="number" class="form-input form-control" id="txtPno" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
 
-                                            <!-- <div class="col-sm-6">
+                                                        <!-- <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="form-label" for="txtPno">Phone Number</label>
                                                         <input type="text" id="txtPno" name="name" class="form-input form-control"
@@ -155,265 +144,246 @@
                                                     
                                                 </div>
                                             </div> -->
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="CallLimt">Call Limit</label>
-                                                    <input id="CallLimt" type="number" 
-                                                    pattern="/^-?\d+\.?\d*$/"
-                                                     onKeyPress="if(this.value.length==4) return false;"
-                                                     class="form-input form-control"
-                                                     required
-                                                    data-validation-required-message="This  field is required" />   
-                                                    
-                                                </div>
-                                            </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="CallLimt">Call Limit</label>
+                                                                <input id="CallLimt" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;" class="form-input form-control" required data-validation-required-message="This  field is required" />
 
-                                           
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="dbogender">Gender</label>
-                                                        <select name="gender" id="dbogender" class="form-input form-control">
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="dbogender">Gender</label>
+                                                                <select name="gender" id="dbogender" class="form-input form-control">
                                                             <option value="0">Select Gender</option>
                                                             <option value="Male">Male</option>
                                                             <option value="Female">female</option>
-                                                        </select>                                                   
-                                                 
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- biographhhy -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">About Me</h4>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <fieldset class="form-group  ">
-                                                    <label style="transform:translateY(-125%)" class="form-label" for="txtbioGraphy">BioGraphy</label>
-                                                    <textarea class="form-input form-control" id="txtbioGraphy" rows="3"
-                                                        ></textarea>
-                                                </fieldset>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- clinic 'info' -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Clinic Information</h4>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="txtClinicName">Clinic Name</label>
-                                                        <input type="text" id="txtClinicName" name="text"
-                                                         class="form-input  form-control" />
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="txtClinicAddress">Clinic Address</label>
-                                                        <input type="text" id="txtClinicAddress" name="clinicAddress"
-                                                         class="form-input form-control" />
-                                                    
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-6">
-                                                <input id="files" type="file" multiple />
-                                                <br />
-                                                <output id="result"></output>
-                                                <br />
-                                                <br />
-                                                </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- clinic 'info' -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Digital Signature</h4>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <input id="files" type="file" multiple />
-                                                <br />
-                                                <output id="result"></output>
-                                                <br />
-                                                <br />
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- contact info -->
-
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Contact Information</h4>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="form-body">
-                                            <div class="row">
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="txtAddress1">Address1</label>
-                                                        <input type="text" id="txtAddress1" class="form-input form-control"
-                                                             name="fname-column" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="txtAddress2">Address2</label>
-                                                        <input type="text" id="txtAddress2" class="form-input form-control"
-                                                             name="lname-column" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="dboCountry">Country</label>
-                                                            <select style="padding:5px 11px 5px;width:100%;" 
-                                                             name="dbocountry" id="dboCountry" class="form-input form-control">
-                                                        </select>                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="txtState">State</label>
-                                                        <input type="text" id="txtState" class="form-input form-control"
-                                                             name="city-column" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="dboCity">City</label>
-                                                            <select style="padding:5px 11px 5px;width:100%;"
-                                                             name="dboCity" id="dboCity" class="form-input form-control"></select>                                                           
-                                                            
-                                                        </div>
-                                                    
-                                                </div>
-
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="txtZip">Zip</label>
-                                                        <input  type="text" id="txtZip" class="form-input form-control"
-                                                              />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 
-                  services and specialization -->
-
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Services and Specialization</h4>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="form-body">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="txtServices">Services</label>
-                                                        <input type="text" id="txtServices" class="form-input form-control"
-                                                             name="fname-column" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="txtspe">Specialization</label>
-                                                        <select name="Specialization" id="txtspe"
-                                                            class="form-input form-control">
                                                         </select>
+
+                                                            </div>
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                    
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">
-                                            Proficiency
-                                        </h4>
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="card-body">
-                                            <form class="form repeater-default">
-                                                <div data-repeater-list="group-a">
-                                                    <div data-repeater-item>
-                                                        <div class="row justify-content-between">
-                                                            <div class="col-md-3 col-sm-12 form-group focused">
-                                                                <label class="form-label" for="dboProficiency">Proficiency</label>
-                                                                <select name="Proficiency"  multiple="multiple" id="dboProficiency"
-                                                                        class="form-input form-control">
-                                                                   <option value="Arabic">Arabic</option>
-                                                                   <option value="English">English</option>
-                                                                   </select>
-                                                            </div>
-                                                           
-                                                        </div>
-                                                        <hr />
-                                                    </div>
-                                                </div>
-                                               
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Education repeater forms -->
-                                <section id="form-repeater-wrapper">
-                                    <!-- form default repeater -->
-                                    <div class="row">
-                                        <div class="col-12">
+
+                                            <!-- biographhhy -->
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h4 class="card-title">
-                                                        Education
-                                                    </h4>
+                                                    <h4 class="card-title">About Me</h4>
                                                 </div>
                                                 <div class="card-content">
                                                     <div class="card-body">
-                                                        <form class="form repeater-default">
-                                                            <div data-repeater-list="group-a">
-                                                                <div data-repeater-item>
-                                                                    <div class="row justify-content-between">
-                                                                        <div class="col-md-3 col-sm-12 form-group">
-                                                                            <label class="form-label" for="txtDegree">Degree </label>
-                                                                            <input type="text" class="form-input form-control"
-                                                                                id="txtDegree"  />
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <fieldset class="form-group  ">
+                                                                    <label style="transform:translateY(-125%)" class="form-label" for="txtbioGraphy">BioGraphy</label>
+                                                                    <textarea class="form-input form-control" id="txtbioGraphy" rows="3"></textarea>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- clinic 'info' -->
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Clinic Information</h4>
+                                                </div>
+                                                <div class="card-content">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="txtClinicName">Clinic Name</label>
+                                                                    <input type="text" id="txtClinicName" name="text" class="form-input  form-control" />
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="txtClinicAddress">Clinic Address</label>
+                                                                    <input type="text" id="txtClinicAddress" name="clinicAddress" class="form-input form-control" />
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-6">
+                                                                <input id="files" type="file" multiple />
+                                                                <br />
+                                                                <output id="result"></output>
+                                                                <br />
+                                                                <br />
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- clinic 'info' -->
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Digital Signature</h4>
+                                                </div>
+                                                <div class="card-content">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <input id="files" type="file" multiple />
+                                                                <br />
+                                                                <output id="result"></output>
+                                                                <br />
+                                                                <br />
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- contact info -->
+
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Contact Information</h4>
+                                                </div>
+                                                <div class="card-content">
+                                                    <div class="card-body">
+                                                        <div class="form-body">
+                                                            <div class="row">
+                                                                <div class="col-md-6 col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label" for="txtAddress1">Address1</label>
+                                                                        <input type="text" id="txtAddress1" class="form-input form-control" name="fname-column" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label" for="txtAddress2">Address2</label>
+                                                                        <input type="text" id="txtAddress2" class="form-input form-control" name="lname-column" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label" for="dboCountry">Country</label>
+                                                                        <select style="padding:5px 11px 5px;width:100%;" name="dbocountry" id="dboCountry" class="form-input form-control">
+                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label" for="txtState">State</label>
+                                                                        <input type="text" id="txtState" class="form-input form-control" name="city-column" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label" for="dboCity">City</label>
+                                                                        <select style="padding:5px 11px 5px;width:100%;" name="dboCity" id="dboCity" class="form-input form-control"></select>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="col-md-6 col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label" for="txtZip">Zip</label>
+                                                                        <input type="text" id="txtZip" class="form-input form-control" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 
+                  services and specialization -->
+
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Services and Specialization</h4>
+                                                </div>
+                                                <div class="card-content">
+                                                    <div class="card-body">
+                                                        <div class="form-body">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label" for="txtServices">Services</label>
+                                                                        <input type="text" id="txtServices" class="form-input form-control" name="fname-column" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="form-label" for="txtspe">Specialization</label>
+                                                                        <select name="Specialization" id="txtspe" class="form-input form-control">
+                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4 class="card-title">
+                                                            Proficiency
+                                                        </h4>
+                                                    </div>
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+                                                            <form class="form repeater-default">
+                                                                <div data-repeater-list="group-a">
+                                                                    <div data-repeater-item>
+                                                                        <div class="row justify-content-between">
+                                                                            <div class="col-md-3 col-sm-12 form-group focused">
+                                                                                <label class="form-label" for="dboProficiency">Proficiency</label>
+                                                                                <select name="Proficiency" multiple="multiple" id="dboProficiency" class="form-input form-control">
+                                                                   <option value="Arabic">Arabic</option>
+                                                                   <option value="English">English</option>
+                                                                   </select>
+                                                                            </div>
+
                                                                         </div>
-                                                                       
-                                                                        <div class="col-md-3 col-sm-12 form-group">
-                                                                          
-                                                                                <label class="form-label" for="dboYear">Year</label>
-                                                                                <select name="Year" id="dboYear"
-                                                                                    class="form-input form-control">
+                                                                        <hr />
+                                                                    </div>
+                                                                </div>
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Education repeater forms -->
+                                                <section id="form-repeater-wrapper">
+                                                    <!-- form default repeater -->
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                <div class="card-header">
+                                                                    <h4 class="card-title">
+                                                                        Education
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="card-content">
+                                                                    <div class="card-body">
+                                                                        <form class="form repeater-default">
+                                                                            <div data-repeater-list="group-a">
+                                                                                <div data-repeater-item>
+                                                                                    <div class="row justify-content-between">
+                                                                                        <div class="col-md-3 col-sm-12 form-group">
+                                                                                            <label class="form-label" for="txtDegree">Degree </label>
+                                                                                            <input type="text" class="form-input form-control" id="txtDegree" />
+                                                                                        </div>
+
+                                                                                        <div class="col-md-3 col-sm-12 form-group">
+
+                                                                                            <label class="form-label" for="dboYear">Year</label>
+                                                                                            <select name="Year" id="dboYear" class="form-input form-control">
                                                                                     <option value="0">Year of completion
                                                                                     </option>
                                                                                     <option value="2020">2020</option>
@@ -431,140 +401,124 @@
                                                                                     <option value="2008">2008</option>
                                                                                     <option value="2007">2007</option>
                                                                                 </select>
-                                                                          
-                                                                        </div>
 
-                                                                        <div
-                                                                            class="col-md-3 col-sm-12 form-group d-flex align-items-center">
-                                                                            <button
-                                                                                class="btn btn-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
+                                                                                        </div>
+
+                                                                                        <div class="col-md-3 col-sm-12 form-group d-flex align-items-center">
+                                                                                            <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button">
                                                                                 <i class="bx bxs-trash-alt"></i>
                                                                                 Delete
                                                                             </button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr />
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <div class="col p-0">
-                                                                    <button class="btn btn-primary" data-repeater-create
-                                                                        type="button">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <hr />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <div class="col p-0">
+                                                                                    <button class="btn btn-primary" data-repeater-create type="button">
                                                                         <i class="bx bx-plus"></i>
                                                                         Add More
                                                                     </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </form>
+
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </section>
 
-                                        </div>
-                                    </div>
-                                </section>
+                                                <!-- Experience -->
 
-                                <!-- Experience -->
+                                                <!--  repeater forms -->
+                                                <section id="form-repeater-wrapper">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                <div class="card-header">
+                                                                    <h4 class="card-title">
+                                                                        Experience
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="card-content">
+                                                                    <div class="card-body">
+                                                                        <form class="form repeater-default">
+                                                                            <div data-repeater-list="group-a">
+                                                                                <div data-repeater-item>
+                                                                                    <div class="row justify-content-between">
+                                                                                        <div class="col-md-3 col-sm-12 form-group ">
+                                                                                            <label class="form-label" for="txtHospital">Hispital Name</label>
+                                                                                            <input required type="text" class="form-input form-control" id="txtHospital" />
+                                                                                        </div>
+                                                                                        <div class="col-md-3 col-sm-12 form-group focused">
+                                                                                            <label style="transform: translateY(-125%);" class="form-label" for="txtFrom">Start From</label>
+                                                                                            <input required id="txtFrom" class="form-input form-control" type="date">
+                                                                                        </div>
+                                                                                        <div class="col-md-3 col-sm-12 form-group focused">
+                                                                                            <label style="transform: translateY(-125%);" class="form-label" for="txtTo">Start To</label>
+                                                                                            <input required id="txtTo" class="form-input form-control" type="date">
+                                                                                        </div>
+                                                                                        <div class="col-md-3 col-sm-12 form-group">
+                                                                                            <label class="form-label" for="txtDesignation">Designation</label>
+                                                                                            <input required type="text" class="form-input form-control" id="txtDesignation" />
+                                                                                        </div>
 
-                                <!--  repeater forms -->
-                                <section id="form-repeater-wrapper">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h4 class="card-title">
-                                                        Experience
-                                                    </h4>
-                                                </div>
-                                                <div class="card-content">
-                                                    <div class="card-body">
-                                                        <form class="form repeater-default">
-                                                            <div data-repeater-list="group-a">
-                                                                <div data-repeater-item>
-                                                                    <div class="row justify-content-between">
-                                                                        <div class="col-md-3 col-sm-12 form-group ">
-                                                                            <label class="form-label" for="txtHospital">Hispital Name</label>
-                                                                            <input type="text" class="form-input form-control"
-                                                                                id="txtHospital"  />
-                                                                        </div>
-                                                                        <div class="col-md-3 col-sm-12 form-group focused">
-                                                                            <label style="transform: translateY(-125%);" class="form-label" for="txtFrom">Start From</label>
-                                                                            <input id="txtFrom"  class="form-input form-control"
-                                                                                type="date"
-                                                                               >
-                                                                        </div>
-                                                                        <div class="col-md-3 col-sm-12 form-group focused">
-                                                                            <label style="transform: translateY(-125%);" class="form-label" for="txtTo">Start To</label>
-                                                                            <input id="txtTo" 
-                                                                                class="form-input form-control" type="date">
-                                                                        </div>
-                                                                        <div class="col-md-3 col-sm-12 form-group">
-                                                                            <label class="form-label" for="txtDesignation">Designation</label>
-                                                                            <input type="text" class="form-input form-control"
-                                                                                id="txtDesignation"
-                                                                                 />
-                                                                        </div>
-
-                                                                        <div
-                                                                            class="col-md-3 col-sm-12 form-group d-flex align-items-center">
-                                                                            <button
-                                                                                class="btn btn-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
+                                                                                        <div class="col-md-3 col-sm-12 form-group d-flex align-items-center">
+                                                                                            <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button">
                                                                                 <i class="bx bxs-trash-alt"></i>
                                                                                 Delete
                                                                             </button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr />
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <div class="col p-0">
-                                                                    <button class="btn btn-primary" data-repeater-create
-                                                                        type="button">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <hr />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <div class="col p-0">
+                                                                                    <button class="btn btn-primary" data-repeater-create type="button">
                                                                         <i class="bx bx-plus"></i>
                                                                         Add More
                                                                     </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </form>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
+                                                </section>
 
-                                <!-- Awards -->
+                                                <!-- Awards -->
 
-                                <!--  repeater forms -->
-                                <section id="form-repeater-wrapper">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h4 class="card-title">
-                                                        Awards
-                                                    </h4>
-                                                </div>
-                                                <div class="card-content">
-                                                    <div class="card-body">
-                                                        <form class="form repeater-default">
-                                                            <div data-repeater-list="group-a">
-                                                                <div data-repeater-item>
-                                                                    <div class="row justify-content-between">
-                                                                        <div class="col-md-4 col-sm-12 form-group">
-                                                                            <label class="form-label" for="txtAward">Award</label>
-                                                                            <input type="text" class="form-input form-control"
-                                                                                id="txtAward"  />
-                                                                        </div>
+                                                <!--  repeater forms -->
+                                                <section id="form-repeater-wrapper">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                <div class="card-header">
+                                                                    <h4 class="card-title">
+                                                                        Awards
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="card-content">
+                                                                    <div class="card-body">
+                                                                        <form class="form repeater-default">
+                                                                            <div data-repeater-list="group-a">
+                                                                                <div data-repeater-item>
+                                                                                    <div class="row justify-content-between">
+                                                                                        <div class="col-md-4 col-sm-12 form-group">
+                                                                                            <label class="form-label" for="txtAward">Award</label>
+                                                                                            <input type="text" class="form-input form-control" id="txtAward" />
+                                                                                        </div>
 
-                                                                        <div class="col-md-4 col-sm-12 form-group">
-                                                                            
-                                                                                <label class="form-label" for="txtAwarYear">Award Year</label>
-                                                                                <select name="Year" id="txtAwarYear"
-                                                                                    class="form-input form-control">
+                                                                                        <div class="col-md-4 col-sm-12 form-group">
+
+                                                                                            <label class="form-label" for="txtAwarYear">Award Year</label>
+                                                                                            <select name="Year" id="txtAwarYear" class="form-input form-control">
                                                                                     <option value="2020">2021</option>                                                                                    
                                                                                     <option value="2020">2020</option>
                                                                                     <option value="2019">2019</option>
@@ -581,120 +535,116 @@
                                                                                     <option value="2008">2008</option>
                                                                                     <option value="2007">2007</option>
                                                                                 </select>
-                                                                            
-                                                                        </div>
 
-                                                                        <div
-                                                                            class="col-md-3 col-sm-12 form-group d-flex align-items-center">
-                                                                            <button
-                                                                                class="btn btn-danger text-nowrap px-1"
-                                                                                data-repeater-delete type="button">
+                                                                                        </div>
+
+                                                                                        <div class="col-md-3 col-sm-12 form-group d-flex align-items-center">
+                                                                                            <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button">
                                                                                 <i class="bx bxs-trash-alt"></i>
                                                                                 Delete
                                                                             </button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr />
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <div class="col p-0">
-                                                                    <button class="btn btn-primary" data-repeater-create
-                                                                        type="button">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <hr />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <div class="col p-0">
+                                                                                    <button class="btn btn-primary" data-repeater-create type="button">
                                                                         <i class="bx bx-plus"></i>
                                                                         Add More
                                                                     </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </form>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                      <div class="row ml-0">
-                                        <div class="col-sm-4">
-                                            <button type="submit" class="btn btn-primary">
+                                                    <div class="row ml-0">
+                                                        <div class="col-sm-4">
+                                                            <button type="submit" class="btn btn-primary">
                                                 Save Changes
-                                            </button>&nbsp;<a href="/Admin/all-doctors">
-                                                <button type="button" class="btn btn-primary">
+                                            </button>&nbsp;
+                                                            <a href="/Admin/all-doctors">
+                                                                <button type="button" class="btn btn-primary">
                                                     Cancel
                                                 </button>
-                                                </a>
-                                        </div>                                    
-                                     </div><!--end of row-->
-                                </section>
-                          
-                        </form>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <!--end of row-->
+                                                </section>
+
+                                    </form>
+                                    </div>
+                                    </div>
+                        </section>
+                        </div>
+                        </div>
                     </div>
-                </div>
-            </section>
-        </div>
-    </div>
-</div>
 
-<!-- BEGIN: Content-->
+                    <!-- BEGIN: Content-->
 
-<!-- END: Content-->
-<script>
-    window.onload = function () {
+                    <!-- END: Content-->
+                    <script>
+                        window.onload = function() {
 
-        //Check File API support
-        if (window.File && window.FileList && window.FileReader) {
-            var filesInput = document.getElementById("files");
+                            //Check File API support
+                            if (window.File && window.FileList && window.FileReader) {
+                                var filesInput = document.getElementById("files");
 
-            filesInput.addEventListener("change", function (event) {
-                var files = event.target.files; //FileList object
-                $("#result").html('');
-                var output = document.getElementById("result");                
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    //Only pics
-                    if (!file.type.match('image'))
-                        continue;
-                    var picReader = new FileReader();
-                    picReader.addEventListener("load", function (event) {
-                        var picFile = event.target;
-                        var div = document.createElement("div");
-                        div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
-                            "title='" + picFile.name + "'/>";
-                        output.insertBefore(div, null);
+                                filesInput.addEventListener("change", function(event) {
+                                    var files = event.target.files; //FileList object
+                                    $("#result").html('');
+                                    var output = document.getElementById("result");
+                                    for (var i = 0; i < files.length; i++) {
+                                        var file = files[i];
+                                        //Only pics
+                                        if (!file.type.match('image'))
+                                            continue;
+                                        var picReader = new FileReader();
+                                        picReader.addEventListener("load", function(event) {
+                                            var picFile = event.target;
+                                            var div = document.createElement("div");
+                                            div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                                                "title='" + picFile.name + "'/>";
+                                            output.insertBefore(div, null);
 
-                    });
+                                        });
 
-                    //Read the image
-                    picReader.readAsDataURL(file);
-                }
+                                        //Read the image
+                                        picReader.readAsDataURL(file);
+                                    }
 
-            });
-        }
-        else {
-            console.log("Your browser does not support File API");
-        }
-    }
+                                });
+                            } else {
+                                console.log("Your browser does not support File API");
+                            }
+                        }
+                    </script>
 
-</script>
+                    <!-- BEGIN: JS-->
+                    <!-- BEGIN: Vendor JS-->
+                    <!-- <script src="/js/vendors.js"></script> -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+                    <script src="/js/sweetalert2.all.min.js"></script>
+                    <script src="/js/polyfill.min.js"></script>
+                    <script src="/js/sweet-alerts.js"></script>
 
-<!-- BEGIN: JS-->
-<!-- BEGIN: Vendor JS-->
-<!-- <script src="/js/vendors.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script src="/js/sweetalert2.all.min.js"></script>
-<script src="/js/polyfill.min.js"></script>
-<script src="/js/sweet-alerts.js"></script>
+                    <!-- BEGIN Vendor JS-->
 
-<!-- BEGIN Vendor JS-->
-
-<script src="/js/vertical-menu-light.js"></script>
-<script src="/js/app-menu.js"></script>
-<script src="/js/app.js"></script>
+                    <script src="/js/vertical-menu-light.js"></script>
+                    <script src="/js/app-menu.js"></script>
+                    <script src="/js/app.js"></script>
 
 
 
-<!-- BEGIN: Services calling JS-->
-<script src="/services/Admin/AddEditDoctorProfile.js"></script>
-<script src="/services/loadingoverlay.min.js"></script>
+                    <!-- BEGIN: Services calling JS-->
+                    <script src="/services/Admin/AddEditDoctorProfile.js"></script>
+                    <script src="/services/loadingoverlay.min.js"></script>
 
 
-<!-- END: JS-->
-<%- include('../../Default/view/includes/End.ejs') %>
+                    <!-- END: JS-->
+                    <%- include('../../Default/view/includes/End.ejs') %>

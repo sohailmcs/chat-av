@@ -340,7 +340,7 @@ select.form-control:not([multiple="multiple"]) {
 .form-label {
     position: absolute;
     left: 1px;
-    top: -28px;
+    top: 11px;
     color: #999;
     background-color: #fff;
     z-index: 10;
