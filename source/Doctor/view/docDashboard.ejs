@@ -1,106 +1,106 @@
 <%- include('../../Default/view/includes/Head.ejs') %>
 
-<!-- BEGIN:  CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+  <!-- BEGIN:  CSS-->
+  <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
 
-<!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" /> -->
-<link rel="stylesheet" type="text/css" href="/css/colors.css" />
+  <link rel="stylesheet" type="text/css" href="/css/colors.css" />
 
 
-<link rel="stylesheet" type="text/css" href="/css/components.css" />
-<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<script src="/js/modernizr.custom.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/components.css" />
+  <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <script src="/js/modernizr.custom.js"></script>
 
-<!-- <link href="/css/KendoUi/examples-offline.css" rel="stylesheet" /> -->
-<link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
-<link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
-<link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
-
-
-<!-- END: CSS-->
-</head>
-<!-- END: Head-->
-
-<!-- BEGIN: Body-->
-
-<!-- body tag and blue nav bar  -->
-<%- include('includes/docNav.ejs') %>
-
-<!-- complete side menu of doctor -->
-<%- include('includes/docSideMenu.ejs') %>
+  <!-- <link href="/css/KendoUi/examples-offline.css" rel="stylesheet" /> -->
+  <link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
+  <link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
+  <link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
 
 
-<!-- BEGIN: Content-->
+  <!-- END: CSS-->
+  </head>
+  <!-- END: Head-->
 
-<!--SMS pop up -->
-<div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
+  <!-- BEGIN: Body-->
+
+  <!-- body tag and blue nav bar  -->
+  <%- include('includes/docNav.ejs') %>
+
+    <!-- complete side menu of doctor -->
+    <%- include('includes/docSideMenu.ejs') %>
+
+
+      <!-- BEGIN: Content-->
+
+      <!--SMS pop up -->
+      <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+          <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title black" id="myModalLabel160">
-                    Send Message
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+              <h5 class="modal-title black" id="myModalLabel160">
+                Send Message
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div class="modal-body">
 
-                    <input type="hidden" id="hdnPatientName" value="" >
-                    <input type="hidden" id="hdnPhone" value="" >
-                    <label>Enter Your Message Here </label>
-                    <textarea class="form-control" id="smsReminder" rows="4"
-                        placeholder="Hello I am Doctor ABC . Your consultation Session will be start in 15minutes. Please stay Online. Thank you"></textarea>
+              <input type="hidden" id="hdnPatientName" value="">
+              <input type="hidden" id="hdnPhone" value="">
+              <label>Enter Your Message Here </label>
+              <textarea class="form-control" id="smsReminder" rows="4"
+                placeholder="Hello I am Doctor ABC . Your consultation Session will be start in 15minutes. Please stay Online. Thank you"></textarea>
 
             </div>
             <div class="modal-footer">
 
-                <button type="button" class="btnSendSMSReminder btn btn-primary ml-1" data-dismiss="modal">
-                    <span class="d-sm-block"><i class='bx bx-send bx-rotate-295 sms-popup' ></i>
-                       &nbsp; SEND
-                    </span>
-                </button>
+              <button type="button" class="btnSendSMSReminder btn btn-primary ml-1" data-dismiss="modal">
+                <span class="d-sm-block"><i class='bx bx-send bx-rotate-295 sms-popup'></i>
+                  &nbsp; SEND
+                </span>
+              </button>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-<!--END OF SMS POPUP-->
-
-<!--start of EMR detail-->
-<div class="modal fade text-left" id="popupHistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-    aria-hidden="true">
-</div>
-<!--end of EMR Details-->
-
-<!--Start of Prescription from CallLog-->
-<div class="modal fade text-left" id="popupPrescriptionEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-    aria-hidden="true">
-</div>
-
-<!--start of patient profile details------>
-<div class="modal fade text-left" id="ModelDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-  aria-hidden="true">
-  <div class="modal-dialog modal-xlg modal-dialog-centered modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <h5 class="modal-title black" id="myModalLabel160">
-           Patient Details
-        </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-    </div>       
-        <div class="card-content side-bar-doc" id="bookDetails">      
       </div>
-      
-    </div>
-  </div>
-</div>
+      <!--END OF SMS POPUP-->
 
-<script id="BookingDetail-Template" type="text/html">
+      <!--start of EMR detail-->
+      <div class="modal fade text-left" id="popupHistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+        aria-hidden="true">
+      </div>
+      <!--end of EMR Details-->
+
+      <!--Start of Prescription from CallLog-->
+      <div class="modal fade text-left" id="popupPrescriptionEdit" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel160" aria-hidden="true">
+      </div>
+
+      <!--start of patient profile details------>
+      <div class="modal fade text-left" id="ModelDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xlg modal-dialog-centered modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-primary">
+              <h5 class="modal-title black" id="myModalLabel160">
+                Patient Details
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="card-content side-bar-doc" id="bookDetails">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <script id="BookingDetail-Template" type="text/html">
     <div class="card-body">    
      
       <div class="row">
@@ -213,7 +213,7 @@
                <img  src="{{PatComplainImage}}"  alt="Complain" height="100" width="100">
             {{/PatComplainImage}}
             {{^PatComplainImage}}
-             <img  src="/assets/images/complain.png" alt="Complain" height="100" width="100">
+             <img  src="/assets/images/complain.jpg" alt="Complain" height="100" width="100">
             {{/PatComplainImage}}
             
           {{/PatientComplainModel}}
@@ -225,9 +225,9 @@
       </div>
       </div>
       </div>
-      </script> 
+      </script>
 
-<script  id="PrescriptionEdit-template" type="text/html">
+      <script id="PrescriptionEdit-template" type="text/html">
     <div
     class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
     role="document"
@@ -311,8 +311,8 @@
   </div>
   </script>
 
-<!-- Scheduled Tempates-->
-<script id="Scheduled-template" type="text/html">
+      <!-- Scheduled Tempates-->
+      <script id="Scheduled-template" type="text/html">
     {{#PatientScheduleded}}
     <li class="timeline-items1 timeline-icon-primary active pb-0">
     <div class="col-lg-12">
@@ -384,10 +384,10 @@
     </li>
     {{/PatientScheduleded.0}}
     </script>
-<!--end of Scheduled Template-->
+      <!--end of Scheduled Template-->
 
-<!--start of request call Templates-->
-<script id="req-template" type="text/html">
+      <!--start of request call Templates-->
+      <script id="req-template" type="text/html">
     {{#RequestedCall}}
     <li class="timeline-items1 timeline-icon-primary active pb-0">
 
@@ -481,9 +481,9 @@
     {{/RequestedCall.0}}
 
     </script>
-<!--end of request call Template-->
-<!--start of que Templates-->
-<script id="que-template" type="text/html">
+      <!--end of request call Template-->
+      <!--start of que Templates-->
+      <script id="que-template" type="text/html">
     {{#result}}
      <!-- Patient one  -->
      <div class="row" style="margin: 1%;">
@@ -625,10 +625,10 @@
         </h3>
    {{/result.0}}
 </script>
-<!--end of que template-->
+      <!--end of que template-->
 
-<!--start of Call Log Template-->
-<script id="callLog-template" type="text/html">
+      <!--start of Call Log Template-->
+      <script id="callLog-template" type="text/html">
     {{#result}}
     <tr>
         <td>{{PatientName}}</td>
@@ -647,7 +647,7 @@
             <!-- modal on eye icon close-->
             <a href="#" patientName="{{ParentName}}"  PatientID="{{PatientID}}" 
             parentName = "{{ParentName}}" pType="{{PatientType}}"  parentid ="{{ParentID}}" 
-             cLogId="{{CallLogID}}" CallQueId="0"
+             cLogId="{{CallLogID}}" callqueid="0"
             onclick="OpenCommunicationWindow(this)" data-toggle="tooltip" data-placement="bottom" title="Audio Call" >
             <i class="bx bx-microphone"></i>
             </a>
@@ -655,7 +655,7 @@
 
             <a href="#" patientName="{{ParentName}}" pType="{{PatientType}}"  PatientID="{{PatientID}}" 
             parentName = "{{ParentName}}"  parentid ="{{ParentID}}" 
-            cLogId="{{CallLogID}}" CallQueId="0"
+            cLogId="{{CallLogID}}" callqueid="0"
             onclick="OpenCommunicationWindow(this)" data-toggle="tooltip" data-placement="bottom" title="Video Call">
             <i class="bx bx-video"></i>
             </a>
@@ -691,171 +691,173 @@
 
 {{/result}}
 </script>
-<!--start of Call Log Template-->
+      <!--start of Call Log Template-->
 
-<div class="app-content content" style="position: relative;">
-    <div class="content-overlay"></div>
-    <div class="content-wrapper" >
+      <div class="app-content content" style="position: relative;">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
 
-<!------start of toast message ------->
-<div class="toast fade slow" data-delay="3000" id="myToast" style="position: absolute;">
+          <!------start of toast message ------->
+          <div class="toast fade slow" data-delay="3000" id="myToast" style="position: absolute;">
 
-    <div class="toast-body toast-header">
-        <div class="row">
-        <div class="col-xs-6"><div id="toastText"></div></div>
-        <div class="col-xs-6"> <button type="button" class="ml-2 close" data-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button></div>
-        </div>
-    </div>
-</div>
-<!------end of toas message ---------->
+            <div class="toast-body toast-header">
+              <div class="row">
+                <div class="col-xs-6">
+                  <div id="toastText"></div>
+                </div>
+                <div class="col-xs-6"> <button type="button" class="ml-2 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button></div>
+              </div>
+            </div>
+          </div>
+          <!------end of toas message ---------->
 
-        <div class="content-header row"></div>
-        <div class="content-body">
+          <div class="content-header row"></div>
+          <div class="content-body">
             <div class="d-flex flex-row">
-                <div class="page-heading">
-                    <h3>
-                        <i class='iconapp bx bx-time'></i>
-                        <span>
-                        Doctor Dashboard</span></h3>
+              <div class="page-heading">
+                <h3>
+                  <i class='iconapp bx bx-time'></i>
+                  <span>
+                    Doctor Dashboard</span>
+                </h3>
 
 
-                        </div>
-                </div>
+              </div>
             </div>
+          </div>
 
-            <!-- Dashboard Start -->
-            <section id="dashboard-analytics">
+          <!-- Dashboard Start -->
+          <section id="dashboard-analytics">
+            <div class="row">
+              <!-- Scheduled appointment Starts -->
+              <div class="col-sm-6">
                 <div class="row">
-                    <!-- Scheduled appointment Starts -->
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="widget-todo" style="height: 362px; overflow: auto;">
-                                    <div
-                                        class="card-header dashboard-heading-1">
-                                        <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
-                                            Scheduled Appointments
-                                        </h6>
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="card-body">
-                                            <ul class="widget-timeline mb-0" id="schTemplate">
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Scheduled appointment ends -->
-
-                    <!-- Direct Calls Card Starts -->
-                    <div class="col-sm-6">
-                        <div class="widget-todo" style="height: 362px; overflow: auto;">
-                            <div class="card-header dashboard-heading-1">
-                                <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
-                                     Direct Calls
-                                     </h6>
-                            </div>
-
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <ul class="widget-timeline" style="list-style: none;" id="reqTemplate">
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Direct Calls Card ends -->
-                </div>
-            </section>
-            <!-- Dashboard  end -->
-
-            <!-- Call Queue Start -->
-            <section id="table-Marketing">
-                <div class="card widget-todo " style="height: 350px; overflow: auto;">
-                    <div class="card-header ">
+                  <div class="col-12">
+                    <div class="widget-todo" style="height: 362px; overflow: auto;">
+                      <div class="card-header dashboard-heading-1">
                         <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
-                            Call Queue
-                             </h6>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body pb-0" id="QueTemplate">
-
+                          Scheduled Appointments
+                        </h6>
+                      </div>
+                      <div class="card-content">
+                        <div class="card-body">
+                          <ul class="widget-timeline mb-0" id="schTemplate">
+                          </ul>
                         </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </section>
+              </div>
+              <!-- Scheduled appointment ends -->
 
-            <!-- Call Queue Ends -->
+              <!-- Direct Calls Card Starts -->
+              <div class="col-sm-6">
+                <div class="widget-todo" style="height: 362px; overflow: auto;">
+                  <div class="card-header dashboard-heading-1">
+                    <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                      Direct Calls
+                    </h6>
+                  </div>
 
-            <!-- Previous Patient table start -->
-            <div class="row" id="table-hover-row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header call-log-header">
-                            <h6 class="card-title dashboard-headings">
-                                Recent Call Logs
-                            </h6>
-                        </div>
+                  <div class="card-content">
+                    <div class="card-body">
+                      <ul class="widget-timeline" style="list-style: none;" id="reqTemplate">
 
-                        <div class="card-content">
-                            <!-- table hover -->
-                            <div class="table-responsive">
-                                <table class="table table-hover mb-0 tblCallLogs">
-                                    <thead class="tablehead">
-                                        <tr>
-                                            <th class="tableheader">Consultation</th>
-                                            <th class="tableheader">Phone</th>
-                                            <th class="tableheader">Date & Time</th>
-                                            <th class="tableheader">Duration</th>
-                                            <th class="tableheader">Activity</th>
-                                            <th class="tableheader">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tblCallLogs">
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                      </ul>
                     </div>
+                  </div>
                 </div>
+              </div>
+              <!--Direct Calls Card ends -->
             </div>
+          </section>
+          <!-- Dashboard  end -->
 
-            <!-- Previous Patient table end -->
+          <!-- Call Queue Start -->
+          <section id="table-Marketing">
+            <div class="card widget-todo " style="height: 350px; overflow: auto;">
+              <div class="card-header ">
+                <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                  Call Queue
+                </h6>
+              </div>
+              <div class="card-content">
+                <div class="card-body pb-0" id="QueTemplate">
+
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Call Queue Ends -->
+
+          <!-- Previous Patient table start -->
+          <div class="row" id="table-hover-row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header call-log-header">
+                  <h6 class="card-title dashboard-headings">
+                    Recent Call Logs
+                  </h6>
+                </div>
+
+                <div class="card-content">
+                  <!-- table hover -->
+                  <div class="table-responsive" id="tableCallLogs">
+                    <table class="table table-hover mb-0 tblCallLogs">
+                      <thead class="tablehead">
+                        <tr>
+                          <th class="tableheader">Consultation</th>
+                          <th class="tableheader">Phone</th>
+                          <th class="tableheader">Date & Time</th>
+                          <th class="tableheader">Duration</th>
+                          <th class="tableheader">Activity</th>
+                          <th class="tableheader">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tblCallLogs">
+
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Previous Patient table end -->
         </div>
-    </div>
-</div>
-<!-- END: Content-->
+      </div>
+      </div>
+      <!-- END: Content-->
 
-<!-- END: Content-->
+      <!-- END: Content-->
 
-<!-- BEGIN: JS-->
-<!--     -->
-
-
-<script src="/js/vendors.js"></script>
-
-<script src="/js/sweetalert2.all.min.js"></script>
-<script src="/js/polyfill.min.js"></script>
-<script src="/js/sweet-alerts.js"></script>
+      <!-- BEGIN: JS-->
+      <!--     -->
 
 
-<script src="/js/vertical-menu-light.js"></script>
-<script src="/js/app-menu.js"></script>
-<script src="/js/app.js"></script>
-<!-- 
+      <script src="/js/vendors.js"></script>
+
+      <script src="/js/sweetalert2.all.min.js"></script>
+      <script src="/js/polyfill.min.js"></script>
+      <script src="/js/sweet-alerts.js"></script>
+
+
+      <script src="/js/vertical-menu-light.js"></script>
+      <script src="/js/app-menu.js"></script>
+      <script src="/js/app.js"></script>
+      <!-- 
 
 <script src="/js/classie.js"></script>
 <script src="/js/notificationFx.js"></script> -->
 
-<!-- BEGIN: Services calling JS-->
-<script src="/services/DoctorDashBoardServices.js"></script>
-<script src="/services/loadingoverlay.min.js"></script>
+      <!-- BEGIN: Services calling JS-->
+      <script src="/services/DoctorDashBoardServices.js"></script>
+      <script src="/services/loadingoverlay.min.js"></script>
 
-<%- include('../../Default/view/includes/End.ejs') %>
+      <%- include('../../Default/view/includes/End.ejs') %>

@@ -359,9 +359,8 @@ function GetCallLog(doctorId, date, isSync) {
     baseURL +
     "CallLogs/GetDoctorRecentCallLog?doctorID=" +
     doctorId +
-    "&status=OnGoing" +
-    "&date=" +
-    date;
+    "&status=OnGoing";
+  //"&date=" +    date;
   $.ajax({
     url: url,
     headers: {
@@ -375,8 +374,13 @@ function GetCallLog(doctorId, date, isSync) {
       if (!isSync) $.LoadingOverlay("show");
     },
     success: function (data, textStatus, xhr) {
+      var count = Object.keys(data).length;
+      if (count > 0)
+        $("#tableCallLogs").css({ height:"250px", "overflow-y": "scroll" });
       var callLogTemplate = $("#callLog-template").html();
       $("#tblCallLogs").html(Mustache.to_html(callLogTemplate, data));
+
+
     },
     error: function (xhr, textStatus, err) {
       if (xhr.status == "500" && xhr.statusText == "InternalServerError")

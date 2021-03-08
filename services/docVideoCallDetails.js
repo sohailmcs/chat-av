@@ -8,11 +8,11 @@ var publisher;
 var subscriber;
 var allsubscribers;
 var page;
-var mCallQueId;
+
 if ($(".modal-backdrop").length > 1) {
   $(".modal-backdrop").not(":first").remove();
 }
-
+var mCallQueId;
 var mPatientID;
 var mCallLogId;
 var mPname;
@@ -282,7 +282,7 @@ function initializeSession(key, sessId, tokenId) {
         );
         $("#home-tab-justified, #home-just").addClass("active");
         $("#messages-tab-justified,#messages-just").removeClass("active");
-        if (mCallQueId != "0" && $("#insertedID").val() == "0") {
+        if (mCallQueId != "0" && typeof(mCallQueId) != "undefined" && $("#insertedID").val() == "0") {
           UpdateQueAddSaveCallLog(
             mCallQueId,
             "Called",
@@ -622,6 +622,7 @@ function checkOnlineStatusandCall(patientId, userType) {
 }
 
 function UpdateQueAddSaveCallLog(CallQueId, status, doctorID, PatientId, page) {
+  
   var url =
     baseURL +
     "CallQue/UpdateCallQueStatus?CallQueId=" +

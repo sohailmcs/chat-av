@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-  <!-- BEGIN: Head-->
+<!-- BEGIN: Head-->
 
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="/assets/images/favicon.ico"
-    />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=0"
-    />
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
     <!-- 
     <link
       href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
@@ -34,268 +27,275 @@
 
     <!-- <script src="/js/vendors.min.js"></script>
     <script src="/js/app.js"></script> -->
-    <title><%= pageTitle %></title>
+    <title>
+        <%= pageTitle %>
+    </title>
     <!-- common CSS -->
     <script>
-      var apiKey = "<%= apiKey %>";
-      var sessionId = "<%= sessionId %>";
-      var token = "<%= token %>";
+        var apiKey = "<%= apiKey %>";
+        var sessionId = "<%= sessionId %>";
+        var token = "<%= token %>";
     </script>
-  </head>
+</head>
 
-  <script type="text/javascript">
+<script type="text/javascript">
     var uName = "";
     var userID = "";
 
-    var soc = io({ transports: ["websocket"], upgrade: false });
-   //var baseURL = "http://localhost:1042/KindahService/";
-   var baseURL = "https://kindahclinic.com/KindahService/";
+    var soc = io({
+        transports: ["websocket"],
+        upgrade: false
+    });
+    //var baseURL = "http://localhost:1042/KindahService/";
+    var baseURL = "https://kindahclinic.com/KindahService/";
+
     var urlParams = new URLSearchParams(window.location.search);
 
     function getcookie(cookiename) {
-      var cookiestring = document.cookie;
-      var cookiearray = cookiestring.split(";");
-      for (var i = 0; i < cookiearray.length; ++i) {
-        if (cookiearray[i].trim().match("^" + cookiename + "=")) {
-          return cookiearray[i].replace(`${cookiename}=`, "").trim();
+        var cookiestring = document.cookie;
+        var cookiearray = cookiestring.split(";");
+        for (var i = 0; i < cookiearray.length; ++i) {
+            if (cookiearray[i].trim().match("^" + cookiename + "=")) {
+                return cookiearray[i].replace(`${cookiename}=`, "").trim();
+            }
         }
-      }
-      return null;
+        return null;
     }
 
-   
 
-    $(document).ready(function () {
-      //=========save id for video/Audio chat=============
-      $(".goog-te-menu-value").children().last().remove();
-      uName = $(".user-name").find("strong").text();
-      userID = $(".user-name").attr("userinfo");
-      var userType = "Doctor";
 
-      soc.emit("add-user", {
-        username: uName,
-        userId: userID,
-        userType: userType,
-      });
+    $(document).ready(function() {
+        //=========save id for video/Audio chat=============
+        $(".goog-te-menu-value").children().last().remove();
+        uName = $(".user-name").find("strong").text();
+        userID = $(".user-name").attr("userinfo");
+        var userType = "Doctor";
 
-      // if (!localStorage.getItem("DoctoronlineStatus")) {
-      changeDoctorOlineStaus(userID, "Online", uName);
-      // localStorage.setItem("DoctoronlineStatus", "true");
-      // }
+        soc.emit("add-user", {
+            username: uName,
+            userId: userID,
+            userType: userType,
+        });
+
+        // if (!localStorage.getItem("DoctoronlineStatus")) {
+        changeDoctorOlineStaus(userID, "Online", uName);
+        // localStorage.setItem("DoctoronlineStatus", "true");
+        // }
 
     }); //============end of document.ready========
 
     function OpenCommunicationWindow(btn) {
-      mCallQueId = $(btn).attr("callqueid");
-      mPatientID = $(btn).attr("patientid");
-      mParentId = $(btn).attr("parentid");
-      pType = $(btn).attr("pType");
-      mParentName = $(btn).attr("parentName");
-      mCallLogId = $(btn).attr("clogid");
-      mPname = $(btn).attr("patientname");
-      mDocName = uName;
-      mDocId = userID;
-      mSpeciality = $(btn).attr("speciality");
-      mArea = "Doctor";
+        alert($(btn).attr("callqueid"));
+        mCallQueId = $(btn).attr("callqueid");
 
-      if (mCallLogId == 0) {
-        $("#home-tab-justified, #profile-tab-justified")
-          .addClass("disabled")
-          .removeClass("active");
-        $("#home-just, #profile-just").removeClass("active");
-        $("#messages-tab-justified, #messages-just").addClass("active");
-      } else {
-        $("#home-tab-justified, #profile-tab-justified").removeClass(
-          "disabled"
-        );
-        $("#messages-tab-justified, #messages-just").removeClass("active");
-        $("#home-tab-justified, #home-just").addClass("active");
-      }
-      $("#windowComm").modal({
-        backdrop: "static",
-        keyboard: false,
-      });
-      PatientHistory(mPatientID);
-      GetDoctorNotes(mCallLogId);
-      getPatientInfo(mPatientID);
+        mPatientID = $(btn).attr("patientid");
+        mParentId = $(btn).attr("parentid");
+        pType = $(btn).attr("pType");
+        mParentName = $(btn).attr("parentName");
+        mCallLogId = $(btn).attr("clogid");
+        mPname = $(btn).attr("patientname");
+        mDocName = uName;
+        mDocId = userID;
+        mSpeciality = $(btn).attr("speciality");
+        mArea = "Doctor";
+
+        if (mCallLogId == 0) {
+            $("#home-tab-justified, #profile-tab-justified")
+                .addClass("disabled")
+                .removeClass("active");
+            $("#home-just, #profile-just").removeClass("active");
+            $("#messages-tab-justified, #messages-just").addClass("active");
+        } else {
+            $("#home-tab-justified, #profile-tab-justified").removeClass(
+                "disabled"
+            );
+            $("#messages-tab-justified, #messages-just").removeClass("active");
+            $("#home-tab-justified, #home-just").addClass("active");
+        }
+        $("#windowComm").modal({
+            backdrop: "static",
+            keyboard: false,
+        });
+        PatientHistory(mPatientID);
+        GetDoctorNotes(mCallLogId);
+        getPatientInfo(mPatientID);
     }
 
     $("body").removeClass("modal-open");
-    soc.on("UpdatePatientOnlineStatus", function (data) {
-      updatePatientOnlineStatus(data.uID, data.status, data.uName);
+    soc.on("UpdatePatientOnlineStatus", function(data) {
+        updatePatientOnlineStatus(data.uID, data.status, data.uName);
     });
 
     async function updatePatientOnlineStatus(UserID, status, uName) {
-      await UpdateUserOnlineStatus(userID, status, uName, "Patient");
-      
-      if (status == "Online") {
-        $(".status_" + UserID + "")
-          .find(".bullet-sm")
-          .removeClass("bullet-offline")
-          .addClass("bullet-success");
-        $(".checkin_" + UserID + "").prop("disabled", false);
-        $(".audio_" + UserID + "").prop("disabled", false);
-        $(".video_" + UserID + "").prop("disabled", false);
-      } else {
-        $(".status_" + UserID + "")
-          .find(".bullet-sm")
-          .removeClass("bullet-success")
-          .addClass("bullet-offline");
-        $(".audio_" + UserID + "").prop("disabled", true);
-        $(".video_" + UserID + "").prop("disabled", true);
-        $(".checkin_" + UserID + "").prop("disabled", true);
-      }
+        await UpdateUserOnlineStatus(userID, status, uName, "Patient");
+
+        if (status == "Online") {
+            $(".status_" + UserID + "")
+                .find(".bullet-sm")
+                .removeClass("bullet-offline")
+                .addClass("bullet-success");
+            $(".checkin_" + UserID + "").prop("disabled", false);
+            $(".audio_" + UserID + "").prop("disabled", false);
+            $(".video_" + UserID + "").prop("disabled", false);
+        } else {
+            $(".status_" + UserID + "")
+                .find(".bullet-sm")
+                .removeClass("bullet-success")
+                .addClass("bullet-offline");
+            $(".audio_" + UserID + "").prop("disabled", true);
+            $(".video_" + UserID + "").prop("disabled", true);
+            $(".checkin_" + UserID + "").prop("disabled", true);
+        }
     }
 
     function deleteAllCookies() {
-      //=============update status in database=============
-      //  localStorage.removeItem("DoctoronlineStatus");
+        //=============update status in database=============
+        //  localStorage.removeItem("DoctoronlineStatus");
 
-      var cookies = document.cookie.split(";");
-      for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        var eqPos = cookie.indexOf("=");
-        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-      }
-      changeDoctorOlineStaus(userID, "Offline", uName).then((data) => {
-        window.location.href = "/Logout";
-      });
+        var cookies = document.cookie.split(";");
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            var eqPos = cookie.indexOf("=");
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
+        changeDoctorOlineStaus(userID, "Offline", uName).then((data) => {
+            window.location.href = "/Logout";
+        });
     }
 
     async function changeDoctorOlineStaus(userId, status, uName) {
-      await UpdateUserOnlineStatus(userId, status, uName, "Doctor");
+        await UpdateUserOnlineStatus(userId, status, uName, "Doctor");
 
-      soc.emit("UpdateOnlineStatus", {
-        uID: userID,
-        status: status,
-        uName: uName,
-      });
+        soc.emit("UpdateOnlineStatus", {
+            uID: userID,
+            status: status,
+            uName: uName,
+        });
 
-      //=============update status in database=============
+        //=============update status in database=============
     }
 
     function UpdateUserOnlineStatus(UserID, status, userName, userType) {
-     
-      return new Promise((resolve, reject) => {
-        var useStatus = status == "Online" ? true : false;
-        var url =
-          baseURL +
-          "User/UpdateUserOnlineStatus?userId=" +
-          UserID +
-          "&Onlinestatus=" +
-          useStatus +
-          "&userType=" +
-          userType;
 
-        $.ajax({
-          url: url,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          type: "GET",
-          datatype: "application/json",
-          contentType: "application/json; charset=utf-8",
-          data: "",
-          beforeSend: function () {},
-          success: function (data, textStatus, xhr) {
-            resolve(data);
-          },
-          error: function (xhr, textStatus, err) {
-            reject(err);
-          },
-          complete: function (data) {
-            // Hide Loading
-          },
-        });
-      })
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+        return new Promise((resolve, reject) => {
+                var useStatus = status == "Online" ? true : false;
+                var url =
+                    baseURL +
+                    "User/UpdateUserOnlineStatus?userId=" +
+                    UserID +
+                    "&Onlinestatus=" +
+                    useStatus +
+                    "&userType=" +
+                    userType;
+
+                $.ajax({
+                    url: url,
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    type: "GET",
+                    datatype: "application/json",
+                    contentType: "application/json; charset=utf-8",
+                    data: "",
+                    beforeSend: function() {},
+                    success: function(data, textStatus, xhr) {
+                        resolve(data);
+                    },
+                    error: function(xhr, textStatus, err) {
+                        reject(err);
+                    },
+                    complete: function(data) {
+                        // Hide Loading
+                    },
+                });
+            })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     //=======get other's id and set audio/video call======
-    soc.on("callAccpetedandShowStream", function (data) {
-      performCall();
+    soc.on("callAccpetedandShowStream", function(data) {
+        performCall();
     });
 
     //==============Reject confirmation of  audio/video call =======
-    soc.on("GetRejectedConfirmation", function (data) {
-      PlayCallingSound(false);
-      $("#spanRejectUserName").text(data.pName);
+    soc.on("GetRejectedConfirmation", function(data) {
+        PlayCallingSound(false);
+        $("#spanRejectUserName").text(data.pName);
 
-      Swal.fire({
-        title: "SORRY!",
-        text: data.pName + " reject your call. Please try again.",
-        type: "info",
-        confirmButtonClass: "btn btn-primary",
-        buttonsStyling: false,
-        confirmButtonText: "<a style='color:#fff'>OK</a>",
-      });
-      $(".three-icons").css("display", "none");
-      $("#divCallNow").css("display", "block");
-      disconnect();
+        Swal.fire({
+            title: "SORRY!",
+            text: data.pName + " reject your call. Please try again.",
+            type: "info",
+            confirmButtonClass: "btn btn-primary",
+            buttonsStyling: false,
+            confirmButtonText: "<a style='color:#fff'>OK</a>",
+        });
+        $(".three-icons").css("display", "none");
+        $("#divCallNow").css("display", "block");
+        disconnect();
     });
 
     //===========change onlin/offline status of doctor ======
     function OnlineOffline() {
-      var x = document.getElementById("myDIV");
-      if (x.innerHTML === "Online") {
-        x.innerHTML = "Offline";
-        x.style.color = "rgb(228, 83, 83)";
-      } else {
-        x.innerHTML = "Online";
-        x.style.color = "#39da8a";
-      }
+        var x = document.getElementById("myDIV");
+        if (x.innerHTML === "Online") {
+            x.innerHTML = "Offline";
+            x.style.color = "rgb(228, 83, 83)";
+        } else {
+            x.innerHTML = "Online";
+            x.style.color = "#39da8a";
+        }
 
-      changeDoctorOlineStaus(userID, x.innerHTML, uName);
+        changeDoctorOlineStaus(userID, x.innerHTML, uName);
     }
 
     //==================start call auto Logout===================
     var func = new AutoLogout();
     //==================end call auto Logout=====================
     Mustache.Formatters = {
-  date: function (str) {
-    var options = {
-      weekday: "short",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
+        date: function(str) {
+            var options = {
+                weekday: "short",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+            };
+            return new Date(str).toLocaleDateString("en-US", options);
+        },
+        Upper: function(str) {
+            return str.toUpperCase();
+        },
+        time: function(str) {
+            var options = {
+                hour: "2-digit",
+                minute: "2-digit",
+            };
+            return new Date(str).toLocaleTimeString("en-GB", options);
+        },
+        phone: function(str) {
+            var res = str.substring(4, str.length);
+            return res;
+        },
+        Shortdate: function(str) {
+            var options = {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+            };
+            return new Date(str).toLocaleDateString("en-US", options);
+        },
     };
-    return new Date(str).toLocaleDateString("en-US", options);
-  },
-  Upper: function (str) {
-    return str.toUpperCase();
-  },
-  time: function (str) {
-    var options = {
-      hour: "2-digit",
-      minute: "2-digit",
-    };
-    return new Date(str).toLocaleTimeString("en-GB", options);
-  },
-  phone: function (str) {
-    var res = str.substring(4, str.length);
-    return res;
-  },
-  Shortdate: function (str) {
-    var options = {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    };
-    return new Date(str).toLocaleDateString("en-US", options);
-  },
-};
-  
-  
-  </script>
+</script>
 
-  <%- include('AudiovideoPopup.ejs') %>
-  <div class="minmaxCon"></div>
+<%- include('AudiovideoPopup.ejs') %>
+    <div class="minmaxCon"></div>
+
 </html>

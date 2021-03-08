@@ -276,6 +276,22 @@ function GetDoctorsProfile(doctorId) {
     },
   });
 }
+function Validation() {
+  $("#frmDoctorProfile").validate({
+    rules: {
+      ProfilePic: {
+        required: true,
+        accept: "image/jpeg, image/pjpeg"
+      }
+    },
+    messages: {
+      ProfilePic: {
+        required: "First Name is required",
+      },
+
+    }
+  });
+}
 
 function AddEditDoctorProfile(doctorId) {
   var url = baseURL + "Doctor/AddUpdateDoctorProfile";
@@ -393,13 +409,13 @@ function GetAllSpecialities(selectedValue) {
       $.each(data.result, function (i, v) {
         $("#txtspe").append($("<option>").text(v.Name).attr("value", v.SpId));
       });
-     
+
       $("#txtspe").val(selectedValue);
       // $("#txtspe option:contains(" + selectedValue + ")").attr(
       //   "selected",
       //   "selected"
       // );
-      
+
       // var slotTemplate = $("#template-speciality").html();
       // $("#specialities").html(Mustache.to_html(slotTemplate, data));
     },

@@ -104,7 +104,7 @@ function submitsuggestions() {
   var model = {
     UserId: $("#txtEmail").val(),
     FullName: $("#txtFullName").val(),
-    PhoneNumber: $("#txtExtension").val() + "" + $("#txtPhoneNumber").val(),
+    PhoneNumber: $("input:disabled").val() + "" + $("#txtPhoneNumber").val(),
     Complain: $("#txtComplain").val(),
     attachment: $(".lblAttachment").val(),
   };
@@ -132,7 +132,8 @@ function submitsuggestions() {
         buttonsStyling: false,
         confirmButtonText: "<a style='color:#fff'>OK</a>",
       }).then((resuut) => {
-        $("input[type=text],input[type=number],textarea").val("");
+        $("#txtFullName,#txtEmail,input[type=number],textarea").val("");
+        $("#upload-file-info").text('');
       });
     },
     error: function (xhr, textStatus, err) {
@@ -173,6 +174,7 @@ $(document).on("change", ".MedicationReciept", function (event) {
 
     if (!file.type.match("image")) {
       $("#upload-file-info").html('');
+      $('#upload-file-info').text("Please select on image").css("color","red");
       continue;
     }
     else
@@ -183,7 +185,7 @@ $(document).on("change", ".MedicationReciept", function (event) {
     });
     $("#upload-file-info").html( $(this)
     .val()
-    .replace(/C:\\fakepath\\/gi, ""));
+    .replace(/C:\\fakepath\\/gi, "")).css("color","red");
 
     //Read the image
     picReader.readAsDataURL(file);

@@ -33,6 +33,7 @@ function EnableOtherOption(EleOverlay) {
 
 $(function () {
   FillCountry();
+  ValidationPatientInfo();
   //FillCity(0, "0", true);
   PatientBasicInfo(userLoginId, "Parent");
   $(".dbInfo").css("display", "none");
@@ -46,7 +47,7 @@ $(function () {
     $(this).addClass("btnPatientTypeSelected");
     ShowHideChildInfoDropDown($(this));
   });
-   GetMedicationContidionList("MedConditionList");
+  GetMedicationContidionList("MedConditionList");
   $(".divMed").find("*").prop("disabled", true);
   $(".PatientAlergy").find("*").prop("disabled", true);
   $("#txtMedCondition").prop("disabled", true);
@@ -230,8 +231,10 @@ $(function () {
                         "title='ProfilePicture'/>";
                     } else {
                       div.innerHTML =
-                        "<img class='infoProfilePic' src='/assets/images/maledoc.png'/>";
+                        "<img class='infoProfilePic' src='/assets/images/DefaultPatient.jpg'/>";
                     }
+                    //=========set image control============
+                    $("#result").html(div);
 
                     if (d.Gender == "Male") $("#rdoMale").prop("checked", true);
                     else $("#rdoFemale").prop("checked", true);
@@ -242,9 +245,6 @@ $(function () {
                     // $("#dboCity").val(d.CityId);
                     $("#dboCity").trigger("change");
 
-
-                    //=========set image control============
-                    $("#result").html(div);
                   }
 
 
@@ -258,6 +258,9 @@ $(function () {
           });
         break;
       case "second":
+       if(!$("#msform").valid()) {
+          return false;
+       }
         AddUpdatePatientDetails();
         ShowHideNextStep($(this));
         break;
@@ -320,6 +323,39 @@ $(function () {
 
   //================end wizard ===============
 });
+
+function ValidationPatientInfo() {
+  $("#msform").validate({
+    rules: {
+      firstName: {
+        required: true,
+      },
+      lastName: {
+        required: true,
+      },
+      Email: {
+        required: true,
+        email: true
+      }
+    },
+    messages: {
+      Email: {
+        required: "The Email is required",
+        email: "The email should be in the format: abc@domain.tld",
+      },
+     
+      firstName: {
+        required: "First Name is required",
+      },
+      lastName: {
+        required: "Last field is required"
+      },
+    }
+
+
+  });
+
+}
 
 function ShowHideNextStep(btnNext) {
   //==========on first next button click in wazerd======
