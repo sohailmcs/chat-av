@@ -1,386 +1,384 @@
-var baseURL = "https://kindahclinic.com/KindahService/";
-//var baseURL = "http://localhost:1042/KindahService/";
+//var baseURL = "https://kindahclinic.com/KindahService/";
+var baseURL = "http://localhost:1042/KindahService/";
 var modelDetails;
 var hdnUserType = $("#hdnUserType").val();
 
 //==login==========
 function validatephonenumber(inputtxt) {
-  var isValid = true;
-  var regex = new RegExp(/^(?:\+?0*?966)?0?5[0-9]{8}$/);
-  var phoneNo = inputtxt;
-  if (!regex.test(phoneNo)) {
-    isValid = false;
-  } else {
-    isValid = true;
-  }
-  return isValid;
+    var isValid = true;
+    var regex = new RegExp(/^(?:\+?0*?966)?0?5[0-9]{8}$/);
+    var phoneNo = inputtxt;
+    if (!regex.test(phoneNo)) {
+        isValid = false;
+    } else {
+        isValid = true;
+    }
+    return isValid;
 }
+
 function validEmail(mail) {
-  return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(
-    mail
-  );
+    return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(
+        mail
+    );
 }
 
-$(function () {
-  $("#btnResend").click(function (e) {
-    e.preventDefault();
-    $("#frmforgotpwd").submit();
-  });
+$(function() {
+    $("#btnResend").click(function(e) {
+        e.preventDefault();
+        $("#frmforgotpwd").submit();
+    });
 
-  $("#frmforgotpwd").submit(function (e) {
-    e.preventDefault();
+    $("#frmforgotpwd").submit(function(e) {
+        e.preventDefault();
 
-    //validate phone
-    var enterdText = $("#txtEmailPhone").val();
-    if (!validEmail(enterdText)) {
-      if (!validatephonenumber(enterdText)) {
-        Swal.fire({
-          type: "info",
-          title: "SORRY!",
-          html:
-            "Plase enter correct phone no<br> <b >" +
-            $("#txtEmailPhone").val() +
-            "</b><br> ",
+        //validate phone
+        var enterdText = $("#txtEmailPhone").val();
+        if (!validEmail(enterdText)) {
+            if (!validatephonenumber(enterdText)) {
+                Swal.fire({
+                    type: "info",
+                    title: "SORRY!",
+                    html: "Plase enter correct phone no<br> <b >" +
+                        $("#txtEmailPhone").val() +
+                        "</b><br> ",
+                });
+                return false;
+            } else {
+                if (enterdText.length >= 9) {
+                    enterdText = enterdText.replace(/\D/g, "").slice(-9);
+                    //enterdText = "+966" + enterdText;
+                } else enterdText = enterdText;
+            }
+        }
+
+        var url =
+            baseURL +
+            "User/ForGotPassword?criteria=" +
+            encodeURIComponent(enterdText) +
+            "&pageName=forgotPassword" +
+            "&pageUrl=" +
+            window.location.href;
+        var endcodeUri = encodeURI(url);
+        $.ajax({
+            url: endcodeUri,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            type: "GET",
+            datatype: "application/json",
+            contentType: "application/json; charset=utf-8",
+            data: "",
+            beforeSend: function() {
+                //Show Loading if validate pass
+                $.LoadingOverlay("show");
+            },
+            success: function(data, textStatus, xhr) {
+                Swal.fire({
+                    title: "Password sent...!",
+                    text: "Password sent to your email and registerd phoneNumber",
+                    type: "success",
+                    confirmButtonClass: "btn btn-primary",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok",
+                });
+            },
+
+            error: function(xhr, textStatus, err) {
+                if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+                    $(".error").show().text("Server not respose. Please agan later");
+                else if (xhr.status == "404" && xhr.statusText == "Not Found") {
+                    Swal.fire({
+                        type: "info",
+                        title: "SORRY!",
+                        html: "User doest not exist <br> <b >" +
+                            $("#txtEmailPhone").val() +
+                            "</b><br> ",
+                    });
+                }
+            },
+            complete: function(data) {
+                // Hide Loading
+                $.LoadingOverlay("hide");
+                if (data.statusText == "error")
+                    $(".error").show().text("No response from server");
+            },
         });
-        return false;
-      } else {
-        if (enterdText.length >= 9) {
-          enterdText = enterdText.replace(/\D/g, "").slice(-9);
-          //enterdText = "+966" + enterdText;
-        } else enterdText = enterdText;
-      }
-    }
+    }); //==end of Loginform submit
 
-    var url =
-      baseURL +
-      "User/ForGotPassword?criteria=" +
-      encodeURIComponent(enterdText) +
-      "&pageName=forgotPassword" +
-      "&pageUrl=" +
-      window.location.href;
-    var endcodeUri = encodeURI(url);
-    $.ajax({
-      url: endcodeUri,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      type: "GET",
-      datatype: "application/json",
-      contentType: "application/json; charset=utf-8",
-      data: "",
-      beforeSend: function () {
-        //Show Loading if validate pass
-        $.LoadingOverlay("show");
-      },
-      success: function (data, textStatus, xhr) {
-        Swal.fire({
-          title: "Password sent...!",
-          text: "Password sent to your email and registerd phoneNumber",
-          type: "success",
-          confirmButtonClass: "btn btn-primary",
-          buttonsStyling: false,
-          confirmButtonText: "Ok",
+    //========SignUp=============
+    $("#frmSignUp").submit(function(e) {
+        e.preventDefault();
+
+        //  Validate requried fileds
+        validtion();
+        var model = {
+            FirstName: $("#txtFirstName").val(),
+            LastName: $("#txtLastName").val(),
+            FullName: $("#txtFirstName").val() + " " + $("#txtLastName").val(),
+            Email: $("#txtEmail").val(),
+            Password: $("#txtPassword").val(),
+            PhoneNo: $("input:disabled").val() + "" + $("#txtPhoneNo").val(),
+            UserType: hdnUserType == "patient" ? "Patient" : $("#dboUserType").val(),
+            pageName: "Signup",
+            pageUrl: window.location.href,
+        };
+
+        var url = baseURL + "User/SignUp";
+
+        $.ajax({
+            url: url,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            type: "POST",
+            datatype: "application/json",
+            contentType: "application/json; charset=utf-8",
+            data: model,
+            beforeSend: function() {
+                //Show Loading if validate pass
+                $.LoadingOverlay("show");
+            },
+            success: function(d, textStatus, xhr) {
+                $(".error").hide();
+                //=====intiliaze details to add patient when OTP verified
+                if (hdnUserType == "patient") {
+                    modelDetails = {
+                        PatientId: d.UserRefId,
+                        FirstName: d.FirstName,
+                        LastName: d.LastName,
+                        PhoneNo: d.PhoneNo,
+                        FullName: d.FullName,
+                        Gender: "F",
+                    };
+                } else {
+                    modelDetails = {
+                        DoctorId: d.UserRefId,
+                        FirstName: d.FirstName,
+                        LastName: d.LastName,
+                        FullName: d.FullName,
+                        PhoneNumber: d.PhoneNo,
+                    };
+                }
+                $("#primary").modal("show");
+            },
+            error: function(xhr, textStatus, err) {
+                console.log(JSON.stringify(xhr));
+            },
+            complete: function(data) {
+                // Hide Loading
+                $.LoadingOverlay("hide");
+                if (data.statusText == "error")
+                    $(".error").show().text("No response from server");
+            },
         });
-      },
-
-      error: function (xhr, textStatus, err) {
-        if (xhr.status == "500" && xhr.statusText == "InternalServerError")
-          $(".error").show().text("Server not respose. Please agan later");
-        else if (xhr.status == "404" && xhr.statusText == "Not Found") {
-          Swal.fire({
-            type: "info",
-            title: "SORRY!",
-            html:
-              "User doest not exist <br> <b >" +
-              $("#txtEmailPhone").val() +
-              "</b><br> ",
-          });
-        }
-      },
-      complete: function (data) {
-        // Hide Loading
-        $.LoadingOverlay("hide");
-        if (data.statusText == "error")
-          $(".error").show().text("No response from server");
-      },
     });
-  }); //==end of Loginform submit
+    //========end of SignUp=============
 
-  //========SignUp=============
-  $("#frmSignUp").submit(function (e) {
-    e.preventDefault();
+    // reset password
+    $("#frmresetpwd").submit(function(e) {
+        e.preventDefault();
 
-    //  Validate requried fileds
-    validtion();
-    var model = {
-      FirstName: $("#txtFirstName").val(),
-      LastName: $("#txtLastName").val(),
-      FullName: $("#txtFirstName").val() + " " + $("#txtLastName").val(),
-      Email: $("#txtEmail").val(),
-      Password: $("#txtPassword").val(),
-      PhoneNo: $("input:disabled").val() + "" + $("#txtPhoneNo").val(),
-      UserType: hdnUserType == "patient" ? "Patient" : $("#dboUserType").val(),
-      pageName: "Signup",
-      pageUrl: window.location.href,
-    };
-
-    var url = baseURL + "User/SignUp";
-
-    $.ajax({
-      url: url,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      type: "POST",
-      datatype: "application/json",
-      contentType: "application/json; charset=utf-8",
-      data: model,
-      beforeSend: function () {
-        //Show Loading if validate pass
-        $.LoadingOverlay("show");
-      },
-      success: function (d, textStatus, xhr) {
-        $(".error").hide();
-        //=====intiliaze details to add patient when OTP verified
-        if (hdnUserType == "patient") {
-          modelDetails = {
-            PatientId: d.UserRefId,
-            FirstName: d.FirstName,
-            LastName: d.LastName,
-            PhoneNo: d.PhoneNo,
-            FullName: d.FullName,
-            Gender: "F",
-          };
-        } else {
-          modelDetails = {
-            DoctorId: d.UserRefId,
-            FirstName: d.FirstName,
-            LastName: d.LastName,
-            FullName: d.FullName,
-            PhoneNumber: d.PhoneNo,
-          };
+        var password = $("#txtNewPassword").val();
+        var confirmPassword = $("#txtConfirmNewPassword").val();
+        if (password != confirmPassword) {
+            Swal.fire({
+                type: "info",
+                title: "SORRY!",
+                html: "Passwords do not match. <br> <b >" +
+                    $("#txtNewPassword").val() +
+                    "=" +
+                    $("#txtConfirmNewPassword").val() +
+                    "</b><br> ",
+            });
+            return false;
         }
-        $("#primary").modal("show");
-      },
-      error: function (xhr, textStatus, err) {
-        console.log(JSON.stringify(xhr));
-      },
-      complete: function (data) {
-        // Hide Loading
-        $.LoadingOverlay("hide");
-        if (data.statusText == "error")
-          $(".error").show().text("No response from server");
-      },
-    });
-  });
-  //========end of SignUp=============
 
-  // reset password
-  $("#frmresetpwd").submit(function (e) {
-    e.preventDefault();
+        var url = baseURL + "User/ResetPassword";
+        var ResetPassword = {
+            Username: $("#txtUsername").val(),
+            OldPassword: $("#txtOldPassword").val(),
+            NewPassword: $("#txtNewPassword").val(),
+        };
 
-    var password = $("#txtNewPassword").val();
-    var confirmPassword = $("#txtConfirmNewPassword").val();
-    if (password != confirmPassword) {
-      Swal.fire({
-        type: "info",
-        title: "SORRY!",
-        html:
-          "Passwords do not match. <br> <b >" +
-          $("#txtNewPassword").val() +
-          "=" +
-          $("#txtConfirmNewPassword").val() +
-          "</b><br> ",
-      });
-      return false;
-    }
+        $.ajax({
+            url: url,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            type: "POST",
+            datatype: "application/json",
+            contentType: "application/json; charset=utf-8",
+            data: ResetPassword,
+            beforeSend: function() {
+                //Show Loading if validate pass
+                $.LoadingOverlay("show");
+            },
+            success: function(data, textStatus, xhr) {
+                Swal.fire({
+                    title: "Password change...!",
+                    text: "Password has been successfully change",
+                    type: "success",
+                    confirmButtonClass: "btn btn-primary",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok",
+                });
+                $("#txtOldPassword").val("");
+                $("#txtNewPassword").val("");
+                $("#txtConfirmNewPassword").val("");
+                $("#popupResetPassword").modal("hide");
+            },
 
-    var url = baseURL + "User/ResetPassword";
-    var ResetPassword = {
-      Username: $("#txtUsername").val(),
-      OldPassword: $("#txtOldPassword").val(),
-      NewPassword: $("#txtNewPassword").val(),
-    };
-
-    $.ajax({
-      url: url,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      type: "POST",
-      datatype: "application/json",
-      contentType: "application/json; charset=utf-8",
-      data: ResetPassword,
-      beforeSend: function () {
-        //Show Loading if validate pass
-        $.LoadingOverlay("show");
-      },
-      success: function (data, textStatus, xhr) {
-        Swal.fire({
-          title: "Password change...!",
-          text: "Password has been successfully change",
-          type: "success",
-          confirmButtonClass: "btn btn-primary",
-          buttonsStyling: false,
-          confirmButtonText: "Ok",
+            error: function(xhr, textStatus, err) {
+                if (xhr.status == "500" && xhr.statusText == "InternalServerError") {
+                    $(".error").show().text("Server not respose. Please agan later");
+                } else if (xhr.status == "404" && xhr.statusText == "Not Found") {
+                    Swal.fire({
+                        type: "info",
+                        title: "SORRY!",
+                        html: "old password does not exist in our system <br> <b >" +
+                            $("#txtOldPassword").val() +
+                            "</b><br> ",
+                    });
+                }
+            },
+            complete: function(data) {
+                // Hide Loading
+                $.LoadingOverlay("hide");
+                if (data.statusText == "error")
+                    $(".error").show().text("No response from server");
+            },
         });
-        $("#txtOldPassword").val("");
-        $("#txtNewPassword").val("");
-        $("#txtConfirmNewPassword").val("");
-        $("#popupResetPassword").modal("hide");
-      },
+    }); //==end of reset submit
 
-      error: function (xhr, textStatus, err) {
-        if (xhr.status == "500" && xhr.statusText == "InternalServerError") {
-          $(".error").show().text("Server not respose. Please agan later");
-        } else if (xhr.status == "404" && xhr.statusText == "Not Found") {
-          Swal.fire({
-            type: "info",
-            title: "SORRY!",
-            html:
-              "old password does not exist in our system <br> <b >" +
-              $("#txtOldPassword").val() +
-              "</b><br> ",
-          });
-        }
-      },
-      complete: function (data) {
-        // Hide Loading
-        $.LoadingOverlay("hide");
-        if (data.statusText == "error")
-          $(".error").show().text("No response from server");
-      },
+    //====start of one time password varification=====
+    $("#btnOTPVerify").on("click", function() {
+        OTPVerify();
+    }); //====end of one time password verification=======
+
+    function OTPVerify() {
+        //debugger;
+        var concatOTP =
+            $("#squareText1").val() +
+            "" +
+            $("#squareText2").val() +
+            "" +
+            $("#squareText3").val() +
+            "" +
+            $("#squareText4").val();
+
+        var OTPCode = concatOTP.trim();
+        var url =
+            baseURL +
+            "User/VerifiedUserByOTP?UserId=" +
+            $("#hdnUserId").val() +
+            "&OTPKey=" +
+            OTPCode;
+
+        //console.log('url '+url);
+        $.ajax({
+            url: url,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            type: "POST",
+            datatype: "application/json",
+            contentType: "application/json; charset=utf-8",
+            data: "",
+            beforeSend: function() {
+                //Show Loading if validate pass
+                $.LoadingOverlay("show");
+            },
+            success: function(d, textStatus, xhr) {
+                if (xhr.status == 201) {
+                    Swal.fire({
+                        title: "Congratulations",
+                        text: "Click on button Login to Access your Account",
+                        type: "success",
+                        confirmButtonClass: "btn btn-primary",
+                        buttonsStyling: false,
+                        confirmButtonText: "<a style='color:#fff'>OK</a>",
+                    }).then(function() {
+                        window.location.href = "/Login";
+                        $("#poupOTP").modal("hide");
+                    });
+                }
+                //=====intiliaze patientModel to add patient
+            },
+            error: function(xhr, textStatus, err) {
+                if (xhr.status == "406" && xhr.responseJSON.Message == "InValidOTP") {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Check your Email and Enter the valid Code Again ",
+                        type: "error",
+                        confirmButtonClass: "btn btn-primary",
+                        buttonsStyling: false,
+                        confirmButtonText: "<a style='color:#fff'>OK</a>",
+                    });
+                }
+            },
+            complete: function(data) {
+                // Hide Loading
+                $.LoadingOverlay("hide");
+            },
+        });
+    } //====end of one time password verification=======
+
+    $("#btnResendOTP").on("click", function() {
+        ResendOTP("Patient");
     });
-  }); //==end of reset submit
 
-  //====start of one time password varification=====
-  $("#btnOTPVerify").on("click", function () {
-    OTPVerify();
-  }); //====end of one time password verification=======
+    function ResendOTP(useType) {
+        var url =
+            baseURL +
+            "User/VerifiedUserByOTP?UserId=" +
+            $("#hdnUserId").val() +
+            "&PhoneNo=" +
+            $("#hdnPhone").val() +
+            "&Email=" +
+            $("#hdnEamil").val();
 
-  function OTPVerify() {
-    //debugger;
-    var concatOTP =
-      $("#squareText1").val() +
-      "" +
-      $("#squareText2").val() +
-      "" +
-      $("#squareText3").val() +
-      "" +
-      $("#squareText4").val();
-
-    var OTPCode = concatOTP.trim();
-    var url =
-      baseURL +
-      "User/VerifiedUserByOTP?UserId=" +
-      $("#hdnUserId").val() +
-      "&OTPKey=" +
-      OTPCode;
-
-    //console.log('url '+url);
-    $.ajax({
-      url: url,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      type: "POST",
-      datatype: "application/json",
-      contentType: "application/json; charset=utf-8",
-      data: "",
-      beforeSend: function () {
-        //Show Loading if validate pass
-        $.LoadingOverlay("show");
-      },
-      success: function (d, textStatus, xhr) {
-        if (xhr.status == 201) {
-          Swal.fire({
-            title: "Congratulations",
-            text: "Click on button Login to Access your Account",
-            type: "success",
-            confirmButtonClass: "btn btn-primary",
-            buttonsStyling: false,
-            confirmButtonText: "<a style='color:#fff'>OK</a>",
-          }).then(function () {
-            window.location.href = "/Login";
-            $("#poupOTP").modal("hide");
-          });
-        }
-        //=====intiliaze patientModel to add patient
-      },
-      error: function (xhr, textStatus, err) {
-        if (xhr.status == "406" && xhr.responseJSON.Message == "InValidOTP") {
-          Swal.fire({
-            title: "Error!",
-            text: "Check your Email and Enter the valid Code Again ",
-            type: "error",
-            confirmButtonClass: "btn btn-primary",
-            buttonsStyling: false,
-            confirmButtonText: "<a style='color:#fff'>OK</a>",
-          });
-        }
-      },
-      complete: function (data) {
-        // Hide Loading
-        $.LoadingOverlay("hide");
-      },
-    });
-  } //====end of one time password verification=======
-
-  $("#btnResendOTP").on("click", function () {
-    ResendOTP("Patient");
-  });
-  function ResendOTP(useType) {
-    var url =
-      baseURL +
-      "User/VerifiedUserByOTP?UserId=" +
-      $("#hdnUserId").val() +
-      "&PhoneNo=" +
-      $("#hdnPhone").val() +
-      "&Email=" +
-      $("#hdnEamil").val(); 
-
-    $.ajax({
-      url: url,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      type: "GET",
-      datatype: "application/json",
-      contentType: "application/json; charset=utf-8",
-      data: "",
-      beforeSend: function () {
-        //Show Loading if validate pass
-        $.LoadingOverlay("show");
-      },
-      success: function (d, textStatus, xhr) {
-        if (xhr.status == 200) {
-          Swal.fire({
-            title: "Congratulations",
-            text: "OTP resend successfully.",
-            type: "success",
-            confirmButtonClass: "btn btn-primary",
-            buttonsStyling: false,
-            confirmButtonText: "<a style='color:#fff'>OK</a>",
-          });
-        }
-        //=====intiliaze patientModel to add patient
-      },
-      error: function (xhr, textStatus, err) {
-        if (xhr.status == "404" && xhr.statusText == "NotFound") {
-          Swal.fire({
-            title: "Error!",
-            text: "User Not Found ",
-            type: "error",
-            confirmButtonClass: "btn btn-primary",
-            buttonsStyling: false,
-            confirmButtonText: "<a style='color:#fff'>OK</a>",
-          });
-        }
-      },
-      complete: function (data) {
-        // Hide Loading
-        $.LoadingOverlay("hide");
-      },
-    });
-  } //====end of one time password verification=======
+        $.ajax({
+            url: url,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            type: "GET",
+            datatype: "application/json",
+            contentType: "application/json; charset=utf-8",
+            data: "",
+            beforeSend: function() {
+                //Show Loading if validate pass
+                $.LoadingOverlay("show");
+            },
+            success: function(d, textStatus, xhr) {
+                if (xhr.status == 200) {
+                    Swal.fire({
+                        title: "Congratulations",
+                        text: "OTP resend successfully.",
+                        type: "success",
+                        confirmButtonClass: "btn btn-primary",
+                        buttonsStyling: false,
+                        confirmButtonText: "<a style='color:#fff'>OK</a>",
+                    });
+                }
+                //=====intiliaze patientModel to add patient
+            },
+            error: function(xhr, textStatus, err) {
+                if (xhr.status == "404" && xhr.statusText == "NotFound") {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "User Not Found ",
+                        type: "error",
+                        confirmButtonClass: "btn btn-primary",
+                        buttonsStyling: false,
+                        confirmButtonText: "<a style='color:#fff'>OK</a>",
+                    });
+                }
+            },
+            complete: function(data) {
+                // Hide Loading
+                $.LoadingOverlay("hide");
+            },
+        });
+    } //====end of one time password verification=======
 }); //==end of jquery $function
