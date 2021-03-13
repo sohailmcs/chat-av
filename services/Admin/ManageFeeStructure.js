@@ -112,7 +112,7 @@ function DeleteFee(id) {
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
         },
-        type: "Get",
+        type: "GET",
         datatype: "application/json",
         contentType: "application/json; charset=utf-8",
         data: "",
