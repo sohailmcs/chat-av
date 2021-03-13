@@ -63,11 +63,61 @@ $(function() {
     });
 
     GetDoctorsProfile(doctorId);
-    $("#frmDoctorProfile").submit(function(e) {
+    $("#frmDoctorProfile").on("submit", function(e) {
         e.preventDefault();
         AddEditDoctorProfile(doctorId);
+        // CheckPhoneAlergyExit(doctorId, $("#txtPno").val()).then(data => {
+        //     AddEditDoctorProfile(doctorId);
+
+        // }).catch((error) => {
+        //     if (error == "Found") {
+        //         Swal.fire({
+        //             title: "Confirmation!",
+        //             text: "Doctor with same phone number already exit ",
+        //             type: "error",
+        //             confirmButtonClass: "btn btn-primary",
+        //             buttonsStyling: false,
+        //             confirmButtonText: "Ok",
+        //         })
+        //     } else
+        //         console.log(error);
+        // });
+
     });
 });
+
+
+function CheckPhoneAlergyExit(doctorId, PhoneNo) {
+    return new Promise((resolve, reject) => {
+
+        var url = baseURL + "Doctor/CheckPhoneExit?doctorId=" + doctorId + "&PhoneNo=" + PhoneNo;
+        $.ajax({
+            url: url,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            type: "GET",
+            datatype: "application/json",
+            contentType: "application/json; charset=utf-8",
+            data: "",
+            beforeSend: function() {
+                $.LoadingOverlay("show");
+            },
+            success: function(data, textStatus, xhr) {
+                resolve(data);
+            },
+
+            error: function(xhr, textStatus, err) {
+                reject(err);
+            },
+            complete: function(data) {
+                // Hide Loading
+                $.LoadingOverlay("hide");
+            },
+        });
+    });
+}
+
 
 function FillCity(countryID, selectedval) {
     var url = baseURL + "City/GetCity?countryId=" + countryID;
@@ -218,9 +268,11 @@ function SetDoctorProfile(d) {
 
 function setDoctorExperiance(data) {
     $.each(data, function(ind, val) {
+        var dtTo = new Date(val.To).toISOString().split('T')[0];
+        var dtFrom = new Date(val.From).toISOString().split('T')[0];
         $("#txtHospital").val(val.HospitalName);
-        $("#txtTo").val(val.To);
-        $("#txtFrom").val(val.From);
+        $("#txtTo").val(dtTo);
+        $("#txtFrom").val(dtFrom);
         $("#txtDesignation").val(val.Designation);
     });
 }
@@ -277,22 +329,7 @@ function GetDoctorsProfile(doctorId) {
     });
 }
 
-function Validation() {
-    $("#frmDoctorProfile").validate({
-        rules: {
-            ProfilePic: {
-                required: true,
-                accept: "image/jpeg, image/pjpeg"
-            }
-        },
-        messages: {
-            ProfilePic: {
-                required: "First Name is required",
-            },
 
-        }
-    });
-}
 
 function AddEditDoctorProfile(doctorId) {
     var url = baseURL + "Doctor/AddUpdateDoctorProfile";

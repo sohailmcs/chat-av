@@ -45,38 +45,39 @@
             <div class="app-content content">
                 <div class="content-wrapper">
                     <div class="content-body">
-                        <br />
-                        <div class="d-flex flex-row">
-                            <div class="page-heading">
-                                <h3>EDIT DOCTOR PROFILE</h3>
-                            </div>
-                        </div>
-                        <!-- basic info -->
-                        <section class="multiple-validation">
-                            <!-- clinic 'info' -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Profile Picture</h4>
+                        <form class="form-horizontal" id="frmDoctorProfile">
+                            <br />
+                            <div class="d-flex flex-row">
+                                <div class="page-heading">
+                                    <h3>EDIT DOCTOR PROFILE</h3>
                                 </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <input required name="ProfilePic" id="files" type="file" multiple />
-                                                <br />
-                                                <output id="result"></output>
-                                                <br />
-                                                <br />
+                            </div>
+                            <!-- basic info -->
+                            <section class="multiple-validation">
+                                <!-- clinic 'info' -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Profile Picture</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <input name="ProfilePic" id="files" type="file" multiple />
+                                                    <br />
+                                                    <output id="result"></output>
+                                                    <br />
+                                                    <br />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form class="form-horizontal" id="frmDoctorProfile">
+                                <div class="row">
+                                    <div class="col-md-12">
+
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="card-title">Basic Information</h4>
@@ -128,7 +129,7 @@
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <label class="form-label" for="txtPno">Phone No</label>
-                                                                        <input required name="txtPno" type="number" class="form-input form-control" id="txtPno" />
+                                                                        <input disabled name="txtPno" type="number" class="form-input form-control" id="txtPno" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -337,24 +338,22 @@
                                                     </div>
                                                     <div class="card-content">
                                                         <div class="card-body">
-                                                            <form class="form repeater-default">
-                                                                <div data-repeater-list="group-a">
-                                                                    <div data-repeater-item>
-                                                                        <div class="row justify-content-between">
-                                                                            <div class="col-md-3 col-sm-12 form-group focused">
-                                                                                <label class="form-label" for="dboProficiency">Proficiency</label>
-                                                                                <select name="Proficiency" multiple="multiple" id="dboProficiency" class="form-input form-control">
+                                                            <div data-repeater-list="group-a">
+                                                                <div data-repeater-item>
+                                                                    <div class="row justify-content-between">
+                                                                        <div class="col-md-3 col-sm-12 form-group focused">
+                                                                            <label class="form-label" for="dboProficiency">Proficiency</label>
+                                                                            <select name="Proficiency" multiple="multiple" id="dboProficiency" class="form-input form-control">
                                                                    <option value="Arabic">Arabic</option>
                                                                    <option value="English">English</option>
                                                                    </select>
-                                                                            </div>
-
                                                                         </div>
-                                                                        <hr />
-                                                                    </div>
-                                                                </div>
 
-                                                            </form>
+                                                                    </div>
+                                                                    <hr />
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -422,7 +421,7 @@
                                                                     </button>
                                                                                 </div>
                                                                             </div>
-                                                                        </form>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -450,20 +449,20 @@
                                                                                 <div data-repeater-item>
                                                                                     <div class="row justify-content-between">
                                                                                         <div class="col-md-3 col-sm-12 form-group ">
-                                                                                            <label class="form-label" for="txtHospital">Hispital Name</label>
-                                                                                            <input required type="text" class="form-input form-control" id="txtHospital" />
+                                                                                            <label class="form-label" for="txtHospital">Hospital Name</label>
+                                                                                            <input required="required" name="txtHospital" type="text" class="form-input form-control" id="txtHospital" />
                                                                                         </div>
                                                                                         <div class="col-md-3 col-sm-12 form-group focused">
                                                                                             <label style="transform: translateY(-125%);" class="form-label" for="txtFrom">Start From</label>
-                                                                                            <input required id="txtFrom" class="form-input form-control" type="date">
+                                                                                            <input required name="txtFrom" id="txtFrom" class="form-input form-control" type="date">
                                                                                         </div>
                                                                                         <div class="col-md-3 col-sm-12 form-group focused">
                                                                                             <label style="transform: translateY(-125%);" class="form-label" for="txtTo">Start To</label>
-                                                                                            <input required id="txtTo" class="form-input form-control" type="date">
+                                                                                            <input required name="txtTo" id="txtTo" class="form-input form-control" type="date">
                                                                                         </div>
                                                                                         <div class="col-md-3 col-sm-12 form-group">
                                                                                             <label class="form-label" for="txtDesignation">Designation</label>
-                                                                                            <input required type="text" class="form-input form-control" id="txtDesignation" />
+                                                                                            <input required name="txtDesignation" type="text" class="form-input form-control" id="txtDesignation" />
                                                                                         </div>
 
                                                                                         <div class="col-md-3 col-sm-12 form-group d-flex align-items-center">
@@ -484,7 +483,8 @@
                                                                     </button>
                                                                                 </div>
                                                                             </div>
-                                                                        </form>
+
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -506,19 +506,19 @@
                                                                 </div>
                                                                 <div class="card-content">
                                                                     <div class="card-body">
-                                                                        <form class="form repeater-default">
-                                                                            <div data-repeater-list="group-a">
-                                                                                <div data-repeater-item>
-                                                                                    <div class="row justify-content-between">
-                                                                                        <div class="col-md-4 col-sm-12 form-group">
-                                                                                            <label class="form-label" for="txtAward">Award</label>
-                                                                                            <input type="text" class="form-input form-control" id="txtAward" />
-                                                                                        </div>
 
-                                                                                        <div class="col-md-4 col-sm-12 form-group">
+                                                                        <div data-repeater-list="group-a">
+                                                                            <div data-repeater-item>
+                                                                                <div class="row justify-content-between">
+                                                                                    <div class="col-md-4 col-sm-12 form-group">
+                                                                                        <label class="form-label" for="txtAward">Award</label>
+                                                                                        <input type="text" class="form-input form-control" id="txtAward" />
+                                                                                    </div>
 
-                                                                                            <label class="form-label" for="txtAwarYear">Award Year</label>
-                                                                                            <select name="Year" id="txtAwarYear" class="form-input form-control">
+                                                                                    <div class="col-md-4 col-sm-12 form-group">
+
+                                                                                        <label class="form-label" for="txtAwarYear">Award Year</label>
+                                                                                        <select name="Year" id="txtAwarYear" class="form-input form-control">
                                                                                     <option value="2020">2021</option>                                                                                    
                                                                                     <option value="2020">2020</option>
                                                                                     <option value="2019">2019</option>
@@ -536,27 +536,27 @@
                                                                                     <option value="2007">2007</option>
                                                                                 </select>
 
-                                                                                        </div>
+                                                                                    </div>
 
-                                                                                        <div class="col-md-3 col-sm-12 form-group d-flex align-items-center">
-                                                                                            <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button">
+                                                                                    <div class="col-md-3 col-sm-12 form-group d-flex align-items-center">
+                                                                                        <button class="btn btn-danger text-nowrap px-1" data-repeater-delete type="button">
                                                                                 <i class="bx bxs-trash-alt"></i>
                                                                                 Delete
                                                                             </button>
-                                                                                        </div>
                                                                                     </div>
-                                                                                    <hr />
                                                                                 </div>
+                                                                                <hr />
                                                                             </div>
-                                                                            <div class="form-group">
-                                                                                <div class="col p-0">
-                                                                                    <button class="btn btn-primary" data-repeater-create type="button">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col p-0">
+                                                                                <button class="btn btn-primary" data-repeater-create type="button">
                                                                         <i class="bx bx-plus"></i>
                                                                         Add More
                                                                     </button>
-                                                                                </div>
                                                                             </div>
-                                                                        </form>
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -577,12 +577,22 @@
                                                     <!--end of row-->
                                                 </section>
 
-                                    </form>
-                                    </div>
-                                    </div>
-                        </section>
-                        </div>
-                        </div>
+
+
+
+
+
+
+
+
+
+                                            </div>
+                                            <!--end of content-body-->
+                                            </form>
+                                        </div>
+                            </section>
+                            </div>
+                            </div>
                     </div>
 
                     <!-- BEGIN: Content-->

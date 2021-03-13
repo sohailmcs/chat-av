@@ -47,30 +47,7 @@ function testing()
     });
 }
 
-function GetCurrentTimeZone() {
-    return new Promise((resolve, reject) => {
-        $.getJSON('https://timezoneapi.io/api/timezone/?Asia/Baghdad&token=aiSVRPhzlzuAoIdUFmsO', function(data) {
 
-            // Request OK?
-            if (data.meta.code == '200') {
-
-                // Log
-                //console.log(data);
-
-                // Example: Get the city parameter
-                var city = data.data.city;
-                //  alert(city);
-
-                // Example: Get the users time
-                var time = data.data.datetime.date_time_txt;
-                if (time != null)
-                    resolve(time);
-                else
-                    reject(Error("no city found"));
-            }
-        });
-    });
-}
 
 function InitCalender(currentDt) {
     $("#scheduler").kendoCalendar({

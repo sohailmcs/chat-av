@@ -59,6 +59,7 @@ class AutoLogout {
         });
     }
 }
+//=========================end auto logout   ==============================
 
 function CalculateAge(userinput) {
 
@@ -154,8 +155,34 @@ function CalculateAge(userinput) {
         else ageString = "It's first day on Earth!";
 
         //display the calculated age
-        return (document.getElementById("spnAge").innerHTML =
-            "(" + ageString + ")");
+        return document.getElementById("spnAge").innerHTML =
+            ageString;
     }
 }
-//=========================end auto logout   ==============================
+
+
+//==============get time zone of Saudia/Baghdad=====================
+function GetCurrentTimeZone() {
+    return new Promise((resolve, reject) => {
+        $.getJSON('https://timezoneapi.io/api/timezone/?Asia/Baghdad&token=aiSVRPhzlzuAoIdUFmsO', function(data) {
+
+            // Request OK?
+            if (data.meta.code == '200') {
+                // Log
+                //console.log(data);
+
+                // Example: Get the city parameter
+                var city = data.data.city;
+                //  alert(city);
+
+                // Example: Get the users time
+                var time = data.data.datetime.date_time_txt;
+                if (time != null)
+                    resolve(time);
+                else
+                    reject(Error("no city found"));
+            }
+        });
+
+    });
+}

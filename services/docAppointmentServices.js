@@ -2,614 +2,614 @@
 //var baseURL = "http://localhost:1042/KindahService/";
 var useLoginId = $(".user-name").attr("UserInfo");
 var UserName = $(".user-name").text();
+var currentDt;
+$(function() {
+    GetCurrentTimeZone().then(function(result) {
+        currentDt = result
+        GetDoctorAllSlots(useLoginId, currentDt);
+    });
 
-$(function () {
-  //ViewBookingDetails(1);
+    $("#btnSave").click(function() {
+        $("#dtFrom").css("border", "none");
+        $("#toDT").css("border", "none");
+        if (Validation()) {
+            if (!ConfilictValidation()) return false;
+            else {
+                //===generate slots for selected weekDays===
+                var slots = GenerateDoctorSlots();
+                //======send generated slots to service to create scheduled=====
+                createDoctorScheduled(slots);
+            }
+        }
+    }); //====end of btnsave click====================
+    //======start calender funtions =====================
+    $("#scheduler").kendoCalendar({
+        value: new Date(),
+        footer: false,
+        change: function() {
+            var selectedDate = kendo.toString(this.value(), "d");
+            GetDoctorAllSlots(useLoginId, selectedDate);
+            //==============change Edit popup date on calender change========
+            var options = {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            };
+            $(".sch-app-head").html(
+                "<span>" + new Date().toLocaleDateString("en-US", options + "</span>")
+            );
+        },
+    });
 
-  var currentDt = kendo.toString(new Date(), "d");
-  GetDoctorAllSlots(useLoginId, currentDt);
+    $(document).on("click", ".btnDelete", function() {
+        $("#hdnAppId").val($(this).attr("appDetailId"));
+        $("#hdnPatId").val($(this).attr("PatientID"));
+        $("#hdnDocId").val($(this).attr("DoctorId"));
 
-  $("#btnSave").click(function () {
-    $("#dtFrom").css("border", "none");
-    $("#toDT").css("border", "none");
-    if (Validation()) {
-      if (!ConfilictValidation()) return false;
-      else {
-        //===generate slots for selected weekDays===
-        var slots = GenerateDoctorSlots();
-        //======send generated slots to service to create scheduled=====
-        createDoctorScheduled(slots);
-      }
-    }
-  }); //====end of btnsave click====================
-  //======start calender funtions =====================
-  $("#scheduler").kendoCalendar({
-    value: new Date(),
-    footer: false,
-    change: function () {
-      var selectedDate = kendo.toString(this.value(), "d");
-      GetDoctorAllSlots(useLoginId, selectedDate);
-      //==============change Edit popup date on calender change========
-      var options = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      };
-      $(".sch-app-head").html(
-        "<span>" + new Date().toLocaleDateString("en-US", options + "</span>")
-      );
-    },
-  });
+        $("#popupConfirm").modal("show");
+    });
+    $(document).on("click", ".btnConfirmDelete", function() {
+        var PageName = window.location.pathname;
+        var PageUrl = window.location.href;
+        var calendar = $("#scheduler").data("kendoCalendar");
 
-  $(document).on("click", ".btnDelete", function () {
-    $("#hdnAppId").val($(this).attr("appDetailId"));
-    $("#hdnPatId").val($(this).attr("PatientID"));
-    $("#hdnDocId").val($(this).attr("DoctorId"));
+        CancelAppointment(
+                $("#hdnAppId").val(),
+                $("#hdnPatId").val(),
+                $("#hdnDocId").val(),
+                PageName,
+                PageUrl
+            )
+            .then((data) => {
+                $("#popupConfirm").modal("hide");
+                Swal.fire({
+                    title: "Confirmation",
+                    text: "Your appointment has been deleted ",
+                    type: "info",
+                    confirmButtonClass: "btn btn-primary",
+                    buttonsStyling: false,
+                    confirmButtonText: "<a style='color:#fff'>OK</a>",
+                });
+                calendar.trigger("change");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    });
 
-    $("#popupConfirm").modal("show");
-  });
-  $(document).on("click", ".btnConfirmDelete", function () {
-    var PageName = window.location.pathname;
-    var PageUrl = window.location.href;
-    var calendar = $("#scheduler").data("kendoCalendar");
-
-    CancelAppointment(
-      $("#hdnAppId").val(),
-      $("#hdnPatId").val(),
-      $("#hdnDocId").val(),
-      PageName,
-      PageUrl
-    )
-      .then((data) => {
-        $("#popupConfirm").modal("hide");
-        Swal.fire({
-          title: "Confirmation",
-          text: "Your appointment has been deleted ",
-          type: "info",
-          confirmButtonClass: "btn btn-primary",
-          buttonsStyling: false,
-          confirmButtonText: "<a style='color:#fff'>OK</a>",
-        });
-        calendar.trigger("change");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
-
-  $(document).on("click", ".btnViewDetail", function () {
-    var patientId = $(this).attr("PatientId");
-    ViewBookingDetails(patientId);
-  });
+    $(document).on("click", ".btnViewDetail", function() {
+        var patientId = $(this).attr("PatientId");
+        ViewBookingDetails(patientId);
+    });
 }); //=====end of $(function)=====
 
 function DateValidation() {
-  var result = true;
-  var DtFrom = new Date($("#dtFrom").val());
-  var DtTo = new Date($("#toDT").val());
-  if (DtFrom > DtTo) result = false;
-  return result;
+    var result = true;
+    var DtFrom = new Date($("#dtFrom").val());
+    var DtTo = new Date($("#toDT").val());
+    if (DtFrom > DtTo) result = false;
+    return result;
 }
 //=====validate any day of shift 1 confilict with any day of shift 2================
 function ConfilictValidation() {
-  var result = true;
-  var allCheckedShift1 = $("#Shift1").find("input[type='checkbox']:checked");
-  var allCheckedShift2 = $("#Shift2").find("input[type='checkbox']:checked");
-  $("#Shift1, #Shift2").find("input[type='text']").css("border", "none");
+    var result = true;
+    var allCheckedShift1 = $("#Shift1").find("input[type='checkbox']:checked");
+    var allCheckedShift2 = $("#Shift2").find("input[type='checkbox']:checked");
+    $("#Shift1, #Shift2").find("input[type='text']").css("border", "none");
 
-  $.each(allCheckedShift1, function (ind, val) {
-    var shift1Parent = $(this).parents("div.sch-app");
-    var shift2Txtbox = shift1Parent.find(".txtEnd");
-    var shift1Element = shift1Parent.find(".txtEnd").val().split(":");
-    var shift1Hours = shift1Element[0];
-    var shift1Min = shift1Element[1];
-    var Shift1dayName = $(this).attr("cls");
+    $.each(allCheckedShift1, function(ind, val) {
+        var shift1Parent = $(this).parents("div.sch-app");
+        var shift2Txtbox = shift1Parent.find(".txtEnd");
+        var shift1Element = shift1Parent.find(".txtEnd").val().split(":");
+        var shift1Hours = shift1Element[0];
+        var shift1Min = shift1Element[1];
+        var Shift1dayName = $(this).attr("cls");
 
-    var txtStartVal = shift1Parent.find(".txtStart").val();
-    var txtEndVal = shift1Parent.find(".txtEnd").val();
-    if (txtStartVal == "" || txtEndVal == "") {
-      Swal.fire({
-        title: "Confirmation!",
-        text: "Please select start and end time property",
-        type: "info",
-        confirmButtonClass: "btn btn-primary",
-        confirmButtonText: "Ok",
-      });
-      shift1Parent.find(".txtStart").css("border", "1px solid red");
-      shift1Parent.find(".txtEnd").css("border", "1px solid red");
-      result = false;
-      return false;
-    }
+        var txtStartVal = shift1Parent.find(".txtStart").val();
+        var txtEndVal = shift1Parent.find(".txtEnd").val();
+        if (txtStartVal == "" || txtEndVal == "") {
+            Swal.fire({
+                title: "Confirmation!",
+                text: "Please select start and end time property",
+                type: "info",
+                confirmButtonClass: "btn btn-primary",
+                confirmButtonText: "Ok",
+            });
+            shift1Parent.find(".txtStart").css("border", "1px solid red");
+            shift1Parent.find(".txtEnd").css("border", "1px solid red");
+            result = false;
+            return false;
+        }
 
-    var Shift1Checkbox = $("#Shift1").find(
-      "input[cls='" + Shift1dayName + "']"
-    );
-    var Shift2Checkbox = $("#Shift2").find(
-      "input[cls='" + Shift1dayName + "']"
-    );
+        var Shift1Checkbox = $("#Shift1").find(
+            "input[cls='" + Shift1dayName + "']"
+        );
+        var Shift2Checkbox = $("#Shift2").find(
+            "input[cls='" + Shift1dayName + "']"
+        );
 
-    if (allCheckedShift2.length > 0 && Shift2Checkbox.prop("checked")) {
-      var shift2Parent = Shift2Checkbox.parents("div.sch-app");
-      var shift1Txtbox = shift2Parent.find(".txtStart");
-      var shift2Element = shift2Parent.find(".txtStart").val().split(":");
-      var shift2Hours = shift2Element[0];
-      var shift2Min = shift2Element[1];
-      if (parseInt(shift1Hours) > parseInt(shift2Hours)) {
-        Swal.fire({
-          title: "Confirmation!",
-          text: Shift1dayName + "schduleded is conflicted",
-          type: "info",
-          confirmButtonClass: "btn btn-primary",
-          confirmButtonText: "Ok",
-        });
-        // alert(Shift1dayName + " schduleded is conflicted");
-        //========highLight conflicted day========
-        shift2Txtbox.css("border", "1px solid red");
-        shift1Txtbox.css("border", "1px solid red");
-        result = false;
-      } else result = true;
-    }
-  });
-  return result;
+        if (allCheckedShift2.length > 0 && Shift2Checkbox.prop("checked")) {
+            var shift2Parent = Shift2Checkbox.parents("div.sch-app");
+            var shift1Txtbox = shift2Parent.find(".txtStart");
+            var shift2Element = shift2Parent.find(".txtStart").val().split(":");
+            var shift2Hours = shift2Element[0];
+            var shift2Min = shift2Element[1];
+            if (parseInt(shift1Hours) > parseInt(shift2Hours)) {
+                Swal.fire({
+                    title: "Confirmation!",
+                    text: Shift1dayName + "schduleded is conflicted",
+                    type: "info",
+                    confirmButtonClass: "btn btn-primary",
+                    confirmButtonText: "Ok",
+                });
+                // alert(Shift1dayName + " schduleded is conflicted");
+                //========highLight conflicted day========
+                shift2Txtbox.css("border", "1px solid red");
+                shift1Txtbox.css("border", "1px solid red");
+                result = false;
+            } else result = true;
+        }
+    });
+    return result;
 }
 
 function Validation() {
-  var chkShift1 = $("#Shift1").find("input[type='checkbox']:checked").length;
-  var chkShift2 = $("#Shift2").find("input[type='checkbox']:checked").length;
+    var chkShift1 = $("#Shift1").find("input[type='checkbox']:checked").length;
+    var chkShift2 = $("#Shift2").find("input[type='checkbox']:checked").length;
 
-  if ($("#dtFrom").val() == "") {
-    $("#dtFrom").css("border", "1px solid red");
-    return false;
-  } else if ($("#toDT").val() == "") {
-    $("#toDT").css("border", "1px solid red");
-    return false;
-  } else if (!DateValidation()) {
-    $("#toDT").css("border", "1px solid red");
-    $("#dtFrom").css("border", "1px solid red");
-    return false;
-  } else if (chkShift1 == 0 && chkShift2 == 0) {
-    Swal.fire({
-      title: "Confirmation!",
-      text: "Please created at least one shift ",
-      type: "info",
-      confirmButtonClass: "btn btn-primary",
-      confirmButtonText: "Ok",
-    });
-    return false;
-  } else return true;
+    if ($("#dtFrom").val() == "") {
+        $("#dtFrom").css("border", "1px solid red");
+        return false;
+    } else if ($("#toDT").val() == "") {
+        $("#toDT").css("border", "1px solid red");
+        return false;
+    } else if (!DateValidation()) {
+        $("#toDT").css("border", "1px solid red");
+        $("#dtFrom").css("border", "1px solid red");
+        return false;
+    } else if (chkShift1 == 0 && chkShift2 == 0) {
+        Swal.fire({
+            title: "Confirmation!",
+            text: "Please created at least one shift ",
+            type: "info",
+            confirmButtonClass: "btn btn-primary",
+            confirmButtonText: "Ok",
+        });
+        return false;
+    } else return true;
 }
 // ======calculate a appointment time of slot as per selected interval
 function getIntervals(startString, endString, intervalString) {
-  var start = startString.split(":");
-  var end = endString.split(":");
-  var interval = intervalString;
-  startInMinutes = start[0] * 60 + start[1] * 1;
-  endInMinutes = end[0] * 60 + end[1] * 1;
-  intervalInMinutes = interval * 1;
-  var times = [];
-  var intervalsOfTime = [];
+    var start = startString.split(":");
+    var end = endString.split(":");
+    var interval = intervalString;
+    startInMinutes = start[0] * 60 + start[1] * 1;
+    endInMinutes = end[0] * 60 + end[1] * 1;
+    intervalInMinutes = interval * 1;
+    var times = [];
+    var intervalsOfTime = [];
 
-  for (var i = startInMinutes; i <= endInMinutes; i += intervalInMinutes) {
-    var hour = Math.floor(i / 60) + "";
-    var minute = (i % 60) + "";
-    minute = minute.length < 2 ? "0" + minute : minute;
-    hour = hour.length < 2 ? "0" + hour : hour;
-    times.push(hour + ":" + minute);
-  }
+    for (var i = startInMinutes; i <= endInMinutes; i += intervalInMinutes) {
+        var hour = Math.floor(i / 60) + "";
+        var minute = (i % 60) + "";
+        minute = minute.length < 2 ? "0" + minute : minute;
+        hour = hour.length < 2 ? "0" + hour : hour;
+        times.push(hour + ":" + minute);
+    }
 
-  for (var i = 0; i < times.length - 1; i++)
-    intervalsOfTime.push(times[i] + " - " + times[i + 1]);
+    for (var i = 0; i < times.length - 1; i++)
+        intervalsOfTime.push(times[i] + " - " + times[i + 1]);
 
-  return intervalsOfTime;
+    return intervalsOfTime;
 }
 //===create scheduled for doctor-========
 function GenerateDoctorSlots() {
-  var Appointments = new Array();
+    var Appointments = new Array();
 
-  // =======get date range=====
-  var fromDt = new Date($("#dtFrom").val());
-  var toDt = new Date($("#toDT").val());
+    // =======get date range=====
+    var fromDt = new Date($("#dtFrom").val());
+    var toDt = new Date($("#toDT").val());
 
-  var newend = toDt.setDate(toDt.getDate() + 1);
-  var end = new Date(newend);
+    var newend = toDt.setDate(toDt.getDate() + 1);
+    var end = new Date(newend);
 
-  //=====loop through each day=======
-  while (fromDt < toDt) {
-    //====ge day name for each date==========
-    var dayName = moment(fromDt).format("dddd");
+    //=====loop through each day=======
+    while (fromDt < toDt) {
+        //====ge day name for each date==========
+        var dayName = moment(fromDt).format("dddd");
 
-    //=====match day with each shift1 and shift2 checkBox's checked day=======
-    var shift1Day = $("#Shift1").find("input." + dayName);
-    var shift2Day = $("#Shift2").find("input." + dayName);
-    var AppointmentsDetails = new Array();
+        //=====match day with each shift1 and shift2 checkBox's checked day=======
+        var shift1Day = $("#Shift1").find("input." + dayName);
+        var shift2Day = $("#Shift2").find("input." + dayName);
+        var AppointmentsDetails = new Array();
 
-    //======if checkboxes is checked from shift 1======
-    if (shift1Day.prop("checked")) {
-      var shift1parnt = shift1Day.parents("div.sch-app");
+        //======if checkboxes is checked from shift 1======
+        if (shift1Day.prop("checked")) {
+            var shift1parnt = shift1Day.parents("div.sch-app");
 
-      //=====get slots as per selected interval/slot time from shift 1
-      var slotShift1 = getIntervals(
-        shift1parnt.find("input.txtStart").val(),
-        shift1parnt.find("input.txtEnd").val(),
-        $("#Slot-time option:selected").val()
-      );
+            //=====get slots as per selected interval/slot time from shift 1
+            var slotShift1 = getIntervals(
+                shift1parnt.find("input.txtStart").val(),
+                shift1parnt.find("input.txtEnd").val(),
+                $("#Slot-time option:selected").val()
+            );
 
-      for (var i in slotShift1)
-        if (slotShift1.hasOwnProperty(i)) {
-          var slots = slotShift1[i].split("-");
-          AppointmentsDetails.push({
-            AppointmentStatus: "Vacant",
-            AppointmentStartTime: slots[0],
-            AppointmentEndTime: slots[1],
-            AddedDate: new Date().toLocaleDateString("en-us"),
+            for (var i in slotShift1)
+                if (slotShift1.hasOwnProperty(i)) {
+                    var slots = slotShift1[i].split("-");
+                    AppointmentsDetails.push({
+                        AppointmentStatus: "Vacant",
+                        AppointmentStartTime: slots[0],
+                        AppointmentEndTime: slots[1],
+                        AddedDate: currentDt,
+                        AddedBy: useLoginId,
+                        isActive: true,
+                    });
+                }
+        } //end of shift1Day====
+
+        //======if checkboxes is checked from shift 2======
+        if (shift2Day.prop("checked")) {
+            var shift2parnt = shift2Day.parents("div.sch-app");
+
+            //=====get slots as per selected interval/slot time from shift 2
+            var slotShift2 = getIntervals(
+                shift2parnt.find("input.txtStart").val(),
+                shift2parnt.find("input.txtEnd").val(),
+                $("#Slot-time option:selected").val()
+            );
+
+            for (var i in slotShift2)
+                if (slotShift2.hasOwnProperty(i)) {
+                    var slots = slotShift2[i].split("-");
+                    AppointmentsDetails.push({
+                        AppointmentStatus: "Vacant",
+                        AppointmentStartTime: slots[0],
+                        AppointmentEndTime: slots[1],
+                        AddedDate: currentDt,
+                        AddedBy: useLoginId,
+                        isActive: true,
+                    });
+                }
+        } //end of shift2Day====
+
+        //=============create list for appointments with sots=================
+        Appointments.push({
+            DoctorId: parseInt(useLoginId),
+            AppointmentDate: new Date(currentDt).toDateString(),
+            Shifts: "1",
             AddedBy: useLoginId,
+            AddedDate: currentDt,
+            ModifiedDate: "1",
+            ModifiedBy: "1",
             isActive: true,
-          });
-        }
-    } //end of shift1Day====
+            AppointmentsDetails: AppointmentsDetails,
+        });
 
-    //======if checkboxes is checked from shift 2======
-    if (shift2Day.prop("checked")) {
-      var shift2parnt = shift2Day.parents("div.sch-app");
-
-      //=====get slots as per selected interval/slot time from shift 2
-      var slotShift2 = getIntervals(
-        shift2parnt.find("input.txtStart").val(),
-        shift2parnt.find("input.txtEnd").val(),
-        $("#Slot-time option:selected").val()
-      );
-
-      for (var i in slotShift2)
-        if (slotShift2.hasOwnProperty(i)) {
-          var slots = slotShift2[i].split("-");
-          AppointmentsDetails.push({
-            AppointmentStatus: "Vacant",
-            AppointmentStartTime: slots[0],
-            AppointmentEndTime: slots[1],
-            AddedDate: new Date().toLocaleDateString("en-us"),
-            AddedBy: useLoginId,
-            isActive: true,
-          });
-        }
-    } //end of shift2Day====
-
-    //=============create list for appointments with sots====
-    Appointments.push({
-      DoctorId: parseInt(useLoginId),
-      AppointmentDate: fromDt.toLocaleDateString("en-us"),
-      Shifts: "1",
-      AddedBy: useLoginId,
-      AddedDate: new Date().toLocaleDateString("en-us"),
-      ModifiedDate: "1",
-      ModifiedBy: "1",
-      isActive: true,
-      AppointmentsDetails: AppointmentsDetails,
-    });
-
-    var newDate = fromDt.setDate(fromDt.getDate() + 1);
-    fromDt = new Date(newDate);
-  } //===end of while loop
-  return Appointments;
+        var newDate = fromDt.setDate(fromDt.getDate() + 1);
+        fromDt = new Date(newDate);
+    } //===end of while loop
+    return Appointments;
 }
 
 function ConcatinateArray(jsonArray) {
-  var conflictDt = "";
-  for (var i = 0; i < jsonArray.length; i++) {
-    conflictDt +=
-      "[" +
-      jsonArray[i].selecteDt +
-      ":" +
-      jsonArray[i].slotStartTime +
-      "-" +
-      jsonArray[i].slotEndTime +
-      "]" +
-      ",";
-  }
-  return conflictDt;
+    var conflictDt = "";
+    for (var i = 0; i < jsonArray.length; i++) {
+        conflictDt +=
+            "[" +
+            jsonArray[i].selecteDt +
+            ":" +
+            jsonArray[i].slotStartTime +
+            "-" +
+            jsonArray[i].slotEndTime +
+            "]" +
+            ",";
+    }
+    return conflictDt;
 }
 
 function createDoctorScheduled(Appointments) {
-  var app = {
-    Appointments: Appointments,
-  };
-  var url = baseURL + "Appointments/CreateDoctorSchedule";
-  $.ajax({
-    url: url,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    type: "POST",
-    datatype: "application/json",
-    contentType: "application/json; charset=utf-8",
-    data: app,
-    beforeSend: function () {
-      $.LoadingOverlay("show");
-    },
-    success: function (data, textStatus, xhr) {
-      $.LoadingOverlay("hide");
-      console.log(data);
+    var app = {
+        Appointments: Appointments,
+    };
+    var url = baseURL + "Appointments/CreateDoctorSchedule";
+    $.ajax({
+        url: url,
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        type: "POST",
+        datatype: "application/json",
+        contentType: "application/json; charset=utf-8",
+        data: app,
+        beforeSend: function() {
+            $.LoadingOverlay("show");
+        },
+        success: function(data, textStatus, xhr) {
+            $.LoadingOverlay("hide");
+            console.log(data);
 
-      Swal.fire({
-        title: "Confirmation!",
-        text: "Scheduled created ",
-        type: "success",
-        confirmButtonClass: "btn btn-primary",
-        buttonsStyling: false,
-        confirmButtonText: "Ok",
-      }).then((result) => {
-        window.location.reload();
-      });
-    },
-    error: function (xhr, textStatus, err) {
-      console.log();
+            Swal.fire({
+                title: "Confirmation!",
+                text: "Scheduled created ",
+                type: "success",
+                confirmButtonClass: "btn btn-primary",
+                buttonsStyling: false,
+                confirmButtonText: "Ok",
+            }).then((result) => {
+                window.location.reload();
+            });
+        },
+        error: function(xhr, textStatus, err) {
+            console.log();
 
-      if (xhr.status == "409" && xhr.statusText == "Conflict") {
-        var conflictDt = ConcatinateArray(xhr.responseJSON);
-        Swal.fire({
-          type: "error",
-          title: "Oops...",
-          html:
-            "<div class='ConflictedDtError'>Your these date are conflicted <br> <b>" +
-            conflictDt +
-            "</b><br> " +
-            "Please select another date </div>",
-        });
-      } else {
-        Swal.fire({
-          title: "Opps...!",
-          text: xhr.statusText,
-          type: "error",
-          confirmButtonClass: "btn btn-primary",
-          buttonsStyling: false,
-          confirmButtonText: "Ok",
-        });
-      }
-      $.LoadingOverlay("hide");
-    },
-    complete: function (data) {
-      // Hide Loading
-      $.LoadingOverlay("hide");
-    },
-  });
+            if (xhr.status == "409" && xhr.statusText == "Conflict") {
+                var conflictDt = ConcatinateArray(xhr.responseJSON);
+                Swal.fire({
+                    type: "error",
+                    title: "Oops...",
+                    html: "<div class='ConflictedDtError'>Your these date are conflicted <br> <b>" +
+                        conflictDt +
+                        "</b><br> " +
+                        "Please select another date </div>",
+                });
+            } else {
+                Swal.fire({
+                    title: "Opps...!",
+                    text: xhr.statusText,
+                    type: "error",
+                    confirmButtonClass: "btn btn-primary",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok",
+                });
+            }
+            $.LoadingOverlay("hide");
+        },
+        complete: function(data) {
+            // Hide Loading
+            $.LoadingOverlay("hide");
+        },
+    });
 }
 
 function GetDoctorAllSlots(DoctorId, date) {
-  var url =
-    baseURL +
-    "Appointments/GetDoctorAllSlots?DoctorId=" +
-    DoctorId +
-    "&date=" +
-    date;
+    var url =
+        baseURL +
+        "Appointments/GetDoctorAllSlots?DoctorId=" +
+        DoctorId +
+        "&date=" +
+        date;
 
-  $.ajax({
-    url: url,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    type: "GET",
-    datatype: "application/json",
-    contentType: "application/json; charset=utf-8",
-    data: "",
-    beforeSend: function () {
-      $.LoadingOverlay("show");
-    },
-    success: function (data, textStatus, xhr) {
-      $.LoadingOverlay("hide");
-      //=====set values for slots templates======
-      var slotTemplate = $("#slots-template").html();
-      $("#doctorSlots").html(Mustache.to_html(slotTemplate, data));
-    },
-    error: function (xhr, textStatus, err) {
-      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
-        console.log(xhr.statusText);
-      else console.log(xhr.statusText);
-    },
-    complete: function (data) {
-      // Hide Loading
-      $.LoadingOverlay("hide");
-    },
-  });
+    $.ajax({
+        url: url,
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        type: "GET",
+        datatype: "application/json",
+        contentType: "application/json; charset=utf-8",
+        data: "",
+        beforeSend: function() {
+            $.LoadingOverlay("show");
+        },
+        success: function(data, textStatus, xhr) {
+            $.LoadingOverlay("hide");
+            //=====set values for slots templates======
+            var slotTemplate = $("#slots-template").html();
+            $("#doctorSlots").html(Mustache.to_html(slotTemplate, data));
+        },
+        error: function(xhr, textStatus, err) {
+            if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+                console.log(xhr.statusText);
+            else console.log(xhr.statusText);
+        },
+        complete: function(data) {
+            // Hide Loading
+            $.LoadingOverlay("hide");
+        },
+    });
 }
 //== get Patient appointments
 function CancelAppointment(
-  appointmentDetailsId,
-  patientId,
-  doctorId,
-  pageName,
-  pageUrl
+    appointmentDetailsId,
+    patientId,
+    doctorId,
+    pageName,
+    pageUrl
 ) {
-  return new Promise((resolve, reject) => {
-    var url =
-      baseURL +
-      "Appointments/CancelAppointment?status=Cancelled" +
-      "&appointmentId=" +
-      appointmentDetailsId +
-      "&patientId=" +
-      patientId +
-      "&doctorId=" +
-      doctorId +
-      "&pageName=" +
-      pageName +
-      "&pageUrl=" +
-      pageUrl;
+    return new Promise((resolve, reject) => {
+        var url =
+            baseURL +
+            "Appointments/CancelAppointment?status=Cancelled" +
+            "&appointmentId=" +
+            appointmentDetailsId +
+            "&patientId=" +
+            patientId +
+            "&doctorId=" +
+            doctorId +
+            "&pageName=" +
+            pageName +
+            "&pageUrl=" +
+            pageUrl;
 
-    ///==============start post request to book appointment
-    $.ajax({
-      url: url,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      type: "GET",
-      datatype: "application/json",
-      contentType: "application/json; charset=utf-8",
-      data: "",
-      beforeSend: function () {
-        $.LoadingOverlay("show");
-      },
-      success: function (data, textStatus, xhr) {
-        $.LoadingOverlay("hide");
+        ///==============start post request to book appointment
+        $.ajax({
+            url: url,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            type: "GET",
+            datatype: "application/json",
+            contentType: "application/json; charset=utf-8",
+            data: "",
+            beforeSend: function() {
+                $.LoadingOverlay("show");
+            },
+            success: function(data, textStatus, xhr) {
+                $.LoadingOverlay("hide");
 
-        resolve(data);
-      },
-      error: function (xhr, textStatus, err) {
-        reject(err);
-      },
-      complete: function (data) {
-        // Hide Loading
-        $.LoadingOverlay("hide");
-      },
-    });
-  }); //end of promises
+                resolve(data);
+            },
+            error: function(xhr, textStatus, err) {
+                reject(err);
+            },
+            complete: function(data) {
+                // Hide Loading
+                $.LoadingOverlay("hide");
+            },
+        });
+    }); //end of promises
 }
+
 function getAge() {
-  var getAge = $("#hdnPatientAge").val();
-  $("#popupAge").html(CalculateAge(getAge));
+    var getAge = $("#hdnPatientAge").val();
+    $("#popupAge").html(CalculateAge(getAge));
 }
 
 function ViewBookingDetails(PatientId) {
-  var url =
-    baseURL + "Patient/GetPatientInitialAssisments?PatientId=" + PatientId;
-  $.ajax({
-    url: url,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    type: "GET",
-    datatype: "application/json",
-    contentType: "application/json; charset=utf-8",
-    data: "",
-    beforeSend: function () {
-      $.LoadingOverlay("show");
-    },
-    success: function (data, textStatus, xhr) {
-      $.LoadingOverlay("hide");
-      //=====set values for slots templates======
-      var bookDetails = $("#BookingDetail-Template").html();
-      $("#bookDetails").html(Mustache.to_html(bookDetails, data));
-      $("#ModelDetails").modal("show");
-    },
-    error: function (xhr, textStatus, err) {
-      if (xhr.status == "500" && xhr.statusText == "InternalServerError")
-        console.log(xhr.statusText);
-      else console.log(xhr.statusText);
-    },
-    complete: function (data) {
-      // Hide Loading
-      $.LoadingOverlay("hide");
-      getAge();
-    },
-  });
+    var url =
+        baseURL + "Patient/GetPatientInitialAssisments?PatientId=" + PatientId;
+    $.ajax({
+        url: url,
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        type: "GET",
+        datatype: "application/json",
+        contentType: "application/json; charset=utf-8",
+        data: "",
+        beforeSend: function() {
+            $.LoadingOverlay("show");
+        },
+        success: function(data, textStatus, xhr) {
+            $.LoadingOverlay("hide");
+            //=====set values for slots templates======
+            var bookDetails = $("#BookingDetail-Template").html();
+            $("#bookDetails").html(Mustache.to_html(bookDetails, data));
+            $("#ModelDetails").modal("show");
+        },
+        error: function(xhr, textStatus, err) {
+            if (xhr.status == "500" && xhr.statusText == "InternalServerError")
+                console.log(xhr.statusText);
+            else console.log(xhr.statusText);
+        },
+        complete: function(data) {
+            // Hide Loading
+            $.LoadingOverlay("hide");
+            getAge();
+        },
+    });
 }
 
 function CalculateAge(userinput) {
-  //collect input from HTML form and convert into date format
-  // var userinput = document.getElementById("txtInfoAge").value;
-  var dob = new Date(userinput);
+    //collect input from HTML form and convert into date format
+    // var userinput = document.getElementById("txtInfoAge").value;
+    var dob = new Date(userinput);
 
-  //check user provide input or not
-  if (userinput == null || userinput == "") {
-    document.getElementById("spnAge").innerHTML = "**Choose a date please!";
-    return false;
-  }
-
-  //execute if the user entered a date
-  else {
-    //extract the year, month, and date from user date input
-    var dobYear = dob.getYear();
-    var dobMonth = dob.getMonth();
-    var dobDate = dob.getDate();
-
-    //get the current date from the system
-    var now = new Date();
-    //extract the year, month, and date from current date
-    var currentYear = now.getYear();
-    var currentMonth = now.getMonth();
-    var currentDate = now.getDate();
-
-    //declare a variable to collect the age in year, month, and days
-    var age = {};
-    var ageString = "";
-
-    //get years
-    yearAge = currentYear - dobYear;
-
-    //get months
-    if (currentMonth >= dobMonth)
-      //get months when current month is greater
-      var monthAge = currentMonth - dobMonth;
-    else {
-      yearAge--;
-      var monthAge = 12 + currentMonth - dobMonth;
+    //check user provide input or not
+    if (userinput == null || userinput == "") {
+        document.getElementById("spnAge").innerHTML = "**Choose a date please!";
+        return false;
     }
 
-    //get days
-    if (currentDate >= dobDate)
-      //get days when the current date is greater
-      var dateAge = currentDate - dobDate;
+    //execute if the user entered a date
     else {
-      monthAge--;
-      var dateAge = 31 + currentDate - dobDate;
+        //extract the year, month, and date from user date input
+        var dobYear = dob.getYear();
+        var dobMonth = dob.getMonth();
+        var dobDate = dob.getDate();
 
-      if (monthAge < 0) {
-        monthAge = 11;
-        yearAge--;
-      }
+        //get the current date from the system
+        var now = new Date();
+        //extract the year, month, and date from current date
+        var currentYear = now.getYear();
+        var currentMonth = now.getMonth();
+        var currentDate = now.getDate();
+
+        //declare a variable to collect the age in year, month, and days
+        var age = {};
+        var ageString = "";
+
+        //get years
+        yearAge = currentYear - dobYear;
+
+        //get months
+        if (currentMonth >= dobMonth)
+        //get months when current month is greater
+            var monthAge = currentMonth - dobMonth;
+        else {
+            yearAge--;
+            var monthAge = 12 + currentMonth - dobMonth;
+        }
+
+        //get days
+        if (currentDate >= dobDate)
+        //get days when the current date is greater
+            var dateAge = currentDate - dobDate;
+        else {
+            monthAge--;
+            var dateAge = 31 + currentDate - dobDate;
+
+            if (monthAge < 0) {
+                monthAge = 11;
+                yearAge--;
+            }
+        }
+        //group the age in a single variable
+        age = {
+            years: yearAge,
+            months: monthAge,
+            days: dateAge,
+        };
+
+        if (age.years > 0 && age.months > 0 && age.days > 0)
+            ageString =
+            age.years +
+            " years, " +
+            age.months +
+            " months, and " +
+            age.days +
+            " days old.";
+        else if (age.years == 0 && age.months == 0 && age.days > 0)
+            ageString = age.days + " days old!";
+        //when current month and date is same as birth date and month
+        else if (age.years > 0 && age.months == 0 && age.days == 0)
+            ageString = age.years + " years old. Happy Birthday!!";
+        else if (age.years > 0 && age.months > 0 && age.days == 0)
+            ageString = age.years + " years and " + age.months + " months old.";
+        else if (age.years == 0 && age.months > 0 && age.days > 0)
+            ageString = age.months + " months and " + age.days + " days old.";
+        else if (age.years > 0 && age.months == 0 && age.days > 0)
+            ageString = age.years + " years, and" + age.days + " days old.";
+        else if (age.years == 0 && age.months > 0 && age.days == 0)
+            ageString = age.months + " months old.";
+        //when current date is same as dob(date of birth)
+        else ageString = "It's first day on Earth!";
+
+        //display the calculated age
+        return document.getElementById("spnAge").innerHTML =
+            ageString;
     }
-    //group the age in a single variable
-    age = {
-      years: yearAge,
-      months: monthAge,
-      days: dateAge,
-    };
-
-    if (age.years > 0 && age.months > 0 && age.days > 0)
-      ageString =
-        age.years +
-        " years, " +
-        age.months +
-        " months, and " +
-        age.days +
-        " days old.";
-    else if (age.years == 0 && age.months == 0 && age.days > 0)
-      ageString =  age.days + " days old!";
-    //when current month and date is same as birth date and month
-    else if (age.years > 0 && age.months == 0 && age.days == 0)
-      ageString = age.years + " years old. Happy Birthday!!";
-    else if (age.years > 0 && age.months > 0 && age.days == 0)
-      ageString = age.years + " years and " + age.months + " months old.";
-    else if (age.years == 0 && age.months > 0 && age.days > 0)
-      ageString = age.months + " months and " + age.days + " days old.";
-    else if (age.years > 0 && age.months == 0 && age.days > 0)
-      ageString = age.years + " years, and" + age.days + " days old.";
-    else if (age.years == 0 && age.months > 0 && age.days == 0)
-      ageString = age.months + " months old.";
-    //when current date is same as dob(date of birth)
-    else ageString = "It's first day on Earth!";
-
-    //display the calculated age
-    return (document.getElementById("spnAge").innerHTML =
-      "(" + ageString + ")");
-  }
 }
 
 //====date formater by using mustache=====
 Mustache.Formatters = {
-  date: function (str) {
-    var options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    return new Date(str).toLocaleDateString("en-US", options);
-  },
-  time: function (str) {
-    var options = {
-      hour: "2-digit",
-      minute: "2-digit",
-    };
-    return new Date(str).toLocaleTimeString("en-GB", options);
-  },
+    date: function(str) {
+        var options = {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        };
+        return new Date(str).toLocaleDateString("en-US", options);
+    },
+    time: function(str) {
+        var options = {
+            hour: "2-digit",
+            minute: "2-digit",
+        };
+        return new Date(str).toLocaleTimeString("en-GB", options);
+    },
 
 };

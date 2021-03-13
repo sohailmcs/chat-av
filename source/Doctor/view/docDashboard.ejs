@@ -1,564 +1,482 @@
 <%- include('../../Default/view/includes/Head.ejs') %>
 
-  <!-- BEGIN:  CSS-->
-  <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+    <!-- BEGIN:  CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
 
-  <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" /> -->
-  <link rel="stylesheet" type="text/css" href="/css/colors.css" />
+    <link rel="stylesheet" type="text/css" href="/css/colors.css" />
 
 
-  <link rel="stylesheet" type="text/css" href="/css/components.css" />
-  <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <script src="/js/modernizr.custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/components.css" />
+    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <script src="/js/modernizr.custom.js"></script>
 
-  <!-- <link href="/css/KendoUi/examples-offline.css" rel="stylesheet" /> -->
-  <link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
-  <link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
-  <link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
-
-
-  <!-- END: CSS-->
-  </head>
-  <!-- END: Head-->
-
-  <!-- BEGIN: Body-->
-
-  <!-- body tag and blue nav bar  -->
-  <%- include('includes/docNav.ejs') %>
-
-    <!-- complete side menu of doctor -->
-    <%- include('includes/docSideMenu.ejs') %>
+    <!-- <link href="/css/KendoUi/examples-offline.css" rel="stylesheet" /> -->
+    <link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
 
 
-      <!-- BEGIN: Content-->
+    <!-- END: CSS-->
+    </head>
+    <!-- END: Head-->
 
-      <!--SMS pop up -->
-      <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-          <div class="modal-content">
-            <div class="modal-header bg-primary">
-              <h5 class="modal-title black" id="myModalLabel160">
-                Send Message
-              </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <!-- BEGIN: Body-->
+
+    <!-- body tag and blue nav bar  -->
+    <%- include('includes/docNav.ejs') %>
+
+        <!-- complete side menu of doctor -->
+        <%- include('includes/docSideMenu.ejs') %>
+
+
+            <!-- BEGIN: Content-->
+
+            <!--SMS pop up -->
+            <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title black" id="myModalLabel160">
+                                Send Message
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-            </div>
-            <div class="modal-body">
+                        </div>
+                        <div class="modal-body">
 
-              <input type="hidden" id="hdnPatientName" value="">
-              <input type="hidden" id="hdnPhone" value="">
-              <label>Enter Your Message Here </label>
-              <textarea class="form-control" id="smsReminder" rows="4"
-                placeholder="Hello I am Doctor ABC . Your consultation Session will be start in 15minutes. Please stay Online. Thank you"></textarea>
+                            <input type="hidden" id="hdnPatientName" value="">
+                            <input type="hidden" id="hdnPhone" value="">
+                            <label>Enter Your Message Here </label>
+                            <textarea class="form-control" id="smsReminder" rows="4" placeholder="Hello I am Doctor ABC . Your consultation Session will be start in 15minutes. Please stay Online. Thank you"></textarea>
 
-            </div>
-            <div class="modal-footer">
+                        </div>
+                        <div class="modal-footer">
 
-              <button type="button" class="btnSendSMSReminder btn btn-primary ml-1" data-dismiss="modal">
+                            <button type="button" class="btnSendSMSReminder btn btn-primary ml-1" data-dismiss="modal">
                 <span class="d-sm-block"><i class='bx bx-send bx-rotate-295 sms-popup'></i>
                   &nbsp; SEND
                 </span>
               </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <!--END OF SMS POPUP-->
+            <!--END OF SMS POPUP-->
 
-      <!--start of EMR detail-->
-      <div class="modal fade text-left" id="popupHistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-        aria-hidden="true">
-      </div>
-      <!--end of EMR Details-->
+            <!--start of EMR detail-->
+            <div class="modal fade text-left" id="popupHistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+            </div>
+            <!--end of EMR Details-->
 
-      <!--Start of Prescription from CallLog-->
-      <div class="modal fade text-left" id="popupPrescriptionEdit" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel160" aria-hidden="true">
-      </div>
+            <!--Start of Prescription from CallLog-->
+            <div class="modal fade text-left" id="popupPrescriptionEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+            </div>
 
-      <!--start of patient profile details------>
-      <div class="modal fade text-left" id="ModelDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xlg modal-dialog-centered modal-dialog-scrollable" role="document">
-          <div class="modal-content">
-            <div class="modal-header bg-primary">
-              <h5 class="modal-title black" id="myModalLabel160">
-                Patient Details
-              </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <!--start of patient profile details------>
+            <div class="modal fade text-left" id="ModelDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+                <div class="modal-dialog modal-xlg modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title black" id="myModalLabel160">
+                                Patient Details
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-            </div>
-            <div class="card-content side-bar-doc" id="bookDetails">
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <script id="BookingDetail-Template" type="text/html">
-    <div class="card-body">    
-     
-      <div class="row">
-        <div class="col-lg-3">
-          {{#PatientPhoto}}
-          <img
-          src="{{PatientPhoto}}"
-          alt="image"
-          style="
-          height: 140px;
-          width: 140px;
-          border-radius: 5px;" />
-         {{/PatientPhoto}}
-         {{^PatientPhoto}}
-         <img src="/assets/images/patient.png" alt="image" style="
-         height: 140px;
-          width: 140px;
-          border-radius: 5px;" /> 
-         {{/PatientPhoto}}          
-      </div>
-    <div class="col-lg-4">
-      <br/>
-      <h5 class="docName" style="margin:0 0 5px 0;">
-        {{FullName}}
-      </h5>          
-      <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span><br>
-      <b>Gender :</b> {{Gender}} 
-    </div>
-    <div  class="col-lg-5 mt-1">
-      <br/>        
-      <b> Email :</b> {{Email}} <br>                  
-      <b>Phone :</b> {{PhoneNo}}
-    </div>
-      </div><!--end of row-->
-  
-      <div class="divMedication row mt-3">      
-        <div class="col-sm-7">
-          <h4>Medications</h4>
-          <div class="row">
-            {{#PatientMedicationModel}}
-            {{#IsTakingMedication}}
-            <div class="col-sm-4 text-left mb-1">
-              {{#ImageUrl}}
-              <img  src="{{ImageUrl}}" height="100" width="100">
-              {{/ImageUrl}}
-              {{^ImageUrl}}
-              <img  src="/assets/images/medication.jpg" alt="Medication" height="100" width="100">
-              {{/ImageUrl}}
-              <span class="medicineName">{{MedicationName}}</span>
-            </div>
-            {{/IsTakingMedication}}
-            {{^IsTakingMedication}}
-            <div class="col-sm-12 text-left">
-             <p> No Taking Medications</p>
-             <img  src="/assets/images/medication.jpg" alt="Medication" height="100" width="100">
-            </div>
-            {{/IsTakingMedication}}
-            {{/PatientMedicationModel}}
-          </div>
-        </div><!--end of row-->      
-        <div class="divMedication col-sm-5">
-          <h4>Allergy</h4>
-          <ul class="Listalergy">
-            {{#PatientAlergyModel}}
-              {{#IsAlergy}}
-                <li>{{AlergyName}}</li>
-              {{/IsAlergy}}
-              {{^IsAlergy}}
-                <p>No Alergy</p>
-                <img  src="/assets/images/noAlergy.jpg" alt="Medication" height="100" width="100">
-              {{/IsAlergy}}           
-            {{/PatientAlergyModel}}          
-          </ul>
-        </div>      
-      </div><!--end of row-->
-      <div class="row mt-3">
-        <div class="divMedication col-sm-7 mb-1">
-          <h4>Medical Conditions</h4>       
-          <ul class="Listalergy">  
-            {{#PatientMedConditonModel}}       
-              {{#IsCondition}}
-                <li>{{Condition}}</li>
-              {{/IsCondition}}
-              {{^IsCondition}}
-                <p>No Medical Condition</p>
-              {{/IsCondition}} 
-           {{/PatientMedConditonModel}} 
-            </ul>         
-            {{#IsOtherCondition}}
-            <ul class="Listalergy" style="margin-bottom:2px">
-              <h4>Other</h4>
-            </ul>
-              <p>{{OtherConditionDesc}}</p>
-          {{/IsOtherCondition}}
-            
-        </div>
-        <div class="divMedication col-sm-5">
-          <h4>Complain</h4>
-          {{#PatientComplainModel}} 
-           
-            {{#PatientComplainDesc}}
-              <p class="mb-1">{{PatientComplainDesc}}</p> 
-            {{/PatientComplainDesc}}
-            {{^PatientComplainDesc}}
-              <p>No Complain</p>
-            {{/PatientComplainDesc}}
-
-            
-            {{#PatComplainImage}}
-               <img  src="{{PatComplainImage}}"  alt="Complain" height="100" width="100">
-            {{/PatComplainImage}}
-            {{^PatComplainImage}}
-             <img  src="/assets/images/complain.jpg" alt="Complain" height="100" width="100">
-            {{/PatComplainImage}}
-            
-          {{/PatientComplainModel}}
-          {{^PatientComplainModel}}
-            <p>No Complain</p>
-         {{/PatientComplainModel}}
-        </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      </script>
-
-      <script id="PrescriptionEdit-template" type="text/html">
-    <div
-    class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-    role="document"
-  >
-    <div class="modal-content">
-      <div class="modal-header bg-primary " style="text-align:center">
-        <h4><strong>Patient History</strong></h4>
-        <button type="button" class="close"   aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-
-      </div>
-      <div class="modal-body">
-     <div class="row">
-          <div class="col-lg-2">
-            {{#PatientPhoto}}
-            <img
-            src="{{PatientPhoto}}"
-            alt="image"
-            style="
-            height: 80px;
-            width: 80px;
-            border-radius: 10px;
-            margin-bottom:10px;"
-             />
-           {{/PatientPhoto}}
-           {{^PatientPhoto}}
-           <img src="/assets/images/patient.png" alt="image" style="
-           height: 80px;
-           width: 80px;
-           border-radius: 10px;
-           margin-bottom:10px;" />
-           {{/PatientPhoto}}
-        </div>
-      <div class="col-lg-5 pl-2">
-        <br/>
-        <h5 class="docName" style="margin:0;">
-          {{PatientName}}
-        </h5>
-    <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span><br>
-      </div>
-      <div   class="col-lg-5">
-        <br/>
-        <b> Visit Date : </b> {{AddedDate | Shortdate}} <br>
-        <b>Phone </b>: {{PatientPhone}}
-      </div>
-     </div>
-
-     <div class="row">
-        <div class="col-sm-12">
-        <span>History and Exams</span>
-        <textarea  class="form-control" id="txtExamEdit" rows="2"
-            placeholder="Write History and Exams">{{HistoryAndExam}}</textarea>
-        </div>
-        <div class="col-sm-12">
-            <span>Allergies</span>
-        <textarea class="form-control"  id="txtAllergiesEdit" rows="2"
-            placeholder="Write about Allergies">{{Allergies}}</textarea>
-        </div>
-        <div class="col-sm-12">
-        <span>Diagnosis</span>
-        <textarea class="form-control"  id="txtDiagnosisEdit" rows="2"
-            placeholder="Write Diagnosis">{{Diagnosis}}</textarea>
-        </div>
-        <div class="col-sm-12">
-        <span>RX</span>
-        <textarea class="form-control"  id="txtRxEdit"
-        rows="2" placeholder="Write RX ">{{PatientRX}}</textarea>
-        </div>
-     </div>
-     <div style="text-align:left;">
-        <button style="padding:8px 30px;" cLogId ="{{CallLogID}}" id="btnSaveUpdateEMR"
-         type="button" class="btn btn-primary">
-            <i class="bx bx-check d-block d-sm-none"></i>
-            <span class="d-none d-sm-block">SAVE</span>
-        </button>
-
-    </div>
-    </div>
-  </div>
-  </div>
-  </script>
-
-      <!-- Scheduled Tempates-->
-      <script id="Scheduled-template" type="text/html">
-    {{#PatientScheduleded}}
-    <li class="timeline-items1 timeline-icon-primary active pb-0">
-    <div class="col-lg-12">
-    <div class="row">
-    <div class="col-sm-4">
-
-
-    <div class="pr-50 pImage " style="float:left;top:30px;">  
-    <span class="onlinStatus_Calls status_{{ParentId}}" style="margin-right: 5px; !important" ><b>
-    {{#OnlineStatus}}
-    <span class="bullet bullet-success bullet-sm" ></span>
-    {{/OnlineStatus}}
-    {{^OnlineStatus}}
-    <span class="bullet bullet-offline bullet-sm"></span>
-    {{/OnlineStatus}}
-    </b>
-    </span>
-    </div>
-    <div class="sh_divqueue" style="display: inline-block;">
-        <a class="btnViewDetail" patientId ="{{PatientID}}" href="#">
-         <span class="TypeLabel">{{TypeLabel}}</span>
-            <h6 class='patientName' style="padding-top: 2%; ">
-             <u>{{patientName}}</u>             
-                </h6>
-        </a>
-    </div>
-    <!-- <P class="timeline-title-Gender">
-    <span class="spnGender"><strong>Gender:</strong> </span> {{Gender}}
-    </p> -->
-    </div>
-    <div class="col-sm-5">
-    <!-- <h4 class="timeline-text">
-    <strong>Contact: </strong>{{patientPhone | phone}}
-    </h4> -->
-    <P class="timeline-text">
-    <strong>Time: {{AppointmentStartTime | time}}-{{AppointmentEndTime | time}}</strong>
-    </p>
-    </div>
-    <div class="col-sm-3" style="padding: 0 10px;">
-      {{#OnlineStatus}}
-    <button type="button"  docID="{{DoctorID}}" PName="{{patientName}}"
-     patientId="{{PatientID}}" parentId="{{ParentID}}"  pType="{{PatientType}}" parentName="{{ParentName}}"  
-      scheId = "{{scheduledID}}"
-      class="btn btn-outline-primary btncheckIn_sch mb-1 btnAcceptSch checkin_{{ParentID}}">
-    <i class="bx bx-purchase-tag"></i>
-    <b>CHECK IN</b>
-    </button>
-    {{/OnlineStatus}}
-    {{^OnlineStatus}}
-    <button type="button" disabled="disabled"  docID="{{DoctorID}}" PName="{{patientName}}"
-    patientId="{{PatientID}}" parentId="{{ParentID}}"  pType="{{PatientType}}" parentName="{{ParentName}}"  
-     scheId = "{{scheduledID}}"
-     class="btn btn-outline-primary btncheckIn_sch mb-1 btnAcceptSch checkin_{{ParentID}}">
-   <i class="bx bx-purchase-tag"></i>
-   <b>CHECK IN</b>
-   </button>
-    {{/OnlineStatus}}
-    </div>
-    </div><!--end of row-->
-    </div><!--end of col-lg-12-->
-    </li>
-    {{/PatientScheduleded}}
-
-    {{^PatientScheduleded.0}}
-    <li class="timeline-items1 timeline-icon-primary active pb-0">
-    <h3 class="timeline-title">
-    No schedule available
-    </h3>
-    </li>
-    {{/PatientScheduleded.0}}
-    </script>
-      <!--end of Scheduled Template-->
-
-      <!--start of request call Templates-->
-      <script id="req-template" type="text/html">
-    {{#RequestedCall}}
-    <li class="timeline-items1 timeline-icon-primary active pb-0">
-
-    <div class="col-lg-12">
-
-    <div class="row">
-    <div class="col-sm-4">
-
-
-    <div>
-    <div class="pr-50 pImage " style="float:left;top:30px;">
-    <!-- {{#PatientPhoto}}
-    <img src="{{PatientPhoto}}" alt="image" style="width: 25px;height: 25px; float:left;"/>
-    {{/PatientPhoto}}
-    {{^PatientPhoto}}
-    <img src="/assets/images/maledoc.png" alt="image" style="width: 25px;height: 25px; float:left;"/>
-    {{/PatientPhoto}} -->
-    <span class="onlinStatus_Calls status_{{ParentId}}" style="margin-right: 5px; !important" ><b>
-    {{#OnlineStatus}}
-    <span class="bullet bullet-success bullet-sm" ></span>
-    {{/OnlineStatus}}
-    {{^OnlineStatus}}
-    <span class="bullet bullet-offline bullet-sm"></span>
-    {{/OnlineStatus}}
-    </b>
-    </span> </div>
-    </div>
-   
-
-    <div class="req_divqueue" style="display: inline-block;">
-    <a class="btnViewDetail" patientId ="{{PatientID}}" href="#">
-      <span class="TypeLabel">{{TypeLabel}}</span>
-      <h6 class='patientName'>
-           <u>{{patientName}}</u>           
-        </h6>
-    </a>
-    </div>
-
-
-
-    <!-- <P class="timeline-title-Gender">
-    <span class="spnGender"><strong>Gender:</strong> </span> {{Gender}}
-    </p> -->
-    </div>
-    <div class="col-sm-4">
-    <!-- <h4 class="timeline-text">
-    <strong>Contact: </strong>{{patientPhone | phone}}
-    </h4> -->
-    <P class="timeline-text">
-    <strong>Time:</strong> {{CallRequestDateTime | time}}
-    </p>
-    </div>
-    <div class="col-sm-4" style="padding: 0 6px;">
-      {{#OnlineStatus}}
-    <button type="button" type="button" docID="{{DoctorID}}"  
-    patientId="{{PatientID}}"  parentId="{{ParentId}}"  pType="{{PatientType}}" 
-    parentName="{{ParentName}}" PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}"
-    class="btn btn-outline-primary btncheckIn mb-1 btnAcceptCall checkin_{{ParentId}}">
-    <i class="bx bx-purchase-tag"></i>
-    <b>CHECK IN</b>
-    </button>
-    {{/OnlineStatus}}
-    {{^OnlineStatus}}
-    <button type="button" disabled="disabled" type="button" docID="{{DoctorID}}"  
-    patientId="{{PatientID}}"  parentId="{{ParentId}}"  pType="{{PatientType}}" 
-    parentName="{{ParentName}}" PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}"
-    class="btn btn-outline-primary btncheckIn mb-1 btnAcceptCall checkin_{{ParentId}}">
-    <i class="bx bx-purchase-tag"></i>
-    <b>CHECK IN</b>
-    </button>
-    {{/OnlineStatus}}
-    <button type="button"  docID="{{DoctorID}}"
-      parentId="{{ParentId}}"  pType="{{PatientType}}" 
-    parentName="{{ParentName}}" PName="{{patientName}}"
-    patientId="{{PatientID}}" callreqID="{{CallrequestID}}"
-    class="btn btn-icon btn-outline-danger mb-1 btnRejectCall">
-    <i class="bx bx-x"></i>
-    </button>
-    </div>
-    </div><!--end of row-->
-    </div><!--end of col-lg-12-->
-    </li>
-    {{/RequestedCall}}
-
-    {{^RequestedCall.0}}
-    <li class="timeline-items1 timeline-icon-primary active pb-0">
-    <h3 class="timeline-title">
-    No direct calls available
-    </h3>
-    </li>
-    {{/RequestedCall.0}}
-
-    </script>
-      <!--end of request call Template-->
-      <!--start of que Templates-->
-      <script id="que-template" type="text/html">
-    {{#result}}
-     <!-- Patient one  -->
-     <div class="row" style="margin: 1%;">
-        <div class="col-sm-4">
-            <div class="d-inline-block">
-                <div class="pr-50 pImage " style="border-radius:5px;float:left;display: inline-block; align-self: stretch;">
-                    {{#PatientPhoto}}
-                    <img
-                    src="{{PatientPhoto}}"
-                    alt="image"
-                    style="
-                    width: 80px;
-                    height: 80px;
-                    float:left;
-                  "
-                  />
-                 {{/PatientPhoto}}
-                 {{^PatientPhoto}}
-                 <img
-                 src="/assets/images/maledoc.png"
-                 alt="image"
-                 style="
-                 width: 80px;
-                 height: 80px;
-                 float:left;"
-               />
-                 {{/PatientPhoto}}
-                         <span class="onlinStatus status_{{ParentID}}"><b>
-                                {{#OnlineStatus}}
-                                <span class="bullet bullet-success bullet-sm"></span>
-                                {{/OnlineStatus}}
-                                {{^OnlineStatus}}
-                                <span class="bullet bullet-offline bullet-sm"></span>
-                                {{/OnlineStatus}}
-                            </b>
-                            </span>                 </div>
-
-                    <div class="divqueue" style="display: inline-block;">
-                      <a class="btnViewDetail" patientId ="{{PatientID}}"  href="#">
-                        <h6 class='patientName' style="padding-top: 2%;">
-                         <u>{{PatientName}}</u>
-                        </h6>
-                      </a>
-                        <p class="callType">{{RequestType}}</p>
+                        </div>
+                        <div class="card-content side-bar-doc" id="bookDetails">
+                        </div>
 
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-4 call-Queue-icons">
-                <p><strong>Contact Number :</strong> {{PatientPhone}}</p>
-                <p><strong>Patient waiting since :</strong>
-                <input type= "hidden" class="hdnCallQueDate" value="{{{CallQueDateTime}}}" >
-                <span class="spnWaitingTime" >
+            <script id="BookingDetail-Template" type="text/html">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-lg-3">
+                            {{#PatientPhoto}}
+                            <img src="{{PatientPhoto}}" alt="image" style="
+          height: 140px;
+          width: 140px;
+          border-radius: 5px;" /> {{/PatientPhoto}} {{^PatientPhoto}}
+                            <img src="/assets/images/patient.png" alt="image" style="
+         height: 140px;
+          width: 140px;
+          border-radius: 5px;" /> {{/PatientPhoto}}
+                        </div>
+                        <div class="col-lg-4">
+                            <br/>
+                            <h5 class="docName" style="margin:0 0 5px 0;">
+                                {{FullName}}
+                            </h5>
+                            <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span><br>
+                            <b>Gender :</b> {{Gender}}
+                        </div>
+                        <div class="col-lg-5 mt-1">
+                            <br/>
+                            <b> Email :</b> {{Email}} <br>
+                            <b>Phone :</b> {{PhoneNo}}
+                        </div>
+                    </div>
+                    <!--end of row-->
+
+                    <div class="divMedication row mt-3">
+                        <div class="col-sm-7">
+                            <h4>Medications</h4>
+                            <div class="row">
+                                {{#PatientMedicationModel}} {{#IsTakingMedication}}
+                                <div class="col-sm-4 text-left mb-1">
+                                    {{#ImageUrl}}
+                                    <img src="{{ImageUrl}}" height="100" width="100"> {{/ImageUrl}} {{^ImageUrl}}
+                                    <img src="/assets/images/medication.jpg" alt="Medication" height="100" width="100"> {{/ImageUrl}}
+                                    <span class="medicineName">{{MedicationName}}</span>
+                                </div>
+                                {{/IsTakingMedication}} {{^IsTakingMedication}}
+                                <div class="col-sm-12 text-left">
+                                    <p> No Taking Medications</p>
+                                    <!-- <img src="/assets/images/medication.jpg" alt="Medication" height="100" width="100"> -->
+                                </div>
+                                {{/IsTakingMedication}} {{/PatientMedicationModel}} {{^PatientMedicationModel}}
+                                <div class="col-sm-12 text-left">
+                                    <p> No Taking Medications</p>
+                                </div>
+                                {{/PatientMedicationModel}}
+                            </div>
+                        </div>
+                        <!--end of row-->
+                        <div class="divMedication col-sm-5">
+                            <h4>Allergy</h4>
+                            <ul class="Listalergy">
+                                {{#PatientAlergyModel}} {{#IsAlergy}}
+                                <li>{{AlergyName}}</li>
+                                {{/IsAlergy}} {{^IsAlergy}}
+                                <p>No Alergy</p>
+                                <!-- <img src="/assets/images/noAlergy.jpg" alt="Medication" height="100" width="100">-->
+                                {{/IsAlergy}} {{/PatientAlergyModel}} {{^PatientAlergyModel}}
+                                <p>No Alergy</p>
+                                {{/PatientAlergyModel}}
+                            </ul>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                    <div class="row mt-3">
+                        <div class="divMedication col-sm-7 mb-1">
+                            <h4>Medical Conditions</h4>
+                            <ul class="Listalergy">
+                                {{#PatientMedConditonModel}} {{#IsCondition}}
+                                <li>{{Condition}}</li>
+                                {{/IsCondition}} {{^IsCondition}}
+                                <p>No Medical Condition</p>
+                                {{/IsCondition}} {{/PatientMedConditonModel}} {{^PatientMedConditonModel}}
+                                <p>No Medical Condition</p>
+                                {{/PatientMedConditonModel}}
+                            </ul>
+                            {{#IsOtherCondition}}
+                            <ul class="Listalergy" style="margin-bottom:2px">
+                                <h4>Other</h4>
+                            </ul>
+                            <p>{{OtherConditionDesc}}</p>
+                            {{/IsOtherCondition}}
+
+                        </div>
+                        <div class="divMedication col-sm-5">
+                            <h4>Complain</h4>
+                            {{#PatientComplainModel}} {{#PatientComplainDesc}}
+                            <p class="mb-1">{{PatientComplainDesc}}</p>
+                            {{/PatientComplainDesc}} {{^PatientComplainDesc}}
+                            <p>No Complain</p>
+                            {{/PatientComplainDesc}} {{#PatComplainImage}}
+                            <img src="{{PatComplainImage}}" alt="Complain" height="100" width="100"> {{/PatComplainImage}} {{^PatComplainImage}}
+                            <img src="/assets/images/complain.jpg" alt="Complain" height="100" width="100"> {{/PatComplainImage}} {{/PatientComplainModel}} {{^PatientComplainModel}}
+                            <p>No Complain</p>
+                            {{/PatientComplainModel}}
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </script>
+
+            <script id="PrescriptionEdit-template" type="text/html">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary " style="text-align:center">
+                            <h4><strong>Patient History</strong></h4>
+                            <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    {{#PatientPhoto}}
+                                    <img src="{{PatientPhoto}}" alt="image" style="
+            height: 80px;
+            width: 80px;
+            border-radius: 10px;
+            margin-bottom:10px;" /> {{/PatientPhoto}} {{^PatientPhoto}}
+                                    <img src="/assets/images/patient.png" alt="image" style="
+           height: 80px;
+           width: 80px;
+           border-radius: 10px;
+           margin-bottom:10px;" /> {{/PatientPhoto}}
+                                </div>
+                                <div class="col-lg-5 pl-2">
+                                    <br/>
+                                    <h5 class="docName" style="margin:0;">
+                                        {{PatientName}}
+                                    </h5>
+                                    <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span><br>
+                                </div>
+                                <div class="col-lg-5">
+                                    <br/>
+                                    <b> Visit Date : </b> {{AddedDate | Shortdate}} <br>
+                                    <b>Phone </b>: {{PatientPhone}}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span>History and Exams</span>
+                                    <textarea class="form-control" id="txtExamEdit" rows="2" placeholder="Write History and Exams">{{HistoryAndExam}}</textarea>
+                                </div>
+                                <div class="col-sm-12">
+                                    <span>Allergies</span>
+                                    <textarea class="form-control" id="txtAllergiesEdit" rows="2" placeholder="Write about Allergies">{{Allergies}}</textarea>
+                                </div>
+                                <div class="col-sm-12">
+                                    <span>Diagnosis</span>
+                                    <textarea class="form-control" id="txtDiagnosisEdit" rows="2" placeholder="Write Diagnosis">{{Diagnosis}}</textarea>
+                                </div>
+                                <div class="col-sm-12">
+                                    <span>RX</span>
+                                    <textarea class="form-control" id="txtRxEdit" rows="2" placeholder="Write RX ">{{PatientRX}}</textarea>
+                                </div>
+                            </div>
+                            <div style="text-align:left;">
+                                <button style="padding:8px 30px;" cLogId="{{CallLogID}}" id="btnSaveUpdateEMR" type="button" class="btn btn-primary">
+            <i class="bx bx-check d-block d-sm-none"></i>
+            <span class="d-none d-sm-block">SAVE</span>
+        </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </script>
+
+            <!-- Scheduled Tempates-->
+            <script id="Scheduled-template" type="text/html">
+                {{#PatientScheduleded}}
+                <li class="timeline-items1 timeline-icon-primary active pb-0">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-sm-4">
+
+
+                                <div class="pr-50 pImage " style="float:left;top:30px;">
+                                    <span class="onlinStatus_Calls status_{{ParentId}}" style="margin-right: 5px; !important"><b>
+    {{#OnlineStatus}}
+    <span class="bullet bullet-success bullet-sm" ></span> {{/OnlineStatus}} {{^OnlineStatus}}
+                                    <span class="bullet bullet-offline bullet-sm"></span> {{/OnlineStatus}}
+                                    </b>
+                                    </span>
+                                </div>
+                                <div class="sh_divqueue" style="display: inline-block;">
+                                    <a class="btnViewDetail" callreqID="{{scheduledID}}" patientId="{{PatientID}}" href="#">
+                                        <span class="TypeLabel">{{TypeLabel}}</span>
+                                        <h6 class='patientName' style="padding-top: 2%; ">
+                                            <u>{{patientName}}</u>
+                                        </h6>
+                                    </a>
+                                </div>
+                                <!-- <P class="timeline-title-Gender">
+    <span class="spnGender"><strong>Gender:</strong> </span> {{Gender}}
+    </p> -->
+                            </div>
+                            <div class="col-sm-5">
+                                <!-- <h4 class="timeline-text">
+    <strong>Contact: </strong>{{patientPhone | phone}}
+    </h4> -->
+                                <P class="timeline-text">
+                                    <strong>Time: {{AppointmentStartTime | time}}-{{AppointmentEndTime | time}}</strong>
+                                </p>
+                            </div>
+                            <div class="col-sm-3" style="padding: 0 10px;">
+                                {{#OnlineStatus}}
+                                <button type="button" docID="{{DoctorID}}" PName="{{patientName}}" patientId="{{PatientID}}" parentId="{{ParentID}}" pType="{{PatientType}}" parentName="{{ParentName}}" scheId="{{scheduledID}}" class="btn btn-outline-primary btncheckIn_sch mb-1 btnAcceptSch checkin_{{ParentID}}">
+    <i class="bx bx-purchase-tag"></i>
+    <b>CHECK IN</b>
+    </button> {{/OnlineStatus}} {{^OnlineStatus}}
+                                <button type="button" disabled="disabled" docID="{{DoctorID}}" PName="{{patientName}}" patientId="{{PatientID}}" parentId="{{ParentID}}" pType="{{PatientType}}" parentName="{{ParentName}}" scheId="{{scheduledID}}" class="btn btn-outline-primary btncheckIn_sch mb-1 btnAcceptSch checkin_{{ParentID}}">
+   <i class="bx bx-purchase-tag"></i>
+   <b>CHECK IN</b>
+   </button> {{/OnlineStatus}}
+                            </div>
+                        </div>
+                        <!--end of row-->
+                    </div>
+                    <!--end of col-lg-12-->
+                </li>
+                {{/PatientScheduleded}} {{^PatientScheduleded.0}}
+                <li class="timeline-items1 timeline-icon-primary active pb-0">
+                    <h3 class="timeline-title">
+                        No schedule available
+                    </h3>
+                </li>
+                {{/PatientScheduleded.0}}
+            </script>
+            <!--end of Scheduled Template-->
+
+            <!--start of request call Templates-->
+            <script id="req-template" type="text/html">
+                {{#RequestedCall}}
+                <li class="timeline-items1 timeline-icon-primary active pb-0">
+
+                    <div class="col-lg-12">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+
+
+                                <div>
+                                    <div class="pr-50 pImage " style="float:left;top:30px;">
+                                        <!-- {{#PatientPhoto}}
+    <img src="{{PatientPhoto}}" alt="image" style="width: 25px;height: 25px; float:left;"/>
+    {{/PatientPhoto}}
+    {{^PatientPhoto}}
+    <img src="/assets/images/maledoc.png" alt="image" style="width: 25px;height: 25px; float:left;"/>
+    {{/PatientPhoto}} -->
+                                        <span class="onlinStatus_Calls status_{{ParentId}}" style="margin-right: 5px; !important"><b>
+    {{#OnlineStatus}}
+    <span class="bullet bullet-success bullet-sm" ></span> {{/OnlineStatus}} {{^OnlineStatus}}
+                                        <span class="bullet bullet-offline bullet-sm"></span> {{/OnlineStatus}}
+                                        </b>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="req_divqueue" style="display: inline-block;">
+                                    <a class="btnViewDetail" callreqID="{{CallrequestID}}" patientId="{{PatientID}}" href="#">
+                                        <span class="TypeLabel">{{TypeLabel}}</span>
+                                        <h6 class='patientName'>
+                                            <u>{{patientName}}</u>
+                                        </h6>
+                                    </a>
+                                </div>
+
+
+
+                                <!-- <P class="timeline-title-Gender">
+    <span class="spnGender"><strong>Gender:</strong> </span> {{Gender}}
+    </p> -->
+                            </div>
+                            <div class="col-sm-4">
+                                <!-- <h4 class="timeline-text">
+    <strong>Contact: </strong>{{patientPhone | phone}}
+    </h4> -->
+                                <P class="timeline-text">
+                                    <strong>Time:</strong> {{CallRequestDateTime | time}}
+                                </p>
+                            </div>
+                            <div class="col-sm-4" style="padding: 0 6px;">
+                                {{#OnlineStatus}}
+                                <button type="button" type="button" docID="{{DoctorID}}" patientId="{{PatientID}}" parentId="{{ParentId}}" pType="{{PatientType}}" parentName="{{ParentName}}" PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}" class="btn btn-outline-primary btncheckIn mb-1 btnAcceptCall checkin_{{ParentId}}">
+    <i class="bx bx-purchase-tag"></i>
+    <b>CHECK IN</b>
+    </button> {{/OnlineStatus}} {{^OnlineStatus}}
+                                <button type="button" disabled="disabled" type="button" docID="{{DoctorID}}" patientId="{{PatientID}}" parentId="{{ParentId}}" pType="{{PatientType}}" parentName="{{ParentName}}" PName="{{patientName}}" callreqID="{{CallrequestID}}" username="{{PatientUserName}}"
+                                    class="btn btn-outline-primary btncheckIn mb-1 btnAcceptCall checkin_{{ParentId}}">
+    <i class="bx bx-purchase-tag"></i>
+    <b>CHECK IN</b>
+    </button> {{/OnlineStatus}}
+                                <button type="button" docID="{{DoctorID}}" parentId="{{ParentId}}" pType="{{PatientType}}" parentName="{{ParentName}}" PName="{{patientName}}" patientId="{{PatientID}}" callreqID="{{CallrequestID}}" class="btn btn-icon btn-outline-danger mb-1 btnRejectCall">
+    <i class="bx bx-x"></i>
+    </button>
+                            </div>
+                        </div>
+                        <!--end of row-->
+                    </div>
+                    <!--end of col-lg-12-->
+                </li>
+                {{/RequestedCall}} {{^RequestedCall.0}}
+                <li class="timeline-items1 timeline-icon-primary active pb-0">
+                    <h3 class="timeline-title">
+                        No direct calls available
+                    </h3>
+                </li>
+                {{/RequestedCall.0}}
+
+            </script>
+            <!--end of request call Template-->
+            <!--start of que Templates-->
+            <script id="que-template" type="text/html">
+                {{#result}}
+                <!-- Patient one  -->
+                <div class="row" style="margin: 1%;">
+                    <div class="col-sm-4">
+                        <div class="d-inline-block">
+                            <div class="pr-50 pImage " style="border-radius:5px;float:left;display: inline-block; align-self: stretch;">
+                                {{#PatientPhoto}}
+                                <img src="{{PatientPhoto}}" alt="image" style="
+                    width: 80px;
+                    height: 80px;
+                    float:left;
+                  " /> {{/PatientPhoto}} {{^PatientPhoto}}
+                                <img src="/assets/images/maledoc.png" alt="image" style="
+                 width: 80px;
+                 height: 80px;
+                 float:left;" /> {{/PatientPhoto}}
+                                <span class="onlinStatus status_{{ParentID}}"><b>
+                                {{#OnlineStatus}}
+                                <span class="bullet bullet-success bullet-sm"></span> {{/OnlineStatus}} {{^OnlineStatus}}
+                                <span class="bullet bullet-offline bullet-sm"></span> {{/OnlineStatus}}
+                                </b>
+                                </span>
+                            </div>
+
+                            <div class="divqueue" style="display: inline-block;">
+                                <a class="btnViewDetail" callreqID="{{CallRequestID}}" patientId="{{PatientID}}" href="#">
+                                    <h6 class='patientName' style="padding-top: 2%;">
+                                        <u>{{PatientName}}</u>
+                                    </h6>
+                                </a>
+                                <p class="callType">{{RequestType}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 call-Queue-icons">
+                        <p><strong>Contact Number :</strong> {{PatientPhone}}</p>
+                        <p><strong>Patient waiting since :</strong>
+                            <input type="hidden" class="hdnCallQueDate" value="{{{CallQueDateTime}}}">
+                            <span class="spnWaitingTime">
                    {{{CallQueDateTime}}}
                 </span>
-                      </p>
-            </div>
+                        </p>
+                    </div>
 
-        <div class="col-sm-4 text-md-right" style="padding: 4px 3px;">
-            <div class="audioVideoBtnArea">
+                    <div class="col-sm-4 text-md-right" style="padding: 4px 3px;">
+                        <div class="audioVideoBtnArea">
 
-                <a >
-                    <button  type="button" patientName="{{ParentName}}"
-                     CallQueId="{{CallQueID}}" pType="{{PatientType}}"  cLogId ="0"  parentName = "{{ParentName}}" 
-                     parentid ="{{ParentID}}" patientID ="{{PatientID}}"
-                   
-                     class="btn btn-audio-video mb-1 btnDone">
+                            <a>
+                                <button type="button" patientName="{{ParentName}}" CallQueId="{{CallQueID}}" pType="{{PatientType}}" cLogId="0" parentName="{{ParentName}}" parentid="{{ParentID}}" patientID="{{PatientID}}" class="btn btn-audio-video mb-1 btnDone">
                      <i class='bx bx-check-double'></i>
                        <b>Done</b>
                     </button>
-                </a>
+                            </a>
 
-                {{#OnlineStatus}}
-                <!-- <a >
+                            {{#OnlineStatus}}
+                            <!-- <a >
                     <button  type="button" patientName="{{ParentName}}"
                      CallQueId="{{CallQueID}}" pType="{{PatientType}}"   cLogId ="0"  parentName = "{{ParentName}}" 
                      parentid ="{{ParentID}}" patientID ="{{PatientID}}"
@@ -568,19 +486,15 @@
                         <b>Audio</b>
                     </button>
                 </a> -->
-                <a>
-                    <button type="button"  patientName="{{ParentName}}"
-                    CallQueId="{{CallQueID}}" Speciality = "{{DoctorSpeciality}}"  pType="{{PatientType}}" cLogId ="0"
-                     parentName = "{{ParentName}}"  parentid ="{{ParentID}}"  patientID ="{{PatientID}}"
-                     onclick="OpenCommunicationWindow(this )"
-                     class="btn btn-audio-video mb-1 video_{{ParentID}}">
+                            <a>
+                                <button type="button" patientName="{{ParentName}}" CallQueId="{{CallQueID}}" Speciality="{{DoctorSpeciality}}" pType="{{PatientType}}" cLogId="0" parentName="{{ParentName}}" parentid="{{ParentID}}" patientID="{{PatientID}}" onclick="OpenCommunicationWindow(this )"
+                                    class="btn btn-audio-video mb-1 video_{{ParentID}}">
                         <i class="bx bx-video"></i>
                         <b>Video</b>
                     </button>
-                </a>
-                {{/OnlineStatus}}
-                {{^OnlineStatus}}
-                <!-- <button  type="button" patientName="{{ParentName}}"  disabled
+                            </a>
+                            {{/OnlineStatus}} {{^OnlineStatus}}
+                            <!-- <button  type="button" patientName="{{ParentName}}"  disabled
                 CallQueId="{{CallQueID}}"  pType="{{PatientType}}" cLogId ="0"  parentName = "{{ParentName}}"
                 parentid ="{{ParentID}}" patientID ="{{PatientID}}"
                 onclick="OpenCommunicationWindow(this)"
@@ -588,276 +502,254 @@
                    <i class="bx bx-microphone"></i>
                    <b>Audio</b>
                </button> -->
-           </a>
-           <a>
-               <button type="button"  patientName="{{ParentName}}" disabled
-               CallQueId="{{CallQueID}}" Speciality = "{{DoctorSpeciality}}"  pType="{{PatientType}}" cLogId ="0"  parentName = "{{ParentName}}"
-               parentid ="{{ParentID}}" patientID ="{{PatientID}}"
-                onclick="OpenCommunicationWindow(this)"
-                class="btn btn-audio-video mb-1 video_{{ParentID}}">
+                            </a>
+                            <a>
+                                <button type="button" patientName="{{ParentName}}" disabled CallQueId="{{CallQueID}}" Speciality="{{DoctorSpeciality}}" pType="{{PatientType}}" cLogId="0" parentName="{{ParentName}}" parentid="{{ParentID}}" patientID="{{PatientID}}" onclick="OpenCommunicationWindow(this)"
+                                    class="btn btn-audio-video mb-1 video_{{ParentID}}">
                    <i class="bx bx-video"></i>
                    <b>Video</b>
-               </button>
-                {{/OnlineStatus}}
+               </button> {{/OnlineStatus}}
 
 
 
-                <a>
-                    <!-- Button for SMS Popup -->
-                    <button type="button" patientName="{{PatientName}}"  phoneNo="{{PatientPhone}}"
-                     class="btnpopupSmsReminder btn btn-audio-video mb-1"
-                        >
+                                <a>
+                                    <!-- Button for SMS Popup -->
+                                    <button type="button" patientName="{{PatientName}}" phoneNo="{{PatientPhone}}" class="btnpopupSmsReminder btn btn-audio-video mb-1">
                         <i class="bx bx-chat"></i>
                         <b>SMS</b>
                     </button>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-    <!-- patient one ends -->
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- patient one ends -->
 
-   {{/result}}
+                {{/result}} {{^result.0}}
+                <h3 class="timeline-title">
+                    No Call Que Available
+                </h3>
+                {{/result.0}}
+            </script>
+            <!--end of que template-->
 
-   {{^result.0}}
-        <h3 class="timeline-title">
-            No Call Que Available
-        </h3>
-   {{/result.0}}
-</script>
-      <!--end of que template-->
+            <!--start of Call Log Template-->
+            <script id="callLog-template" type="text/html">
+                {{#result}}
+                <tr>
+                    <td>{{PatientName}}</td>
+                    <td>{{PatientPhone}}</td>
+                    <td>{{CallLogAddDateTime | Longdate}}</td>
+                    <td>{{OnCallDuration}}</td>
 
-      <!--start of Call Log Template-->
-      <script id="callLog-template" type="text/html">
-    {{#result}}
-    <tr>
-        <td>{{PatientName}}</td>
-        <td>{{PatientPhone}}</td>
-        <td>{{CallLogAddDateTime | Longdate}}</td>
-        <td>{{OnCallDuration}}</td>
-
-        <td>
-            <br>
-                <button type="button" cLogId="{{CallLogID }}"
-                    class="btn_complateCall btn btn-outline-primary  mr-1 mb-1 btn-sm">
+                    <td>
+                        <br>
+                        <button type="button" cLogId="{{CallLogID }}" class="btn_complateCall btn btn-outline-primary  mr-1 mb-1 btn-sm">
                     COMPLETE
                 </button>
-        </td>
-        <td>
-            <!-- modal on eye icon close-->
-            <a href="#" patientName="{{ParentName}}"  PatientID="{{PatientID}}" 
-            parentName = "{{ParentName}}" pType="{{PatientType}}"  parentid ="{{ParentID}}" 
-             cLogId="{{CallLogID}}" callqueid="0"
-            onclick="OpenCommunicationWindow(this)" data-toggle="tooltip" data-placement="bottom" title="Audio Call" >
-            <i class="bx bx-microphone"></i>
-            </a>
+                    </td>
+                    <td>
+                        <!-- modal on eye icon close-->
+                        <a href="#" patientName="{{ParentName}}" PatientID="{{PatientID}}" parentName="{{ParentName}}" pType="{{PatientType}}" parentid="{{ParentID}}" cLogId="{{CallLogID}}" callqueid="0" onclick="OpenCommunicationWindow(this)" data-toggle="tooltip" data-placement="bottom"
+                            title="Audio Call">
+                            <i class="bx bx-microphone"></i>
+                        </a>
 
 
-            <a href="#" patientName="{{ParentName}}" pType="{{PatientType}}"  PatientID="{{PatientID}}" 
-            parentName = "{{ParentName}}"  parentid ="{{ParentID}}" 
-            cLogId="{{CallLogID}}" callqueid="0"
-            onclick="OpenCommunicationWindow(this)" data-toggle="tooltip" data-placement="bottom" title="Video Call">
-            <i class="bx bx-video"></i>
-            </a>
+                        <a href="#" patientName="{{ParentName}}" pType="{{PatientType}}" PatientID="{{PatientID}}" parentName="{{ParentName}}" parentid="{{ParentID}}" cLogId="{{CallLogID}}" callqueid="0" onclick="OpenCommunicationWindow(this)" data-toggle="tooltip" data-placement="bottom"
+                            title="Video Call">
+                            <i class="bx bx-video"></i>
+                        </a>
 
 
-            <a href="#" class="btnViewHistory" cLogId="{{CallLogID }}"  data-toggle="tooltip" data-placement="bottom" title="View History" >
-            <i class="bx bx-show "></i>
-            </a>
+                        <a href="#" class="btnViewHistory" cLogId="{{CallLogID }}" data-toggle="tooltip" data-placement="bottom" title="View History">
+                            <i class="bx bx-show "></i>
+                        </a>
 
-            <a href="#" class="btnUpdatePrescription" callLogId="{{CallLogID}}"
-            phone ="{{PatientPhone}}" patientName="{{PatientName}}" visitDt = "{{CallLogAddDateTime}}"
-            patientPhoto="{{PatientPhoto}}" data-toggle="tooltip" data-placement="bottom" title="Update Prescription" >
-            <i class="bx bxs-file-plus "></i>
-            </a>
-            </td>
+                        <a href="#" class="btnUpdatePrescription" callLogId="{{CallLogID}}" phone="{{PatientPhone}}" patientName="{{PatientName}}" visitDt="{{CallLogAddDateTime}}" patientPhoto="{{PatientPhoto}}" data-toggle="tooltip" data-placement="bottom" title="Update Prescription">
+                            <i class="bx bxs-file-plus "></i>
+                        </a>
+                    </td>
 
 
 
-    </tr>
-{{/result}}
+                </tr>
+                {{/result}} {{^result}}
 
-{{^result}}
+                <tr>
+                    <td colspan="6">
+                        <h3 class="timeline-title">
+                            <br> No Call Log Available
+                        </h3>
+                    </td>
 
-<tr>
-<td colspan="6">
-    <h3 class="timeline-title">
-        <br>
-        No Call Log Available
-        </h3>
-</td>
+                </tr>
 
-</tr>
+                {{/result}}
+            </script>
+            <!--start of Call Log Template-->
 
-{{/result}}
-</script>
-      <!--start of Call Log Template-->
+            <div class="app-content content" style="position: relative;">
+                <div class="content-overlay"></div>
+                <div class="content-wrapper">
 
-      <div class="app-content content" style="position: relative;">
-        <div class="content-overlay"></div>
-        <div class="content-wrapper">
+                    <!------start of toast message ------->
+                    <div class="toast fade slow" data-delay="3000" id="myToast" style="position: absolute;">
 
-          <!------start of toast message ------->
-          <div class="toast fade slow" data-delay="3000" id="myToast" style="position: absolute;">
-
-            <div class="toast-body toast-header">
-              <div class="row">
-                <div class="col-xs-6">
-                  <div id="toastText"></div>
-                </div>
-                <div class="col-xs-6"> <button type="button" class="ml-2 close" data-dismiss="toast" aria-label="Close">
+                        <div class="toast-body toast-header">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div id="toastText"></div>
+                                </div>
+                                <div class="col-xs-6"> <button type="button" class="ml-2 close" data-dismiss="toast" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button></div>
-              </div>
-            </div>
-          </div>
-          <!------end of toas message ---------->
-
-          <div class="content-header row"></div>
-          <div class="content-body">
-            <div class="d-flex flex-row">
-              <div class="page-heading">
-                <h3>
-                  <i class='iconapp bx bx-time'></i>
-                  <span>
-                    Doctor Dashboard</span>
-                </h3>
-
-
-              </div>
-            </div>
-          </div>
-
-          <!-- Dashboard Start -->
-          <section id="dashboard-analytics">
-            <div class="row">
-              <!-- Scheduled appointment Starts -->
-              <div class="col-sm-6">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="widget-todo" style="height: 362px; overflow: auto;">
-                      <div class="card-header dashboard-heading-1">
-                        <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
-                          Scheduled Appointments
-                        </h6>
-                      </div>
-                      <div class="card-content">
-                        <div class="card-body">
-                          <ul class="widget-timeline mb-0" id="schTemplate">
-                          </ul>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Scheduled appointment ends -->
+                    <!------end of toas message ---------->
 
-              <!-- Direct Calls Card Starts -->
-              <div class="col-sm-6">
-                <div class="widget-todo" style="height: 362px; overflow: auto;">
-                  <div class="card-header dashboard-heading-1">
-                    <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
-                      Direct Calls
-                    </h6>
-                  </div>
+                    <div class="content-header row"></div>
+                    <div class="content-body">
+                        <div class="d-flex flex-row">
+                            <div class="page-heading">
+                                <h3>
+                                    <i class='iconapp bx bx-time'></i>
+                                    <span>
+                    Doctor Dashboard</span>
+                                </h3>
 
-                  <div class="card-content">
-                    <div class="card-body">
-                      <ul class="widget-timeline" style="list-style: none;" id="reqTemplate">
 
-                      </ul>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+
+                    <!-- Dashboard Start -->
+                    <section id="dashboard-analytics">
+                        <div class="row">
+                            <!-- Scheduled appointment Starts -->
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="widget-todo" style="height: 362px; overflow: auto;">
+                                            <div class="card-header dashboard-heading-1">
+                                                <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                                    Scheduled Appointments
+                                                </h6>
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <ul class="widget-timeline mb-0" id="schTemplate">
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Scheduled appointment ends -->
+
+                            <!-- Direct Calls Card Starts -->
+                            <div class="col-sm-6">
+                                <div class="widget-todo" style="height: 362px; overflow: auto;">
+                                    <div class="card-header dashboard-heading-1">
+                                        <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                            Direct Calls
+                                        </h6>
+                                    </div>
+
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <ul class="widget-timeline" style="list-style: none;" id="reqTemplate">
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Direct Calls Card ends -->
+                        </div>
+                    </section>
+                    <!-- Dashboard  end -->
+
+                    <!-- Call Queue Start -->
+                    <section id="table-Marketing">
+                        <div class="card widget-todo " style="height: 350px; overflow: auto;">
+                            <div class="card-header ">
+                                <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                    Call Queue
+                                </h6>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body pb-0" id="QueTemplate">
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Call Queue Ends -->
+
+                    <!-- Previous Patient table start -->
+                    <div class="row" id="table-hover-row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header call-log-header">
+                                    <h6 class="card-title dashboard-headings">
+                                        Recent Call Logs
+                                    </h6>
+                                </div>
+
+                                <div class="card-content">
+                                    <!-- table hover -->
+                                    <div class="table-responsive" id="tableCallLogs">
+                                        <table class="table table-hover mb-0 tblCallLogs">
+                                            <thead class="tablehead">
+                                                <tr>
+                                                    <th class="tableheader">Consultation</th>
+                                                    <th class="tableheader">Phone</th>
+                                                    <th class="tableheader">Date & Time</th>
+                                                    <th class="tableheader">Duration</th>
+                                                    <th class="tableheader">Activity</th>
+                                                    <th class="tableheader">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tblCallLogs">
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Previous Patient table end -->
                 </div>
-              </div>
-              <!--Direct Calls Card ends -->
             </div>
-          </section>
-          <!-- Dashboard  end -->
-
-          <!-- Call Queue Start -->
-          <section id="table-Marketing">
-            <div class="card widget-todo " style="height: 350px; overflow: auto;">
-              <div class="card-header ">
-                <h6 class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
-                  Call Queue
-                </h6>
-              </div>
-              <div class="card-content">
-                <div class="card-body pb-0" id="QueTemplate">
-
-                </div>
-              </div>
             </div>
-          </section>
+            <!-- END: Content-->
 
-          <!-- Call Queue Ends -->
+            <!-- END: Content-->
 
-          <!-- Previous Patient table start -->
-          <div class="row" id="table-hover-row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header call-log-header">
-                  <h6 class="card-title dashboard-headings">
-                    Recent Call Logs
-                  </h6>
-                </div>
-
-                <div class="card-content">
-                  <!-- table hover -->
-                  <div class="table-responsive" id="tableCallLogs">
-                    <table class="table table-hover mb-0 tblCallLogs">
-                      <thead class="tablehead">
-                        <tr>
-                          <th class="tableheader">Consultation</th>
-                          <th class="tableheader">Phone</th>
-                          <th class="tableheader">Date & Time</th>
-                          <th class="tableheader">Duration</th>
-                          <th class="tableheader">Activity</th>
-                          <th class="tableheader">Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody id="tblCallLogs">
+            <!-- BEGIN: JS-->
+            <!--     -->
 
 
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <script src="/js/vendors.js"></script>
 
-          <!-- Previous Patient table end -->
-        </div>
-      </div>
-      </div>
-      <!-- END: Content-->
-
-      <!-- END: Content-->
-
-      <!-- BEGIN: JS-->
-      <!--     -->
+            <script src="/js/sweetalert2.all.min.js"></script>
+            <script src="/js/polyfill.min.js"></script>
+            <script src="/js/sweet-alerts.js"></script>
 
 
-      <script src="/js/vendors.js"></script>
+            <script src="/js/vertical-menu-light.js"></script>
+            <script src="/js/app-menu.js"></script>
+            <script src="/js/app.js"></script>
 
-      <script src="/js/sweetalert2.all.min.js"></script>
-      <script src="/js/polyfill.min.js"></script>
-      <script src="/js/sweet-alerts.js"></script>
+            <!-- BEGIN: Services calling JS-->
+            <script src="/services/DoctorDashBoardServices.js"></script>
+            <script src="/services/loadingoverlay.min.js"></script>
 
-
-      <script src="/js/vertical-menu-light.js"></script>
-      <script src="/js/app-menu.js"></script>
-      <script src="/js/app.js"></script>
-      <!-- 
-
-<script src="/js/classie.js"></script>
-<script src="/js/notificationFx.js"></script> -->
-
-      <!-- BEGIN: Services calling JS-->
-      <script src="/services/DoctorDashBoardServices.js"></script>
-      <script src="/services/loadingoverlay.min.js"></script>
-
-      <%- include('../../Default/view/includes/End.ejs') %>
+            <%- include('../../Default/view/includes/End.ejs') %>

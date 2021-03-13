@@ -577,13 +577,13 @@ h6 {
 }
 
 .jumbotron {
-    background-image: url("../assets/HeroSection.png") !important;
-    background-color: lightgray !important;
-    background-size: cover !important;
+    background-image: url("/assets/HeroSection85.png") !important;
+    background-color: #eff5ff !important;
+    background-size: auto !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
     width: 100% !important;
-    height: 150vh !important;
+    height: 100vh !important;
 }
 
 .footer {
