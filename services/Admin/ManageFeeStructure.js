@@ -106,7 +106,7 @@ function Filldatatable(data) {
 }
 
 function DeleteFee(id) {
-    var url = baseURL + "FeeStructure/DeleteFeeStructure?FeeId=" + id;
+    var url = baseURL + "FeeStructure/DeleteFee?FeeId=" + id;
     $.ajax({
         url: url,
         headers: {
