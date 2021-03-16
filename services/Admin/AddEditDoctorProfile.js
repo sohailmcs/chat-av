@@ -55,7 +55,7 @@ $(function() {
     //   $("#hdnpwd").val(txt);
     // });
 
-    $("#txtbioGraphy").kendoEditor({
+    $("#txtbioGraphy, #txtClinicalInterest").kendoEditor({
         resizable: {
             content: false,
             toolbar: true,
@@ -219,6 +219,7 @@ function SetDoctorProfile(d) {
     $("#txtFname").val(d.FirstName);
     $("#txtLname").val(d.LastName);
     $("#txtbioGraphy").data("kendoEditor").value(d.Biography);
+    $("#txtClinicalInterest").data("kendoEditor").value(d.ClinicalInterest);
     $("#txtPno").val(parseInt(d.PhoneNumber));
     $("#dbogender option:contains(" + d.Gender + ")").attr(
         "selected",
@@ -367,6 +368,8 @@ function AddEditDoctorProfile(doctorId) {
     modelDetails.Gender = jQuery("#dbogender option:selected").text();
     modelDetails.MemberShipID = 1;
     modelDetails.Biography = $("#txtbioGraphy").data("kendoEditor").value();
+    modelDetails.ClinicalInterest = $("#txtClinicalInterest").data("kendoEditor").value();
+
     modelDetails.ClinicName = $("#txtClinicName").val();
     modelDetails.ClinicAddress = $("#clinicAddress").val();
     modelDetails.ClinicPhotoPath = "";

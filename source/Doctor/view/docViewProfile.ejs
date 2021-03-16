@@ -1,186 +1,172 @@
 <%- include('../../Default/view/includes/Head.ejs') %>
 
-<!-- BEGIN: Vendor CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
 
-<!-- END: Vendor CSS-->
+    <!-- END: Vendor CSS-->
 
-<!-- BEGIN: Theme CSS-->
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
-<link rel="stylesheet" type="text/css" href="/css/colors.css" />
-<link rel="stylesheet" type="text/css" href="/css/components.css" />
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+    <link rel="stylesheet" type="text/css" href="/css/colors.css" />
+    <link rel="stylesheet" type="text/css" href="/css/components.css" />
 
-<!-- END: Theme CSS-->
+    <!-- END: Theme CSS-->
 
-<!-- BEGIN: Page CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
-<!-- END: Page CSS-->
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+    <!-- END: Page CSS-->
 
-<!-- BEGIN: Custom CSS-->
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-<!-- END: Custom CSS-->
-</head>
-<!-- END: Head-->
+    <!-- END: Custom CSS-->
+    </head>
+    <!-- END: Head-->
 
-<!-- BEGIN: Body-->
+    <!-- BEGIN: Body-->
 
-<!-- body tag and blue nav bar  -->
-<%- include('includes/docNav.ejs') %>
+    <!-- body tag and blue nav bar  -->
+    <%- include('includes/docNav.ejs') %>
 
-<!-- complete side menu of doctor -->
-<%- include('includes/docSideMenu.ejs') %>
+        <!-- complete side menu of doctor -->
+        <%- include('includes/docSideMenu.ejs') %>
 
 
-<script id="template-docProfile" type="text/html">
+            <script id="template-docProfile" type="text/html">
 
-<!-- basic info -->           
-<div class="card">
-  <div class="card-header">
-      <h4 class="txtBasicInfo">Basic Information</h4>
-  </div>
-  <div class="card-content">
-      <div class="card-body">
-        <div class="row">
-        <div class="col-md-2">
-            {{#ProfilePicture}}
-                <img src="{{ProfilePicture}}" alt="image" style="
-                   height: 100%;
-                   width: 100%;                       
-                   margin:0 20px 0 8px" />
+                <!-- basic info -->
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="txtBasicInfo">Basic Information</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {{#ProfilePicture}}
+                                    <img src="{{ProfilePicture}}" alt="image" style="
+                                    height: 100%;
+                                    width: 100%;                       
+                                    margin:0 20px 0 8px" /> {{/ProfilePicture}} {{^ProfilePicture}}
+                                    <img src="/assets/images/doctorprofile.jpg" alt="image" style="
+                                    height: 100%;
+                                    width: 100%;                       
+                                    margin:0 20px 0 8px" /> {{/ProfilePicture}}
+                                </div>
+                                <div class="col-md-5">
 
-               {{/ProfilePicture}}
-               {{^ProfilePicture}}
-               <img src="/assets/images/doctorprofile.jpg" alt="image" style="
-                  height: 100%;
-                  width: 100%;                       
-                  margin:0 20px 0 8px" />
+                                    <div style="display:inline-block">
+                                        <h5 class="media-heading">
+                                            <b>{{FullName}}</b>
+                                        </h5>
+                                        <div>
+                                            <p> <b>Specialization</b>: {{Specialization}} </p>
+                                        </div>
+                                        <div>
+                                            <p> <b>Email </b>: {{Email}} </p>
+                                        </div>
+                                        <div>
+                                            <p> <b>Phone </b>: {{PhoneNumber}} </p>
+                                        </div>
 
-              {{/ProfilePicture}}
-        </div>
-          <div class="col-md-5" >
-           
-            <div style="display:inline-block">
-               <h5 class="media-heading">                   
-                  <b>DOCTOR ABC</b>
-               </h5>
-             <div>
-               <p> <b>Specialization</b>: {{Specialization}} </p>
-             </div> 
-             <div>
-                <p> <b>Email </b>: {{Email}} </p>
-              </div> 
-              <div>
-                <p> <b>Phone </b>: {{PhoneNumber}} </p>
-              </div> 
-              <div>
-                <p> <b>Date of Birth</b>: 12/12/2008 </p>
-              </div> 
-              <div>
-                <p> <b>Gender </b>: {{Gender}} </p>
-              </div> 
-           
-            </div>                      
-        </div> 
-        <div class="col-md-4">
-            <div>
-                <p> <b>Address</b>: {{Address}} </p>
-              </div>
-              <div>
-                <p> <b>Country</b>: {{Country}} </p>
-              </div>
-              <div>
-                <p> <b>City</b>: {{City}} </p>
-              </div>
-              <div>
-                <p> <b>State</b>: {{State}} </p>
-              </div>
-            </div>   
-        
-    </div>
-    <br/>
-   
-    <br />
-</div>
-</div>
-</div>
-<!-- basic info -->           
+                                        <div>
+                                            <p> <b>Gender </b>: {{Gender}} </p>
+                                        </div>
 
-<div class="row">
-<div class="col-md-6">
-    <div class="card">
-        <div class="card-header">
-            <h4>Awards</h4>
-        </div>
-        <div class="card-content">
-            <div class="card-body">
-                <div class="col-sm-12" style="display:inline-block">                        
-                        <div>
-                            <p> <b>Degree</b>: {{Degree}} </p>
-                          </div> 
-                          <div>
-                            <p> <b>Institution</b>: xyx hospital </p>
-                          </div>
-                        
-                        <div>
-                          <p> <b>Year of Completion</b>: {{YearsOfCompletion}} </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div>
+                                        <p> <b>Address</b>: {{Address}} </p>
+                                    </div>
+                                    <div>
+                                        <p> <b>Country</b>: {{Country}} </p>
+                                    </div>
+                                    <div>
+                                        <p> <b>City</b>: {{City}} </p>
+                                    </div>
+                                    <div>
+                                        <p> <b>State</b>: {{State}} </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br/>
+
+                            <br />
                         </div>
-                        
-                    
+                    </div>
                 </div>
-            </div>
-        </div>
-        </div>
-</div>
-<div class="col-md-6">
-<div class="card">
-    <div class="card-header">
-        <h4>Education</h4>
-    </div>
-    <div class="card-content">
-        <div class="card-body">
-            <div class="col-sm-12" style="display:inline-block">
-                
-                    <div>
-                        <p> <b>Award Name</b>: {{Award}} </p>
-                      </div> 
-                      <div>
-                        <p> <b>Year</b>: {{AwardYear}} </p>
-                      </div> 
-                
-            </div>
-        </div>
-    </div>
-</div>
-</div><!--end of education Card-->
+                <!-- basic info -->
 
-</div><!--end of Award Card-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Biography</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="col-sm-12" style="display:inline-block">
+                                        <div>
+                                            <p> {{{Biography}}} </p>
+                                        </div>
 
-<div class="row">
-<div class="col-md-6">
-    <div class="card">
-        <div class="card-header">
-            <h4>Clinic Information</h4>
-        </div>
-        <div class="card-content">
-            <div class="card-body">
-                <div class="col-sm-12" style="display:inline-block">
-                        <div>
-                            <p> <b>Clinic Name</b>: {{ClinicName}} </p>
-                          </div> 
-                          <div>
-                            <p> <b>Clinic Address</b>: {{ClinicAddress}} </p>
-                          </div> 
-                    
-                    <br />
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Clinical interest</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="col-sm-12" style="display:inline-block">
+
+                                        <div>
+                                            <p>{{{ClinicalInterest}}} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of education Card-->
+
                 </div>
-            </div>
-        </div>
-    </div>
-</div><!--end of education Card-->
-<div class="col-md-6">
+                <!--end of Award Card-->
+
+                <!-- <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Clinic Information</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="col-sm-12" style="display:inline-block">
+                                        <div>
+                                            <p> <b>Clinic Name</b>: {{ClinicName}} </p>
+                                        </div>
+                                        <div>
+                                            <p> <b>Clinic Address</b>: {{ClinicAddress}} </p>
+                                        </div>
+
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                <!--end of education Card-->
+                <!-- <div class="col-md-6">
     <div class="card">
         <div class="card-header">
             <h4>Experience</h4>
@@ -204,54 +190,55 @@
         </div>
     </div>
     
-</div><!--end of Award Card-->
+</div>end of Award Card -->
 
-</div>
-
-</script>
-
-<!-- BEGIN: Content-->
-<div class="app-content content">
-    <div class="content-wrapper">
-        <div class="content-body">
-           
-            <div class="d-flex flex-row">
-                <div class="page-heading">
-                    <h3>
-                        <i class='iconapp bx bx-time'></i>
-                        <span>
-                        View Doctor Profile</span></h3>
-
-
-                        </div>
                 </div>
 
-<div id="docProfile">
+            </script>
 
-</div><!--end of docProfile-->
+            <!-- BEGIN: Content-->
+            <div class="app-content content">
+                <div class="content-wrapper">
+                    <div class="content-body">
+
+                        <div class="d-flex flex-row">
+                            <div class="page-heading">
+                                <h3>
+                                    <i class='iconapp bx bx-time'></i>
+                                    <span>
+                        Profile Details</span></h3>
 
 
+                            </div>
+                        </div>
 
-</div>
-</div>
-</div>
+                        <div id="docProfile">
 
-
-<!-- BEGIN: Content-->
-
-<!-- BEGIN: JS-->
-<!-- BEGIN: Vendor JS-->
-<script src="/js/vendors.js"></script>
-
-<!-- BEGIN Vendor JS-->
-
-<script src="/js/vertical-menu-light.js"></script>
-<script src="/js/app-menu.js"></script>
-<script src="/js/app.js"></script>
-<script src="/services/ViewDoctorProfileServices.js"></script>
-<script src="/services/loadingoverlay.min.js"></script>
+                        </div>
+                        <!--end of docProfile-->
 
 
 
-<!-- END: JS-->
-<%- include('../../Default/view/includes/End.ejs') %>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- BEGIN: Content-->
+
+            <!-- BEGIN: JS-->
+            <!-- BEGIN: Vendor JS-->
+            <script src="/js/vendors.js"></script>
+
+            <!-- BEGIN Vendor JS-->
+
+            <script src="/js/vertical-menu-light.js"></script>
+            <script src="/js/app-menu.js"></script>
+            <script src="/js/app.js"></script>
+            <script src="/services/ViewDoctorProfileServices.js"></script>
+            <script src="/services/loadingoverlay.min.js"></script>
+
+
+
+            <!-- END: JS-->
+            <%- include('../../Default/view/includes/End.ejs') %>
