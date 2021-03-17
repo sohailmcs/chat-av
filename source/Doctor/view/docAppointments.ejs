@@ -99,13 +99,13 @@
                         <div class="col-lg-3">
                             {{#PatientPhoto}}
                             <img src="{{PatientPhoto}}" alt="image" style="
-        height: 140px;
-        width: 140px;
-        border-radius: 5px;" /> {{/PatientPhoto}} {{^PatientPhoto}}
+          height: 140px;
+          width: 140px;
+          border-radius: 5px;" /> {{/PatientPhoto}} {{^PatientPhoto}}
                             <img src="/assets/images/patient.png" alt="image" style="
-       height: 140px;
-        width: 140px;
-        border-radius: 5px;" /> {{/PatientPhoto}}
+         height: 140px;
+          width: 140px;
+          border-radius: 5px;" /> {{/PatientPhoto}}
                         </div>
                         <div class="col-lg-4">
                             <br/>
@@ -137,9 +137,13 @@
                                 {{/IsTakingMedication}} {{^IsTakingMedication}}
                                 <div class="col-sm-12 text-left">
                                     <p> No Taking Medications</p>
-                                    <img src="/assets/images/medication.jpg" alt="Medication" height="100" width="100">
+                                    <!-- <img src="/assets/images/medication.jpg" alt="Medication" height="100" width="100"> -->
                                 </div>
-                                {{/IsTakingMedication}} {{/PatientMedicationModel}}
+                                {{/IsTakingMedication}} {{/PatientMedicationModel}} {{^PatientMedicationModel}}
+                                <div class="col-sm-12 text-left">
+                                    <p> No Taking Medications</p>
+                                </div>
+                                {{/PatientMedicationModel}}
                             </div>
                         </div>
                         <!--end of row-->
@@ -150,7 +154,10 @@
                                 <li>{{AlergyName}}</li>
                                 {{/IsAlergy}} {{^IsAlergy}}
                                 <p>No Alergy</p>
-                                <img src="/assets/images/noAlergy.jpg" alt="Medication" height="100" width="100"> {{/IsAlergy}} {{/PatientAlergyModel}}
+                                <!-- <img src="/assets/images/noAlergy.jpg" alt="Medication" height="100" width="100">-->
+                                {{/IsAlergy}} {{/PatientAlergyModel}} {{^PatientAlergyModel}}
+                                <p>No Alergy</p>
+                                {{/PatientAlergyModel}}
                             </ul>
                         </div>
                     </div>
@@ -163,7 +170,9 @@
                                 <li>{{Condition}}</li>
                                 {{/IsCondition}} {{^IsCondition}}
                                 <p>No Medical Condition</p>
-                                {{/IsCondition}} {{/PatientMedConditonModel}}
+                                {{/IsCondition}} {{/PatientMedConditonModel}} {{^PatientMedConditonModel}}
+                                <p>No Medical Condition</p>
+                                {{/PatientMedConditonModel}}
                             </ul>
                             {{#IsOtherCondition}}
                             <ul class="Listalergy" style="margin-bottom:2px">
@@ -207,7 +216,7 @@
                         </h6>
                     </div>
                     <div class="col-12 col-md-6 tr-Row">
-                        <button type="button" AppointmentId="{{AppointmentId}}" PatientId="{{PatientID}}" class="btn btn-outline-primary mr-1 btnViewDetail" style="margin-left: 1%;"><i class="bx bx-show"></i>
+                        <button type="button" AppointmentId="{{AppointmentDetailID}}" PatientId="{{PatientID}}" class="btn btn-outline-primary mr-1 btnViewDetail" style="margin-left: 1%;"><i class="bx bx-show"></i>
           <strong> VIEW</strong>
           </button>
                         <!-- <button
