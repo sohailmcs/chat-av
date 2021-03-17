@@ -1,250 +1,216 @@
 <%- include('../../Default/view/includes/Head.ejs') %>
 
-<!-- BEGIN: Vendor CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
-<link href="/css/KendoUi/examples-offline.css" rel="stylesheet" />
-<link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
-<link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
-<link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+    <link href="/css/KendoUi/examples-offline.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.common.min.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.default.min.css" rel="stylesheet" />
+    <link href="/css/KendoUi/kendo.default.mobile.min.css" rel="stylesheet" />
 
-<link rel="stylesheet" type="text/css" href="/css/pickadate.css" />
-<link rel="stylesheet" type="text/css" href="/css/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pickadate.css" />
+    <link rel="stylesheet" type="text/css" href="/css/daterangepicker.css" />
 
-<!-- END: Vendor CSS-->
+    <!-- END: Vendor CSS-->
 
-<!-- BEGIN: Theme CSS-->
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
-<link rel="stylesheet" type="text/css" href="/css/colors.css" />
-<link rel="stylesheet" type="text/css" href="/css/components.css" />
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+    <link rel="stylesheet" type="text/css" href="/css/colors.css" />
+    <link rel="stylesheet" type="text/css" href="/css/components.css" />
 
-<!-- END: Theme CSS-->
+    <!-- END: Theme CSS-->
 
-<!-- BEGIN: Page CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
-<!-- END: Page CSS-->
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+    <!-- END: Page CSS-->
 
-<!-- BEGIN: Custom CSS-->
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<!-- END: Vendor CSS-->
-</head>
-<!-- END: Head-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <!-- END: Vendor CSS-->
+    </head>
+    <!-- END: Head-->
 
-<!-- BEGIN: Body-->
+    <!-- BEGIN: Body-->
 
-<!-- body tag and blue nav bar  -->
-<%- include('includes/docNav.ejs') %>
+    <!-- body tag and blue nav bar  -->
+    <%- include('includes/docNav.ejs') %>
 
-<!-- complete side menu of doctor -->
-<%- include('includes/docSideMenu.ejs') %>
+        <!-- complete side menu of doctor -->
+        <%- include('includes/docSideMenu.ejs') %>
 
-<!-- BEGIN: Content-->
-<div class="modal fade text-left" id="popupConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-primary ">
-        <h4 id="myModalLabel160">
-         <strong>Appointment Delete</strong>
-        </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <!-- BEGIN: Content-->
+            <div class="modal fade text-left" id="popupConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary ">
+                            <h4 id="myModalLabel160">
+                                <strong>Appointment Delete</strong>
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>       
-      </div>
-      <div class="modal-body">
-        <h5 class="txtCancellation">Are You Sure You Want to delete This Appointment</h5>
-      </div>
-      <div class="modal-footer">
-        <input type="hidden" id="hdnPatId" value="">
-        <input type="hidden" id="hdnAppId" value="">
-        <input type="hidden" id="hdnDocId" value="">
-        <button type="button" class="btnConfirmDelete btn btn-outline-primary">
+        </button>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="txtCancellation">Are You Sure You Want to delete This Appointment</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="hdnPatId" value="">
+                            <input type="hidden" id="hdnAppId" value="">
+                            <input type="hidden" id="hdnDocId" value="">
+                            <button type="button" class="btnConfirmDelete btn btn-outline-primary">
           <i class='bx bx-check-square' ></i>
           <b>Yes</b>
         </button>
-        <button type="button" data-dismiss="modal" style="padding: 7px 25px;" class="btn btn-primary">
+                            <button type="button" data-dismiss="modal" style="padding: 7px 25px;" class="btn btn-primary">
           <i class='bx bxs-x-square' ></i>
          <b>No</b>
-        </button>       
+        </button>
 
-      </div>
-    </div>
-  </div>
-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<!--start of patient profile details------>
-<div class="modal fade text-left" id="ModelDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160"
-  aria-hidden="true">
-  <div class="modal-dialog modal-xlg modal-dialog-centered modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <h5 class="modal-title black" id="myModalLabel160">
-           Patient Details
-        </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <!--start of patient profile details------>
+            <div class="modal fade text-left" id="ModelDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+                <div class="modal-dialog modal-xlg modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title black" id="myModalLabel160">
+                                Patient Details
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-    </div>
-    
-        <div class="card-content side-bar-doc" id="bookDetails">
+                        </div>
 
-      
-      </div>
-      
-    </div>
-  </div>
-</div>
-<script id="BookingDetail-Template" type="text/html">
-  <div class="card-body">    
-   
-    <div class="row">
-      <div class="col-lg-3">
-        {{#PatientPhoto}}
-        <img
-        src="{{PatientPhoto}}"
-        alt="image"
-        style="
+                        <div class="card-content side-bar-doc" id="bookDetails">
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <script id="BookingDetail-Template" type="text/html">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-lg-3">
+                            {{#PatientPhoto}}
+                            <img src="{{PatientPhoto}}" alt="image" style="
         height: 140px;
         width: 140px;
-        border-radius: 5px;" />
-       {{/PatientPhoto}}
-       {{^PatientPhoto}}
-       <img src="/assets/images/patient.png" alt="image" style="
+        border-radius: 5px;" /> {{/PatientPhoto}} {{^PatientPhoto}}
+                            <img src="/assets/images/patient.png" alt="image" style="
        height: 140px;
         width: 140px;
-        border-radius: 5px;" /> 
-       {{/PatientPhoto}}          
-    </div>
-  <div class="col-lg-4">
-    <br/>
-    <h5 class="docName" style="margin:0 0 5px 0;">
-      {{FullName}}
-    </h5>          
-    <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span><br>
-    <b>Gender :</b> {{Gender}} 
-  </div>
-  <div  class="col-lg-5 mt-1">
-    <br/>        
-    <b> Email :</b> {{Email}} <br>                  
-    <b>Phone :</b> {{PhoneNo}}
-  </div>
-    </div><!--end of row-->
+        border-radius: 5px;" /> {{/PatientPhoto}}
+                        </div>
+                        <div class="col-lg-4">
+                            <br/>
+                            <h5 class="docName" style="margin:0 0 5px 0;">
+                                {{FullName}}
+                            </h5>
+                            <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span><br>
+                            <b>Gender :</b> {{Gender}}
+                        </div>
+                        <div class="col-lg-5 mt-1">
+                            <br/>
+                            <b> Email :</b> {{Email}} <br>
+                            <b>Phone :</b> {{PhoneNo}}
+                        </div>
+                    </div>
+                    <!--end of row-->
 
-    <div class="divMedication row mt-3">      
-      <div class="col-sm-7">
-        <h4>Medications</h4>
-        <div class="row">
-          {{#PatientMedicationModel}}
-          {{#IsTakingMedication}}
-          <div class="col-sm-4 text-left mb-1">
-            {{#ImageUrl}}
-            <img  src="{{ImageUrl}}" height="100" width="100">
-            {{/ImageUrl}}
-            {{^ImageUrl}}
-            <img  src="/assets/images/medication.jpg" alt="Medication" height="100" width="100">
-            {{/ImageUrl}}
-            <span class="medicineName">{{MedicationName}}</span>
-          </div>
-          {{/IsTakingMedication}}
-          {{^IsTakingMedication}}
-          <div class="col-sm-12 text-left">
-           <p> No Taking Medications</p>
-           <img  src="/assets/images/medication.jpg" alt="Medication" height="100" width="100">
-          </div>
-          {{/IsTakingMedication}}
-          {{/PatientMedicationModel}}
-        </div>
-      </div><!--end of row-->      
-      <div class="divMedication col-sm-5">
-        <h4>Allergy</h4>
-        <ul class="Listalergy">
-          {{#PatientAlergyModel}}
-            {{#IsAlergy}}
-              <li>{{AlergyName}}</li>
-            {{/IsAlergy}}
-            {{^IsAlergy}}
-              <p>No Alergy</p>
-              <img  src="/assets/images/noAlergy.jpg" alt="Medication" height="100" width="100">
-            {{/IsAlergy}}           
-          {{/PatientAlergyModel}}          
-        </ul>
-      </div>      
-    </div><!--end of row-->
-    <div class="row mt-3">
-      <div class="divMedication col-sm-7 mb-1">
-        <h4>Medical Conditions</h4>       
-        <ul class="Listalergy">  
-          {{#PatientMedConditonModel}}       
-            {{#IsCondition}}
-              <li>{{Condition}}</li>
-            {{/IsCondition}}
-            {{^IsCondition}}
-              <p>No Medical Condition</p>
-            {{/IsCondition}} 
-         {{/PatientMedConditonModel}} 
-          </ul>         
-          {{#IsOtherCondition}}
-          <ul class="Listalergy" style="margin-bottom:2px">
-            <h4>Other</h4>
-          </ul>
-            <p>{{OtherConditionDesc}}</p>
-        {{/IsOtherCondition}}
-          
-      </div>
-      <div class="divMedication col-sm-5">
-        <h4>Complain</h4>
-        {{#PatientComplainModel}} 
-         
-          {{#PatientComplainDesc}}
-            <p class="mb-1">{{PatientComplainDesc}}</p> 
-          {{/PatientComplainDesc}}
-          {{^PatientComplainDesc}}
-            <p>No Complain</p>
-          {{/PatientComplainDesc}}
+                    <div class="divMedication row mt-3">
+                        <div class="col-sm-7">
+                            <h4>Medications</h4>
+                            <div class="row">
+                                {{#PatientMedicationModel}} {{#IsTakingMedication}}
+                                <div class="col-sm-4 text-left mb-1">
+                                    {{#ImageUrl}}
+                                    <img src="{{ImageUrl}}" height="100" width="100"> {{/ImageUrl}} {{^ImageUrl}}
+                                    <img src="/assets/images/medication.jpg" alt="Medication" height="100" width="100"> {{/ImageUrl}}
+                                    <span class="medicineName">{{MedicationName}}</span>
+                                </div>
+                                {{/IsTakingMedication}} {{^IsTakingMedication}}
+                                <div class="col-sm-12 text-left">
+                                    <p> No Taking Medications</p>
+                                    <img src="/assets/images/medication.jpg" alt="Medication" height="100" width="100">
+                                </div>
+                                {{/IsTakingMedication}} {{/PatientMedicationModel}}
+                            </div>
+                        </div>
+                        <!--end of row-->
+                        <div class="divMedication col-sm-5">
+                            <h4>Allergy</h4>
+                            <ul class="Listalergy">
+                                {{#PatientAlergyModel}} {{#IsAlergy}}
+                                <li>{{AlergyName}}</li>
+                                {{/IsAlergy}} {{^IsAlergy}}
+                                <p>No Alergy</p>
+                                <img src="/assets/images/noAlergy.jpg" alt="Medication" height="100" width="100"> {{/IsAlergy}} {{/PatientAlergyModel}}
+                            </ul>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                    <div class="row mt-3">
+                        <div class="divMedication col-sm-7 mb-1">
+                            <h4>Medical Conditions</h4>
+                            <ul class="Listalergy">
+                                {{#PatientMedConditonModel}} {{#IsCondition}}
+                                <li>{{Condition}}</li>
+                                {{/IsCondition}} {{^IsCondition}}
+                                <p>No Medical Condition</p>
+                                {{/IsCondition}} {{/PatientMedConditonModel}}
+                            </ul>
+                            {{#IsOtherCondition}}
+                            <ul class="Listalergy" style="margin-bottom:2px">
+                                <h4>Other</h4>
+                            </ul>
+                            <p>{{OtherConditionDesc}}</p>
+                            {{/IsOtherCondition}}
 
-          
-          {{#PatComplainImage}}
-             <img  src="{{PatComplainImage}}"  alt="Complain" height="100" width="100">
-          {{/PatComplainImage}}
-          {{^PatComplainImage}}
-           <img  src="/assets/images/complain.jpg" alt="Complain" height="100" width="100">
-          {{/PatComplainImage}}
-          
-        {{/PatientComplainModel}}
-        {{^PatientComplainModel}}
-          <p>No Complain</p>
-       {{/PatientComplainModel}}
-      </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </script>  
-<script id="slots-template" type="text/html">
-      {{#result}}  <!--  appointment start -->
-      <div class="col-sm-12 selectedDt">
-        <!-- using pipe to formate date -->
-                {{AppointmentDate | date}}   
-            <br>       
-        </div>
-        
-        {{#AppointmentsDetailsModel}}
-        {{#isBooked}}
-        <div class="row tr-slot slot-booked ">
-          <div class="col-12 col-md-6  ">
-              <h6 class="schappointment-text ">
-                <i class="bx bx-time"></i>
-                {{AppointmentStartTime | time}}- {{AppointmentEndTime | time}} 
-              </h6>
-          </div>
-          <div class="col-12 col-md-6 tr-Row">
-          <button type="button" PatientId="{{PatientID}}" 
-          class="btn btn-outline-primary mr-1 btnViewDetail" 
-          style="margin-left: 1%;" 
-         ><i class="bx bx-show"></i>
+                        </div>
+                        <div class="divMedication col-sm-5">
+                            <h4>Complain</h4>
+                            {{#PatientComplainModel}} {{#PatientComplainDesc}}
+                            <p class="mb-1">{{PatientComplainDesc}}</p>
+                            {{/PatientComplainDesc}} {{^PatientComplainDesc}}
+                            <p>No Complain</p>
+                            {{/PatientComplainDesc}} {{#PatComplainImage}}
+                            <img src="{{PatComplainImage}}" alt="Complain" height="100" width="100"> {{/PatComplainImage}} {{^PatComplainImage}}
+                            <img src="/assets/images/complain.jpg" alt="Complain" height="100" width="100"> {{/PatComplainImage}} {{/PatientComplainModel}} {{^PatientComplainModel}}
+                            <p>No Complain</p>
+                            {{/PatientComplainModel}}
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </script>
+            <script id="slots-template" type="text/html">
+                {{#result}}
+                <!--  appointment start -->
+                <div class="col-sm-12 selectedDt">
+                    <!-- using pipe to formate date -->
+                    {{AppointmentDate | date}}
+                    <br>
+                </div>
+
+                {{#AppointmentsDetailsModel}} {{#isBooked}}
+                <div class="row tr-slot slot-booked ">
+                    <div class="col-12 col-md-6  ">
+                        <h6 class="schappointment-text ">
+                            <i class="bx bx-time"></i> {{AppointmentStartTime | time}}- {{AppointmentEndTime | time}}
+                        </h6>
+                    </div>
+                    <div class="col-12 col-md-6 tr-Row">
+                        <button type="button" AppointmentId="{{AppointmentId}}" PatientId="{{PatientID}}" class="btn btn-outline-primary mr-1 btnViewDetail" style="margin-left: 1%;"><i class="bx bx-show"></i>
           <strong> VIEW</strong>
           </button>
-          <!-- <button
+                        <!-- <button
           type="button" DoctorId="{{DoctorId}}"  PatientID = "{{PatientID}}"  appDetailId = "{{AppointmentDetailID}}"
           class="btnDelete btn btn-primary mr-1"
           style="margin-left: 1%;"
@@ -252,608 +218,592 @@
           <i class="bx bx-trash"></i>
          <strong> DELETE</strong>
         </button> -->
-          </div>
-        </div>
+                    </div>
+                </div>
 
 
-        {{/isBooked}}
-        {{^isBooked}}
-        <div class="row tr-slot">
-          <div class="col-12 col-md-6">
-            <h6 class="schappointment-text">
-              <i class="bx bx-time"></i>  {{AppointmentStartTime | time }}- {{AppointmentEndTime | time}}  <span style="display:none"> {{isBooked}}</span>
-            </h6>
-          </div>
-          <div class="col-8 col-md-6 tr-Row">
-            <button
-            type="button" DoctorId="{{DoctorId}}"  PatientID = "0"  appDetailId = "{{AppointmentDetailID}}"
-            class="btnDelete btn btn-outline-primary mr-1"
-            style="margin-left: 1%;"
-          >
+                {{/isBooked}} {{^isBooked}}
+                <div class="row tr-slot">
+                    <div class="col-12 col-md-6">
+                        <h6 class="schappointment-text">
+                            <i class="bx bx-time"></i> {{AppointmentStartTime | time }}- {{AppointmentEndTime | time}} <span style="display:none"> {{isBooked}}</span>
+                        </h6>
+                    </div>
+                    <div class="col-8 col-md-6 tr-Row">
+                        <button type="button" DoctorId="{{DoctorId}}" PatientID="0" appDetailId="{{AppointmentDetailID}}" class="btnDelete btn btn-outline-primary mr-1" style="margin-left: 1%;">
             <i class="bx bx-trash"></i>
           <strong>  DELETE </strong>
           </button>
-          </div>
-        </div>  
-        {{/isBooked}}        
-         {{/AppointmentsDetailsModel}}
-            {{/result}}
-            {{^result}}
-            <div class="row tr-slot">
-              <div class="col-sm-12">
-                <h6 class="schappointment-text">
-                  No Scheduled Available
-                </h6>
-              </div>
-              
-            </div>
-            {{/result}}
+                    </div>
+                </div>
+                {{/isBooked}} {{/AppointmentsDetailsModel}} {{/result}} {{^result}}
+                <div class="row tr-slot">
+                    <div class="col-sm-12">
+                        <h6 class="schappointment-text">
+                            No Scheduled Available
+                        </h6>
+                    </div>
 
-</script>
+                </div>
+                {{/result}}
 
-<hr />
+            </script>
 
-<div class="app-content content">
-  <div class="content-overlay"></div>
-  <div class="content-wrapper">
-    <div class="content-body">
-      <div class="d-flex flex-row">
-        <div class="page-heading">        
+            <hr />
 
-          <h3>
-            <i class="iconapp bx bx-time"></i>
-            <span>
+            <div class="app-content content">
+                <div class="content-overlay"></div>
+                <div class="content-wrapper">
+                    <div class="content-body">
+                        <div class="d-flex flex-row">
+                            <div class="page-heading">
+
+                                <h3>
+                                    <i class="iconapp bx bx-time"></i>
+                                    <span>
               My Booked Appointments</span></h3>
-      </div>
-      </div>
+                            </div>
+                        </div>
 
-      <div class="row">
-        <div class="col-lg-5">
-          <!-- calendar view start  -->
-          <div class="calendar-view card">
-            <div id="scheduler"></div>
-          </div>
-          <!-- calendar view end  -->
-        </div>
-        <div class="col-lg-7">
-          <!-- MY APPOINTMENTS START -->
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <!-- calendar view start  -->
+                                <div class="calendar-view card">
+                                    <div id="scheduler"></div>
+                                </div>
+                                <!-- calendar view end  -->
+                            </div>
+                            <div class="col-lg-7">
+                                <!-- MY APPOINTMENTS START -->
 
-          <div class="col-12 dashboard-marketing-campaign card  Slotarea">
-            <div class="card marketing-campaigns">
-              <div class="card-header d-flex justify-content-between align-items-center pb-1">
-                <h5 class="card-title">
-                  <b>
+                                <div class="col-12 dashboard-marketing-campaign card  Slotarea">
+                                    <div class="card marketing-campaigns">
+                                        <div class="card-header d-flex justify-content-between align-items-center pb-1">
+                                            <h5 class="card-title">
+                                                <b>
                     Scheduled Appointments
                   </b>
-                </h5>
+                                            </h5>
 
-              </div>
-              <!--start of slots=----->
-              <div id="doctorSlots">
+                                        </div>
+                                        <!--start of slots=----->
+                                        <div id="doctorSlots">
 
-                <!--  appointment end -->
-              </div>
-              <!--end of slots=----->
-            </div>
-          </div>
-          <!-- MY APPOINTMENTS ENDS -->
-        </div>
-      </div>
-      <!-- calendar Wrapper  -->
-      <!-- row END -->
-      <br>
-      <div class="d-flex flex-row">
-        <div class="page-heading">
-          <h3 class="card-title">Create A Schedule</h3>
-        </div>
-      </div>
+                                            <!--  appointment end -->
+                                        </div>
+                                        <!--end of slots=----->
+                                    </div>
+                                </div>
+                                <!-- MY APPOINTMENTS ENDS -->
+                            </div>
+                        </div>
+                        <!-- calendar Wrapper  -->
+                        <!-- row END -->
+                        <br>
+                        <div class="d-flex flex-row">
+                            <div class="page-heading">
+                                <h3 class="card-title">Create A Schedule</h3>
+                            </div>
+                        </div>
 
-      <div class="row">
-        <div class="col-md-4">
-          <label>From Date</label>
-          <fieldset class="position-relative has-icon-left">
-            <!-- <input id="dtFrom" type="date" class="form-control " placeholder="Select Date" /> -->
-            <input type="text" id="dtFrom" name="dtFrom" 
-            class="txtInfo form-control pickadate-months-year"
-            required placeholder="Select Date" 
-            data-validation-required-message="The  field is required"
-             /> 
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>From Date</label>
+                                <fieldset class="position-relative has-icon-left">
+                                    <!-- <input id="dtFrom" type="date" class="form-control " placeholder="Select Date" /> -->
+                                    <input type="text" id="dtFrom" name="dtFrom" class="txtInfo form-control pickadate-months-year" required placeholder="Select Date" data-validation-required-message="The  field is required" />
 
-            
-            <div class="form-control-position">
-              <i class="bx bx-calendar"></i>
-            </div>
-          </fieldset>
-        </div>
-        <div class="col-md-4">
-          <label>To Date</label>
-          <fieldset class="position-relative has-icon-left">
-            <!-- <input id="toDT" type="date" class="form-control" placeholder="Select Date" /> -->
 
-            <input type="text" id="toDT" name="toDT" 
-            class="txtInfo form-control pickadate-months-year"
-            required placeholder="Select Date" 
-            data-validation-required-message="The  field is required"
-             /> 
-            <div class="form-control-position">
-              <i class="bx bx-calendar"></i>
-            </div>
-          </fieldset>
-        </div>
-        <div class="col-md-2">
-          <fieldset>
-            <label for="Slot-time">Slot Time (Minutes)</label>
-            <select name="Slot-time" id="Slot-time" class="form-control">
+                                    <div class="form-control-position">
+                                        <i class="bx bx-calendar"></i>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-4">
+                                <label>To Date</label>
+                                <fieldset class="position-relative has-icon-left">
+                                    <!-- <input id="toDT" type="date" class="form-control" placeholder="Select Date" /> -->
+
+                                    <input type="text" id="toDT" name="toDT" class="txtInfo form-control pickadate-months-year" required placeholder="Select Date" data-validation-required-message="The  field is required" />
+                                    <div class="form-control-position">
+                                        <i class="bx bx-calendar"></i>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-2">
+                                <fieldset>
+                                    <label for="Slot-time">Slot Time (Minutes)</label>
+                                    <select name="Slot-time" id="Slot-time" class="form-control">
               <option value="15">15 minutes</option>
               <option value="30">30 minutes</option>
               <option value="45">45 minutes</option>
               <option value="60">60 minutes</option>
             </select>
-          </fieldset>
-        </div>
-        <div class="col-md-2">
-          <div style="float: right; margin-top:12%">
-            <button type="button" id="btnSave" class="btn btn-outline-primary mr-1 mb-1">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-2">
+                                <div style="float: right; margin-top:12%">
+                                    <button type="button" id="btnSave" class="btn btn-outline-primary mr-1 mb-1">
               <i class='bx bx-edit'></i>
               Apply
             </button>
-          </div>
-    
-        </div>
+                                </div>
+
+                            </div>
 
 
-      </div>
-      <br />
-      <div class="row sch-row" id="Shift1">
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <b class="shift">First Shift</b>
-          </div>
+                        </div>
+                        <br />
+                        <div class="row sch-row" id="Shift1">
+                            <div class="col-xs-3 sch-app">
+                                <div class="head-weekdays">
+                                    <b class="shift">First Shift</b>
+                                </div>
 
-          <p class="shift-col-top">
-            Start Time
-          </p>
-          
-
-          <p class="shift-col-bottom">
-            End Time
-          </p>
-        </div>
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Saturday" class="Saturday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Saturday</b>
-
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Sunday" class="Sunday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Sunday</b>
-
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Monday" class="Monday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Monday</b>
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Tuesday" class="Tuesday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Tuesday</b>
+                                <p class="shift-col-top">
+                                    Start Time
+                                </p>
 
 
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
+                                <p class="shift-col-bottom">
+                                    End Time
+                                </p>
+                            </div>
+                            <div class="col-xs-3 sch-app">
+                                <div class="head-weekdays">
+                                    <fieldset>
+                                        <div>
+                                            <input type="checkbox" cls="Saturday" class="Saturday larger" name="checkBox2">
+                                            <b class="head-weekdays-bold">Saturday</b>
 
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
+                                    </fieldset>
+                                    </div>
+                                    <br />
+                                    <div class="timers">
+                                        <fieldset class="position-relative has-icon-left">
+                                            <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                            <div class="form-control-position">
+                                                <i class="bx bx-history"></i>
+                                            </div>
+                                        </fieldset>
 
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Wednesday" class="Wednesday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Wednesday</b>
+                                        <fieldset class="position-relative has-icon-left">
+                                            <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                            <div class="form-control-position">
+                                                <i class="bx bx-history"></i>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3 sch-app">
+                                    <div class="head-weekdays">
+                                        <fieldset>
+                                            <div>
+                                                <input type="checkbox" cls="Sunday" class="Sunday larger" name="checkBox2">
+                                                <b class="head-weekdays-bold">Sunday</b>
 
+                                        </fieldset>
+                                        </div>
+                                        <br />
+                                        <div class="timers">
+                                            <fieldset class="position-relative has-icon-left">
+                                                <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                <div class="form-control-position">
+                                                    <i class="bx bx-history"></i>
+                                                </div>
+                                            </fieldset>
 
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
+                                            <fieldset class="position-relative has-icon-left">
+                                                <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                <div class="form-control-position">
+                                                    <i class="bx bx-history"></i>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
 
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
+                                    <div class="col-xs-3 sch-app">
+                                        <div class="head-weekdays">
+                                            <fieldset>
+                                                <div>
+                                                    <input type="checkbox" cls="Monday" class="Monday larger" name="checkBox2">
+                                                    <b class="head-weekdays-bold">Monday</b>
+                                            </fieldset>
+                                            </div>
+                                            <br />
+                                            <div class="timers">
+                                                <fieldset class="position-relative has-icon-left">
+                                                    <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                    <div class="form-control-position">
+                                                        <i class="bx bx-history"></i>
+                                                    </div>
+                                                </fieldset>
 
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Thursday" class="Thursday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Thursday</b>
+                                                <fieldset class="position-relative has-icon-left">
+                                                    <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                    <div class="form-control-position">
+                                                        <i class="bx bx-history"></i>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
 
-
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Friday" class="Friday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Friday</b>
-
-
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class=" position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-      </div>
-      <br />
-
-      <div class=" row sch-row" id="Shift2">
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <b class="shift">Second Shift</b>
-          </div>
-
-          <p class="shift-col-top">
-            Start Time
-          </p>
-          
-
-          <p class="shift-col-bottom">
-            End Time
-          </p>
-        </div>
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Saturday" class="Saturday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Saturday</b>
-
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class=" position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-
-            <fieldset class=" position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Sunday" class="Sunday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Sunday</b>
-
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class=" position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Monday" class="Monday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Monday</b>
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Tuesday" class="Tuesday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Tuesday</b>
+                                        <div class="col-xs-3 sch-app">
+                                            <div class="head-weekdays">
+                                                <fieldset>
+                                                    <div>
+                                                        <input type="checkbox" cls="Tuesday" class="Tuesday larger" name="checkBox2">
+                                                        <b class="head-weekdays-bold">Tuesday</b>
 
 
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
+                                                </fieldset>
+                                                </div>
+                                                <br />
+                                                <div class="timers">
+                                                    <fieldset class="position-relative has-icon-left">
+                                                        <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                        <div class="form-control-position">
+                                                            <i class="bx bx-history"></i>
+                                                        </div>
+                                                    </fieldset>
 
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
+                                                    <fieldset class="position-relative has-icon-left">
+                                                        <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                        <div class="form-control-position">
+                                                            <i class="bx bx-history"></i>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
 
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Wednesday" class="Wednesday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Wednesday</b>
-
-
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-
-            <fieldset class="form-group position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Thursday" class="Thursday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Thursday</b>
+                                            <div class="col-xs-3 sch-app">
+                                                <div class="head-weekdays">
+                                                    <fieldset>
+                                                        <div>
+                                                            <input type="checkbox" cls="Wednesday" class="Wednesday larger" name="checkBox2">
+                                                            <b class="head-weekdays-bold">Wednesday</b>
 
 
-            </fieldset>
-          </div>
-          <br />
-          <div class="timers">
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
+                                                    </fieldset>
+                                                    </div>
+                                                    <br />
+                                                    <div class="timers">
+                                                        <fieldset class="position-relative has-icon-left">
+                                                            <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                            <div class="form-control-position">
+                                                                <i class="bx bx-history"></i>
+                                                            </div>
+                                                        </fieldset>
 
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
+                                                        <fieldset class="position-relative has-icon-left">
+                                                            <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                            <div class="form-control-position">
+                                                                <i class="bx bx-history"></i>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
 
-        <div class="col-xs-3 sch-app">
-          <div class="head-weekdays">
-            <fieldset>
-              <div>
-                <input type="checkbox" cls="Friday" class="Friday larger" name="checkBox2">
-                <b class="head-weekdays-bold">Friday</b>
-
-
-            </fieldset>
-          </div>
-          <br />
-          
-          <div class="timers">
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-
-            <fieldset class="position-relative has-icon-left">
-              <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
-              <div class="form-control-position">
-                <i class="bx bx-history"></i>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-      </div>
-      <br />
-      <br />
-      <br />
-    
-    </div>
-  </div>
-</div>
-
-<!-- END: Content-->
-
-<!-- END: Content-->
-
-<!-- BEGIN: JS-->
-
-<script src="/js/daterange/moment.min.js"></script>
-<script src="/js/pick-a-datetime.js"></script>
-<script src="/js/vendors.js"></script>
-<script src="/js/sweetalert2.all.min.js"></script>
-<script src="/js/polyfill.min.js"></script>
-<script src="/js/sweet-alerts.js"></script>
-
-<script src="/js/vertical-menu-light.js"></script>
-<script src="/js/app-menu.js"></script>
-<script src="/js/app.js"></script>
+                                                <div class="col-xs-3 sch-app">
+                                                    <div class="head-weekdays">
+                                                        <fieldset>
+                                                            <div>
+                                                                <input type="checkbox" cls="Thursday" class="Thursday larger" name="checkBox2">
+                                                                <b class="head-weekdays-bold">Thursday</b>
 
 
+                                                        </fieldset>
+                                                        </div>
+                                                        <br />
+                                                        <div class="timers">
+                                                            <fieldset class="position-relative has-icon-left">
+                                                                <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                                <div class="form-control-position">
+                                                                    <i class="bx bx-history"></i>
+                                                                </div>
+                                                            </fieldset>
 
-<!-- <script src="/js/KendoUi/jquery.min.js"></script> -->
-<script src="/js/KendoUi/kendo.all.min.js"></script>
-<script src="/services/docAppointmentServices.js"></script>
-<script src="/services/loadingoverlay.min.js"></script>
+                                                            <fieldset class="position-relative has-icon-left">
+                                                                <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                                <div class="form-control-position">
+                                                                    <i class="bx bx-history"></i>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xs-3 sch-app">
+                                                        <div class="head-weekdays">
+                                                            <fieldset>
+                                                                <div>
+                                                                    <input type="checkbox" cls="Friday" class="Friday larger" name="checkBox2">
+                                                                    <b class="head-weekdays-bold">Friday</b>
 
 
-<!-- END: Page JS-->
+                                                            </fieldset>
+                                                            </div>
+                                                            <br />
+                                                            <div class="timers">
+                                                                <fieldset class=" position-relative has-icon-left">
+                                                                    <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                                    <div class="form-control-position">
+                                                                        <i class="bx bx-history"></i>
+                                                                    </div>
+                                                                </fieldset>
+
+                                                                <fieldset class="position-relative has-icon-left">
+                                                                    <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                                    <div class="form-control-position">
+                                                                        <i class="bx bx-history"></i>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+
+                                                    <div class=" row sch-row" id="Shift2">
+                                                        <div class="col-xs-3 sch-app">
+                                                            <div class="head-weekdays">
+                                                                <b class="shift">Second Shift</b>
+                                                            </div>
+
+                                                            <p class="shift-col-top">
+                                                                Start Time
+                                                            </p>
 
 
-<!-- closing tag of html and body -->
-<%- include('../../Default/view/includes/End.ejs') %>
+                                                            <p class="shift-col-bottom">
+                                                                End Time
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-xs-3 sch-app">
+                                                            <div class="head-weekdays">
+                                                                <fieldset>
+                                                                    <div>
+                                                                        <input type="checkbox" cls="Saturday" class="Saturday larger" name="checkBox2">
+                                                                        <b class="head-weekdays-bold">Saturday</b>
+
+                                                                </fieldset>
+                                                                </div>
+                                                                <br />
+                                                                <div class="timers">
+                                                                    <fieldset class=" position-relative has-icon-left">
+                                                                        <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                                        <div class="form-control-position">
+                                                                            <i class="bx bx-history"></i>
+                                                                        </div>
+                                                                    </fieldset>
+
+                                                                    <fieldset class=" position-relative has-icon-left">
+                                                                        <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                                        <div class="form-control-position">
+                                                                            <i class="bx bx-history"></i>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-3 sch-app">
+                                                                <div class="head-weekdays">
+                                                                    <fieldset>
+                                                                        <div>
+                                                                            <input type="checkbox" cls="Sunday" class="Sunday larger" name="checkBox2">
+                                                                            <b class="head-weekdays-bold">Sunday</b>
+
+                                                                    </fieldset>
+                                                                    </div>
+                                                                    <br />
+                                                                    <div class="timers">
+                                                                        <fieldset class=" position-relative has-icon-left">
+                                                                            <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                                            <div class="form-control-position">
+                                                                                <i class="bx bx-history"></i>
+                                                                            </div>
+                                                                        </fieldset>
+
+                                                                        <fieldset class="position-relative has-icon-left">
+                                                                            <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                                            <div class="form-control-position">
+                                                                                <i class="bx bx-history"></i>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-xs-3 sch-app">
+                                                                    <div class="head-weekdays">
+                                                                        <fieldset>
+                                                                            <div>
+                                                                                <input type="checkbox" cls="Monday" class="Monday larger" name="checkBox2">
+                                                                                <b class="head-weekdays-bold">Monday</b>
+                                                                        </fieldset>
+                                                                        </div>
+                                                                        <br />
+                                                                        <div class="timers">
+                                                                            <fieldset class="position-relative has-icon-left">
+                                                                                <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                                                <div class="form-control-position">
+                                                                                    <i class="bx bx-history"></i>
+                                                                                </div>
+                                                                            </fieldset>
+
+                                                                            <fieldset class="position-relative has-icon-left">
+                                                                                <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                                                <div class="form-control-position">
+                                                                                    <i class="bx bx-history"></i>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-xs-3 sch-app">
+                                                                        <div class="head-weekdays">
+                                                                            <fieldset>
+                                                                                <div>
+                                                                                    <input type="checkbox" cls="Tuesday" class="Tuesday larger" name="checkBox2">
+                                                                                    <b class="head-weekdays-bold">Tuesday</b>
+
+
+                                                                            </fieldset>
+                                                                            </div>
+                                                                            <br />
+                                                                            <div class="timers">
+                                                                                <fieldset class="position-relative has-icon-left">
+                                                                                    <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                                                    <div class="form-control-position">
+                                                                                        <i class="bx bx-history"></i>
+                                                                                    </div>
+                                                                                </fieldset>
+
+                                                                                <fieldset class="position-relative has-icon-left">
+                                                                                    <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                                                    <div class="form-control-position">
+                                                                                        <i class="bx bx-history"></i>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-xs-3 sch-app">
+                                                                            <div class="head-weekdays">
+                                                                                <fieldset>
+                                                                                    <div>
+                                                                                        <input type="checkbox" cls="Wednesday" class="Wednesday larger" name="checkBox2">
+                                                                                        <b class="head-weekdays-bold">Wednesday</b>
+
+
+                                                                                </fieldset>
+                                                                                </div>
+                                                                                <br />
+                                                                                <div class="timers">
+                                                                                    <fieldset class="position-relative has-icon-left">
+                                                                                        <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                                                        <div class="form-control-position">
+                                                                                            <i class="bx bx-history"></i>
+                                                                                        </div>
+                                                                                    </fieldset>
+
+                                                                                    <fieldset class="form-group position-relative has-icon-left">
+                                                                                        <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                                                        <div class="form-control-position">
+                                                                                            <i class="bx bx-history"></i>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-xs-3 sch-app">
+                                                                                <div class="head-weekdays">
+                                                                                    <fieldset>
+                                                                                        <div>
+                                                                                            <input type="checkbox" cls="Thursday" class="Thursday larger" name="checkBox2">
+                                                                                            <b class="head-weekdays-bold">Thursday</b>
+
+
+                                                                                    </fieldset>
+                                                                                    </div>
+                                                                                    <br />
+                                                                                    <div class="timers">
+                                                                                        <fieldset class="position-relative has-icon-left">
+                                                                                            <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                                                            <div class="form-control-position">
+                                                                                                <i class="bx bx-history"></i>
+                                                                                            </div>
+                                                                                        </fieldset>
+
+                                                                                        <fieldset class="position-relative has-icon-left">
+                                                                                            <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                                                            <div class="form-control-position">
+                                                                                                <i class="bx bx-history"></i>
+                                                                                            </div>
+                                                                                        </fieldset>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-xs-3 sch-app">
+                                                                                    <div class="head-weekdays">
+                                                                                        <fieldset>
+                                                                                            <div>
+                                                                                                <input type="checkbox" cls="Friday" class="Friday larger" name="checkBox2">
+                                                                                                <b class="head-weekdays-bold">Friday</b>
+
+
+                                                                                        </fieldset>
+                                                                                        </div>
+                                                                                        <br />
+
+                                                                                        <div class="timers">
+                                                                                            <fieldset class="position-relative has-icon-left">
+                                                                                                <input type="text" class="txtStart form-control pickatime" placeholder="Start" />
+                                                                                                <div class="form-control-position">
+                                                                                                    <i class="bx bx-history"></i>
+                                                                                                </div>
+                                                                                            </fieldset>
+
+                                                                                            <fieldset class="position-relative has-icon-left">
+                                                                                                <input type="text" class="txtEnd form-control pickatime" placeholder="End" />
+                                                                                                <div class="form-control-position">
+                                                                                                    <i class="bx bx-history"></i>
+                                                                                                </div>
+                                                                                            </fieldset>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br />
+                                                                                <br />
+                                                                                <br />
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- END: Content-->
+
+                                                                    <!-- END: Content-->
+
+                                                                    <!-- BEGIN: JS-->
+
+                                                                    <script src="/js/daterange/moment.min.js"></script>
+                                                                    <script src="/js/pick-a-datetime.js"></script>
+                                                                    <script src="/js/vendors.js"></script>
+                                                                    <script src="/js/sweetalert2.all.min.js"></script>
+                                                                    <script src="/js/polyfill.min.js"></script>
+                                                                    <script src="/js/sweet-alerts.js"></script>
+
+                                                                    <script src="/js/vertical-menu-light.js"></script>
+                                                                    <script src="/js/app-menu.js"></script>
+                                                                    <script src="/js/app.js"></script>
+
+
+
+                                                                    <!-- <script src="/js/KendoUi/jquery.min.js"></script> -->
+                                                                    <script src="/js/KendoUi/kendo.all.min.js"></script>
+                                                                    <script src="/services/docAppointmentServices.js"></script>
+                                                                    <script src="/services/loadingoverlay.min.js"></script>
+
+
+                                                                    <!-- END: Page JS-->
+
+
+                                                                    <!-- closing tag of html and body -->
+                                                                    <%- include('../../Default/view/includes/End.ejs') %>

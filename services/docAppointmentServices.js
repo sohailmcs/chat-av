@@ -80,7 +80,8 @@ $(function() {
 
     $(document).on("click", ".btnViewDetail", function() {
         var patientId = $(this).attr("PatientId");
-        ViewBookingDetails(patientId);
+        var appointmentId = $(this).attr("AppointmentId");
+        ViewBookingDetails(patientId, appointmentId);
     });
 }); //=====end of $(function)=====
 
@@ -277,7 +278,7 @@ function GenerateDoctorSlots() {
         //=============create list for appointments with sots=================
         Appointments.push({
             DoctorId: parseInt(useLoginId),
-            AppointmentDate: new Date(currentDt).toDateString(),
+            AppointmentDate: fromDt.toLocaleDateString("en-us"),
             Shifts: "1",
             AddedBy: useLoginId,
             AddedDate: currentDt,
@@ -467,9 +468,9 @@ function getAge() {
     $("#popupAge").html(CalculateAge(getAge));
 }
 
-function ViewBookingDetails(PatientId) {
+function ViewBookingDetails(PatientId, AppointmentId) {
     var url =
-        baseURL + "Patient/GetPatientInitialAssisments?PatientId=" + PatientId;
+        baseURL + "Patient/GetPatientInitialAssisments?PatientId=" + PatientId + "&CallAppointmentId=" + AppointmentId;
     $.ajax({
         url: url,
         headers: {
