@@ -205,11 +205,13 @@ function updateClock() {
         var startDateTime = new Date(dtCalllQue); // YYYY (M-1) D H m s ms (start time and date from DB)
         var startStamp = startDateTime.getTime();
 
+
+        // GetCurrentTimeZone().then(function(result) {
+        //     clientCurrentDate = result
+        // });
+
         var newDate = new Date();
         var newStamp = newDate.getTime();
-
-        newDate = new Date();
-        newStamp = newDate.getTime();
         var diff = Math.round((newStamp - startStamp) / 1000);
 
         var d = Math.floor(
@@ -222,7 +224,7 @@ function updateClock() {
         diff = diff - m * 60;
         var s = diff;
 
-        $(this).text(m + " min " + s + " sec");
+        $(this).text(h + " hours " + m + " min " + s + " sec");
     });
 }
 timer = setInterval(updateClock, 1000);

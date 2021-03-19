@@ -329,11 +329,11 @@ function updateClock() {
         var startDateTime = new Date(dtCalllQue); // YYYY (M-1) D H m s ms (start time and date from DB)
         var startStamp = startDateTime.getTime();
 
-        var newDate = new Date(clientCurrentDt);
+        var newDate = new Date();
         var newStamp = newDate.getTime();
 
-        newDate = new Date(clientCurrentDt);
-        newStamp = newDate.getTime();
+        // newDate = new Date(clientCurrentDt);
+        // newStamp = newDate.getTime();
         var diff = Math.round((newStamp - startStamp) / 1000);
 
         var d = Math.floor(diff / (24 * 60 * 60));
@@ -653,6 +653,7 @@ Mustache.Formatters = {
             year: "numeric",
             month: "numeric",
             day: "numeric",
+            hourCycle: 'h23',
             hour: "2-digit",
             minute: "2-digit"
         }
