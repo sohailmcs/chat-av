@@ -1,612 +1,639 @@
 <%- include('includes/PatientHead.ejs') %>
 
-<!-- BEGIN: Vendor CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
 
 
-<!-- END: Vendor CSS-->
+    <!-- END: Vendor CSS-->
 
-<!-- BEGIN: Theme CSS-->
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
-<link rel="stylesheet" type="text/css" href="/css/colors.css" />
-<link rel="stylesheet" type="text/css" href="/css/components.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" />
-<!-- END: Theme CSS-->
-<!-- BEGIN: Page CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
-<!-- END: Page CSS-->
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+    <link rel="stylesheet" type="text/css" href="/css/colors.css" />
+    <link rel="stylesheet" type="text/css" href="/css/components.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" />
+    <!-- END: Theme CSS-->
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+    <!-- END: Page CSS-->
 
-<!-- END: Custom CSS-->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-
-
-</head>
-<!-- END: Head-->
-
-<!-- body tag and blue nav bar  -->
-<%- include('includes/patientNav.ejs') %>
-
-<!-- complete side menu of Patient -->
-<%- include('includes/patientSideMenu.ejs') %>
-
-    
-<input type="hidden" id="hdnPatientId" value="">
-<script type="text/html" id="template-BasicInfo">
-  <div>
-    <br>
-    <h5 class="docName" style="margin:0 0 5px;padding:0">
-      {{FullName}}
-    </h5> 
-    <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span>    
-    <br>
-    <b>Gender:</b> {{Gender}}
-    <br>
-    <b>Country:</b> {{CityName}},{{CountryName}}
-    <br>
-    <b>Phone:</b>  {{PhoneNo}}
-    
-  </div>
-
-</script>
+    <!-- END: Custom CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
 
-<!-- BEGIN: Content-->
-<div class="app-content content">
-  <div class="content-overlay"></div>
-  <div class="content-wrapper">
-    <div class="content-header row"></div>
-    <div class="content-body">
+    </head>
+    <!-- END: Head-->
 
-      <div class="d-flex flex-row">
-        <div class="page-heading">
-          <h3><i class='iconapp bx bx-group'></i><span>Add Patients</span></h3>
-        </div>
-       
-      </div>
-     
-      
-      <section id="dashboard-analytics">        
-          <div class="row justify-content-center mt-0">
-              <div class="col-11 col-sm-9 col-md-7 col-lg-12 text-center">
-                  <div class="card px-0 pt-2 pb-0 mt-1 mb-3">
-                    
-                      <div class="row">
-                          <div class="col-md-12 mx-0">
-                              <form id="msform">
-                                  <!-- progressbar -->
-                                  <ul id="progressbar">
-                                      <li class="active" id="account">
-                                       <strong>Step 1</strong></li>
-                                      <li id="personal"><strong>Step 2</strong></li>
-                                      <li id="payment"><strong>Step 3</strong></li>
-                                      <li id="confirm"><strong>Step 4</strong></li>
-                                  </ul> <!-- fieldsets -->
-                                  <fieldset>
-                                      <div class="form-card">
-                                        <div class="card-content">
-                                          <div class="card-body">
-                                            <div class="row">
-                                              <div class="col-sm-6">
-                                                <div class="card-header">                                          
-                                                  <h6 style="font-size:25px !important;" class="d-flex mb-25 mb-sm-0 dashboard-headings">
-                                                    Who is the patient?
-                                                  </h6>
-                                              </div>
-                                                <div class="card-body" style="padding:0 1.2rem">
-                                                 
-                                                  <button style="font-size:1rem" type="button" PatientType="Me" class="btnMe btnPatientTypeSelected btn btn-outline-primary  mr-1  mb-1">                                         
+    <!-- body tag and blue nav bar  -->
+    <%- include('includes/patientNav.ejs') %>
+
+        <!-- complete side menu of Patient -->
+        <%- include('includes/patientSideMenu.ejs') %>
+
+
+            <input type="hidden" id="hdnPatientId" value="">
+            <script type="text/html" id="template-BasicInfo">
+                <div>
+                    <br>
+                    <h5 class="docName" style="margin:0 0 5px;padding:0">
+                        {{FullName}}
+                    </h5>
+                    <b>Age :</b> <input type="hidden" id="hdnPatientAge" value="{{Age}}"><span id="popupAge"></span>
+                    <br>
+                    <b>Gender:</b> {{Gender}}
+                    <br>
+                    <b>Country:</b> {{CityName}},{{CountryName}}
+                    <br>
+                    <b>Phone:</b> {{PhoneNo}}
+
+                </div>
+
+            </script>
+
+
+            <!-- BEGIN: Content-->
+            <div class="app-content content">
+                <div class="content-overlay"></div>
+                <div class="content-wrapper">
+                    <div class="content-header row"></div>
+                    <div class="content-body">
+
+                        <div class="d-flex flex-row">
+                            <div class="page-heading">
+                                <h3><i class='iconapp bx bx-group'></i><span>Add Patients</span></h3>
+                            </div>
+
+                        </div>
+
+
+                        <section id="dashboard-analytics">
+                            <div class="row justify-content-center mt-0">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                                    <div class="card px-0 pt-2 pb-0 mt-1 mb-3 patientcard">
+
+                                        <div class="row">
+                                            <div class="col-md-12 mx-0">
+                                                <form id="msform">
+                                                    <!-- progressbar -->
+                                                    <ul id="progressbar">
+                                                        <li class="active" id="account">
+                                                            <strong>Step 1</strong></li>
+                                                        <li id="personal"><strong>Step 2</strong></li>
+                                                        <li id="payment"><strong>Step 3</strong></li>
+                                                        <li id="confirm"><strong>Step 4</strong></li>
+                                                    </ul>
+                                                    <!-- fieldsets -->
+                                                    <fieldset>
+                                                        <div class="form-card">
+                                                            <div class="card-content">
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6">
+                                                                            <div class="card-header">
+                                                                                <h6 style="font-size:25px" class="d-flex mb-25 mb-sm-0 dashboard-headings">
+                                                                                    Who is the patient?
+                                                                                </h6>
+                                                                            </div>
+                                                                            <div class="card-body" style="padding:0 1.2rem">
+
+                                                                                <button style="font-size:1rem" type="button" PatientType="Me" class="btnMe btnPatientTypeSelected btn btn-outline-primary  mr-1  mb-1 Mebtn">                                         
                                                     Me
                                                   </button>
-                                                  <button style="font-size:1rem" type="button" PatientType="Child" class="btnChild btn btn-outline-primary  mr-1  mb-1">                                         
+                                                                                <button style="font-size:1rem" type="button" PatientType="Child" class="btnChild btn btn-outline-primary  mr-1  mb-1 Childbtn">                                         
                                                     My Child
                                                   </button>
-                                                  <button style="font-size:1rem" type="button" PatientType="Relative" class="btnRelative btn btn-outline-primary  mr-1  mb-1">                                         
+                                                                                <button style="font-size:1rem" type="button" PatientType="Relative" class="btnRelative btn btn-outline-primary  mr-1  mb-1 Relationbtn">                                         
                                                     My Relative
                                                   </button>
-                                                  <div class="dbInfo form-group mt-1">
-                                                    <span class="spnDboInfo" for="txtspecialization">Select Previous Patient Info</span>
-                                                    <select style="padding:5px 11px 5px;" class="form-control" id="dboInfo">
+                                                                                <div class="dbInfo form-group mt-1">
+                                                                                    <span class="spnDboInfo" for="txtspecialization">Select Previous Patient Info</span>
+                                                                                    <select class="form-control" id="dboInfo">
                                                      
                                                     </select>
-                                                  </div><!--end of form-group-->
-                                                  <br>
-                                                  <br>
-                                                  <br>
-                                                
-                                                  <button step="first" style="font-size:0.9rem;padding: 13px 40px;" 
-                                                  type="button" class="next action-button btn btn-primary  mr-1  btn-sm">                                         
+                                                                                </div>
+                                                                                <!--end of form-group-->
+                                                                                <br>
+                                                                                <br>
+                                                                                <br>
+
+                                                                                <button step="first" style="font-size:0.9rem;padding: 13px 40px;" type="button" class="next action-button btn btn-primary  mr-1  btn-sm Nextbtn">                                         
                                                    NEXT
                                                   </button>
-                                                  
-                                                  </div><!--end of card-body-->
-                                              </div><!--end of col-sm-6-->
-          
-                                              <div class="col-sm-6">
-                                                <div >
-                                                  <br>
-                                                  <br>
-                                                  <div id="patientBasicInfo" class="col-sm-12">
-                                                
-                                                </div>
-          
-          
-                                                  </div><!--end of card-body-->
-                                              </div><!--end of col-sm-6-->
-          
-                                            </div>
-                                          </div>
-                                      </div>
-                                      </div> 
-                                  </fieldset>
-                                  <fieldset>
-                                      <div class="form-card">
-                                        <div class="card-content">
-                                        
-                                          <div class="card-body">
-                                            <div class="row">
-                                              <div class="col-sm-7">
-                                                <div class="card-header">                                          
-                                                  <h6 style="font-size:25px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
-                                                   Patient info
-                                                  </h6>
-                                              </div>
-                                                <div class="card-body" style="padding:0 1.2rem">
-                                                <div class="row">
-                                                   <div class="col-sm-6 mb-1">
-                                                    <label>First Name</label>
-                                                    <input type="text" required name="firstName" placeholder="First Name" class="txtInfo" id="txtInfoFirstName">
-                                                  </div><!--end of col-sm-6-->
-                                                  <div class="col-sm-6 mb-1">
-                                                    <label>Last Name</label>
-                                                    <input type="text" required name="lastName" placeholder="Last Name" class="txtInfo" id="txtInfoLastName">
-                                                  </div><!--end of col-sm-6-->                                                  
-                                                </div><!--end of row-->
-                                                <div class="row">
-                                                  <div class="col-sm-12 mb-1">
-                                                   <label>Email</label>
-                                                   <input readonly type="text" name="Email" placeholder="Email" class="txtInfo" id="txtEmail">
-                                                 </div><!--end of col-sm-6-->
-                                                                                                 
-                                               </div><!--end of row-->
 
-                                                <div class="row">                                                 
-                                                 <div class="mb-50 col-sm-12 mb-1">
-                                                  <label class="text-bold-600" for="exampleInputEmail1">Phone no</label>
-                                                  <div class="row">
-                                                    <div class="col-sm-3">
-                                                      <input readonly required="" id="txtphoneExt" class="form-control" value="+966">
-                                                    </div>
-                  
-                                                    <div class="col">
-                                                      <input readonly required="" name="contactNo" type="number" class="form-control" id="txtPhoneNo" placeholder="Contact Number">
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                                 
+                                                                            </div>
+                                                                            <!--end of card-body-->
+                                                                        </div>
+                                                                        <!--end of col-sm-6-->
+
+                                                                        <div class="col-sm-6">
+                                                                            <div>
+                                                                                <br>
+                                                                                <br>
+                                                                                <div id="patientBasicInfo" class="col-sm-12">
+
+                                                                                </div>
 
 
-                                               </div><!--end of row-->
-                                               <div class="row">
-                                                <div class="col-sm-7 mb-1">                                                
-                                                  <!-- <input type="number" placeholder="Age" class="txtInfo" id="txtInfoAge">  -->                                               
-                                                  <label>Age</label> <span id="spnAge"></span>
-                                                  <div class="position-relative has-icon-left">  
-                                                    <input type="text" id="txtInfoAge" name="dob" 
-                                                    class="txtInfo form-control pickadate-limits"
-                                                    required
-                                                    data-validation-required-message="The  field is required"
-                                                     />   
-                                                    <!-- <input type="date" id="txtInfoAge" name="dob" 
+                                                                            </div>
+                                                                            <!--end of card-body-->
+                                                                        </div>
+                                                                        <!--end of col-sm-6-->
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <div class="form-card">
+                                                            <div class="card-content">
+
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-7">
+                                                                            <div class="card-header">
+                                                                                <h6 style="font-size:25px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                                                                    Patient info
+                                                                                </h6>
+                                                                            </div>
+                                                                            <div class="card-body" style="padding:0 1.2rem">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-6 mb-1 firstnamebox">
+                                                                                        <label>First Name</label>
+                                                                                        <input type="text" required name="firstName" placeholder="First Name" class="txtInfo" id="txtInfoFirstName">
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+                                                                                    <div class="col-sm-6 mb-1 lastnamebox">
+                                                                                        <label>Last Name</label>
+                                                                                        <input type="text" required name="lastName" placeholder="Last Name" class="txtInfo" id="txtInfoLastName">
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+                                                                                </div>
+                                                                                <!--end of row-->
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12 mb-1 emailbox">
+                                                                                        <label>Email</label>
+                                                                                        <input readonly type="text" name="Email" placeholder="Email" class="txtInfo" id="txtEmail">
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+
+                                                                                </div>
+                                                                                <!--end of row-->
+
+                                                                                <div class="row">
+                                                                                    <div class="mb-50 col-sm-12 mb-1 phonenumberboxes">
+                                                                                        <label class="text-bold-600" for="exampleInputEmail1">Phone no</label>
+                                                                                        <div class="row">
+                                                                                            <div class="col-sm-3 phonetxtbox">
+                                                                                                <input readonly required="" id="txtphoneExt" class="form-control" value="+966">
+                                                                                            </div>
+
+                                                                                            <div class="col numberstxtbox">
+                                                                                                <input readonly required="" name="contactNo" type="number" class="form-control" id="txtPhoneNo" placeholder="Contact Number">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+
+
+                                                                                </div>
+                                                                                <!--end of row-->
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-7 mb-1 age">
+                                                                                        <!-- <input type="number" placeholder="Age" class="txtInfo" id="txtInfoAge">  -->
+                                                                                        <label>Age</label> <span id="spnAge"></span>
+                                                                                        <div class="position-relative has-icon-left">
+                                                                                            <input type="text" id="txtInfoAge" name="dob" class="txtInfo form-control pickadate-limits" required data-validation-required-message="The  field is required" />
+                                                                                            <!-- <input type="date" id="txtInfoAge" name="dob" 
                                                     class="txtInfo form-control"
                                                     required
                                                     data-validation-required-message="The  field is required"
                                                      /> -->
-                                                    <div class="form-control-position">
-                                                       <i class="bx bx-calendar"></i>
-                                                   </div>
-                                                  </div>   
-                                               </div><!--end of col-sm-6--> 
-                                               <div class="col-sm-5 pt-1">
-                                                <label>Gender</label>
-                                                <div  class="form-check form-check-inline">
-                                                  <input class="form-check-input" type="radio" name="gender" id="rdoMale" value="Male" checked>
-                                                  <label class="form-check-label" for="rdoMale"> Male</label>&nbsp;
-                                                  <input class="form-check-input" type="radio" name="gender" id="rdoFemale" value="Female">
-                                                  <label class="form-check-label" for="rdoFemale">Female</label>
-                                                </div>                                               
-                                              </div><!--end of col-sm-6-->                                                                                              
-                                             </div><!--end of row-->
-                                             <div class="row">
-                                              <div class="col-sm-6 ">
-                                               <label>Country</label><br>
-                                               <select style="padding:5px 11px 5px;width:100%;"  name="dbocountry" id="dboCountry" class="form-control">
+                                                                                            <div class="form-control-position">
+                                                                                                <i class="bx bx-calendar"></i>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+                                                                                    <div class="col-sm-5 pt-1 genderbox">
+                                                                                        <label>Gender</label>
+                                                                                        <div class="form-check form-check-inline Radiobtn">
+                                                                                            <input class="form-check-input" type="radio" name="gender" id="rdoMale" value="Male" checked>
+                                                                                            <label class="form-check-label" for="rdoMale"> Male</label>&nbsp;
+                                                                                            <input class="form-check-input" type="radio" name="gender" id="rdoFemale" value="Female">
+                                                                                            <label class="form-check-label" for="rdoFemale">Female</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+                                                                                </div>
+                                                                                <!--end of row-->
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-6 countrybox">
+                                                                                        <label>Country</label><br>
+                                                                                        <select style="padding:5px 11px 5px;width:100%;" name="dbocountry" id="dboCountry" class="form-control">
                                               
                                                  </select>
-                                             </div><!--end of col-sm-6--> 
-                                             <div class="col-sm-6">
-                                              <label>City</label><br>
-                                              <select style="padding:5px 11px 5px;width:100%;" name="dboCity" id="dboCity" class="form-control">
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+                                                                                    <div class="col-sm-6 citybox">
+                                                                                        <label>City</label><br>
+                                                                                        <select style="padding:5px 11px 5px;width:100%;" name="dboCity" id="dboCity" class="form-control">
                                                <!-- <option>Select city</option>
                                                 <option>Karachi</option> -->
                                                
                                                 </select>
-                                               
-                                            </div><!--end of col-sm-6-->
-                                             </div><!--end of row-->
-                                                  <br>
-                                                  <button step="second" style="font-size:0.9rem;padding: 13px 27px;" 
-                                                  type="button" class="previous btn btn-primary  mr-1 mb-1  btn-sm">                                         
+
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+                                                                                </div>
+                                                                                <!--end of row-->
+                                                                                <br>
+                                                                                <button step="second" style="font-size:0.9rem;padding: 13px 27px;" type="button" class="previous btn btn-primary  mr-1 mb-1  btn-sm prevbtn">                                         
                                                    PREVIOUS
                                                   </button>
-                                                  <button step="second" style="font-size:0.9rem;padding: 13px 40px;"
-                                                  type="button" class="next btn btn-primary  mr-1 mb-1  btn-sm">                                         
+                                                                                <button step="second" style="font-size:0.9rem;padding: 13px 40px;" type="button" class="next btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                                    NEXT
-                                                  </button>                                      
-                                                  </div><!--end of card-body-->
-                                              </div><!--end of col-sm-6-->
-          
-                                              <div class="col-sm-4">
-                                                <div class="card-body" style="padding:1.2rem">
-                                                  
-                                                  <div class="col-lg-12">
-                                                    <br>
-                                                     <br>
-                                                    <label>Profile Picture</label>
-                                                    <output id="result">
+                                                  </button>
+                                                                            </div>
+                                                                            <!--end of card-body-->
+                                                                        </div>
+                                                                        <!--end of col-sm-6-->
+
+                                                                        <div class="col-sm-4">
+                                                                            <div class="card-body" style="padding:1.2rem">
+
+                                                                                <div class="col-lg-12">
+                                                                                    <br>
+                                                                                    <br>
+                                                                                    <label>Profile Picture</label>
+                                                                                    <output id="result">
                                                       <div>
                                                         <img src="/assets/images/maledoc.png" class="infoProfilePic" alt="avtar img holder">
                                                       </div>
                                                     </output>
-                                                    <!-- <img src="/assets/images/maledoc.png" class="infoProfilePic" alt="avtar img holder"> -->
-                                                    <input type="file" id="imgupload" style="display:none"/>
-                                                      
-                                                    <button id="btnPatientimgUpload" style="font-size:1rem;padding: 8px 22px; margin:0 auto;"
-                                                     type="button" class=" btn btn-primary  mr-1  btn-sm">                                         
+                                                                                    <!-- <img src="/assets/images/maledoc.png" class="infoProfilePic" alt="avtar img holder"> -->
+                                                                                    <input type="file" id="imgupload" style="display:none" />
+
+                                                                                    <button id="btnPatientimgUpload" style="font-size:1rem;padding: 8px 22px; margin:0 auto;" type="button" class=" btn btn-primary  mr-1  btn-sm uploadbtn">                                         
                                                       UPLOAD &nbsp;
                                                       <span id="fname"></span>
                                                      </button>
-                                                  </div>
-          
-                                                  </div><!--end of card-body-->
-                                              </div><!--end of col-sm-6-->
-          
-                                            </div>
-                                          </div>
-                                        
-                                      </div>
-                                      </div> 
-                                     
-                                  </fieldset>
-                                    <fieldset>
-                                      <div class="form-card">
-                                        <div class="card-content">
-                                          <div class="card-body">
-                                            <div class="row">
-                                              <div class="col-sm-7">
-                                                <div class="card-header">                                          
-                                                  <h6 style="font-size:25px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
-                                                    Taking Any Medications?
-                                                  </h6>
-                                              </div>
-                                                <div id="divMedication" class="card-body" style="padding:0 1.2rem">
-                                                <div class="row">
-                                                   <div class="col-sm-12">
-                                                    <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                      <input class="form-check-input" group="takingMed" checked="checked" type="radio"
-                                                       name="medication" id="rdTakingMedNo" 
-                                                      value="0">                                                                                           
-                                                      <label class="form-check-label" for="rdTakingMedNo">Not Taking Any Medications</label>
-                                                    </div>   
-                                                  </div><!--end of col-sm-6-->  
-                                                                                                                                             
-                                                </div><!--end of row-->
-                                                <div class="row">
-                                                  <div class="col-sm-12 mb-1 mt-1">
-                                                    <div  class="form-check form-check-inline">
-                                                    <input class="form-check-input" group="takingMed" type="radio" name="medication" id="rdTakingMedYes" value="1">                                                                                           
-                                                    <label class="form-check-label" for="rdTakingMedYes"><strong>If Any-</strong></label>
-                                                  </div>
-                                                  <!-- <label><strong>If Any-</strong></label> -->
-                                                  </div>                                                  
-                                                </div>                                               
-                                               <div  class="row divMed">
-                                                <div class="col-sm-5">
-                                                 <label>Medication Name</label>
-                                                 <input type="text" placeholder="Name" class="txtMedicationName txtInfo">
-                                               </div><!--end of col-sm-6-->
-                                               <div class="col-sm-7">
-                                                <label>Upload Image</label>
-                                                <div class="input-group">
-                                                  <div class="input-group-prepend">                                                     
-                                                  </div>
-                                                  <div class="custom-file">
-                                                    <input type="hidden" value="" class="imgMedicine">
-                                                    <input type="file" style='cursor:pointer'  class="custom-file-input MedicationReciept" >
-                                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                                  </div>
-                                                  <div class='ml-1 mb-1'>                                                  
-                                                    <button id="btnAddMedication" style="font-size:1rem;padding: 10px 17px;font-weight: bolder;" type="button" 
-                                                    class="btn btn-primary  mr-1 mb-1  btn-sm">                                         
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <!--end of card-body-->
+                                                                        </div>
+                                                                        <!--end of col-sm-6-->
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <div class="form-card">
+                                                            <div class="card-content">
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-10 col-md-12 col-lg-6">
+                                                                            <div class="card-header">
+                                                                                <h6 style="font-size:25px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                                                                    Taking Any Medications?
+                                                                                </h6>
+                                                                            </div>
+                                                                            <div id="divMedication" class="card-body" style="padding:0 1.2rem">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12">
+                                                                                        <div style="margin-top:10px;" class="form-check form-check-inline">
+                                                                                            <input class="form-check-input" group="takingMed" checked="checked" type="radio" name="medication" id="rdTakingMedNo" value="0">
+                                                                                            <label class="form-check-label" for="rdTakingMedNo">Not Taking Any Medications</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+
+                                                                                </div>
+                                                                                <!--end of row-->
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12 mb-1 mt-1 Ifanybox">
+                                                                                        <div class="form-check form-check-inline">
+                                                                                            <input class="form-check-input" group="takingMed" type="radio" name="medication" id="rdTakingMedYes" value="1">
+                                                                                            <label class="form-check-label" for="rdTakingMedYes"><strong>If Any-</strong></label>
+                                                                                        </div>
+                                                                                        <!-- <label><strong>If Any-</strong></label> -->
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row divMed">
+                                                                                    <div class="col-sm-5 col-md-10 col-lg-9 medicationbox">
+                                                                                        <label>Medication Name</label>
+                                                                                        <input type="text" placeholder="Name" class="txtMedicationName txtInfo">
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+                                                                                    <div class="col-sm-7 col-md-12 col-lg-10 Uploadbox">
+                                                                                        <label>Upload Image</label>
+                                                                                        <div class="input-group">
+                                                                                            <div class="input-group-prepend">
+                                                                                            </div>
+                                                                                            <div class="custom-file">
+                                                                                                <input type="hidden" value="" class="imgMedicine">
+                                                                                                <input type="file" style='cursor:pointer' class="custom-file-input MedicationReciept">
+                                                                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                                                            </div>
+                                                                                            <div class='ml-1 mb-1'>
+                                                                                                <button id="btnAddMedication" style="font-size:1rem;padding: 10px 17px;font-weight: bolder;" type="button" class="btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                                       +
                                                      </button>
-                                                  </div>
-                                                </div><!--end of input group-->
-                                             
-                                            </div><!--end of col-sm-5-->  
-                                             </div><!--end of row-->
-                                             
-                                                  <button step="third" style="font-size:0.9rem;padding: 13px 27px;" 
-                                                  type="button" class="previous btn btn-primary  mr-1 mb-1  btn-sm">                                         
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <!--end of input group-->
+
+                                                                                    </div>
+                                                                                    <!--end of col-sm-5-->
+                                                                                </div>
+                                                                                <!--end of row-->
+
+                                                                                <button step="third" style="font-size:0.9rem;padding: 13px 27px;" type="button" class="previous btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                                    PREVIOUS
                                                   </button>
-                                                  <button step="third" style="font-size:0.9rem;padding: 13px 40px;"
-                                                  type="button" class="next btn btn-primary  mr-1 mb-1  btn-sm">                                         
+                                                                                <button step="third" style="font-size:0.9rem;padding: 13px 40px;" type="button" class="next btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                                    NEXT
-                                                  </button>                                      
-                                                  </div><!--end of card-body-->
-                                              </div><!--end of col-sm-6-->
-                                              <div class="col-sm-5">
-                                                <div class="card-header">                                          
-                                                  <h6 style="font-size:25px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
-                                                    Have Any Allergies?
-                                                  </h6>
-                                              </div>
-                                                <div class="card-body" id="divAlergy" style="padding:0 1.2rem">
-                                                <div class="row">
-                                                   <div class="col-sm-12">
-                                                    <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                      <input class="form-check-input" group="alergy" checked="checked" type="radio" name="alergy" 
-                                                      id="rdoHaveAlergyNo" value="0">                                                                                           
-                                                      <label class="form-check-label" for="rdoHaveAlergyNo">Not Have Any Allergies</label>
-                                                    </div>   
-                                                  </div><!--end of col-sm-6-->
-                                                                                                                                               
-                                                </div><!--end of row-->
-                                                <div class="row">
-                                                  <div class="col-sm-12 mb-1 mt-1">
-                                                    <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                      <input class="form-check-input" group="alergy" type="radio" name="alergy" id="rdoHaveAlergyYes" value="1">                                                                                           
-                                                      <label class="form-check-label" for="rdoHaveAlergyYes"><strong>If Any-</strong></label>
-                                                    </div> 
-                                                
-                                                  </div>                                                  
-                                                </div>
-                                               
-                                               <div class="row PatientAlergy">
-                                                <div class="col-sm-10">
-                                                 <label>Allergy 01</label>
-                                                 <input type="text" placeholder="Alergy" class="txtInfo txtAlergy">
-                                               </div><!--end of col-sm-6-->                                               
-                                              <div class="col-sm-2 mt-0">
-                                                <br>
-                                                <button  id="btnAddAlergy" style="font-size:1rem;padding: 10px 17px;font-weight: bolder;" type="button" 
-                                                class="btn btn-primary  mr-1 mb-1  btn-sm">                                         
+                                                  </button>
+                                                                            </div>
+                                                                            <!--end of card-body-->
+                                                                        </div>
+                                                                        <!--end of col-sm-6-->
+                                                                        <div class="col-sm-5">
+                                                                            <div class="card-header">
+                                                                                <h6 style="font-size:25px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                                                                    Have Any Allergies?
+                                                                                </h6>
+                                                                            </div>
+                                                                            <div class="card-body" id="divAlergy" style="padding:0 1.2rem">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12 Nottakingbox">
+                                                                                        <div style="margin-top:10px;" class="form-check form-check-inline">
+                                                                                            <input class="form-check-input" group="alergy" checked="checked" type="radio" name="alergy" id="rdoHaveAlergyNo" value="0">
+                                                                                            <label class="form-check-label" for="rdoHaveAlergyNo">Not Have Any Allergies</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+
+                                                                                </div>
+                                                                                <!--end of row-->
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12 mb-1 mt-1">
+                                                                                        <div style="margin-top:10px;" class="form-check form-check-inline">
+                                                                                            <input class="form-check-input" group="alergy" type="radio" name="alergy" id="rdoHaveAlergyYes" value="1">
+                                                                                            <label class="form-check-label" for="rdoHaveAlergyYes"><strong>If Any-</strong></label>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="row PatientAlergy">
+                                                                                    <div class="col-10 col-sm-10 col-md-10 col-lg-10 Allergybox">
+                                                                                        <label>Allergy 01</label>
+                                                                                        <input type="text" placeholder="Alergy" class="txtInfo txtAlergy">
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+                                                                                    <div class="col-2 col-sm-2 mt-0">
+                                                                                        <br>
+                                                                                        <button id="btnAddAlergy" style="font-size:1rem;padding: 10px 17px;font-weight: bolder;" type="button" class="btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                                   +
                                                  </button>
-                                              </div>
-                                             </div><!--end of row-->
-                                              <br>
-                                                 
-                                                                                                 
-                                                  </div><!--end of card-body-->
-                                              </div><!--end of col-sm-6-->
-          
-                                            </div>
-                                          </div>
-                                      </div>
-                                      </div> 
-                                     
-                                  </fieldset>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!--end of row-->
+                                                                                <br>
 
-                                  <fieldset>
-                                    <div class="form-card">
-                                      <div class="card-content">
-                                        <div class="card-body">
-                                          <div class="row">
-                                            <div class="col-sm-6">
-                                              <div class="card-header">                                          
-                                                <h6 style="font-size:23px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
-                                                  Have Any Medical Conditions?
-                                                </h6>
-                                            </div>
-                                              <div class="card-body" style="padding:0 1.2rem">
-                                              <div class="row">
-                                                 <div class="col-sm-12">
-                                                  <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                    <input class="form-check-input" group="MedCondition" checked="checked" type="radio" name="condition"
-                                                     id="rdoTakeMedNo" value="0">                                                                                           
-                                                    <label class="form-check-label" for="rdoTakeMedNo">No known medical conditions</label>
-                                                  </div>   
-                                                </div><!--end of col-sm-6-->                                                                                               
-                                              </div><!--end of row-->
-                                              <div class="row">
-                                                <div class="col-sm-12 mt-1">
-                                                  <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                      <input class="form-check-input" type="radio" group="MedCondition" name="condition"
-                                                       id="rdoTakeMedYes" value="1">                                                                                           
-                                                      <label class="form-check-label" for="rdoTakeMedYes"><strong>If Any-</strong></label>
-                                                    </div>                                               
-                                                </div>                                                  
-                                              </div>
-                                              <div class="col-sm-12" id="medList">
-                                               
-                                                <div class="row">
-                                                  <div class="col-sm-6">
-                                                      <div style="margin-top:10px;" class="form-check form-check-inline">                 
-                                                        <input class="form-check-input" type="checkbox" name="Other" id="otherCondition" value="0">                                                                                           
-                                                        <label class="form-check-label" for="lblcondition">Other</label>
-                                                      </div>   
-                                                    </div><!--end of col-sm-6--> 
-                                                  
-                                                  </div>  <!--end of row-->
-                                              </div><!--end of row medList-->
-                                              
-                                                        <div class="row">
-                                                          <div class="col-sm-12 col-sm-12 mt-1 mb-1">
-                                                            <div class="CheckBoxOverlay">   
-                                                            <textarea rows="6" id="txtMedCondition" placeholder="Write Your Medical Conditions"></textarea>
-                                                            <div onclick="EnableOtherOption(this)"></div> 
-                                                            </div> 
-                                                          </div> 
-                                                          </div><!--end of row-->
-                                                       
-                                                </div><!--end of card-body-->
-                                            </div><!--end of col-sm-6-->
-                                            <div class="col-sm-6">
-                                              <div class="card-header">                                          
-                                                <h6 style="font-size:23px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
-                                                  Write Your Complain
-                                                </h6>
-                                            </div>
-                                              <div class="card-body" style="padding:0 1.2rem">
-                                              <div class="row">
-                                                 <div class="col-sm-12">                                               
-                                                    <label>Upload Image</label>
-                                                    <div class="input-group">
-                                                      <div class="input-group-prepend">                                                     
-                                                      </div>
-                                                      <div class="custom-file">
-                                                        <input type="hidden" value="" class="hdnimgcomplain">
-                                                        <input type="file" class="custom-file-input" style="cursor: pointer;" id="imgcomplain">
-                                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                                      </div>
-                                                    </div>
-                                                </div><!--end of col-sm-6-->                                                                                               
-                                              </div><!--end of row-->
-                                              <div class="row">
-                                                <div class="col-sm-12 mb-1 mt-1">
-                                                  <label>Write Your Complain</label>
-                                               <textarea style="margin-bottom: 6px;" id="txtcomplain" rows="13" style="width:100%"></textarea>
-                                                </div>                                                  
-                                              </div>                                            
-                                            <br>
-                                            <div class="row">
-                                              <div class="col-sm-12">
-                                            <button style="font-size:0.9rem;padding: 13px 27px;"
-                                            type="button" class="previous btn btn-primary  mr-1 mb-1  btn-sm">                                         
+
+                                                                            </div>
+                                                                            <!--end of card-body-->
+                                                                        </div>
+                                                                        <!--end of col-sm-6-->
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </fieldset>
+
+                                                    <fieldset>
+                                                        <div class="form-card">
+                                                            <div class="card-content">
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6">
+                                                                            <div class="card-header">
+                                                                                <h6 style="font-size:23px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                                                                    Have Any Medical Conditions?
+                                                                                </h6>
+                                                                            </div>
+                                                                            <div class="card-body" style="padding:0 1.2rem">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12 NotTakingAnybox">
+                                                                                        <div style="margin-top:10px;" class="form-check form-check-inline">
+                                                                                            <input class="form-check-input" group="MedCondition" checked="checked" type="radio" name="condition" id="rdoTakeMedNo" value="0">
+                                                                                            <label class="form-check-label" for="rdoTakeMedNo">No known medical conditions</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+                                                                                </div>
+                                                                                <!--end of row-->
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12 mt-1">
+                                                                                        <div style="margin-top:10px;" class="form-check form-check-inline">
+                                                                                            <input class="form-check-input" type="radio" group="MedCondition" name="condition" id="rdoTakeMedYes" value="1">
+                                                                                            <label class="form-check-label" for="rdoTakeMedYes"><strong>If Any-</strong></label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12" id="medList">
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-6">
+                                                                                            <div style="margin-top:10px;" class="form-check form-check-inline">
+                                                                                                <input class="form-check-input" type="checkbox" name="Other" id="otherCondition" value="0">
+                                                                                                <label class="form-check-label" for="lblcondition">Other</label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <!--end of col-sm-6-->
+
+                                                                                    </div>
+                                                                                    <!--end of row-->
+                                                                                </div>
+                                                                                <!--end of row medList-->
+
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12 col-sm-12 mt-1 mb-1">
+                                                                                        <div class="CheckBoxOverlay">
+                                                                                            <textarea rows="6" id="txtMedCondition" placeholder="Write Your Medical Conditions"></textarea>
+                                                                                            <div onclick="EnableOtherOption(this)"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!--end of row-->
+
+                                                                            </div>
+                                                                            <!--end of card-body-->
+                                                                        </div>
+                                                                        <!--end of col-sm-6-->
+                                                                        <div class="col-sm-6">
+                                                                            <div class="card-header">
+                                                                                <h6 style="font-size:23px !important;" class="card-title d-flex mb-25 mb-sm-0 dashboard-headings">
+                                                                                    Write Your Complain
+                                                                                </h6>
+                                                                            </div>
+                                                                            <div class="card-body" style="padding:0 1.2rem">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12">
+                                                                                        <label>Upload Image</label>
+                                                                                        <div class="input-group">
+                                                                                            <div class="input-group-prepend">
+                                                                                            </div>
+                                                                                            <div class="custom-file">
+                                                                                                <input type="hidden" value="" class="hdnimgcomplain">
+                                                                                                <input type="file" class="custom-file-input" style="cursor: pointer;" id="imgcomplain">
+                                                                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!--end of col-sm-6-->
+                                                                                </div>
+                                                                                <!--end of row-->
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12 mb-1 mt-1 complientbox">
+                                                                                        <label>Write Your Complain</label>
+                                                                                        <textarea style="margin-bottom: 6px;" id="txtcomplain" rows="13" style="width:100%"></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br>
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12">
+                                                                                        <button style="font-size:0.9rem;padding: 13px 27px;" type="button" class="previous btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                              PREVIOUS
                                             </button>
-                                            
-                                            <button style="font-size:0.9rem;padding: 13px 27px;"
-                                            type="button" class="submit btn btn-primary  mr-1 mb-1  btn-sm">                                         
+
+                                                                                        <button style="font-size:0.9rem;padding: 13px 27px;" type="button" class="submit btn btn-primary  mr-1 mb-1  btn-sm">                                         
                                              MAKE PAYMENT
-                                            </button>  
-                                         
-                                          </div>                  
-                                          </div>
-                                                                                               
-                                                </div><!--end of card-body-->
-                                            </div><!--end of col-sm-6-->
-        
-                                          </div>
+                                            </button>
+
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <!--end of card-body-->
+                                                                        </div>
+                                                                        <!--end of col-sm-6-->
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </fieldset>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                    </div> 
-                                   
-                                </fieldset>
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-   
-        <!--========================================================================================-->
-       
-      
-  </div>
-</div>
+                                </div>
+                            </div>
 
-<!-- END: Content-->
-
-<!-- END: Content-->
-
-<script>
-  window.onload = function () {
-
-      //Check File API support
-      if (window.File && window.FileList && window.FileReader) {
-          var filesInput = document.getElementById("imgupload");
-          var imgcomplain = document.getElementById("imgcomplain");
-             
-          
-       filesInput.addEventListener("change", function (event) {
-              var files = event.target.files; //FileList object
-             
-              var file = $(this).val().replace(/C:\\fakepath\\/gi, "");
-              $("#fname").text(file);
-              $("#result").html('');
-              var output = document.getElementById("result");                
-              for (var i = 0; i < files.length; i++) {
-                  var file = files[i];
-                  //Only pics
-                  if (!file.type.match('image'))
-                      continue;
-                  var picReader = new FileReader();
-                  picReader.addEventListener("load", function (event) {
-                      var picFile = event.target;
-                      var div = document.createElement("div");
-                      div.innerHTML = "<img class='infoProfilePic' src='" + picFile.result + "'" +
-                          "title='" + picFile.name + "'/>";
-                      output.insertBefore(div, null);
-                    });
-                  //Read the image
-                  picReader.readAsDataURL(file);
-              }
-
-          });
-         
-          imgcomplain.addEventListener("change", function (event) {
-              var files = event.target.files; //FileList object             
-              var file = $(this).val().replace(/C:\\fakepath\\/gi, "");             
-              for (var i = 0; i < files.length; i++) {
-                  var file = files[i];
-                  //Only pics
-                  if (!file.type.match('image'))
-                      continue;
-                  var picReader = new FileReader();
-                  picReader.addEventListener("load", function (event) {
-                      var picFile = event.target;
-                      $(".hdnimgcomplain").val('');
-                      $(".hdnimgcomplain").val(picFile.result)                      
-                    });
-                  //Read the image
-                  picReader.readAsDataURL(file);
-              }
-
-          });
-          
-     
-        }
-      else {
-          console.log("Your browser does not support File API");
-      }
-  }
-
-</script>
+                            <!--========================================================================================-->
 
 
-<script src="/js/daterange/moment.min.js"></script>
-<script src="/js/pick-a-datetime.js"></script>
+                    </div>
+                </div>
 
-<script src="/js/vendors.js"></script>
-<!-- BEGIN Vendor JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script src="/js/sweetalert2.all.min.js"></script>
-<script src="/js/polyfill.min.js"></script>
-<script src="/js/sweet-alerts.js"></script>
-<script src="/js/vertical-menu-light.js"></script>
-<script src="/js/app-menu.js"></script>
-<script src="/js/app.js"></script>
-<script src="/services/jquery.validate.min.js"></script>
-<!-- BEGIN: Services calling JS-->
-<script src="/services/AddPatientWizerd.js"></script>
-<script src="/services/loadingoverlay.min.js"></script>
-<!-- END: Page JS-->
-<!-- END: JS-->
-</body> 
-<!-- END: Body-->
+                <!-- END: Content-->
 
-</html>
+                <!-- END: Content-->
+
+                <script>
+                    window.onload = function() {
+
+                        //Check File API support
+                        if (window.File && window.FileList && window.FileReader) {
+                            var filesInput = document.getElementById("imgupload");
+                            var imgcomplain = document.getElementById("imgcomplain");
+
+
+                            filesInput.addEventListener("change", function(event) {
+                                var files = event.target.files; //FileList object
+
+                                var file = $(this).val().replace(/C:\\fakepath\\/gi, "");
+                                $("#fname").text(file);
+                                $("#result").html('');
+                                var output = document.getElementById("result");
+                                for (var i = 0; i < files.length; i++) {
+                                    var file = files[i];
+                                    //Only pics
+                                    if (!file.type.match('image'))
+                                        continue;
+                                    var picReader = new FileReader();
+                                    picReader.addEventListener("load", function(event) {
+                                        var picFile = event.target;
+                                        var div = document.createElement("div");
+                                        div.innerHTML = "<img class='infoProfilePic' src='" + picFile.result + "'" +
+                                            "title='" + picFile.name + "'/>";
+                                        output.insertBefore(div, null);
+                                    });
+                                    //Read the image
+                                    picReader.readAsDataURL(file);
+                                }
+
+                            });
+
+                            imgcomplain.addEventListener("change", function(event) {
+                                var files = event.target.files; //FileList object             
+                                var file = $(this).val().replace(/C:\\fakepath\\/gi, "");
+                                for (var i = 0; i < files.length; i++) {
+                                    var file = files[i];
+                                    //Only pics
+                                    if (!file.type.match('image'))
+                                        continue;
+                                    var picReader = new FileReader();
+                                    picReader.addEventListener("load", function(event) {
+                                        var picFile = event.target;
+                                        $(".hdnimgcomplain").val('');
+                                        $(".hdnimgcomplain").val(picFile.result)
+                                    });
+                                    //Read the image
+                                    picReader.readAsDataURL(file);
+                                }
+
+                            });
+
+
+                        } else {
+                            console.log("Your browser does not support File API");
+                        }
+                    }
+                </script>
+
+
+                <script src="/js/daterange/moment.min.js"></script>
+                <script src="/js/pick-a-datetime.js"></script>
+
+                <script src="/js/vendors.js"></script>
+                <!-- BEGIN Vendor JS-->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+                <script src="/js/sweetalert2.all.min.js"></script>
+                <script src="/js/polyfill.min.js"></script>
+                <script src="/js/sweet-alerts.js"></script>
+                <script src="/js/vertical-menu-light.js"></script>
+                <script src="/js/app-menu.js"></script>
+                <script src="/js/app.js"></script>
+                <script src="/services/jquery.validate.min.js"></script>
+                <!-- BEGIN: Services calling JS-->
+                <script src="/services/AddPatientWizerd.js"></script>
+                <script src="/services/loadingoverlay.min.js"></script>
+                <!-- END: Page JS-->
+                <!-- END: JS-->
+                </body>
+                <!-- END: Body-->
+
+                </html>

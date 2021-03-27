@@ -212,7 +212,7 @@ function SetDoctorProfile(d) {
     //=========set image control============
     $("#result").html(div);
 
-    console.log(d.PhoneNumber);
+
     $("#txtUname").val(d.Email);
     //$("#hdnpwd").val(d.password);
     $("#txtPwd").val(d.password);

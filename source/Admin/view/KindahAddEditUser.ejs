@@ -1,200 +1,188 @@
 <%- include('includes/AdminHead.ejs') %>
 
-<!-- BEGIN: Vendor CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
-<!-- END: Vendor CSS-->
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+    <!-- END: Vendor CSS-->
 
-<!-- BEGIN: Theme CSS-->
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
 
-<link rel="stylesheet" type="text/css" href="/css/components.css" />
-<!-- END: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/components.css" />
+    <!-- END: Theme CSS-->
 
-<!-- BEGIN: Page CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
-<!-- END: Page CSS-->
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+    <!-- END: Page CSS-->
 
-<!-- BEGIN: Custom CSS-->
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
-<!-- END: Custom CSS-->
-</head>
-<!-- END: Head-->
+    <!-- END: Custom CSS-->
+    </head>
+    <!-- END: Head-->
 
-<!-- BEGIN: Body-->
+    <!-- BEGIN: Body-->
 
-<!-- body tag and blue nav bar  -->
-<%- include('includes/adminNav.ejs') %>
+    <!-- body tag and blue nav bar  -->
+    <%- include('includes/adminNav.ejs') %>
 
-<!-- complete side menu of doctor -->
-<%- include('includes/adminSideMenu.ejs') %>
+        <!-- complete side menu of doctor -->
+        <%- include('includes/adminSideMenu.ejs') %>
 
 
-<!-- BEGIN: Content-->
+            <!-- BEGIN: Content-->
 
-<div class="app-content content">
-    <div class="content-wrapper">
-        <div class="content-body">
-            <br />
-            <div class="d-flex flex-row">
-                <div class="page-heading">
-                    <h3 id="lblUserHeading" >CREATE User</h3>
-                </div>
-            </div>
-            <!-- basic info -->
-            <section>
-                <div class="row">
-                    <div class="col-md-12">
-                        <form id="frmSignUpAdmin" class="form-horizontal">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Basic Information</h4>
-                                    <div class="row col-sm-6">
-                                        <span class="error" style="display: none;"></span>
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="txtEmail">Email</label>
-                                                        <input type="email" id="txtEmail" name="email"
-                                                            class="form-input form-control"  required
-                                                            data-validation-required-message="The  field is required" />
-                                                    
+            <div class="app-content content">
+                <div class="content-wrapper">
+                    <div class="content-body">
+                        <br />
+                        <div class="d-flex flex-row">
+                            <div class="page-heading">
+                                <h3 id="lblUserHeading">CREATE User</h3>
+                            </div>
+                        </div>
+                        <!-- basic info -->
+                        <section>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form id="frmSignUpAdmin" class="form-horizontal">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Basic Information</h4>
+                                                <div class="row col-sm-6">
+                                                    <span class="error" style="display: none;"></span>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group"> 
-                                                    <label class="form-label" for="txtPassword">Password</label>                                                   
-                                                            <div class="input-group">
-                                                                <input type="password" id="txtPassword" class="form-input form-control pwd">
-                                                                <span class="input-group-btn">
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="txtEmail">Email</label>
+                                                                <input type="email" id="txtEmail" name="email" class="form-input form-control" required data-validation-required-message="The  field is required" />
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="txtPassword">Password</label>
+                                                                <div class="input-group">
+                                                                    <input type="password" name="Password" id="txtPassword" class="form-input form-control pwd">
+                                                                    <span class="input-group-btn">
                                                                   <button class="btn btn-default reveal" type="button">
                                                                     <i class="fa fa-eye-slash" aria-hidden="true"></i></button>
-                                                                </span>         
-                                                             
-                                                   
-                                                        </div>                                                   
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="txtFirstName">First Name</label>
-                                                        <input type="text" id="txtFirstName" name="FirstName"
-                                                            class="form-input form-control"  required
-                                                            data-validation-required-message="This  field is required" />
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="txtFirstName">Last Name</label>
-                                                        <input type="text" id="txtLastName" name="LastName"
-                                                            class="form-input form-control"  required
-                                                            data-validation-required-message="This  field is required" />
-                                                    
-                                                </div>
-                                            </div>
-                                          
-                                            <div class="col-sm-6">
-                                                <div class="form-group">                                                   
-                                                        <div class="row">
-                                                            <div class="col-sm-3">
-                                                                <input required disabled="disabled" class="form-control"
-                                                                    value="+966" />
+                                                                </span>
+
+
+                                                                </div>
                                                             </div>
-                                                            <div class="col-sm-9">
-                                                                <label class="form-label" for="txtPhoneNo">Phone No</label>
-                                                                <input required name="contactNo" type="number"
-                                                                    class="form-input form-control" id="txtPhoneNo"
-                                                                     />
-                                                            </div>                                                      
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group focused">
-                                                    <label class="form-label" for="dboUserType">User Type</label>
-                                                        <select name="UserType" id="dboUserType" name="Gender"
-                                                            class="form-input form-control">
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="txtFirstName">First Name</label>
+                                                                <input type="text" id="txtFirstName" name="FirstName" class="form-input form-control" required data-validation-required-message="This  field is required" />
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="txtFirstName">Last Name</label>
+                                                                <input type="text" id="txtLastName" name="LastName" class="form-input form-control" required data-validation-required-message="This  field is required" />
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                    <div class="col-sm-3">
+                                                                        <input required disabled="disabled" class="form-control" value="+966" />
+                                                                    </div>
+                                                                    <div class="col-sm-9">
+                                                                        <label class="form-label" for="txtPhoneNo">Phone No</label>
+                                                                        <input required name="contactNo" type="number" class="form-input form-control" id="txtPhoneNo" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group focused">
+                                                                <label class="form-label" for="dboUserType">User Type</label>
+                                                                <select name="UserType" id="dboUserType" name="Gender" class="form-input form-control">
                                                             <option value="0">User Type</option>
                                                             <option value="Patient">Patient</option>
                                                             <option value="Doctor">Doctor</option>
                                                             <option value="Doctor">Admin</option>
                                                             <option value="Others">Others</option>
                                                         </select>
-                                                   
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6" id="divSpeciality">
-                                                <div class="form-group">
-                                                    <label class="form-label" for="txtspe">Specialization</label>
-                                                    <select name="Specialization" id="txtspe"
-                                                        class="form-input form-control">
-                                                    </select>
-                                                </div>
-                                            </div>
-                                           
-                                            <div class="col-sm-6">
-                                                <div class="form-group focused">
-                                                    <label class="form-label" for="dboRole">Role</label>
-                                                        <select name="role" id="dboRole"
-                                                            class="form-input form-control">                                                               
-                                                        </select>
-                                                    
-                                                </div>
-                                            </div>
 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6" id="divSpeciality">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="txtspe">Specialization</label>
+                                                                <select name="Specialization" required id="txtspe" class="form-input form-control">
+                                                    </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group focused">
+                                                                <label class="form-label" for="dboRole">Role</label>
+                                                                <select name="role" id="dboRole" class="form-input form-control" required>                                                               
+                                                        </select>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" id="btnSubmit" class="btn btn-primary">
+                                        <button type="submit" id="btnSubmit" class="btn btn-primary">
                                 Create User
                             </button>&nbsp;
-                            <a href="/admin/all-users">
-                            <button type="button"  class="btn btn-primary">
+                                        <a href="/admin/all-users">
+                                            <button type="button" class="btn btn-primary">
                                 Cancel
                             </button>
-                        </a>
-                        </form>
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+
                     </div>
                 </div>
-            </section>
+            </div>
 
-        </div>
-    </div>
-</div>
+            <!-- BEGIN: Content-->
 
-<!-- BEGIN: Content-->
+            <!-- END: Content-->
 
-<!-- END: Content-->
+            <!-- BEGIN: JS-->
+            <!-- BEGIN: Vendor JS-->
+            <!-- <script src="/js/vendors.min.js"></script> -->
 
-<!-- BEGIN: JS-->
-<!-- BEGIN: Vendor JS-->
-<!-- <script src="/js/vendors.min.js"></script> -->
+            <!-- BEGIN Vendor JS-->
 
-<!-- BEGIN Vendor JS-->
-
-<script src="/js/vertical-menu-light.js"></script>
-<script src="/js/app-menu.js"></script>
-<script src="/js/app.js"></script>
-<script src="/js/sweetalert2.all.min.js"></script>
-<script src="/js/sweet-alerts.js"></script>
+            <script src="/js/vertical-menu-light.js"></script>
+            <script src="/js/app-menu.js"></script>
+            <script src="/js/app.js"></script>
+            <script src="/js/sweetalert2.all.min.js"></script>
+            <script src="/js/sweet-alerts.js"></script>
 
 
-<!-- END: Theme JS-->
+            <!-- END: Theme JS-->
 
 
-<!-- BEGIN: Services calling JS-->
-<script src="/services/jquery.validate.min.js"></script>
-<script src="/services/Admin/AddEditUser.js"></script>
-<script src="/services/loadingoverlay.min.js"></script>
+            <!-- BEGIN: Services calling JS-->
+            <script src="/services/jquery.validate.min.js"></script>
+            <script src="/services/Admin/AddEditUser.js"></script>
+            <script src="/services/loadingoverlay.min.js"></script>
 
 
-<!-- END: JS-->
-<%- include('../../Default/view/includes/End.ejs') %>
+            <!-- END: JS-->
+            <%- include('../../Default/view/includes/End.ejs') %>

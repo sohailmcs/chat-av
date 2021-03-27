@@ -521,7 +521,8 @@ function ComplatecallLog(callLogId, status) {
                 buttonsStyling: false,
                 confirmButtonText: "Ok",
             }).then((result) => {
-                window.location.reload();
+                GetCallLog(userLoginId, clientCurrentDt, false);
+                // window.location.reload();
             });
         },
         error: function(xhr, textStatus, err) {
