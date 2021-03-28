@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-  <!-- BEGIN: Head-->
+<!-- BEGIN: Head-->
 
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
 
     <meta name="author" content="PIXINVENT" />
-    <title><%= PageTitle %></title>
+    <title>
+        <%= PageTitle %>
+    </title>
 
     <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
@@ -21,41 +20,35 @@
 
     <link rel="stylesheet" type="text/css" href="/css/animate.css" />
     <link rel="stylesheet" type="text/css" href="/css/sweetalert2.min.css" />
-  </head>
+</head>
 
-  <!-- END: Head-->
+<!-- END: Head-->
 
-  <!-- BEGIN: Body-->
+<!-- BEGIN: Body-->
 
-  <body
-    class="vertical-layout vertical-menu-modern 1-column navbar-sticky footer-static bg-full-screen-image blank-page blank-page"
-    data-open="click"
-    data-menu="vertical-menu-modern"
-    data-col="1-column"
-  >
+<body class="vertical-layout vertical-menu-modern 1-column navbar-sticky footer-static bg-full-screen-image blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
     <!-- BEGIN: Content-->
     <div class="app-content content">
-      <div class="content-overlay"></div>
-      <div class="content-wrapper">
-        <div class="content-header row"></div>
-        <div class="content-body">
-          <!-- register section starts -->
-          <section class="row flexbox-container">
-            <div class="col-xl-8 col-11">
-              <div class="card bg-authentication mb-0">
-                <div class="row m-0">
-                  <!-- left section-login -->
-                  <div class="crtAccount col-md-5" style="padding-left: 40px">
-                    <div class="card-header loginLogo">
-                      <a href="/"><img src="/assets/logo.jpg" /></a>
-                    </div>
-                    <div class="card-content">
-                      <div class="card-body">
-                        <br />
-                        <br />
-                        <h1 class="txtwelcome">Welcome</h1>
-                        <span class="txtlogin"
-                          >Sign up to consult with your doctor.</span
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
+            <div class="content-header row"></div>
+            <div class="content-body">
+                <!-- register section starts -->
+                <section class="row flexbox-container">
+                    <div class="col-xl-8 col-11">
+                        <div class="card bg-authentication mb-0">
+                            <div class="row m-0">
+                                <!-- left section-login -->
+                                <div class="crtAccount col-md-5" style="padding-left: 40px">
+                                    <div class="card-header loginLogo">
+                                        <a href="/"><img src="/assets/logo.jpg" /></a>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <br />
+                                            <br />
+                                            <h1 class="txtwelcome">Welcome</h1>
+                                            <span class="txtlogin">Sign up to consult with your doctor.</span
                         >
                         
 
@@ -92,23 +85,16 @@
                           >
                         </div>
                         <span class="error" style="display: none"></span>
-                      </div>
+                                        </div>
 
-                      <div class="card-content">
-                        <div class="card-body">
-                          <form id="frmSignUp">
-                            <input
-                              type="hidden"
-                              id="hdnUserType"
-                              value="patient"
-                            />
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <form id="frmSignUp">
+                                                    <input type="hidden" id="hdnUserType" value="patient" />
 
-                            <div class="row mb-50">
-                              <div class="col-md-6">
-                                <label
-                                  class="text-bold-600"
-                                  for="inputfirstname4"
-                                  >First name</label
+                                                    <div class="row mb-50">
+                                                        <div class="col-md-6">
+                                                            <label class="text-bold-600" for="inputfirstname4">First name</label
                                 >
                                 <input
                                   required
@@ -217,60 +203,46 @@
                                     placeholder="Contact Number"
                                   />
                                   <label class="form-check-label">eg:59xxxxx98</label>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                            <div class="col-sm-4">
-                            <button
-                              type="submit"
-                              class="btn btn-primary glow position-relative"
-                            >
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <button type="submit" class="btn btn-primary glow position-relative">
                               SIGN UP
                             </button>
-                          </div>
-                          <div class="col-sm-8 text-right">
-                            <input required="required" class="form-check-input chkTermCondition" 
-                             type="checkbox" name="chkcondition" >
-                           <label class="form-check-label" for="lblcondition">
+                                                </div>
+                                                <div class="col-sm-8 mt-1 text-right">
+                                                    <input required="required" class="form-check-input chkTermCondition" type="checkbox" name="chkcondition">
+                                                    <label class="form-check-label" for="lblcondition">
                              I agree the <a href="/SignUp/kindah-terms" target="_blank">Terms and Conditions</a></label>
-                            
-                          </div>
-                          </div><!--end of row-->
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- image section right -->
-                </div>
-              </div>
-            </div>
-          </section>
 
-          <!-- password enter popup -->
-          <div class="modal-primary mr-1 mb-1 d-inline-block">
-            <!--primary theme Modal -->
-            <div
-              class="modal fade text-left"
-              id="primary"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="myModalLabel160"
-              aria-hidden="true"
-            >
-              <div
-                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                role="document"
-              >
-                <div class="modal-content">
-                 
-                  <div class="mt-4 card-title text-center">
-                    <h5 class="LoginHeading" style="font-size: 20px">
-                      <strong>OTP Verification</strong>
-                    </h5>
-                    <span class="txtlogin"
-                      >Enter the OTP that sent to your mobile</span
+                                                </div>
+                                            </div>
+                                            <!--end of row-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- image section right -->
+                        </div>
+                    </div>
+            </div>
+            </section>
+
+            <!-- password enter popup -->
+            <div class="modal-primary mr-1 mb-1 d-inline-block">
+                <!--primary theme Modal -->
+                <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+
+                            <div class="mt-4 card-title text-center">
+                                <h5 class="LoginHeading" style="font-size: 20px">
+                                    <strong>OTP Verification</strong>
+                                </h5>
+                                <span class="txtlogin">Enter the OTP that sent to your mobile</span
                     >
                   </div>
                   <div class="modal-body" style="text-align: center">
@@ -301,8 +273,7 @@
                     <br />
                     <br />
                     <span class="txtnormal">Don’t receive the OTP yet?</span>
-                    <a id="btnResendOTP" style="text-decoration: none;cursor: pointer; color:#5a8dee;" 
-                      ><small>Resend OTP?</small></a
+                                <a id="btnResendOTP" style="text-decoration: none;cursor: pointer; color:#5a8dee;"><small>Resend OTP?</small></a
                     >
                     <br />
                     <br />
