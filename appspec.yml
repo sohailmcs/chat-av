@@ -1,8 +1,8 @@
 version: 0.0
 os: linux
 files:
-  - source: /index
-    destination: /source/Default/view/
+  - source: /
+    destination: /home/ubuntu/nodejs
     overwrite: true
 hooks:
   BeforeInstall:
