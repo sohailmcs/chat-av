@@ -1,14 +1,13 @@
-version: 0.0
+ersion: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/api/
+    destination: /usr/share/nginx/html
+    overwrite: true
 hooks:
-  AfterInstall:
-    - location: scripts/npm-install.sh
-      runas: root
+  BeforeInstall:
+    - location: scripts/BeforeInstallHook.sh
       timeout: 300
-  ApplicationStart:
-    - location: scripts/npm-start.sh
-      runas: root
-      timeout: 60
+  AfterInstall:
+    - location: scripts/AfterInstallHook.sh
+      timeout: 300
