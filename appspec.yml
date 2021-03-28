@@ -1,18 +1,14 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.ejs
-    destination: /source/Default/view/
+  - source: /
+    destination: /var/api/
 hooks:
-  BeforeInstall:
-    - location: scripts/install_dependencies
-      timeout: 300
+  AfterInstall:
+    - location: scripts/npm-install.sh
       runas: root
-    - location: scripts/start_server
       timeout: 300
+  ApplicationStart:
+    - location: scripts/npm-start.sh
       runas: root
-  ApplicationStop:
-    - location: scripts/stop_server
-      timeout: 300
-      runas: root
-
+      timeout: 60
