@@ -1,8 +1,8 @@
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /var/www/html/
+  - source: /index.ejs
+    destination: /source/Default/view/
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies
