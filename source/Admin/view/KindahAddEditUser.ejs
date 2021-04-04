@@ -61,7 +61,15 @@
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label class="form-label" for="txtEmail">Email</label>
-                                                                <input type="email" id="txtEmail" name="email" class="form-input form-control" required data-validation-required-message="The  field is required" />
+
+                                                                <input id="txtEmail" class="form-input form-control" readonly type="email" required data-validation-required-message="The  field is required" onfocus="if (this.hasAttribute('readonly')) {                                                                    
+                                                                    this.removeAttribute('readonly');
+                                                                    this.blur();    this.focus();  }" />
+
+                                                                <!-- <input type="email" 
+                                                                    id="txtEmail" name="email"
+                                                                     autocomplete="false" class="form-input form-control"
+                                                                      required data-validation-required-message="The  field is required" /> -->
 
                                                             </div>
                                                         </div>

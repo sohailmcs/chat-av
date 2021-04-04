@@ -76,26 +76,34 @@
                             <!-- VIEW DOCTOR PROFILE START -->
                             <div style="text-align:left" class="call-Queue-icons">
                                 <button fullName="{{FullName}}" docEmail="{{Email}}" docID="{{DoctorId}}" style="font-size:0.8rem" type="button" class="btnAppointments btn btn-outline-primary  mr-1  
-                btn-sm btn-block">
-                  <i class="bx bx-calendar"></i>
-                  <b>Request an Appointment</b>
-                </button> {{#OnlineStatus}}
+                            btn-sm btn-block">
+                            <i class="bx bx-calendar"></i>
+                            <b>Request an Appointment</b>
+                            </button> {{#isZeroCallLimit}} {{#OnlineStatus}}
                                 <a>
                                     <!-- Button trigger for request a call modal -->
                                     <button type="button" fullName="{{FullName}}" docEmail="{{Email}}" docID="{{DoctorId}}" class=" btnSencCallReq drcall_{{DoctorId}} btn btn-outline-primary  mr-1  btn-sm btn-block" style="font-size:0.8rem; margin-top: 3%;">
-                  <i class="bx bx-phone-call"></i>
-                  <b>Join Sameday Waiting list</b>
-                </button>
+                                    <i class="bx bx-phone-call"></i>
+                                    <b>Join Sameday Waiting list</b>
+                                    </button>
                                 </a>
                                 {{/OnlineStatus}} {{^OnlineStatus}}
                                 <a>
                                     <!-- Button trigger for request a call modal -->
                                     <button type="button" disabled="disabled" fullName="{{FullName}}" docEmail="{{Email}}" docID="{{DoctorId}}" class="btnSencCallReq drcall_{{DoctorId}} btn btn-outline-primary mr-1  btn-sm btn-block" style="font-size:0.8rem; margin-top: 3%;">
-                  <i class="bx bx-phone-call"></i>
-                  <b>Join Sameday Waiting list</b>
-                </button>
+                                <i class="bx bx-phone-call"></i>
+                                <b>Join Sameday Waiting list</b>
+                                </button>
                                 </a>
-                                {{/OnlineStatus}}
+                                {{/OnlineStatus}} {{/isZeroCallLimit}} {{^isZeroCallLimit}}
+                                <a>
+                                    <!-- Button trigger for request a call modal -->
+                                    <button type="button" disabled="disabled" fullName="{{FullName}}" docEmail="{{Email}}" docID="{{DoctorId}}" class="btnSencCallReq drcall_{{DoctorId}} btn btn-outline-primary mr-1  btn-sm btn-block" style="font-size:0.8rem; margin-top: 3%;">
+                                <i class="bx bx-phone-call"></i>
+                                <b>Join Sameday Waiting list</b>
+                                </button>
+                                </a>
+                                {{/isZeroCallLimit}}
                             </div>
                         </div>
 
@@ -104,6 +112,9 @@
                     </div>
                 </li>
                 {{/result}}
+
+
+
             </script>
 
             <!--end of doctor Details templates---->
@@ -118,8 +129,6 @@
                             <button type="button" style="top:5px" class="close" data-dismiss="modal" aria-label="Close">
                            <span aria-hidden="true">&times;</span>
                 </button>
-
-
                         </div>
                         <div class="modal-body">
                             <div class="row">
@@ -135,8 +144,8 @@
                                             {{FullName}}
                                         </h5>
                                         <span style="font-size:16px"> 
-              <b>Specialization</b>: {{Specialization}}
-               </span>
+                                              <b>Specialization</b>: {{Specialization}}
+                                         </span>
                                     </div>
                                 </div>
                             </div>
@@ -267,10 +276,6 @@
                 </div>
             </div>
             <!--end of reject call -->
-
-
-
-
             <div class="app-content content">
                 <div class="content-overlay"></div>
                 <div class="content-wrapper">
@@ -286,9 +291,9 @@
                             <div class="col-sm-2 text-left mt-2 ">
                                 <label>Order By Min/Max fee</label>
                                 <select class="form-control" id="dbofee">
-            <option value="min">Min</option>
-            <option value="max">Max</option>
-          </select>
+                                    <option value="min">Min</option>
+                                    <option value="max">Max</option>
+                                     </select>
                             </div>
                         </div>
                         <!--end of row-->
@@ -296,6 +301,10 @@
                         <div class="email-user-list list-group">
                             <ul class="users-list-wrapper media-list" id="doctorList">
 
+                                <div id="divNoDoctor" style="display:none;" class="text-center col-sm mid-col-empty">
+                                    <b class="bold-time">
+                                No doctor available in this speciality</b>
+                                </div>
                             </ul>
                         </div>
                     </div>

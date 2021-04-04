@@ -1,47 +1,44 @@
 <%- include('includes/AdminHead.ejs') %>
 
-<!-- BEGIN: Vendor CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
 
-<!-- END: Vendor CSS-->
+    <!-- END: Vendor CSS-->
 
-<!-- BEGIN: Theme CSS-->
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
-<link rel="stylesheet" type="text/css" href="/css/colors.css" />
-<link rel="stylesheet" type="text/css" href="/css/components.css" />
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" 
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+    <link rel="stylesheet" type="text/css" href="/css/colors.css" />
+    <link rel="stylesheet" type="text/css" href="/css/components.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" />
 
-/>
+    <!-- END: Theme CSS-->
 
-<!-- END: Theme CSS-->
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+    <!-- END: Page CSS-->
 
-<!-- BEGIN: Page CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
-<!-- END: Page CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <!-- END: Custom CSS-->
+    </head>
+    <!-- END: Head-->
 
-<!-- BEGIN: Custom CSS-->
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<!-- END: Custom CSS-->
-</head>
-<!-- END: Head-->
+    <!-- BEGIN: Body-->
 
-<!-- BEGIN: Body-->
+    <!-- body tag and blue nav bar  -->
+    <%- include('includes/adminNav.ejs') %>
 
-<!-- body tag and blue nav bar  -->
-<%- include('includes/adminNav.ejs') %>
+        <!-- complete side menu of doctor -->
+        <%- include('includes/adminSideMenu.ejs') %>
 
-<!-- complete side menu of doctor -->
-<%- include('includes/adminSideMenu.ejs') %>
+            <!-- BEGIN: Content-->
 
-<!-- BEGIN: Content-->
+            <script id="doctorProfile-template" type="text/html">
 
-<script id="doctorProfile-template" type="text/html">
-
-     <div class="kanban-sidebar" style="overflow: auto;">
+                <div class="kanban-sidebar" style="overflow: auto;">
                     <div class="card shadow-none quill-wrapper">
-                        <div
-                            class="card-header d-flex justify-content-between align-items-center border-
+                        <div class="card-header d-flex justify-content-between align-items-center border-
 
 bottom px-2 py-1 side-card-title">
                             <h3 class="card-title side-card-title">
@@ -55,28 +52,21 @@ bottom px-2 py-1 side-card-title">
 
                         <div class="card-content side-bar">
                             <div class="card-body slide-card">
-                                    <div class="media" style="flex-wrap: wrap" >
-                                       <div class="pr-50 mt-1"  style="margin-left:10px, padding:0px !impportant">
-                                       {{#ProfilePicture}}
-                                       <img src="{{ProfilePicture}}"  width="100" height="100" alt="avtar">         
-
-      
-                                        {{/ProfilePicture}}
-                                        {{^ProfilePicture}}
-                                        <img src="/assets/images/maledoc.png"  width="100" height="100" alt="avtar">       
-
-               
-                                       {{/ProfilePicture}}                             
-                                       </div>
+                                <div class="media" style="flex-wrap: wrap">
+                                    <div class="pr-50 mt-1" style="margin-left:10px, padding:0px !impportant">
+                                        {{#ProfilePicture}}
+                                        <img src="{{ProfilePicture}}" width="100" height="100" alt="avtar"> {{/ProfilePicture}} {{^ProfilePicture}}
+                                        <img src="/assets/images/maledoc.png" width="100" height="100" alt="avtar"> {{/ProfilePicture}}
+                                    </div>
+                                    <div>
+                                        <h5 class="media-heading" style="margin-left:10px">
+                                            <br />
+                                            <b>{{FullName}}</b>
+                                        </h5>
                                         <div>
-                                            <h5 class="media-heading"  style="margin-left:10px">
-                                                <br />
-                                                <b>{{FullName}}</b>
-                                            </h5>
-                                            <div>
-                                                <p> <b>Specialization</b>: {{Specialization}}</p>
-                                            </div>
+                                            <p> <b>Specialization</b>: {{Specialization}}</p>
                                         </div>
+                                    </div>
                                 </div>
                                 <br />
                                 <div class="row">
@@ -84,24 +74,16 @@ bottom px-2 py-1 side-card-title">
                                         <p> <span class="editprofile-icons"><i
                                                     class="bx bx-envelope icon-margin"></i>Email 
 
-Address</span>:
-                                            {{Email}}
+Address</span>: {{Email}}
                                         </p>
                                         <p> <span class="editprofile-icons"><i
                                                     class="bx bx-phone icon-margin"></i>Contact 
 
-Number</span>:
-                                            {{PhoneNumber}}
+Number</span>: {{PhoneNumber}}
                                         </p>
-                                        <p> <span class="editprofile-icons"><i
-                                                    class="bx bxs-calendar icon-margin"></i>Date of 
 
-Birth</span>: abc
-                                        </p>
                                         <p> <span class="editprofile-icons"><i
-                                                    class="bx bx-male icon-margin"></i>Gender</span>:
-
-{{Gender}} </p>
+                                                    class="bx bx-male icon-margin"></i>Gender</span>: {{Gender}} </p>
                                     </div>
                                     <div class="col-md-6">
                                         <p> <span class="editprofile-icons"><i
@@ -113,13 +95,11 @@ margin"></i>Address</span>:{{Address}}</p>
 
 margin"></i>Country</span>:{{Country}} </p>
                                         <p> <span class="editprofile-icons"><i
-                                                    class="bx bx-map icon-margin"></i>City</span>: {{City}} 
+                                                    class="bx bx-map icon-margin"></i>City</span>: {{City}}
 
-</p>
+                                        </p>
                                         <p> <span class="editprofile-icons"><i
-                                                    class="bx bxs-map-pin icon-margin"></i>State</span>: 
-
-{{State}} </p>
+                                                    class="bx bxs-map-pin icon-margin"></i>State</span>: {{State}} </p>
                                     </div>
                                 </div>
 
@@ -141,17 +121,14 @@ margin"></i>Country</span>:{{Country}} </p>
                                     <div class="col-md-6 col-12">
                                         {{#DoctorEducationsModel}}
                                         <p> <span class="editprofile-icons"><i
-                                                    class="bx bxs-file-plus icon-margin"></i>Degree</span>:
-                                                    {{Degree}}
-                                           </p>
-                                           {{/DoctorEducationsModel}}
-                                            
-                                            {{#DoctorEducationsModel}}
+                                                    class="bx bxs-file-plus icon-margin"></i>Degree</span>: {{Degree}}
+                                        </p>
+                                        {{/DoctorEducationsModel}} {{#DoctorEducationsModel}}
                                         <p> <span class="editprofile-icons"><i
                                                     class="bx bx-calendar-event icon-margin"></i>Year of
                                                 Completion</span>: {{YearsOfCompletion}}
-                                           </p>
-                                            {{/DoctorEducationsModel}}
+                                        </p>
+                                        {{/DoctorEducationsModel}}
                                     </div>
                                 </div>
 
@@ -159,28 +136,22 @@ margin"></i>Country</span>:{{Country}} </p>
                                 <h5 class="no-color">Experience</h5>
                                 <div class="row">
                                     <div class=" col-12">
-                                        {{#DoctorExperianceModel}} 
+                                        {{#DoctorExperianceModel}}
                                         <p> <span class="editprofile-icons"><i
                                                     class="bx bx-buildings icon-
 
-margin"></i>Hospital</span>:
-                                                    {{HospitalName}}
-                                      </p>
-                                        {{/DoctorExperianceModel}} 
-
-                                        {{#DoctorExperianceModel}} 
+margin"></i>Hospital</span>: {{HospitalName}}
+                                        </p>
+                                        {{/DoctorExperianceModel}} {{#DoctorExperianceModel}}
                                         <p> <span class="editprofile-icons"><i
                                                     class="bx bxs-folder-plus icon-
 
-margin"></i>Designation</span>:
-                                                    {{Designation}}
-                                             </p>
-                                               {{/DoctorExperianceModel}} 
-                                                 {{#DoctorExperianceModel}} 
+margin"></i>Designation</span>: {{Designation}}
+                                        </p>
+                                        {{/DoctorExperianceModel}} {{#DoctorExperianceModel}}
                                         <p> <span class="editprofile-icons"><i
                                                     class="bx bx-calendar-event icon-margin"></i>Year
-                                            </span>: From {{From | Shortdate}} To {{To | Shortdate}}
-                                          {{/DoctorExperianceModel}} </p>
+                                            </span>: From {{From | Shortdate}} To {{To | Shortdate}} {{/DoctorExperianceModel}} </p>
                                     </div>
                                 </div>
 
@@ -189,60 +160,56 @@ margin"></i>Designation</span>:
                                 <div class="row">
                                     <div class="col-md-6">
                                         <p> <span class="editprofile-icons"><i
-                                                    class="bx bx-trophy icon-margin"></i>Award Name</span>:
-                                            {{Award}} </p>
+                                                    class="bx bx-trophy icon-margin"></i>Award Name</span>: {{Award}} </p>
                                         <p> <span class="editprofile-icons"><i
                                                     class="bx bxs-calendar-plus icon-
 
-margin"></i>Year</span>:
-                                           {{AwardYear}}  </p>
+margin"></i>Year</span>: {{AwardYear}} </p>
 
                                     </div>
                                 </div>
-                                
-                                        <button type="button" class="mb-4 btn btn-light-secondary" 
-                                                onclick="viewHistory()"
-                                        style="float: right;">
+
+                                <button type="button" class="mb-4 btn btn-light-secondary" onclick="viewHistory()" style="float: right;">
                                         <span class="d-none d-sm-block">Close</span>
                                     </button>
-                              
+
                             </div>
                         </div>
                     </div>
                 </div>
-</script>
+            </script>
 
-<!-- BEGIN: Content-->
+            <!-- BEGIN: Content-->
 
-<div class="app-content content">
-    <div class="content-overlay"></div>
-    <div class="content-wrapper">
-        <div class="content-header row"></div>
-        <div class="content-body">
-            <section class="sideMenuId" id="slideDocProfile" style="
+            <div class="app-content content">
+                <div class="content-overlay"></div>
+                <div class="content-wrapper">
+                    <div class="content-header row"></div>
+                    <div class="content-body">
+                        <section class="sideMenuId" id="slideDocProfile" style="
               margin-right: -60%;
               overflow: auto;
               display: none;
               width: 60%;
               margin-top: 10px;
             ">
-                <!-- User new mail right area -->
+                            <!-- User new mail right area -->
 
-            </section>
+                        </section>
 
-            <!-- end side bar -->
+                        <!-- end side bar -->
 
-            <br />
-            <div class="d-flex flex-row">
-                <div class="page-heading">
-                    <h3>KINDAH DOCTORS</h3>
-                </div>
-            </div>
+                        <br />
+                        <div class="d-flex flex-row">
+                            <div class="page-heading">
+                                <h3>KINDAH DOCTORS</h3>
+                            </div>
+                        </div>
 
-            <!-- Start  table -->
+                        <!-- Start  table -->
 
-            
-                <!-- <div class="row">
+
+                        <!-- <div class="row">
               
                     <div class="col-sm-12 text-right mb-1">
                         <a href="/admin/create-doctor">
@@ -253,49 +220,47 @@ margin"></i>Year</span>:
                     </div>
                 </div>
              -->
-            <div class="table-responsive">
-                <br />
-                <table class="table call-log-table" id="tblDoctors">
-                    <thead>
-                        <tr class="call-log-table-header">
-                            <th class="call-log-table-head">DoctorID</th>
-                            <th class="call-log-table-head">Name</th>
-                            <th class="call-log-table-head">Specialization</th>
-                            <th class="call-log-table-head">Phone </th>
-                            <th class="call-log-table-head">Country</th>
-                            <th class="call-log-table-head">City</th>                                                        
-                            <th class="call-log-table-head">Action</th>
-                        </tr>
-                    </thead>
-                </table>
+                        <div class="table-responsive">
+                            <br />
+                            <table class="table call-log-table" id="tblDoctors">
+                                <thead>
+                                    <tr class="call-log-table-header">
+                                        <th class="call-log-table-head">DoctorID</th>
+                                        <th class="call-log-table-head">Name</th>
+                                        <th class="call-log-table-head">Specialization</th>
+                                        <th class="call-log-table-head">Phone </th>
+                                        <th class="call-log-table-head">Country</th>
+                                        <th class="call-log-table-head">City</th>
+                                        <th class="call-log-table-head">Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <!-- End  table -->
+                    </div>
+                </div>
             </div>
+            <!-- END: Content-->
 
-            <!-- End  table -->
-        </div>
-    </div>
-</div>
-<!-- END: Content-->
+            <!-- END: Content-->
 
-<!-- END: Content-->
+            <!-- BEGIN: Vendor JS-->
+            <script src="/js/vendors.js"></script>
 
-<!-- BEGIN: Vendor JS-->
-<script src="/js/vendors.js"></script>
+            <script src="/js/vertical-menu-light.js"></script>
+            <script src="/js/app-menu.js"></script>
+            <script src="/js/app.js"></script>
 
-<script src="/js/vertical-menu-light.js"></script>
-<script src="/js/app-menu.js"></script>
-<script src="/js/app.js"></script>
-
-<script type="text/javascript" charset="utf8" 
-
-src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+            <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
 
-<!-- END: Theme JS-->
+            <!-- END: Theme JS-->
 
-<!-- BEGIN: Services calling JS-->
-<script src="/services/Admin/ManageDoctors.js"></script>
-<!-- <script src="/js/slidevideocall.js"></script> -->
-<script src="/services/loadingoverlay.min.js"></script>
-<!-- END: JS-->
+            <!-- BEGIN: Services calling JS-->
+            <script src="/services/Admin/ManageDoctors.js"></script>
+            <!-- <script src="/js/slidevideocall.js"></script> -->
+            <script src="/services/loadingoverlay.min.js"></script>
+            <!-- END: JS-->
 
-<%- include('../../Default/view/includes/End.ejs') %>
+            <%- include('../../Default/view/includes/End.ejs') %>

@@ -71,9 +71,7 @@ function Filldatatable(data) {
                 mRender: function(data, type, row) {
                     if (row.isActive) {
                         return (
-                            '<a href="#" onclick="ActiveInactiveUser(this)" userId="' +
-                            row.UserId +
-                            '" data-toggle="tooltip" isactive="false" data-placement="bottom" title="Edit User">' +
+                            '<a href="#" onclick="ActiveInactiveUser(this)" userId="' + row.UserId + '" userType="' + row.UserType + '" data-toggle="tooltip" isactive="false" data-placement="bottom" title="Edit User">' +
                             "Active</a>"
                         );
                     } else {
@@ -112,8 +110,9 @@ function Filldatatable(data) {
 function ActiveInactiveUser(id) {
     var userId = $(id).attr("userId");
     var status = $(id).attr("isactive");
-
-    var url = baseURL + "User/ActiveUnActiveUser?UserId=" + userId + "&status=" + status;
+    var userType = $(id).attr("userType");
+    var statusResult = "Active successfully";
+    var url = baseURL + "User/ActiveUnActiveUser?UserId=" + userId + "&status=" + status + "&userType=" + userType;
     ///==============start post request to add doctor
     $.ajax({
         url: url,
@@ -129,9 +128,11 @@ function ActiveInactiveUser(id) {
         },
         success: function(data, textStatus, xhr) {
             $.LoadingOverlay("hide");
+            if (status == "false")
+                statusResult = "Inactive successfully"
             Swal.fire({
                 title: "Confirmation!",
-                text: "User " + status == true ? "Active" : "Inactive" + " successfully",
+                text: "User " + statusResult,
                 type: "success",
                 confirmButtonClass: "btn btn-primary",
                 buttonsStyling: false,

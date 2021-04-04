@@ -46,9 +46,9 @@ $(function() {
         var countryId = this.value;
         FillCity(countryId, "0", true);
     });
-    $("#dboProficiency").select2({
-        placeholder: "Select Proficiency",
-    });
+    // $("#dboProficiency").select2({
+    //     placeholder: "Select Proficiency",
+    // });
 
     // $("#txtPwd").focusout(function () {
     //   var txt = $(this).val();
@@ -225,8 +225,8 @@ function SetDoctorProfile(d) {
         "selected",
         "selected"
     );
-    $("#txtClinicName").val(d.ClinicName);
-    $("#clinicAddress").val(d.ClinicAddress);
+    // $("#txtClinicName").val(d.ClinicName);
+    // $("#clinicAddress").val(d.ClinicAddress);
     $("#txtAddress1").val(d.Address);
     $("#txtAddress2").val(d.AddressLine1);
     $("#dboCountry").val(d.CountryId);
@@ -251,20 +251,20 @@ function SetDoctorProfile(d) {
     $("#txtAward").val(d.Award);
     $("#CallLimt").val(d.DoctorCall_Limit);
 
-    $("#txtAwarYear option:contains(" + d.AwardYear + ")").attr(
-        "selected",
-        "selected"
-    );
-    if (d.Proficiency) {
-        var prof = d.Proficiency.split(",");
-        $("#dboProficiency").val(prof).trigger("change");
-    }
+    // $("#txtAwarYear option:contains(" + d.AwardYear + ")").attr(
+    //     "selected",
+    //     "selected"
+    // );
+    // if (d.Proficiency) {
+    //     var prof = d.Proficiency.split(",");
+    //     $("#dboProficiency").val(prof).trigger("change");
+    // }
 
     //====set hospital information=====
-    setDoctorExperiance(d.DoctorExperianceModel);
+    //  setDoctorExperiance(d.DoctorExperianceModel);
 
     //===========set doctor education
-    setDoctorEducation(d.DoctorEducationsModel);
+    // setDoctorEducation(d.DoctorEducationsModel);
 }
 
 function setDoctorExperiance(data) {
@@ -336,25 +336,25 @@ function AddEditDoctorProfile(doctorId) {
     var url = baseURL + "Doctor/AddUpdateDoctorProfile";
 
     var modelDetails = new Object();
-    var DoctorEducationsModel = new Array();
-    DoctorEducationsModel.push({
-        Degree: $("#txtDegree").val(),
-        YearsOfCompletion: jQuery("#dboYear option:selected").text(),
-    });
+    // var DoctorEducationsModel = new Array();
+    // DoctorEducationsModel.push({
+    //     Degree: $("#txtDegree").val(),
+    //     YearsOfCompletion: jQuery("#dboYear option:selected").text(),
+    // });
 
-    var DoctorExperianceModel = new Array();
-    DoctorExperianceModel.push({
-        HospitalName: $("#txtHospital").val(),
-        From: $("#txtFrom").val(),
-        To: $("#txtTo").val(),
-        Designation: $("#txtDesignation").val(),
-    });
+    // var DoctorExperianceModel = new Array();
+    // DoctorExperianceModel.push({
+    //     HospitalName: $("#txtHospital").val(),
+    //     From: $("#txtFrom").val(),
+    //     To: $("#txtTo").val(),
+    //     Designation: $("#txtDesignation").val(),
+    // });
 
-    var proficiency = $("#dboProficiency").val();
-    var selectedSource = "";
-    if (proficiency !== null && proficiency.length > 0) {
-        selectedSource = proficiency.join(",");
-    }
+    // var proficiency = $("#dboProficiency").val();
+    // var selectedSource = "";
+    // if (proficiency !== null && proficiency.length > 0) {
+    //     selectedSource = proficiency.join(",");
+    // }
 
     //modelDetails.push({
     modelDetails.DoctorId = doctorId;
@@ -383,10 +383,10 @@ function AddEditDoctorProfile(doctorId) {
     modelDetails.DoctorSignature = "";
     modelDetails.DoctorCall_Limit = jQuery("#CallLimt").val(); // $("#CallLimt").val();
     modelDetails.Award = $("#txtAward").val();
-    modelDetails.Proficiency = selectedSource;
-    modelDetails.AwardYear = jQuery("#txtAwarYear option:selected").text();
-    modelDetails.DoctorEducations = DoctorEducationsModel;
-    modelDetails.DoctorExperiance = DoctorExperianceModel;
+    // modelDetails.Proficiency = selectedSource;
+    // modelDetails.AwardYear = jQuery("#txtAwarYear option:selected").text();
+    // modelDetails.DoctorEducations = DoctorEducationsModel;
+    //modelDetails.DoctorExperiance = DoctorExperianceModel;
     //});
 
     $.ajax({
