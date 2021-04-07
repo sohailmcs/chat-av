@@ -14,4 +14,6 @@ module.exports = {
     //serviceURL: "http://localhost:1042/KindahService/",
     max_length: 50,
     name: "Kindah",
+
+
 };
