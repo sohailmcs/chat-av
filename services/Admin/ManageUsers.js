@@ -77,7 +77,7 @@ function Filldatatable(data) {
                     } else {
                         return (
                             '<a href="#" onclick="ActiveInactiveUser(this)" userId="' +
-                            row.UserId +
+                            row.UserId + '" userType="' + row.UserType +
                             '" data-toggle="tooltip" isactive="true" data-placement="bottom" title="Edit User">' +
                             "InActive</a>"
                         );

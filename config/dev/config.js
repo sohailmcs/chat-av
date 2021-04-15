@@ -8,7 +8,7 @@ module.exports = {
     datalog: "/ldata.log",
     cookiename: "kindah",
     host: "localhost",
-    port: 8080,
+    port: 443,
     url: "http://",
     serviceURL: "https://kindahclinic.com/KindahService/",
     //serviceURL: "http://localhost:1042/KindahService/",

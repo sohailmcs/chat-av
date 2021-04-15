@@ -1,113 +1,114 @@
 <%- include('includes/AdminHead.ejs') %>
 
-<!-- BEGIN: Vendor CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
 
-<!-- END: Vendor CSS-->
+    <!-- END: Vendor CSS-->
 
-<!-- BEGIN: Theme CSS-->
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
-<link rel="stylesheet" type="text/css" href="/css/colors.css" />
-<link rel="stylesheet" type="text/css" href="/css/components.css" />
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" 
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-extended.css" />
+    <link rel="stylesheet" type="text/css" href="/css/colors.css" />
+    <link rel="stylesheet" type="text/css" href="/css/components.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" />
 
-/>
+    <!-- END: Theme CSS-->
 
-<!-- END: Theme CSS-->
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
+    <!-- END: Page CSS-->
 
-<!-- BEGIN: Page CSS-->
-<link rel="stylesheet" type="text/css" href="/css/vertical-menu.css" />
-<!-- END: Page CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <!-- END: Custom CSS-->
+    </head>
+    <!-- END: Head-->
 
-<!-- BEGIN: Custom CSS-->
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<!-- END: Custom CSS-->
-</head>
-<!-- END: Head-->
+    <!-- BEGIN: Body-->
 
-<!-- BEGIN: Body-->
+    <!-- body tag and blue nav bar  -->
+    <%- include('includes/adminNav.ejs') %>
 
-<!-- body tag and blue nav bar  -->
-<%- include('includes/adminNav.ejs') %>
+        <!-- complete side menu of doctor -->
+        <%- include('includes/adminSideMenu.ejs') %>
 
-<!-- complete side menu of doctor -->
-<%- include('includes/adminSideMenu.ejs') %>
+            <!-- BEGIN: Content-->
 
-<!-- BEGIN: Content-->
+            <!-- BEGIN: Content-->
 
-<!-- BEGIN: Content-->
-
-<div class="app-content content">
-    <div class="content-overlay"></div>
-    <div class="content-wrapper">
-        <div class="content-header row"></div>
-        <div class="content-body">
-            <section class="sideMenuId" id="slideDocProfile" style="
+            <div class="app-content content">
+                <div class="content-overlay"></div>
+                <div class="content-wrapper">
+                    <div class="content-header row"></div>
+                    <div class="content-body">
+                        <section class="sideMenuId" id="slideDocProfile" style="
               margin-right: -60%;
               overflow: auto;
               display: none;
               width: 60%;
               margin-top: 10px;
             ">
-                <!-- User new mail right area -->
+                            <!-- User new mail right area -->
 
-            </section>
+                        </section>
 
-            <!-- end side bar -->
+                        <!-- end side bar -->
 
-            <br />
-            <div class="d-flex flex-row">
-                <div class="page-heading">
-                    <h3>KINDAH PATIENTS</h3>
+                        <br />
+                        <div class="d-flex flex-row">
+                            <div class="page-heading">
+                                <h3>KINDAH PATIENTS</h3>
+                            </div>
+                        </div>
+
+
+                        <div class="table-responsive">
+                            <br />
+                            <table class="table call-log-table" id="tblDoctors">
+                                <thead>
+                                    <tr class="call-log-table-header">
+                                        <th class="call-log-table-head">PatientId</th>
+                                        <th class="call-log-table-head">Name</th>
+                                        <th class="call-log-table-head">PatientType</th>
+                                        <!-- <th class="call-log-table-head">Gender</th> -->
+                                        <th class="call-log-table-head">Phone </th>
+                                        <th class="call-log-table-head">Country</th>
+                                        <th class="call-log-table-head">City</th>
+                                        <th class="call-log-table-head">Age</th>
+                                        <th class="call-log-table-head">Status</th>
+                                        <th class="call-log-table-head">Status</th>
+                                        <th class="call-log-table-head">Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <!-- End  table -->
+                    </div>
                 </div>
             </div>
+            <!-- END: Content-->
 
-          
-            <div class="table-responsive">
-                <br />
-                <table class="table call-log-table" id="tblDoctors">
-                    <thead>
-                        <tr class="call-log-table-header">
-                            <th class="call-log-table-head">PatientId</th>
-                            <th class="call-log-table-head">Name</th>
-                            <th class="call-log-table-head">PatientType</th>
-                            <!-- <th class="call-log-table-head">Gender</th> -->
-                            <th class="call-log-table-head">Phone </th>
-                            <th class="call-log-table-head">Country</th>
-                            <th class="call-log-table-head">City</th>                            
-                            <th class="call-log-table-head">Age</th>
-                            <th class="call-log-table-head">Action</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+            <!-- END: Content-->
 
-            <!-- End  table -->
-        </div>
-    </div>
-</div>
-<!-- END: Content-->
+            <!-- BEGIN: Vendor JS-->
+            <!-- <script src="/js/vendors.min.js"></script> -->
 
-<!-- END: Content-->
+            <script src="/js/vertical-menu-light.js"></script>
+            <script src="/js/app-menu.js"></script>
+            <script src="/js/app.js"></script>
 
-<!-- BEGIN: Vendor JS-->
-<!-- <script src="/js/vendors.min.js"></script> -->
+            <script src="/js/sweetalert2.all.min.js"></script>
+            <script src="/js/polyfill.min.js"></script>
+            <script src="/js/sweet-alerts.js"></script>
+            <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
-<script src="/js/vertical-menu-light.js"></script>
-<script src="/js/app-menu.js"></script>
-<script src="/js/app.js"></script>
+            <script src="/js/slidevideocall.js"></script>
+            <!-- END: Theme JS-->
 
-<script type="text/javascript" charset="utf8" 
+            <!-- BEGIN: Services calling JS-->
+            <script src="/services/Admin/ManagePatients.js"></script>
+            <script src="/services/loadingoverlay.min.js"></script>
+            <!-- END: JS-->
 
-src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-
-<script src="/js/slidevideocall.js"></script>
-<!-- END: Theme JS-->
-
-<!-- BEGIN: Services calling JS-->
-<script src="/services/Admin/ManagePatients.js"></script>
-<script src="/services/loadingoverlay.min.js"></script>
-<!-- END: JS-->
-
-<%- include('../../Default/view/includes/End.ejs') %>
+            <%- include('../../Default/view/includes/End.ejs') %>

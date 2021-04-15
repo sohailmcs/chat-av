@@ -53,7 +53,7 @@ bottom px-2 py-1 side-card-title">
                         <div class="card-content side-bar">
                             <div class="card-body slide-card">
                                 <div class="media" style="flex-wrap: wrap">
-                                    <div class="pr-50 mt-1" style="margin-left:10px, padding:0px !impportant">
+                                    <div class="pr-50 mt-1" style="margin-left:10px; padding: 0px !important">
                                         {{#ProfilePicture}}
                                         <img src="{{ProfilePicture}}" width="100" height="100" alt="avtar"> {{/ProfilePicture}} {{^ProfilePicture}}
                                         <img src="/assets/images/maledoc.png" width="100" height="100" alt="avtar"> {{/ProfilePicture}}
@@ -231,6 +231,8 @@ margin"></i>Year</span>: {{AwardYear}} </p>
                                         <th class="call-log-table-head">Phone </th>
                                         <th class="call-log-table-head">Country</th>
                                         <th class="call-log-table-head">City</th>
+                                        <th class="call-log-table-head">status</th>
+                                        <th class="call-log-table-head">Status</th>
                                         <th class="call-log-table-head">Action</th>
                                     </tr>
                                 </thead>
@@ -243,14 +245,14 @@ margin"></i>Year</span>: {{AwardYear}} </p>
             </div>
             <!-- END: Content-->
 
-            <!-- END: Content-->
-
             <!-- BEGIN: Vendor JS-->
             <script src="/js/vendors.js"></script>
-
             <script src="/js/vertical-menu-light.js"></script>
             <script src="/js/app-menu.js"></script>
             <script src="/js/app.js"></script>
+            <script src="/js/sweetalert2.all.min.js"></script>
+            <script src="/js/polyfill.min.js"></script>
+            <script src="/js/sweet-alerts.js"></script>
 
             <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
