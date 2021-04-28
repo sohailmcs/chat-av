@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-  <!-- BEGIN: Head-->
+<!-- BEGIN: Head-->
 
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
 
-    <title><%= PageTitle %></title>
+    <title>
+        <%= PageTitle %>
+    </title>
     <script src="js/vendors.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/vendors.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
@@ -20,50 +19,34 @@
 
     <link rel="stylesheet" type="text/css" href="/css/animate.css" />
     <link rel="stylesheet" type="text/css" href="/css/sweetalert2.min.css" />
-   
+
     <!-- END CSS-->
-  </head>
-  <!-- END: Head-->
+</head>
+<!-- END: Head-->
 
-  <!-- BEGIN: Body-->
+<!-- BEGIN: Body-->
 
-  <body
-    class="vertical-layout vertical-menu-modern 1-column navbar-sticky footer-static bg-full-screen-image blank-page blank-page"
-    data-open="click"
-    data-menu="vertical-menu-modern"
-    data-col="1-column"
-  >
+<body class="vertical-layout vertical-menu-modern 1-column navbar-sticky footer-static bg-full-screen-image blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
     <!--start Forgot password Modal -->
-    <div
-      class="modal fade text-left"
-      id="primary"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel160"
-      aria-hidden="true"
-    >
-      <div
-        class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-        role="document"
-      >   
-   
-        <div class="modal-content">
-          <div class="modal-header bg-primary ">
-            <h4 id="myModalLabel160">
-              Forgot Password?
-            </h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div class="modal fade text-left" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header bg-primary ">
+                    <h4 id="myModalLabel160">
+                        Forgot Password?
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
-            </button>       
-          </div>
-          <div class="modal-body">
-                <div class="card-header">
-                  <div class="card-title" style="text-align: center;">
-                    <!-- <h5 class="LoginHeading">
+            </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-header">
+                        <div class="card-title" style="text-align: center;">
+                            <!-- <h5 class="LoginHeading">
                       Forgot Password?
                     </h5> -->
-                    <span class="txtlogin"
-                      >Enter the email or phone number you used when you
+                            <span class="txtlogin">Enter the email or phone number you used when you
                       joined and we will send you temporary password</span
                     >
                   </div>
@@ -96,13 +79,16 @@
                         <br />
 
                         <span>Don’t receive yet?</span>
-                        <br />
-                        <br />
-                        
-                          <a id="btnResend" href="#"><small<strong>Resend?</strong></small></a>
-                       
+                            <br />
+                            <br />
 
-                        <!-- <div
+                            <a id="btnResend" href="#">
+                                <small<strong>Resend?</strong>
+                                    </small>
+                            </a>
+
+
+                            <!-- <div
                         class="form-group d-flex justify-content-between align-items-center mb-2"
                       >
                         <div class="text-left">
@@ -116,136 +102,121 @@
                       </div> -->
 
 
-                        
-                      </div>
-                    </form>
-                  </div>
-                </div>
-             
-            
 
-          </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+            </div>
         </div>
-      </div>
     </div>
-  <!--end Forgot password Modal -->
+    </div>
+    <!--end Forgot password Modal -->
 
- <!--start reset password Modal -->
- <div
- class="modal fade text-left"
- id="popupResetPassword"
- tabindex="-1"
- role="dialog"
- aria-labelledby="myModalLabel160"
- aria-hidden="true"
->
- <div
-   class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-   role="document"
- >   
+    <!--start reset password Modal -->
+    <div class="modal fade text-left" id="popupResetPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel160" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 
-</button>
-   <div class="modal-content">
-     <div class="modal-header bg-primary ">
-       <h4 id="myModalLabel160">
-         Reset Password?
-       </h4>
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            </button>
+            <div class="modal-content">
+                <div class="modal-header bg-primary ">
+                    <h4 id="myModalLabel160">
+                        Reset Password?
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
          <span aria-hidden="true">&times;</span>
-       </button>       
-     </div>
-   
-     <div class="modal-body">
-         
-           <div class="card-content">
-             <div class="card-body">
-              <form id="frmresetpwd" class="mb-2">
-                <div class=" mb-2">
-                  <label class="text-bold-600" for="exampleInputusername">Username</label>
-                  <input required type="text" class="form-control" 
-                  name="username" id="txtUsername" placeholder="Username"/>
-                </div>
-                <div class="mb-2">
-                  <label class="text-bold-600" for="exampleInputEmailPhone1">Old Password</label>
-                  <input required type="password" class="form-control" name="oldPassword" id="txtOldPassword" placeholder="Old Password"/>
-                </div>
-                <div class=" mb-2">
-                  <label class="text-bold-600" for="exampleInputEmailPhone1">New Password</label>
-                  <input required type="password" class="form-control" name="newPassword" id="txtNewPassword" placeholder="New Password"/>
-                </div>
-                <div class="mb-2">
-                  <label class="text-bold-600" for="exampleInputEmailPhone1">Confirm New Password</label>
-                  <input required type="password" class="form-control" name="confirmNewPassword" id="txtConfirmNewPassword" placeholder="Confirm New Password"/>
+       </button>
                 </div>
 
-                <div style="text-align: center;">
-                  <button style="padding:10px 30px"
-                    type="submit"
-                    class="btn btn-primary glow position-relative"
-                  >
-                  RESET PASSWORD</button>
-                    </div>
-                    </form>
-             </div>
-           </div>
-        
-       
+                <div class="modal-body">
 
-     </div>
-   </div>
- </div>
-</div>
-<!--end rest password Modal -->
-<!--start OTP-->
-<% if (show_modal) { %>  
-  <script>
-    $(function(){
-      Swal.fire({
-            type: "info",
-            title: "SORRY!",
-            text:"Your user is not verified, Please signUp again to verify your user",            
-            confirmButtonClass: "btn btn-primary",
-            buttonsStyling: false,
-            confirmButtonText: "<a style='color:#fff'>OK</a>",
-          });
-
-
-      // $("#poupOTP").modal({
-      //       backdrop: "static",
-      //       keyboard: false,
-      //     });
-    });   
-  </script>    
-    <!-- <input type="hidden" id="hdnPhone" value="<%=data.PhoneExt %><%=data.PhoneNo %>">
-    <input type="hidden" id="hdnUserId" value="<%=data.UserId %>">
-    <input type="hidden" id="hdnEamil" value="<%=data.Email %>"> -->     
-    
-<% } %> 
-
-<!--end OTP-->
-    <!-- BEGIN: Content-->
-    <div class="app-content content">
-     
-
-      <div class="content-overlay"></div>
-      <div class="content-wrapper">
-        <div class="content-header row"></div>
-        <div class="content-body">
-          <!-- login page start -->
-          <section id="auth-login" class="row flexbox-container">
-            <div class="col-xl-8 col-11">
-              <div class="card bg-authentication mb-0">
-                <div class="row m-0">
-                  <!-- left section-login -->
-                  <div class="crtAccount col-md-5" style="padding-left: 40px">
-                    <div class="card-header loginLogo">
-                      <a href="/"><img src="/assets/logo.jpg" /></a>
-                    </div>
                     <div class="card-content">
-                      <div class="card-body">
-                        <h1 class="txtwelcome">Welcome back!</h1>
-                        <span class="txtlogin"
-                          >Sign in to check out what you’ve missed since you
+                        <div class="card-body">
+                            <form id="frmresetpwd" class="mb-2">
+                                <div class=" mb-2">
+                                    <label class="text-bold-600" for="exampleInputusername">Username</label>
+                                    <input required type="text" class="form-control" name="username" id="txtUsername" placeholder="Username" />
+                                </div>
+                                <div class="mb-2">
+                                    <label class="text-bold-600" for="exampleInputEmailPhone1">Old Password</label>
+                                    <input required type="password" class="form-control" name="oldPassword" id="txtOldPassword" placeholder="Old Password" />
+                                </div>
+                                <div class=" mb-2">
+                                    <label class="text-bold-600" for="exampleInputEmailPhone1">New Password</label>
+                                    <input required type="password" class="form-control" name="newPassword" id="txtNewPassword" placeholder="New Password" />
+                                </div>
+                                <div class="mb-2">
+                                    <label class="text-bold-600" for="exampleInputEmailPhone1">Confirm New Password</label>
+                                    <input required type="password" class="form-control" name="confirmNewPassword" id="txtConfirmNewPassword" placeholder="Confirm New Password" />
+                                </div>
+
+                                <div style="text-align: center;">
+                                    <button style="padding:10px 30px" type="submit" class="btn btn-primary glow position-relative">
+                  RESET PASSWORD</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end rest password Modal -->
+    <!--start OTP-->
+    <% if (show_modal) { %>
+        <script>
+            $(function() {
+                Swal.fire({
+                    type: "info",
+                    title: "SORRY!",
+                    text: "Your user is not verified, Please signUp again to verify your user",
+                    confirmButtonClass: "btn btn-primary",
+                    buttonsStyling: false,
+                    confirmButtonText: "<a style='color:#fff'>OK</a>",
+                });
+
+
+                // $("#poupOTP").modal({
+                //       backdrop: "static",
+                //       keyboard: false,
+                //     });
+            });
+        </script>
+        <!-- <input type="hidden" id="hdnPhone" value="<%=data.PhoneExt %><%=data.PhoneNo %>">
+    <input type="hidden" id="hdnUserId" value="<%=data.UserId %>">
+    <input type="hidden" id="hdnEamil" value="<%=data.Email %>"> -->
+
+        <% } %>
+
+            <!--end OTP-->
+            <!-- BEGIN: Content-->
+            <div class="app-content content">
+
+
+                <div class="content-overlay"></div>
+                <div class="content-wrapper">
+                    <div class="content-header row"></div>
+                    <div class="content-body">
+                        <!-- login page start -->
+                        <section id="auth-login" class="row flexbox-container">
+                            <div class="col-xl-8 col-11">
+                                <div class="card bg-authentication mb-0">
+                                    <div class="row m-0">
+                                        <!-- left section-login -->
+                                        <div class="crtAccount col-md-5" style="padding-left: 40px">
+                                            <div class="card-header loginLogo">
+                                                <a href="/"><img src="/assets/logo.jpg" /></a>
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <h1 class="txtwelcome">Welcome back!</h1>
+                                                    <span class="txtlogin">Sign in to check out what you’ve missed since you
                           were last here.</span
                         >
                         <br />
@@ -280,15 +251,12 @@
                           >
                         </div>
                         <span class="error" style="display: none"></span>
-                      </div>
-                      <div class="card-content">
-                        <div class="card-body">
-                          <form action="login" method="POST" id="frmLogin">
-                            <div class="mb-50">
-                              <label
-                                class="text-bold-600"
-                                for="exampleInputEmail1"
-                                >Email or Phone</label
+                                                </div>
+                                                <div class="card-content">
+                                                    <div class="card-body">
+                                                        <form action="login" method="POST" id="frmLogin">
+                                                            <div class="mb-50">
+                                                                <label class="text-bold-600" for="exampleInputEmail1">Email or Phone</label
                               >
                               <input
                                 required
@@ -317,26 +285,41 @@
                                 placeholder="Password"
                               />
                             </div>
-                            <div
-                              class="mb-2 d-flex flex-md-row flex-column justify-content-between"
-                            >
-                              <div
-                                style="padding: 0"
-                                class="col-md-9 text-left mb-50"
-                              >
-                                <div class="checkbox checkbox-sm">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    id="exampleCheck1"
-                                  />
-                                  <label
-                                    class="checkboxsmall"
-                                    for="exampleCheck1"
-                                    ><small>Keep me logged in</small></label
+
+                            <div class="mb-2 ">
+                              <label class="text-bold-600" >Login as :</label>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input required class="form-check-input" value="Patient" type="radio" name="UserType">
+                                                                    <label class="form-check-label" for="TypePatient">
+                                    Patient
+                                  </label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input required class="form-check-input" value="Doctor" type="radio" name="UserType">
+                                                                    <label class="form-check-label" for="TypeDoctor">
+                                Doctor
+                              </label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input required class="form-check-input" value="Company" type="radio" name="UserType">
+                                                                    <label class="form-check-label" for="TypeDoctor">
+                                                      Company
+                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                            <!--end of login Type-->
+                                                            <div class="mb-2 d-flex flex-md-row flex-column justify-content-between">
+                                                                <div style="padding: 0" class="col-md-9 text-left mb-50">
+                                                                    <div class="checkbox checkbox-sm">
+                                                                        <input type="checkbox" class="form-check-input" id="rdoKeepLogin" />
+                                                                        <label class="checkboxsmall" for="rdoKeepLogin"><small>Keep me logged in</small></label
                                   >
                                 </div>
                               </div>
+                             
+
+
                               <div style="padding: 0" class="col-sm-4">
                                 <button
                                   type="submit"
