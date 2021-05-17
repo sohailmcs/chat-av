@@ -12,7 +12,7 @@ module.exports = {
     url: "http://",
     serviceURL: "https://kindahclinic.com/KindahService/",
     //serviceURL: "http://localhost:1042/KindahService/",
-    max_length: 50,
+    max_length: 80,
     name: "Kindah",
 
 
