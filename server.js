@@ -187,6 +187,14 @@ app.use((req, res, next) => {
 // });
 
 //=============end push notification using socket.io=====================
+// webServer.listen(process.env.PORT || 8080, error => {
+//     if (error) {
+//         return console.error(error)
+//     }
+
+//     console.log("kindah project running on http://localhost:8080")
+// })
+
 webServer.listen(process.env.PORT || 8080, () =>
-    console.log("Kindah Project Running on http://localhost:8080")
+    console.log("Kindah Project Running on http://localhst:8080")
 );
