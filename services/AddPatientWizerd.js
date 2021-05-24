@@ -886,7 +886,8 @@ function AddPatientMedication() {
                 IsTakingMedication: $("#rdTakingMedYes").prop("checked"),
                 MedicationName: $(this).find(".txtMedicationName").val(),
                 ImageUrl: $(this).find(".imgMedicine").val(),
-                AddedBy: userLoginId
+                AddedBy: userLoginId,
+                Type: type
             });
         }
         if ($("#rdTakingMedNo").prop("checked")) {
@@ -897,6 +898,7 @@ function AddPatientMedication() {
                 MedicationName: "",
                 ImageUrl: "",
                 AddedBy: userLoginId,
+                Type: type
             });
         }
     });

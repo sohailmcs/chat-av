@@ -366,10 +366,19 @@ select.form-control:not([multiple="multiple"]) {
     transition: transform 150ms ease-out, font-size 150ms ease-out;
 }
 
-#msform fieldset .form-card {
+
+/* #msform fieldset .form-card {
     padding: 0 40px 30px 40px;
     box-sizing: border-box;
     width: 94%;
+    margin: 0 3% 20px 3%;
+    position: relative;
+} */
+
+#msform fieldset .form-card {
+    padding: 0px 21px 30px 0px;
+    box-sizing: border-box;
+    width: 95%;
     margin: 0 3% 20px 3%;
     position: relative;
 }
@@ -484,7 +493,7 @@ select.list-dt:focus {
     overflow: hidden;
     color: lightgrey;
     padding-left: 0;
-    width: 80%;
+    width: 90%;
     /* text-align: center; */
 }
 
