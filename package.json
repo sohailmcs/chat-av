@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/sohailmcs/chat-av#readme",
   "dependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.0",
     "bootstrap-show-modal": "^1.4.2",
