@@ -38,7 +38,7 @@
     "popper.js": "^1.16.0",
     "request": "^2.88.2",
     "serve-static": "^1.14.1",
-    "socket.io": "^2.4.1",
+    "socket.io": "^2.5.0",
     "socket.io-client": "^2.3.0",
     "sweetalert": "^2.1.2",
     "websocket": "^1.0.31"
