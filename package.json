@@ -30,7 +30,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "jquery": "^3.5.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.19",
     "nodemailer": "^6.4.11",
     "opentok": "^2.10.0",
